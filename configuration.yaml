@@ -23,6 +23,7 @@ zone 2:
 config:
 conversation:
 hassio:
+history:
 ios:
 logbook:
 map:
@@ -39,7 +40,6 @@ cover: !include includes/cover.yaml
 device_tracker: !include includes/device_tracker.yaml
 frontend: !include includes/frontend.yaml
 group: !include includes/group.yaml
-history: !include includes/history.yaml
 http: !include includes/http.yaml
 input_boolean: !include includes/input_boolean.yaml
 light: !include includes/light.yaml
