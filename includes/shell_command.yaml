@@ -1,0 +1,5 @@
+  desktop_hibernar : 'curl -k http://192.168.1.21:8000/?action=System.Hibernate'
+  desktop_reiniciar : 'curl -k http://192.168.1.21:8000/?action=System.Restart'
+  desktop_abrir_chrome: 'curl -k http://192.168.1.21:8000/?action=Shell.ExecutePredefined&command=Abrir%20Chrome'
+  servidor_hibernar : 'curl -k http://192.168.1.10:8000/?action=System.Hibernate'
+  servidor_reiniciar : 'curl -k http://192.168.1.10:8000/?action=System.Restart'

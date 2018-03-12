@@ -1,0 +1,42 @@
+- platform: template
+  sensors:
+    antonio:
+      value_template: >
+        {% if is_state('device_tracker.antonio', 'home') %}
+          true
+        {% else %}
+          false
+        {% endif %}
+      friendly_name: 'Antonio'
+      device_class: occupancy
+    roberta:
+      value_template: >
+        {% if is_state('device_tracker.roberta', 'home') %}
+          true
+        {% else %}
+          false
+        {% endif %}
+      friendly_name: 'Roberta'
+      device_class: occupancy
+    casa_movimento:
+      value_template: >
+        {% if is_state('group.casa_movimento', 'on') %}
+          true
+        {% else %}
+          false
+        {% endif %}
+      friendly_name: 'Movimento casa'
+      device_class: occupancy
+    muvrh_movimento_203:
+      value_template: >
+        {% if is_state('group.muvrh_movimento_203', 'on') %}
+          true
+        {% else %}
+          false
+        {% endif %}
+      friendly_name: 'Movimento sala 203'
+      device_class: occupancy
+- platform: ping
+  host: 192.168.1.40
+  name: "TV Quarto"
+  count: 3

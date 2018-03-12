@@ -5,7 +5,7 @@ homeassistant:
   elevation: 30
   unit_system: metric
   time_zone: America/Sao_Paulo
-  customize: !include customize.yaml
+  customize: !include includes/customize.yaml
 
 zone:
   name: Home
@@ -23,7 +23,6 @@ zone 2:
 config:
 conversation:
 hassio:
-history:
 ios:
 logbook:
 map:
@@ -31,27 +30,28 @@ sun:
 updater:
 zeroconf:
 
-alarm_control_panel: !include alarm.yaml
-automation: !include automation.yaml
-binary_sensor: !include binary_sensor.yaml
-camera: !include camera.yaml
-climate: !include climate.yaml
-cover: !include cover.yaml
-device_tracker: !include device_tracker.yaml
-frontend: !include frontend.yaml
-group: !include group.yaml
-http: !include http.yaml
-input_boolean: !include input_boolean.yaml
-light: !include light.yaml
-logger: !include logger.yaml
-media_player: !include media_player.yaml
-mqtt: !include mqtt.yaml
-notify: !include notify.yaml
-recorder: !include recorder.yaml
-scene: !include scene.yaml
-script: !include script.yaml
-sensor: !include sensor.yaml
-shell_command: !include shell_command.yaml
-switch: !include switch.yaml
-tts: !include tts.yaml
-xiaomi_aqara: !include xiaomi_aqara.yaml
+alarm_control_panel: !include includes/alarm.yaml
+automation: !include includes/automation.yaml
+binary_sensor: !include includes/binary_sensor.yaml
+camera: !include includes/camera.yaml
+climate: !include includes/climate.yaml
+cover: !include includes/cover.yaml
+device_tracker: !include includes/device_tracker.yaml
+frontend: !include includes/frontend.yaml
+group: !include includes/group.yaml
+history: !include includes/history.yaml
+http: !include includes/http.yaml
+input_boolean: !include includes/input_boolean.yaml
+light: !include includes/light.yaml
+logger: !include includes/logger.yaml
+media_player: !include includes/media_player.yaml
+mqtt: !include includes/mqtt.yaml
+notify: !include includes/notify.yaml
+recorder: !include includes/recorder.yaml
+scene: !include includes/scene.yaml
+script: !include includes/script.yaml
+sensor: !include includes/sensor.yaml
+shell_command: !include includes/shell_command.yaml
+switch: !include includes/switch.yaml
+tts: !include includes/tts.yaml
+xiaomi_aqara: !include includes/xiaomi_aqara.yaml

@@ -1,0 +1,211 @@
+#Casa
+
+- platform: mqtt
+  name: "mesa_jantar"
+  command_topic: "cmnd/mesajantar/POWER"
+  state_topic: "stat/mesajantar/POWER"
+  qos: 1
+  retain: true
+- platform: mqtt
+  name: "sala_principal"
+  command_topic: "cmnd/salaprincipal/POWER"
+  state_topic: "stat/salaprincipal/POWER"
+  qos: 1
+  retain: true
+- platform: mqtt
+  name: "suite_principal"
+  command_topic: "cmnd/suiteprincipal/POWER"
+  state_topic: "stat/suiteprincipal/POWER"
+  qos: 1
+  retain: true
+- platform: mqtt
+  name: "suite_banheiro"
+  command_topic: "cmnd/banheirosuite/POWER"
+  state_topic: "stat/banheirosuite/POWER"
+  qos: 1
+  retain: true
+- platform: mqtt
+  name: "corredor"
+  command_topic: "cmnd/corredor/POWER"
+  state_topic: "stat/corredor/POWER"
+  qos: 1
+  retain: true
+- platform: mqtt
+  name: "banheiro_social"
+  command_topic: "cmnd/banheirosocial/POWER"
+  state_topic: "stat/banheirosocial/POWER"
+  qos: 1
+  retain: true
+- platform: mqtt
+  name: "quarto"
+  command_topic: "cmnd/quarto/POWER"
+  state_topic: "stat/quarto/POWER"
+  qos: 1
+  retain: true
+- platform: mqtt
+  name: "entrada"
+  command_topic: "cmnd/entrada/POWER"
+  state_topic: "stat/entrada/POWER"
+  qos: 1
+  retain: true
+- platform: mqtt
+  name: "cozinha"
+  command_topic: "cmnd/cozinha/POWER"
+  state_topic: "stat/cozinha/POWER"
+  qos: 1
+  retain: true
+- platform: mqtt
+  name: "area_servico"
+  command_topic: "cmnd/areadeservico/POWER"
+  state_topic: "stat/areadeservico/POWER"
+  qos: 1
+  retain: true
+- platform: mqtt
+  name: "ledsuitecama"
+  effect_list:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+  state_topic: "stat/ledsuitecama/POWER"
+  command_topic: "cmnd/ledsuitecama/POWER"
+  brightness_state_topic: "cmnd/ledsuitecama/Dimmer"
+  brightness_command_topic: "cmnd/ledsuitecama/Dimmer"
+  brightness_scale: 100
+  rgb_command_template: '{{ "%02x" | format(red|int) }}{{ "%02x" | format(green|int) }}{{ "%02x" | format(blue|int) }}'
+  rgb_state_topic: "cmnd/ledsuitecama/Color"
+  rgb_command_topic: "cmnd/ledsuitecama/Color"
+  effect_command_topic: "cmnd/ledsuitecama/Scheme"
+  effect_state_topic: "cmnd/ledsuitecama/Scheme"
+  state_value_template: "{{ value }}"
+  brightness_value_template: "{{ value }}"
+  effect_value_template: "{{ value }}"
+  rgb_command_mode: hex
+  retain: true
+  qos: 1
+- platform: mqtt
+  name: "ledsuitetv"
+  effect_list:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+  state_topic: "stat/ledsuitetv/POWER"
+  command_topic: "cmnd/ledsuitetv/POWER"
+  brightness_state_topic: "cmnd/ledsuitetv/Dimmer"
+  brightness_command_topic: "cmnd/ledsuitetv/Dimmer"
+  brightness_scale: 100
+  rgb_command_template: '{{ "%02x" | format(red|int) }}{{ "%02x" | format(green|int) }}{{ "%02x" | format(blue|int) }}'
+  rgb_state_topic: "cmnd/ledsuitetv/Color"
+  rgb_command_topic: "cmnd/ledsuitetv/Color"
+  effect_command_topic: "cmnd/ledsuitetv/Scheme"
+  effect_state_topic: "cmnd/ledsuitetv/Scheme"
+  state_value_template: "{{ value }}"
+  brightness_value_template: "{{ value }}"
+  effect_value_template: "{{ value }}"
+  rgb_command_mode: hex
+  retain: true
+  qos: 1
+- platform: mqtt
+  name: "ledquartotv"
+  effect_list:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+  state_topic: "stat/ledquartotv/POWER"
+  command_topic: "cmnd/ledquartotv/POWER"
+  brightness_state_topic: "cmnd/ledquartotv/Dimmer"
+  brightness_command_topic: "cmnd/ledquartotv/Dimmer"
+  brightness_scale: 100
+  rgb_command_template: '{{ "%02x" | format(red|int) }}{{ "%02x" | format(green|int) }}{{ "%02x" | format(blue|int) }}'
+  rgb_state_topic: "cmnd/ledquartotv/Color"
+  rgb_command_topic: "cmnd/ledquartotv/Color"
+  effect_command_topic: "cmnd/ledquartotv/Scheme"
+  effect_state_topic: "cmnd/ledquartotv/Scheme"
+  state_value_template: "{{ value }}"
+  brightness_value_template: "{{ value }}"
+  effect_value_template: "{{ value }}"
+  rgb_command_mode: hex
+  retain: true
+  qos: 1
+- platform: mqtt
+  name: "ledcozinhabalcao"
+  effect_list:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+  state_topic: "stat/ledcozinhabalcao/POWER"
+  command_topic: "cmnd/ledcozinhabalcao/POWER"
+  brightness_state_topic: "cmnd/ledcozinhabalcao/Dimmer"
+  brightness_command_topic: "cmnd/ledcozinhabalcao/Dimmer"
+  brightness_scale: 100
+  rgb_command_template: '{{ "%02x" | format(red|int) }}{{ "%02x" | format(green|int) }}{{ "%02x" | format(blue|int) }}'
+  rgb_state_topic: "cmnd/ledcozinhabalcao/Color"
+  rgb_command_topic: "cmnd/ledcozinhabalcao/Color"
+  effect_command_topic: "cmnd/ledcozinhabalcao/Scheme"
+  effect_state_topic: "cmnd/ledcozinhabalcao/Scheme"
+  state_value_template: "{{ value }}"
+  brightness_value_template: "{{ value }}"
+  effect_value_template: "{{ value }}"
+  rgb_command_mode: hex
+  retain: true
+  qos: 1
+- platform: flux_led
+  devices:
+    192.168.1.30:
+      name: ledsalatv
+      mode: "rgb"
+    192.168.1.31:
+      name: ledsaladesktop
+      mode: "rgb"
+
+#MuvRH
+
+- platform: mqtt
+  name: "muv203entrada"
+  command_topic: "cmnd/muv203entrada/POWER"
+  state_topic: "stat/muv203entrada/POWER"
+  qos: 1
+  retain: true
+- platform: mqtt
+  name: "muv203banheiro"
+  command_topic: "cmnd/muv203banheiro/POWER"
+  state_topic: "stat/muv203banheiro/POWER"
+  qos: 1
+  retain: true
+- platform: mqtt
+  name: "muv203operacoes"
+  command_topic: "cmnd/muv203operacoes/POWER"
+  state_topic: "stat/muv203operacoes/POWER"
+  qos: 1
+  retain: true
+- platform: mqtt
+  name: "muv203nossasala"
+  command_topic: "cmnd/muv203nossasala/POWER"
+  state_topic: "stat/muv203nossasala/POWER"
+  qos: 1
+  retain: true
+- platform: mqtt
+  name: "muv303entrada"
+  command_topic: "cmnd/muv303entrada/POWER"
+  state_topic: "stat/muv303entrada/POWER"
+  qos: 1
+  retain: true
+- platform: mqtt
+  name: "muv303banheiro"
+  command_topic: "cmnd/muv303banheiro/POWER"
+  state_topic: "stat/muv303banheiro/POWER"
+  qos: 1
+  retain: true
+- platform: mqtt
+  name: "muv303dinamica"
+  command_topic: "cmnd/muv303dinamica/POWER"
+  state_topic: "stat/muv303dinamica/POWER"
+  qos: 1
+  retain: true

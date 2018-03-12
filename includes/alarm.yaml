@@ -1,0 +1,4 @@
+- platform: manual
+  name: Alarme
+  pending_time: 0
+  disarm_after_trigger: false

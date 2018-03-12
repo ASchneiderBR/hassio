@@ -1,0 +1,31 @@
+purge_interval: 3
+purge_keep_days: 15
+exclude:
+  domains:
+    - script
+    - group
+    - automation
+  entities:
+    - sensor.pws_alerts
+    - sensor.pws_temp_high_1d_c
+    - sensor.pws_temp_high_2d_c
+    - sensor.pws_temp_high_3d_c
+    - sensor.pws_temp_high_4d_c
+    - sensor.pws_temp_high_avg_c
+    - sensor.pws_temp_low_1d_c
+    - sensor.pws_temp_low_2d_c
+    - sensor.pws_temp_low_3d_c
+    - sensor.pws_temp_low_4d_c
+    - sensor.pws_temp_low_avg_c
+    - sensor.pws_weather
+    - sensor.pws_weather_1h
+    - sensor.since_last_boot
+    - sensor.igd_packets_received
+    - sensor.igd_packets_sent
+    - sensor.igd_received_bytes
+    - sensor.igd_sent_bytes
+    - sensor.illumination_34ce00907e65
+    - sensor.illumination_34ce0090940e
+include:
+  entities:
+    - group.pessoas
