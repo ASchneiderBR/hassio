@@ -21,37 +21,37 @@ zone 2:
   radius: 18
 
 config:
-zeroconf:
-updater:
-hassio:
 conversation:
+hassio:
 history:
-logbook:
-sun:
 ios:
+logbook:
 map:
+sun:
+updater:
+zeroconf:
 
-recorder: !include recorder.yaml
+alarm_control_panel: !include alarm.yaml
+automation: !include automation.yaml
+binary_sensor: !include binary_sensor.yaml
+camera: !include camera.yaml
+climate: !include climate.yaml
+cover: !include cover.yaml
+device_tracker: !include device_tracker.yaml
 frontend: !include frontend.yaml
-sensor: !include sensor.yaml
-switch: !include switch.yaml
+group: !include group.yaml
+http: !include http.yaml
 input_boolean: !include input_boolean.yaml
 light: !include light.yaml
-script: !include script.yaml
-alarm_control_panel: !include alarm.yaml
-cover: !include cover.yaml
-media_player: !include media_player.yaml
-notify: !include notify.yaml
-device_tracker: !include device_tracker.yaml
-climate: !include climate.yaml
-scene: !include scene.yaml
-shell_command: !include shell_command.yaml
-binary_sensor: !include binary_sensor.yaml
-tts: !include tts.yaml
-group: !include group.yaml
-automation: !include automation.yaml
-camera: !include camera.yaml
-xiaomi_aqara: !include xiaomi_aqara.yaml
 logger: !include logger.yaml
+media_player: !include media_player.yaml
 mqtt: !include mqtt.yaml
-http: !include http.yaml
+notify: !include notify.yaml
+recorder: !include recorder.yaml
+scene: !include scene.yaml
+script: !include script.yaml
+sensor: !include sensor.yaml
+shell_command: !include shell_command.yaml
+switch: !include switch.yaml
+tts: !include tts.yaml
+xiaomi_aqara: !include xiaomi_aqara.yaml
