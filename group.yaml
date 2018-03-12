@@ -1,0 +1,875 @@
+default_view:
+  view: yes
+  entities:
+  - group.camera_teste
+  - group.pessoas
+  - group.tempo
+  - group.sistema
+  - group.dispositivos
+  - group.sonoff_relays
+  - group.led_strips_lights
+  - group.celulares
+  - group.sensorescasa
+  - group.alarme
+  - group.botoes
+  - group.nivel_bateria_sensores
+  - group.tvs
+  - group.google_home_casa
+  - media_player.tablet_entrada
+  - group.all_automations
+  name: Casa
+  icon: mdi:home
+suite:
+  entities:
+  - binary_sensor.motion_sensor_158d000120af26
+  - sensor.humidity_158d0001dcb597
+  - climate.ar_condicionado_da_suite
+  - script.ar_suite_display
+  - script.ar_suite_swing
+  - cover.persiana_suite
+  - switch.tv_lg_suite
+  - light.ledsuitecama
+  - light.ledsuitetv
+  - light.suite_principal
+  - binary_sensor.motion_sensor_158d00016c01fd
+  - binary_sensor.door_window_sensor_158d0001d68545
+  - light.suite_banheiro
+  - switch.chuveirosuite
+  - switch.toalheiro
+  name: "Su\xEDte"
+  view: false
+quarto:
+  entities:
+  - binary_sensor.motion_sensor_158d00015b6c81
+  - sensor.humidity_158d0001702175
+  - climate.ar_condicionado_do_quarto
+  - script.ar_quarto_display
+  - script.ar_quarto_swing
+  - cover.persiana_quarto
+  - switch.ledquartotv
+  - switch.tv_lg_quarto
+  - light.ledquartotv
+  - light.quarto
+  name: Quarto
+  view: false
+banheiro2:
+  control: hidden
+  entities:
+  - binary_sensor.motion_sensor_158d00016da83a
+  - binary_sensor.door_window_sensor_158d0001e035a2
+  - light.banheiro_social
+  - switch.chuveirosocial
+  name: Banheiro social
+  view: false
+sala:
+  entities:
+  - binary_sensor.door_window_sensor_158d0001d6851d
+  - binary_sensor.motion_sensor_158d0001225607
+  - sensor.humidity_158d0001700b20
+  - sensor.illumination_34ce00907e65
+  - climate.ar_condicionado_da_sala
+  - script.ar_sala_display
+  - script.ar_sala_swing
+  - cover.persiana_sala
+  - switch.desktop
+  - switch.servidor
+  - switch.tv_lg_sala
+  - switch.home_theater_sala
+  - script.home_theater_sala_volup_x6
+  - script.home_theater_sala_voldown_x6
+  - light.gateway_light_34ce00907e65
+  - light.corredor
+  - light.ledsaladesktop
+  - light.sala_principal
+  - light.ledsalatv
+  - light.mesa_jantar
+  - light.entrada
+  name: Sala
+  view: false
+luzes_sala:
+  entities:
+  - light.gateway_light_34ce00907e65
+  - light.corredor
+  - light.sala_principal
+  - light.ledsalatv
+  - light.mesa_jantar
+  - light.entrada
+  name: Todas as luzes da sala
+  view: false
+cozinha:
+  entities:
+  - binary_sensor.motion_sensor_158d0001231d4d
+  - sensor.humidity_158d00019cec0c
+  - sensor.temperature_158d00019cec0c
+  - light.cozinha
+  - light.ledcozinhabalcao
+  - light.area_servico
+  name: Cozinha
+  view: false
+luzes_cozinha:
+  entities:
+  - light.cozinha
+  - light.ledcozinhabalcao
+  name: Luzes principais da cozinha
+  view: false
+pessoas:
+  control: hidden
+  entities:
+  - device_tracker.antonio
+  - device_tracker.roberta
+  name: Pessoas
+  view: false
+dispositivos:
+  control: hidden
+  entities:
+  - switch.desktop
+  - switch.servidor
+  - device_tracker.nas
+  - device_tracker.google_home_mini_sala
+  - device_tracker.xiaomi_hub
+  - device_tracker.rfbridgecasa
+  - device_tracker.tabletaut
+  - device_tracker.ipad_casa
+  - device_tracker.ipod
+  - device_tracker.rmprosuite
+  - device_tracker.rmminisala
+  - device_tracker.rmminiquarto
+  - device_tracker.impressorahpcasa
+  - device_tracker.camera_sala
+  - device_tracker.camera_cozinha
+  name: Dispositivos
+  view: false
+tempo:
+  control: hidden
+  entities:
+  - sun.sun
+  - sensor.pws_weather
+  - sensor.pws_temp_c
+  - sensor.pws_temp_high_avg_c
+  - sensor.pws_temp_low_avg_c
+  - sensor.pws_weather_1h
+  - sensor.pws_temp_high_1d_c
+  - sensor.pws_temp_low_1d_c
+  - sensor.pws_temp_high_2d_c
+  - sensor.pws_temp_low_2d_c
+  - sensor.pws_temp_high_3d_c
+  - sensor.pws_temp_low_3d_c
+  - sensor.pws_temp_high_4d_c
+  - sensor.pws_temp_low_4d_c
+  - sensor.pws_alerts
+  name: Tempo
+  view: false
+sensorescasa:
+  control: hidden
+  entities:
+  - sensor.fastcom_download
+  - sensor.luzes_ligadas
+  - sensor.interruptores_ligados
+  - binary_sensor.door_window_sensor_158d0001d6851d
+  - binary_sensor.door_window_sensor_158d0001d68545
+  - binary_sensor.door_window_sensor_158d0001e035a2
+  - binary_sensor.motion_sensor_158d000120af26
+  - binary_sensor.motion_sensor_158d0001225607
+  - binary_sensor.motion_sensor_158d0001231d4d
+  - binary_sensor.motion_sensor_158d00015b6c81
+  - binary_sensor.motion_sensor_158d00016c01fd
+  - binary_sensor.motion_sensor_158d00016da83a
+  - sensor.humidity_158d0001700b20
+  - sensor.humidity_158d0001702175
+  - sensor.humidity_158d00019cec0c
+  - sensor.humidity_158d0001dcb597
+  - sensor.illumination_34ce00907e65
+  - sensor.temperature_158d0001700b20
+  - sensor.temperature_158d0001702175
+  - sensor.temperature_158d00019cec0c
+  - sensor.temperature_158d0001dcb597
+  name: Sensores casa
+  view: false
+celulares:
+  control: hidden
+  entities:
+  - device_tracker.iphone_de_antonio
+  - sensor.iphone_de_antonio_battery_level
+  - sensor.iphone_de_antonio_battery_state
+  - device_tracker.ipad_de_antonio
+  - sensor.ipad_casa_antonio_e_roberta_battery_level
+  - sensor.ipad_casa_antonio_e_roberta_battery_state
+  - device_tracker.iphone_de_roberta
+  - sensor.iphone_de_roberta_battery_level
+  - sensor.iphone_de_roberta_battery_state
+  name: Celulares
+  view: false
+comodos:
+  entities:
+  - group.suite
+  - group.quarto
+  - group.banheiro2
+  - group.sala
+  - group.cozinha
+  - group.casa
+  name: "C\xF4modos"
+#  icon: mdi:hotel
+  view: true
+alarme:
+  control: hidden
+  entities:
+  - alarm_control_panel.alarme
+  - switch.sirene
+  name: Alarme
+  view: false
+scripts:
+  control: hidden
+  entities:
+  - group.scripts_alarme
+  - group.scripts_tv_suite
+  - group.scripts_tv_quarto
+  - group.scripts_tv_sala
+  - group.scripts_home_sala
+  - group.scripts_ar_suite
+  - group.scripts_ar_quarto
+  - group.scripts_ar_sala
+  - group.scripts_persiana_suite
+  - group.scripts_persiana_quarto
+  - group.scripts_persiana_sala
+  - group.scripts_suite
+  - group.scripts_quarto
+  - group.scripts_sala
+  - group.scripts_banheiro_social
+  - group.scripts_cozinha
+  - group.scripts_garagem_casa
+  - group.garagem_muvrh
+  name: Scripts
+#  icon: mdi:script
+  view: true
+tvs:
+  control: hidden
+  entities:
+  - media_player.tv_suite
+  - media_player.tv_quarto
+  - media_player.tv_sala
+  - media_player.entrada
+  name: TVs
+  view: false
+garagem_casa:
+  control: hidden
+  entities:
+  - script.garagem_casa
+  name: Garagem de casa
+  view: false
+sistema:
+  control: hidden
+  entities:
+  - sensor.processor_use
+  - sensor.disk_use_percent_home
+  - sensor.memory_use_percent
+  - sensor.since_last_boot
+  name: Sistema
+  view: false
+scripts_ar_suite:
+  control: hidden
+  entities:
+  - script.ar_suite_desligar
+  - script.ar_suite_display
+  - script.ar_suite_swing
+  name: Ar condicionado da suíte
+  view: false
+scripts_ar_sala:
+  control: hidden
+  entities:
+  - script.ar_sala_desligar
+  - script.ar_sala_display
+  - script.ar_sala_swing
+  name: Ar condicionado da sala
+  view: false
+scripts_ar_quarto:
+  control: hidden
+  entities:
+  - script.ar_quarto_desligar
+  - script.ar_quarto_display
+  - script.ar_quarto_swing
+  name: Ar condicionado do quarto
+  view: false
+scripts_tv_suite:
+  control: hidden
+  entities:
+  - script.tv_lg_suite_volup
+  - script.tv_lg_suite_voldown
+  - script.tv_lg_suite_chup
+  - script.tv_lg_suite_chdown
+  - script.tv_lg_suite_chtv
+  - script.tv_lg_suite_config
+  - script.tv_lg_suite_down
+  - script.tv_lg_suite_exit
+  - script.tv_lg_suite_input
+  - script.tv_lg_suite_left
+  - script.tv_lg_suite_menu
+  - script.tv_lg_suite_mute
+  - script.tv_lg_suite_ok
+  - script.tv_lg_suite_pause
+  - script.tv_lg_suite_play
+  - script.tv_lg_suite_power
+  - script.tv_lg_suite_right
+  - script.tv_lg_suite_stop
+  - script.tv_lg_suite_up
+  name: TV LG suíte
+  view: false
+scripts_tv_sala:
+  control: hidden
+  entities:
+  - script.tv_lg_sala_volup
+  - script.tv_lg_sala_voldown
+  - script.tv_lg_sala_chup
+  - script.tv_lg_sala_chdown
+  - script.tv_lg_sala_chtv
+  - script.tv_lg_sala_ligar_tudo
+  - script.tv_lg_sala_desligar_tudo
+  - script.tv_lg_sala_config
+  - script.tv_lg_sala_down
+  - script.tv_lg_sala_exit
+  - script.tv_lg_sala_input
+  - script.tv_lg_sala_left
+  - script.tv_lg_sala_menu
+  - script.tv_lg_sala_mute
+  - script.tv_lg_sala_ok
+  - script.tv_lg_sala_pause
+  - script.tv_lg_sala_play
+  - script.tv_lg_sala_power
+  - script.tv_lg_sala_right
+  - script.tv_lg_sala_stop
+  - script.tv_lg_sala_up
+  name: TV LG sala
+  view: false
+scripts_tv_quarto:
+  control: hidden
+  entities:
+  - script.tv_lg_quarto_volup
+  - script.tv_lg_quarto_voldown
+  - script.tv_lg_quarto_chup
+  - script.tv_lg_quarto_chdown
+  - script.tv_lg_quarto_chtv
+  - script.tv_lg_quarto_config
+  - script.tv_lg_quarto_down
+  - script.tv_lg_quarto_exit
+  - script.tv_lg_quarto_input
+  - script.tv_lg_quarto_left
+  - script.tv_lg_quarto_menu
+  - script.tv_lg_quarto_mute
+  - script.tv_lg_quarto_ok
+  - script.tv_lg_quarto_pause
+  - script.tv_lg_quarto_play
+  - script.tv_lg_quarto_power
+  - script.tv_lg_quarto_right
+  - script.tv_lg_quarto_stop
+  - script.tv_lg_quarto_up
+  name: TV LG quarto
+  view: false
+scripts_persiana_suite:
+  control: hidden
+  entities:
+  - script.persiana_suite_abrir
+  - script.persiana_suite_fechar
+  - script.persiana_suite_parar
+  name: Persiana suíte
+  view: false
+scripts_persiana_sala:
+  control: hidden
+  entities:
+  - script.persiana_sala_abrir
+  - script.persiana_sala_fechar
+  - script.persiana_sala_parar
+  name: Persiana sala
+  view: false
+scripts_persiana_quarto:
+  control: hidden
+  entities:
+  - script.persiana_quarto_abrir
+  - script.persiana_quarto_fechar
+  - script.persiana_quarto_parar
+  name: Persiana quarto
+  view: false
+scripts_alarme:
+  control: hidden
+  entities:
+  - script.alarme_casa_armar
+  - script.alarme_casa_desarmar
+  - script.alarme_casa_disparar
+  name: Alarme
+  view: false
+scripts_garagem_casa:
+  control: hidden
+  entities:
+  - script.garagem_casa
+  - script.garagem_casa_abrir
+  - script.garagem_casa_fechar
+  name: Garagem casa
+  view: false
+scripts_home_sala:
+  control: hidden
+  entities:
+  - script.home_theater_sala_volup
+  - script.home_theater_sala_voldown
+  - script.home_theater_sala_volup_x6
+  - script.home_theater_sala_voldown_x6
+  - script.home_theater_sala_mute
+  - script.home_theater_sala_power
+  name: Home Theater sala
+  view: false
+scripts_suite:
+  control: hidden
+  entities:
+  - script.led_suite_off
+  - script.led_suite_on
+  - script.luz_banheiro1_off
+  - script.luz_banheiro1_on
+  - script.luz_suite_off
+  - script.luz_suite_on
+  - script.toalhas_suite_off
+  - script.toalhas_suite_on
+  - script.luz_sala_off
+  - script.luz_sala_on
+  name: Suíte
+  view: false
+scripts_sala:
+  control: hidden
+  entities:
+  - script.led_tv_sala_off
+  - script.led_tv_sala_on
+  - script.luz_corredor_off
+  - script.luz_corredor_on
+  - script.luz_entrada_off
+  - script.luz_entrada_on
+  - script.luz_mesa_jantar_off
+  - script.luz_mesa_jantar_on
+  - script.desktop_abrir_chrome
+  - script.desktop_reiniciar
+  name: Sala
+  view: false
+scripts_quarto:
+  control: hidden
+  entities:
+  - script.luz_quarto_off
+  - script.luz_quarto_on
+  name: Quarto
+  view: false
+scripts_cozinha:
+  control: hidden
+  entities:
+  - script.led_cozinha_100
+  - script.led_cozinha_25
+  - script.led_cozinha_50
+  - script.led_cozinha_off
+  - script.led_cozinha_on
+  - script.led_cozinha_power
+  - script.luz_cozinha_off
+  - script.luz_cozinha_on
+  name: Cozinha
+  view: false
+scripts_banheiro_social:
+  control: hidden
+  entities:
+  - script.luz_banheiro2_off
+  - script.luz_banheiro2_on
+  name: Banheiro social
+  view: false
+sonoff_relays:
+  control: hidden
+  entities:
+  - device_tracker.toalheiro
+  - device_tracker.luzmesajantar
+  - device_tracker.luzsalaprincipal
+  - device_tracker.luzsuiteprincipal
+  - device_tracker.luzbanheirosuite
+  - device_tracker.luzcorredor
+  - device_tracker.luzbanheirosocial
+  - device_tracker.luzquarto
+  - device_tracker.luzentrada
+  - device_tracker.luzcozinha
+  - device_tracker.chuveirosuite
+  - device_tracker.chuveirosocial
+  - device_tracker.areadeservico
+  - device_tracker.sirene
+  name: Relés Sonoff
+  view: false
+led_strips_lights:
+  control: hidden
+  entities:
+  - device_tracker.ledsuitecama
+  - device_tracker.ledsuitetv
+  - device_tracker.ledquartotv
+  - device_tracker.ledsalatv
+  - device_tracker.ledsaladesktop
+#  - device_tracker.ledsaladesktoptasmota
+  - device_tracker.ledcozinhabalcao
+  name: Controladores LED
+  view: false
+casa:
+  control: hidden
+  entities:
+  - switch.sistema_alarme_casa
+  - switch.sirene
+  - input_boolean.chegar_casa
+  - input_boolean.sair_casa
+  - script.garagem_casa
+  name: Funções da casa
+  view: false
+tablet_entrada:
+#  control: hidden
+  entities:
+  - group.funcoes_tablet_entrada
+  name: Tablet entrada
+  view: true
+funcoes_tablet_entrada:
+#  control: hidden
+  entities:
+  - sensor.pws_weather_1h
+  - switch.sistema_alarme_casa
+  - light.entrada
+  - light.cozinha
+  - light.ledcozinhabalcao
+  - light.area_servico
+  - light.mesa_jantar
+  - light.sala_painel_desktop
+  - light.sala_principal
+  - light.corredor
+  name: Tablet entrada
+  view: false
+botoes:
+  control: hidden
+  entities:
+  - binary_sensor.switch_158d0001d8e9f8
+  - binary_sensor.switch_158d0001d8ea74
+  - binary_sensor.switch_158d000120ea75
+  - binary_sensor.switch_158d000121090f
+  - binary_sensor.switch_158d0001d8e9cf
+  - binary_sensor.switch_158d0001d9073f
+  - binary_sensor.switch_158d0001d8eabc
+  - binary_sensor.switch_158d0001d8eb3d
+  name: Botões
+  view: false
+casa_movimento:
+  control: hidden
+  entities:
+  - binary_sensor.motion_sensor_158d000120af26
+  - binary_sensor.motion_sensor_158d0001225607
+  - binary_sensor.motion_sensor_158d0001231d4d
+  - binary_sensor.motion_sensor_158d00015b6c81
+  - binary_sensor.motion_sensor_158d00016c01fd
+  - binary_sensor.motion_sensor_158d00016da83a
+  name: Movimento em casa
+  view: false
+automacoes:
+  entities:
+  - group.automacoes_luzes_casa
+  - group.automacoes_rotinas
+  - group.automacoes_alertas
+  - group.automacoes_botoes_xiaomi_casa
+  name: Automações
+  view: true
+automacoes_luzes_casa:
+  entities:
+  - automation.luzes_da_casa__banheiro_social
+  - automation.luzes_da_casa__banheiro_suite
+  - automation.luzes_da_casa__cozinha
+  - automation.luzes_da_casa__quarto
+  - automation.luzes_da_casa__suite
+  - automation.luzes_da_casa__sala
+  - automation.luzes_da_casa__entrando_em_casa
+  name: Luzes casa
+  view: false
+automacoes_rotinas:
+  entities:
+  - automation.rotina__acoes_ao_nascer_do_sol
+  - automation.rotina__acoes_ao_por_do_sol
+  - automation.rotina__boa_noite
+  - automation.rotina__bom_dia
+  name: Rotinas
+  view: false
+automacoes_alertas:
+  entities:
+  - automation.alerta__uso_cpu_em_alta_por_muito_tempo
+  - automation.alerta__avisar_quando_bateria_do_distpositivo_estiver_baixa
+  - automation.alerta__avisar_quando_dispositivo_ficar_offline
+  - automation.alarme__aviso_alarme_ativado
+  - automation.sensores__porta_da_entrada_aberta
+  - automation.sensores__porta_ou_janela_aberta_por_muito_tempo
+  name: Alertas
+  view: false
+nivel_bateria_sensores:
+  entities:
+  - sensor.bateria_sensor_porta_entrada
+  - sensor.bateria_sensor_box_suite
+  - sensor.bateria_sensor_box_social
+  - sensor.bateria_movimento_suite
+  - sensor.bateria_movimento_banheiro_suite
+  - sensor.bateria_movimento_banheiro_social
+  - sensor.bateria_movimento_quarto
+  - sensor.bateria_movimento_sala
+  - sensor.bateria_movimento_cozinha
+  - sensor.bateria_temperatura_suite
+  - sensor.bateria_temperatura_quarto
+  - sensor.bateria_temperatura_sala
+  - sensor.bateria_temperatura_cozinha
+  - sensor.bateria_botao_suite_01
+  - sensor.bateria_botao_suite_02
+  - sensor.bateria_botao_banheiro_suite
+  - sensor.bateria_botao_banheiro_social
+  - sensor.bateria_botao_quarto
+  - sensor.bateria_botao_sala_01
+  - sensor.bateria_botao_sala_02
+  - sensor.bateria_botao_cozinha
+  name: Nível bateria sensores
+  view: false
+luzes_sala_automacao:
+  entities:
+  - light.ledsalatv
+  - light.ledsaladesktop
+#  - light.gateway_light_34ce00907e65
+  name: Luzes da sala - automação
+  view: false
+luzes_cozinha_tudo:
+  entities:
+  - light.cozinha
+  - light.ledcozinhabalcao
+  - light.area_servico
+  name: Todas as luzes da cozinha
+  view: false
+luzes_suite_tudo:
+  entities:
+  - light.suite_principal
+  - light.ledsuitetv
+  name: Todas as luzes da cozinha
+  view: false
+automacoes_botoes_xiaomi_casa:
+  entities:
+  - automation.botao_xiaomi_banheiro_social
+  - automation.botao_xiaomi_banheiro_suite
+  - automation.botao_xiaomi_cozinha
+  - automation.botao_xiaomi_quarto
+  - automation.botao_xiaomi_sala_01
+  - automation.botao_xiaomi_sala_02
+  - automation.botao_xiaomi_suite_01
+  - automation.botao_xiaomi_suite_02
+  name: Botões Xiaomi Casa
+  view: false
+led_todos_suite:
+  entities:
+  - light.ledsuitecama
+  - light.ledsuitetv
+  name: Todos os LEDs da suíte
+  view: false
+led_todos_sala:
+  entities:
+  - light.ledsalatv
+  - light.ledsaladesktop
+  name: Todos os LEDs da sala
+  view: false
+
+# MuvRH
+
+muvrh:
+  control: hidden
+  entities:
+  - group.muvrh_nossa_sala
+  - group.muvrh_sala_operacoes
+  - group.muvrh_banheiro_203
+  - group.muvrh_entrada_203
+  - group.muvrh_sala_303
+  - group.muvrh_banheiro_303
+  - group.ar_muvrh
+  - group.garagem_muvrh
+  - group.muvrh_portas
+  - group.cameras_muvrh
+  - group.computadores_muvrh
+  - group.dispositivos_muvrh
+  - group.sonoff_relays_muvrh
+  - group.muvrh_nivel_bateria_sensores
+  - group.automacoes_muvrh
+  name: MuvRH
+  view: true
+dispositivos_muvrh:
+  entities:
+  - device_tracker.pi3b_tv_sala_operacoes
+  - device_tracker.xiaomi_hub_muvrh
+  - device_tracker.rmpro_sala203
+  - device_tracker.rmminioperacoes
+  - device_tracker.rmminientrada203
+  - device_tracker.camera_entrevistas
+  - device_tracker.celular_azul
+  - device_tracker.celular_vermelho
+  - device_tracker.impressora_canon
+  - device_tracker.impressora_laser
+  name: Dispositivos MuvRH
+  view: false
+computadores_muvrh:
+  entities:
+  - device_tracker.notebook_antonio
+  - device_tracker.notebook_roberta
+  - device_tracker.muvrh_01
+  - device_tracker.muvrh_02
+  - device_tracker.muvrh_03
+  - device_tracker.muvrh_04
+  - device_tracker.muvrh_05
+  - device_tracker.muvrh_06
+  name: Computadores MuvRH
+  view: false
+cameras_muvrh:
+  entities:
+  - device_tracker.camera_01
+  - device_tracker.camera_02
+  - device_tracker.camera_03
+  - device_tracker.camera_04
+  - device_tracker.camera_05
+  name: Câmeras MuvRH
+  view: false
+muvrh_nossa_sala:
+  control: hidden
+  entities:
+  - binary_sensor.motion_sensor_158d0001e02f9a
+  - climate.ar_condicionado_da_nossa_sala
+  - sensor.illumination_158d0001e02f9a
+  - light.gateway_light_34ce0090940e
+  - light.muv203nossasala
+  name: Nossa sala
+  view: false
+ar_muvrh:
+  control: hidden
+  entities:
+  - climate.ar_condicionado_da_nossa_sala
+  - climate.ar_condicionado_da_sala_de_operacoes
+  - climate.ar_condicionado_da_entrada_203
+  - climate.ar_condicionado_sala_303
+  name: Ar condicionados MuvRH
+  view: false
+garagem_muvrh:
+  control: hidden
+  entities:
+  - script.garagem_muvrh_rua
+  - script.garagem_muvrh_interno
+  - script.garagem_muvrh_sub_rua
+  - script.garagem_muvrh_sub_interno
+  - script.garagem_muvrh_entrar
+  - script.garagem_muvrh_sair
+  name: Garagem MuvRH
+  view: false
+muvrh_sala_operacoes:
+  entities:
+  - binary_sensor.motion_sensor_158d0001e420d0
+  - climate.ar_condicionado_da_sala_de_operacoes
+  - sensor.illumination_158d0001e420d0
+  - sensor.humidity_158d00015633b4
+  - switch.tv_sala_operacoes
+  - light.muv203operacoes
+  - switch.muv203bebedouro
+  name: Sala de operações
+  view: false
+muvrh_portas:
+  entities:
+  - binary_sensor.door_window_sensor_158d0001bf2a09
+  - binary_sensor.door_window_sensor_158d0001b8671f
+  name: Portas
+  view: false
+muvrh_entrada_203:
+  entities:
+  - binary_sensor.door_window_sensor_158d0001bf2a09
+  - binary_sensor.motion_sensor_158d0001ad6b83
+  - climate.ar_condicionado_da_entrada_203
+  - sensor.illumination_158d0001ad6b83
+  - sensor.humidity_158d0001d7e65d
+  - light.muv203entrada
+  name: Entrada 203
+  view: false
+muvrh_sala_303:
+  entities:
+  - binary_sensor.door_window_sensor_158d0001b8671f
+  - binary_sensor.motion_sensor_158d0001e44035
+  - climate.ar_condicionado_sala_303
+  - sensor.illumination_158d0001e44035
+  - sensor.temperature_158d0001703b44
+  - sensor.humidity_158d0001703b44
+  - light.muv303entrada
+  - light.muv303dinamica
+  - switch.muv303bebedouro
+  name: Sala 303
+  view: false
+muvrh_banheiro_203:
+  entities:
+  - binary_sensor.motion_sensor_158d0001e43ef1
+  - light.muv203banheiro
+  name: Banheiro 203
+  view: false
+muvrh_banheiro_303:
+  entities:
+  - binary_sensor.motion_sensor_158d0001ad6c20
+  - light.muv303banheiro
+  name: Banheiro 303
+  view: false
+muvrh_movimento_203:
+  entities:
+  - binary_sensor.motion_sensor_158d0001e02f9a
+  - binary_sensor.motion_sensor_158d0001e420d0
+  - binary_sensor.motion_sensor_158d0001ad6b83
+  - binary_sensor.motion_sensor_158d0001e43ef1
+  name: Movimento sala 203
+  view: false
+muvrh_movimento_303:
+  entities:
+  - binary_sensor.motion_sensor_158d0001e44035
+  - binary_sensor.motion_sensor_158d0001ad6c20
+  name: Movimento sala 303
+  view: false
+sonoff_relays_muvrh:
+  control: hidden
+  entities:
+  - device_tracker.muv203entrada
+  - device_tracker.muv203banheiro
+  - device_tracker.muv203operacoes
+  - device_tracker.muv203nossasala
+  - device_tracker.muv203bebedouro
+  name: Relés Sonoff MuvRH
+  view: false
+muvrh_interno:
+  control: hidden
+  entities:
+  - group.muvrh_entrada_203
+  - group.muvrh_banheiro_203
+  - group.muvrh_sala_operacoes
+  - group.muvrh_sala_303
+  - group.muvrh_banheiro_303
+  name: MuvRH interno
+  view: true
+automacoes_muvrh:
+  entities:
+  - automation.muvrh_203__luz_da_entrada
+  - automation.muvrh_203__luz_do_banheiro
+  - automation.muvrh_203__luz_da_sala_de_operacoes
+  - automation.muvrh_203__luz_da_nossa_sala
+  - automation.muvrh_203__ligar_tudo_quando_primeiro_chegar
+  - automation.muvrh_203__luz_temporizador_entrada
+  name: Automações MuvRH
+  view: false
+muvrh_nivel_bateria_sensores:
+  entities:
+  - sensor.bateria_sensor_porta_entrada_sala_203
+  - sensor.bateria_sensor_porta_entrada_sala_303
+  - sensor.bateria_temperatura_entrada_203
+  - sensor.bateria_temperatura_sala_operacoes
+  - sensor.bateria_temperatura_sala_303
+  - sensor.bateria_movimento_entrada_203
+  - sensor.bateria_movimento_banheiro_203
+  - sensor.bateria_movimento_sala_operacoes
+  - sensor.bateria_movimento_nossa_sala
+  - sensor.bateria_movimento_sala_303
+  - sensor.bateria_movimento_banheiro_303
+  name: Nível bateria sensores
+  view: false
+camera_teste:
+  entities:
+  - binary_sensor.foscam_motion_sensor
+  - camera.camera_de_testes
+  name: Camera Teste
+  view: false
+google_home_casa:
+  entities:
+  - media_player.sala
+  name: Google Homes Casa
+  view: false

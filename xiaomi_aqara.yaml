@@ -1,0 +1,8 @@
+discovery_retry: 3
+gateways:
+  - mac: 34:CE:00:90:7E:65
+    key: !secret xiaomi_hub_casa_key
+    host: 192.168.1.14
+  - mac: 34:CE:00:90:94:0E
+    key: !secret xiaomi_hub_muvrh_key
+    host: 192.168.1.15

@@ -1,0 +1,1079 @@
+- alias: TV sala
+  trigger:
+    - platform: state
+      entity_id: media_player.tv_sala
+      from: 'off'
+      to: 'playing'
+    - platform: state
+      entity_id: media_player.tv_sala
+      to: 'off'
+      for:
+        seconds: 3
+  action:
+    - service_template: >
+        {% if is_state('media_player.tv_sala' , 'playing') and is_state('switch.home_theater_sala', 'off') %}
+          switch.turn_on
+        {% elif is_state('media_player.tv_sala' , 'off') and is_state('switch.home_theater_sala', 'on') %}
+          switch.turn_off
+        {% endif %}
+      entity_id: switch.home_theater_sala
+    - service_template: >
+        {% if is_state('media_player.tv_sala' , 'playing') and is_state('light.ledsalatv', 'off') %}
+          light.turn_on
+        {% endif %}
+      data:
+        entity_id: light.ledsalatv
+        effect: colorloop
+    - service_template: >
+        {% if is_state('media_player.tv_sala' , 'off') and is_state('light.ledsalatv', 'on') %}
+          light.turn_off
+        {% endif %}
+      data:
+        entity_id: light.ledsalatv
+   # Mandar mensagem TV
+    - delay: 00:00:06
+    - service: notify.tv_sala
+      data_template:
+        message: "Olá! A temperatura da sala é de {{ states.sensor.temperature_158d0001700b20.state | int }}ºC. Lá fora está {{ states.sensor.pws_weather.state | lower }} com {{ states.sensor.pws_temp_c.state | int }}ºC."
+- alias: Ações de reinicialização
+  trigger:
+    platform: homeassistant
+    event: start
+  action:
+    - service: notify.ios_iphone_de_antonio
+      data:
+        title: "Sistema"
+        message: "Home Assistant foi reinicializado"
+    - service: tts.google_say
+      entity_id: media_player.sala
+      data_template:
+        message: "O sistema foi reiniciado."
+    - service: frontend.set_theme
+      data_template:
+        name: "darkred"
+    - service_template: >
+        {% if is_state('group.pessoas', 'home') %}
+        alarm_control_panel.alarm_arm_home
+        {% else %}
+        alarm_control_panel.alarm_arm_away
+        {% endif %}
+      entity_id: alarm_control_panel.alarme
+    - service: mqtt.publish
+      data:
+        payload: ""
+        topic: "cmnd/sonoffs/power"
+        qos: 0
+        retain: 0
+    - service: cover.close_cover
+      entity_id:
+        - cover.garagem_muvrh_interno
+        - cover.garagem_muvrh_rua
+        - cover.garagem_casa
+    - service_template: >
+        {% if states.sun.sun.attributes.elevation > 3 %}
+          homeassistant.turn_off
+        {% else %}
+          homeassistant.turn_on
+        {% endif %}
+      entity_id:
+        - automation.luzes_da_casa__banheiro_social
+        - automation.luzes_da_casa__banheiro_suite
+        - automation.luzes_da_casa__cozinha
+        - automation.luzes_da_casa__quarto
+        - automation.luzes_da_casa__suite
+        - automation.luzes_da_casa__sala
+        - automation.luzes_da_casa__entrando_em_casa
+        - automation.muvrh_203__luz_da_entrada
+        - automation.muvrh_203__luz_do_banheiro
+        - automation.muvrh_203__luz_da_sala_de_operacoes
+        - automation.muvrh_203__luz_da_nossa_sala
+- alias: Garagem MuvRH
+  trigger:
+    - platform: state
+      entity_id: input_boolean.entrar_muvrh
+      from: 'off'
+      to: 'on'
+    - platform: state
+      entity_id: input_boolean.sair_muvrh
+      from: 'off'
+      to: 'on'
+  action:
+    - service_template: >
+        {% if is_state('input_boolean.entrar_muvrh', 'on') %}
+          notify.TUDO
+        {% endif %}
+      data:
+        title: "Garagem MuvRH"
+        message: "Bem vindo! Abrindo garagem do trabalho..."
+    - service_template: >
+        {% if is_state('input_boolean.entrar_muvrh', 'on') %}
+          script.garagem_muvrh_entrar
+        {% endif %}
+    - service_template: >
+        {% if is_state('input_boolean.sair_muvrh', 'on') %}
+          notify.TUDO
+        {% endif %}
+      data:
+        title: "Garagem MuvRH"
+        message: "Até logo! Abrindo garagem do trabalho..."
+    - service_template: >
+        {% if is_state('input_boolean.sair_muvrh', 'on') %}
+          script.garagem_muvrh_sair
+        {% endif %}
+- alias: Alarme - Rearmar automaticamente
+  trigger:
+    platform: state
+    entity_id: alarm_control_panel.alarme
+    to: 'disarmed'
+  action:
+    - service: tts.google_say
+      entity_id:
+        - media_player.sala
+      data_template:
+        message: "O alarme foi desarmado! Rearmando em 10 minutos."
+    - service: notify.TUDO
+      data:
+        title: "Alarme da casa"
+        message: "O alarme da casa foi desarmado. Rearmando em 10 minutos..."
+    - condition: state
+      entity_id: alarm_control_panel.alarme
+      state: 'disarmed'
+    - delay: 00:10:00
+    - service_template: >
+        {% if is_state('group.pessoas', 'home') %}
+        alarm_control_panel.alarm_arm_home
+        {% else %}
+        alarm_control_panel.alarm_arm_away
+        {% endif %}
+      entity_id: alarm_control_panel.alarme
+- alias: Alarme - Aviso alarme ativado
+  trigger:
+    platform: state
+    entity_id: alarm_control_panel.alarme
+    from: 'disarmed'
+  action:
+    - service: tts.google_say
+      entity_id: media_player.sala
+      data_template:
+        message: "O alarme foi armado!"
+    - service: notify.TUDO
+      data:
+        title: "Alarme da casa"
+        message: "O alarme da casa foi armado."
+- alias: Sensores - Porta da entrada aberta - Casa
+  trigger:
+    platform: state
+    entity_id: binary_sensor.door_window_sensor_158d0001d6851d
+    to: 'on'
+  action:
+    - service: script.entrada_luz_temporizador
+    - service: notify.TUDO
+      data:
+        title: "Alerta casa"
+        message: "Porta da entrada de casa acabou de ser aberta."
+    - service_template: >
+        {% if is_state('switch.sistema_alarme_casa', 'on') %}
+          alarm_control_panel.alarm_trigger
+        {% endif %}
+      entity_id: alarm_control_panel.alarme
+    - service_template: >
+        {% if is_state('switch.sistema_alarme_casa', 'off') %}
+          script.tts_porta_entrada
+        {% else %}
+          script.tts_entrando_casa_alarme
+        {% endif %}
+- alias: Alarme - Disparar
+  trigger:
+    platform: state
+    entity_id: alarm_control_panel.alarme
+    to: 'triggered'
+  action:
+    - service: switch.turn_on
+      entity_id: switch.sirene
+    - service: notify.TUDO
+      data:
+        title: "Alarme da casa"
+        message: "ATENÇÂO! Alarme foi acionado! Sirene está tocando!"
+- alias: Alerta - Avisar quando dispositivo ficar offline - Casa
+  trigger:
+    platform: state
+    entity_id:
+      - device_tracker.nas
+      - device_tracker.tabletaut
+      - device_tracker.ipad_casa
+      - device_tracker.ipod
+      - device_tracker.rmprosuite
+      - device_tracker.rmminisala
+      - device_tracker.rmminiquarto
+      - device_tracker.impressorahpcasa
+      - device_tracker.camera_sala
+      - device_tracker.camera_cozinha
+      - device_tracker.toalheiro
+      - device_tracker.luzmesajantar
+      - device_tracker.luzsalaprincipal
+      - device_tracker.xiaomi_hub
+      - device_tracker.luzsuiteprincipal
+      - device_tracker.luzbanheirosuite
+      - device_tracker.luzcorredor
+      - device_tracker.luzbanheirosocial
+      - device_tracker.luzquarto
+      - device_tracker.luzentrada
+      - device_tracker.luzcozinha
+      - device_tracker.chuveirosuite
+      - device_tracker.chuveirosocial
+      - device_tracker.areadeservico
+      - device_tracker.sirene
+      - device_tracker.leddesktopsala
+      - device_tracker.rfbridgecasa
+      - device_tracker.ledsuitecama
+      - device_tracker.ledsuitetv
+      - device_tracker.ledquartotv
+      - device_tracker.ledsalatv
+      - device_tracker.ledcozinhabalcao
+      - device_tracker.ledsaladesktop
+      - device_tracker.google_home_mini_sala
+    to: 'not_home'
+    for:
+      minutes: 10
+  action:
+    - service: notify.ios_iphone_de_antonio
+      data_template:
+        title: "Alerta casa"
+        message: "O dispositivo {{ trigger.to_state.name | lower }} se desconectou da rede."
+- alias: Alerta - Avisar quando dispositivo ficar offline - MuvRH
+  trigger:
+    platform: state
+    entity_id:
+      - device_tracker.camera_01
+      - device_tracker.camera_02
+      - device_tracker.camera_03
+      - device_tracker.camera_04
+      - device_tracker.camera_05
+      - device_tracker.xiaomi_hub_muvrh
+      - device_tracker.rmpro_sala203
+    to: 'not_home'
+    for:
+      minutes: 2
+  action:
+    - service: notify.ios_iphone_de_antonio
+      data_template:
+        title: "Alerta MuvRH"
+        message: "O dispositivo {{ trigger.to_state.name }} se desconectou da rede."
+- alias: Chegar em casa
+  trigger:
+    platform: state
+    entity_id: input_boolean.chegar_casa
+    to: 'on'
+  action:
+    - service: script.garagem_casa_abrir
+      entity_id: script.garagem_casa_abrir
+    - service: notify.TUDO
+      data_template:
+        title: "Automação"
+        message: "Bem vindo! Preparando a casa para sua chegada..."
+    - service: tts.google_say
+      entity_id: media_player.sala
+      data_template:
+        message: "Tem alguem chegando em casa, automação iniciada!"
+    - service: input_boolean.turn_off
+      data:
+        entity_id: input_boolean.chegar_casa
+    - delay: 00:00:30
+    - service: alarm_control_panel.alarm_disarm
+      entity_id: alarm_control_panel.alarme
+    - wait_template: "{{is_state('binary_sensor.door_window_sensor_158d0001d6851d', 'on')}}"
+      timeout: 00:09:00
+    - condition: state
+      entity_id: binary_sensor.door_window_sensor_158d0001d6851d
+      state: 'on'
+    - service_template: >
+        {% if is_state('switch.tv_lg_sala', 'off') %}
+          switch.turn_on
+        {% endif %}
+      entity_id: switch.tv_lg_sala
+- alias: Desligar toalheiro após 2 horas
+  trigger:
+    platform: state
+    entity_id: switch.toalheiro
+    to: 'on'
+    for:
+      hours: 2
+  action:
+    - service: switch.turn_off
+      entity_id: switch.toalheiro
+    - service: notify.TUDO
+      data_template:
+        title: "Automação"
+        message: "Toalheiro desligado após duas horas de uso."
+- alias: Desligar chuveiro após 20 minutos
+  trigger:
+    platform: state
+    entity_id:
+      - switch.chuveirosuite
+      - switch.chuveirosocial
+    to: 'on'
+    for:
+      minutes: 20
+  action:
+    - service: switch.turn_off
+      entity_id:
+        - switch.chuveirosuite
+        - switch.chuveirosocial
+    - service: notify.TUDO
+      data_template:
+        title: "Automação"
+        message: "{{ trigger.to_state.name }} desligado após 20 minutos de uso."
+- alias: Alerta - Chuveiro ligado sem ninguém em casa
+  trigger:
+    platform: state
+    entity_id:
+      - switch.chuveirosuite
+      - switch.chuveirosocial
+    to: 'on'
+  condition:
+    condition: state
+    entity_id: group.pessoas
+    state: 'not_home'
+  action:
+    - service: notify.TUDO
+      data_template:
+        title: "Alerta importante"
+        message: "{{ trigger.to_state.name }} foi ligado sem ninguém em casa! ATENÇÂO!"
+- alias: Luzes da casa - Suíte
+  trigger:
+    platform: state
+    entity_id: binary_sensor.motion_sensor_158d000120af26
+    from: 'off'
+    to: 'on'
+  condition:
+    condition: state
+    entity_id: group.led_todos_suite
+    state: 'off'
+  action:
+    - service: homeassistant.turn_on
+      entity_id: group.led_todos_suite
+    - wait_template: "{% if states.binary_sensor.motion_sensor_158d000120af26.attributes['No motion since'] | int >= 180 and states.binary_sensor.motion_sensor_158d000120af26.state == 'off' %}True{% else %}False{% endif %}"
+    - condition: state
+      entity_id: group.led_todos_suite
+      state: 'on'
+    - service: homeassistant.turn_off
+      entity_id: group.led_todos_suite
+- alias: Luzes da casa - Banheiro Suíte
+  trigger:
+    platform: state
+    entity_id: binary_sensor.motion_sensor_158d00016c01fd
+    from: 'off'
+    to: 'on'
+  condition:
+    condition: state
+    entity_id: light.suite_banheiro
+    state: 'off'
+  action:
+    - service: light.turn_on
+      entity_id: light.suite_banheiro
+    - wait_template: "{% if states.binary_sensor.motion_sensor_158d00016c01fd.attributes['No motion since'] | int >= 180 and states.binary_sensor.motion_sensor_158d00016c01fd.state == 'off' %}True{% else %}False{% endif %}"
+    - wait_template: "{% if states.switch.chuveirosuite.state == 'off' and as_timestamp(now()) - as_timestamp(states.switch.chuveirosuite.last_updated) | int >= 180 and states.binary_sensor.motion_sensor_158d00016c01fd.attributes['No motion since'] | int >= 180 %}True{% else %}False{% endif %}"
+    - condition: state
+      entity_id: light.suite_banheiro
+      state: 'on'
+    - service: light.turn_off
+      entity_id: light.suite_banheiro
+- alias: Luzes da casa - Banheiro Social
+  trigger:
+    platform: state
+    entity_id: binary_sensor.motion_sensor_158d00016da83a
+    from: 'off'
+    to: 'on'
+  condition:
+    condition: state
+    entity_id: light.banheiro_social
+    state: 'off'
+  action:
+    - service: light.turn_on
+      entity_id: light.banheiro_social
+    - wait_template: "{% if states.binary_sensor.motion_sensor_158d00016da83a.attributes['No motion since'] | int >= 180 and states.binary_sensor.motion_sensor_158d00016da83a.state == 'off' %}True{% else %}False{% endif %}"
+    - wait_template: "{% if states.switch.chuveirosocial.state == 'off' and as_timestamp(now()) - as_timestamp(states.switch.chuveirosocial.last_updated) | int >= 180 and states.binary_sensor.motion_sensor_158d00016da83a.attributes['No motion since'] | int >= 180 %}True{% else %}False{% endif %}"
+    - condition: state
+      entity_id: light.banheiro_social
+      state: 'on'
+    - service: light.turn_off
+      entity_id: light.banheiro_social
+- alias: Luzes da casa - Quarto
+  trigger:
+    platform: state
+    entity_id: binary_sensor.motion_sensor_158d00015b6c81
+    from: 'off'
+    to: 'on'
+  condition:
+    condition: state
+    entity_id: light.quarto
+    state: 'off'
+  action:
+    - service: light.turn_on
+      data:
+        entity_id: light.ledquartotv, light.quarto
+        effect: colorloop
+    - wait_template: "{% if states.binary_sensor.motion_sensor_158d00015b6c81.attributes['No motion since'] | int >= 180 and states.binary_sensor.motion_sensor_158d00015b6c81.state == 'off' %}True{% else %}False{% endif %}"
+    - condition: state
+      entity_id: light.quarto
+      state: 'on'
+    - service: light.turn_off
+      entity_id:
+        - light.quarto
+        - light.ledquartotv
+- alias: Luzes da casa - Sala
+  trigger:
+    platform: state
+    entity_id: binary_sensor.motion_sensor_158d0001225607
+    from: 'off'
+    to: 'on'
+  condition:
+    condition: state
+    entity_id: group.luzes_sala_automacao
+    state: 'off'
+  action:
+    - service: homeassistant.turn_on
+      entity_id: group.luzes_sala_automacao
+    - wait_template: "{% if states.binary_sensor.motion_sensor_158d0001225607.attributes['No motion since'] | int >= 180 and states.binary_sensor.motion_sensor_158d0001225607.state == 'off' %}True{% else %}False{% endif %}"
+    - condition: state
+      entity_id: group.luzes_sala_automacao
+      state: 'on'
+    - service: homeassistant.turn_off
+      entity_id: group.luzes_sala_automacao
+- alias: Luzes da casa - Cozinha
+  trigger:
+    platform: state
+    entity_id: binary_sensor.motion_sensor_158d0001231d4d
+    from: 'off'
+    to: 'on'
+  condition:
+    condition: state
+    entity_id: group.luzes_cozinha
+    state: 'off'
+  action:
+    - service: homeassistant.turn_on
+      entity_id: group.luzes_cozinha
+    - wait_template: "{% if states.binary_sensor.motion_sensor_158d0001231d4d.attributes['No motion since'] | int >= 300 and states.binary_sensor.motion_sensor_158d0001231d4d.state == 'off' %}True{% else %}False{% endif %}"
+    - condition: state
+      entity_id: group.luzes_cozinha
+      state: 'on'
+    - service: homeassistant.turn_off
+      entity_id: group.luzes_cozinha
+- alias: Luzes da casa - Entrando em casa
+  trigger:
+    platform: state
+    entity_id: binary_sensor.door_window_sensor_158d0001d6851d
+    from: 'off'
+    to: 'on'
+  condition:
+    condition: state
+    entity_id: light.mesa_jantar
+    state: 'off'
+  action:
+    - service: light.turn_on
+      entity_id: light.mesa_jantar
+- alias: Sensores - Porta ou janela aberta por muito tempo - Casa
+  trigger:
+    platform: state
+    entity_id:
+      - binary_sensor.door_window_sensor_158d0001d6851d
+    to: 'on'
+    for:
+      minutes: 1
+  action:
+    - service: tts.google_say
+      entity_id: media_player.sala
+      data_template:
+        message: 'Atenção! {{ trigger.to_state.name }} aberta por muito tempo!'
+    - service: notify.TUDO
+      data_template:
+        title: 'Alerta Casa'
+        message: 'Atenção: {{ trigger.to_state.name }} aberta por muito tempo!'
+- alias: Sensores - Porta ou janela aberta por muito tempo - MuvRH
+  trigger:
+    platform: state
+    entity_id:
+      - binary_sensor.door_window_sensor_158d0001bf2a09
+      - binary_sensor.door_window_sensor_158d0001b8671f
+    to: 'on'
+    for:
+      minutes: 1
+  action:
+    - service: notify.TUDO
+      data_template:
+        title: 'Alerta MuvRH'
+        message: 'Atenção: {{ trigger.to_state.name }} aberta por muito tempo!'
+- alias: Rotina - Bom dia
+  trigger:
+    platform: state
+    entity_id: input_boolean.bom_dia
+    to: 'on'
+  action:
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.boa_noite
+    - service: notify.TODOS_CELULARES
+      data_template:
+        title: "Automação"
+        message: "Bom dia! Hoje a máxima será de {{ states.sensor.pws_temp_high_avg_c.state }}ºC com previsão de {{ states.sensor.pws_weather.state | lower }}"
+    - service: switch.turn_on
+      entity_id:
+        - switch.tv_lg_suite
+        - switch.toalheiro
+    - service: cover.open_cover
+      entity_id: cover.persiana_suite
+    - service_template: >
+        {% if is_state('climate.ar_condicionado_da_suite' , 'idle') %}
+        {% else %}
+        climate.set_operation_mode
+        {% endif %}
+      data:
+        entity_id: climate.ar_condicionado_da_suite
+        operation_mode: "idle"
+    - delay: 00:05:00
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.bom_dia
+- alias: Rotina - Boa noite
+  trigger:
+    platform: state
+    entity_id: input_boolean.boa_noite
+    to: 'on'
+  action:
+    - service: notify.TODOS_CELULARES
+      data:
+        title: "Automação"
+        message: "Aprontando a casa. Boa noite!"
+    - service: switch.turn_off
+      entity_id:
+        - switch.tv_lg_suite
+    - service: light.turn_off
+      entity_id:
+        - light.ledsuitetv
+        - light.ledsuitecama
+    - service: cover.close_cover
+      entity_id: cover.persiana_suite
+    - service: automation.turn_off
+      entity_id:
+        - automation.luzes_da_casa__suite
+        - automation.luzes_da_casa__quarto
+    - service: automation.turn_on
+      entity_id: automation.luzes_da_casa__sala
+    - service_template: >
+        {% if is_state('climate.ar_condicionado_da_suite' , 'idle') %}
+        {% else %}
+          script.ar_suite_display
+        {% endif %}
+- alias: Rotina - Ações ao por do sol
+  trigger:
+    platform: numeric_state
+    entity_id: sun.sun
+    value_template: '{{ state.attributes.elevation | int }}'
+    below: 3
+  action:
+    - service: homeassistant.turn_on
+      entity_id:
+        - automation.luzes_da_casa__banheiro_social
+        - automation.luzes_da_casa__banheiro_suite
+        - automation.luzes_da_casa__cozinha
+        - automation.luzes_da_casa__quarto
+        - automation.luzes_da_casa__suite
+        - automation.luzes_da_casa__sala
+        - automation.luzes_da_casa__entrando_em_casa
+        - automation.muvrh_203__luz_da_entrada
+        - automation.muvrh_203__luz_do_banheiro
+        - automation.muvrh_203__luz_da_sala_de_operacoes
+        - automation.muvrh_203__luz_da_nossa_sala
+- alias: Rotina - Ações ao nascer do sol
+  trigger:
+    platform: numeric_state
+    entity_id: sun.sun
+    value_template: '{{ state.attributes.elevation | int }}'
+    above: 1
+  action:
+    - service: homeassistant.turn_off
+      entity_id:
+        - automation.luzes_da_casa__banheiro_social
+        - automation.luzes_da_casa__banheiro_suite
+        - automation.luzes_da_casa__cozinha
+        - automation.luzes_da_casa__quarto
+        - automation.luzes_da_casa__suite
+        - automation.luzes_da_casa__sala
+        - automation.luzes_da_casa__entrando_em_casa
+        - automation.muvrh_203__luz_da_entrada
+        - automation.muvrh_203__luz_do_banheiro
+        - automation.muvrh_203__luz_da_sala_de_operacoes
+        - automation.muvrh_203__luz_da_nossa_sala
+    - condition: time
+      before: '08:00:00'
+    - service: cover.close_cover
+      entity_id: cover.persiana_sala
+- alias: Alerta - Avisar quando bateria do dispositivo estiver baixa
+  trigger:
+    platform: numeric_state
+    entity_id:
+      - sensor.bateria_botao_banheiro_social
+      - sensor.bateria_botao_banheiro_suite
+      - sensor.bateria_botao_cozinha
+      - sensor.bateria_botao_quarto
+      - sensor.bateria_botao_sala_01
+      - sensor.bateria_botao_sala_02
+      - sensor.bateria_botao_suite_01
+      - sensor.bateria_botao_suite_02
+      - sensor.bateria_movimento_banheiro_203
+      - sensor.bateria_movimento_banheiro_303
+      - sensor.bateria_movimento_banheiro_social
+      - sensor.bateria_movimento_banheiro_suite
+      - sensor.bateria_movimento_cozinha
+      - sensor.bateria_movimento_entrada_203
+      - sensor.bateria_movimento_nossa_sala
+      - sensor.bateria_movimento_quarto
+      - sensor.bateria_movimento_sala
+      - sensor.bateria_movimento_sala_303
+      - sensor.bateria_movimento_sala_operacoes
+      - sensor.bateria_movimento_suite
+      - sensor.bateria_sensor_box_social
+      - sensor.bateria_sensor_box_suite
+      - sensor.bateria_sensor_porta_entrada
+      - sensor.bateria_sensor_porta_entrada_sala_203
+      - sensor.bateria_sensor_porta_entrada_sala_303
+      - sensor.bateria_temperatura_cozinha
+      - sensor.bateria_temperatura_entrada_203
+      - sensor.bateria_temperatura_quarto
+      - sensor.bateria_temperatura_sala
+      - sensor.bateria_temperatura_sala_303
+      - sensor.bateria_temperatura_sala_operacoes
+      - sensor.bateria_temperatura_suite
+    below: 10
+  action:
+    - service: notify.ios_iphone_de_antonio
+      data_template:
+        title: "Sistema"
+        message: "{{ trigger.to_numeric_state.name }} está muito baixa."
+- alias: Alerta - Uso CPU em alta por muito tempo
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.cpu_used
+    value_template: '{{ states.sensor.cpu_used.state | int }}'
+    above: 20
+    for:
+      minutes: 5
+  action:
+    - service: notify.ios_iphone_de_antonio
+      data_template:
+        title: "Sistema"
+        message: "O CPU do Pi3 está muito alto por mais de 5 minutos. No momento está a {{ states.sensor.cpu_used.state | int }}%."#
+# Botões Xiaomi#
+- alias: Botão Xiaomi quarto
+  trigger:
+    - platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.switch_158d000120ea75
+        click_type: single
+    - platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.switch_158d000120ea75
+        click_type: double
+    - platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.switch_158d000120ea75
+        click_type: long_click_press
+  action:
+    - service_template: >
+        {% if trigger.event.data.click_type == 'single' %}
+          script.botao_xiaomi_quarto_click_1
+        {% elif trigger.event.data.click_type == 'double' %}
+          script.botao_xiaomi_quarto_click_2
+        {% elif trigger.event.data.click_type == 'long_click_press' %}
+          script.botao_xiaomi_quarto_click_3
+        {% endif %}
+- alias: Botão Xiaomi suite 01
+  trigger:
+    - platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.switch_158d0001d8e9f8
+        click_type: single
+    - platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.switch_158d0001d8e9f8
+        click_type: double
+    - platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.switch_158d0001d8e9f8
+        click_type: long_click_press
+  action:
+    - service_template: >
+        {% if trigger.event.data.click_type == 'single' %}
+          script.botao_xiaomi_suite_01_click_1
+        {% elif trigger.event.data.click_type == 'double' %}
+          script.botao_xiaomi_suite_01_click_2
+        {% elif trigger.event.data.click_type == 'long_click_press' %}
+          script.botao_xiaomi_suite_01_click_3
+        {% endif %}
+- alias: Botão Xiaomi suite 02
+  trigger:
+    - platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.switch_158d0001d8ea74
+        click_type: single
+    - platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.switch_158d0001d8ea74
+        click_type: double
+    - platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.switch_158d0001d8ea74
+        click_type: long_click_press
+  action:
+    - service_template: >
+        {% if trigger.event.data.click_type == 'single' %}
+          script.botao_xiaomi_suite_02_click_1
+        {% elif trigger.event.data.click_type == 'double' %}
+          script.botao_xiaomi_suite_02_click_2
+        {% elif trigger.event.data.click_type == 'long_click_press' %}
+          script.botao_xiaomi_suite_02_click_3
+        {% endif %}
+- alias: Botão Xiaomi banheiro suite
+  trigger:
+    - platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.switch_158d0001d8eabc
+        click_type: single
+    - platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.switch_158d0001d8eabc
+        click_type: double
+    - platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.switch_158d0001d8eabc
+        click_type: long_click_press
+  action:
+    - service_template: >
+        {% if trigger.event.data.click_type == 'single' %}
+          script.botao_xiaomi_banheiro_suite_click_1
+        {% elif trigger.event.data.click_type == 'double' %}
+          script.botao_xiaomi_banheiro_suite_click_2
+        {% elif trigger.event.data.click_type == 'long_click_press' %}
+          script.botao_xiaomi_banheiro_suite_click_3
+        {% endif %}
+- alias: Botão Xiaomi banheiro social
+  trigger:
+    - platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.switch_158d0001d8eb3d
+        click_type: single
+    - platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.switch_158d0001d8eb3d
+        click_type: double
+    - platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.switch_158d0001d8eb3d
+        click_type: long_click_press
+  action:
+    - service_template: >
+        {% if trigger.event.data.click_type == 'single' %}
+          script.botao_xiaomi_banheiro_social_click_1
+        {% elif trigger.event.data.click_type == 'double' %}
+          script.botao_xiaomi_banheiro_social_click_2
+        {% elif trigger.event.data.click_type == 'long_click_press' %}
+          script.botao_xiaomi_banheiro_social_click_3
+        {% endif %}
+- alias: Botão Xiaomi sala 01
+  trigger:
+    - platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.switch_158d000121090f
+        click_type: single
+    - platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.switch_158d000121090f
+        click_type: double
+    - platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.switch_158d000121090f
+        click_type: long_click_press
+  action:
+    - service_template: >
+        {% if trigger.event.data.click_type == 'single' %}
+          script.botao_xiaomi_sala_01_click_1
+        {% elif trigger.event.data.click_type == 'double' %}
+          script.botao_xiaomi_sala_01_click_2
+        {% elif trigger.event.data.click_type == 'long_click_press' %}
+          script.botao_xiaomi_sala_01_click_3
+        {% endif %}
+- alias: Botão Xiaomi sala 02
+  trigger:
+    - platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.switch_158d0001d8e9cf
+        click_type: single
+    - platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.switch_158d0001d8e9cf
+        click_type: double
+    - platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.switch_158d0001d8e9cf
+        click_type: long_click_press
+  action:
+    - service_template: >
+        {% if trigger.event.data.click_type == 'single' %}
+          script.botao_xiaomi_sala_02_click_1
+        {% elif trigger.event.data.click_type == 'double' %}
+          script.botao_xiaomi_sala_02_click_2
+        {% elif trigger.event.data.click_type == 'long_click_press' %}
+          script.botao_xiaomi_sala_02_click_3
+        {% endif %}
+- alias: Botão Xiaomi cozinha
+  trigger:
+    - platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.switch_158d0001d9073f
+        click_type: single
+    - platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.switch_158d0001d9073f
+        click_type: double
+    - platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.switch_158d0001d9073f
+        click_type: long_click_press
+  action:
+    - service_template: >
+        {% if trigger.event.data.click_type == 'single' %}
+          script.botao_xiaomi_cozinha_click_1
+        {% elif trigger.event.data.click_type == 'double' %}
+          script.botao_xiaomi_cozinha_click_2
+        {% elif trigger.event.data.click_type == 'long_click_press' %}
+          script.botao_xiaomi_cozinha_click_3
+        {% endif %}
+- alias: Automação - RF Bridge Casa
+  trigger:
+    platform: mqtt
+    topic: tele/rfbridgecasa/RESULT
+  condition:
+    condition: template
+    value_template: "{% if trigger.payload_json.RfReceived.RfKey == 'None' %}False{% else %}True{% endif %}"
+  action:
+    - service_template: >
+        {% if trigger.payload_json.RfReceived.RfKey == 1 %}
+          script.rf_chegar_em_casa
+        {% elif trigger.payload_json.RfReceived.RfKey == 2 %}
+          script.garagem_casa_abrir
+        {% elif trigger.payload_json.RfReceived.RfKey == 3 %}
+          script.rf_chegar_em_casa
+        {% elif trigger.payload_json.RfReceived.RfKey == 4 %}
+          script.rf_sair_no_trabalho
+        {% elif trigger.payload_json.RfReceived.RfKey == 5 %}
+          script.rf_chuveiro_suite_toggle
+        {% elif trigger.payload_json.RfReceived.RfKey == 6 %}
+          script.rf_chuveiro_social_toggle
+        {% endif %}
+- alias: Solicitar status celulares
+  trigger:
+    platform: time
+    minutes: '/60'
+    seconds: 00
+  action:
+    - service: notify.TODOS_CELULARES
+      data:
+        message: "request_location_update"
+- alias: Luzes da casa - LED Desktop sala
+  trigger:
+    - platform: state
+      entity_id: switch.desktop
+  action:
+    - service_template: >
+        {% if is_state('switch.desktop' , 'on') %}
+          light.turn_on
+        {% elif is_state('switch.desktop' , 'off') %}
+          light.turn_off
+        {% endif %}
+      data:
+        entity_id: light.ledsaladesktop
+- alias: MuvRH 203 - Ligar tudo quando primeiro chegar
+  trigger:
+    platform: state
+    entity_id: binary_sensor.door_window_sensor_158d0001bf2a09
+    from: 'off'
+    to: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: time
+        after: '06:00:00'
+        before: '16:00:00'
+        weekday:
+          - mon
+          - tue
+          - wed
+          - thu
+          - fri
+      - condition: state
+        entity_id: group.muvrh_movimento_203
+        state: 'off'
+        for:
+          hours: 4
+          minutes: 0
+          seconds: 0
+  action:
+    - service: switch.turn_on
+      entity_id:
+        - switch.tv_sala_operacoes
+        - switch.muv203bebedouro
+    - delay: 00:00:02
+    - service: light.turn_on
+      entity_id: light.muv203operacoes
+- alias: MuvRH 203 - Luz da entrada
+  trigger:
+    platform: state
+    entity_id: binary_sensor.motion_sensor_158d0001ad6b83
+    from: 'off'
+    to: 'on'
+  condition:
+    condition: state
+    entity_id: light.muv203entrada
+    state: 'off'
+  action:
+    - service: light.turn_on
+      entity_id: light.muv203entrada
+    - wait_template: "{% if states.binary_sensor.motion_sensor_158d0001ad6b83.attributes['No motion since'] | int >= 360 and states.binary_sensor.motion_sensor_158d0001ad6b83.state == 'off' %}True{% else %}False{% endif %}"
+    - condition: state
+      entity_id: light.muv203entrada
+      state: 'on'
+    - service: light.turn_off
+      entity_id: light.muv203entrada
+- alias: MuvRH 203 - Luz do banheiro
+  trigger:
+    platform: state
+    entity_id: binary_sensor.motion_sensor_158d0001e43ef1
+    from: 'off'
+    to: 'on'
+  condition:
+    condition: state
+    entity_id: light.muv203banheiro
+    state: 'off'
+  action:
+    - service: light.turn_on
+      entity_id: light.muv203banheiro
+    - wait_template: "{% if states.binary_sensor.motion_sensor_158d0001e43ef1.attributes['No motion since'] | int >= 180 and states.binary_sensor.motion_sensor_158d0001e43ef1.state == 'off' %}True{% else %}False{% endif %}"
+    - condition: state
+      entity_id: light.muv203banheiro
+      state: 'on'
+    - service: light.turn_off
+      entity_id: light.muv203banheiro
+- alias: MuvRH 203 - Luz da sala de operações
+  trigger:
+    platform: state
+    entity_id: binary_sensor.motion_sensor_158d0001e420d0
+    from: 'off'
+    to: 'on'
+  condition:
+    condition: state
+    entity_id: light.muv203operacoes
+    state: 'off'
+  action:
+    - service: light.turn_on
+      entity_id: light.muv203operacoes
+    - wait_template: "{% if states.binary_sensor.motion_sensor_158d0001e420d0.attributes['No motion since'] | int >= 180 and states.binary_sensor.motion_sensor_158d0001e420d0.state == 'off' %}True{% else %}False{% endif %}"
+    - condition: state
+      entity_id: light.muv203operacoes
+      state: 'on'
+    - service: light.turn_off
+      entity_id: light.muv203operacoes
+- alias: MuvRH 203 - Luz da nossa sala
+  trigger:
+    platform: state
+    entity_id: binary_sensor.motion_sensor_158d0001e02f9a
+    from: 'off'
+    to: 'on'
+  condition:
+    condition: state
+    entity_id: light.muv203nossasala
+    state: 'off'
+  action:
+    - service: light.turn_on
+      entity_id: light.muv203nossasala
+    - wait_template: "{% if states.binary_sensor.motion_sensor_158d0001e02f9a.attributes['No motion since'] | int >= 180 and states.binary_sensor.motion_sensor_158d0001e02f9a.state == 'off' %}True{% else %}False{% endif %}"
+    - condition: state
+      entity_id: light.muv203nossasala
+      state: 'on'
+    - service: light.turn_off
+      entity_id: light.muv203nossasala
+- alias: MuvRH 203 - Luz temporizador entrada
+  trigger:
+    platform: state
+    entity_id: binary_sensor.door_window_sensor_158d0001bf2a09
+    from: 'off'
+    to: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: binary_sensor.motion_sensor_158d0001ad6b83
+        state: 'off'
+      - condition: state
+        entity_id: light.muv203entrada
+        state: 'off'
+  action:
+    - service: light.turn_on
+      entity_id: light.muv203entrada
+    - delay: 00:01:00
+    - condition: state
+      entity_id: light.muv203entrada
+      state: 'on'
+    - service: light.turn_off
+      entity_id: light.muv203entrada
+- alias: Sensores - Portas - MuvRH
+  trigger:
+    platform: state
+    entity_id:
+      - binary_sensor.door_window_sensor_158d0001bf2a09
+      - binary_sensor.door_window_sensor_158d0001b8671f
+    to: 'on'
+  action:
+    - service: notify.TODAS_TVS
+      data_template:
+        title: "Alerta MuvRH"
+        message: "Porta da {{ trigger.to_state.name | lower }} acabou de ser aberta."
+    - condition: state
+      entity_id: group.muvrh_movimento_203
+      state: 'off'
+      for:
+        hours: 0
+        minutes: 30
+        seconds: 0
+    - condition: state
+      entity_id: group.muvrh_movimento_303
+      state: 'off'
+      for:
+        hours: 0
+        minutes: 30
+        seconds: 0
+    - service: notify.TODOS_CELULARES
+      data_template:
+        title: "Alerta MuvRH"
+        message: "Porta da {{ trigger.to_state.name | lower }} acabou de ser aberta."

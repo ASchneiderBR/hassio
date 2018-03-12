@@ -1,0 +1,12 @@
+base_url: !secret url_padrao
+api_password: !secret http_password
+trusted_networks:
+  - 192.168.1.10
+  - 192.168.1.11
+  - 192.168.1.12
+  - 192.168.1.20
+  - 192.168.1.21
+  - 192.168.1.22
+  - 192.168.1.181
+  - 127.0.0.1
+login_attempts_threshold: 6

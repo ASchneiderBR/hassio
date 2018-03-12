@@ -1,0 +1,57 @@
+homeassistant:
+  name: Casa
+  latitude: !secret latitude
+  longitude: !secret longitude
+  elevation: 30
+  unit_system: metric
+  time_zone: America/Sao_Paulo
+  customize: !include customize.yaml
+
+zone:
+  name: Home
+  latitude: !secret latitude_home
+  longitude: !secret longitude_home
+  icon: mdi:home
+  radius: 18
+zone 2:
+  name: Trabalho
+  latitude: !secret latitude_work
+  longitude: !secret longitude_work
+  icon: mdi:home-modern
+  radius: 18
+
+config:
+zeroconf:
+updater:
+hassio:
+conversation:
+history:
+logbook:
+sun:
+ios:
+map:
+
+recorder: !include recorder.yaml
+frontend: !include frontend.yaml
+sensor: !include sensor.yaml
+switch: !include switche.yaml
+input_boolean: !include input_boolean.yaml
+light: !include light.yaml
+script: !include script.yaml
+alarm_control_panel: !include alarm.yaml
+cover: !include cover.yaml
+media_player: !include media_player.yaml
+notify: !include notify.yaml
+device_tracker: !include device_tracker.yaml
+climate: !include climate.yaml
+scene: !include scene.yaml
+shell_command: !include shell_command.yaml
+binary_sensor: !include binary_sensor.yaml
+tts: !include tts.yaml
+group: !include group.yaml
+automation: !include automation.yaml
+camera: !include camera.yaml
+xiaomi_aqara: !include xiaomi_aqara.yaml
+logger: !include logger.yaml
+mqtt: !include mqtt.yaml
+http: !include http.yaml

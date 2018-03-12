@@ -1,0 +1,224 @@
+sensor.ipad_casa_antonio_e_roberta_battery_level:
+  name:
+  platform: ios
+  unique_id: level_ipad_de_antonio
+sensor.iphone_de_roberta_battery_level:
+  name:
+  platform: ios
+  unique_id: level_iphone_de_roberta
+sensor.ipad_casa_antonio_e_roberta_battery_state:
+  name:
+  platform: ios
+  unique_id: state_ipad_de_antonio
+sensor.iphone_de_antonio_battery_level:
+  name:
+  platform: ios
+  unique_id: level_iphone_de_antonio
+sensor.iphone_de_antonio_battery_state:
+  name:
+  platform: ios
+  unique_id: state_iphone_de_antonio
+sensor.iphone_de_roberta_battery_state:
+  name:
+  platform: ios
+  unique_id: state_iphone_de_roberta
+binary_sensor.door_window_sensor_158d0001d6851d:
+  name:
+  platform: xiaomi_aqara
+  unique_id: status158d0001d6851d
+binary_sensor.motion_sensor_158d0001ad6c20:
+  name:
+  platform: xiaomi_aqara
+  unique_id: status158d0001ad6c20
+binary_sensor.motion_sensor_158d0001225607:
+  name:
+  platform: xiaomi_aqara
+  unique_id: status158d0001225607
+binary_sensor.switch_158d0001d8eabc:
+  name:
+  platform: xiaomi_aqara
+  unique_id: status158d0001d8eabc
+binary_sensor.door_window_sensor_158d0001bf2a09:
+  name:
+  platform: xiaomi_aqara
+  unique_id: status158d0001bf2a09
+binary_sensor.switch_158d0001d8e9cf:
+  name:
+  platform: xiaomi_aqara
+  unique_id: status158d0001d8e9cf
+binary_sensor.motion_sensor_158d0001ad6b83:
+  name:
+  platform: xiaomi_aqara
+  unique_id: status158d0001ad6b83
+binary_sensor.switch_158d0001d8eb3d:
+  name:
+  platform: xiaomi_aqara
+  unique_id: status158d0001d8eb3d
+binary_sensor.motion_sensor_158d00016da83a:
+  name:
+  platform: xiaomi_aqara
+  unique_id: status158d00016da83a
+binary_sensor.switch_158d0001d9073f:
+  name:
+  platform: xiaomi_aqara
+  unique_id: status158d0001d9073f
+binary_sensor.motion_sensor_158d0001e44035:
+  name:
+  platform: xiaomi_aqara
+  unique_id: status158d0001e44035
+binary_sensor.motion_sensor_158d000120af26:
+  name:
+  platform: xiaomi_aqara
+  unique_id: status158d000120af26
+binary_sensor.switch_158d000120ea75:
+  name:
+  platform: xiaomi_aqara
+  unique_id: status158d000120ea75
+binary_sensor.motion_sensor_158d0001e420d0:
+  name:
+  platform: xiaomi_aqara
+  unique_id: status158d0001e420d0
+binary_sensor.motion_sensor_158d00015b6c81:
+  name:
+  platform: xiaomi_aqara
+  unique_id: status158d00015b6c81
+binary_sensor.motion_sensor_158d0001e02f9a:
+  name:
+  platform: xiaomi_aqara
+  unique_id: status158d0001e02f9a
+binary_sensor.motion_sensor_158d0001231d4d:
+  name:
+  platform: xiaomi_aqara
+  unique_id: status158d0001231d4d
+binary_sensor.door_window_sensor_158d0001d68545:
+  name:
+  platform: xiaomi_aqara
+  unique_id: status158d0001d68545
+binary_sensor.motion_sensor_158d00016c01fd:
+  name:
+  platform: xiaomi_aqara
+  unique_id: status158d00016c01fd
+binary_sensor.motion_sensor_158d0001e43ef1:
+  name:
+  platform: xiaomi_aqara
+  unique_id: status158d0001e43ef1
+binary_sensor.switch_158d0001d8e9f8:
+  name:
+  platform: xiaomi_aqara
+  unique_id: status158d0001d8e9f8
+binary_sensor.door_window_sensor_158d0001b8671f:
+  name:
+  platform: xiaomi_aqara
+  unique_id: status158d0001b8671f
+binary_sensor.switch_158d000121090f:
+  name:
+  platform: xiaomi_aqara
+  unique_id: status158d000121090f
+binary_sensor.door_window_sensor_158d0001e035a2:
+  name:
+  platform: xiaomi_aqara
+  unique_id: status158d0001e035a2
+binary_sensor.switch_158d0001d8ea74:
+  name:
+  platform: xiaomi_aqara
+  unique_id: status158d0001d8ea74
+sensor.illumination_158d0001e420d0:
+  name:
+  platform: xiaomi_aqara
+  unique_id: lux158d0001e420d0
+sensor.humidity_158d0001703b44:
+  name:
+  platform: xiaomi_aqara
+  unique_id: humidity158d0001703b44
+sensor.temperature_158d0001702175:
+  name:
+  platform: xiaomi_aqara
+  unique_id: temperature158d0001702175
+sensor.temperature_158d0001dcb597:
+  name:
+  platform: xiaomi_aqara
+  unique_id: temperature158d0001dcb597
+sensor.humidity_158d00019cec0c:
+  name:
+  platform: xiaomi_aqara
+  unique_id: humidity158d00019cec0c
+sensor.temperature_158d0001700b20:
+  name:
+  platform: xiaomi_aqara
+  unique_id: temperature158d0001700b20
+sensor.illumination_158d0001ad6c20:
+  name:
+  platform: xiaomi_aqara
+  unique_id: lux158d0001ad6c20
+sensor.humidity_158d0001702175:
+  name:
+  platform: xiaomi_aqara
+  unique_id: humidity158d0001702175
+sensor.humidity_158d0001d7e65d:
+  name:
+  platform: xiaomi_aqara
+  unique_id: humidity158d0001d7e65d
+sensor.humidity_158d0001dcb597:
+  name:
+  platform: xiaomi_aqara
+  unique_id: humidity158d0001dcb597
+sensor.illumination_34ce00907e65:
+  name:
+  platform: xiaomi_aqara
+  unique_id: illumination34ce00907e65
+sensor.temperature_158d00015633b4:
+  name:
+  platform: xiaomi_aqara
+  unique_id: temperature158d00015633b4
+sensor.temperature_158d0001703b44:
+  name:
+  platform: xiaomi_aqara
+  unique_id: temperature158d0001703b44
+sensor.humidity_158d0001700b20:
+  name:
+  platform: xiaomi_aqara
+  unique_id: humidity158d0001700b20
+sensor.temperature_158d0001d7e65d:
+  name:
+  platform: xiaomi_aqara
+  unique_id: temperature158d0001d7e65d
+sensor.illumination_158d0001e43ef1:
+  name:
+  platform: xiaomi_aqara
+  unique_id: lux158d0001e43ef1
+sensor.illumination_158d0001e02f9a:
+  name:
+  platform: xiaomi_aqara
+  unique_id: lux158d0001e02f9a
+sensor.temperature_158d00019cec0c:
+  name:
+  platform: xiaomi_aqara
+  unique_id: temperature158d00019cec0c
+sensor.humidity_158d00015633b4:
+  name:
+  platform: xiaomi_aqara
+  unique_id: humidity158d00015633b4
+sensor.illumination_34ce0090940e:
+  name:
+  platform: xiaomi_aqara
+  unique_id: illumination34ce0090940e
+sensor.illumination_158d0001e44035:
+  name: Luminosidade sala 303
+  platform: xiaomi_aqara
+  unique_id: lux158d0001e44035
+sensor.illumination_158d0001ad6b83:
+  name: Luminosidade sala 203
+  platform: xiaomi_aqara
+  unique_id: lux158d0001ad6b83
+light.gateway_light_34ce00907e65:
+  name:
+  platform: xiaomi_aqara
+  unique_id: rgb34ce00907e65
+light.gateway_light_34ce0090940e:
+  name: Luz Hub MuvRH
+  platform: xiaomi_aqara
+  unique_id: rgb34ce0090940e
+media_player.sala:
+  name:
+  platform: cast
+  unique_id: 8a4a1f1a-8f6e-7205-ee95-b88d86fce092
