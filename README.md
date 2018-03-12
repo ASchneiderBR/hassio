@@ -11,4 +11,4 @@ Casa:
 
 Trabalho:
 
-![Screenshot](https://github.com/tatunts/hassio/blob/master/Screens/Work.PNG)
+![Screenshot](https://github.com/tatunts/hassio/blob/master/Screens/Work.png)
