@@ -150,7 +150,7 @@
       friendly_name: Tempo agora
     sensor.sala_humidity:
       homebridge_name: Sala
-      friendly_name: Humidade na sala
+      friendly_name: Umidade na sala
     sensor.sala_light:
       homebridge_name: Sala
       friendly_name: Luminosidade sala
@@ -559,15 +559,15 @@
 
     sensor.humidity_158d00015633b4:
       homebridge_name: Sala de operações
-      friendly_name: "Humidade sala de operações"
+      friendly_name: "Umidade sala de operações"
       icon: mdi:water-percent
     sensor.humidity_158d0001d7e65d:
       homebridge_name: Entrada 203
-      friendly_name: "Humidade entrada sala 203"
+      friendly_name: "Umidade entrada sala 203"
       icon: mdi:water-percent
     sensor.humidity_158d0001703b44:
       homebridge_name: Sala 303
-      friendly_name: "Humidade sala 303"
+      friendly_name: "Umidade sala 303"
       icon: mdi:water-percent
     light.muv203entrada:
       homebridge_name: Entrada 203
