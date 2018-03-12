@@ -34,7 +34,7 @@ map:
 recorder: !include recorder.yaml
 frontend: !include frontend.yaml
 sensor: !include sensor.yaml
-switch: !include switche.yaml
+switch: !include switch.yaml
 input_boolean: !include input_boolean.yaml
 light: !include light.yaml
 script: !include script.yaml

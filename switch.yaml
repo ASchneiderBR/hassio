@@ -1,0 +1,151 @@
+- platform: wake_on_lan
+  mac_address: "FC:AA:14:23:24:19"
+  name: Desktop
+  host: 192.168.1.21
+  turn_off:
+    service: shell_command.desktop_hibernar
+- platform: wake_on_lan
+  mac_address: "EC:A8:6B:F6:8D:E2"
+  name: Servidor
+  host: 192.168.1.10
+  turn_off:
+    service: shell_command.servidor_hibernar
+- platform: broadlink
+  host: 192.168.1.32
+  mac: 'B4:43:0D:EE:F4:76'
+  timeout: 15
+  friendly_name: "RM Pro Suíte"
+  type: rm2
+- platform: broadlink
+  host: 192.168.1.34
+  mac: 'B4:43:0D:F0:A1:A1'
+  timeout: 15
+  friendly_name: "RM Mini Sala"
+  type: rm_mini
+  switches:
+    home_theater_sala:
+      friendly_name: "Home Theater sala"
+      command_on: 'JgwiAE4TExMnEycTJxMTEycTExMTExMTExMTEycTJxMTExMAAq8NBQAAAAA=='
+      command_off: 'JgwiAE4TJxMnEycTJxMTEycTExMTExMTExMTEycTJxMTExMAAqANBQAAAAA=='
+- platform: broadlink
+  host: 192.168.1.33
+  mac: 'B4:43:0D:F9:2E:6F'
+  timeout: 15
+  friendly_name: "RM Mini Quarto"
+  type: rm_mini
+- platform: broadlink
+  host: 192.168.1.35
+  mac: '34:EA:34:E4:5F:2F'
+  timeout: 15
+  friendly_name: "RM Pro Nossa sala"
+  type: rm2
+- platform: broadlink
+  host: 192.168.1.36
+  mac: '34:EA:34:E3:B6:31'
+  timeout: 15
+  friendly_name: "RM Mini sala de operações"
+  type: rm_mini
+- platform: broadlink
+  host: 192.168.1.37
+  mac: '34:EA:34:8F:0C:C8'
+  timeout: 15
+  friendly_name: "RM Mini Entrada 203"
+  type: rm_mini
+- platform: template
+  switches:
+    tv_lg_sala:
+      friendly_name: "Tv da sala"
+      value_template: "{% if is_state('media_player.tv_sala', 'off') %}off{% else %}on{% endif %}"
+      turn_on:
+        service: script.tv_lg_sala_ligar_tudo
+        entity_id: script.tv_lg_sala_ligar_tudo
+      turn_off:
+        service: script.tv_lg_sala_desligar_tudo
+        entity_id: script.tv_lg_sala_desligar_tudo
+      icon_template: mdi:television
+    tv_lg_suite:
+      friendly_name: "Tv da suíte"
+      value_template: "{% if is_state('media_player.tv_suite', 'off') %}off{% else %}on{% endif %}"
+      turn_on:
+        service: script.tv_lg_suite_power_on
+        entity_id: script.tv_lg_suite_power_on
+      turn_off:
+        service: script.tv_lg_suite_power_off
+        entity_id: script.tv_lg_suite_power_off
+      icon_template: mdi:television
+    tv_lg_quarto:
+      friendly_name: "Tv do quarto"
+      value_template: "{% if is_state('binary_sensor.tv_quarto', 'on') %}on{% else %}off{% endif %}"
+      turn_on:
+        service: script.tv_lg_quarto_power_on
+        entity_id: script.tv_lg_quarto_power_on
+      turn_off:
+        service: script.tv_lg_quarto_power_off
+        entity_id: script.tv_lg_quarto_power_off
+      icon_template: mdi:television
+    sistema_alarme_casa:
+      friendly_name: "Alarme da casa"
+      value_template: "{% if is_state('alarm_control_panel.alarme', 'triggered') %}{% elif is_state('alarm_control_panel.alarme', 'disarmed') %}off{% else %}on{% endif %}"
+      turn_on:
+        service: alarm_control_panel.alarm_arm_home
+        entity_id: alarm_control_panel.alarme
+      turn_off:
+        service: alarm_control_panel.alarm_disarm
+        entity_id: alarm_control_panel.alarme
+      icon_template: mdi:security-home
+    automacoes_luzes:
+      friendly_name: "Automações das luzes"
+      value_template: "{% if is_state('group.automacoes_luzes_casa', 'off') %}off{% else %}on{% endif %}"
+      turn_on:
+        service: automation.turn_on
+        entity_id: group.automacoes_luzes_casa
+      turn_off:
+        service: automation.turn_off
+        entity_id: group.automacoes_luzes_casa
+      icon_template: mdi:home-automation
+    tv_sala_operacoes:
+      friendly_name: "Tv da sala de operações"
+      value_template: "{% if is_state('device_tracker.pi3b_tv_sala_operacoes', 'home') %}on{% else %}off{% endif %}"
+      turn_on:
+        service: script.tv_sala_operacoes_power_on
+        entity_id: script.tv_sala_operacoes_power_on
+      turn_off:
+        service: script.tv_sala_operacoes_power_off
+        entity_id: script.tv_sala_operacoes_power_on
+      icon_template: mdi:television
+- platform: mqtt
+  name: "Toalheiro"
+  command_topic: "cmnd/toalheiro/POWER"
+  state_topic: "stat/toalheiro/POWER"
+  qos: 1
+  retain: true
+- platform: mqtt
+  name: "chuveirosuite"
+  command_topic: "cmnd/chuveirosuite/POWER"
+  state_topic: "stat/chuveirosuite/POWER"
+  qos: 1
+  retain: true
+- platform: mqtt
+  name: "chuveirosocial"
+  command_topic: "cmnd/chuveirosocial/POWER"
+  state_topic: "stat/chuveirosocial/POWER"
+  qos: 1
+  retain: true
+- platform: mqtt
+  name: "sirene"
+  command_topic: "cmnd/sirene/POWER"
+  state_topic: "stat/sirene/POWER"
+  qos: 1
+  retain: true
+- platform: mqtt
+  name: "muv203bebedouro"
+  command_topic: "cmnd/muv203bebedouro/POWER"
+  state_topic: "stat/muv203bebedouro/POWER"
+  qos: 1
+  retain: true
+- platform: mqtt
+  name: "muv303bebedouro"
+  command_topic: "cmnd/muv303bebedouro/POWER"
+  state_topic: "stat/muv303bebedouro/POWER"
+  qos: 1
+  retain: true
