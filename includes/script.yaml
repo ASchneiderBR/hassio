@@ -907,25 +907,25 @@ botao_xiaomi_suite_01_click_1:
   alias: "Luzes da suíte"
   sequence:
   - service_template: >
-      {% if is_state('light.suite_principal' , 'off') and (is_state('light.ledsuitecama' , 'off') and is_state('light.ledsuitetv' , 'off')) %}
+      {% if is_state('light.suite_principal' , 'off') and is_state('light.todos_os_leds_suite' , 'off') %}
         light.turn_on
-      {% elif is_state('light.suite_principal' , 'on') and (is_state('light.ledsuitecama' , 'on') or is_state('light.ledsuitetv' , 'on')) %}
+      {% elif is_state('light.suite_principal' , 'on') and is_state('light.todos_os_leds_suite' , 'on') %}
         light.turn_off
-      {% elif is_state('light.suite_principal' , 'off') and (is_state('light.ledsuitecama' , 'on') or is_state('light.ledsuitetv' , 'on')) %}
+      {% elif is_state('light.suite_principal' , 'off') and is_state('light.todos_os_leds_suite' , 'on') %}
         light.turn_off
-      {% elif is_state('light.suite_principal' , 'on') and (is_state('light.ledsuitecama' , 'off') and is_state('light.ledsuitetv' , 'off')) %}
+      {% elif is_state('light.suite_principal' , 'on') and is_state('light.todos_os_leds_suite' , 'off') %}
         light.turn_on
       {% endif %}
     data_template:
       entity_id: >
-        {% if is_state('light.suite_principal' , 'off') and (is_state('light.ledsuitecama' , 'off') and is_state('light.ledsuitetv' , 'off')) %}
-          light.suite_principal, light.ledsuitecama, light.ledsuitetv
-        {% elif is_state('light.suite_principal' , 'on') and (is_state('light.ledsuitecama' , 'on') or is_state('light.ledsuitetv' , 'on')) %}
+        {% if is_state('light.suite_principal' , 'off') and is_state('light.todos_os_leds_suite' , 'off') %}
+          light.suite_principal, light.todos_os_leds_suite
+        {% elif is_state('light.suite_principal' , 'on') and is_state('light.todos_os_leds_suite' , 'on') %}
           light.suite_principal
-        {% elif is_state('light.suite_principal' , 'off') and (is_state('light.ledsuitecama' , 'on') or is_state('light.ledsuitetv' , 'on')) %}
-          light.ledsuitecama, light.ledsuitetv
-        {% elif is_state('light.suite_principal' , 'on') and (is_state('light.ledsuitecama' , 'off') and is_state('light.ledsuitetv' , 'off')) %}
-          light.ledsuitecama, light.ledsuitetv
+        {% elif is_state('light.suite_principal' , 'off') and is_state('light.todos_os_leds_suite' , 'on') %}
+          light.todos_os_leds_suite
+        {% elif is_state('light.suite_principal' , 'on') and is_state('light.todos_os_leds_suite' , 'off') %}
+          light.todos_os_leds_suite
         {% endif %}
 botao_xiaomi_suite_01_click_2:
   alias: "TV da suíte"

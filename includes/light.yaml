@@ -209,3 +209,33 @@
   state_topic: "stat/muv303dinamica/POWER"
   qos: 1
   retain: true
+
+#Grupos de luzes
+
+- platform: group
+  name: Luzes principais sala
+  entities:
+    - light.ledsalatv
+    - light.ledsaladesktop
+    - light.gateway_light_34ce00907e65
+- platform: group
+  name: Luzes principais cozinha
+  entities:
+    - light.cozinha
+    - light.ledcozinhabalcao
+- platform: group
+  name: Luzes principais quarto
+  entities:
+    - light.ledquartotv
+    - light.quarto
+- platform: group
+  name: Todas as luzes suíte
+  entities:
+    - light.suite_principal
+    - light.ledsuitetv
+    - light.ledsuitecama
+- platform: group
+  name: Todos os leds suíte
+  entities:
+    - light.ledsuitetv
+    - light.ledsuitecama

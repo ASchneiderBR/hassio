@@ -347,17 +347,17 @@
     to: 'on'
   condition:
     condition: state
-    entity_id: group.led_todos_suite
+    entity_id: light.todos_os_leds_suite
     state: 'off'
   action:
-    - service: homeassistant.turn_on
-      entity_id: group.led_todos_suite
+    - service: light.turn_on
+      entity_id: light.todos_os_leds_suite
     - wait_template: "{% if states.binary_sensor.motion_sensor_158d000120af26.attributes['No motion since'] | int >= 180 and states.binary_sensor.motion_sensor_158d000120af26.state == 'off' %}True{% else %}False{% endif %}"
     - condition: state
-      entity_id: group.led_todos_suite
+      entity_id: light.todos_os_leds_suite
       state: 'on'
-    - service: homeassistant.turn_off
-      entity_id: group.led_todos_suite
+    - service: light.turn_off
+      entity_id: light.todos_os_leds_suite
 - alias: Luzes da casa - Banheiro Suíte
   trigger:
     platform: state
@@ -406,21 +406,17 @@
     to: 'on'
   condition:
     condition: state
-    entity_id: light.quarto
+    entity_id: light.luzes_principais_quarto
     state: 'off'
   action:
     - service: light.turn_on
-      data:
-        entity_id: light.ledquartotv, light.quarto
-        effect: colorloop
+      entity_id: light.luzes_principais_quarto
     - wait_template: "{% if states.binary_sensor.motion_sensor_158d00015b6c81.attributes['No motion since'] | int >= 180 and states.binary_sensor.motion_sensor_158d00015b6c81.state == 'off' %}True{% else %}False{% endif %}"
     - condition: state
-      entity_id: light.quarto
+      entity_id: light.luzes_principais_quarto
       state: 'on'
     - service: light.turn_off
-      entity_id:
-        - light.quarto
-        - light.ledquartotv
+      entity_id: light.luzes_principais_quarto
 - alias: Luzes da casa - Sala
   trigger:
     platform: state
@@ -429,17 +425,17 @@
     to: 'on'
   condition:
     condition: state
-    entity_id: group.luzes_sala_automacao
+    entity_id: light.luzes_principais_sala
     state: 'off'
   action:
-    - service: homeassistant.turn_on
-      entity_id: group.luzes_sala_automacao
+    - service: light.turn_on
+      entity_id: light.luzes_principais_sala
     - wait_template: "{% if states.binary_sensor.motion_sensor_158d0001225607.attributes['No motion since'] | int >= 180 and states.binary_sensor.motion_sensor_158d0001225607.state == 'off' %}True{% else %}False{% endif %}"
     - condition: state
-      entity_id: group.luzes_sala_automacao
+      entity_id: light.luzes_principais_sala
       state: 'on'
-    - service: homeassistant.turn_off
-      entity_id: group.luzes_sala_automacao
+    - service: light.turn_off
+      entity_id: light.luzes_principais_sala
 - alias: Luzes da casa - Cozinha
   trigger:
     platform: state
@@ -448,17 +444,17 @@
     to: 'on'
   condition:
     condition: state
-    entity_id: group.luzes_cozinha
+    entity_id: light.luzes_principais_cozinha
     state: 'off'
   action:
-    - service: homeassistant.turn_on
-      entity_id: group.luzes_cozinha
+    - service: light.turn_on
+      entity_id: light.luzes_principais_cozinha
     - wait_template: "{% if states.binary_sensor.motion_sensor_158d0001231d4d.attributes['No motion since'] | int >= 300 and states.binary_sensor.motion_sensor_158d0001231d4d.state == 'off' %}True{% else %}False{% endif %}"
     - condition: state
-      entity_id: group.luzes_cozinha
+      entity_id: light.luzes_principais_cozinha
       state: 'on'
-    - service: homeassistant.turn_off
-      entity_id: group.luzes_cozinha
+    - service: light.turn_off
+      entity_id: light.luzes_principais_cozinha
 - alias: Luzes da casa - Entrando em casa
   trigger:
     platform: state
@@ -764,8 +760,17 @@
         {% elif trigger.event.data.click_type == 'double' %}
           script.botao_xiaomi_banheiro_suite_click_2
         {% elif trigger.event.data.click_type == 'long_click_press' %}
-          script.botao_xiaomi_banheiro_suite_click_3
+          {% if is_state('switch.chuveirosuite' , 'off') %}
+            script.botao_xiaomi_banheiro_suite_click_3
+          {% else %}
+            homeassistant.turn_off
+          {% endif %}
         {% endif %}
+      data_template:
+        entity_id: >
+          {% if is_state('switch.chuveirosuite' , 'on') %}
+            switch.chuveirosuite, script.botao_xiaomi_banheiro_suite_click_3
+          {% endif %}
 - alias: Botão Xiaomi banheiro social
   trigger:
     - platform: event

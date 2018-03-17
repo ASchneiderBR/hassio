@@ -106,12 +106,6 @@ cozinha:
   - light.area_servico
   name: Cozinha
   view: false
-luzes_cozinha:
-  entities:
-  - light.cozinha
-  - light.ledcozinhabalcao
-  name: Luzes principais da cozinha
-  view: false
 pessoas:
   control: hidden
   entities:
@@ -560,6 +554,7 @@ casa_movimento:
 automacoes:
   entities:
   - group.automacoes_luzes_casa
+  - group.automacoes_muvrh
   - group.automacoes_rotinas
   - group.automacoes_alertas
   - group.automacoes_botoes_xiaomi_casa
@@ -618,26 +613,6 @@ nivel_bateria_sensores:
   - sensor.bateria_botao_sala_02
   - sensor.bateria_botao_cozinha
   name: Nível bateria sensores
-  view: false
-luzes_sala_automacao:
-  entities:
-  - light.ledsalatv
-  - light.ledsaladesktop
-#  - light.gateway_light_34ce00907e65
-  name: Luzes da sala - automação
-  view: false
-luzes_cozinha_tudo:
-  entities:
-  - light.cozinha
-  - light.ledcozinhabalcao
-  - light.area_servico
-  name: Todas as luzes da cozinha
-  view: false
-luzes_suite_tudo:
-  entities:
-  - light.suite_principal
-  - light.ledsuitetv
-  name: Todas as luzes da cozinha
   view: false
 automacoes_botoes_xiaomi_casa:
   entities:
