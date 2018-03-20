@@ -42,6 +42,8 @@ frontend: !include includes/frontend.yaml
 group: !include includes/group.yaml
 http: !include includes/http.yaml
 input_boolean: !include includes/input_boolean.yaml
+input_number: !include includes/input_number.yaml
+input_select: !include includes/input_select.yaml
 light: !include includes/light.yaml
 logger: !include includes/logger.yaml
 media_player: !include includes/media_player.yaml
