@@ -13,6 +13,7 @@ default_view:
   - group.alarme
   - group.botoes
   - group.nivel_bateria_sensores
+  - group.temporizadores_casa
   - group.tvs
   - group.google_home_casa
   - media_player.tablet_entrada
@@ -626,17 +627,15 @@ automacoes_botoes_xiaomi_casa:
   - automation.botao_xiaomi_suite_02
   name: Botões Xiaomi Casa
   view: false
-led_todos_suite:
+temporizadores_casa:
   entities:
-  - light.ledsuitecama
-  - light.ledsuitetv
-  name: Todos os LEDs da suíte
-  view: false
-led_todos_sala:
-  entities:
-  - light.ledsalatv
-  - light.ledsaladesktop
-  name: Todos os LEDs da sala
+  - input_select.tempo_luz_suite
+  - input_select.tempo_luz_banheiro_suite
+  - input_select.tempo_luz_banheiro_social
+  - input_select.tempo_luz_quarto
+  - input_select.tempo_luz_sala
+  - input_select.tempo_luz_cozinha
+  name: Temporizadores casa
   view: false
 
 # MuvRH
@@ -658,6 +657,7 @@ muvrh:
   - group.dispositivos_muvrh
   - group.sonoff_relays_muvrh
   - group.muvrh_nivel_bateria_sensores
+  - group.temporizadores_muvrh
   - group.automacoes_muvrh
   name: MuvRH
   view: true
@@ -847,4 +847,12 @@ google_home_casa:
   entities:
   - media_player.sala
   name: Google Homes Casa
+  view: false
+temporizadores_muvrh:
+  entities:
+  - input_select.tempo_muvrh_203_entrada
+  - input_select.tempo_muvrh_203_banheiro
+  - input_select.tempo_muvrh_203_salaoperacoes
+  - input_select.tempo_muvrh_203_nossasala
+  name: Temporizadores Muvrh
   view: false
