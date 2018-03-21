@@ -43,10 +43,6 @@
     platform: homeassistant
     event: start
   action:
-    - service: notify.ios_iphone_de_antonio
-      data:
-        title: "Sistema"
-        message: "Home Assistant foi reinicializado"
     - service: frontend.set_theme
       data_template:
         name: "darkred"
@@ -90,6 +86,10 @@
       entity_id: media_player.sala
       data_template:
         message: "O sistema foi reiniciado."
+    - service: notify.ios_iphone_de_antonio
+      data:
+        title: "Sistema"
+        message: "Home Assistant foi reinicializado"
 - alias: Garagem MuvRH
   trigger:
     - platform: state

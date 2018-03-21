@@ -13,7 +13,6 @@ default_view:
   - group.alarme
   - group.botoes
   - group.nivel_bateria_sensores
-  - group.temporizadores_casa
   - group.tvs
   - group.google_home_casa
   - media_player.tablet_entrada
@@ -559,6 +558,8 @@ automacoes:
   - group.automacoes_rotinas
   - group.automacoes_alertas
   - group.automacoes_botoes_xiaomi_casa
+  - group.temporizadores_casa
+  - group.temporizadores_muvrh
   name: Automações
   view: true
 automacoes_luzes_casa:
@@ -657,7 +658,6 @@ muvrh:
   - group.dispositivos_muvrh
   - group.sonoff_relays_muvrh
   - group.muvrh_nivel_bateria_sensores
-  - group.temporizadores_muvrh
   - group.automacoes_muvrh
   name: MuvRH
   view: true
