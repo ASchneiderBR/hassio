@@ -3,12 +3,12 @@ Minhas configurações pessoais utilizadas no Home Assistant em casa e no trabal
 
 Tela inicial:
 
-![Screenshot](https://github.com/tatunts/hassio/blob/master/Screens/default.png)
+![Screenshot](https://github.com/tatunts/hassio/blob/master/Screens/default.PNG)
 
 Casa:
 
-![Screenshot](https://github.com/tatunts/hassio/blob/master/Screens/home.png)
+![Screenshot](https://github.com/tatunts/hassio/blob/master/Screens/home.PNG)
 
 Trabalho:
 
-![Screenshot](https://github.com/tatunts/hassio/blob/master/Screens/work.png)
+![Screenshot](https://github.com/tatunts/hassio/blob/master/Screens/work.PNG)
