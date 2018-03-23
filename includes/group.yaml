@@ -1,7 +1,6 @@
 default_view:
   view: yes
   entities:
-  - group.camera_teste
   - group.pessoas
   - group.tempo
   - group.sistema
@@ -115,6 +114,8 @@ pessoas:
 dispositivos:
   control: hidden
   entities:
+  - sensor.dispositivo_indisponivel
+  - sensor.bateria_fraca
   - switch.desktop
   - switch.servidor
   - device_tracker.nas

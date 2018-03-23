@@ -604,6 +604,8 @@
       friendly_name: "Google Home Sala"
     light.luzes_principais_cozinha:
       homebridge_hidden: true
+    light.todas_as_luzes_cozinha:
+      homebridge_hidden: true
     light.luzes_principais_quarto:
       homebridge_hidden: true
     light.luzes_principais_sala:
@@ -612,3 +614,9 @@
       homebridge_hidden: true
     light.todos_os_leds_suite:
       homebridge_hidden: true
+    binary_sensor.cube_158d00010b2e3e:
+      friendly_name: "Cubo suíte"
+    binary_sensor.cube_158d00010b2e64:
+      friendly_name: "Cubo Sala"
+
+

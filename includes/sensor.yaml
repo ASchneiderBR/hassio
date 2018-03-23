@@ -8,12 +8,6 @@
     - temp_low_avg_c
     - temp_high_1d_c
     - temp_low_1d_c
-#    - temp_high_2d_c
-#    - temp_low_2d_c
-#    - temp_high_3d_c
-#    - temp_low_3d_c
-#    - temp_high_4d_c
-#    - temp_low_4d_c
     - alerts
   lang: BR
 - platform: broadlink
@@ -539,4 +533,22 @@
             mdi:battery-{{ battery_round }}
           {% else %}
             mdi:battery-alert
+          {% endif %}
+    bateria_fraca:
+      friendly_name: 'Bateria fraca'
+      value_template: "{% for item in states if (item.attributes.battery_level is defined and item.attributes.battery_level < 10) -%}{%- if loop.first %}{% elif loop.last %} e {% else %}, {% endif -%}{{ item.name }} ({{ item.attributes['battery_level']|int }}%){%- else -%}Nenhum{%- endfor %}"
+      icon_template: >
+          {% if is_state('sensor.bateria_fraca' , 'Nenhum') %}
+            mdi:check-circle
+          {% else %}
+            mdi:battery-alert
+          {% endif %}
+    dispositivo_indisponivel:
+      friendly_name: 'Indisponível'
+      value_template: "{% for device in states if device.state == 'unavailable' -%}{%- if loop.first %}{% elif loop.last %} e {% else %}, {% endif -%}{{ device.name}}{%- else -%}Nenhum{%- endfor %}"
+      icon_template: >
+          {% if is_state('sensor.dispositivo_indisponivel' , 'Nenhum') %}
+            mdi:check-circle
+          {% else %}
+            mdi:alert-circle
           {% endif %}

@@ -4,60 +4,90 @@
   name: "mesa_jantar"
   command_topic: "cmnd/mesajantar/POWER"
   state_topic: "stat/mesajantar/POWER"
+  availability_topic: "tele/mesajantar/LWT"
+  payload_available: "Online"
+  payload_not_available: "Offline"
   qos: 1
   retain: true
 - platform: mqtt
   name: "sala_principal"
   command_topic: "cmnd/salaprincipal/POWER"
   state_topic: "stat/salaprincipal/POWER"
+  availability_topic: "tele/salaprincipal/LWT"
+  payload_available: "Online"
+  payload_not_available: "Offline"
   qos: 1
   retain: true
 - platform: mqtt
   name: "suite_principal"
   command_topic: "cmnd/suiteprincipal/POWER"
   state_topic: "stat/suiteprincipal/POWER"
+  availability_topic: "tele/suiteprincipal/LWT"
+  payload_available: "Online"
+  payload_not_available: "Offline"
   qos: 1
   retain: true
 - platform: mqtt
   name: "suite_banheiro"
   command_topic: "cmnd/banheirosuite/POWER"
   state_topic: "stat/banheirosuite/POWER"
+  availability_topic: "tele/banheirosuite/LWT"
+  payload_available: "Online"
+  payload_not_available: "Offline"
   qos: 1
   retain: true
 - platform: mqtt
   name: "corredor"
   command_topic: "cmnd/corredor/POWER"
   state_topic: "stat/corredor/POWER"
+  availability_topic: "tele/corredor/LWT"
+  payload_available: "Online"
+  payload_not_available: "Offline"
   qos: 1
   retain: true
 - platform: mqtt
   name: "banheiro_social"
   command_topic: "cmnd/banheirosocial/POWER"
   state_topic: "stat/banheirosocial/POWER"
+  availability_topic: "tele/banheirosocial/LWT"
+  payload_available: "Online"
+  payload_not_available: "Offline"
   qos: 1
   retain: true
 - platform: mqtt
   name: "quarto"
   command_topic: "cmnd/quarto/POWER"
   state_topic: "stat/quarto/POWER"
+  availability_topic: "tele/quarto/LWT"
+  payload_available: "Online"
+  payload_not_available: "Offline"
   qos: 1
   retain: true
 - platform: mqtt
   name: "entrada"
   command_topic: "cmnd/entrada/POWER"
   state_topic: "stat/entrada/POWER"
+  availability_topic: "tele/entrada/LWT"
+  payload_available: "Online"
+  payload_not_available: "Offline"
   qos: 1
   retain: true
 - platform: mqtt
   name: "cozinha"
   command_topic: "cmnd/cozinha/POWER"
   state_topic: "stat/cozinha/POWER"
+  availability_topic: "tele/cozinha/LWT"
+  payload_available: "Online"
+  payload_not_available: "Offline"
   qos: 1
   retain: true
 - platform: mqtt
   name: "area_servico"
   command_topic: "cmnd/areadeservico/POWER"
   state_topic: "stat/areadeservico/POWER"
+  availability_topic: "tele/areadeservico/LWT"
+  payload_available: "Online"
+  payload_not_available: "Offline"
   qos: 1
   retain: true
 - platform: mqtt
@@ -171,44 +201,65 @@
   name: "muv203entrada"
   command_topic: "cmnd/muv203entrada/POWER"
   state_topic: "stat/muv203entrada/POWER"
+  availability_topic: "tele/muv203entrada/LWT"
+  payload_available: "Online"
+  payload_not_available: "Offline"
   qos: 1
   retain: true
 - platform: mqtt
   name: "muv203banheiro"
   command_topic: "cmnd/muv203banheiro/POWER"
   state_topic: "stat/muv203banheiro/POWER"
+  availability_topic: "tele/muv203banheiro/LWT"
+  payload_available: "Online"
+  payload_not_available: "Offline"
   qos: 1
   retain: true
 - platform: mqtt
   name: "muv203operacoes"
   command_topic: "cmnd/muv203operacoes/POWER"
   state_topic: "stat/muv203operacoes/POWER"
+  availability_topic: "tele/muv203operacoes/LWT"
+  payload_available: "Online"
+  payload_not_available: "Offline"
   qos: 1
   retain: true
 - platform: mqtt
   name: "muv203nossasala"
   command_topic: "cmnd/muv203nossasala/POWER"
   state_topic: "stat/muv203nossasala/POWER"
+  availability_topic: "tele/muv203nossasala/LWT"
+  payload_available: "Online"
+  payload_not_available: "Offline"
   qos: 1
   retain: true
-- platform: mqtt
-  name: "muv303entrada"
-  command_topic: "cmnd/muv303entrada/POWER"
-  state_topic: "stat/muv303entrada/POWER"
-  qos: 1
-  retain: true
-- platform: mqtt
-  name: "muv303banheiro"
-  command_topic: "cmnd/muv303banheiro/POWER"
-  state_topic: "stat/muv303banheiro/POWER"
-  qos: 1
-  retain: true
-- platform: mqtt
-  name: "muv303dinamica"
-  command_topic: "cmnd/muv303dinamica/POWER"
-  state_topic: "stat/muv303dinamica/POWER"
-  qos: 1
-  retain: true
+#- platform: mqtt
+#  name: "muv303entrada"
+#  command_topic: "cmnd/muv303entrada/POWER"
+#  state_topic: "stat/muv303entrada/POWER"
+#  availability_topic: "tele/muv303entrada/LWT"
+#  payload_available: "Online"
+#  payload_not_available: "Offline"
+#  qos: 1
+#  retain: true
+#- platform: mqtt
+#  name: "muv303banheiro"
+#  command_topic: "cmnd/muv303banheiro/POWER"
+#  state_topic: "stat/muv303banheiro/POWER"
+#  availability_topic: "tele/muv303banheiro/LWT"
+#  payload_available: "Online"
+#  payload_not_available: "Offline"
+#  qos: 1
+#  retain: true
+#- platform: mqtt
+#  name: "muv303dinamica"
+#  command_topic: "cmnd/muv303dinamica/POWER"
+#  state_topic: "stat/muv303dinamica/POWER"
+#  availability_topic: "tele/muv303dinamica/LWT"
+#  payload_available: "Online"
+#  payload_not_available: "Offline"
+#  qos: 1
+#  retain: true
 
 #Grupos de luzes
 
@@ -223,6 +274,12 @@
   entities:
     - light.cozinha
     - light.ledcozinhabalcao
+- platform: group
+  name: Todas as luzes cozinha
+  entities:
+    - light.cozinha
+    - light.ledcozinhabalcao
+    - light.area_servico
 - platform: group
   name: Luzes principais quarto
   entities:

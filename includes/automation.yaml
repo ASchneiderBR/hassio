@@ -211,29 +211,6 @@
       - device_tracker.impressorahpcasa
       - device_tracker.camera_sala
       - device_tracker.camera_cozinha
-      - device_tracker.toalheiro
-      - device_tracker.luzmesajantar
-      - device_tracker.luzsalaprincipal
-      - device_tracker.xiaomi_hub
-      - device_tracker.luzsuiteprincipal
-      - device_tracker.luzbanheirosuite
-      - device_tracker.luzcorredor
-      - device_tracker.luzbanheirosocial
-      - device_tracker.luzquarto
-      - device_tracker.luzentrada
-      - device_tracker.luzcozinha
-      - device_tracker.chuveirosuite
-      - device_tracker.chuveirosocial
-      - device_tracker.areadeservico
-      - device_tracker.sirene
-      - device_tracker.leddesktopsala
-      - device_tracker.rfbridgecasa
-      - device_tracker.ledsuitecama
-      - device_tracker.ledsuitetv
-      - device_tracker.ledquartotv
-      - device_tracker.ledsalatv
-      - device_tracker.ledcozinhabalcao
-      - device_tracker.ledsaladesktop
       - device_tracker.google_home_mini_sala
     to: 'not_home'
     for:
@@ -1030,7 +1007,7 @@
     event_data:
       entity_id: binary_sensor.cube_158d00010b2e3e
   action:
-    - service_template: >
+    - service_template: >-
         {% if trigger.event.data.action_type == 'flip90' %}
           script.cubo_suite_tv_aovivo
         {% elif trigger.event.data.action_type == 'flip180' %}
@@ -1046,3 +1023,23 @@
         {% elif trigger.event.data.action_type == 'rotate' and trigger.event.data.action_value | int < 0 %}
           script.cubo_suite_tv_voldown
         {% endif %}
+- alias: Alerta - Dispositivo indisponível
+  trigger:
+    platform: state
+    entity_id: sensor.dispositivo_indisponivel
+    from: 'Nenhum'
+  action:
+    - service: notify.ios_iphone_de_antonio
+      data_template:
+        title: "Alerta casa"
+        message: "O dispositivo {{ states.sensor.dispositivo_indisponivel.state | lower }} ficou indisponível."
+- alias: Alerta - Bateria fraca
+  trigger:
+    platform: state
+    entity_id: sensor.bateria_fraca
+    from: 'Nenhum'
+  action:
+    - service: notify.ios_iphone_de_antonio
+      data_template:
+        title: "Alerta casa"
+        message: "Bateria muito fraca do dispositivo {{ states.sensor.bateria_fraca.state | lower }}."

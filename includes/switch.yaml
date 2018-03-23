@@ -117,35 +117,53 @@
   name: "Toalheiro"
   command_topic: "cmnd/toalheiro/POWER"
   state_topic: "stat/toalheiro/POWER"
+  availability_topic: "tele/toalheiro/LWT"
+  payload_available: "Online"
+  payload_not_available: "Offline"
   qos: 1
   retain: true
 - platform: mqtt
   name: "chuveirosuite"
   command_topic: "cmnd/chuveirosuite/POWER"
   state_topic: "stat/chuveirosuite/POWER"
+  availability_topic: "tele/chuveirosuite/LWT"
+  payload_available: "Online"
+  payload_not_available: "Offline"
   qos: 1
   retain: true
 - platform: mqtt
   name: "chuveirosocial"
   command_topic: "cmnd/chuveirosocial/POWER"
   state_topic: "stat/chuveirosocial/POWER"
+  availability_topic: "tele/chuveirosocial/LWT"
+  payload_available: "Online"
+  payload_not_available: "Offline"
   qos: 1
   retain: true
 - platform: mqtt
   name: "sirene"
   command_topic: "cmnd/sirene/POWER"
   state_topic: "stat/sirene/POWER"
+  availability_topic: "tele/sirene/LWT"
+  payload_available: "Online"
+  payload_not_available: "Offline"
   qos: 1
   retain: true
 - platform: mqtt
   name: "muv203bebedouro"
   command_topic: "cmnd/muv203bebedouro/POWER"
   state_topic: "stat/muv203bebedouro/POWER"
+  availability_topic: "tele/muv203bebedouro/LWT"
+  payload_available: "Online"
+  payload_not_available: "Offline"
   qos: 1
   retain: true
-- platform: mqtt
-  name: "muv303bebedouro"
-  command_topic: "cmnd/muv303bebedouro/POWER"
-  state_topic: "stat/muv303bebedouro/POWER"
-  qos: 1
-  retain: true
+#- platform: mqtt
+#  name: "muv303bebedouro"
+#  command_topic: "cmnd/muv303bebedouro/POWER"
+#  state_topic: "stat/muv303bebedouro/POWER"
+#  availability_topic: "tele/muv303bebedouro/LWT"
+#  payload_available: "Online"
+#  payload_not_available: "Offline"
+#  qos: 1
+#  retain: true
