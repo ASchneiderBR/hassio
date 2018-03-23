@@ -667,17 +667,6 @@
       event_type: click
       event_data:
         entity_id: binary_sensor.switch_158d000120ea75
-        click_type: single
-    - platform: event
-      event_type: click
-      event_data:
-        entity_id: binary_sensor.switch_158d000120ea75
-        click_type: double
-    - platform: event
-      event_type: click
-      event_data:
-        entity_id: binary_sensor.switch_158d000120ea75
-        click_type: long_click_press
   action:
     - service_template: >
         {% if trigger.event.data.click_type == 'single' %}
@@ -693,17 +682,6 @@
       event_type: click
       event_data:
         entity_id: binary_sensor.switch_158d0001d8e9f8
-        click_type: single
-    - platform: event
-      event_type: click
-      event_data:
-        entity_id: binary_sensor.switch_158d0001d8e9f8
-        click_type: double
-    - platform: event
-      event_type: click
-      event_data:
-        entity_id: binary_sensor.switch_158d0001d8e9f8
-        click_type: long_click_press
   action:
     - service_template: >
         {% if trigger.event.data.click_type == 'single' %}
@@ -719,17 +697,6 @@
       event_type: click
       event_data:
         entity_id: binary_sensor.switch_158d0001d8ea74
-        click_type: single
-    - platform: event
-      event_type: click
-      event_data:
-        entity_id: binary_sensor.switch_158d0001d8ea74
-        click_type: double
-    - platform: event
-      event_type: click
-      event_data:
-        entity_id: binary_sensor.switch_158d0001d8ea74
-        click_type: long_click_press
   action:
     - service_template: >
         {% if trigger.event.data.click_type == 'single' %}
@@ -745,17 +712,6 @@
       event_type: click
       event_data:
         entity_id: binary_sensor.switch_158d0001d8eabc
-        click_type: single
-    - platform: event
-      event_type: click
-      event_data:
-        entity_id: binary_sensor.switch_158d0001d8eabc
-        click_type: double
-    - platform: event
-      event_type: click
-      event_data:
-        entity_id: binary_sensor.switch_158d0001d8eabc
-        click_type: long_click_press
   action:
     - service_template: >
         {% if trigger.event.data.click_type == 'single' %}
@@ -780,17 +736,6 @@
       event_type: click
       event_data:
         entity_id: binary_sensor.switch_158d0001d8eb3d
-        click_type: single
-    - platform: event
-      event_type: click
-      event_data:
-        entity_id: binary_sensor.switch_158d0001d8eb3d
-        click_type: double
-    - platform: event
-      event_type: click
-      event_data:
-        entity_id: binary_sensor.switch_158d0001d8eb3d
-        click_type: long_click_press
   action:
     - service_template: >
         {% if trigger.event.data.click_type == 'single' %}
@@ -806,17 +751,6 @@
       event_type: click
       event_data:
         entity_id: binary_sensor.switch_158d000121090f
-        click_type: single
-    - platform: event
-      event_type: click
-      event_data:
-        entity_id: binary_sensor.switch_158d000121090f
-        click_type: double
-    - platform: event
-      event_type: click
-      event_data:
-        entity_id: binary_sensor.switch_158d000121090f
-        click_type: long_click_press
   action:
     - service_template: >
         {% if trigger.event.data.click_type == 'single' %}
@@ -832,17 +766,6 @@
       event_type: click
       event_data:
         entity_id: binary_sensor.switch_158d0001d8e9cf
-        click_type: single
-    - platform: event
-      event_type: click
-      event_data:
-        entity_id: binary_sensor.switch_158d0001d8e9cf
-        click_type: double
-    - platform: event
-      event_type: click
-      event_data:
-        entity_id: binary_sensor.switch_158d0001d8e9cf
-        click_type: long_click_press
   action:
     - service_template: >
         {% if trigger.event.data.click_type == 'single' %}
@@ -858,17 +781,6 @@
       event_type: click
       event_data:
         entity_id: binary_sensor.switch_158d0001d9073f
-        click_type: single
-    - platform: event
-      event_type: click
-      event_data:
-        entity_id: binary_sensor.switch_158d0001d9073f
-        click_type: double
-    - platform: event
-      event_type: click
-      event_data:
-        entity_id: binary_sensor.switch_158d0001d9073f
-        click_type: long_click_press
   action:
     - service_template: >
         {% if trigger.event.data.click_type == 'single' %}
@@ -1085,3 +997,52 @@
       data_template:
         title: "Alerta MuvRH"
         message: "Porta da {{ trigger.to_state.name | lower }} acabou de ser aberta."
+
+# Cubos
+
+- alias: Cubo sala
+  trigger:
+    platform: event
+    event_type: cube_action
+    event_data:
+      entity_id: binary_sensor.cube_158d00010b2e64
+  action:
+    - service_template: >
+        {% if trigger.event.data.action_type == 'flip90' %}
+          script.cubo_sala_tv_aovivo
+        {% elif trigger.event.data.action_type == 'flip180' %}
+          script.cubo_sala_tv_youtube
+        {% elif trigger.event.data.action_type == 'tap_twice' %}
+          script.cubo_sala_luz
+        {% elif trigger.event.data.action_type == 'shake_air' %}
+          script.cubo_sala_tv_toggle
+        {% elif trigger.event.data.action_type == 'free_fall' %}
+          script.cubo_sala_persiana
+        {% elif trigger.event.data.action_type == 'rotate' and trigger.event.data.action_value | int > 0 %}
+          script.home_theater_sala_volup_x3
+        {% elif trigger.event.data.action_type == 'rotate' and trigger.event.data.action_value | int < 0 %}
+          script.home_theater_sala_voldown_x3
+        {% endif %}
+- alias: Cubo suíte
+  trigger:
+    platform: event
+    event_type: cube_action
+    event_data:
+      entity_id: binary_sensor.cube_158d00010b2e3e
+  action:
+    - service_template: >
+        {% if trigger.event.data.action_type == 'flip90' %}
+          script.cubo_suite_tv_aovivo
+        {% elif trigger.event.data.action_type == 'flip180' %}
+          script.cubo_suite_tv_youtube
+        {% elif trigger.event.data.action_type == 'tap_twice' %}
+          script.cubo_suite_luz
+        {% elif trigger.event.data.action_type == 'shake_air' %}
+          script.cubo_suite_tv_toggle
+        {% elif trigger.event.data.action_type == 'free_fall' %}
+          script.cubo_suite_persiana
+        {% elif trigger.event.data.action_type == 'rotate' and trigger.event.data.action_value | int > 0 %}
+          script.cubo_suite_tv_volup
+        {% elif trigger.event.data.action_type == 'rotate' and trigger.event.data.action_value | int < 0 %}
+          script.cubo_suite_tv_voldown
+        {% endif %}

@@ -495,6 +495,20 @@ home_theater_sala_voldown_x6:
       packet:
       - JgaIAFATKhApEhUSExUqERUTExMVEhcQFRMTFCoRKRIVEhcAAsBOFCoSJhQTFBYSKRMSFBcQFRITFBcRFRInFCoRFRMUAALCUBInFCoSEhYSFCgTFxAVEhUSFxEVEhUSKhEpEhUSEwACxFASKxAnFBUTFRIoExUSFRITFBMVFhEWEiYUKRIVEhcADQU==
   alias: "Menos volume"
+home_theater_sala_volup_x3:
+  sequence:
+  - service: switch.broadlink_send_packet_192_168_1_34
+    data:
+      packet:
+      - JgOIAFASFRMmFRMUExQpEhUSFRMVExMUExQTFCkSKRIXERUAAtVOFBYSKBMTFBMUKRIVEhUTFhITExUSExQpEigTFRMVAALVTxQTFCoRFRIVEigUFBIVExYRFRIVEhUSKRIpEhQUFwAC004VFBMqERUSFRIpEhUSFhIVExMTExQTFCkSKRIUFBYADQU==
+  alias: "Mais volume"
+home_theater_sala_voldown_x3:
+  sequence:
+  - service: switch.broadlink_send_packet_192_168_1_34
+    data:
+      packet:
+      - JgOIAFATKhApEhUSExUqERUTExMVEhcQFRMTFCoRKRIVEhcAAsBOFCoSJhQTFBYSKRMSFBcQFRITFBcRFRInFCoRFRMUAALCUBInFCoSEhYSFCgTFxAVEhUSFxEVEhUSKhEpEhUSEwACxFASKxAnFBUTFRIoExUSFRITFBMVFhEWEiYUKRIVEhcADQU==
+  alias: "Menos volume"
 home_theater_sala_power:
   sequence:
   - service: switch.broadlink_send_packet_192_168_1_34
@@ -1084,8 +1098,8 @@ botao_xiaomi_sala_02_click_3:
 botao_xiaomi_cozinha_click_1:
   alias: "Luzes principais da cozinha"
   sequence:
-  - service: homeassistant.toggle
-    entity_id: group.luzes_cozinha
+  - service: light.toggle
+    entity_id: light.luzes_principais_cozinha
 botao_xiaomi_cozinha_click_2:
   alias: "Luz área serviço"
   sequence:
@@ -1094,8 +1108,8 @@ botao_xiaomi_cozinha_click_2:
 botao_xiaomi_cozinha_click_3:
   alias: "Ligar ou desligar tudo"
   sequence:
-  - service: homeassistant.toggle
-    entity_id: group.luzes_cozinha_tudo
+  - service: light.toggle
+    entity_id: light.todas_as_luzes_cozinha
 rf_chegar_em_casa:
   alias: "Automação chegar em casa - RF"
   sequence:
@@ -1191,3 +1205,84 @@ tts_fechando_persiana_sala:
     entity_id: media_player.sala
     data_template:
       message: "Fechando a persiana da sala"
+
+# Cubos
+
+cubo_sala_tv_toggle:
+  alias: "Ligar ou desligar TV da sala"
+  sequence:
+  - service: switch.toggle
+    entity_id: switch.tv_lg_sala
+cubo_sala_persiana:
+  alias: "Abre ou fecha persiana da sala"
+  sequence:
+  - service_template: >
+      {% if is_state('cover.persiana_sala', 'closed') %}
+        cover.open_cover
+      {% else %}
+        cover.close_cover
+      {% endif %}
+    entity_id: cover.persiana_sala
+cubo_sala_luz:
+  alias: "Liga ou desliga a luz da sala"
+  sequence:
+  - service: light.toggle
+    entity_id: light.sala_principal
+cubo_sala_tv_youtube:
+  alias: "Mudar para Youtube"
+  sequence:
+  - service: media_player.select_source
+    data:
+      entity_id: media_player.tv_sala
+      source: YouTube
+cubo_sala_tv_aovivo:
+  alias: "Mudar para TV ao vivo"
+  sequence:
+  - service: media_player.select_source
+    data:
+      entity_id: media_player.tv_sala
+      source: LiveTV
+cubo_suite_tv_toggle:
+  alias: "Ligar ou desligar TV da suíte"
+  sequence:
+  - service: switch.toggle
+    entity_id: switch.tv_lg_suite
+cubo_suite_persiana:
+  alias: "Abre ou fecha persiana da suíte"
+  sequence:
+  - service_template: >
+      {% if is_state('cover.persiana_suite', 'closed') %}
+        cover.open_cover
+      {% else %}
+        cover.close_cover
+      {% endif %}
+    entity_id: cover.persiana_suite
+cubo_suite_luz:
+  alias: "Liga ou desliga a luz da suíte"
+  sequence:
+  - service: light.toggle
+    entity_id: light.suite_principal
+cubo_suite_tv_youtube:
+  alias: "Mudar para Youtube"
+  sequence:
+  - service: media_player.select_source
+    data:
+      entity_id: media_player.tv_suite
+      source: YouTube
+cubo_suite_tv_aovivo:
+  alias: "Mudar para TV ao vivo"
+  sequence:
+  - service: media_player.select_source
+    data:
+      entity_id: media_player.tv_suite
+      source: LiveTV
+cubo_suite_tv_volup:
+  alias: "Aumentar volume da TV"
+  sequence:
+  - service: media_player.volume_up
+    entity_id: media_player.tv_suite
+cubo_suite_tv_voldown:
+  alias: "Baixar volume da TV"
+  sequence:
+  - service: media_player.volume_down
+    entity_id: media_player.tv_suite
