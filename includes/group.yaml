@@ -5,12 +5,9 @@ default_view:
   - group.tempo
   - group.sistema
   - group.dispositivos
-  - group.sonoff_relays
-  - group.led_strips_lights
   - group.celulares
   - group.sensorescasa
   - group.alarme
-  - group.nivel_bateria_sensores
   - group.tvs
   - group.google_home_casa
   - media_player.tablet_entrada
@@ -202,7 +199,6 @@ comodos:
   - group.cozinha
   - group.casa
   name: "C\xF4modos"
-#  icon: mdi:hotel
   view: true
 alarme:
   control: hidden
@@ -220,7 +216,6 @@ scripts:
   - group.scripts_home_sala
   - group.scripts_garagem_casa
   name: Scripts
-#  icon: mdi:script
   view: true
 tvs:
   control: hidden
@@ -241,6 +236,7 @@ sistema:
   control: hidden
   entities:
   - sensor.processor_use
+  - sensor.cpu_temperature
   - sensor.disk_use_percent_home
   - sensor.memory_use_percent
   - sensor.since_last_boot
@@ -452,25 +448,6 @@ scripts_banheiro_social:
   - script.luz_banheiro2_on
   name: Banheiro social
   view: false
-sonoff_relays:
-  control: hidden
-  entities:
-  - device_tracker.toalheiro
-  - device_tracker.luzmesajantar
-  - device_tracker.luzsalaprincipal
-  - device_tracker.luzsuiteprincipal
-  - device_tracker.luzbanheirosuite
-  - device_tracker.luzcorredor
-  - device_tracker.luzbanheirosocial
-  - device_tracker.luzquarto
-  - device_tracker.luzentrada
-  - device_tracker.luzcozinha
-  - device_tracker.chuveirosuite
-  - device_tracker.chuveirosocial
-  - device_tracker.areadeservico
-  - device_tracker.sirene
-  name: Relés Sonoff
-  view: false
 led_strips_lights:
   control: hidden
   entities:
@@ -479,7 +456,6 @@ led_strips_lights:
   - device_tracker.ledquartotv
   - device_tracker.ledsalatv
   - device_tracker.ledsaladesktop
-#  - device_tracker.ledsaladesktoptasmota
   - device_tracker.ledcozinhabalcao
   name: Controladores LED
   view: false
@@ -494,13 +470,11 @@ casa:
   name: Funções da casa
   view: false
 tablet_entrada:
-#  control: hidden
   entities:
   - group.funcoes_tablet_entrada
   name: Tablet entrada
   view: true
 funcoes_tablet_entrada:
-#  control: hidden
   entities:
   - sensor.pws_weather_1h
   - switch.sistema_alarme_casa
@@ -579,33 +553,6 @@ automacoes_alertas:
   - automation.sensores__porta_ou_janela_aberta_por_muito_tempo
   name: Alertas
   view: false
-nivel_bateria_sensores:
-  entities:
-  - sensor.bateria_sensor_porta_entrada
-  - sensor.bateria_sensor_box_suite
-  - sensor.bateria_sensor_box_social
-  - sensor.bateria_movimento_suite
-  - sensor.bateria_movimento_banheiro_suite
-  - sensor.bateria_movimento_banheiro_social
-  - sensor.bateria_movimento_quarto
-  - sensor.bateria_movimento_sala
-  - sensor.bateria_movimento_cozinha
-  - sensor.bateria_temperatura_suite
-  - sensor.bateria_temperatura_quarto
-  - sensor.bateria_temperatura_sala
-  - sensor.bateria_temperatura_cozinha
-  - sensor.bateria_botao_suite_01
-  - sensor.bateria_botao_suite_02
-  - sensor.bateria_botao_banheiro_suite
-  - sensor.bateria_botao_banheiro_social
-  - sensor.bateria_botao_quarto
-  - sensor.bateria_botao_sala_01
-  - sensor.bateria_botao_sala_02
-  - sensor.bateria_botao_cozinha
-  - sensor.bateria_cubo_sala
-  - sensor.bateria_cubo_suite
-  name: Nível bateria sensores
-  view: false
 automacoes_botoes_xiaomi_casa:
   entities:
   - automation.botao_xiaomi_banheiro_social
@@ -652,8 +599,6 @@ muvrh:
   - group.cameras_muvrh
   - group.computadores_muvrh
   - group.dispositivos_muvrh
-  - group.sonoff_relays_muvrh
-  - group.muvrh_nivel_bateria_sensores
   - group.automacoes_muvrh
   name: MuvRH
   view: true
@@ -788,16 +733,16 @@ muvrh_movimento_303:
   - binary_sensor.motion_sensor_158d0001ad6c20
   name: Movimento sala 303
   view: false
-sonoff_relays_muvrh:
-  control: hidden
-  entities:
-  - device_tracker.muv203entrada
-  - device_tracker.muv203banheiro
-  - device_tracker.muv203operacoes
-  - device_tracker.muv203nossasala
-  - device_tracker.muv203bebedouro
-  name: Relés Sonoff MuvRH
-  view: false
+#sonoff_relays_muvrh:
+#  control: hidden
+#  entities:
+#  - device_tracker.muv203entrada
+#  - device_tracker.muv203banheiro
+#  - device_tracker.muv203operacoes
+#  - device_tracker.muv203nossasala
+#  - device_tracker.muv203bebedouro
+#  name: Relés Sonoff MuvRH
+#  view: false
 muvrh_interno:
   control: hidden
   entities:
@@ -818,21 +763,21 @@ automacoes_muvrh:
   - automation.muvrh_203__luz_temporizador_entrada
   name: Automações MuvRH
   view: false
-muvrh_nivel_bateria_sensores:
-  entities:
-  - sensor.bateria_sensor_porta_entrada_sala_203
-  - sensor.bateria_sensor_porta_entrada_sala_303
-  - sensor.bateria_temperatura_entrada_203
-  - sensor.bateria_temperatura_sala_operacoes
-  - sensor.bateria_temperatura_sala_303
-  - sensor.bateria_movimento_entrada_203
-  - sensor.bateria_movimento_banheiro_203
-  - sensor.bateria_movimento_sala_operacoes
-  - sensor.bateria_movimento_nossa_sala
-  - sensor.bateria_movimento_sala_303
-  - sensor.bateria_movimento_banheiro_303
-  name: Nível bateria sensores
-  view: false
+#muvrh_nivel_bateria_sensores:
+#  entities:
+#  - sensor.bateria_sensor_porta_entrada_sala_203
+#  - sensor.bateria_sensor_porta_entrada_sala_303
+#  - sensor.bateria_temperatura_entrada_203
+#  - sensor.bateria_temperatura_sala_operacoes
+#  - sensor.bateria_temperatura_sala_303
+#  - sensor.bateria_movimento_entrada_203
+#  - sensor.bateria_movimento_banheiro_203
+#  - sensor.bateria_movimento_sala_operacoes
+#  - sensor.bateria_movimento_nossa_sala
+#  - sensor.bateria_movimento_sala_303
+#  - sensor.bateria_movimento_banheiro_303
+#  name: Nível bateria sensores
+#  view: false
 camera_teste:
   entities:
   - binary_sensor.foscam_motion_sensor

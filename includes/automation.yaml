@@ -90,6 +90,10 @@
       data:
         title: "Sistema"
         message: "Home Assistant foi reinicializado"
+    - service: persistent_notification.create
+      data:
+        message: "Hassio iniciado com sucesso às {{now().strftime('%H:%M')}}"
+        title: "Sistema reiniciado"
 - alias: Garagem MuvRH
   trigger:
     - platform: state
@@ -220,6 +224,10 @@
       data_template:
         title: "Alerta casa"
         message: "O dispositivo {{ trigger.to_state.name | lower }} se desconectou da rede."
+    - service: persistent_notification.create
+      data:
+        message: "O dispositivo {{ trigger.to_state.name | lower }} se desconectou da rede em casa."
+        title: "Dispositivo offline ({{now().strftime('%H:%M')}}):"
 - alias: Alerta - Avisar quando dispositivo ficar offline - MuvRH
   trigger:
     platform: state
@@ -239,6 +247,10 @@
       data_template:
         title: "Alerta MuvRH"
         message: "O dispositivo {{ trigger.to_state.name }} se desconectou da rede."
+    - service: persistent_notification.create
+      data:
+        message: "O dispositivo {{ trigger.to_state.name | lower }} se desconectou da rede na MuvRH."
+        title: "Dispositivo offline ({{now().strftime('%H:%M')}}):"
 - alias: Chegar em casa
   trigger:
     platform: state
@@ -582,48 +594,6 @@
       before: '08:00:00'
     - service: cover.close_cover
       entity_id: cover.persiana_sala
-- alias: Alerta - Avisar quando bateria do dispositivo estiver baixa
-  trigger:
-    platform: numeric_state
-    entity_id:
-      - sensor.bateria_botao_banheiro_social
-      - sensor.bateria_botao_banheiro_suite
-      - sensor.bateria_botao_cozinha
-      - sensor.bateria_botao_quarto
-      - sensor.bateria_botao_sala_01
-      - sensor.bateria_botao_sala_02
-      - sensor.bateria_botao_suite_01
-      - sensor.bateria_botao_suite_02
-      - sensor.bateria_movimento_banheiro_203
-      - sensor.bateria_movimento_banheiro_303
-      - sensor.bateria_movimento_banheiro_social
-      - sensor.bateria_movimento_banheiro_suite
-      - sensor.bateria_movimento_cozinha
-      - sensor.bateria_movimento_entrada_203
-      - sensor.bateria_movimento_nossa_sala
-      - sensor.bateria_movimento_quarto
-      - sensor.bateria_movimento_sala
-      - sensor.bateria_movimento_sala_303
-      - sensor.bateria_movimento_sala_operacoes
-      - sensor.bateria_movimento_suite
-      - sensor.bateria_sensor_box_social
-      - sensor.bateria_sensor_box_suite
-      - sensor.bateria_sensor_porta_entrada
-      - sensor.bateria_sensor_porta_entrada_sala_203
-      - sensor.bateria_sensor_porta_entrada_sala_303
-      - sensor.bateria_temperatura_cozinha
-      - sensor.bateria_temperatura_entrada_203
-      - sensor.bateria_temperatura_quarto
-      - sensor.bateria_temperatura_sala
-      - sensor.bateria_temperatura_sala_303
-      - sensor.bateria_temperatura_sala_operacoes
-      - sensor.bateria_temperatura_suite
-    below: 10
-  action:
-    - service: notify.ios_iphone_de_antonio
-      data_template:
-        title: "Sistema"
-        message: "{{ trigger.to_numeric_state.name }} está muito baixa."
 - alias: Alerta - Uso CPU em alta por muito tempo
   trigger:
     platform: numeric_state
@@ -637,6 +607,10 @@
       data_template:
         title: "Sistema"
         message: "O CPU do Pi3 está muito alto por mais de 5 minutos. No momento está a {{ states.sensor.cpu_used.state | int }}%."#
+    - service: persistent_notification.create
+      data:
+        message: "Ficou com o CPU alto por mais de 5 minitos."
+        title: "CPU alto ({{now().strftime('%H:%M')})"
 # Botões Xiaomi#
 - alias: Botão Xiaomi quarto
   trigger:
@@ -1007,7 +981,7 @@
     event_data:
       entity_id: binary_sensor.cube_158d00010b2e3e
   action:
-    - service_template: >-
+    - service_template: >
         {% if trigger.event.data.action_type == 'flip90' %}
           script.cubo_suite_tv_aovivo
         {% elif trigger.event.data.action_type == 'flip180' %}
@@ -1023,23 +997,152 @@
         {% elif trigger.event.data.action_type == 'rotate' and trigger.event.data.action_value | int < 0 %}
           script.cubo_suite_tv_voldown
         {% endif %}
+
+- alias: Alerta - Bateria fraca
+  trigger:
+    - platform: time
+      minutes: '/60'
+      seconds: 00
+  condition:
+    condition: template
+    value_template: >
+      {% set threshold = 10 -%}
+      {%- for item in states.binary_sensor or states.sensor if item.attributes.battery_level is defined and item.attributes['battery_level'] | int < threshold or item.state | lower == "unknown" -%}
+      {%- if loop.first -%}
+      {{ true }}
+      {%- endif -%}
+      {%- endfor %}
+  action:
+    - service: persistent_notification.create
+      data:
+        message: "Bateria muito fraca do dispositivo {% for state in states if state.domain in ['switch','binary_sensor','sensor'] and state.attributes.battery_level is defined and state.attributes.battery_level < 10 -%}{%- if loop.first %}{% elif loop.last %} e {% else %}, {% endif -%}{{ state.name }} ({{ state.attributes.battery_level |int }}%){%- else -%}Nenhum{%- endfor %}"
+        title: "Bateria fraca ({{now().strftime('%H:%M')}})"
+        notification_id: "bateria"
+    - service: notify.ios_iphone_de_antonio
+      data_template:
+        title: "Alerta casa"
+        message: "Bateria muito fraca do dispositivo {% for state in states if state.domain in ['switch','binary_sensor','sensor'] and state.attributes.battery_level is defined and state.attributes.battery_level < 10 -%}{%- if loop.first %}{% elif loop.last %} e {% else %}, {% endif -%}{{ state.name }} ({{ state.attributes.battery_level |int }}%){%- else -%}Nenhum{%- endfor %}"
+
+#- alias: Alerta - Dispositivo indisponível
+#  trigger:
+#    - platform: time
+#      minutes: '/30'
+#      seconds: 00
+#  condition:
+#    condition: template
+#    value_template: >
+#      {% for item in states.binary_sensor or states.sensor or states.light or states.switch if item.state | lower == "unavailable" -%}
+#      {%- if loop.first -%}
+#      {{ true }}
+#      {%- endif -%}
+#      {%- endfor %}
+#  action:
+#    - service: persistent_notification.create
+#      data:
+#        message: "Dispositivo {% for state in states if ( state.domain in ['light','switch','binary_sensor','sensor'] and state.state == 'unavailable' ) -%}{%- if loop.first %}{% elif loop.last %} e {% else %}, {% endif -%}{{ state.name | lower }}{%- else -%}Nenhum{%- endfor %} ficou indisponível"
+#        title: "Dispositivo indisponível ({{now().strftime('%H:%M')}})"
+#        notification_id: "dispoind"
+#    - service: notify.ios_iphone_de_antonio
+#      data_template:
+#        title: "Alerta casa"
+#        message: "Dispositivo {% for state in states if ( state.domain in ['light','switch','binary_sensor','sensor'] and state.state == 'unavailable' ) -%}{%- if loop.first %}{% elif loop.last %} e {% else %}, {% endif -%}{{ state.name | lower }}{%- else -%}Nenhum{%- endfor %} ficou indisponível"
+
 - alias: Alerta - Dispositivo indisponível
   trigger:
     platform: state
-    entity_id: sensor.dispositivo_indisponivel
-    from: 'Nenhum'
+    entity_id:
+      - binary_sensor.casa_movimento
+      - binary_sensor.cube_158d00010b2e3e
+      - binary_sensor.cube_158d00010b2e64
+      - binary_sensor.door_window_sensor_158d0001b8671f
+      - binary_sensor.door_window_sensor_158d0001bf2a09
+      - binary_sensor.door_window_sensor_158d0001d6851d
+      - binary_sensor.door_window_sensor_158d0001d68545
+      - binary_sensor.door_window_sensor_158d0001e035a2
+      - binary_sensor.motion_sensor_158d000120af26
+      - binary_sensor.motion_sensor_158d0001225607
+      - binary_sensor.motion_sensor_158d0001231d4d
+      - binary_sensor.motion_sensor_158d00015b6c81
+      - binary_sensor.motion_sensor_158d00016c01fd
+      - binary_sensor.motion_sensor_158d00016da83a
+      - binary_sensor.motion_sensor_158d0001ad6b83
+      - binary_sensor.motion_sensor_158d0001ad6c20
+      - binary_sensor.motion_sensor_158d0001e02f9a
+      - binary_sensor.motion_sensor_158d0001e420d0
+      - binary_sensor.motion_sensor_158d0001e43ef1
+      - binary_sensor.motion_sensor_158d0001e44035
+      - binary_sensor.switch_158d000120ea75
+      - binary_sensor.switch_158d000121090f
+      - binary_sensor.switch_158d0001d8e9cf
+      - binary_sensor.switch_158d0001d8e9f8
+      - binary_sensor.switch_158d0001d8ea74
+      - binary_sensor.switch_158d0001d8eabc
+      - binary_sensor.switch_158d0001d8eb3d
+      - binary_sensor.switch_158d0001d9073f
+      - light.area_servico
+      - light.banheiro_social
+      - light.corredor
+      - light.cozinha
+      - light.entrada
+      - light.gateway_light_34ce00907e65
+      - light.gateway_light_34ce0090940e
+      - light.ledcozinhabalcao
+      - light.ledquartotv
+      - light.ledsaladesktop
+      - light.ledsalatv
+      - light.ledsuitecama
+      - light.ledsuitetv
+      - light.luzes_principais_cozinha
+      - light.luzes_principais_quarto
+      - light.luzes_principais_sala
+      - light.mesa_jantar
+      - light.muv203banheiro
+      - light.muv203entrada
+      - light.muv203nossasala
+      - light.muv203operacoes
+      - light.quarto
+      - light.sala_principal
+      - light.suite_banheiro
+      - light.suite_principal
+      - light.todas_as_luzes_cozinha
+      - light.todas_as_luzes_suite
+      - light.todos_os_leds_suite
+      - sensor.humidity_158d00015633b4
+      - sensor.humidity_158d0001700b20
+      - sensor.humidity_158d0001702175
+      - sensor.humidity_158d0001703b44
+      - sensor.humidity_158d00019cec0c
+      - sensor.humidity_158d0001d7e65d
+      - sensor.humidity_158d0001dcb597
+      - sensor.illumination_158d0001ad6b83
+      - sensor.illumination_158d0001ad6c20
+      - sensor.illumination_158d0001e02f9a
+      - sensor.illumination_158d0001e420d0
+      - sensor.illumination_158d0001e43ef1
+      - sensor.illumination_158d0001e44035
+      - sensor.illumination_34ce00907e65
+      - sensor.illumination_34ce0090940e
+      - sensor.muvrh_temperature
+      - sensor.temperature_158d00015633b4
+      - sensor.temperature_158d0001700b20
+      - sensor.temperature_158d0001702175
+      - sensor.temperature_158d0001703b44
+      - sensor.temperature_158d00019cec0c
+      - sensor.temperature_158d0001d7e65d
+      - sensor.temperature_158d0001dcb597
+      - switch.chuveirosocial
+      - switch.chuveirosuite
+      - switch.muv203bebedouro
+      - switch.sirene
+      - switch.sistema_alarme_casa
+      - switch.toalheiro
+    to: 'unavailable'
   action:
+    - service: persistent_notification.create
+      data:
+        message: "O dispositivo {{ trigger.to_state.name | lower }} está indisponível."
+        title: "Dispositivo indisponível ({{now().strftime('%H:%M')}}):"
     - service: notify.ios_iphone_de_antonio
       data_template:
         title: "Alerta casa"
-        message: "O dispositivo {{ states.sensor.dispositivo_indisponivel.state | lower }} ficou indisponível."
-- alias: Alerta - Bateria fraca
-  trigger:
-    platform: state
-    entity_id: sensor.bateria_fraca
-    from: 'Nenhum'
-  action:
-    - service: notify.ios_iphone_de_antonio
-      data_template:
-        title: "Alerta casa"
-        message: "Bateria muito fraca do dispositivo {{ states.sensor.bateria_fraca.state | lower }}."
+        message: "O dispositivo {{ trigger.to_state.name | lower }} está indisponível."
