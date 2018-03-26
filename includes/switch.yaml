@@ -158,12 +158,12 @@
   payload_not_available: "Offline"
   qos: 1
   retain: true
-#- platform: mqtt
-#  name: "muv303bebedouro"
-#  command_topic: "cmnd/muv303bebedouro/POWER"
-#  state_topic: "stat/muv303bebedouro/POWER"
-#  availability_topic: "tele/muv303bebedouro/LWT"
-#  payload_available: "Online"
-#  payload_not_available: "Offline"
-#  qos: 1
-#  retain: true
+- platform: mqtt
+  name: "muv303bebedouro"
+  command_topic: "cmnd/muv303bebedouro/POWER"
+  state_topic: "stat/muv303bebedouro/POWER"
+  availability_topic: "tele/muv303bebedouro/LWT"
+  payload_available: "Online"
+  payload_not_available: "Offline"
+  qos: 1
+  retain: true

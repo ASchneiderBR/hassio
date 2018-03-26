@@ -33,11 +33,11 @@
     - condition: state
       entity_id: media_player.tv_sala
       state: 'playing'
-   # Mandar mensagem TV
     - delay: 00:00:06
     - service: notify.tv_sala
       data_template:
         message: "Olá! A temperatura da sala é de {{ states.sensor.temperature_158d0001700b20.state | int }}ºC. Lá fora está {{ states.sensor.pws_weather.state | lower }} com {{ states.sensor.pws_temp_c.state | int }}ºC."
+
 - alias: Ações de reinicialização
   trigger:
     platform: homeassistant
@@ -94,6 +94,7 @@
       data:
         message: "Hassio iniciado com sucesso às {{now().strftime('%H:%M')}}"
         title: "Sistema reiniciado"
+
 - alias: Garagem MuvRH
   trigger:
     - platform: state
@@ -127,6 +128,7 @@
         {% if is_state('input_boolean.sair_muvrh', 'on') %}
           script.garagem_muvrh_sair
         {% endif %}
+
 - alias: Alarme - Rearmar automaticamente
   trigger:
     platform: state
@@ -153,6 +155,7 @@
         alarm_control_panel.alarm_arm_away
         {% endif %}
       entity_id: alarm_control_panel.alarme
+
 - alias: Alarme - Aviso alarme ativado
   trigger:
     platform: state
@@ -167,6 +170,7 @@
       data:
         title: "Alarme da casa"
         message: "O alarme da casa foi armado."
+
 - alias: Sensores - Porta da entrada aberta - Casa
   trigger:
     platform: state
@@ -189,6 +193,7 @@
         {% else %}
           script.tts_entrando_casa_alarme
         {% endif %}
+
 - alias: Alarme - Disparar
   trigger:
     platform: state
@@ -201,6 +206,7 @@
       data:
         title: "Alarme da casa"
         message: "ATENÇÂO! Alarme foi acionado! Sirene está tocando!"
+
 - alias: Alerta - Avisar quando dispositivo ficar offline - Casa
   trigger:
     platform: state
@@ -228,6 +234,7 @@
       data:
         message: "O dispositivo {{ trigger.to_state.name | lower }} se desconectou da rede em casa."
         title: "Dispositivo offline ({{now().strftime('%H:%M')}}):"
+
 - alias: Alerta - Avisar quando dispositivo ficar offline - MuvRH
   trigger:
     platform: state
@@ -251,6 +258,7 @@
       data:
         message: "O dispositivo {{ trigger.to_state.name | lower }} se desconectou da rede na MuvRH."
         title: "Dispositivo offline ({{now().strftime('%H:%M')}}):"
+
 - alias: Chegar em casa
   trigger:
     platform: state
@@ -283,6 +291,7 @@
           switch.turn_on
         {% endif %}
       entity_id: switch.tv_lg_sala
+
 - alias: Desligar toalheiro após 2 horas
   trigger:
     platform: state
@@ -297,6 +306,7 @@
       data_template:
         title: "Automação"
         message: "Toalheiro desligado após duas horas de uso."
+
 - alias: Desligar chuveiro após 20 minutos
   trigger:
     platform: state
@@ -315,6 +325,7 @@
       data_template:
         title: "Automação"
         message: "{{ trigger.to_state.name }} desligado após 20 minutos de uso."
+
 - alias: Alerta - Chuveiro ligado sem ninguém em casa
   trigger:
     platform: state
@@ -331,6 +342,7 @@
       data_template:
         title: "Alerta importante"
         message: "{{ trigger.to_state.name }} foi ligado sem ninguém em casa! ATENÇÂO!"
+
 - alias: Luzes da casa - Suíte
   trigger:
     platform: state
@@ -350,6 +362,7 @@
       state: 'on'
     - service: light.turn_off
       entity_id: light.todos_os_leds_suite
+
 - alias: Luzes da casa - Banheiro Suíte
   trigger:
     platform: state
@@ -370,6 +383,7 @@
       state: 'on'
     - service: light.turn_off
       entity_id: light.suite_banheiro
+
 - alias: Luzes da casa - Banheiro Social
   trigger:
     platform: state
@@ -390,6 +404,7 @@
       state: 'on'
     - service: light.turn_off
       entity_id: light.banheiro_social
+
 - alias: Luzes da casa - Quarto
   trigger:
     platform: state
@@ -409,6 +424,7 @@
       state: 'on'
     - service: light.turn_off
       entity_id: light.luzes_principais_quarto
+
 - alias: Luzes da casa - Sala
   trigger:
     platform: state
@@ -428,6 +444,7 @@
       state: 'on'
     - service: light.turn_off
       entity_id: light.luzes_principais_sala
+
 - alias: Luzes da casa - Cozinha
   trigger:
     platform: state
@@ -447,6 +464,7 @@
       state: 'on'
     - service: light.turn_off
       entity_id: light.luzes_principais_cozinha
+
 - alias: Luzes da casa - Entrando em casa
   trigger:
     platform: state
@@ -460,6 +478,7 @@
   action:
     - service: light.turn_on
       entity_id: light.mesa_jantar
+
 - alias: Sensores - Porta ou janela aberta por muito tempo - Casa
   trigger:
     platform: state
@@ -477,6 +496,7 @@
       data_template:
         title: 'Alerta Casa'
         message: 'Atenção: {{ trigger.to_state.name }} aberta por muito tempo!'
+
 - alias: Sensores - Porta ou janela aberta por muito tempo - MuvRH
   trigger:
     platform: state
@@ -491,6 +511,7 @@
       data_template:
         title: 'Alerta MuvRH'
         message: 'Atenção: {{ trigger.to_state.name }} aberta por muito tempo!'
+
 - alias: Rotina - Bom dia
   trigger:
     platform: state
@@ -520,6 +541,7 @@
     - delay: 00:05:00
     - service: input_boolean.turn_off
       entity_id: input_boolean.bom_dia
+
 - alias: Rotina - Boa noite
   trigger:
     platform: state
@@ -550,6 +572,7 @@
         {% else %}
           script.ar_suite_display
         {% endif %}
+
 - alias: Rotina - Ações ao por do sol
   trigger:
     platform: numeric_state
@@ -570,6 +593,7 @@
         - automation.muvrh_203__luz_do_banheiro
         - automation.muvrh_203__luz_da_sala_de_operacoes
         - automation.muvrh_203__luz_da_nossa_sala
+
 - alias: Rotina - Ações ao nascer do sol
   trigger:
     platform: numeric_state
@@ -594,6 +618,7 @@
       before: '08:00:00'
     - service: cover.close_cover
       entity_id: cover.persiana_sala
+
 - alias: Alerta - Uso CPU em alta por muito tempo
   trigger:
     platform: numeric_state
@@ -611,7 +636,9 @@
       data:
         message: "Ficou com o CPU alto por mais de 5 minitos."
         title: "CPU alto ({{now().strftime('%H:%M')})"
+
 # Botões Xiaomi#
+
 - alias: Botão Xiaomi quarto
   trigger:
     - platform: event
@@ -627,6 +654,7 @@
         {% elif trigger.event.data.click_type == 'long_click_press' %}
           script.botao_xiaomi_quarto_click_3
         {% endif %}
+
 - alias: Botão Xiaomi suite 01
   trigger:
     - platform: event
@@ -642,6 +670,7 @@
         {% elif trigger.event.data.click_type == 'long_click_press' %}
           script.botao_xiaomi_suite_01_click_3
         {% endif %}
+
 - alias: Botão Xiaomi suite 02
   trigger:
     - platform: event
@@ -657,6 +686,7 @@
         {% elif trigger.event.data.click_type == 'long_click_press' %}
           script.botao_xiaomi_suite_02_click_3
         {% endif %}
+
 - alias: Botão Xiaomi banheiro suite
   trigger:
     - platform: event
@@ -681,6 +711,7 @@
           {% if is_state('switch.chuveirosuite' , 'on') %}
             switch.chuveirosuite, script.botao_xiaomi_banheiro_suite_click_3
           {% endif %}
+
 - alias: Botão Xiaomi banheiro social
   trigger:
     - platform: event
@@ -696,6 +727,7 @@
         {% elif trigger.event.data.click_type == 'long_click_press' %}
           script.botao_xiaomi_banheiro_social_click_3
         {% endif %}
+
 - alias: Botão Xiaomi sala 01
   trigger:
     - platform: event
@@ -711,6 +743,7 @@
         {% elif trigger.event.data.click_type == 'long_click_press' %}
           script.botao_xiaomi_sala_01_click_3
         {% endif %}
+
 - alias: Botão Xiaomi sala 02
   trigger:
     - platform: event
@@ -726,6 +759,7 @@
         {% elif trigger.event.data.click_type == 'long_click_press' %}
           script.botao_xiaomi_sala_02_click_3
         {% endif %}
+
 - alias: Botão Xiaomi cozinha
   trigger:
     - platform: event
@@ -741,6 +775,7 @@
         {% elif trigger.event.data.click_type == 'long_click_press' %}
           script.botao_xiaomi_cozinha_click_3
         {% endif %}
+
 - alias: Automação - RF Bridge Casa
   trigger:
     platform: mqtt
@@ -763,6 +798,7 @@
         {% elif trigger.payload_json.RfReceived.RfKey == 6 %}
           script.rf_chuveiro_social_toggle
         {% endif %}
+
 - alias: Solicitar status celulares
   trigger:
     platform: time
@@ -772,6 +808,7 @@
     - service: notify.TODOS_CELULARES
       data:
         message: "request_location_update"
+
 - alias: Luzes da casa - LED Desktop sala
   trigger:
     - platform: state
@@ -785,6 +822,7 @@
         {% endif %}
       data:
         entity_id: light.ledsaladesktop
+
 - alias: MuvRH 203 - Ligar tudo quando primeiro chegar
   trigger:
     platform: state
@@ -818,6 +856,7 @@
     - delay: 00:00:02
     - service: light.turn_on
       entity_id: light.muv203operacoes
+
 - alias: MuvRH 203 - Luz da entrada
   trigger:
     platform: state
@@ -837,6 +876,7 @@
       state: 'on'
     - service: light.turn_off
       entity_id: light.muv203entrada
+
 - alias: MuvRH 203 - Luz do banheiro
   trigger:
     platform: state
@@ -856,6 +896,7 @@
       state: 'on'
     - service: light.turn_off
       entity_id: light.muv203banheiro
+
 - alias: MuvRH 203 - Luz da sala de operações
   trigger:
     platform: state
@@ -875,6 +916,7 @@
       state: 'on'
     - service: light.turn_off
       entity_id: light.muv203operacoes
+
 - alias: MuvRH 203 - Luz da nossa sala
   trigger:
     platform: state
@@ -894,6 +936,7 @@
       state: 'on'
     - service: light.turn_off
       entity_id: light.muv203nossasala
+
 - alias: MuvRH 203 - Luz temporizador entrada
   trigger:
     platform: state
@@ -918,6 +961,7 @@
       state: 'on'
     - service: light.turn_off
       entity_id: light.muv203entrada
+
 - alias: Sensores - Portas - MuvRH
   trigger:
     platform: state
@@ -974,6 +1018,7 @@
         {% elif trigger.event.data.action_type == 'rotate' and trigger.event.data.action_value | int < 0 %}
           script.home_theater_sala_voldown_x3
         {% endif %}
+
 - alias: Cubo suíte
   trigger:
     platform: event
@@ -1014,7 +1059,7 @@
       {%- endfor %}
   action:
     - service: persistent_notification.create
-      data:
+      data_template:
         message: "Bateria muito fraca do dispositivo {% for state in states if state.domain in ['switch','binary_sensor','sensor'] and state.attributes.battery_level is defined and state.attributes.battery_level < 10 -%}{%- if loop.first %}{% elif loop.last %} e {% else %}, {% endif -%}{{ state.name }} ({{ state.attributes.battery_level |int }}%){%- else -%}Nenhum{%- endfor %}"
         title: "Bateria fraca ({{now().strftime('%H:%M')}})"
         notification_id: "bateria"
@@ -1022,30 +1067,6 @@
       data_template:
         title: "Alerta casa"
         message: "Bateria muito fraca do dispositivo {% for state in states if state.domain in ['switch','binary_sensor','sensor'] and state.attributes.battery_level is defined and state.attributes.battery_level < 10 -%}{%- if loop.first %}{% elif loop.last %} e {% else %}, {% endif -%}{{ state.name }} ({{ state.attributes.battery_level |int }}%){%- else -%}Nenhum{%- endfor %}"
-
-#- alias: Alerta - Dispositivo indisponível
-#  trigger:
-#    - platform: time
-#      minutes: '/30'
-#      seconds: 00
-#  condition:
-#    condition: template
-#    value_template: >
-#      {% for item in states.binary_sensor or states.sensor or states.light or states.switch if item.state | lower == "unavailable" -%}
-#      {%- if loop.first -%}
-#      {{ true }}
-#      {%- endif -%}
-#      {%- endfor %}
-#  action:
-#    - service: persistent_notification.create
-#      data:
-#        message: "Dispositivo {% for state in states if ( state.domain in ['light','switch','binary_sensor','sensor'] and state.state == 'unavailable' ) -%}{%- if loop.first %}{% elif loop.last %} e {% else %}, {% endif -%}{{ state.name | lower }}{%- else -%}Nenhum{%- endfor %} ficou indisponível"
-#        title: "Dispositivo indisponível ({{now().strftime('%H:%M')}})"
-#        notification_id: "dispoind"
-#    - service: notify.ios_iphone_de_antonio
-#      data_template:
-#        title: "Alerta casa"
-#        message: "Dispositivo {% for state in states if ( state.domain in ['light','switch','binary_sensor','sensor'] and state.state == 'unavailable' ) -%}{%- if loop.first %}{% elif loop.last %} e {% else %}, {% endif -%}{{ state.name | lower }}{%- else -%}Nenhum{%- endfor %} ficou indisponível"
 
 - alias: Alerta - Dispositivo indisponível
   trigger:
@@ -1104,9 +1125,6 @@
       - light.sala_principal
       - light.suite_banheiro
       - light.suite_principal
-      - light.todas_as_luzes_cozinha
-      - light.todas_as_luzes_suite
-      - light.todos_os_leds_suite
       - sensor.humidity_158d00015633b4
       - sensor.humidity_158d0001700b20
       - sensor.humidity_158d0001702175
@@ -1136,13 +1154,41 @@
       - switch.sirene
       - switch.sistema_alarme_casa
       - switch.toalheiro
+      - light.muv303entrada
+      - light.muv303dinamica
+      - switch.muv303bebedouro
+      - light.muv303banheiro
     to: 'unavailable'
   action:
     - service: persistent_notification.create
-      data:
-        message: "O dispositivo {{ trigger.to_state.name | lower }} está indisponível."
-        title: "Dispositivo indisponível ({{now().strftime('%H:%M')}}):"
+      data_template:
+        message: "O dispositivo {{ trigger.to_state.name | lower }} ficou indisponível às {{now().strftime('%H:%M')}}."
+        title: "Dispositivo indisponível"
     - service: notify.ios_iphone_de_antonio
       data_template:
-        title: "Alerta casa"
-        message: "O dispositivo {{ trigger.to_state.name | lower }} está indisponível."
+        title: "Alerta"
+        message: "O dispositivo {{ trigger.to_state.name | lower }} ficou indisponível às {{now().strftime('%H:%M')}}."
+
+#- alias: Alerta - Dispositivo indisponível
+#  trigger:
+#    - platform: time
+#      minutes: '/30'
+#      seconds: 00
+#  condition:
+#    condition: template
+#    value_template: >
+#      {% for item in states.binary_sensor or states.sensor or states.light or states.switch if item.state | lower == "unavailable" -%}
+#      {%- if loop.first -%}
+#      {{ true }}
+#      {%- endif -%}
+#      {%- endfor %}
+#  action:
+#    - service: persistent_notification.create
+#      data:
+#        message: "Dispositivo {% for state in states if ( state.domain in ['light','switch','binary_sensor','sensor'] and state.state == 'unavailable' ) -%}{%- if loop.first %}{% elif loop.last %} e {% else %}, {% endif -%}{{ state.name | lower }}{%- else -%}Nenhum{%- endfor %} ficou indisponível"
+#        title: "Dispositivo indisponível ({{now().strftime('%H:%M')}})"
+#        notification_id: "dispoind"
+#    - service: notify.ios_iphone_de_antonio
+#      data_template:
+#        title: "Alerta casa"
+#        message: "Dispositivo {% for state in states if ( state.domain in ['light','switch','binary_sensor','sensor'] and state.state == 'unavailable' ) -%}{%- if loop.first %}{% elif loop.last %} e {% else %}, {% endif -%}{{ state.name | lower }}{%- else -%}Nenhum{%- endfor %} ficou indisponível"

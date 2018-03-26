@@ -111,8 +111,6 @@ pessoas:
 dispositivos:
   control: hidden
   entities:
-  - sensor.dispositivo_indisponivel
-  - sensor.bateria_fraca
   - switch.desktop
   - switch.servidor
   - device_tracker.nas
@@ -364,14 +362,6 @@ scripts_persiana_quarto:
   - script.persiana_quarto_parar
   name: Persiana quarto
   view: false
-scripts_alarme:
-  control: hidden
-  entities:
-  - script.alarme_casa_armar
-  - script.alarme_casa_desarmar
-  - script.alarme_casa_disparar
-  name: Alarme
-  view: false
 scripts_garagem_casa:
   control: hidden
   entities:
@@ -390,74 +380,6 @@ scripts_home_sala:
   - script.home_theater_sala_mute
   - script.home_theater_sala_power
   name: Home Theater sala
-  view: false
-scripts_suite:
-  control: hidden
-  entities:
-  - script.led_suite_off
-  - script.led_suite_on
-  - script.luz_banheiro1_off
-  - script.luz_banheiro1_on
-  - script.luz_suite_off
-  - script.luz_suite_on
-  - script.toalhas_suite_off
-  - script.toalhas_suite_on
-  - script.luz_sala_off
-  - script.luz_sala_on
-  name: Suíte
-  view: false
-scripts_sala:
-  control: hidden
-  entities:
-  - script.led_tv_sala_off
-  - script.led_tv_sala_on
-  - script.luz_corredor_off
-  - script.luz_corredor_on
-  - script.luz_entrada_off
-  - script.luz_entrada_on
-  - script.luz_mesa_jantar_off
-  - script.luz_mesa_jantar_on
-  - script.desktop_abrir_chrome
-  - script.desktop_reiniciar
-  name: Sala
-  view: false
-scripts_quarto:
-  control: hidden
-  entities:
-  - script.luz_quarto_off
-  - script.luz_quarto_on
-  name: Quarto
-  view: false
-scripts_cozinha:
-  control: hidden
-  entities:
-  - script.led_cozinha_100
-  - script.led_cozinha_25
-  - script.led_cozinha_50
-  - script.led_cozinha_off
-  - script.led_cozinha_on
-  - script.led_cozinha_power
-  - script.luz_cozinha_off
-  - script.luz_cozinha_on
-  name: Cozinha
-  view: false
-scripts_banheiro_social:
-  control: hidden
-  entities:
-  - script.luz_banheiro2_off
-  - script.luz_banheiro2_on
-  name: Banheiro social
-  view: false
-led_strips_lights:
-  control: hidden
-  entities:
-  - device_tracker.ledsuitecama
-  - device_tracker.ledsuitetv
-  - device_tracker.ledquartotv
-  - device_tracker.ledsalatv
-  - device_tracker.ledsaladesktop
-  - device_tracker.ledcozinhabalcao
-  name: Controladores LED
   view: false
 casa:
   control: hidden
@@ -546,7 +468,8 @@ automacoes_rotinas:
 automacoes_alertas:
   entities:
   - automation.alerta__uso_cpu_em_alta_por_muito_tempo
-  - automation.alerta__avisar_quando_bateria_do_distpositivo_estiver_baixa
+  - automation.alerta__dispositivo_indisponivel
+  - automation.alerta__bateria_fraca
   - automation.alerta__avisar_quando_dispositivo_ficar_offline
   - automation.alarme__aviso_alarme_ativado
   - automation.sensores__porta_da_entrada_aberta
@@ -762,27 +685,6 @@ automacoes_muvrh:
   - automation.muvrh_203__ligar_tudo_quando_primeiro_chegar
   - automation.muvrh_203__luz_temporizador_entrada
   name: Automações MuvRH
-  view: false
-#muvrh_nivel_bateria_sensores:
-#  entities:
-#  - sensor.bateria_sensor_porta_entrada_sala_203
-#  - sensor.bateria_sensor_porta_entrada_sala_303
-#  - sensor.bateria_temperatura_entrada_203
-#  - sensor.bateria_temperatura_sala_operacoes
-#  - sensor.bateria_temperatura_sala_303
-#  - sensor.bateria_movimento_entrada_203
-#  - sensor.bateria_movimento_banheiro_203
-#  - sensor.bateria_movimento_sala_operacoes
-#  - sensor.bateria_movimento_nossa_sala
-#  - sensor.bateria_movimento_sala_303
-#  - sensor.bateria_movimento_banheiro_303
-#  name: Nível bateria sensores
-#  view: false
-camera_teste:
-  entities:
-  - binary_sensor.foscam_motion_sensor
-  - camera.camera_de_testes
-  name: Camera Teste
   view: false
 google_home_casa:
   entities:

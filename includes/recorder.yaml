@@ -1,10 +1,11 @@
 purge_interval: 3
-purge_keep_days: 15
+purge_keep_days: 14
 exclude:
   domains:
     - script
     - group
     - automation
+    - persistent_notification
   entities:
     - sensor.pws_alerts
     - sensor.pws_temp_high_1d_c
@@ -26,6 +27,35 @@ exclude:
     - sensor.igd_sent_bytes
     - sensor.illumination_34ce00907e65
     - sensor.illumination_34ce0090940e
+    - sensor.interruptores_ligados
+    - sensor.luzes_ligadas
+    - input_select.tempo_luz_banheiro_social
+    - input_select.tempo_luz_banheiro_suite
+    - input_select.tempo_luz_cozinha
+    - input_select.tempo_luz_quarto
+    - input_select.tempo_luz_sala
+    - input_select.tempo_luz_suite
+    - input_select.tempo_muvrh_203_banheiro
+    - input_select.tempo_muvrh_203_entrada
+    - input_select.tempo_muvrh_203_nossasala
+    - input_select.tempo_muvrh_203_salaoperacoes
+    - input_boolean.boa_noite
+    - input_boolean.bom_dia
+    - input_boolean.chegar_casa
+    - input_boolean.entrar_muvrh
+    - input_boolean.sair_casa
+    - input_boolean.sair_muvrh
+    - input_boolean.visita_casa
+    - binary_sensor.cube_158d00010b2e3e
+    - binary_sensor.cube_158d00010b2e64
+    - binary_sensor.switch_158d000120ea75
+    - binary_sensor.switch_158d000121090f
+    - binary_sensor.switch_158d0001d8e9cf
+    - binary_sensor.switch_158d0001d8e9f8
+    - binary_sensor.switch_158d0001d8ea74
+    - binary_sensor.switch_158d0001d8eabc
+    - binary_sensor.switch_158d0001d8eb3d
+    - binary_sensor.switch_158d0001d9073f
 include:
   entities:
     - group.pessoas

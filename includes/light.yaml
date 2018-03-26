@@ -233,33 +233,33 @@
   payload_not_available: "Offline"
   qos: 1
   retain: true
-#- platform: mqtt
-#  name: "muv303entrada"
-#  command_topic: "cmnd/muv303entrada/POWER"
-#  state_topic: "stat/muv303entrada/POWER"
-#  availability_topic: "tele/muv303entrada/LWT"
-#  payload_available: "Online"
-#  payload_not_available: "Offline"
-#  qos: 1
-#  retain: true
-#- platform: mqtt
-#  name: "muv303banheiro"
-#  command_topic: "cmnd/muv303banheiro/POWER"
-#  state_topic: "stat/muv303banheiro/POWER"
-#  availability_topic: "tele/muv303banheiro/LWT"
-#  payload_available: "Online"
-#  payload_not_available: "Offline"
-#  qos: 1
-#  retain: true
-#- platform: mqtt
-#  name: "muv303dinamica"
-#  command_topic: "cmnd/muv303dinamica/POWER"
-#  state_topic: "stat/muv303dinamica/POWER"
-#  availability_topic: "tele/muv303dinamica/LWT"
-#  payload_available: "Online"
-#  payload_not_available: "Offline"
-#  qos: 1
-#  retain: true
+- platform: mqtt
+  name: "muv303entrada"
+  command_topic: "cmnd/muv303entrada/POWER"
+  state_topic: "stat/muv303entrada/POWER"
+  availability_topic: "tele/muv303entrada/LWT"
+  payload_available: "Online"
+  payload_not_available: "Offline"
+  qos: 1
+  retain: true
+- platform: mqtt
+  name: "muv303banheiro"
+  command_topic: "cmnd/muv303banheiro/POWER"
+  state_topic: "stat/muv303banheiro/POWER"
+  availability_topic: "tele/muv303banheiro/LWT"
+  payload_available: "Online"
+  payload_not_available: "Offline"
+  qos: 1
+  retain: true
+- platform: mqtt
+  name: "muv303dinamica"
+  command_topic: "cmnd/muv303dinamica/POWER"
+  state_topic: "stat/muv303dinamica/POWER"
+  availability_topic: "tele/muv303dinamica/LWT"
+  payload_available: "Online"
+  payload_not_available: "Offline"
+  qos: 1
+  retain: true
 
 #Grupos de luzes
 
