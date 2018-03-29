@@ -64,6 +64,7 @@ tempo_muvrh_203_entrada:
    - 600
   initial: 300
   icon: mdi:timer
+
 tempo_muvrh_203_banheiro:
   name: '203 - Banheiro'
   options:
@@ -73,6 +74,7 @@ tempo_muvrh_203_banheiro:
    - 600
   initial: 180
   icon: mdi:timer
+
 tempo_muvrh_203_salaoperacoes:
   name: '203 - Sala de operações'
   options:
@@ -82,8 +84,39 @@ tempo_muvrh_203_salaoperacoes:
    - 600
   initial: 180
   icon: mdi:timer
+
 tempo_muvrh_203_nossasala:
   name: '203 - Nossa sala'
+  options:
+   - 120
+   - 180
+   - 300
+   - 600
+  initial: 180
+  icon: mdi:timer
+
+tempo_muvrh_303_entrada:
+  name: '303 - Entrada'
+  options:
+   - 120
+   - 180
+   - 300
+   - 600
+  initial: 180
+  icon: mdi:timer
+
+tempo_muvrh_303_dinamica:
+  name: '303 - Dinâmica'
+  options:
+   - 120
+   - 180
+   - 300
+   - 600
+  initial: 180
+  icon: mdi:timer
+
+tempo_muvrh_303_banheiro:
+  name: '303 - Banheiro'
   options:
    - 120
    - 180

@@ -115,6 +115,7 @@ dispositivos:
   - switch.servidor
   - device_tracker.nas
   - device_tracker.google_home_mini_sala
+  - device_tracker.google_home_mini_suite
   - device_tracker.xiaomi_hub
   - device_tracker.rfbridgecasa
   - device_tracker.tabletaut
@@ -532,6 +533,7 @@ dispositivos_muvrh:
   - device_tracker.rmpro_sala203
   - device_tracker.rmminioperacoes
   - device_tracker.rmminientrada203
+  - device_tracker.rmminisala303
   - device_tracker.camera_entrevistas
   - device_tracker.celular_azul
   - device_tracker.celular_vermelho
@@ -576,7 +578,7 @@ ar_muvrh:
   - climate.ar_condicionado_da_nossa_sala
   - climate.ar_condicionado_da_sala_de_operacoes
   - climate.ar_condicionado_da_entrada_203
-  - climate.ar_condicionado_sala_303
+  - climate.ar_condicionado_da_sala_303
   name: Ar condicionados MuvRH
   view: false
 garagem_muvrh:
@@ -621,10 +623,11 @@ muvrh_sala_303:
   entities:
   - binary_sensor.door_window_sensor_158d0001b8671f
   - binary_sensor.motion_sensor_158d0001e44035
-  - climate.ar_condicionado_sala_303
   - sensor.illumination_158d0001e44035
-  - sensor.temperature_158d0001703b44
+  - binary_sensor.motion_sensor_158d0001a24bdc
+  - sensor.illumination_158d0001a24bdc
   - sensor.humidity_158d0001703b44
+  - climate.ar_condicionado_da_sala_303
   - light.muv303entrada
   - light.muv303dinamica
   - switch.muv303bebedouro
@@ -654,18 +657,9 @@ muvrh_movimento_303:
   entities:
   - binary_sensor.motion_sensor_158d0001e44035
   - binary_sensor.motion_sensor_158d0001ad6c20
+  - binary_sensor.motion_sensor_158d0001a24bdc
   name: Movimento sala 303
   view: false
-#sonoff_relays_muvrh:
-#  control: hidden
-#  entities:
-#  - device_tracker.muv203entrada
-#  - device_tracker.muv203banheiro
-#  - device_tracker.muv203operacoes
-#  - device_tracker.muv203nossasala
-#  - device_tracker.muv203bebedouro
-#  name: Relés Sonoff MuvRH
-#  view: false
 muvrh_interno:
   control: hidden
   entities:
@@ -684,11 +678,15 @@ automacoes_muvrh:
   - automation.muvrh_203__luz_da_nossa_sala
   - automation.muvrh_203__ligar_tudo_quando_primeiro_chegar
   - automation.muvrh_203__luz_temporizador_entrada
+  - automation.muvrh_303__luz_da_entrada
+  - automation.muvrh_303__luz_da_dinamica
+  - automation.muvrh_303__luz_do_banheiro
   name: Automações MuvRH
   view: false
 google_home_casa:
   entities:
   - media_player.sala
+  - media_player.suite
   name: Google Homes Casa
   view: false
 temporizadores_muvrh:
@@ -697,5 +695,8 @@ temporizadores_muvrh:
   - input_select.tempo_muvrh_203_banheiro
   - input_select.tempo_muvrh_203_salaoperacoes
   - input_select.tempo_muvrh_203_nossasala
+  - input_select.tempo_muvrh_303_entrada
+  - input_select.tempo_muvrh_303_dinamica
+  - input_select.tempo_muvrh_303_banheiro
   name: Temporizadores Muvrh
   view: false

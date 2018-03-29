@@ -222,6 +222,7 @@
       - device_tracker.camera_sala
       - device_tracker.camera_cozinha
       - device_tracker.google_home_mini_sala
+      - device_tracker.google_home_mini_suite
     to: 'not_home'
     for:
       minutes: 10
@@ -231,9 +232,9 @@
         title: "Alerta casa"
         message: "O dispositivo {{ trigger.to_state.name | lower }} se desconectou da rede."
     - service: persistent_notification.create
-      data:
-        message: "O dispositivo {{ trigger.to_state.name | lower }} se desconectou da rede em casa."
-        title: "Dispositivo offline ({{now().strftime('%H:%M')}}):"
+      data_template:
+        message: "O dispositivo {{ trigger.to_state.name | lower }} se desconectou da rede em casa às ({{now().strftime('%H:%M')}})."
+        title: "Dispositivo offline"
 
 - alias: Alerta - Avisar quando dispositivo ficar offline - MuvRH
   trigger:
@@ -246,6 +247,9 @@
       - device_tracker.camera_05
       - device_tracker.xiaomi_hub_muvrh
       - device_tracker.rmpro_sala203
+      - device_tracker.rmminientrada203
+      - device_tracker.rmminioperacoes
+      - device_tracker.rmminisala303
     to: 'not_home'
     for:
       minutes: 2
@@ -255,9 +259,9 @@
         title: "Alerta MuvRH"
         message: "O dispositivo {{ trigger.to_state.name }} se desconectou da rede."
     - service: persistent_notification.create
-      data:
-        message: "O dispositivo {{ trigger.to_state.name | lower }} se desconectou da rede na MuvRH."
-        title: "Dispositivo offline ({{now().strftime('%H:%M')}}):"
+      data_template:
+        message: "O dispositivo {{ trigger.to_state.name | lower }} se desconectou da rede na MuvRH às ({{now().strftime('%H:%M')}})."
+        title: "Dispositivo offline"
 
 - alias: Chegar em casa
   trigger:
@@ -274,7 +278,7 @@
     - service: tts.google_say
       entity_id: media_player.sala
       data_template:
-        message: "Tem alguem chegando em casa, automação iniciada!"
+        message: "Automação chegando em casa iniciada, abrindo a garagem."
     - service: input_boolean.turn_off
       data:
         entity_id: input_boolean.chegar_casa
@@ -572,6 +576,7 @@
         {% else %}
           script.ar_suite_display
         {% endif %}
+    - service: script.tts_boa_noite
 
 - alias: Rotina - Ações ao por do sol
   trigger:
@@ -631,11 +636,11 @@
     - service: notify.ios_iphone_de_antonio
       data_template:
         title: "Sistema"
-        message: "O CPU do Pi3 está muito alto por mais de 5 minutos. No momento está a {{ states.sensor.cpu_used.state | int }}%."#
+        message: "O CPU do Pi3 está muito alto por mais de 5 minutos. No momento está a {{ states.sensor.cpu_used.state | int }}%."
     - service: persistent_notification.create
-      data:
-        message: "Ficou com o CPU alto por mais de 5 minitos."
-        title: "CPU alto ({{now().strftime('%H:%M')})"
+      data_template:
+        message: "Ficou com o CPU alto por mais de 5 minitos às ({{now().strftime('%H:%M')}})."
+        title: "Alerta CPU alto"
 
 # Botões Xiaomi#
 
@@ -937,6 +942,66 @@
     - service: light.turn_off
       entity_id: light.muv203nossasala
 
+- alias: MuvRH 303 - Luz da entrada
+  trigger:
+    platform: state
+    entity_id: binary_sensor.motion_sensor_158d0001e44035
+    from: 'off'
+    to: 'on'
+  condition:
+    condition: state
+    entity_id: light.muv303entrada
+    state: 'off'
+  action:
+    - service: light.turn_on
+      entity_id: light.muv303entrada
+    - wait_template: "{% if states.binary_sensor.motion_sensor_158d0001e44035.attributes['No motion since'] | int >= states.input_select.tempo_muvrh_303_entrada.state | int and states.binary_sensor.motion_sensor_158d0001e44035.state == 'off' %}True{% else %}False{% endif %}"
+    - condition: state
+      entity_id: light.muv303entrada
+      state: 'on'
+    - service: light.turn_off
+      entity_id: light.muv303entrada
+
+- alias: MuvRH 303 - Luz da dinâmica
+  trigger:
+    platform: state
+    entity_id: binary_sensor.motion_sensor_158d0001a24bdc
+    from: 'off'
+    to: 'on'
+  condition:
+    condition: state
+    entity_id: light.muv303dinamica
+    state: 'off'
+  action:
+    - service: light.turn_on
+      entity_id: light.muv303dinamica
+    - wait_template: "{% if states.binary_sensor.motion_sensor_158d0001a24bdc.attributes['No motion since'] | int >= states.input_select.tempo_muvrh_303_dinamica.state | int and states.binary_sensor.motion_sensor_158d0001a24bdc.state == 'off' %}True{% else %}False{% endif %}"
+    - condition: state
+      entity_id: light.muv303dinamica
+      state: 'on'
+    - service: light.turn_off
+      entity_id: light.muv303dinamica
+
+- alias: MuvRH 303 - Luz do banheiro
+  trigger:
+    platform: state
+    entity_id: binary_sensor.motion_sensor_158d0001ad6c20
+    from: 'off'
+    to: 'on'
+  condition:
+    condition: state
+    entity_id: light.muv303banheiro
+    state: 'off'
+  action:
+    - service: light.turn_on
+      entity_id: light.muv303banheiro
+    - wait_template: "{% if states.binary_sensor.motion_sensor_158d0001ad6c20.attributes['No motion since'] | int >= states.input_select.tempo_muvrh_303_banheiro.state | int and states.binary_sensor.motion_sensor_158d0001ad6c20.state == 'off' %}True{% else %}False{% endif %}"
+    - condition: state
+      entity_id: light.muv303banheiro
+      state: 'on'
+    - service: light.turn_off
+      entity_id: light.muv303banheiro
+
 - alias: MuvRH 203 - Luz temporizador entrada
   trigger:
     platform: state
@@ -1061,7 +1126,7 @@
     - service: persistent_notification.create
       data_template:
         message: "Bateria muito fraca do dispositivo {% for state in states if state.domain in ['switch','binary_sensor','sensor'] and state.attributes.battery_level is defined and state.attributes.battery_level < 10 -%}{%- if loop.first %}{% elif loop.last %} e {% else %}, {% endif -%}{{ state.name }} ({{ state.attributes.battery_level |int }}%){%- else -%}Nenhum{%- endfor %}"
-        title: "Bateria fraca ({{now().strftime('%H:%M')}})"
+        title: "Bateria fraca"
         notification_id: "bateria"
     - service: notify.ios_iphone_de_antonio
       data_template:
@@ -1092,6 +1157,7 @@
       - binary_sensor.motion_sensor_158d0001e420d0
       - binary_sensor.motion_sensor_158d0001e43ef1
       - binary_sensor.motion_sensor_158d0001e44035
+      - binary_sensor.motion_sensor_158d0001a24bdc
       - binary_sensor.switch_158d000120ea75
       - binary_sensor.switch_158d000121090f
       - binary_sensor.switch_158d0001d8e9cf
@@ -1159,6 +1225,8 @@
       - switch.muv303bebedouro
       - light.muv303banheiro
     to: 'unavailable'
+    for:
+      minutes: 5
   action:
     - service: persistent_notification.create
       data_template:
@@ -1184,7 +1252,7 @@
 #      {%- endfor %}
 #  action:
 #    - service: persistent_notification.create
-#      data:
+#      data_template:
 #        message: "Dispositivo {% for state in states if ( state.domain in ['light','switch','binary_sensor','sensor'] and state.state == 'unavailable' ) -%}{%- if loop.first %}{% elif loop.last %} e {% else %}, {% endif -%}{{ state.name | lower }}{%- else -%}Nenhum{%- endfor %} ficou indisponível"
 #        title: "Dispositivo indisponível ({{now().strftime('%H:%M')}})"
 #        notification_id: "dispoind"

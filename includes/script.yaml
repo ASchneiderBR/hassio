@@ -875,7 +875,7 @@ tts_status_casa:
   - service: tts.google_say
     entity_id: media_player.sala
     data_template:
-      message: "Olá, {% if((now().hour >= 6) and (now().hour < 12))%}bom dia{% elif((now().hour >= 12) and (now().hour <= 18))%}boa tarde{% else %}boa noite{% endif %}. Agora são {{ now().strftime('%H')|int }} horas e {{ now().strftime('%M')|int }} minutos. Aqui vão algumas informações sobre a casa. O alarme está {% if is_state('alarm_control_panel.alarme', 'disarmed') %}desarmado{% else %}armado{% endif %}, percebo que {% if is_state('device_tracker.antonio', 'home') and is_state('device_tracker.roberta', 'home') %}tanto o Antonio quanto a Roberta estão em casa{% elif is_state('device_tracker.antonio', 'home') %}apenas o antonio está em casa{% elif is_state('device_tracker.roberta', 'home') %}apenas a roberta está em casa{% else %}nem o Antonio nem a Roberta estão em casa{% endif %}. A temperatura na sala é de {{ states.sensor.temperature_158d0001700b20.state | int }} graus, sendo que lá fora está {{ states.sensor.pws_weather.state | lower }} com {{ states.sensor.pws_temp_c.state | int }} graus. Não esqueçam que quinta-feira vem a Juçara cuidar das roupas! {% if is_state('binary_sensor.muvrh_movimento_203', 'home') or is_state('binary_sensor.muvrh_movimento_303', 'home')%}Percebo também movimento na muv rh{% endif %} Isto é tudo!"
+      message: "Olá, {% if((now().hour >= 6) and (now().hour < 12))%}bom dia{% elif((now().hour >= 12) and (now().hour <= 18))%}boa tarde{% else %}boa noite{% endif %}. Agora são {{ now().strftime('%H')|int }} horas e {{ now().strftime('%M')|int }} minutos. Aqui vão algumas informações sobre a casa. O alarme está {% if is_state('alarm_control_panel.alarme', 'disarmed') %}desarmado{% else %}armado{% endif %}, percebo que {% if is_state('device_tracker.antonio', 'home') and is_state('device_tracker.roberta', 'home') %}tanto o Antonio quanto a Roberta estão em casa{% elif is_state('device_tracker.antonio', 'home') %}apenas o antonio está em casa{% elif is_state('device_tracker.roberta', 'home') %}apenas a roberta está em casa{% else %}nem o Antonio nem a Roberta estão em casa{% endif %}. A temperatura na sala é de {{ states.sensor.temperature_158d0001700b20.state | int }} graus, sendo que lá fora está {{ states.sensor.pws_weather.state | lower }} com {{ states.sensor.pws_temp_c.state | int }} graus. Não esqueçam que quinta-feira vem a Juçara cuidar das roupas! {% if is_state('binary_sensor.muvrh_movimento_203', 'on') or is_state('binary_sensor.muvrh_movimento_303', 'on')%}Percebo também movimento na muv rh{% endif %} Isto é tudo!"
 
 # Botões Xiaomi
 
@@ -1205,6 +1205,14 @@ tts_fechando_persiana_sala:
     entity_id: media_player.sala
     data_template:
       message: "Fechando a persiana da sala"
+
+tts_boa_noite:
+  alias: "Texto para automação boa noite"
+  sequence:
+  - service: tts.google_say
+    entity_id: media_player.suite
+    data_template:
+      message: "Automação boa noite finalizada. Já apaguei todas as luzes e configurei a casa para a noite. A temperatura do quarto é de {{ states.sensor.temperature_158d0001dcb597.state | int }} graus, o ar condicionado está {% if is_state('climate.ar_condicionado_da_suite', 'idle') %}desligado{% else %}ligado no modo {% if is_state('climate.ar_condicionado_da_suite', 'cool') %}gelar{% else %}aquecer{% endif %} para {{ states.climate.ar_condicionado_da_suite.attributes.temperature | int }} graus. Também desliguei a display dele para não incomodar durante a noite{% endif %}. A temperatura máxima amanhã será de {{ states.sensor.pws_temp_high_1d_c.state | int }} graus.{% if is_state('sensor.iphone_de_antonio_battery_state', 'Unplugged') or is_state('sensor.iphone_de_roberta_battery_state', 'Unplugged') %} Não esqueçam de colocar os telefones para carregar durante a noite! {% endif %}Boa noite {% if is_state('device_tracker.antonio', 'home') and is_state('device_tracker.roberta', 'home') %}Antonio e Roberta{% elif is_state('device_tracker.antonio', 'home') %}Antonio{% else %}Roberta{% endif %}, bons sonhos!"
 
 # Cubos
 

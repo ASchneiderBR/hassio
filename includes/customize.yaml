@@ -349,7 +349,7 @@
     climate.ar_condicionado_da_entrada_203:
       homebridge_name: Entrada sala 203
       icon: mdi:air-conditioner
-    climate.ar_condicionado_sala_303:
+    climate.ar_condicionado_da_sala_303:
       homebridge_name: Sala 303
       icon: mdi:air-conditioner
     cover.persiana_suite:
@@ -618,5 +618,23 @@
       friendly_name: "Cubo suíte"
     binary_sensor.cube_158d00010b2e64:
       friendly_name: "Cubo Sala"
-
-
+    sensor.cpu_temperature:
+      friendly_name: "Temperatura do CPU"
+      homebridge_hidden: true
+    sensor.processor_use:
+      friendly_name: "Uso do CPU"
+    sensor.disk_use_percent_home:
+      friendly_name: "Uso do SD"
+    sensor.memory_use_percent:
+      friendly_name: "Uso de RAM"
+    sensor.cpu_speed:
+      friendly_name: "Clock do CPU"
+    binary_sensor.motion_sensor_158d0001a24bdc:
+      friendly_name: "Movimento sala de dinâmica"
+      homebridge_name: Dinâmica 303
+      icon: mdi:walk
+    sensor.illumination_158d0001a24bdc:
+      friendly_name: "Luz nossa sala de dinâmica"
+      homebridge_name: Dinâmica 303
+      icon: mdi:lightbulb-outline
+      homebridge_sensor_type: light

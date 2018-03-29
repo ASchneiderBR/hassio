@@ -4,18 +4,21 @@
   host: 192.168.1.21
   turn_off:
     service: shell_command.desktop_hibernar
+
 - platform: wake_on_lan
   mac_address: "EC:A8:6B:F6:8D:E2"
   name: Servidor
   host: 192.168.1.10
   turn_off:
     service: shell_command.servidor_hibernar
+
 - platform: broadlink
   host: 192.168.1.32
   mac: 'B4:43:0D:EE:F4:76'
   timeout: 15
   friendly_name: "RM Pro Suíte"
   type: rm2
+
 - platform: broadlink
   host: 192.168.1.34
   mac: 'B4:43:0D:F0:A1:A1'
@@ -27,30 +30,42 @@
       friendly_name: "Home Theater sala"
       command_on: 'JgwiAE4TExMnEycTJxMTEycTExMTExMTExMTEycTJxMTExMAAq8NBQAAAAA=='
       command_off: 'JgwiAE4TJxMnEycTJxMTEycTExMTExMTExMTEycTJxMTExMAAqANBQAAAAA=='
+
 - platform: broadlink
   host: 192.168.1.33
   mac: 'B4:43:0D:F9:2E:6F'
   timeout: 15
   friendly_name: "RM Mini Quarto"
   type: rm_mini
+
 - platform: broadlink
   host: 192.168.1.35
   mac: '34:EA:34:E4:5F:2F'
   timeout: 15
   friendly_name: "RM Pro Nossa sala"
   type: rm2
+
 - platform: broadlink
   host: 192.168.1.36
   mac: '34:EA:34:E3:B6:31'
   timeout: 15
   friendly_name: "RM Mini sala de operações"
   type: rm_mini
+
 - platform: broadlink
   host: 192.168.1.37
   mac: '34:EA:34:8F:0C:C8'
   timeout: 15
   friendly_name: "RM Mini Entrada 203"
   type: rm_mini
+
+- platform: broadlink
+  host: 192.168.1.41
+  mac: '34:EA:34:8F:0B:01'
+  timeout: 15
+  friendly_name: "RM Mini sala 303"
+  type: rm_mini
+
 - platform: template
   switches:
     tv_lg_sala:
@@ -122,6 +137,7 @@
   payload_not_available: "Offline"
   qos: 1
   retain: true
+
 - platform: mqtt
   name: "chuveirosuite"
   command_topic: "cmnd/chuveirosuite/POWER"
@@ -131,6 +147,7 @@
   payload_not_available: "Offline"
   qos: 1
   retain: true
+
 - platform: mqtt
   name: "chuveirosocial"
   command_topic: "cmnd/chuveirosocial/POWER"
@@ -140,6 +157,7 @@
   payload_not_available: "Offline"
   qos: 1
   retain: true
+
 - platform: mqtt
   name: "sirene"
   command_topic: "cmnd/sirene/POWER"
@@ -149,6 +167,7 @@
   payload_not_available: "Offline"
   qos: 1
   retain: true
+
 - platform: mqtt
   name: "muv203bebedouro"
   command_topic: "cmnd/muv203bebedouro/POWER"
@@ -158,6 +177,7 @@
   payload_not_available: "Offline"
   qos: 1
   retain: true
+
 - platform: mqtt
   name: "muv303bebedouro"
   command_topic: "cmnd/muv303bebedouro/POWER"
