@@ -598,6 +598,9 @@
         - automation.muvrh_203__luz_do_banheiro
         - automation.muvrh_203__luz_da_sala_de_operacoes
         - automation.muvrh_203__luz_da_nossa_sala
+        - automation.muvrh_303__luz_da_entrada
+        - automation.muvrh_303__luz_da_dinamica
+        - automation.muvrh_303__luz_do_banheiro
 
 - alias: Rotina - Ações ao nascer do sol
   trigger:
@@ -619,6 +622,9 @@
         - automation.muvrh_203__luz_do_banheiro
         - automation.muvrh_203__luz_da_sala_de_operacoes
         - automation.muvrh_203__luz_da_nossa_sala
+        - automation.muvrh_303__luz_da_entrada
+        - automation.muvrh_303__luz_da_dinamica
+        - automation.muvrh_303__luz_do_banheiro
     - condition: time
       before: '08:00:00'
     - service: cover.close_cover
