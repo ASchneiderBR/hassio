@@ -82,6 +82,10 @@
         - automation.muvrh_203__luz_do_banheiro
         - automation.muvrh_203__luz_da_sala_de_operacoes
         - automation.muvrh_203__luz_da_nossa_sala
+    - service: media_player.volume_set
+      entity_id: media_player.sala
+      data:
+        volume_level: 0.7
     - service: tts.google_say
       entity_id: media_player.sala
       data_template:
@@ -135,6 +139,10 @@
     entity_id: alarm_control_panel.alarme
     to: 'disarmed'
   action:
+    - service: media_player.volume_set
+      entity_id: media_player.sala
+      data:
+        volume_level: 0.7
     - service: tts.google_say
       entity_id:
         - media_player.sala
@@ -162,6 +170,10 @@
     entity_id: alarm_control_panel.alarme
     from: 'disarmed'
   action:
+    - service: media_player.volume_set
+      entity_id: media_player.sala
+      data:
+        volume_level: 0.7
     - service: tts.google_say
       entity_id: media_player.sala
       data_template:
@@ -275,6 +287,10 @@
       data_template:
         title: "Automação"
         message: "Bem vindo! Preparando a casa para sua chegada..."
+    - service: media_player.volume_set
+      entity_id: media_player.sala
+      data:
+        volume_level: 0.7
     - service: tts.google_say
       entity_id: media_player.sala
       data_template:
@@ -492,6 +508,10 @@
     for:
       minutes: 1
   action:
+    - service: media_player.volume_set
+      entity_id: media_player.sala
+      data:
+        volume_level: 0.7
     - service: tts.google_say
       entity_id: media_player.sala
       data_template:
@@ -524,10 +544,13 @@
   action:
     - service: input_boolean.turn_off
       entity_id: input_boolean.boa_noite
+    - service: script.tts_bom_dia
     - service: notify.TODOS_CELULARES
       data_template:
         title: "Automação"
         message: "Bom dia! Hoje a máxima será de {{ states.sensor.pws_temp_high_avg_c.state }}ºC com previsão de {{ states.sensor.pws_weather.state | lower }}"
+    - wait_template: "{{is_state('media_player.suite', 'playing')}}"
+    - wait_template: "{{is_state('media_player.suite', 'idle')}}"
     - service: switch.turn_on
       entity_id:
         - switch.tv_lg_suite

@@ -1,0 +1,24 @@
+{%- macro cumprimento() -%}
+  {% set cumprimento = [
+    "Olá!",
+    "Oi!",
+    "E aí!",
+    "Oie!",
+    "Oba!",
+  ] %}
+  {{ cumprimento|random }}
+{%- endmacro -%}
+
+{%- macro turno() -%}
+  {%- if((now().hour >= 6) and (now().hour < 12)) -%}
+    Bom dia!
+  {%- elif((now().hour >= 12) and (now().hour <= 18)) -%}
+    Boa tarde!
+  {%- else -%}
+    Boa noite!
+  {%- endif -%}
+{%- endmacro -%}
+
+# Texto final
+
+{{ cumprimento() }} {{ turno() }}

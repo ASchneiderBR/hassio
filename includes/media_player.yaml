@@ -8,6 +8,12 @@
       - livetv
       - youtube
       - netflix
+
+- platform: lg_netcast
+  host: 192.168.1.40
+#  access_token: 
+  name: 'TV Quarto'
+
 - platform: webostv
   host: 192.168.1.38
   mac: 3C:CD:93:85:F0:2F
@@ -18,5 +24,9 @@
       - livetv
       - youtube
       - netflix
+
 - platform: cast
   host: 192.168.1.71
+
+- platform: cast
+  host: 192.168.1.60
