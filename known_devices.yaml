@@ -367,15 +367,6 @@ ledsaladesktop:
   track: true
   vendor: Magic Light
 
-ledsaladesktoptasmota:
-  hide_if_away: false
-  icon:
-  mac: 60:01:94:88:75:F7
-  name: LED desktop da sala
-  picture: https://sc02.alicdn.com/kf/HTB1B1yCPXXXXXbyaXXXq6xXFXXXb/High-frequency-3528-led-strip-to-strip.jpg
-  track: true
-  vendor: Tasmota
-
 pi3b_tv_sala_operacoes:
   hide_if_away: false
   icon:
@@ -483,6 +474,7 @@ rmpro_sala203:
   picture: http://muvrh.com.br/images/home%20assistant/broadlink/rmpro.jpg
   track: true
   vendor: Broadlink
+
 tv_sala:
   hide_if_away: false
   icon:
@@ -582,6 +574,15 @@ rmminientrada203:
   track: true
   vendor: Broadlink
 
+rmminisala303:
+  hide_if_away: false
+  icon:
+  mac: 34:EA:34:8F:0B:01
+  name: RM Mini Sala 303
+  picture: http://muvrh.com.br/images/home%20assistant/broadlink/rmmini.jpg
+  track: true
+  vendor: Broadlink
+
 muv203entrada:
   hide_if_away: false
   icon:
@@ -654,11 +655,129 @@ muvrh_06:
   track: true
   vendor: Positivo
 
-20dfb952ffd8:
+orange_pi_zero:
+  hide_if_away: false
+  icon:
+  mac: 2A:AB:65:AF:A0:D3
+  name: Orange Pi Zero
+  picture: https://images-na.ssl-images-amazon.com/images/I/61qIduSQr9L._SY355_.jpg
+  track: true
+  vendor: Orange Pi
+
+muv303_entrada:
+  hide_if_away: false
+  icon:
+  mac: 5C:CF:7F:58:2D:3D
+  name: Entrada sala 303
+  picture: https://images-na.ssl-images-amazon.com/images/I/319HtdkGgOL.jpg
+  track: true
+  vendor: Sonoff
+
+muv303_banheiro:
+  hide_if_away: false
+  icon:
+  mac: 2C:3A:E8:11:5F:25
+  name: Banheiro sala 303
+  picture: https://images-na.ssl-images-amazon.com/images/I/319HtdkGgOL.jpg
+  track: true
+  vendor: Sonoff
+
+muv303_dinamica:
+  hide_if_away: false
+  icon:
+  mac: 2C:3A:E8:2E:A9:87
+  name: Dinâmica sala 303
+  picture: https://images-na.ssl-images-amazon.com/images/I/319HtdkGgOL.jpg
+  track: true
+  vendor: Sonoff
+
+muv303_bebedouro:
+  hide_if_away: false
+  icon:
+  mac: 60:01:94:3F:09:92
+  name: Bebedouro sala 303
+  picture: https://images-na.ssl-images-amazon.com/images/I/319HtdkGgOL.jpg
+  track: true
+  vendor: Sonoff
+
+google_home_mini_suite:
+  hide_if_away: false
+  icon:
+  mac: E4:F0:42:2A:85:E1
+  name: Google Home Mini Suíte
+  picture: https://cdn.arstechnica.net/wp-content/uploads/2017/10/41.jpg
+  track: true
+  vendor: Google
+
+google_home_mini_sala:
   hide_if_away: false
   icon:
   mac: 20:DF:B9:52:FF:D8
-  name: 20dfb952ffd8
+  name: Google Home Mini Sala
+  picture: https://cdn.arstechnica.net/wp-content/uploads/2017/10/41.jpg
+  track: false
+  vendor: Google
+
+586356a1183d:
+  hide_if_away: false
+  icon:
+  mac: 58:63:56:A1:18:3D
+  name: 586356a1183d
   picture:
-  track: true
+  track: false
+  vendor: FN-LINK TECHNOLOGY LIMITED
+
+001698f7b26d:
+  hide_if_away: false
+  icon:
+  mac: 00:16:98:F7:B2:6D
+  name: 001698f7b26d
+  picture:
+  track: false
+  vendor: T&A Mobile Phones
+
+001698eb9362:
+  hide_if_away: false
+  icon:
+  mac: 00:16:98:EB:93:62
+  name: 001698eb9362
+  picture:
+  track: false
+  vendor: T&A Mobile Phones
+
+88532ea7d5f0:
+  hide_if_away: false
+  icon:
+  mac: 88:53:2E:A7:D5:F0
+  name: 88532ea7d5f0
+  picture:
+  track: false
+  vendor: Intel Corporate
+
+d463c6210a24:
+  hide_if_away: false
+  icon:
+  mac: D4:63:C6:21:0A:24
+  name: d463c6210a24
+  picture:
+  track: false
   vendor: unknown
+
+20a2e462699b:
+  hide_if_away: false
+  icon:
+  mac: 20:A2:E4:62:69:9B
+  name: 20a2e462699b
+  picture:
+  track: false
+  vendor: unknown
+
+5cc9d3425fc5:
+  hide_if_away: false
+  icon:
+  mac: 5C:C9:D3:42:5F:C5
+  name: 5cc9d3425fc5
+  picture:
+  track: false
+  vendor: unknown
+

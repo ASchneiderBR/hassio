@@ -39,6 +39,7 @@ climate: !include includes/climate.yaml
 cover: !include includes/cover.yaml
 device_tracker: !include includes/device_tracker.yaml
 frontend: !include includes/frontend.yaml
+#google_assistant: includes/google_assistant.yaml
 group: !include includes/group.yaml
 http: !include includes/http.yaml
 input_boolean: !include includes/input_boolean.yaml
