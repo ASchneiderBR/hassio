@@ -14,6 +14,7 @@ default_view:
   - group.all_automations
   name: Casa
   icon: mdi:home
+
 suite:
   entities:
   - binary_sensor.motion_sensor_158d000120af26
@@ -33,6 +34,7 @@ suite:
   - switch.toalheiro
   name: "Su\xEDte"
   view: false
+
 quarto:
   entities:
   - binary_sensor.motion_sensor_158d00015b6c81
@@ -47,6 +49,7 @@ quarto:
   - light.quarto
   name: Quarto
   view: false
+
 banheiro2:
   control: hidden
   entities:
@@ -56,6 +59,7 @@ banheiro2:
   - switch.chuveirosocial
   name: Banheiro social
   view: false
+
 sala:
   entities:
   - binary_sensor.door_window_sensor_158d0001d6851d
@@ -81,6 +85,7 @@ sala:
   - light.entrada
   name: Sala
   view: false
+
 luzes_sala:
   entities:
   - light.gateway_light_34ce00907e65
@@ -91,6 +96,7 @@ luzes_sala:
   - light.entrada
   name: Todas as luzes da sala
   view: false
+
 cozinha:
   entities:
   - binary_sensor.motion_sensor_158d0001231d4d
@@ -101,6 +107,7 @@ cozinha:
   - light.area_servico
   name: Cozinha
   view: false
+
 pessoas:
   control: hidden
   entities:
@@ -108,6 +115,7 @@ pessoas:
   - device_tracker.roberta
   name: Pessoas
   view: false
+
 dispositivos:
   control: hidden
   entities:
@@ -129,6 +137,7 @@ dispositivos:
   - device_tracker.camera_cozinha
   name: Dispositivos
   view: false
+
 tempo:
   control: hidden
   entities:
@@ -149,6 +158,7 @@ tempo:
   - sensor.pws_alerts
   name: Tempo
   view: false
+
 sensorescasa:
   control: hidden
   entities:
@@ -175,6 +185,7 @@ sensorescasa:
   - sensor.temperature_158d0001dcb597
   name: Sensores casa
   view: false
+
 celulares:
   control: hidden
   entities:
@@ -189,6 +200,7 @@ celulares:
   - sensor.iphone_de_roberta_battery_state
   name: Celulares
   view: false
+
 comodos:
   entities:
   - group.suite
@@ -199,6 +211,7 @@ comodos:
   - group.casa
   name: "C\xF4modos"
   view: true
+
 alarme:
   control: hidden
   entities:
@@ -206,6 +219,7 @@ alarme:
   - switch.sirene
   name: Alarme
   view: false
+
 scripts:
   control: hidden
   entities:
@@ -216,6 +230,7 @@ scripts:
   - group.scripts_garagem_casa
   name: Scripts
   view: true
+
 tvs:
   control: hidden
   entities:
@@ -225,12 +240,14 @@ tvs:
   - media_player.entrada
   name: TVs
   view: false
+
 garagem_casa:
   control: hidden
   entities:
   - script.garagem_casa
   name: Garagem de casa
   view: false
+
 sistema:
   control: hidden
   entities:
@@ -241,30 +258,7 @@ sistema:
   - sensor.since_last_boot
   name: Sistema
   view: false
-scripts_ar_suite:
-  control: hidden
-  entities:
-  - script.ar_suite_desligar
-  - script.ar_suite_display
-  - script.ar_suite_swing
-  name: Ar condicionado da suíte
-  view: false
-scripts_ar_sala:
-  control: hidden
-  entities:
-  - script.ar_sala_desligar
-  - script.ar_sala_display
-  - script.ar_sala_swing
-  name: Ar condicionado da sala
-  view: false
-scripts_ar_quarto:
-  control: hidden
-  entities:
-  - script.ar_quarto_desligar
-  - script.ar_quarto_display
-  - script.ar_quarto_swing
-  name: Ar condicionado do quarto
-  view: false
+
 scripts_tv_suite:
   control: hidden
   entities:
@@ -289,6 +283,7 @@ scripts_tv_suite:
   - script.tv_lg_suite_up
   name: TV LG suíte
   view: false
+
 scripts_tv_sala:
   control: hidden
   entities:
@@ -315,6 +310,7 @@ scripts_tv_sala:
   - script.tv_lg_sala_up
   name: TV LG sala
   view: false
+
 scripts_tv_quarto:
   control: hidden
   entities:
@@ -339,30 +335,7 @@ scripts_tv_quarto:
   - script.tv_lg_quarto_up
   name: TV LG quarto
   view: false
-scripts_persiana_suite:
-  control: hidden
-  entities:
-  - script.persiana_suite_abrir
-  - script.persiana_suite_fechar
-  - script.persiana_suite_parar
-  name: Persiana suíte
-  view: false
-scripts_persiana_sala:
-  control: hidden
-  entities:
-  - script.persiana_sala_abrir
-  - script.persiana_sala_fechar
-  - script.persiana_sala_parar
-  name: Persiana sala
-  view: false
-scripts_persiana_quarto:
-  control: hidden
-  entities:
-  - script.persiana_quarto_abrir
-  - script.persiana_quarto_fechar
-  - script.persiana_quarto_parar
-  name: Persiana quarto
-  view: false
+
 scripts_garagem_casa:
   control: hidden
   entities:
@@ -371,6 +344,7 @@ scripts_garagem_casa:
   - script.garagem_casa_fechar
   name: Garagem casa
   view: false
+
 scripts_home_sala:
   control: hidden
   entities:
@@ -382,6 +356,7 @@ scripts_home_sala:
   - script.home_theater_sala_power
   name: Home Theater sala
   view: false
+
 casa:
   control: hidden
   entities:
@@ -392,11 +367,13 @@ casa:
   - script.garagem_casa
   name: Funções da casa
   view: false
+
 tablet_entrada:
   entities:
   - group.funcoes_tablet_entrada
   name: Tablet entrada
   view: true
+
 funcoes_tablet_entrada:
   entities:
   - sensor.pws_weather_1h
@@ -411,19 +388,7 @@ funcoes_tablet_entrada:
   - light.corredor
   name: Tablet entrada
   view: false
-botoes:
-  control: hidden
-  entities:
-  - binary_sensor.switch_158d0001d8e9f8
-  - binary_sensor.switch_158d0001d8ea74
-  - binary_sensor.switch_158d000120ea75
-  - binary_sensor.switch_158d000121090f
-  - binary_sensor.switch_158d0001d8e9cf
-  - binary_sensor.switch_158d0001d9073f
-  - binary_sensor.switch_158d0001d8eabc
-  - binary_sensor.switch_158d0001d8eb3d
-  name: Botões
-  view: false
+
 casa_movimento:
   control: hidden
   entities:
@@ -435,6 +400,7 @@ casa_movimento:
   - binary_sensor.motion_sensor_158d00016da83a
   name: Movimento em casa
   view: false
+
 automacoes:
   entities:
   - group.automacoes_luzes_casa
@@ -447,6 +413,7 @@ automacoes:
   - group.temporizadores_muvrh
   name: Automações
   view: true
+
 automacoes_luzes_casa:
   entities:
   - automation.luzes_da_casa__banheiro_social
@@ -458,6 +425,7 @@ automacoes_luzes_casa:
   - automation.luzes_da_casa__entrando_em_casa
   name: Luzes casa
   view: false
+
 automacoes_rotinas:
   entities:
   - automation.rotina__acoes_ao_nascer_do_sol
@@ -466,6 +434,7 @@ automacoes_rotinas:
   - automation.rotina__bom_dia
   name: Rotinas
   view: false
+
 automacoes_alertas:
   entities:
   - automation.alerta__uso_cpu_em_alta_por_muito_tempo
@@ -477,6 +446,7 @@ automacoes_alertas:
   - automation.sensores__porta_ou_janela_aberta_por_muito_tempo
   name: Alertas
   view: false
+
 automacoes_botoes_xiaomi_casa:
   entities:
   - automation.botao_xiaomi_banheiro_social
@@ -489,6 +459,7 @@ automacoes_botoes_xiaomi_casa:
   - automation.botao_xiaomi_suite_02
   name: Botões Xiaomi Casa
   view: false
+
 temporizadores_casa:
   entities:
   - input_select.tempo_luz_suite
@@ -499,6 +470,7 @@ temporizadores_casa:
   - input_select.tempo_luz_cozinha
   name: Temporizadores casa
   view: false
+
 cubos_casa:
   entities:
   - automation.cubo_sala
@@ -526,6 +498,7 @@ muvrh:
   - group.automacoes_muvrh
   name: MuvRH
   view: true
+
 dispositivos_muvrh:
   entities:
   - device_tracker.pi3b_tv_sala_operacoes
@@ -541,6 +514,7 @@ dispositivos_muvrh:
   - device_tracker.impressora_laser
   name: Dispositivos MuvRH
   view: false
+
 computadores_muvrh:
   entities:
   - device_tracker.notebook_antonio
@@ -553,6 +527,7 @@ computadores_muvrh:
   - device_tracker.muvrh_06
   name: Computadores MuvRH
   view: false
+
 cameras_muvrh:
   entities:
   - device_tracker.camera_01
@@ -562,6 +537,7 @@ cameras_muvrh:
   - device_tracker.camera_05
   name: Câmeras MuvRH
   view: false
+
 muvrh_nossa_sala:
   control: hidden
   entities:
@@ -572,6 +548,7 @@ muvrh_nossa_sala:
   - light.muv203nossasala
   name: Nossa sala
   view: false
+
 ar_muvrh:
   control: hidden
   entities:
@@ -581,6 +558,7 @@ ar_muvrh:
   - climate.ar_condicionado_da_sala_303
   name: Ar condicionados MuvRH
   view: false
+
 garagem_muvrh:
   control: hidden
   entities:
@@ -592,6 +570,7 @@ garagem_muvrh:
   - script.garagem_muvrh_sair
   name: Garagem MuvRH
   view: false
+
 muvrh_sala_operacoes:
   entities:
   - binary_sensor.motion_sensor_158d0001e420d0
@@ -603,12 +582,14 @@ muvrh_sala_operacoes:
   - switch.muv203bebedouro
   name: Sala de operações
   view: false
+
 muvrh_portas:
   entities:
   - binary_sensor.door_window_sensor_158d0001bf2a09
   - binary_sensor.door_window_sensor_158d0001b8671f
   name: Portas
   view: false
+
 muvrh_entrada_203:
   entities:
   - binary_sensor.door_window_sensor_158d0001bf2a09
@@ -619,6 +600,7 @@ muvrh_entrada_203:
   - light.muv203entrada
   name: Entrada 203
   view: false
+
 muvrh_sala_303:
   entities:
   - binary_sensor.door_window_sensor_158d0001b8671f
@@ -630,21 +612,25 @@ muvrh_sala_303:
   - climate.ar_condicionado_da_sala_303
   - light.muv303entrada
   - light.muv303dinamica
+  - light.muv303corredor
   - switch.muv303bebedouro
   name: Sala 303
   view: false
+
 muvrh_banheiro_203:
   entities:
   - binary_sensor.motion_sensor_158d0001e43ef1
   - light.muv203banheiro
   name: Banheiro 203
   view: false
+
 muvrh_banheiro_303:
   entities:
   - binary_sensor.motion_sensor_158d0001ad6c20
   - light.muv303banheiro
   name: Banheiro 303
   view: false
+
 muvrh_movimento_203:
   entities:
   - binary_sensor.motion_sensor_158d0001e02f9a
@@ -653,6 +639,7 @@ muvrh_movimento_203:
   - binary_sensor.motion_sensor_158d0001e43ef1
   name: Movimento sala 203
   view: false
+
 muvrh_movimento_303:
   entities:
   - binary_sensor.motion_sensor_158d0001e44035
@@ -660,6 +647,7 @@ muvrh_movimento_303:
   - binary_sensor.motion_sensor_158d0001a24bdc
   name: Movimento sala 303
   view: false
+
 muvrh_interno:
   control: hidden
   entities:
@@ -670,6 +658,7 @@ muvrh_interno:
   - group.muvrh_banheiro_303
   name: MuvRH interno
   view: true
+
 automacoes_muvrh:
   entities:
   - automation.muvrh_203__luz_da_entrada
@@ -683,12 +672,14 @@ automacoes_muvrh:
   - automation.muvrh_303__luz_do_banheiro
   name: Automações MuvRH
   view: false
+
 google_home_casa:
   entities:
   - media_player.sala
   - media_player.suite
   name: Google Homes Casa
   view: false
+
 temporizadores_muvrh:
   entities:
   - input_select.tempo_muvrh_203_entrada

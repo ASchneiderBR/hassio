@@ -16,6 +16,7 @@
       stop_cover:
         service: script.persiana_suite_parar
       friendly_name: "Persiana da suíte"
+
     persiana_quarto:
       optimistic: true
       set_cover_position:
@@ -32,6 +33,7 @@
       stop_cover:
         service: script.persiana_quarto_parar
       friendly_name: "Persiana do quarto"
+
     persiana_sala:
       optimistic: true
       set_cover_position:
@@ -57,12 +59,14 @@
       close_cover:
         service: script.garagem_casa_fechar
       friendly_name: "Garagem de casa"
+
     garagem_muvrh_rua:
       open_cover:
         service: script.garagem_muvrh_rua_abrir
       close_cover:
         service: script.garagem_muvrh_rua_fechar
       friendly_name: "Garagem da rua do trabalho"
+
     garagem_muvrh_interno:
       open_cover:
         service: script.garagem_muvrh_interno_abrir

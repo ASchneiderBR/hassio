@@ -9,10 +9,10 @@
       - youtube
       - netflix
 
-- platform: lg_netcast
-  host: 192.168.1.40
-#  access_token: 
-  name: 'TV Quarto'
+#- platform: lg_netcast
+#  host: 192.168.1.40
+#  access_token: 459689
+#  name: 'TV Quarto'
 
 - platform: webostv
   host: 192.168.1.38

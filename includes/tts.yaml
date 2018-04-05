@@ -3,3 +3,9 @@
   cache: true
   cache_dir: /tmp/tts
   time_memory: 300
+
+- platform: amazon_polly
+  aws_access_key_id: !secret AWS_ACCESS_KEY_ID
+  aws_secret_access_key: !secret AWS_SECRET_ACCESS_KEY
+  text_type: ssml
+  voice: Ricardo

@@ -9,6 +9,7 @@
   payload_not_available: "Offline"
   qos: 1
   retain: true
+
 - platform: mqtt
   name: "sala_principal"
   command_topic: "cmnd/salaprincipal/POWER"
@@ -18,6 +19,7 @@
   payload_not_available: "Offline"
   qos: 1
   retain: true
+
 - platform: mqtt
   name: "suite_principal"
   command_topic: "cmnd/suiteprincipal/POWER"
@@ -27,6 +29,7 @@
   payload_not_available: "Offline"
   qos: 1
   retain: true
+
 - platform: mqtt
   name: "suite_banheiro"
   command_topic: "cmnd/banheirosuite/POWER"
@@ -36,6 +39,7 @@
   payload_not_available: "Offline"
   qos: 1
   retain: true
+
 - platform: mqtt
   name: "corredor"
   command_topic: "cmnd/corredor/POWER"
@@ -45,6 +49,7 @@
   payload_not_available: "Offline"
   qos: 1
   retain: true
+
 - platform: mqtt
   name: "banheiro_social"
   command_topic: "cmnd/banheirosocial/POWER"
@@ -54,6 +59,7 @@
   payload_not_available: "Offline"
   qos: 1
   retain: true
+
 - platform: mqtt
   name: "quarto"
   command_topic: "cmnd/quarto/POWER"
@@ -63,6 +69,7 @@
   payload_not_available: "Offline"
   qos: 1
   retain: true
+
 - platform: mqtt
   name: "entrada"
   command_topic: "cmnd/entrada/POWER"
@@ -72,6 +79,7 @@
   payload_not_available: "Offline"
   qos: 1
   retain: true
+
 - platform: mqtt
   name: "cozinha"
   command_topic: "cmnd/cozinha/POWER"
@@ -81,6 +89,7 @@
   payload_not_available: "Offline"
   qos: 1
   retain: true
+
 - platform: mqtt
   name: "area_servico"
   command_topic: "cmnd/areadeservico/POWER"
@@ -90,6 +99,7 @@
   payload_not_available: "Offline"
   qos: 1
   retain: true
+
 - platform: mqtt
   name: "ledsuitecama"
   effect_list:
@@ -114,6 +124,7 @@
   rgb_command_mode: hex
   retain: true
   qos: 1
+
 - platform: mqtt
   name: "ledsuitetv"
   effect_list:
@@ -138,6 +149,7 @@
   rgb_command_mode: hex
   retain: true
   qos: 1
+
 - platform: mqtt
   name: "ledquartotv"
   effect_list:
@@ -162,6 +174,7 @@
   rgb_command_mode: hex
   retain: true
   qos: 1
+
 - platform: mqtt
   name: "ledcozinhabalcao"
   effect_list:
@@ -186,6 +199,7 @@
   rgb_command_mode: hex
   retain: true
   qos: 1
+
 - platform: flux_led
   devices:
     192.168.1.30:
@@ -206,6 +220,7 @@
   payload_not_available: "Offline"
   qos: 1
   retain: true
+
 - platform: mqtt
   name: "muv203banheiro"
   command_topic: "cmnd/muv203banheiro/POWER"
@@ -215,6 +230,7 @@
   payload_not_available: "Offline"
   qos: 1
   retain: true
+
 - platform: mqtt
   name: "muv203operacoes"
   command_topic: "cmnd/muv203operacoes/POWER"
@@ -224,6 +240,7 @@
   payload_not_available: "Offline"
   qos: 1
   retain: true
+
 - platform: mqtt
   name: "muv203nossasala"
   command_topic: "cmnd/muv203nossasala/POWER"
@@ -233,6 +250,7 @@
   payload_not_available: "Offline"
   qos: 1
   retain: true
+
 - platform: mqtt
   name: "muv303entrada"
   command_topic: "cmnd/muv303entrada/POWER"
@@ -242,6 +260,7 @@
   payload_not_available: "Offline"
   qos: 1
   retain: true
+
 - platform: mqtt
   name: "muv303banheiro"
   command_topic: "cmnd/muv303banheiro/POWER"
@@ -251,11 +270,22 @@
   payload_not_available: "Offline"
   qos: 1
   retain: true
+
 - platform: mqtt
   name: "muv303dinamica"
   command_topic: "cmnd/muv303dinamica/POWER"
   state_topic: "stat/muv303dinamica/POWER"
   availability_topic: "tele/muv303dinamica/LWT"
+  payload_available: "Online"
+  payload_not_available: "Offline"
+  qos: 1
+  retain: true
+
+- platform: mqtt
+  name: "muv303corredor"
+  command_topic: "cmnd/muv303corredor/POWER"
+  state_topic: "stat/muv303corredor/POWER"
+  availability_topic: "tele/muv303corredor/LWT"
   payload_available: "Online"
   payload_not_available: "Offline"
   qos: 1
@@ -269,28 +299,33 @@
     - light.ledsalatv
     - light.ledsaladesktop
     - light.gateway_light_34ce00907e65
+
 - platform: group
   name: Luzes principais cozinha
   entities:
     - light.cozinha
     - light.ledcozinhabalcao
+
 - platform: group
   name: Todas as luzes cozinha
   entities:
     - light.cozinha
     - light.ledcozinhabalcao
     - light.area_servico
+
 - platform: group
   name: Luzes principais quarto
   entities:
     - light.ledquartotv
     - light.quarto
+
 - platform: group
   name: Todas as luzes suíte
   entities:
     - light.suite_principal
     - light.ledsuitetv
     - light.ledsuitecama
+
 - platform: group
   name: Todos os leds suíte
   entities:

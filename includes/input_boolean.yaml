@@ -2,24 +2,30 @@ entrar_muvrh:
   name: Chegando no trabalho
   initial: off
   icon: mdi:garage
+
 sair_muvrh:
   name: Saindo do trabalho
   initial: off
   icon: mdi:garage
+
 chegar_casa:
   name: Chegando em casa
   initial: off
   icon: mdi:home-automation
+
 sair_casa:
   name: Saindo de casa
   initial: off
   icon: mdi:home-outline
+
 visita_casa:
   name: Visita em casa
   icon: mdi:account
+
 bom_dia:
   name: Bom dia
   icon: mdi:weather-sunny
+
 boa_noite:
   name: Boa noite
   icon: mdi:weather-night
