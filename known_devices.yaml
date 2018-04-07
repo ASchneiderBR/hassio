@@ -166,7 +166,7 @@ toalheiro:
   mac: 5C:CF:7F:BC:52:30
   name: Toalheiro do banheiro da suíte
   picture: https://images-na.ssl-images-amazon.com/images/I/319HtdkGgOL.jpg
-  track: true
+  track: false
   vendor: Sonoff
 
 luzmesajantar:
@@ -175,7 +175,7 @@ luzmesajantar:
   mac: 2C:3A:E8:11:74:22
   name: Luz da mesa de jantar
   picture: https://images-na.ssl-images-amazon.com/images/I/319HtdkGgOL.jpg
-  track: true
+  track: false
   vendor: Sonoff
 
 luzsalaprincipal:
@@ -184,7 +184,7 @@ luzsalaprincipal:
   mac: 2C:3A:E8:11:79:B0
   name: Luz principal da sala
   picture: https://images-na.ssl-images-amazon.com/images/I/319HtdkGgOL.jpg
-  track: true
+  track: false
   vendor: Sonoff
 
 xiaomi_hub:
@@ -202,7 +202,7 @@ luzsuiteprincipal:
   mac: 2C:3A:E8:11:71:AB
   name: Luz principal da suíte
   picture: https://images-na.ssl-images-amazon.com/images/I/319HtdkGgOL.jpg
-  track: true
+  track: false
   vendor: Sonoff
 
 luzbanheirosuite:
@@ -211,7 +211,7 @@ luzbanheirosuite:
   mac: 5C:CF:7F:B4:5E:89
   name: Luz do banheiro da suíte
   picture: https://images-na.ssl-images-amazon.com/images/I/319HtdkGgOL.jpg
-  track: true
+  track: false
   vendor: Sonoff
 
 luzcorredor:
@@ -220,7 +220,7 @@ luzcorredor:
   mac: 5C:CF:7F:BD:61:22
   name: Luz do corredor
   picture: https://images-na.ssl-images-amazon.com/images/I/319HtdkGgOL.jpg
-  track: true
+  track: false
   vendor: Sonoff
 
 luzbanheirosocial:
@@ -229,7 +229,7 @@ luzbanheirosocial:
   mac: 2C:3A:E8:07:B7:5B
   name: Luz do banheiro social
   picture: https://images-na.ssl-images-amazon.com/images/I/319HtdkGgOL.jpg
-  track: true
+  track: false
   vendor: Sonoff
 
 luzquarto:
@@ -238,7 +238,7 @@ luzquarto:
   mac: 2C:3A:E8:0F:30:E3
   name: Luz principal do quarto
   picture: https://images-na.ssl-images-amazon.com/images/I/319HtdkGgOL.jpg
-  track: true
+  track: false
   vendor: Sonoff
 
 luzentrada:
@@ -247,7 +247,7 @@ luzentrada:
   mac: 2C:3A:E8:11:71:01
   name: Luz da entrada
   picture: https://images-na.ssl-images-amazon.com/images/I/319HtdkGgOL.jpg
-  track: true
+  track: false
   vendor: Sonoff
 
 luzcozinha:
@@ -256,7 +256,7 @@ luzcozinha:
   mac: 5C:CF:7F:B4:E1:D1
   name: Luz principal da cozinha
   picture: https://images-na.ssl-images-amazon.com/images/I/319HtdkGgOL.jpg
-  track: true
+  track: false
   vendor: Sonoff
 
 chuveirosuite:
@@ -265,7 +265,7 @@ chuveirosuite:
   mac: 5C:CF:7F:BD:60:14
   name: Chuveiro da suíte
   picture: https://images-na.ssl-images-amazon.com/images/I/319HtdkGgOL.jpg
-  track: true
+  track: false
   vendor: Sonoff
 
 areadeservico:
@@ -274,7 +274,7 @@ areadeservico:
   mac: 2C:3A:E8:2E:99:73
   name: Luz da área de serviço
   picture: https://images-na.ssl-images-amazon.com/images/I/319HtdkGgOL.jpg
-  track: true
+  track: false
   vendor: Sonoff
 
 chuveirosocial:
@@ -283,7 +283,7 @@ chuveirosocial:
   mac: 5C:CF:7F:58:3D:95
   name: Chuveiro social
   picture: https://images-na.ssl-images-amazon.com/images/I/319HtdkGgOL.jpg
-  track: true
+  track: false
   vendor: Sonoff
 
 sirene:
@@ -292,7 +292,7 @@ sirene:
   mac: 5C:CF:7F:57:D3:FD
   name: Sirene do alarme
   picture: https://images-na.ssl-images-amazon.com/images/I/319HtdkGgOL.jpg
-  track: true
+  track: false
   vendor: Sonoff
 
 rfbridgecasa:
@@ -319,7 +319,7 @@ ledsuitecama:
   mac: 60:01:94:88:4D:5D
   name: LED suíte cama
   picture: https://sc02.alicdn.com/kf/HTB1B1yCPXXXXXbyaXXXq6xXFXXXb/High-frequency-3528-led-strip-to-strip.jpg
-  track: true
+  track: false
   vendor: Tasmota
 
 ledsuitetv:
@@ -328,7 +328,7 @@ ledsuitetv:
   mac: 60:01:94:8D:38:F0
   name: LED TV da suíte
   picture: https://sc02.alicdn.com/kf/HTB1B1yCPXXXXXbyaXXXq6xXFXXXb/High-frequency-3528-led-strip-to-strip.jpg
-  track: true
+  track: false
   vendor: Tasmota
 
 ledquartotv:
@@ -337,7 +337,7 @@ ledquartotv:
   mac: 60:01:94:87:FD:E8
   name: LED TV do quarto
   picture: https://sc02.alicdn.com/kf/HTB1B1yCPXXXXXbyaXXXq6xXFXXXb/High-frequency-3528-led-strip-to-strip.jpg
-  track: true
+  track: false
   vendor: Tasmota
 
 ledsalatv:
@@ -346,7 +346,7 @@ ledsalatv:
   mac: 60:01:94:8D:21:25
   name: LED TV da sala
   picture: https://sc02.alicdn.com/kf/HTB1B1yCPXXXXXbyaXXXq6xXFXXXb/High-frequency-3528-led-strip-to-strip.jpg
-  track: true
+  track: false
   vendor: Magic Light
 
 ledcozinhabalcao:
@@ -355,7 +355,7 @@ ledcozinhabalcao:
   mac: 60:01:94:87:FE:48
   name: LED do balcão da cozinha
   picture: https://sc02.alicdn.com/kf/HTB1B1yCPXXXXXbyaXXXq6xXFXXXb/High-frequency-3528-led-strip-to-strip.jpg
-  track: true
+  track: false
   vendor: Tasmota
 
 ledsaladesktop:
@@ -493,6 +493,15 @@ tv_suite:
   track: true
   vendor: LG
 
+tv_quarto:
+  hide_if_away: false
+  icon:
+  mac: C8:08:E9:FF:66:D4
+  name: TV Quarto
+  picture: http://www.lg.com/br/images/tv/md05605490/md05605490-350x350.jpg
+  track: true
+  vendor: LG
+
 kingle_roberta:
   hide_if_away: false
   icon:
@@ -589,7 +598,7 @@ muv203entrada:
   mac: 5C:CF:7F:BC:6E:A6
   name: Luz da entrada sa sala 203
   picture: https://images-na.ssl-images-amazon.com/images/I/319HtdkGgOL.jpg
-  track: true
+  track: false
   vendor: Sonoff
 
 muv203banheiro:
@@ -598,7 +607,7 @@ muv203banheiro:
   mac: 5C:CF:7F:BD:67:08
   name: Luz do banheiro da sala 203
   picture: https://images-na.ssl-images-amazon.com/images/I/319HtdkGgOL.jpg
-  track: true
+  track: false
   vendor: Sonoff
 
 muv203operacoes:
@@ -607,7 +616,7 @@ muv203operacoes:
   mac: 5C:CF:7F:58:42:66
   name: Luz da sala de operações
   picture: https://images-na.ssl-images-amazon.com/images/I/319HtdkGgOL.jpg
-  track: true
+  track: false
   vendor: Sonoff
 
 muv203nossasala:
@@ -616,7 +625,7 @@ muv203nossasala:
   mac: 60:01:94:3F:03:66
   name: Luz da nossa sala
   picture: https://images-na.ssl-images-amazon.com/images/I/319HtdkGgOL.jpg
-  track: true
+  track: false
   vendor: Sonoff
 
 muv203bebedouro:
@@ -625,7 +634,7 @@ muv203bebedouro:
   mac: 60:01:94:3F:06:E0
   name: Bebedouro sala 203
   picture: https://images-na.ssl-images-amazon.com/images/I/319HtdkGgOL.jpg
-  track: true
+  track: false
   vendor: Sonoff
 
 roteador_muvrh:
@@ -670,7 +679,7 @@ muv303_entrada:
   mac: 5C:CF:7F:58:2D:3D
   name: Entrada sala 303
   picture: https://images-na.ssl-images-amazon.com/images/I/319HtdkGgOL.jpg
-  track: true
+  track: false
   vendor: Sonoff
 
 muv303_banheiro:
@@ -679,7 +688,7 @@ muv303_banheiro:
   mac: 2C:3A:E8:11:5F:25
   name: Banheiro sala 303
   picture: https://images-na.ssl-images-amazon.com/images/I/319HtdkGgOL.jpg
-  track: true
+  track: false
   vendor: Sonoff
 
 muv303_dinamica:
@@ -688,16 +697,25 @@ muv303_dinamica:
   mac: 2C:3A:E8:2E:A9:87
   name: Dinâmica sala 303
   picture: https://images-na.ssl-images-amazon.com/images/I/319HtdkGgOL.jpg
-  track: true
+  track: false
+  vendor: Sonoff
+
+muv303_corredor:
+  hide_if_away: false
+  icon:
+  mac: 60:01:94:3F:09:92
+  name: Corredor sala 303
+  picture: https://images-na.ssl-images-amazon.com/images/I/319HtdkGgOL.jpg
+  track: false
   vendor: Sonoff
 
 muv303_bebedouro:
   hide_if_away: false
   icon:
-  mac: 60:01:94:3F:09:92
+  mac: 5C:CF:7F:57:B0:8F
   name: Bebedouro sala 303
   picture: https://images-na.ssl-images-amazon.com/images/I/319HtdkGgOL.jpg
-  track: true
+  track: false
   vendor: Sonoff
 
 google_home_mini_suite:
@@ -705,7 +723,7 @@ google_home_mini_suite:
   icon:
   mac: E4:F0:42:2A:85:E1
   name: Google Home Mini Suíte
-  picture: https://cdn.arstechnica.net/wp-content/uploads/2017/10/41.jpg
+  picture: http://i.expansys.com/i/b/b307761.jpg
   track: true
   vendor: Google
 
@@ -714,70 +732,6 @@ google_home_mini_sala:
   icon:
   mac: 20:DF:B9:52:FF:D8
   name: Google Home Mini Sala
-  picture: https://cdn.arstechnica.net/wp-content/uploads/2017/10/41.jpg
-  track: false
+  picture: http://i.expansys.com/i/b/b307761.jpg
+  track: true
   vendor: Google
-
-586356a1183d:
-  hide_if_away: false
-  icon:
-  mac: 58:63:56:A1:18:3D
-  name: 586356a1183d
-  picture:
-  track: false
-  vendor: FN-LINK TECHNOLOGY LIMITED
-
-001698f7b26d:
-  hide_if_away: false
-  icon:
-  mac: 00:16:98:F7:B2:6D
-  name: 001698f7b26d
-  picture:
-  track: false
-  vendor: T&A Mobile Phones
-
-001698eb9362:
-  hide_if_away: false
-  icon:
-  mac: 00:16:98:EB:93:62
-  name: 001698eb9362
-  picture:
-  track: false
-  vendor: T&A Mobile Phones
-
-88532ea7d5f0:
-  hide_if_away: false
-  icon:
-  mac: 88:53:2E:A7:D5:F0
-  name: 88532ea7d5f0
-  picture:
-  track: false
-  vendor: Intel Corporate
-
-d463c6210a24:
-  hide_if_away: false
-  icon:
-  mac: D4:63:C6:21:0A:24
-  name: d463c6210a24
-  picture:
-  track: false
-  vendor: unknown
-
-20a2e462699b:
-  hide_if_away: false
-  icon:
-  mac: 20:A2:E4:62:69:9B
-  name: 20a2e462699b
-  picture:
-  track: false
-  vendor: unknown
-
-5cc9d3425fc5:
-  hide_if_away: false
-  icon:
-  mac: 5C:C9:D3:42:5F:C5
-  name: 5cc9d3425fc5
-  picture:
-  track: false
-  vendor: unknown
-
