@@ -90,7 +90,7 @@
       icon_template: mdi:television
     tv_lg_quarto:
       friendly_name: "Tv do quarto"
-      value_template: "{% if is_state('binary_sensor.tv_quarto', 'on') %}on{% else %}off{% endif %}"
+      value_template: "{% if is_state('device_tracker.tv_quarto', 'home') %}on{% else %}off{% endif %}"
       turn_on:
         service: script.tv_lg_quarto_power_on
         entity_id: script.tv_lg_quarto_power_on

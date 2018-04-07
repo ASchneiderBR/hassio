@@ -268,7 +268,7 @@
     - service: notify.ios_iphone_de_antonio
       data_template:
         title: "Alerta MuvRH"
-        message: "O dispositivo {{ trigger.to_state.name }} se desconectou da rede."
+        message: "O dispositivo {{ trigger.to_state.name | lower }} se desconectou da rede."
     - service: persistent_notification.create
       data_template:
         message: "O dispositivo {{ trigger.to_state.name | lower }} se desconectou da rede na MuvRH às ({{now().strftime('%H:%M')}})."
@@ -1250,9 +1250,9 @@
       - switch.muv303bebedouro
       - light.muv303banheiro
     to: 'unavailable'
-#    for:
-#      minutes: 5
   action:
+    - wait_template: "{% if trigger.to_state.state == 'unavailable' and as_timestamp(now()) - as_timestamp(trigger.to_state.last_updated) | int >= 180 %}True{% else %}False{% endif %}"
+      timeout: 00:03:30
     - service: persistent_notification.create
       data_template:
         message: "O dispositivo {{ trigger.to_state.name | lower }} ficou indisponível às {{now().strftime('%H:%M')}}."

@@ -39,8 +39,3 @@
         {% endif %}
       friendly_name: 'Movimento sala 203'
       device_class: occupancy
-
-- platform: ping
-  host: 192.168.1.40
-  name: "TV Quarto"
-  count: 3
