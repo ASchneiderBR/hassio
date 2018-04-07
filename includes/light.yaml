@@ -113,7 +113,6 @@
   brightness_state_topic: "cmnd/ledsuitecama/Dimmer"
   brightness_command_topic: "cmnd/ledsuitecama/Dimmer"
   brightness_scale: 100
-  rgb_command_template: '{{ "%02x" | format(red|int) }}{{ "%02x" | format(green|int) }}{{ "%02x" | format(blue|int) }}'
   rgb_state_topic: "cmnd/ledsuitecama/Color"
   rgb_command_topic: "cmnd/ledsuitecama/Color"
   effect_command_topic: "cmnd/ledsuitecama/Scheme"
@@ -121,9 +120,11 @@
   state_value_template: "{{ value }}"
   brightness_value_template: "{{ value }}"
   effect_value_template: "{{ value }}"
-  rgb_command_mode: hex
   retain: true
   qos: 1
+  availability_topic: "tele/ledsuitecama/LWT"
+  payload_available: "Online"
+  payload_not_available: "Offline"
 
 - platform: mqtt
   name: "ledsuitetv"
@@ -138,7 +139,6 @@
   brightness_state_topic: "cmnd/ledsuitetv/Dimmer"
   brightness_command_topic: "cmnd/ledsuitetv/Dimmer"
   brightness_scale: 100
-  rgb_command_template: '{{ "%02x" | format(red|int) }}{{ "%02x" | format(green|int) }}{{ "%02x" | format(blue|int) }}'
   rgb_state_topic: "cmnd/ledsuitetv/Color"
   rgb_command_topic: "cmnd/ledsuitetv/Color"
   effect_command_topic: "cmnd/ledsuitetv/Scheme"
@@ -146,9 +146,11 @@
   state_value_template: "{{ value }}"
   brightness_value_template: "{{ value }}"
   effect_value_template: "{{ value }}"
-  rgb_command_mode: hex
   retain: true
   qos: 1
+  availability_topic: "tele/ledsuitetv/LWT"
+  payload_available: "Online"
+  payload_not_available: "Offline"
 
 - platform: mqtt
   name: "ledquartotv"
@@ -163,7 +165,6 @@
   brightness_state_topic: "cmnd/ledquartotv/Dimmer"
   brightness_command_topic: "cmnd/ledquartotv/Dimmer"
   brightness_scale: 100
-  rgb_command_template: '{{ "%02x" | format(red|int) }}{{ "%02x" | format(green|int) }}{{ "%02x" | format(blue|int) }}'
   rgb_state_topic: "cmnd/ledquartotv/Color"
   rgb_command_topic: "cmnd/ledquartotv/Color"
   effect_command_topic: "cmnd/ledquartotv/Scheme"
@@ -171,9 +172,11 @@
   state_value_template: "{{ value }}"
   brightness_value_template: "{{ value }}"
   effect_value_template: "{{ value }}"
-  rgb_command_mode: hex
   retain: true
   qos: 1
+  availability_topic: "tele/ledquartotv/LWT"
+  payload_available: "Online"
+  payload_not_available: "Offline"
 
 - platform: mqtt
   name: "ledcozinhabalcao"
@@ -188,7 +191,6 @@
   brightness_state_topic: "cmnd/ledcozinhabalcao/Dimmer"
   brightness_command_topic: "cmnd/ledcozinhabalcao/Dimmer"
   brightness_scale: 100
-  rgb_command_template: '{{ "%02x" | format(red|int) }}{{ "%02x" | format(green|int) }}{{ "%02x" | format(blue|int) }}'
   rgb_state_topic: "cmnd/ledcozinhabalcao/Color"
   rgb_command_topic: "cmnd/ledcozinhabalcao/Color"
   effect_command_topic: "cmnd/ledcozinhabalcao/Scheme"
@@ -196,9 +198,11 @@
   state_value_template: "{{ value }}"
   brightness_value_template: "{{ value }}"
   effect_value_template: "{{ value }}"
-  rgb_command_mode: hex
   retain: true
   qos: 1
+  availability_topic: "tele/ledcozinhabalcao/LWT"
+  payload_available: "Online"
+  payload_not_available: "Offline"
 
 - platform: flux_led
   devices:
