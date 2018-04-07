@@ -1,0 +1,7 @@
+project_id: !secret Google_project_id
+client_id: !secret Google_client_id
+access_token: !secret Google_access_token
+agent_user_id: !secret Google_agent_user_id
+api_key: !secret Google_api_key
+exposed_domains:
+  - light

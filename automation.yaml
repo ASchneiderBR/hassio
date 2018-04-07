@@ -82,10 +82,14 @@
         - automation.muvrh_203__luz_do_banheiro
         - automation.muvrh_203__luz_da_sala_de_operacoes
         - automation.muvrh_203__luz_da_nossa_sala
-    - service: tts.google_say
+    - service: media_player.volume_set
+      entity_id: media_player.sala
+      data:
+        volume_level: 0.7
+    - service: tts.amazon_polly_say
       entity_id: media_player.sala
       data_template:
-        message: "O sistema foi reiniciado."
+        message: <speak>O sistema foi reiniciado.</speak>
     - service: notify.ios_iphone_de_antonio
       data:
         title: "Sistema"
@@ -135,11 +139,14 @@
     entity_id: alarm_control_panel.alarme
     to: 'disarmed'
   action:
-    - service: tts.google_say
-      entity_id:
-        - media_player.sala
+    - service: media_player.volume_set
+      entity_id: media_player.sala
+      data:
+        volume_level: 0.7
+    - service: tts.amazon_polly_say
+      entity_id: media_player.sala
       data_template:
-        message: "O alarme foi desarmado! Rearmando em 10 minutos."
+        message: <speak>O alarme foi desarmado! Rearmando em 10 minutos.</speak>
     - service: notify.TUDO
       data:
         title: "Alarme da casa"
@@ -162,10 +169,14 @@
     entity_id: alarm_control_panel.alarme
     from: 'disarmed'
   action:
-    - service: tts.google_say
+    - service: media_player.volume_set
+      entity_id: media_player.sala
+      data:
+        volume_level: 0.7
+    - service: tts.amazon_polly_say
       entity_id: media_player.sala
       data_template:
-        message: "O alarme foi armado!"
+        message: <speak>O alarme foi armado!</speak>
     - service: notify.TUDO
       data:
         title: "Alarme da casa"
@@ -257,7 +268,7 @@
     - service: notify.ios_iphone_de_antonio
       data_template:
         title: "Alerta MuvRH"
-        message: "O dispositivo {{ trigger.to_state.name }} se desconectou da rede."
+        message: "O dispositivo {{ trigger.to_state.name | lower }} se desconectou da rede."
     - service: persistent_notification.create
       data_template:
         message: "O dispositivo {{ trigger.to_state.name | lower }} se desconectou da rede na MuvRH às ({{now().strftime('%H:%M')}})."
@@ -270,19 +281,21 @@
     to: 'on'
   action:
     - service: script.garagem_casa_abrir
-      entity_id: script.garagem_casa_abrir
     - service: notify.TUDO
       data_template:
         title: "Automação"
         message: "Bem vindo! Preparando a casa para sua chegada..."
-    - service: tts.google_say
+    - service: media_player.volume_set
+      entity_id: media_player.sala
+      data:
+        volume_level: 0.7
+    - service: tts.amazon_polly_say
       entity_id: media_player.sala
       data_template:
-        message: "Automação chegando em casa iniciada, abrindo a garagem."
+        message: <speak>Automação chegando em casa iniciada, abrindo a garagem.</speak>
     - service: input_boolean.turn_off
-      data:
-        entity_id: input_boolean.chegar_casa
-    - delay: 00:00:30
+      entity_id: input_boolean.chegar_casa
+    - delay: 00:01:00
     - service: alarm_control_panel.alarm_disarm
       entity_id: alarm_control_panel.alarme
     - wait_template: "{{is_state('binary_sensor.door_window_sensor_158d0001d6851d', 'on')}}"
@@ -492,10 +505,14 @@
     for:
       minutes: 1
   action:
-    - service: tts.google_say
+    - service: media_player.volume_set
+      entity_id: media_player.sala
+      data:
+        volume_level: 0.7
+    - service: tts.amazon_polly_say
       entity_id: media_player.sala
       data_template:
-        message: 'Atenção! {{ trigger.to_state.name }} aberta por muito tempo!'
+        message: <speak>Atenção! {{ trigger.to_state.name }} aberta por muito tempo!</speak>
     - service: notify.TUDO
       data_template:
         title: 'Alerta Casa'
@@ -524,14 +541,13 @@
   action:
     - service: input_boolean.turn_off
       entity_id: input_boolean.boa_noite
+    - service: script.tts_bom_dia
     - service: notify.TODOS_CELULARES
       data_template:
         title: "Automação"
         message: "Bom dia! Hoje a máxima será de {{ states.sensor.pws_temp_high_avg_c.state }}ºC com previsão de {{ states.sensor.pws_weather.state | lower }}"
     - service: switch.turn_on
-      entity_id:
-        - switch.tv_lg_suite
-        - switch.toalheiro
+      entity_id: switch.toalheiro
     - service: cover.open_cover
       entity_id: cover.persiana_suite
     - service_template: >
@@ -542,6 +558,9 @@
       data:
         entity_id: climate.ar_condicionado_da_suite
         operation_mode: "idle"
+    - wait_template: "{{is_state('script.tts_bom_dia', 'off')}}"
+    - service: switch.turn_on
+      entity_id: switch.tv_lg_suite
     - delay: 00:05:00
     - service: input_boolean.turn_off
       entity_id: input_boolean.bom_dia
@@ -598,6 +617,9 @@
         - automation.muvrh_203__luz_do_banheiro
         - automation.muvrh_203__luz_da_sala_de_operacoes
         - automation.muvrh_203__luz_da_nossa_sala
+        - automation.muvrh_303__luz_da_entrada
+        - automation.muvrh_303__luz_da_dinamica
+        - automation.muvrh_303__luz_do_banheiro
 
 - alias: Rotina - Ações ao nascer do sol
   trigger:
@@ -619,6 +641,9 @@
         - automation.muvrh_203__luz_do_banheiro
         - automation.muvrh_203__luz_da_sala_de_operacoes
         - automation.muvrh_203__luz_da_nossa_sala
+        - automation.muvrh_303__luz_da_entrada
+        - automation.muvrh_303__luz_da_dinamica
+        - automation.muvrh_303__luz_do_banheiro
     - condition: time
       before: '08:00:00'
     - service: cover.close_cover
@@ -1225,9 +1250,9 @@
       - switch.muv303bebedouro
       - light.muv303banheiro
     to: 'unavailable'
-    for:
-      minutes: 5
   action:
+    - wait_template: "{% if trigger.to_state.state == 'unavailable' and as_timestamp(now()) - as_timestamp(trigger.to_state.last_updated) | int >= 180 %}True{% else %}False{% endif %}"
+      timeout: 00:03:30
     - service: persistent_notification.create
       data_template:
         message: "O dispositivo {{ trigger.to_state.name | lower }} ficou indisponível às {{now().strftime('%H:%M')}}."
@@ -1236,6 +1261,19 @@
       data_template:
         title: "Alerta"
         message: "O dispositivo {{ trigger.to_state.name | lower }} ficou indisponível às {{now().strftime('%H:%M')}}."
+
+- alias: MuvRH 303 - Luz do corredor
+  trigger:
+    platform: state
+    entity_id: light.muv303entrada
+  action:
+    - service_template: >
+        {% if is_state('light.muv303entrada', 'on') and is_state('light.muv303corredor', 'off') %}
+          light.turn_on
+        {% elif is_state('light.muv303entrada', 'off') and is_state('light.muv303corredor', 'on') %}
+          light.turn_off
+        {% endif %}
+      entity_id: light.muv303corredor
 
 #- alias: Alerta - Dispositivo indisponível
 #  trigger:

@@ -1,0 +1,131 @@
+tempo_luz_suite:
+  name: 'Suíte'
+  options:
+   - 120
+   - 180
+   - 300
+   - 600
+  initial: 180
+  icon: mdi:timer
+
+tempo_luz_banheiro_suite:
+  name: 'Banheiro da suíte'
+  options:
+   - 120
+   - 180
+   - 300
+   - 600
+  initial: 180
+  icon: mdi:timer
+
+tempo_luz_banheiro_social:
+  name: 'Banheiro social'
+  options:
+   - 120
+   - 180
+   - 300
+   - 600
+  initial: 180
+  icon: mdi:timer
+
+tempo_luz_quarto:
+  name: 'Quarto'
+  options:
+   - 120
+   - 180
+   - 300
+   - 600
+  initial: 180
+  icon: mdi:timer
+
+tempo_luz_sala:
+  name: 'Sala'
+  options:
+   - 120
+   - 180
+   - 300
+   - 600
+  initial: 180
+  icon: mdi:timer
+
+tempo_luz_cozinha:
+  name: 'Cozinha'
+  options:
+   - 120
+   - 180
+   - 300
+   - 600
+  initial: 300
+  icon: mdi:timer
+
+#MuvRH
+
+tempo_muvrh_203_entrada:
+  name: '203 - Entrada'
+  options:
+   - 120
+   - 180
+   - 300
+   - 600
+  initial: 300
+  icon: mdi:timer
+
+tempo_muvrh_203_banheiro:
+  name: '203 - Banheiro'
+  options:
+   - 120
+   - 180
+   - 300
+   - 600
+  initial: 180
+  icon: mdi:timer
+
+tempo_muvrh_203_salaoperacoes:
+  name: '203 - Sala de operações'
+  options:
+   - 120
+   - 180
+   - 300
+   - 600
+  initial: 180
+  icon: mdi:timer
+
+tempo_muvrh_203_nossasala:
+  name: '203 - Nossa sala'
+  options:
+   - 120
+   - 180
+   - 300
+   - 600
+  initial: 180
+  icon: mdi:timer
+
+tempo_muvrh_303_entrada:
+  name: '303 - Entrada'
+  options:
+   - 120
+   - 180
+   - 300
+   - 600
+  initial: 180
+  icon: mdi:timer
+
+tempo_muvrh_303_dinamica:
+  name: '303 - Dinâmica'
+  options:
+   - 120
+   - 180
+   - 300
+   - 600
+  initial: 180
+  icon: mdi:timer
+
+tempo_muvrh_303_banheiro:
+  name: '303 - Banheiro'
+  options:
+   - 120
+   - 180
+   - 300
+   - 600
+  initial: 180
+  icon: mdi:timer

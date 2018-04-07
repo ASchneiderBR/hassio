@@ -516,8 +516,8 @@
       homebridge_name: Banheiro 203
       icon: mdi:walk
     binary_sensor.motion_sensor_158d0001e44035:
-      friendly_name: "Movimento sala 303"
-      homebridge_name: Sala 303
+      friendly_name: "Movimento entrada sala 303"
+      homebridge_name: Entrada sala 303
       icon: mdi:walk
     binary_sensor.motion_sensor_158d0001ad6c20:
       friendly_name: "Movimento banheiro 303"
@@ -546,8 +546,8 @@
       homebridge_sensor_type: light
       homebridge_hidden: true
     sensor.illumination_158d0001e44035:
-      friendly_name: "Luz sala 303"
-      homebridge_name: Sala 303
+      friendly_name: "Luz entrada sala 303"
+      homebridge_name: Entrada sala 303
       icon: mdi:lightbulb-outline
       homebridge_sensor_type: light
     sensor.illumination_158d0001ad6c20:
@@ -590,6 +590,9 @@
     light.muv303dinamica:
       homebridge_name: "Dinâmica 303"
       friendly_name: "Luz da dinâmica sala 303"
+    light.muv303corredor:
+      homebridge_name: "Corredor 303"
+      friendly_name: "Luz do corredor sala 303"
     switch.muv203bebedouro:
       friendly_name: "Bebedouro sala 203"
       homebridge_name: "Bebedouro 203"
@@ -636,7 +639,7 @@
       homebridge_name: Dinâmica 303
       icon: mdi:walk
     sensor.illumination_158d0001a24bdc:
-      friendly_name: "Luz nossa sala de dinâmica"
+      friendly_name: "Luz sala de dinâmica"
       homebridge_name: Dinâmica 303
       icon: mdi:lightbulb-outline
       homebridge_sensor_type: light

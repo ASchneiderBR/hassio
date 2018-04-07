@@ -1,0 +1,33 @@
+- platform: ios
+
+- platform: webostv
+  host: 192.168.1.38
+  name: tv_suite
+  icon: "favicon-1024x1024.png"
+  filename: webostv1.conf
+
+- platform: webostv
+  host: 192.168.1.39
+  name: tv_sala
+  icon: "favicon-1024x1024.png"
+  filename: webostv2.conf
+
+- name: TODOS_CELULARES
+  platform: group
+  services:
+    - service: ios_iphone_de_antonio
+    - service: ios_iphone_de_roberta
+
+- name: TODAS_TVS
+  platform: group
+  services:
+    - service: tv_sala
+    - service: tv_suite
+
+- name: TUDO
+  platform: group
+  services:
+    - service: tv_sala
+    - service: tv_suite
+    - service: ios_iphone_de_antonio
+    - service: ios_iphone_de_roberta
