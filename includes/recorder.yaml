@@ -39,6 +39,9 @@ exclude:
     - input_select.tempo_muvrh_203_entrada
     - input_select.tempo_muvrh_203_nossasala
     - input_select.tempo_muvrh_203_salaoperacoes
+    - input_select.tempo_muvrh_303_banheiro
+    - input_select.tempo_muvrh_303_dinamica
+    - input_select.tempo_muvrh_303_entrada
     - input_boolean.boa_noite
     - input_boolean.bom_dia
     - input_boolean.chegar_casa

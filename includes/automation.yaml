@@ -1162,7 +1162,6 @@
   trigger:
     platform: state
     entity_id:
-      - binary_sensor.casa_movimento
       - binary_sensor.cube_158d00010b2e3e
       - binary_sensor.cube_158d00010b2e64
       - binary_sensor.door_window_sensor_158d0001b8671f
@@ -1216,6 +1215,11 @@
       - light.sala_principal
       - light.suite_banheiro
       - light.suite_principal
+      - light.muv303entrada
+      - light.muv303dinamica
+      - light.muv303corredor
+      - light.muv303banheiro
+      - light.303leddinamica
       - sensor.humidity_158d00015633b4
       - sensor.humidity_158d0001700b20
       - sensor.humidity_158d0001702175
@@ -1231,7 +1235,6 @@
       - sensor.illumination_158d0001e44035
       - sensor.illumination_34ce00907e65
       - sensor.illumination_34ce0090940e
-      - sensor.muvrh_temperature
       - sensor.temperature_158d00015633b4
       - sensor.temperature_158d0001700b20
       - sensor.temperature_158d0001702175
@@ -1245,10 +1248,7 @@
       - switch.sirene
       - switch.sistema_alarme_casa
       - switch.toalheiro
-      - light.muv303entrada
-      - light.muv303dinamica
       - switch.muv303bebedouro
-      - light.muv303banheiro
     to: 'unavailable'
   action:
     - wait_template: "{% if trigger.to_state.state == 'unavailable' and as_timestamp(now()) - as_timestamp(trigger.to_state.last_updated) | int >= 180 %}True{% else %}False{% endif %}"
@@ -1262,18 +1262,20 @@
         title: "Alerta"
         message: "O dispositivo {{ trigger.to_state.name | lower }} ficou indisponível às {{now().strftime('%H:%M')}}."
 
-- alias: MuvRH 303 - Luz do corredor
+- alias: MuvRH 303 - Luz do corredor e LED
   trigger:
     platform: state
     entity_id: light.muv303entrada
   action:
     - service_template: >
-        {% if is_state('light.muv303entrada', 'on') and is_state('light.muv303corredor', 'off') %}
+        {% if is_state('light.muv303entrada', 'on') %}
           light.turn_on
-        {% elif is_state('light.muv303entrada', 'off') and is_state('light.muv303corredor', 'on') %}
+        {% elif is_state('light.muv303entrada', 'off') %}
           light.turn_off
         {% endif %}
-      entity_id: light.muv303corredor
+      entity_id:
+        - light.muv303corredor
+        - light.303leddinamica
 
 #- alias: Alerta - Dispositivo indisponível
 #  trigger:

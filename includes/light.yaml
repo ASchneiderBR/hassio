@@ -295,6 +295,32 @@
   qos: 1
   retain: true
 
+- platform: mqtt
+  name: "303leddinamica"
+  effect_list:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+  state_topic: "stat/303leddinamica/POWER"
+  command_topic: "cmnd/303leddinamica/POWER"
+  brightness_state_topic: "cmnd/303leddinamica/Dimmer"
+  brightness_command_topic: "cmnd/303leddinamica/Dimmer"
+  brightness_scale: 100
+  rgb_state_topic: "cmnd/303leddinamica/Color"
+  rgb_command_topic: "cmnd/303leddinamica/Color"
+  effect_command_topic: "cmnd/303leddinamica/Scheme"
+  effect_state_topic: "cmnd/303leddinamica/Scheme"
+  state_value_template: "{{ value }}"
+  brightness_value_template: "{{ value }}"
+  effect_value_template: "{{ value }}"
+  retain: true
+  qos: 1
+  availability_topic: "tele/303leddinamica/LWT"
+  payload_available: "Online"
+  payload_not_available: "Offline"
+
 #Grupos de luzes
 
 - platform: group

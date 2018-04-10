@@ -593,6 +593,10 @@
     light.muv303corredor:
       homebridge_name: "Corredor 303"
       friendly_name: "Luz do corredor sala 303"
+    light.303leddinamica:
+      homebridge_name: "Led painel 303"
+      friendly_name: "Led do painel da sala 303"
+      icon: mdi:led-strip
     switch.muv203bebedouro:
       friendly_name: "Bebedouro sala 203"
       homebridge_name: "Bebedouro 203"

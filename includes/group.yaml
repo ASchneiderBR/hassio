@@ -613,6 +613,7 @@ muvrh_sala_303:
   - light.muv303entrada
   - light.muv303dinamica
   - light.muv303corredor
+  - light.303leddinamica
   - switch.muv303bebedouro
   name: Sala 303
   view: false
