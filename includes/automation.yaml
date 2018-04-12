@@ -218,62 +218,6 @@
         title: "Alarme da casa"
         message: "ATENÇÂO! Alarme foi acionado! Sirene está tocando!"
 
-- alias: Alerta - Avisar quando dispositivo ficar offline - Casa
-  trigger:
-    platform: state
-    entity_id:
-      - device_tracker.nas
-      - device_tracker.tabletaut
-      - device_tracker.ipad_casa
-      - device_tracker.ipod
-      - device_tracker.rmprosuite
-      - device_tracker.rmminisala
-      - device_tracker.rmminiquarto
-      - device_tracker.impressorahpcasa
-      - device_tracker.camera_sala
-      - device_tracker.camera_cozinha
-      - device_tracker.google_home_mini_sala
-      - device_tracker.google_home_mini_suite
-    to: 'not_home'
-    for:
-      minutes: 10
-  action:
-    - service: notify.ios_iphone_de_antonio
-      data_template:
-        title: "Alerta casa"
-        message: "O dispositivo {{ trigger.to_state.name | lower }} se desconectou da rede."
-    - service: persistent_notification.create
-      data_template:
-        message: "O dispositivo {{ trigger.to_state.name | lower }} se desconectou da rede em casa às ({{now().strftime('%H:%M')}})."
-        title: "Dispositivo offline"
-
-- alias: Alerta - Avisar quando dispositivo ficar offline - MuvRH
-  trigger:
-    platform: state
-    entity_id:
-      - device_tracker.camera_01
-      - device_tracker.camera_02
-      - device_tracker.camera_03
-      - device_tracker.camera_04
-      - device_tracker.camera_05
-      - device_tracker.xiaomi_hub_muvrh
-      - device_tracker.rmpro_sala203
-      - device_tracker.rmminientrada203
-      - device_tracker.rmminioperacoes
-      - device_tracker.rmminisala303
-    to: 'not_home'
-    for:
-      minutes: 2
-  action:
-    - service: notify.ios_iphone_de_antonio
-      data_template:
-        title: "Alerta MuvRH"
-        message: "O dispositivo {{ trigger.to_state.name | lower }} se desconectou da rede."
-    - service: persistent_notification.create
-      data_template:
-        message: "O dispositivo {{ trigger.to_state.name | lower }} se desconectou da rede na MuvRH às ({{now().strftime('%H:%M')}})."
-        title: "Dispositivo offline"
-
 - alias: Chegar em casa
   trigger:
     platform: state
@@ -1160,107 +1104,160 @@
 
 - alias: Alerta - Dispositivo indisponível
   trigger:
-    platform: state
-    entity_id:
-      - binary_sensor.cube_158d00010b2e3e
-      - binary_sensor.cube_158d00010b2e64
-      - binary_sensor.door_window_sensor_158d0001b8671f
-      - binary_sensor.door_window_sensor_158d0001bf2a09
-      - binary_sensor.door_window_sensor_158d0001d6851d
-      - binary_sensor.door_window_sensor_158d0001d68545
-      - binary_sensor.door_window_sensor_158d0001e035a2
-      - binary_sensor.motion_sensor_158d000120af26
-      - binary_sensor.motion_sensor_158d0001225607
-      - binary_sensor.motion_sensor_158d0001231d4d
-      - binary_sensor.motion_sensor_158d00015b6c81
-      - binary_sensor.motion_sensor_158d00016c01fd
-      - binary_sensor.motion_sensor_158d00016da83a
-      - binary_sensor.motion_sensor_158d0001ad6b83
-      - binary_sensor.motion_sensor_158d0001ad6c20
-      - binary_sensor.motion_sensor_158d0001e02f9a
-      - binary_sensor.motion_sensor_158d0001e420d0
-      - binary_sensor.motion_sensor_158d0001e43ef1
-      - binary_sensor.motion_sensor_158d0001e44035
-      - binary_sensor.motion_sensor_158d0001a24bdc
-      - binary_sensor.switch_158d000120ea75
-      - binary_sensor.switch_158d000121090f
-      - binary_sensor.switch_158d0001d8e9cf
-      - binary_sensor.switch_158d0001d8e9f8
-      - binary_sensor.switch_158d0001d8ea74
-      - binary_sensor.switch_158d0001d8eabc
-      - binary_sensor.switch_158d0001d8eb3d
-      - binary_sensor.switch_158d0001d9073f
-      - light.area_servico
-      - light.banheiro_social
-      - light.corredor
-      - light.cozinha
-      - light.entrada
-      - light.gateway_light_34ce00907e65
-      - light.gateway_light_34ce0090940e
-      - light.ledcozinhabalcao
-      - light.ledquartotv
-      - light.ledsaladesktop
-      - light.ledsalatv
-      - light.ledsuitecama
-      - light.ledsuitetv
-      - light.luzes_principais_cozinha
-      - light.luzes_principais_quarto
-      - light.luzes_principais_sala
-      - light.mesa_jantar
-      - light.muv203banheiro
-      - light.muv203entrada
-      - light.muv203nossasala
-      - light.muv203operacoes
-      - light.quarto
-      - light.sala_principal
-      - light.suite_banheiro
-      - light.suite_principal
-      - light.muv303entrada
-      - light.muv303dinamica
-      - light.muv303corredor
-      - light.muv303banheiro
-      - light.303leddinamica
-      - sensor.humidity_158d00015633b4
-      - sensor.humidity_158d0001700b20
-      - sensor.humidity_158d0001702175
-      - sensor.humidity_158d0001703b44
-      - sensor.humidity_158d00019cec0c
-      - sensor.humidity_158d0001d7e65d
-      - sensor.humidity_158d0001dcb597
-      - sensor.illumination_158d0001ad6b83
-      - sensor.illumination_158d0001ad6c20
-      - sensor.illumination_158d0001e02f9a
-      - sensor.illumination_158d0001e420d0
-      - sensor.illumination_158d0001e43ef1
-      - sensor.illumination_158d0001e44035
-      - sensor.illumination_34ce00907e65
-      - sensor.illumination_34ce0090940e
-      - sensor.temperature_158d00015633b4
-      - sensor.temperature_158d0001700b20
-      - sensor.temperature_158d0001702175
-      - sensor.temperature_158d0001703b44
-      - sensor.temperature_158d00019cec0c
-      - sensor.temperature_158d0001d7e65d
-      - sensor.temperature_158d0001dcb597
-      - switch.chuveirosocial
-      - switch.chuveirosuite
-      - switch.muv203bebedouro
-      - switch.sirene
-      - switch.sistema_alarme_casa
-      - switch.toalheiro
-      - switch.muv303bebedouro
-    to: 'unavailable'
+    - platform: state
+      entity_id:
+        - binary_sensor.cube_158d00010b2e3e
+        - binary_sensor.cube_158d00010b2e64
+        - binary_sensor.door_window_sensor_158d0001b8671f
+        - binary_sensor.door_window_sensor_158d0001bf2a09
+        - binary_sensor.door_window_sensor_158d0001d6851d
+        - binary_sensor.door_window_sensor_158d0001d68545
+        - binary_sensor.door_window_sensor_158d0001e035a2
+        - binary_sensor.motion_sensor_158d000120af26
+        - binary_sensor.motion_sensor_158d0001225607
+        - binary_sensor.motion_sensor_158d0001231d4d
+        - binary_sensor.motion_sensor_158d00015b6c81
+        - binary_sensor.motion_sensor_158d00016c01fd
+        - binary_sensor.motion_sensor_158d00016da83a
+        - binary_sensor.motion_sensor_158d0001ad6b83
+        - binary_sensor.motion_sensor_158d0001ad6c20
+        - binary_sensor.motion_sensor_158d0001e02f9a
+        - binary_sensor.motion_sensor_158d0001e420d0
+        - binary_sensor.motion_sensor_158d0001e43ef1
+        - binary_sensor.motion_sensor_158d0001e44035
+        - binary_sensor.motion_sensor_158d0001a24bdc
+        - binary_sensor.switch_158d000120ea75
+        - binary_sensor.switch_158d000121090f
+        - binary_sensor.switch_158d0001d8e9cf
+        - binary_sensor.switch_158d0001d8e9f8
+        - binary_sensor.switch_158d0001d8ea74
+        - binary_sensor.switch_158d0001d8eabc
+        - binary_sensor.switch_158d0001d8eb3d
+        - binary_sensor.switch_158d0001d9073f
+      to: 'unavailable'
+      for:
+        minutes: 3
+    - platform: state
+      entity_id:
+        - light.area_servico
+        - light.banheiro_social
+        - light.corredor
+        - light.cozinha
+        - light.entrada
+        - light.gateway_light_34ce00907e65
+        - light.gateway_light_34ce0090940e
+        - light.ledcozinhabalcao
+        - light.ledquartotv
+        - light.ledsaladesktop
+        - light.ledsalatv
+        - light.ledsuitecama
+        - light.ledsuitetv
+        - light.luzes_principais_cozinha
+        - light.luzes_principais_quarto
+        - light.luzes_principais_sala
+        - light.mesa_jantar
+        - light.muv203banheiro
+        - light.muv203entrada
+        - light.muv203nossasala
+        - light.muv203operacoes
+        - light.quarto
+        - light.sala_principal
+        - light.suite_banheiro
+        - light.suite_principal
+        - light.muv303entrada
+        - light.muv303dinamica
+        - light.muv303corredor
+        - light.muv303banheiro
+        - light.303leddinamica
+      to: 'unavailable'
+      for:
+        minutes: 3
+    - platform: state
+      entity_id:
+        - sensor.humidity_158d00015633b4
+        - sensor.humidity_158d0001700b20
+        - sensor.humidity_158d0001702175
+        - sensor.humidity_158d0001703b44
+        - sensor.humidity_158d00019cec0c
+        - sensor.humidity_158d0001d7e65d
+        - sensor.humidity_158d0001dcb597
+        - sensor.illumination_158d0001ad6b83
+        - sensor.illumination_158d0001ad6c20
+        - sensor.illumination_158d0001e02f9a
+        - sensor.illumination_158d0001e420d0
+        - sensor.illumination_158d0001e43ef1
+        - sensor.illumination_158d0001e44035
+        - sensor.illumination_34ce00907e65
+        - sensor.illumination_34ce0090940e
+        - sensor.temperature_158d00015633b4
+        - sensor.temperature_158d0001700b20
+        - sensor.temperature_158d0001702175
+        - sensor.temperature_158d0001703b44
+        - sensor.temperature_158d00019cec0c
+        - sensor.temperature_158d0001d7e65d
+        - sensor.temperature_158d0001dcb597
+      to: 'unavailable'
+      for:
+        minutes: 3
+    - platform: state
+      entity_id:
+        - switch.chuveirosocial
+        - switch.chuveirosuite
+        - switch.muv203bebedouro
+        - switch.sirene
+        - switch.toalheiro
+        - switch.muv303bebedouro
+      to: 'unavailable'
+      for:
+        minutes: 3
+    - platform: state
+      entity_id:
+        - media_player.suite
+        - media_player.sala
+      to: 'unavailable'
+      for:
+        minutes: 3
+    - platform: state
+      entity_id:
+        - device_tracker.nas
+        - device_tracker.tabletaut
+        - device_tracker.ipad_casa
+        - device_tracker.ipod
+        - device_tracker.rmprosuite
+        - device_tracker.rmminisala
+        - device_tracker.rmminiquarto
+        - device_tracker.impressorahpcasa
+        - device_tracker.camera_sala
+        - device_tracker.camera_cozinha
+        - device_tracker.google_home_mini_sala
+        - device_tracker.google_home_mini_suite
+      to: 'not_home'
+      for:
+        minutes: 3
+    - platform: state
+      entity_id:
+        - device_tracker.camera_01
+        - device_tracker.camera_02
+        - device_tracker.camera_03
+        - device_tracker.camera_04
+        - device_tracker.camera_05
+        - device_tracker.xiaomi_hub_muvrh
+        - device_tracker.rmpro_sala203
+        - device_tracker.rmminientrada203
+        - device_tracker.rmminioperacoes
+        - device_tracker.rmminisala303
+      to: 'not_home'
+      for:
+        minutes: 3
   action:
-    - wait_template: "{% if trigger.to_state.state == 'unavailable' and as_timestamp(now()) - as_timestamp(trigger.to_state.last_updated) | int >= 180 %}True{% else %}False{% endif %}"
-      timeout: 00:03:30
-    - service: persistent_notification.create
-      data_template:
-        message: "O dispositivo {{ trigger.to_state.name | lower }} ficou indisponível às {{now().strftime('%H:%M')}}."
-        title: "Dispositivo indisponível"
     - service: notify.ios_iphone_de_antonio
       data_template:
         title: "Alerta"
-        message: "O dispositivo {{ trigger.to_state.name | lower }} ficou indisponível às {{now().strftime('%H:%M')}}."
+        message: "O dispositivo {{ trigger.to_state.name | lower }} ficou indisponível."
+    - service: persistent_notification.create
+      data_template:
+        message: "O dispositivo {{ trigger.to_state.name | lower }} ficou indisponível às ({{now().strftime('%H:%M')}})."
+        title: "Dispositivo indisponível"
 
 - alias: MuvRH 303 - Luz do corredor e LED
   trigger:
@@ -1276,27 +1273,3 @@
       entity_id:
         - light.muv303corredor
         - light.303leddinamica
-
-#- alias: Alerta - Dispositivo indisponível
-#  trigger:
-#    - platform: time
-#      minutes: '/30'
-#      seconds: 00
-#  condition:
-#    condition: template
-#    value_template: >
-#      {% for item in states.binary_sensor or states.sensor or states.light or states.switch if item.state | lower == "unavailable" -%}
-#      {%- if loop.first -%}
-#      {{ true }}
-#      {%- endif -%}
-#      {%- endfor %}
-#  action:
-#    - service: persistent_notification.create
-#      data_template:
-#        message: "Dispositivo {% for state in states if ( state.domain in ['light','switch','binary_sensor','sensor'] and state.state == 'unavailable' ) -%}{%- if loop.first %}{% elif loop.last %} e {% else %}, {% endif -%}{{ state.name | lower }}{%- else -%}Nenhum{%- endfor %} ficou indisponível"
-#        title: "Dispositivo indisponível ({{now().strftime('%H:%M')}})"
-#        notification_id: "dispoind"
-#    - service: notify.ios_iphone_de_antonio
-#      data_template:
-#        title: "Alerta casa"
-#        message: "Dispositivo {% for state in states if ( state.domain in ['light','switch','binary_sensor','sensor'] and state.state == 'unavailable' ) -%}{%- if loop.first %}{% elif loop.last %} e {% else %}, {% endif -%}{{ state.name | lower }}{%- else -%}Nenhum{%- endfor %} ficou indisponível"
