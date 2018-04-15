@@ -146,9 +146,14 @@ tempo:
   - sensor.pws_temp_c
   - sensor.pws_temp_high_avg_c
   - sensor.pws_temp_low_avg_c
+  - sensor.pws_relative_humidity
+  - sensor.pws_precip_1d
+  - sensor.pws_precip_today_metric
+  - sensor.pws_precip_today_string
   - sensor.pws_weather_1h
   - sensor.pws_temp_high_1d_c
   - sensor.pws_temp_low_1d_c
+  - sensor.pws_precip_1d_mm
   - sensor.pws_temp_high_2d_c
   - sensor.pws_temp_low_2d_c
   - sensor.pws_temp_high_3d_c

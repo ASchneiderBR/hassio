@@ -97,6 +97,21 @@
     sensor.pws_weather_1h:
       friendly_name: Tempo em 1 hora
       homebridge_hidden: true
+    sensor.pws_precip_today_metric:
+      friendly_name: Precipitação total
+      homebridge_hidden: true
+    sensor.pws_precip_today_string:
+      friendly_name: Precipitação
+      homebridge_hidden: true
+    sensor.pws_precip_1d_mm:
+      friendly_name: Precipitação total amanhã
+      homebridge_hidden: true
+    sensor.pws_precip_1d:
+      friendly_name: Possibilidade de chuva
+      homebridge_hidden: true
+    sensor.pws_relative_humidity:
+      friendly_name: Umidade relativa
+      homebridge_hidden: true
     sensor.temperatura_real_nossa_sala:
       homebridge_hidden: true
     sensor.cpu_used:
