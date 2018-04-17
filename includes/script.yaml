@@ -1505,3 +1505,203 @@ cubo_suite_tv_voldown:
   sequence:
   - service: media_player.volume_down
     entity_id: media_player.tv_suite
+
+tv_lg_dinamica_303_power:
+  sequence:
+  - service: switch.broadlink_send_packet_192_168_1_41
+    data:
+      packet:
+      - JgBIAAABKpUTExITEzgSExMTEhMTExITEzgTOBITEzgSOBM4EjgTOBMSExMTEhM4ExMSExMTEhMTOBI4EzgTEhM4EzgSOBM4EgANBQ==
+  alias: "Ligar ou desligar"
+
+tv_lg_dinamica_303_power_on:
+  sequence:
+  - service: switch.broadlink_send_packet_192_168_1_41
+    data:
+      packet:
+      - JgRQAAABKJMSEhISEjcSEhISEhISEhISEjcSNxISEjcSNxI3EjcSNxISEhISNxISEhISEhI3EjcSNxI3EhISNxI3EjcSEhISEgAFGgABKEoSAAxWDQUAAAAAAAA==
+  alias: "Ligar TV"
+
+tv_lg_dinamica_303_power_off:
+  sequence:
+  - service: switch.broadlink_send_packet_192_168_1_41
+    data:
+      packet:
+      - JgRQAAABKJMSEhISEjcSEhISEhISEhISEjcSNxISEjcSNxI3EjcSNxI3EhISNxISEhISEhI3EjcSEhI3EhISNxI3EjcSEhISEgAFGgABKEoSAAxWDQUAAAAAAAA==
+  alias: "Desligar TV"
+
+tv_lg_dinamica_303_volup:
+  sequence:
+  - service: switch.broadlink_send_packet_192_168_1_41
+    data:
+      packet:
+      - JgBIAAABLJMUERMTEjgTExQRFREUERUREzgUNhQSEjgVNhI4FTYUNhURFDcSExMTFBETExITFREUNhMTFDYTOBM3FTYUNxQ2FQANBQ==
+  alias: "Volume mais"
+
+tv_lg_dinamica_303_voldown:
+  sequence:
+  - service: switch.broadlink_send_packet_192_168_1_41
+    data:
+      packet:
+      - JgBQAAABKpQTExMSEzgTExITExMSExMTEjgTOBITEzgTNxM4EzgSOBM4EjgTExMSExMTEhMTExITExMTEjgTOBI4EzgTNxM4EwAFKQABKksTAA0FAAAAAAAAAAA==
+  alias: "Volume menos"
+
+tv_lg_dinamica_303_menu:
+  sequence:
+  - service: switch.broadlink_send_packet_192_168_1_41
+    data:
+      packet:
+      - JgBQAAABKpUSExMTFDYTExMSFRETExITFDcSOBUREjgVNhQ2EzgTOBQRFREUNhU2FDYTOBQ3EhMVNhI4ExMSExMTExITExM4FAAFKAABKkoTAA0FAAAAAAAAAAA==
+  alias: "Menu"
+
+tv_lg_dinamica_303_chup:
+  sequence:
+  - service: switch.broadlink_send_packet_192_168_1_41
+    data:
+      packet:
+      - JgBQAAABLJMUERURFDYVERQRExMUERURFDYVNhQSEjgVNhI4FTYUNhURExIVERMTFBETExQRExMUNhU2FDYVNhQ2FTYTOBQ2EwAFKwABK0kTAA0FAAAAAAAAAAA==
+  alias: "Canal mais"
+
+tv_lg_dinamica_303_chdown:
+  sequence:
+  - service: switch.broadlink_send_packet_192_168_1_41
+    data:
+      packet:
+      - JgBQAAABKpUSExMTEjgTExMSExMTEhMTEzgSOBMTEjgTOBI4EzgTOBI4ExMSExMTEhMTExITExMSExM4EjgTOBM3EzgTOBI4EwAFKQABKksTAA0FAAAAAAAAAAA==
+  alias: "Canal menos"
+
+tv_lg_dinamica_303_config:
+  sequence:
+  - service: switch.broadlink_send_packet_192_168_1_41
+    data:
+      packet:
+      - JgBQAAABKpQTExMSEzgTExITExMSExMTFDYTOBITEzgTOBI4EzgSOBM4FDcSExMTEhMVERI4FRESExUREjgTOBM3EzgTExI4EwAFKwABKkoTAA0FAAAAAAAAAAA==
+  alias: "Configurações"
+
+tv_lg_dinamica_303_up:
+  sequence:
+  - service: switch.broadlink_send_packet_192_168_1_41
+    data:
+      packet:
+      - JgBQAAABKpUSExMTEjgTExMSExMTEhMTEzgSOBMTEjgTOBI5EjgTOBITExMSExMTEhMTExI4ExMTOBI4EzgSOBM4EzcTExM4EgAFKwABKksTAA0FAAAAAAAAAAA==
+  alias: "Para cima"
+
+tv_lg_dinamica_303_down:
+  sequence:
+  - service: switch.broadlink_send_packet_192_168_1_41
+    data:
+      packet:
+      - JgBQAAABLJUTExITEzgTEhMTExITExMSEzgTOBITEzgSOBM4EzgSOBM4EhMTExITExMTEhM4ExITExM4EjgTOBI4EzgTEhM4EwAFKQABKksTAA0FAAAAAAAAAAA==
+  alias: "Para baixo"
+
+tv_lg_dinamica_303_left:
+  sequence:
+  - service: switch.broadlink_send_packet_192_168_1_41
+    data:
+      packet:
+      - JgBIAAABKpQTExMSEzgVERITExMSExMTEjgTOBITEzgTOBI4EzgSOBM4EzcTOBMTEhMTExITExMSExMTEhMTOBI4EzgTOBI4EwANBQ==
+  alias: "Para esquerda"
+
+tv_lg_dinamica_303_right:
+  sequence:
+  - service: switch.broadlink_send_packet_192_168_1_41
+    data:
+      packet:
+      - JgBQAAABKpUSExMTEjgTExMSExMTEhMTEzgSOBMTEjgTOBI4EzgTOBITEzgSOBMTEhMTExITExMTNxMTExITOBM4EjgTOBM3EwAFKgABKkoTAA0FAAAAAAAAAAA==
+  alias: "Para direita"
+
+tv_lg_dinamica_303_ok:
+  sequence:
+  - service: switch.broadlink_send_packet_192_168_1_41
+    data:
+      packet:
+      - JgBQAAABKZUTExMSEzgTEhMTExMSExMTEjgTOBITEzgSOBM4EzgSOBMTEhMTOBITExMSExM4ExITOBM4EhMTOBI4EzgTEhM4EwAFKQABKksSAA0FAAAAAAAAAAA==
+  alias: "Selecionar"
+
+tv_lg_dinamica_303_exit:
+  sequence:
+  - service: switch.broadlink_send_packet_192_168_1_41
+    data:
+      packet:
+      - JgBQAAABKpUTExITFDcSExMTEhMTExITEzgUNhMTEzgSOBQ3FDYVNhQ3FDYVERI4FTYUERU2FBETExQSFDYVERQREzgUERM4FAAFKQABKksVAA0FAAAAAAAAAAA==
+  alias: "Sair"
+
+tv_lg_dinamica_303_mute:
+  sequence:
+  - service: switch.broadlink_send_packet_192_168_1_41
+    data:
+      packet:
+      - JgBQAAABK5QUERUREjgVERQRFREUERURFDYVNhMTEjgTOBQ2EzgTOBI4FRESExU2EhMTExMSExMTEhM4EzgSExM4EjgTOBM4EgAFKwABKksTAA0FAAAAAAAAAAA==
+  alias: "Mudo"
+
+tv_lg_dinamica_303_input:
+  sequence:
+  - service: switch.broadlink_send_packet_192_168_1_41
+    data:
+      packet:
+      - JgBIAAABLJMTEhUREzcTExQSEhMTExITEzgSOBMTEjgTOBQ3FDYVNhI4EzgTEhU2ExMSExMTEhMTExQREzgSExM4FDYVNhQ3FAANBQ==
+  alias: "Entrada"
+
+tv_lg_dinamica_303_play:
+  sequence:
+  - service: switch.broadlink_send_packet_192_168_1_41
+    data:
+      packet:
+      - JgBQAAABKpUUERMTFDYVERQSFBEUEhQRFDcUNhURFDYVNhQ3FDYVNhQRExMUERMTFDYVNhQSFDYTOBQ2FTYUNxQRFREUNhURFAAFKAABLEkUAA0FAAAAAAAAAAA==
+  alias: "Tocar"
+
+tv_lg_dinamica_303_pause:
+  sequence:
+  - service: switch.broadlink_send_packet_192_168_1_41
+    data:
+      packet:
+      - JgBQAAABKpUSExMTEjgTExITExMSExMTEjgVNhMTEjgTOBI4EzgSOBMTEzgSExM4EjgTOBITEzgSOBMTEzgSExMTEhMTOBITFQAFKAABKUsTAA0FAAAAAAAAAAA==
+  alias: "Pausar"
+
+tv_lg_dinamica_303_stop:
+  sequence:
+  - service: switch.broadlink_send_packet_192_168_1_41
+    data:
+      packet:
+      - JgBQAAABKZUTExQRFTYUERMTFBETExQSFDYUNxQREzgSOBM4FDcUNhM4FBETExQREzgTOBQREzgSExU2EjgVNhQRExMUNxITFQAFKQABK0kTAA0FAAAAAAAAAAA==
+  alias: "Parar"
+
+tv_lg_dinamica_303_chtv:
+  sequence:
+  - service: switch.broadlink_send_packet_192_168_1_41
+    data:
+      packet:
+      - JgBIAAABKpUTExITEzgSExURFBETExQREzgUNxITEzgSOBU2FDcSOBQ3FDYTOBQ2ExMUEhITExMUERQSEhMTExI4EzgUNhM4FAANBQ==
+  alias: "Assistir TV"
+
+tv_lg_dinamica_303_hdmi1:
+  sequence:
+  - service: switch.broadlink_send_packet_192_168_1_41
+    data:
+      packet:
+      - JgBQAAABKJMSEhISEjcSEhISEhISEhISEjcSNxISEjcSNxI3EjcSNxISEjcSNxI3EhISEhI3EjcSNxISEhISEhI3EjcSEhISEgAFGgABKEoSAAxWDQUAAAAAAAA==
+  alias: "HDMI 1"
+
+tv_lg_dinamica_303_hdmi2:
+  sequence:
+  - service: switch.broadlink_send_packet_192_168_1_41
+    data:
+      packet:
+      - JgBQAAABKJMSEhISEjcSEhISEhISEhISEjcSNxISEjcSNxI3EjcSNxISEhISNxI3EhISEhI3EjcSNxI3EhISEhI3EjcSEhISEgAFGgABKEoSAAxWDQUAAAAAAAA==
+  alias: "HDMI 2"
+
+tv_lg_dinamica_303_hdmi3:
+  sequence:
+  - service: switch.broadlink_send_packet_192_168_1_41
+    data:
+      packet:
+      - JgBQAAABKJMSEhISEjcSEhISEhISEhISEjcSNxISEjcSNxI3EjcSNxI3EhISEhI3EhISNxI3EjcSEhI3EjcSEhI3EhISEhISEgAFGgABKEoSAAxWDQUAAAAAAAA==
+  alias: "HDMI 3"
+
+tv_lg_dinamica_303_hdmi4:
+  sequence:
+  - service: switch.broadlink_send_packet_192_168_1_41
+    data:
+      packet:
+      - JgBQAAABKJMSEhISEjcSEhISEhISEhISEjcSNxISEjcSNxI3EjcSNxISEjcSEhI3EjcSEhI3EjcSNxISEjcSEhISEjcSEhISEgAFGgABKEoSAAxWDQUAAAAAAAA==
+  alias: "HDMI 4"

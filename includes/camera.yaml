@@ -1,0 +1,5 @@
+#- platform: onvif
+#  host: 192.168.1.58
+#  name: Camera Teste
+#  username: !secret user_camera_teste
+#  password: !secret pass_camera_teste

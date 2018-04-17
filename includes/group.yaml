@@ -12,6 +12,7 @@ default_view:
   - group.google_home_casa
   - media_player.tablet_entrada
   - group.all_automations
+  - camera.camera_teste
   name: Casa
   icon: mdi:home
 
@@ -615,6 +616,7 @@ muvrh_sala_303:
   - sensor.illumination_158d0001a24bdc
   - sensor.humidity_158d0001703b44
   - climate.ar_condicionado_da_sala_303
+  - switch.tv_dinamica_303
   - light.muv303entrada
   - light.muv303dinamica
   - light.muv303corredor

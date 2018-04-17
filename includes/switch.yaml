@@ -78,6 +78,7 @@
         service: script.tv_lg_sala_desligar_tudo
         entity_id: script.tv_lg_sala_desligar_tudo
       icon_template: mdi:television
+ 
     tv_lg_suite:
       friendly_name: "Tv da suíte"
       value_template: "{% if is_state('media_player.tv_suite', 'off') %}off{% else %}on{% endif %}"
@@ -88,6 +89,7 @@
         service: script.tv_lg_suite_power_off
         entity_id: script.tv_lg_suite_power_off
       icon_template: mdi:television
+
     tv_lg_quarto:
       friendly_name: "Tv do quarto"
       value_template: "{% if is_state('binary_sensor.tv_quarto', 'on') %}on{% else %}off{% endif %}"
@@ -98,6 +100,7 @@
         service: script.tv_lg_quarto_power_off
         entity_id: script.tv_lg_quarto_power_off
       icon_template: mdi:television
+
     sistema_alarme_casa:
       friendly_name: "Alarme da casa"
       value_template: "{% if is_state('alarm_control_panel.alarme', 'triggered') %}{% elif is_state('alarm_control_panel.alarme', 'disarmed') %}off{% else %}on{% endif %}"
@@ -108,6 +111,7 @@
         service: alarm_control_panel.alarm_disarm
         entity_id: alarm_control_panel.alarme
       icon_template: mdi:security-home
+
     automacoes_luzes:
       friendly_name: "Automações das luzes"
       value_template: "{% if is_state('group.automacoes_luzes_casa', 'off') %}off{% else %}on{% endif %}"
@@ -118,6 +122,7 @@
         service: automation.turn_off
         entity_id: group.automacoes_luzes_casa
       icon_template: mdi:home-automation
+
     tv_sala_operacoes:
       friendly_name: "Tv da sala de operações"
       value_template: "{% if is_state('device_tracker.pi3b_tv_sala_operacoes', 'home') %}on{% else %}off{% endif %}"
@@ -128,6 +133,18 @@
         service: script.tv_sala_operacoes_power_off
         entity_id: script.tv_sala_operacoes_power_on
       icon_template: mdi:television
+
+    tv_dinamica_303:
+      friendly_name: "Tv da sala de operações"
+      value_template: "{% if is_state('binary_sensor.estado_tv_sala_operacoes', 'on') %}on{% else %}off{% endif %}"
+      turn_on:
+        service: script.tv_lg_dinamica_303_power_on
+        entity_id: script.tv_lg_dinamica_303_power_on
+      turn_off:
+        service: script.tv_lg_dinamica_303_power_off
+        entity_id: script.tv_lg_dinamica_303_power_off
+      icon_template: mdi:television
+
 
 - platform: mqtt
   name: "Toalheiro"

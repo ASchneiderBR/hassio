@@ -44,3 +44,11 @@
         {% endif %}
       friendly_name: 'Movimento sala 203'
       device_class: occupancy
+
+- platform: mqtt
+  name: "Estado TV sala operações"
+  state_topic: "tele/muv303tvdinamica/LWT"
+  value_template: "{{ value }}"
+  payload_on: "Online"
+  payload_off: "Offline"
+  device_class: power
