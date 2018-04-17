@@ -22,6 +22,7 @@ zone 2:
 
 config:
 conversation:
+#ffmpeg:
 hassio:
 history:
 ios:
