@@ -22,7 +22,7 @@ zone 2:
 
 config:
 conversation:
-#ffmpeg:
+ffmpeg:
 hassio:
 history:
 ios:
@@ -36,6 +36,7 @@ alarm_control_panel: !include includes/alarm.yaml
 automation: !include includes/automation.yaml
 binary_sensor: !include includes/binary_sensor.yaml
 camera: !include includes/camera.yaml
+cloud: !include includes/cloud.yaml
 climate: !include includes/climate.yaml
 cover: !include includes/cover.yaml
 device_tracker: !include includes/device_tracker.yaml
