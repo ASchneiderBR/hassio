@@ -1,5 +1,3 @@
-#- platform: onvif
-#  host: 192.168.1.58
-#  name: Camera Teste
-#  username: !secret user_camera_teste
-#  password: !secret pass_camera_teste
+#- platform: ffmpeg
+#  name: Teste
+#  input: rtsp://192.168.1.64:554/onvif1

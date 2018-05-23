@@ -1,0 +1,35 @@
+google_actions:
+  filter:
+    include_entities:
+      - light.ledsalatv
+      - light.entrada
+      - light.sala_principal
+    exclude_domains:
+      - alarm_control_panel
+      - cover
+      - light
+      - scene
+      - media_player
+      - switch
+      - script
+      - automation
+      - input_boolean
+      - climate
+      - group
+  entity_config:
+    light.ledsalatv:
+      name: TV light
+      aliases:
+       - TV backlight
+    light.entrada:
+      name: Door light
+      aliases:
+       - Entrance light
+       - Porch light
+       - Entrada
+    light.sala_principal:
+      name: Main light
+      aliases:
+       - Living room light
+       - Luz principal
+       - Luz principal da sala

@@ -1,2 +1,15 @@
-broker: 172.17.0.1
+broker: 127.0.0.1
 port: 1883
+keepalive: 60
+protocol: 3.1
+client_id: hassio
+birth_message:
+  topic: "tele/hassio/LWT"
+  payload: "Online"
+  qos: 1
+  retain: true
+will_message:
+  topic: "tele/hassio/LWT"
+  payload: "Offline"
+  qos: 1
+  retain: true

@@ -842,7 +842,7 @@ garagem_muvrh_interno:
   - service: switch.broadlink_send_packet_192_168_1_35
     data:
       packet:
-      - sgCoAhANHw4fGxAOHxwQHBANHw4eHQ8OHxwQAAFQDx0QDR8NHw4eDh4cEQ0fDR8cEA0fHBAOHg4fDR8cEBwQHBAOHg4eHRANHxwQHBAOHg4eHRANHxwQAAFQEBwQDR8OHg4fDR8cEA4eDh4dEA0fHBANHw4eDh4dEBwQHBANHw0fHBENHxwQHBANHw4eHBAOHh0PAAFRDx0PDh8NHw0fDh4dEA0fDR8cEA4eHQ8OHw0fDR8cEBwQHQ8OHw0fHBANHxwQHBAOHw0fHBANHxwQAAFQEBwQDh4OHw0fDR8cEA4eDh4dEA0fHBANHw4eDh8cEBwQHBAOHg4eHQ8OHxwQHBAOHg4fHBANHh0QAAFQEBwQDR8NHw4eDh8cEA0fDh4cEA4fHBANHw0fDh4cEB0QHBANHw0fHBAOHxwQHBANHw0fHBAOHh0QAAFPEB0PDh8NHw0fDh8cDw4eDh8cEA4eHBENHg4fDR8cEBwQHBAOHw0fHBAOHhwRGxAOHg4fHBAOHhwQAAFQEBwQDh4OHw0fDh4cEA4fDR4dEA0fHBAOHg4eDh8cEBwQHBAOHg4fHBANHxwQHBAOHg4eHQ8PHhwQAAFQEBwQDh4OHg4fDR8cEA4eDh4dEA0fHBAOHg4eDh8cDx0QHBAOHg4eHQ8OHxwQHBANHw4eHRANHxwQAAFQEBwQDR8OHg4eDh8cEA4eDh4dEA0fHA8OHw4eDh4dDx0QHBANHw4eHBAOHh0QHBANHw4eHBENHh0PAAFRDx0QDR8NHw0fDh4dEA0fDR8cEA4eHRANHw0fDh4cERwPHQ8OHw0fHBAOHh0PHQ8OHw0fHBAOHhwRAAFPEBwRDR8NHw0fDh4cEQ0eDh8cEA4eHQ8OHw0fDR8cEBwQHBAOHg4fHBANHxwQHBENHg4UAAXc==
+      - sgCEAxAcEA4eDh8NHw4eHQ8OHg4fHA8OHxwQDh4OHg4fHBAcEBwQDh4OHh0PDh8cEBwQDh4OHh0PDh4dEAABUBAcEA0fDh4OHg4eHRANHw0fHBAOHh0QDR8NHw0fHQ8cEB0PDh8NHxwQDh4dDx0PDh4OHxwQDR8cEAABUBAcEA4eDh4OHg4fHBAOHg4eHQ8OHxwQDh4OHg4eHRAcEBwQDh4OHh0PDh4dEBwQDR8OHh0PDh4dDwABUQ8dDw4eDh8OHg4eHQ8OHw0fHBANHxwQDh4OHg8eHBAcEBwQDh4OHxwQDh4dDxwQDh4OHxwQDh4cEAABUBAcEA4eDh4OHw0fHBAOHg4eHQ8OHxwQDh4OHg4eHRAcDx0QDR8OHh0PDh8cEBwQDR8OHh0PDh4dEAABUA8dDw4fDR8NHw4eHQ8OHw0fHBAOHhwQDh4OHg4fHBAcEB0PDh8NHxwQDR8cEB0PDh4OHxwQDh4cEAABUBAcEA4eDh4OHg8eHBAOHg4eHQ8OHxwQDR8OHg4eHQ8dEBwQDh4OHhwQDh4dEBwQDR8OHh0PDh4dEAABUA8dDw4fDh4OHg4eHQ8OHw4eHQ8OHh0PDh4OHw4eHBAcEB0PDh4OHxwQDh4cEBwQDh4OHxwQDh4cEAABUBAcEA4eDh4OHg4fHBAOHg4eHRAOHhwQDh4OHg4eHRAcEBwQDh4OHh0PDh8cEBwQDh4OHh0PDh4dEAABUA8dDw4fDR8OHg4eHRANHw4eHQ8OHh0PDh4OHw0fHBAdDx0PDh4PHhwQDh4dDx0PDh4PHhwQDh4dDwABUBAcEA4eDh8NHw4eHQ8OHg4eHRANHxwQDh4OHg4eHRAcEBwQDh4OHh0PDh8cEBwQDh4OHh0QDR4dEAABUBAcEA4eDh4OHg4fHBANHw4eHQ8OHxwPDh8NHw4eHQ8dDx0QDR8NHxwQDh4dDx0QDR8OHhwQDh4dEAABTxAdDw4eDh8OHg4eHQ8OHw0fHBAOHh0PDh4OHw0fHBAcEB0PDh4OHxwQDR8cEB0PDh4OHh0QDh4cEAABUBAcEA4eDh4OHg4fHBAOHg4eHQ8OHh0QDh4OHg4eHQ8dEBwQDR8OHh0PDh4dEBwQDh4OHh0PDh4dEAABUA8dDw4fDR8OHg4eHRANHw0fHQ8OHh0PDh8NHw4eHQ8cEB0PDh8NHxwQDh4dDx0PDh8NHxwQDh4dDwAF3AAAAAA==
 
 garagem_muvrh_sub_rua:
   sequence:
@@ -985,7 +985,7 @@ tts_porta_entrada:
   - service: tts.amazon_polly_say
     entity_id: media_player.sala
     data_template:
-      message: <speak><amazon:auto-breaths frequency='medium'>{% if((as_timestamp(now()) - as_timestamp(states.group.pessoas.last_updated)) | int < 180 and is_state('group.pessoas', 'home')) or ((as_timestamp(now()) - as_timestamp(states.group.pessoas.last_updated)) | int > 360 and is_state('group.pessoas', 'not_home')) %}Olá, {% if((now().hour >= 6) and (now().hour < 12))%}bom dia{% elif((now().hour >= 12) and (now().hour <= 18))%}boa tarde{% else %}boa noite{% endif %}, seja bem vindo! Agora são <say-as interpret-as='time'>{{ now().strftime('%H:%M') }}</say-as>. Já preparei tudo para sua chegada. Aqui vão algumas informações sobre a casa. A temperatura na sala é de {{ states.sensor.temperature_158d0001700b20.state | int }} graus, sendo que na rua está {{ states.sensor.pws_weather.state | lower }} com {{ states.sensor.pws_temp_c.state | int }} graus. Logo mais vou armar o alarme pra você, deixa comigo. {% if((now().hour >= 10) and (now().hour < 14))%}Bom almoço!{% elif((now().hour >= 18) and (now().hour <= 23))%}Bom descanço!{% endif %}{% else %}Olá para quem chega e até mais para quem sai!{% endif %}</amazon:auto-breaths></speak>
+      message: <speak><amazon:auto-breaths frequency='medium'>{% if((as_timestamp(now()) - as_timestamp(states.group.pessoas.last_updated)) | int < 180 and is_state('group.pessoas', 'home')) or ((as_timestamp(now()) - as_timestamp(states.group.pessoas.last_updated)) | int > 360 and is_state('group.pessoas', 'not_home')) %}Olá, {% if((now().hour >= 6) and (now().hour < 12))%}bom dia{% elif((now().hour >= 12) and (now().hour <= 18))%}boa tarde{% else %}boa noite{% endif %}, seja bem vindo! Agora são <say-as interpret-as='time'>{{ now().strftime('%H:%M') }}</say-as>. Já preparei tudo para sua chegada. Aqui vão algumas informações sobre a casa. A temperatura na sala é de {{ states.sensor.temperature_158d0001700b20.state | int }} graus, sendo que na rua está {{ states.sensor.dark_sky_summary.state | lower }} com {{ states.sensor.dark_sky_temperature.state | int }} graus. Logo mais vou armar o alarme pra você, deixa comigo. {% if((now().hour >= 10) and (now().hour < 14))%}Bom almoço!{% elif((now().hour >= 18) and (now().hour <= 23))%}Bom descanço!{% endif %}{% else %}Olá para quem chega e até mais para quem sai!{% endif %}</amazon:auto-breaths></speak>
 
 tts_entrando_casa_alarme:
   alias: "Entrando em casa com alarme disparando"
@@ -1009,7 +1009,7 @@ tts_status_casa:
   - service: tts.amazon_polly_say
     entity_id: media_player.sala
     data_template:
-      message: <speak><amazon:auto-breaths frequency='medium'>Olá, {% if((now().hour >= 6) and (now().hour < 12))%}bom dia{% elif((now().hour >= 12) and (now().hour <= 18))%}boa tarde{% else %}boa noite{% endif %}. Agora são <say-as interpret-as='time'>{{ now().strftime('%H:%M') }}</say-as>. Aqui vão algumas informações sobre a casa. O alarme está {% if is_state('alarm_control_panel.alarme', 'disarmed') %}desarmado{% else %}armado{% endif %}, percebo que {% if is_state('device_tracker.antonio', 'home') and is_state('device_tracker.roberta', 'home') %}tanto o Antônio quanto a Roberta estão em casa{% elif is_state('device_tracker.antonio', 'home') %}apenas o Antônio está em casa{% elif is_state('device_tracker.roberta', 'home') %}apenas a roberta está em casa{% else %}nem o Antônio nem a Roberta estão em casa{% endif %}. A temperatura na sala é de {{ states.sensor.temperature_158d0001700b20.state | int }} graus, sendo que na rua está {{ states.sensor.pws_weather.state | lower }} com {{ states.sensor.pws_temp_c.state | int }} graus. <prosody volume='x-loud'>Ah!</prosody> Não esqueçam que quinta-feira vem a Juçara cuidar das roupas! {% if is_state('binary_sensor.muvrh_movimento_203', 'on') or is_state('binary_sensor.muvrh_movimento_303', 'on')%}Também estou detectando movimento na muv rh!{% endif %} Isto é tudo!</amazon:auto-breaths></speak>
+      message: <speak><amazon:auto-breaths frequency='medium'>Olá, {% if((now().hour >= 6) and (now().hour < 12))%}bom dia{% elif((now().hour >= 12) and (now().hour <= 18))%}boa tarde{% else %}boa noite{% endif %}. Agora são <say-as interpret-as='time'>{{ now().strftime('%H:%M') }}</say-as>. Aqui vão algumas informações sobre a casa. O alarme está {% if is_state('alarm_control_panel.alarme', 'disarmed') %}desarmado{% else %}armado{% endif %}, percebo que {% if is_state('device_tracker.antonio', 'home') and is_state('device_tracker.roberta', 'home') %}tanto o Antônio quanto a Roberta estão em casa{% elif is_state('device_tracker.antonio', 'home') %}apenas o Antônio está em casa{% elif is_state('device_tracker.roberta', 'home') %}apenas a roberta está em casa{% else %}nem o Antônio nem a Roberta estão em casa{% endif %}. A temperatura na sala é de {{ states.sensor.temperature_158d0001700b20.state | int }} graus, sendo que na rua está {{ states.sensor.dark_sky_summary.state | lower }} com {{ states.sensor.dark_sky_temperature.state | int }} graus. <prosody volume='x-loud'>Ah!</prosody> Não esqueçam que quinta-feira vem a Juçara cuidar das roupas! {% if is_state('binary_sensor.muvrh_movimento_203', 'on') or is_state('binary_sensor.muvrh_movimento_303', 'on')%}Também estou detectando movimento na muv rh!{% endif %} Isto é tudo!</amazon:auto-breaths></speak>
 
 # Botões Xiaomi
 
@@ -1108,9 +1108,9 @@ botao_xiaomi_suite_02_click_2:
     data_template:
       entity_id: climate.ar_condicionado_da_suite
       operation_mode: >
-        {% if states.climate.ar_condicionado_da_suite.attributes.current_temperature | int >= 25 and states.climate.ar_condicionado_da_suite.state == 'idle' %}
+        {% if states.climate.ar_condicionado_da_suite.attributes.current_temperature | int >= 25 and (states.climate.ar_condicionado_da_suite.state == 'idle' or states.climate.ar_condicionado_da_suite.state == 'off') %}
           cool
-        {% elif states.climate.ar_condicionado_da_suite.attributes.current_temperature | int <= 24 and states.climate.ar_condicionado_da_suite.state == 'idle' %}
+        {% elif states.climate.ar_condicionado_da_suite.attributes.current_temperature | int <= 24 and (states.climate.ar_condicionado_da_suite.state == 'idle' or states.climate.ar_condicionado_da_suite.state == 'off') %}
           heat
         {% else %}
           idle
@@ -1395,7 +1395,7 @@ tts_boa_noite:
   - service: tts.amazon_polly_say
     entity_id: media_player.suite
     data_template:
-      message: <speak><amazon:auto-breaths frequency='medium'>Automação boa noite iniciada. Estou apagando todas as luzes e configurando a casa para a noite. A temperatura do quarto, atualmente é de {{ states.sensor.temperature_158d0001dcb597.state | int }} graus, o ar condicionado está {% if is_state('climate.ar_condicionado_da_suite', 'idle') %}desligado{% else %}ligado no modo {% if is_state('climate.ar_condicionado_da_suite', 'cool') %}resfriar{% else %}aquecer{% endif %} para {{ states.climate.ar_condicionado_da_suite.attributes.temperature | int }} graus. Também desliguei o visor luminoso para não incomodar durante a noite{% endif %}. A temperatura máxima amanhã será de {{ states.sensor.pws_temp_high_1d_c.state | int }} graus. {% if is_state('sensor.iphone_de_antonio_battery_state', 'Unplugged') or is_state('sensor.iphone_de_roberta_battery_state', 'Unplugged') %}Não esqueçam de colocar os telefones para carregar durante a noite! {% endif %}Boa noite {% if is_state('device_tracker.antonio', 'home') and is_state('device_tracker.roberta', 'home') %}Antônio e Roberta{% elif is_state('device_tracker.antonio', 'home') %}Antônio{% else %}Roberta{% endif %}, bons sonhos!</amazon:auto-breaths></speak>
+      message: <speak><amazon:auto-breaths frequency='medium'>Automação boa noite iniciada. Estou apagando todas as luzes e configurando a casa para a noite. A temperatura do quarto, atualmente é de {{ states.sensor.temperature_158d0001dcb597.state | int }} graus, o ar condicionado está {% if is_state('climate.ar_condicionado_da_suite', 'idle') %}desligado{% else %}ligado no modo {% if is_state('climate.ar_condicionado_da_suite', 'cool') %}resfriar{% else %}aquecer{% endif %} para {{ states.climate.ar_condicionado_da_suite.attributes.temperature | int }} graus. Também desliguei o visor luminoso para não incomodar durante a noite{% endif %}. A temperatura máxima amanhã será de {{ states.sensor.dark_sky_daily_high_temperature_1.state | int }} graus. {% if is_state('sensor.iphone_de_antonio_battery_state', 'Unplugged') or is_state('sensor.iphone_de_roberta_battery_state', 'Unplugged') %}Não esqueçam de colocar os telefones para carregar durante a noite! {% endif %}Boa noite {% if is_state('device_tracker.antonio', 'home') and is_state('device_tracker.roberta', 'home') %}Antônio e Roberta{% elif is_state('device_tracker.antonio', 'home') %}Antônio{% else %}Roberta{% endif %}, bons sonhos!</amazon:auto-breaths></speak>
   - wait_template: "{{is_state('media_player.suite', 'playing')}}"
   - wait_template: "{{is_state('media_player.suite', 'idle')}}"
 
@@ -1409,12 +1409,11 @@ tts_bom_dia:
   - service: tts.amazon_polly_say
     entity_id: media_player.suite
     data_template:
-      message: <speak><amazon:auto-breaths frequency='medium'>Bom dia! Agora são <say-as interpret-as='time'>{{ now().strftime('%H:%M') }}</say-as> de {% if now().strftime('%A') == 'Monday' -%}segunda-feira{%- elif now().strftime('%A') == 'Tuesday' -%}terça-feira{%- elif now().strftime('%A') == 'Wednesday'-%}quarta-feira{%- elif now().strftime('%A') == 'Thursday' -%}quinta-feira{%- elif now().strftime('%A') == 'Friday' -%}sexta-feira{%- elif now().strftime('%A') == 'Saturday' -%}sábado{%- elif now().strftime('%A') == 'Sunday' -%}domingo{%- endif %}, dia {{ now().strftime('%d') }} de {% if now().strftime('%B') == 'January' -%}janeiro{%- elif now().strftime('%B') == 'February' -%}fevereiro{%- elif now().strftime('%B') == 'March'-%}março{%- elif now().strftime('%B') == 'April' -%}abril{%- elif now().strftime('%B') == 'May' -%}maio{%- elif now().strftime('%B') == 'June' -%}junho{%- elif now().strftime('%B') == 'July' -%}julho{%- elif now().strftime('%B') == 'August' -%}agosto{%- elif now().strftime('%B') == 'September' -%}setembro{%- elif now().strftime('%B') == 'October' -%}outubro{%- elif now().strftime('%B') == 'November' -%}novembro{%- elif now().strftime('%B') == 'December' -%}dezembro{%- endif -%}. Neste momento, predomina {{ states.sensor.pws_weather.state | lower }} com {{ states.sensor.pws_temp_c.state | int }} graus. A temperatura máxima hoje será de {{ states.sensor.pws_temp_high_avg_c.state | int }} graus. Estou abrindo a persiana e ligando o toalheiro. O ar condicionado foi desligado. Vou deixar a televisão ligada para vocês. Tenham todos um ótimo e produtivo dia!</amazon:auto-breaths></speak>
+      message: <speak><amazon:auto-breaths frequency='medium'>Bom dia! Agora são <say-as interpret-as='time'>{{ now().strftime('%H:%M') }}</say-as> de {% if now().strftime('%A') == 'Monday' -%}segunda-feira{%- elif now().strftime('%A') == 'Tuesday' -%}terça-feira{%- elif now().strftime('%A') == 'Wednesday'-%}quarta-feira{%- elif now().strftime('%A') == 'Thursday' -%}quinta-feira{%- elif now().strftime('%A') == 'Friday' -%}sexta-feira{%- elif now().strftime('%A') == 'Saturday' -%}sábado{%- elif now().strftime('%A') == 'Sunday' -%}domingo{%- endif %}, dia {{ now().strftime('%d') }} de {% if now().strftime('%B') == 'January' -%}janeiro{%- elif now().strftime('%B') == 'February' -%}fevereiro{%- elif now().strftime('%B') == 'March'-%}março{%- elif now().strftime('%B') == 'April' -%}abril{%- elif now().strftime('%B') == 'May' -%}maio{%- elif now().strftime('%B') == 'June' -%}junho{%- elif now().strftime('%B') == 'July' -%}julho{%- elif now().strftime('%B') == 'August' -%}agosto{%- elif now().strftime('%B') == 'September' -%}setembro{%- elif now().strftime('%B') == 'October' -%}outubro{%- elif now().strftime('%B') == 'November' -%}novembro{%- elif now().strftime('%B') == 'December' -%}dezembro{%- endif -%}. Neste momento, predomina {{ states.sensor.dark_sky_summary.state | lower }} com {{ states.sensor.dark_sky_temperature.state | int }} graus. A temperatura máxima hoje será de {{ states.sensor.dark_sky_daily_high_temperature.state | int }} graus. Estou abrindo a persiana e ligando o toalheiro. O ar condicionado foi desligado. Vou deixar a televisão ligada para vocês. Tenham todos um ótimo e produtivo dia!</amazon:auto-breaths></speak>
   - wait_template: "{{is_state('media_player.suite', 'playing')}}"
   - wait_template: "{{is_state('media_player.suite', 'idle')}}"
 
 # Cubos
-
 
 cubo_sala_tv_toggle:
   alias: "Ligar ou desligar TV da sala"
@@ -1705,3 +1704,89 @@ tv_lg_dinamica_303_hdmi4:
       packet:
       - JgBQAAABKJMSEhISEjcSEhISEhISEhISEjcSNxISEjcSNxI3EjcSNxISEjcSEhI3EjcSEhI3EjcSNxISEjcSEhISEjcSEhISEgAFGgABKEoSAAxWDQUAAAAAAAA==
   alias: "HDMI 4"
+
+# MuvRH
+
+muvrh_desligar_tudo:
+  alias: "Desligar tudo MuvRH"
+  sequence:
+  - service: climate.set_operation_mode
+    data_template:
+      operation_mode: idle
+      entity_id:
+        - climate.ar_condicionado_da_entrada_203
+        - climate.ar_condicionado_da_nossa_sala
+        - climate.ar_condicionado_da_sala_303
+        - climate.ar_condicionado_da_sala_de_operacoes
+  - service: light.turn_off
+    entity_id:
+      - light.gateway_light_34ce0090940e
+      - light.muv203nossasala
+      - light.muv203operacoes
+      - light.muv203entrada
+      - light.muv203banheiro
+      - light.muv303entrada
+      - light.muv303dinamica
+      - light.muv303corredor
+      - light.303leddinamica
+      - light.muv303banheiro
+  - service: switch.turn_off
+    entity_id:
+      - switch.tv_sala_operacoes
+      - switch.muv203bebedouro
+      - switch.tv_dinamica_303
+      - switch.muv303bebedouro
+  - service: notify.TUDO
+    data:
+      title: "Alerta MuvRH"
+      message: "Todos os dispositivos e luzes da MuvRH foram desligados"
+
+muvrh_desligar_sala_203:
+  alias: "Desligar tudo na sala 203"
+  sequence:
+  - service: climate.set_operation_mode
+    data_template:
+      operation_mode: idle
+      entity_id:
+        - climate.ar_condicionado_da_entrada_203
+        - climate.ar_condicionado_da_nossa_sala
+        - climate.ar_condicionado_da_sala_de_operacoes
+  - service: light.turn_off
+    entity_id:
+      - light.gateway_light_34ce0090940e
+      - light.muv203nossasala
+      - light.muv203operacoes
+      - light.muv203entrada
+      - light.muv203banheiro
+  - service: switch.turn_off
+    entity_id:
+      - switch.tv_sala_operacoes
+      - switch.muv203bebedouro
+  - service: notify.TUDO
+    data:
+      title: "Alerta MuvRH"
+      message: "Todos os dispositivos e luzes da sala 203 foram desligados"
+
+muvrh_desligar_sala_303:
+  alias: "Desligar tudo na sala 303"
+  sequence:
+  - service: climate.set_operation_mode
+    data_template:
+      operation_mode: idle
+      entity_id:
+        - climate.ar_condicionado_da_sala_303
+  - service: light.turn_off
+    entity_id:
+      - light.muv303entrada
+      - light.muv303dinamica
+      - light.muv303corredor
+      - light.303leddinamica
+      - light.muv303banheiro
+  - service: switch.turn_off
+    entity_id:
+      - switch.tv_dinamica_303
+      - switch.muv303bebedouro
+  - service: notify.TUDO
+    data:
+      title: "Alerta MuvRH"
+      message: "Todos os dispositivos e luzes da sala 303 foram desligados"

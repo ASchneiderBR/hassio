@@ -36,7 +36,7 @@
     - delay: 00:00:06
     - service: notify.tv_sala
       data_template:
-        message: "Olá! A temperatura da sala é de {{ states.sensor.temperature_158d0001700b20.state | int }}ºC. Lá fora está {{ states.sensor.pws_weather.state | lower }} com {{ states.sensor.pws_temp_c.state | int }}ºC."
+        message: "Olá! A temperatura da sala é de {{ states.sensor.temperature_158d0001700b20.state | int }}ºC. Lá fora está {{ states.sensor.dark_sky_summary.state | lower }} com {{ states.sensor.dark_sky_temperature.state | int }}ºC."
 
 - alias: Ações de reinicialização
   trigger:
@@ -48,9 +48,9 @@
         name: "darkred"
     - service_template: >
         {% if is_state('group.pessoas', 'home') %}
-        alarm_control_panel.alarm_arm_home
+          alarm_control_panel.alarm_arm_home
         {% else %}
-        alarm_control_panel.alarm_arm_away
+          alarm_control_panel.alarm_arm_away
         {% endif %}
       entity_id: alarm_control_panel.alarme
     - service: mqtt.publish
@@ -489,7 +489,7 @@
     - service: notify.TODOS_CELULARES
       data_template:
         title: "Automação"
-        message: "Bom dia! Hoje a máxima será de {{ states.sensor.pws_temp_high_avg_c.state }}ºC com previsão de {{ states.sensor.pws_weather.state | lower }}"
+        message: "Bom dia! Hoje a máxima será de {{ states.sensor.dark_sky_daily_high_temperature.state | int }}ºC com previsão de {{ states.sensor.dark_sky_summary.state | lower }}"
     - service: switch.turn_on
       entity_id: switch.toalheiro
     - service: cover.open_cover
@@ -1099,7 +1099,7 @@
         notification_id: "bateria"
     - service: notify.ios_iphone_de_antonio
       data_template:
-        title: "Alerta casa"
+        title: "Bateria fraca"
         message: "Bateria muito fraca do dispositivo {% for state in states if state.domain in ['switch','binary_sensor','sensor'] and state.attributes.battery_level is defined and state.attributes.battery_level < 10 -%}{%- if loop.first %}{% elif loop.last %} e {% else %}, {% endif -%}{{ state.name }} ({{ state.attributes.battery_level |int }}%){%- else -%}Nenhum{%- endfor %}"
 
 - alias: Alerta - Dispositivo indisponível
@@ -1136,7 +1136,7 @@
         - binary_sensor.switch_158d0001d9073f
       to: 'unavailable'
       for:
-        minutes: 3
+        minutes: 5
     - platform: state
       entity_id:
         - light.area_servico
@@ -1171,7 +1171,7 @@
         - light.303leddinamica
       to: 'unavailable'
       for:
-        minutes: 3
+        minutes: 5
     - platform: state
       entity_id:
         - sensor.humidity_158d00015633b4
@@ -1198,7 +1198,7 @@
         - sensor.temperature_158d0001dcb597
       to: 'unavailable'
       for:
-        minutes: 3
+        minutes: 5
     - platform: state
       entity_id:
         - switch.chuveirosocial
@@ -1209,14 +1209,14 @@
         - switch.muv303bebedouro
       to: 'unavailable'
       for:
-        minutes: 3
+        minutes: 5
     - platform: state
       entity_id:
         - media_player.suite
         - media_player.sala
       to: 'unavailable'
       for:
-        minutes: 3
+        minutes: 5
     - platform: state
       entity_id:
         - device_tracker.nas
@@ -1233,7 +1233,7 @@
         - device_tracker.google_home_mini_suite
       to: 'not_home'
       for:
-        minutes: 3
+        minutes: 5
     - platform: state
       entity_id:
         - device_tracker.camera_01
@@ -1248,11 +1248,11 @@
         - device_tracker.rmminisala303
       to: 'not_home'
       for:
-        minutes: 3
+        minutes: 5
   action:
     - service: notify.ios_iphone_de_antonio
       data_template:
-        title: "Alerta"
+        title: "Dispositivo indisponível"
         message: "O dispositivo {{ trigger.to_state.name | lower }} ficou indisponível."
     - service: persistent_notification.create
       data_template:
