@@ -145,16 +145,16 @@ tempo:
   - sun.sun
   - sensor.dark_sky_summary
   - sensor.dark_sky_temperature
-  - sensor.dark_sky_daily_high_temperature
-  - sensor.dark_sky_daily_low_temperature
+  - sensor.dark_sky_daytime_high_temperature
+  - sensor.dark_sky_overnight_low_temperature
   - sensor.dark_sky_humidity
   - sensor.dark_sky_cloud_coverage
   - sensor.dark_sky_precip_probability
   - sensor.dark_sky_daily_summary
   - sensor.dark_sky_minutely_summary
   - sensor.pws_weather_1h
-  - sensor.dark_sky_daily_high_temperature_1
-  - sensor.dark_sky_daily_low_temperature_1
+  - sensor.dark_sky_daytime_high_temperature_1
+  - sensor.dark_sky_overnight_low_temperature_1
   - sensor.dark_sky_humidity_1
   - sensor.dark_sky_cloud_coverage_1
   - sensor.dark_sky_precip_probability_1
@@ -511,8 +511,8 @@ dispositivos_muvrh:
   - device_tracker.rmminientrada203
   - device_tracker.rmminisala303
   - device_tracker.camera_entrevistas
-  - device_tracker.celular_azul
-  - device_tracker.celular_vermelho
+  - device_tracker.celular_branco
+  - device_tracker.celular_motog5s_muvrh
   - device_tracker.impressora_canon
   - device_tracker.impressora_laser
   name: Dispositivos MuvRH

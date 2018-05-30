@@ -8,7 +8,7 @@
   payload_available: "Online"
   payload_not_available: "Offline"
   qos: 1
-  retain: true
+  retain: false
 
 - platform: mqtt
   name: "sala_principal"
@@ -18,7 +18,7 @@
   payload_available: "Online"
   payload_not_available: "Offline"
   qos: 1
-  retain: true
+  retain: false
 
 - platform: mqtt
   name: "suite_principal"
@@ -28,7 +28,7 @@
   payload_available: "Online"
   payload_not_available: "Offline"
   qos: 1
-  retain: true
+  retain: false
 
 - platform: mqtt
   name: "suite_banheiro"
@@ -38,7 +38,7 @@
   payload_available: "Online"
   payload_not_available: "Offline"
   qos: 1
-  retain: true
+  retain: false
 
 - platform: mqtt
   name: "corredor"
@@ -48,7 +48,7 @@
   payload_available: "Online"
   payload_not_available: "Offline"
   qos: 1
-  retain: true
+  retain: false
 
 - platform: mqtt
   name: "banheiro_social"
@@ -58,7 +58,7 @@
   payload_available: "Online"
   payload_not_available: "Offline"
   qos: 1
-  retain: true
+  retain: false
 
 - platform: mqtt
   name: "quarto"
@@ -68,7 +68,7 @@
   payload_available: "Online"
   payload_not_available: "Offline"
   qos: 1
-  retain: true
+  retain: false
 
 - platform: mqtt
   name: "entrada"
@@ -78,7 +78,7 @@
   payload_available: "Online"
   payload_not_available: "Offline"
   qos: 1
-  retain: true
+  retain: false
 
 - platform: mqtt
   name: "cozinha"
@@ -88,7 +88,7 @@
   payload_available: "Online"
   payload_not_available: "Offline"
   qos: 1
-  retain: true
+  retain: false
 
 - platform: mqtt
   name: "area_servico"
@@ -98,7 +98,7 @@
   payload_available: "Online"
   payload_not_available: "Offline"
   qos: 1
-  retain: true
+  retain: false
 
 - platform: mqtt
   name: "ledsuitecama"
@@ -120,7 +120,7 @@
   state_value_template: "{{ value }}"
   brightness_value_template: "{{ value }}"
   effect_value_template: "{{ value }}"
-  retain: true
+  retain: false
   qos: 1
   availability_topic: "tele/ledsuitecama/LWT"
   payload_available: "Online"
@@ -146,7 +146,7 @@
   state_value_template: "{{ value }}"
   brightness_value_template: "{{ value }}"
   effect_value_template: "{{ value }}"
-  retain: true
+  retain: false
   qos: 1
   availability_topic: "tele/ledsuitetv/LWT"
   payload_available: "Online"
@@ -172,7 +172,7 @@
   state_value_template: "{{ value }}"
   brightness_value_template: "{{ value }}"
   effect_value_template: "{{ value }}"
-  retain: true
+  retain: false
   qos: 1
   availability_topic: "tele/ledquartotv/LWT"
   payload_available: "Online"
@@ -198,7 +198,7 @@
   state_value_template: "{{ value }}"
   brightness_value_template: "{{ value }}"
   effect_value_template: "{{ value }}"
-  retain: true
+  retain: false
   qos: 1
   availability_topic: "tele/ledcozinhabalcao/LWT"
   payload_available: "Online"
@@ -223,7 +223,7 @@
   payload_available: "Online"
   payload_not_available: "Offline"
   qos: 1
-  retain: true
+  retain: false
 
 - platform: mqtt
   name: "muv203banheiro"
@@ -233,7 +233,7 @@
   payload_available: "Online"
   payload_not_available: "Offline"
   qos: 1
-  retain: true
+  retain: false
 
 - platform: mqtt
   name: "muv203operacoes"
@@ -243,7 +243,7 @@
   payload_available: "Online"
   payload_not_available: "Offline"
   qos: 1
-  retain: true
+  retain: false
 
 - platform: mqtt
   name: "muv203nossasala"
@@ -253,7 +253,7 @@
   payload_available: "Online"
   payload_not_available: "Offline"
   qos: 1
-  retain: true
+  retain: false
 
 - platform: mqtt
   name: "muv303entrada"
@@ -263,7 +263,7 @@
   payload_available: "Online"
   payload_not_available: "Offline"
   qos: 1
-  retain: true
+  retain: false
 
 - platform: mqtt
   name: "muv303banheiro"
@@ -273,7 +273,7 @@
   payload_available: "Online"
   payload_not_available: "Offline"
   qos: 1
-  retain: true
+  retain: false
 
 - platform: mqtt
   name: "muv303dinamica"
@@ -283,7 +283,7 @@
   payload_available: "Online"
   payload_not_available: "Offline"
   qos: 1
-  retain: true
+  retain: false
 
 - platform: mqtt
   name: "muv303corredor"
@@ -293,7 +293,7 @@
   payload_available: "Online"
   payload_not_available: "Offline"
   qos: 1
-  retain: true
+  retain: false
 
 - platform: mqtt
   name: "303leddinamica"
@@ -315,7 +315,7 @@
   state_value_template: "{{ value }}"
   brightness_value_template: "{{ value }}"
   effect_value_template: "{{ value }}"
-  retain: true
+  retain: false
   qos: 1
   availability_topic: "tele/303leddinamica/LWT"
   payload_available: "Online"

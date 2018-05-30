@@ -1,4 +1,4 @@
-javascript_version: latest
+#javascript_version: latest
 themes:
   darkred:
     dark-primary-color: "#c66900"
