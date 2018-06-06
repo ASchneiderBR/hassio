@@ -588,8 +588,6 @@
         - automation.muvrh_303__luz_da_entrada
         - automation.muvrh_303__luz_da_dinamica
         - automation.muvrh_303__luz_do_banheiro
-    - condition: time
-      before: '08:00:00'
     - service: cover.close_cover
       entity_id: cover.persiana_sala
 
@@ -1136,7 +1134,7 @@
         - binary_sensor.switch_158d0001d9073f
       to: 'unavailable'
       for:
-        minutes: 5
+        minutes: 15
     - platform: state
       entity_id:
         - light.area_servico
@@ -1198,7 +1196,7 @@
         - sensor.temperature_158d0001dcb597
       to: 'unavailable'
       for:
-        minutes: 5
+        minutes: 15
     - platform: state
       entity_id:
         - switch.chuveirosocial
@@ -1216,7 +1214,7 @@
         - media_player.sala
       to: 'unavailable'
       for:
-        minutes: 5
+        minutes: 15
     - platform: state
       entity_id:
         - device_tracker.nas
@@ -1233,7 +1231,7 @@
         - device_tracker.google_home_mini_suite
       to: 'not_home'
       for:
-        minutes: 5
+        minutes: 15
     - platform: state
       entity_id:
         - device_tracker.camera_01
@@ -1248,15 +1246,15 @@
         - device_tracker.rmminisala303
       to: 'not_home'
       for:
-        minutes: 5
+        minutes: 15
   action:
     - service: notify.ios_iphone_de_antonio
       data_template:
         title: "Dispositivo indisponível"
-        message: "O dispositivo {{ trigger.to_state.name | lower }} ficou indisponível."
+        message: "O dispositivo {{ trigger.to_state.name }} ficou indisponível."
     - service: persistent_notification.create
       data_template:
-        message: "O dispositivo {{ trigger.to_state.name | lower }} ficou indisponível às ({{now().strftime('%H:%M')}})."
+        message: "O dispositivo {{ trigger.to_state.name }} ficou indisponível às ({{now().strftime('%H:%M')}})."
         title: "Dispositivo indisponível"
 
 - alias: MuvRH 303 - Luz do corredor e LED
