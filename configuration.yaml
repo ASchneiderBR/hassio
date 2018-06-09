@@ -6,6 +6,7 @@ homeassistant:
   unit_system: metric
   time_zone: America/Sao_Paulo
   customize: !include includes/customize.yaml
+  packages: !include_dir_named includes/packages/
 
 zone:
   name: Home
