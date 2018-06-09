@@ -1444,109 +1444,138 @@ tts_boa_noite:
     entity_id: media_player.suite
     data_template:
       message: >
-        {% macro noite() -%}
-          {%- set noite = [
-            "A beleza do amanhecer vai depender da importância que você der à sua noite. Bons sonhos!",
-            "A experiência traz sabedoria. Que as lições aprendidas com mais esse dia de vida embalem seu sono. Boa Noite.",
-            "A noite acendeu as estrelas porque tinha medo da própria escuridão. Boa noite.",
+        {% macro inicio() -%}
+          Automação boa noite iniciada. A temperatura do quarto, atualmente é de {{ states.sensor.temperature_158d0001dcb597.state | int }} graus.
+        {%- endmacro -%}
+        {%- macro ar_condicionado() -%}
+            {%- if is_state('climate.ar_condicionado_da_suite', 'idle') -%}
+              desligado.
+            {%- else -%}
+              ligado no modo 
+                {%- if is_state('climate.ar_condicionado_da_suite', 'cool') -%}
+                  resfriar
+                {%- else -%}
+                  aquecer
+                {%- endif -%}
+                  para {{ states.climate.ar_condicionado_da_suite.attributes.temperature | int }} graus. Também desliguei o visor luminoso para não incomodar durante a noite.
+            {%- endif -%}
+        {%- endmacro -%}
+        {%- macro temp_amanha() -%}
+          A temperatura máxima amanhã será de {{ states.sensor.dark_sky_daytime_high_temperature_1.state | int }} graus.
+        {%- endmacro -%}
+        {%- macro carregar_celular() -%}
+          {%- if is_state('sensor.iphone_de_antonio_battery_state', 'Unplugged') or is_state('sensor.iphone_de_roberta_battery_state', 'Unplugged') -%}
+            Não esqueçam de colocar os telefones para carregar durante a noite!
+          {%- endif -%}
+        {%- endmacro -%}
+        {%- macro boa_noite() -%}
+          {%- if is_state('device_tracker.antonio', 'home') and is_state('device_tracker.roberta', 'home') -%}
+            Antônio e Roberta.
+          {%- elif is_state('device_tracker.antonio', 'home') -%}
+            Antônio.
+          {%- else -%}
+            Roberta.
+          {%- endif -%}
+        {%- endmacro -%}
+        {%- macro mensagem() -%}
+          {%- set mensagem = [
+            "A beleza do amanhecer vai depender da importância que você der à sua noite!",
+            "A experiência traz sabedoria. Que as lições aprendidas com mais esse dia de vida embalem seu sono.",
+            "A noite acendeu as estrelas porque tinha medo da própria escuridão.",
             "A noite chegou e está convidando você para que se entregue ao descanso. Aceite o convite e tenha bons sonhos.",
             "A noite chegou, a cama está chamando por você e o corpo pedindo descanso. Então durma bem e tenha bons sonhos!",
             "A noite é escura e silenciosa, mas a luz da lua ou das estrelas estará sempre ligada para iluminar seus sonhos. Bom descanso!",
-            "A noite é uma boa oportunidade para descansar, perdoar, esquecer, sonhar e se preparar para as lutas do dia seguinte. Pense nisso. Boa noite!",
-            "A paz é a gente que faz. Boa noite!",
+            "A noite é uma boa oportunidade para descansar, perdoar, esquecer, sonhar e se preparar para as lutas do dia seguinte. Pense nisso!",
+            "A paz é a gente que faz!",
             "A todos vocês, amigos do facebook, desejo lindos sonhos e uma noite cheia de tranquilidade e paz.",
-            "Adormeça com a crença que amanhã será um dia melhor. Boa noite!",
-            "Agora que a noite caiu deixe os problemas de lado e entregue-se apenas aos sonhos. Durma bem.",
-            "Agora que a noite chegou é tempo de descansar para amanhã despertar com renovada energia. Bons sonhos.",
-            "Antes de dormir sempre peço o mesmo desejo: sonhar com você. Boa noite.",
-            "Apague as luzes, esqueça os problemas, descanse o corpo e deixe a alma livre para sonhar. Boa noite!",
-            "Após um dia cheio é tempo de reunir os amigos para descontrair um pouco. Boa noite!",
-            "Após um dia intenso, nada melhor que descansar sem hora para acordar. Boa noite!",
-            "As estrelas brilham, a lua já surgiu e o sucesso de amanhã começa com o descanso de agora. Boa noite!",
-            "Boa noite à família mais linda e especial: a minha! Durmam com os anjos.",
+            "Adormeça com a crença que amanhã será um dia melhor!",
+            "Agora que a noite caiu deixe os problemas de lado e entregue-se apenas aos sonhos. Durmam bem.",
+            "Agora que a noite chegou é tempo de descansar para amanhã despertar com renovada energia!",
+            "Antes de dormir sempre peço o mesmo desejo: sonhar com você.",
+            "Apague as luzes, esqueça os problemas, descanse o corpo e deixe a alma livre para sonhar!",
+            "Após um dia cheio é tempo de reunir os amigos para descontrair um pouco!",
+            "Após um dia intenso, nada melhor que descansar sem hora para acordar!",
+            "As estrelas brilham, a lua já surgiu e o sucesso de amanhã começa com o descanso de agora!",
             "Boa noite a todos os guerreiros que amanhã continuarão suas batalhas!",
             "Boa noite e bons sonhos! Que a paz seja uma constante e o descanso o resultado das próximas horas.",
             "Boa noite! Deixe que as estrelas iluminem o seu caminho até aos sonhos mais doces.",
             "Boa noite! Durma com os anjos.",
             "Boa noite! É hora de fechar os olhos e deixar que os anjos embalem seus sonhos.",
             "Boa noite! Lembre-se que apesar de já não poder mudar o que fez hoje, amanhã a vida lhe dá uma nova chance.",
-            "Boa noite, família linda! Descansem muito e tenham sonhos maravilhosos.",
-            "Boa noite, querida família! Durmam bem e tenham sonhos doces.",
-            "Boa noite. Durma em paz. Amanhã tem mais!",
+            "Boa noite. Durmam em paz. Amanhã tem mais!",
             "Boa noite. Que estas horas sejam de paz, descanso e de muitos sonhos gostosos.",
             "Bons sonhos e bom descanso. Que a sua noite seja de paz e tranquilidade.",
-            "Cai a noite e o descanso ganha força para começar de novo a luta pela manhã. Bons sonhos!",
-            "Chegou a hora de apagar a luz e acender as estrelas. Para dar vida aos sonhos. Boa noite!",
+            "Cai a noite e o descanso ganha força para começar de novo a luta pela manhã!",
+            "Chegou a hora de apagar a luz e acender as estrelas. Para dar vida aos sonhos!",
             "Começa a noite e com ela mil sonhos podem inspirar o dia de amanhã.",
-            "Como é bom ir dormir pensando em quem se ama. Boa noite. Durma com os anjos!",
-            "Como todas as coisas no mundo até a escuridão da noite tem a sua beleza. Bons sonhos!",
-            "Deixe as estrelas brilhar, pois são elas que vão cobrir seus sonhos de luz. Boa noite!",
+            "Como é bom ir dormir pensando em quem se ama. Durmam com os anjos!",
+            "Como todas as coisas no mundo até a escuridão da noite tem a sua beleza!",
+            "Deixe as estrelas brilhar, pois são elas que vão cobrir seus sonhos de luz!",
             "Deixe os sonhos tomarem conta de você. Os sonhos são necessários à vida. Que os anjos embalem seu sono ! E jogue fora tudo de ruim do dia que passou.",
-            "Descanse, porque a noite vai cuidar de você. Bons sonhos!",
-            "Desejo que tenha sonhos lindos e que quando acordar eles se tornem realidade. Boa noite.",
-            "Desejo uma noite tranquila para todos os membros da minha família.",
+            "Descanse, porque a noite vai cuidar de você!",
+            "Desejo que tenha sonhos lindos e que quando acordar eles se tornem realidade.",
             "Despeço-me deste dia com gratidão pelo que a vida me deu e desejando a todas as pessoas uma ótima boa noite!",
-            "Durma com ideias, acorde com atitudes. Boa noite!",
+            "Durma com ideias, acorde com atitudes!",
             "Durma em paz que amanhã tem mais!",
-            "É hora de esquecer os problemas que ficaram por resolver e de se entregar ao descanso e ao sono. Boa noite.",
+            "É hora de esquecer os problemas que ficaram por resolver e de se entregar ao descanso e ao sono.",
             "Enquanto as luzes se apagam e as estrelas se acendem eu digo boa noite e desejo bons sonhos.",
             "Espero que você tenha uma ótima noite! Aproveite e sonhe com os anjos.",
-            "Esqueça os problemas e entregue-se aos doces braços do sono. Boa noite.",
-            "Esta é a hora das estrelas e não da escuridão. Boa noite!",
-            "Esta noite vai trazer sonhos lindos e a luz das estrelas vai levar você até eles. Durma bem.",
-            "Este é o momento de descansar e recuperar forças para o dia que vai nascer em breve. Boa noite!",
+            "Esqueça os problemas e entregue-se aos doces braços do sono.",
+            "Esta é a hora das estrelas e não da escuridão!",
+            "Esta noite vai trazer sonhos lindos e a luz das estrelas vai levar você até eles. Durmam bem.",
+            "Este é o momento de descansar e recuperar forças para o dia que vai nascer em breve!",
             "Eu posso até dispensar o brilho das estrelas, pois sua luz ilumina toda minha vida. Boa noite, minha princesa!",
             "Já viu como a lua está sorrindo para você essa noite?",
-            "Mude o modo que você olha para as coisas, e as coisas que você olha mudarão. Boa noite!",
-            "Na hora do descanso só quero sentir que fiz tudo do meu jeito. Boa noite!",
-            "Na velocidade dos dias esquecemos de observar a beleza das estrelas. Boa noite!",
+            "Mude o modo que você olha para as coisas, e as coisas que você olha mudarão!",
+            "Na hora do descanso só quero sentir que fiz tudo do meu jeito!",
+            "Na velocidade dos dias esquecemos de observar a beleza das estrelas!",
             "Nada como uma boa noite de sono para repor as energias. Tenha uma boa noite!",
             "Não perca a esperança. Você nunca sabe o que o amanhã irá trazer. Boa noite e bons sonhos!",
-            "Não tema o escuro da noite, ele faz o colorido do seu coração sobressair. Bons sonhos!",
-            "O meu maior desejo é que a noite renove as tuas energias e sonhos, para que amanhã você alcance tudo aquilo que merece. Boa noite!",
-            "O mundo cobre-se de trevas, mas eu desejo que seus sonhos sejam coloridos e iluminados. Boa noite.",
-            "Para tudo na vida há um novo dia, um novo sol, um novo luar. Boa noite.",
-            "Porque amanhã o dia vai ser maravilhoso eu desejo que o descanso desta noite seja recuperador. Bons sonhos, família!",
-            "Porque o dia foi esgotante, vou me vingar na noite. Bons sonhos!",
+            "Não tema o escuro da noite, ele faz o colorido do seu coração sobressair!",
+            "O meu maior desejo é que a noite renove as tuas energias e sonhos, para que amanhã você alcance tudo aquilo que merece.",
+            "O mundo cobre-se de trevas, mas eu desejo que seus sonhos sejam coloridos e iluminados.",
+            "Para tudo na vida há um novo dia, um novo sol, um novo luar.",
+            "Porque amanhã o dia vai ser maravilhoso eu desejo que o descanso desta noite seja recuperador. Bons sonhos",
+            "Porque o dia foi esgotante, vou me vingar na noite!",
             "Preciso do brilho dos teus olhos para iluminar a escuridão da minha noite.",
             "Quando a noite cai e eu fecho os olhos, quase consigo sentir seu corpo me abraçando.",
             "Quando os olhos pesarem, que os sonhos sejam leves. Uma ótima noite para você!",
-            "Que a escuridão da noite substitua o medo de errar pela coragem de tentar coisas novas e triunfar! Boa noite!",
-            "Que a escuridão leve suas preocupações e as estrelas recarreguem seu coração de esperança. Boa noite.",
-            "Que a esperança permaneça no seu coração até as estrelas deixarem de brilhar. Boa noite!",
-            "Que a noite apague os erros do passado e renove energias para as conquistas do futuro. Boa noite!",
-            "Que a noite seja de paz, os sonhos belos e o descanso reconfortante. Boa noite.",
+            "Que a escuridão da noite substitua o medo de errar pela coragem de tentar coisas novas e triunfar!",
+            "Que a escuridão leve suas preocupações e as estrelas recarreguem seu coração de esperança.",
+            "Que a esperança permaneça no seu coração até as estrelas deixarem de brilhar.",
+            "Que a noite apague os erros do passado e renove energias para as conquistas do futuro.",
+            "Que a noite seja de paz, os sonhos belos e o descanso reconfortante.",
             "Que a sua noite seja doce e feliz.",
             "Que a sua noite seja composta por uma bela melodia de sono e descanso. Até amanhã.",
-            "Que a sua noite traga tranquilidade, muito descanso e sonhos felizes. Durma bem.",
-            "Que as estrelas iluminem os sonhos de todos vocês. Boa noite, família!",
-            "Que as estrelas iluminem sempre o seu céu, assim como você traz luz à minha vida. Boa noite!",
-            "Que as estrelas lhe tragam paz para um descanso doce e tranquilo. Boa noite!",
+            "Que a sua noite traga tranquilidade, muito descanso e sonhos felizes. Durmam bem.",
+            "Que as estrelas iluminem os sonhos de todos vocês.",
+            "Que as estrelas iluminem sempre o seu céu, assim como você traz luz à minha vida.",
+            "Que as estrelas lhe tragam paz para um descanso doce e tranquilo.",
             "Que esta noite traga lindos sonhos e amanhã tenha força para os realizar. Bom descanso!",
             "Que esta noite você adormeça à luz sedutora do luar e tenha bons sonhos!",
-            "Que hoje as estrelas estejam em harmonia com o nosso sorriso. Boa noite!",
-            "Que nunca falte um sonho para lutar, um projeto para realizar, algo para aprender, um lugar para ir e alguém para amar. Boa noite.",
+            "Que hoje as estrelas estejam em harmonia com o nosso sorriso.",
+            "Que nunca falte um sonho para lutar, um projeto para realizar, algo para aprender, um lugar para ir e alguém para amar.",
             "Que o silêncio desta noite leve as amarguras que mancharam meu dia!",
-            "Que os anjos te tragam tranquilidade e sonhos lindos esta noite. Boa noite!",
-            "Que os carneirinhos não durmam antes de você. Boa noite!",
-            "Que pensamentos maravilhosos encaminhem você até aos sonhos mais belos. Boa noite.",
-            "Quem de manhã compreendeu os ensinamentos da sabedoria à noite pode dormir o sono dos justos. Boa noite.",
-            "Quem respeita a vida merece uma ótima noite de sono. Durma bem!",
-            "Respire. Tome uma dose de paz. Escute o bater manso do coração. Silencie a mente. Relaxe o corpo. Descanse. Amanhã tem mais! Boa noite!",
-            "Se hoje ainda não deu certo tente de novo amanhã, mas só depois de umas boas horas de sono e descanso. Boa noite.",
+            "Que os anjos te tragam tranquilidade e sonhos lindos esta noite.",
+            "Que os carneirinhos não durmam antes de você.",
+            "Que pensamentos maravilhosos encaminhem você até aos sonhos mais belos.",
+            "Quem de manhã compreendeu os ensinamentos da sabedoria à noite pode dormir o sono dos justos.",
+            "Quem respeita a vida merece uma ótima noite de sono. Durmam bem!",
+            "Respire. Tome uma dose de paz. Escute o bater manso do coração. Silencie a mente. Relaxe o corpo. Descanse. Amanhã tem mais!",
+            "Se hoje ainda não deu certo tente de novo amanhã, mas só depois de umas boas horas de sono e descanso.",
             "Talvez seja você. A vida vai dizer. De qualquer forma, obrigado por me fazer dormir sorrindo.",
             "Tenha uma boa noite de descanso e lindos sonhos para amanhã enfrentar mais um dia com renovada energia!",
             "Tenha uma boa noite e lembre-se: a alegria vem pela manhã.",
             "Tenha uma boa noite e um monte de sonhos inspiradores para que amanhã todos se realizem.",
             "Tenha uma noite linda onde o descanso seja rei para que a energia seja a rainha do seu dia!",
             "Todos os dias começam com uma boa noite de sono, por isso durma bem e descanse muito.",
-            "Tudo é belo e especial, até a noite com sua luz e silêncio espiritual. Bons sonhos!",
-            "Um ótimo descanso é o primeiro passo para um amanhecer glorioso. Boa noite!",
+            "Tudo é belo e especial, até a noite com sua luz e silêncio espiritual!",
+            "Um ótimo descanso é o primeiro passo para um amanhecer glorioso!",
             "Uma boa noite de descanso para todos os que acreditam que o amanhã será um dia melhor!",
           ] -%}
-          {{ noite|random }}
+          {{ mensagem|random }}
         {%- endmacro -%}
-        <speak><amazon:auto-breaths frequency='medium'>Automação boa noite iniciada. Estou apagando todas as luzes e configurando a casa para a noite. A temperatura do quarto, atualmente é de {{ states.sensor.temperature_158d0001dcb597.state | int }} graus, o ar condicionado está {% if is_state('climate.ar_condicionado_da_suite', 'idle') %}desligado{% else %}ligado no modo {% if is_state('climate.ar_condicionado_da_suite', 'cool') %}resfriar{% else %}aquecer{% endif %} para {{ states.climate.ar_condicionado_da_suite.attributes.temperature | int }} graus. Também desliguei o visor luminoso para não incomodar durante a noite{% endif %}. A temperatura máxima amanhã será de {{ states.sensor.dark_sky_daytime_high_temperature_1.state | int }} graus. {% if is_state('sensor.iphone_de_antonio_battery_state', 'Unplugged') or is_state('sensor.iphone_de_roberta_battery_state', 'Unplugged') %}Não esqueçam de colocar os telefones para carregar durante a noite! {% endif %}Boa noite {% if is_state('device_tracker.antonio', 'home') and is_state('device_tracker.roberta', 'home') %}Antônio e Roberta.{% elif is_state('device_tracker.antonio', 'home') %}Antônio.{% else %}Roberta.{% endif %} {{ noite() }}</amazon:auto-breaths></speak>
+        <speak><amazon:auto-breaths frequency='medium'>{{ inicio() }} O ar condicionado está {{ ar_condicionado() }} {{ temp_amanha()}} {{ carregar_celular() }} <prosody rate="90%">{{ mensagem() }}</prosody> Boa noite {{ boa_noite() }}</amazon:auto-breaths></speak>
   - wait_template: "{{is_state('media_player.suite', 'playing')}}"
   - wait_template: "{{is_state('media_player.suite', 'idle')}}"
 
@@ -1629,7 +1658,7 @@ tts_bom_dia:
           ] -%}
           {{ dia|random }}
         {%- endmacro -%}
-        <speak><amazon:auto-breaths frequency='medium'>Bom dia! Agora são <say-as interpret-as='time'>{{ now().strftime('%H:%M') }}</say-as> de {% if now().strftime('%A') == 'Monday' -%}segunda-feira{%- elif now().strftime('%A') == 'Tuesday' -%}terça-feira{%- elif now().strftime('%A') == 'Wednesday'-%}quarta-feira{%- elif now().strftime('%A') == 'Thursday' -%}quinta-feira{%- elif now().strftime('%A') == 'Friday' -%}sexta-feira{%- elif now().strftime('%A') == 'Saturday' -%}sábado{%- elif now().strftime('%A') == 'Sunday' -%}domingo{%- endif %}, dia {{ now().strftime('%d') }} de {% if now().strftime('%B') == 'January' -%}janeiro{%- elif now().strftime('%B') == 'February' -%}fevereiro{%- elif now().strftime('%B') == 'March'-%}março{%- elif now().strftime('%B') == 'April' -%}abril{%- elif now().strftime('%B') == 'May' -%}maio{%- elif now().strftime('%B') == 'June' -%}junho{%- elif now().strftime('%B') == 'July' -%}julho{%- elif now().strftime('%B') == 'August' -%}agosto{%- elif now().strftime('%B') == 'September' -%}setembro{%- elif now().strftime('%B') == 'October' -%}outubro{%- elif now().strftime('%B') == 'November' -%}novembro{%- elif now().strftime('%B') == 'December' -%}dezembro{%- endif -%}. Neste momento, predomina {{ states.sensor.dark_sky_summary.state | lower }} com {{ states.sensor.dark_sky_temperature.state | int }} graus. A temperatura máxima hoje será de {{ states.sensor.dark_sky_daytime_high_temperature.state | int }} graus. Estou abrindo a persiana e ligando o toalheiro. O ar condicionado foi desligado. Vou deixar a televisão ligada para vocês. {{ dia() }}</amazon:auto-breaths></speak>
+        <speak><amazon:auto-breaths frequency='medium'>Bom dia! Agora são <say-as interpret-as='time'>{{ now().strftime('%H:%M') }}</say-as> de {% if now().strftime('%A') == 'Monday' -%}segunda-feira{%- elif now().strftime('%A') == 'Tuesday' -%}terça-feira{%- elif now().strftime('%A') == 'Wednesday'-%}quarta-feira{%- elif now().strftime('%A') == 'Thursday' -%}quinta-feira{%- elif now().strftime('%A') == 'Friday' -%}sexta-feira{%- elif now().strftime('%A') == 'Saturday' -%}sábado{%- elif now().strftime('%A') == 'Sunday' -%}domingo{%- endif %}, dia {{ now().strftime('%d') }} de {% if now().strftime('%B') == 'January' -%}janeiro{%- elif now().strftime('%B') == 'February' -%}fevereiro{%- elif now().strftime('%B') == 'March'-%}março{%- elif now().strftime('%B') == 'April' -%}abril{%- elif now().strftime('%B') == 'May' -%}maio{%- elif now().strftime('%B') == 'June' -%}junho{%- elif now().strftime('%B') == 'July' -%}julho{%- elif now().strftime('%B') == 'August' -%}agosto{%- elif now().strftime('%B') == 'September' -%}setembro{%- elif now().strftime('%B') == 'October' -%}outubro{%- elif now().strftime('%B') == 'November' -%}novembro{%- elif now().strftime('%B') == 'December' -%}dezembro{%- endif -%}. Neste momento, predomina {{ states.sensor.dark_sky_summary.state | lower }} com {{ states.sensor.dark_sky_temperature.state | int }} graus. A temperatura máxima hoje será de {{ states.sensor.dark_sky_daytime_high_temperature.state | int }} graus. Estou abrindo a persiana e ligando o toalheiro. O ar condicionado foi desligado. Vou deixar a televisão ligada para vocês. <prosody rate="90%">{{ dia() }}</prosody></amazon:auto-breaths></speak>
   - wait_template: "{{is_state('media_player.suite', 'playing')}}"
   - wait_template: "{{is_state('media_player.suite', 'idle')}}"
 
