@@ -10,7 +10,8 @@ default_view:
   - group.alarme
   - group.tvs
   - group.google_home_casa
-  - media_player.tablet_entrada
+  - group.spotify_player
+  - group.spotify_controles
   - group.all_automations
   - camera.teste
   name: Casa
@@ -480,6 +481,13 @@ cubos_casa:
   name: Cubos casa
   view: false
 
+google_home_casa:
+  entities:
+  - media_player.sala
+  - media_player.suite
+  name: Google Homes Casa
+  view: false
+
 # MuvRH
 
 muvrh:
@@ -497,6 +505,7 @@ muvrh:
   - group.cameras_muvrh
   - group.computadores_muvrh
   - group.dispositivos_muvrh
+  - group.muvrh_players
   - group.automacoes_muvrh
   name: MuvRH
   view: true
@@ -661,6 +670,7 @@ muvrh_interno:
   - group.muvrh_sala_operacoes
   - group.muvrh_sala_303
   - group.muvrh_banheiro_303
+  - group.muvrh_players
   name: MuvRH interno
   view: true
 
@@ -678,11 +688,10 @@ automacoes_muvrh:
   name: Automações MuvRH
   view: false
 
-google_home_casa:
+muvrh_players:
   entities:
-  - media_player.sala
-  - media_player.suite
-  name: Google Homes Casa
+  - media_player.empresa
+  name: Media Players MuvRH
   view: false
 
 temporizadores_muvrh:

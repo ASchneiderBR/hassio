@@ -1,8 +1,5 @@
 - platform: nmap_tracker
-  interval_seconds: 60
-#  consider_home: 180
   track_new_devices: false
-#  scan_options: " -F --privileged -sP --host-timeout 10s "
   hosts: 192.168.1.10-110
   home_interval: 3
   exclude:

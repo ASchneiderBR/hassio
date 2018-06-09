@@ -22,3 +22,27 @@
 # Texto final
 
 {{ cumprimento() }} {{ turno() }}
+
+# Outros
+
+  - service: tts.amazon_polly_say
+    entity_id: media_player.suite
+    data_template:
+      message: >
+        {% macro noite() -%}
+          {% set noite = [
+            "Boa noite!",
+            "Bons sonhos!",
+            "Durmam bem!",
+            "Bom descanso!",
+            "Aproveitem a melhor cama do mundo!",
+            "Comportem-se!",
+            "O dia foi longo, por hoje é só!",
+            "Roberta! Deu! Chega, boa noite! Domir...",
+          ] %}
+          {{ noite|random }}
+        {%- endmacro -%}
+        <speak><amazon:auto-breaths frequency='medium'>
+        Automação boa noite iniciada. Estou apagando todas as luzes e configurando a casa para a noite. A temperatura do quarto, atualmente é de {{ states.sensor.temperature_158d0001dcb597.state | int }} graus, o ar condicionado está {% if is_state('climate.ar_condicionado_da_suite', 'idle') %}desligado{% else %}ligado no modo {% if is_state('climate.ar_condicionado_da_suite', 'cool') %}resfriar{% else %}aquecer{% endif %} para {{ states.climate.ar_condicionado_da_suite.attributes.temperature | int }} graus. Também desliguei o visor luminoso para não incomodar durante a noite{% endif %}. A temperatura máxima amanhã será de {{ states.sensor.dark_sky_daytime_high_temperature_1.state | int }} graus. {% if is_state('sensor.iphone_de_antonio_battery_state', 'Unplugged') or is_state('sensor.iphone_de_roberta_battery_state', 'Unplugged') %}Não esqueçam de colocar os telefones para carregar durante a noite! {% endif %}Boa noite {% if is_state('device_tracker.antonio', 'home') and is_state('device_tracker.roberta', 'home') %}Antônio e Roberta{% elif is_state('device_tracker.antonio', 'home') %}Antônio{% else %}Roberta{% endif %} 
+        {{ noite() }}
+        </amazon:auto-breaths></speak>

@@ -82,6 +82,13 @@ exclude:
     - binary_sensor.switch_158d0001d8eabc
     - binary_sensor.switch_158d0001d8eb3d
     - binary_sensor.switch_158d0001d9073f
+    - input_boolean.spotify_shuffle
+    - input_number.spotify_volume
+    - input_select.spotify_playlist
+    - input_select.spotify_source
+    - sensor.spotify_shuffle
+    - sensor.spotify_source
+    - sensor.spotify_volume
 include:
   entities:
     - group.pessoas
