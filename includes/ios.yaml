@@ -1,0 +1,17 @@
+push:
+  categories:
+    - name: Iniciar HomeKit
+      identifier: 'homekit_start'
+      actions:
+        - identifier: 'START_HOMEKIT'
+          title: 'Iniciar'
+          activationMode: 'background'
+          authenticationRequired: yes
+          destructive: yes
+          behavior: 'default'
+        - identifier: 'RESTART_HA'
+          title: 'Reiniciar HA'
+          activationMode: 'background'
+          authenticationRequired: yes
+          destructive: no
+          behavior: 'default'

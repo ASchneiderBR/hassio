@@ -46,13 +46,6 @@
     - service: frontend.set_theme
       data_template:
         name: "darkred"
-    - service_template: >
-        {% if is_state('group.pessoas', 'home') %}
-          alarm_control_panel.alarm_arm_home
-        {% else %}
-          alarm_control_panel.alarm_arm_away
-        {% endif %}
-      entity_id: alarm_control_panel.alarme
     - service: mqtt.publish
       data:
         payload: ""
@@ -98,6 +91,22 @@
       data:
         message: "Hassio iniciado com sucesso às {{now().strftime('%H:%M')}}"
         title: "Sistema reiniciado"
+    - service: notify.ios_iphone_de_antonio
+      data:
+        title: "Sistema"
+        message: "Iniciar o componente HomeKit?"
+        data:
+          push:
+            category: "homekit_start"
+    - delay: 00:00:10
+    - service_template: >
+        {% if is_state('group.pessoas', 'home') %}
+          alarm_control_panel.alarm_arm_home
+        {% else %}
+          alarm_control_panel.alarm_arm_away
+        {% endif %}
+      entity_id: alarm_control_panel.alarme
+
 
 - alias: Garagem MuvRH
   trigger:
@@ -1271,3 +1280,21 @@
       entity_id:
         - light.muv303corredor
         - light.303leddinamica
+
+- alias: Push - Iniciar componente HomeKit
+  trigger:
+    platform: event
+    event_type: ios.notification_action_fired
+    event_data:
+      actionName: START_HOMEKIT
+  action:
+    - service: homekit.start
+
+- alias: Push - Reiniciar Home Assistant
+  trigger:
+    platform: event
+    event_type: ios.notification_action_fired
+    event_data:
+      actionName: RESTART_HA
+  action:
+    - service: homeassistant.restart

@@ -346,6 +346,8 @@ input_boolean.ar_quarto:
   emulated_hue: true
 input_boolean.ar_sala:
   emulated_hue: true
+input_boolean.spotify_shuffle:
+  homebridge_hidden: true
 climate.ar_condicionado_da_sala:
   homebridge_name: Sala
   icon: mdi:air-conditioner
@@ -379,12 +381,15 @@ cover.persiana_sala:
 cover.garagem_casa:
   homebridge_name: Casa
   homebridge_cover_type: garage_door
+  device_class: garage
 cover.garagem_muvrh_rua:
   homebridge_name: Rua do Trabalho
   homebridge_cover_type: garage_door
+  device_class: garage
 cover.garagem_muvrh_interno:
   homebridge_name: Interna do Trabalho
   homebridge_cover_type: garage_door
+  device_class: garage
 binary_sensor.door_window_sensor_158d0001d6851d:
   friendly_name: "Entrada casa"
   icon: mdi:glassdoor
@@ -446,18 +451,23 @@ light.gateway_Light_34ce0090940e:
 sensor.humidity_158d0001700b20:
   friendly_name: "Umidade Sala"
   icon: mdi:water-percent
+  homebridge_hidden: true
 sensor.humidity_158d0001702175:
   friendly_name: "Umidade Quarto"
   icon: mdi:water-percent
+  homebridge_hidden: true
 sensor.humidity_158d00019cec0c:
   friendly_name: "Umidade Cozinha"
   icon: mdi:water-percent
+  homebridge_hidden: true
 sensor.humidity_158d0001dcb597:
   friendly_name: "Umidade Suíte"
   icon: mdi:water-percent
+  homebridge_hidden: true
 sensor.Humidity_158d00015633b4:
   friendly_name: "Umidade sala de operações"
   icon: mdi:water-percent
+  homebridge_hidden: true
 sensor.illumination_34ce00907e65:
   friendly_name: "Luz sala de casa"
   icon: mdi:lightbulb-outline
@@ -542,16 +552,19 @@ sensor.illumination_158d0001e02f9a:
   homebridge_name: Luz nossa sala
   icon: mdi:lightbulb-outline
   homebridge_sensor_type: light
+  homebridge_hidden: true
 sensor.illumination_158d0001e420d0:
   friendly_name: "Luz sala de operações"
   homebridge_name: Sala de operações
   icon: mdi:lightbulb-outline
   homebridge_sensor_type: light
+  homebridge_hidden: true
 sensor.illumination_158d0001ad6b83:
   friendly_name: "Luz entrada sala 203"
   homebridge_name: Entrada 203
   icon: mdi:lightbulb-outline
   homebridge_sensor_type: light
+  homebridge_hidden: true
 sensor.illumination_158d0001e43ef1:
   friendly_name: "Luz banheiro da sala 203"
   homebridge_name: Banheiro 203
@@ -563,6 +576,7 @@ sensor.illumination_158d0001e44035:
   homebridge_name: Entrada sala 303
   icon: mdi:lightbulb-outline
   homebridge_sensor_type: light
+  homebridge_hidden: true
 sensor.illumination_158d0001ad6c20:
   friendly_name: "Luz banheiro da sala 303"
   homebridge_name: Banheiro 303
@@ -573,14 +587,17 @@ sensor.humidity_158d00015633b4:
   homebridge_name: Sala de operações
   friendly_name: "Umidade sala de operações"
   icon: mdi:water-percent
+  homebridge_hidden: true
 sensor.humidity_158d0001d7e65d:
   homebridge_name: Entrada 203
   friendly_name: "Umidade entrada sala 203"
   icon: mdi:water-percent
+  homebridge_hidden: true
 sensor.humidity_158d0001703b44:
   homebridge_name: Sala 303
   friendly_name: "Umidade sala 303"
   icon: mdi:water-percent
+  homebridge_hidden: true
 light.muv203entrada:
   homebridge_name: Entrada 203
   friendly_name: "Luz da entrada sala 203"
@@ -659,6 +676,7 @@ sensor.illumination_158d0001a24bdc:
   homebridge_name: Dinâmica 303
   icon: mdi:lightbulb-outline
   homebridge_sensor_type: light
+  homebridge_hidden: true
 
 # DarkSky
 

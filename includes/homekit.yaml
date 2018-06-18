@@ -1,0 +1,113 @@
+auto_start: False
+
+entity_config:
+  switch.toalheiro:
+    type: outlet
+  switch.muv203bebedouro:
+    type: outlet
+  switch.muv303bebedouro:
+    type: outlet
+
+filter:
+  exclude_domains:
+    - automation
+    - input_boolean
+    - remote
+    - script
+    - binary_sensor
+    - device_tracker
+    - fan
+    - media_player
+    - sensor
+    - alarm_control_panel
+    - climate
+    - cover
+    - light
+    - lock
+    - switch
+  include_entities:
+    - input_boolean.boa_noite
+    - input_boolean.bom_dia
+    - input_boolean.chegar_casa
+    - input_boolean.visita_casa
+    - input_boolean.entrar_muvrh
+    - input_boolean.sair_muvrh
+    - binary_sensor.antonio
+    - binary_sensor.casa_movimento
+    - binary_sensor.door_window_sensor_158d0001b8671f
+    - binary_sensor.door_window_sensor_158d0001bf2a09
+    - binary_sensor.door_window_sensor_158d0001d6851d
+    - binary_sensor.door_window_sensor_158d0001d68545
+    - binary_sensor.door_window_sensor_158d0001e035a2
+    - binary_sensor.motion_sensor_158d000120af26
+    - binary_sensor.motion_sensor_158d0001225607
+    - binary_sensor.motion_sensor_158d0001231d4d
+    - binary_sensor.motion_sensor_158d00015b6c81
+    - binary_sensor.motion_sensor_158d00016c01fd
+    - binary_sensor.motion_sensor_158d00016da83a
+    - binary_sensor.motion_sensor_158d0001a24bdc
+    - binary_sensor.motion_sensor_158d0001ad6b83
+    - binary_sensor.motion_sensor_158d0001ad6c20
+    - binary_sensor.motion_sensor_158d0001e02f9a
+    - binary_sensor.motion_sensor_158d0001e420d0
+    - binary_sensor.motion_sensor_158d0001e43ef1
+    - binary_sensor.motion_sensor_158d0001e44035
+    - binary_sensor.roberta
+    - sensor.temperature_158d00019cec0c
+    - alarm_control_panel.alarme
+    - climate.ar_condicionado_da_entrada_203
+    - climate.ar_condicionado_da_nossa_sala
+    - climate.ar_condicionado_da_sala
+    - climate.ar_condicionado_da_sala_303
+    - climate.ar_condicionado_da_sala_de_operacoes
+    - climate.ar_condicionado_da_suite
+    - climate.ar_condicionado_do_quarto
+    - cover.garagem_casa
+    - cover.garagem_muvrh_interno
+    - cover.garagem_muvrh_rua
+    - cover.persiana_quarto
+    - cover.persiana_sala
+    - cover.persiana_suite
+    - light.303leddinamica
+    - light.area_servico
+    - light.banheiro_social
+    - light.corredor
+    - light.cozinha
+    - light.entrada
+    - light.gateway_light_34ce00907e65
+    - light.gateway_light_34ce0090940e
+    - light.ledcozinhabalcao
+    - light.ledquartotv
+    - light.ledsaladesktop
+    - light.ledsalatv
+    - light.ledsuitecama
+    - light.ledsuitetv
+    - light.mesa_jantar
+    - light.muv203banheiro
+    - light.muv203entrada
+    - light.muv203nossasala
+    - light.muv203operacoes
+    - light.muv303banheiro
+    - light.muv303corredor
+    - light.muv303dinamica
+    - light.muv303entrada
+    - light.quarto
+    - light.sala_principal
+    - light.suite_banheiro
+    - light.suite_principal
+    - switch.automacoes_luzes
+    - switch.chuveirosocial
+    - switch.chuveirosuite
+    - switch.desktop
+    - switch.home_theater_sala
+    - switch.muv203bebedouro
+    - switch.muv303bebedouro
+    - switch.servidor
+    - switch.sirene
+    - switch.sistema_alarme_casa
+    - switch.toalheiro
+    - switch.tv_dinamica_303
+    - switch.tv_lg_quarto
+    - switch.tv_lg_sala
+    - switch.tv_lg_suite
+    - switch.tv_sala_operacoes
