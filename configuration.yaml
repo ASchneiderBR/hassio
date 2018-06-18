@@ -26,7 +26,6 @@ conversation:
 ffmpeg:
 hassio:
 history:
-ios:
 logbook:
 map:
 sun:
@@ -44,10 +43,12 @@ device_tracker: !include includes/device_tracker.yaml
 frontend: !include includes/frontend.yaml
 #google_assistant: includes/google_assistant.yaml
 group: !include includes/group.yaml
+homekit: !include includes/homekit.yaml
 http: !include includes/http.yaml
 input_boolean: !include includes/input_boolean.yaml
 #input_number: !include includes/input_number.yaml
 input_select: !include includes/input_select.yaml
+ios: !include includes/ios.yaml
 light: !include includes/light.yaml
 logger: !include includes/logger.yaml
 media_player: !include includes/media_player.yaml
