@@ -9,11 +9,11 @@
   max_temp: 30
   target_temp: 24
   temp_sensor: sensor.temperature_158d0001dcb597
-  default_operation: idle
+  default_operation: 'off'
   default_fan_mode: low
   customize:
     operations:
-      - idle
+      - 'off'
       - cool
       - heat
       - auto
@@ -31,11 +31,11 @@
   max_temp: 30
   target_temp: 24
   temp_sensor: sensor.temperature_158d0001700b20
-  default_operation: idle
+  default_operation: 'off'
   default_fan_mode: mid
   customize:
     operations:
-      - idle
+      - 'off'
       - cool
       - heat
       - auto
@@ -53,11 +53,11 @@
   max_temp: 30
   target_temp: 24
   temp_sensor: sensor.temperature_158d0001702175
-  default_operation: idle
+  default_operation: 'off'
   default_fan_mode: low
   customize:
     operations:
-      - idle
+      - 'off'
       - cool
       - heat
       - auto
@@ -77,11 +77,11 @@
   max_temp: 30
   target_temp: 22
   temp_sensor: sensor.temperatura_real_nossa_sala
-  default_operation: idle
+  default_operation: 'off'
   default_fan_mode: low
   customize:
     operations:
-      - idle
+      - 'off'
       - cool
       - heat
       - auto
@@ -99,11 +99,11 @@
   max_temp: 30
   target_temp: 24
   temp_sensor: sensor.temperature_158d00015633b4
-  default_operation: idle
+  default_operation: 'off'
   default_fan_mode: low
   customize:
     operations:
-      - idle
+      - 'off'
       - cool
       - heat
       - auto
@@ -121,11 +121,11 @@
   max_temp: 30
   target_temp: 24
   temp_sensor: sensor.temperature_158d0001d7e65d
-  default_operation: idle
+  default_operation: 'off'
   default_fan_mode: low
   customize:
     operations:
-      - idle
+      - 'off'
       - cool
       - heat
       - auto
@@ -143,11 +143,11 @@
   max_temp: 30
   target_temp: 24
   temp_sensor: sensor.temperature_158d0001703b44
-  default_operation: idle
+  default_operation: 'off'
   default_fan_mode: low
   customize:
     operations:
-      - idle
+      - 'off'
       - cool
       - heat
       - auto
