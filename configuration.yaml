@@ -23,6 +23,7 @@ zone 2:
 
 config:
 conversation:
+discovery:
 ffmpeg:
 hassio:
 history:
@@ -36,6 +37,7 @@ alarm_control_panel: !include includes/alarm.yaml
 automation: !include includes/automation.yaml
 binary_sensor: !include includes/binary_sensor.yaml
 camera: !include includes/camera.yaml
+cast: !include includes/cast.yaml
 cloud: !include includes/cloud.yaml
 climate: !include includes/climate.yaml
 cover: !include includes/cover.yaml
@@ -61,4 +63,6 @@ sensor: !include includes/sensor.yaml
 shell_command: !include includes/shell_command.yaml
 switch: !include includes/switch.yaml
 tts: !include includes/tts.yaml
+upnp: !include includes/upnp.yaml
+weather: !include includes/weather.yaml
 xiaomi_aqara: !include includes/xiaomi_aqara.yaml

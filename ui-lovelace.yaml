@@ -1,0 +1,35 @@
+name: Casa
+views:
+  - name: Casa
+    theme: dark-mode
+    cards:
+      - type: entities
+        title: Entrada casa
+        entities:
+          - sensor.pws_weather_1h
+          - switch.sistema_alarme_casa
+          - light.entrada
+          - light.cozinha
+          - light.ledcozinhabalcao
+          - light.area_servico
+          - light.mesa_jantar
+          - light.sala_painel_desktop
+          - light.sala_principal
+          - light.corredor
+      - type: entity-filter
+        filter:
+          - domain: light
+            state: 'on'
+          - domain: switch
+            state: 'on'
+        card_config:
+          title: Coisas ligadas
+      - type: entity-picture
+        image: http://www.innovafuerteventura.com/wp-content/uploads/2016/10/vaulted-ceiling-lighting-ideas-regarding-the-various-kinds-of-ceiling-lighting.jpg
+        entity: light.entrada
+  - name: Tablet entrada
+    theme: dark-mode
+    cards:
+      - type: weather-forecast
+        title: Tempo
+        entity: weather.yweather
