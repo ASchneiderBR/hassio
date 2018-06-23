@@ -246,21 +246,19 @@
       entity_id: media_player.sala
       data_template:
         message: <speak>Automação chegando em casa iniciada, abrindo a garagem.</speak>
-    - service: input_boolean.turn_off
-      entity_id: input_boolean.chegar_casa
     - delay: 00:01:00
     - service: alarm_control_panel.alarm_disarm
       entity_id: alarm_control_panel.alarme
     - wait_template: "{{is_state('binary_sensor.door_window_sensor_158d0001d6851d', 'on')}}"
       timeout: 00:09:00
-    - condition: state
-      entity_id: binary_sensor.door_window_sensor_158d0001d6851d
-      state: 'on'
+    - delay: 00:00:15
     - service_template: >
         {% if is_state('switch.tv_lg_sala', 'off') %}
           switch.turn_on
         {% endif %}
       entity_id: switch.tv_lg_sala
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.chegar_casa
 
 - alias: Desligar toalheiro após 2 horas
   trigger:
@@ -402,9 +400,14 @@
     from: 'off'
     to: 'on'
   condition:
-    condition: state
-    entity_id: light.luzes_principais_sala
-    state: 'off'
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: light.luzes_principais_sala
+        state: 'off'
+      - condition: state
+        entity_id: light.mesa_jantar
+        state: 'off'
   action:
     - service: light.turn_on
       entity_id: light.luzes_principais_sala
@@ -504,13 +507,13 @@
     - service: cover.open_cover
       entity_id: cover.persiana_suite
     - service_template: >
-        {% if is_state('climate.ar_condicionado_da_suite' , 'idle') %}
+        {% if is_state('climate.ar_condicionado_da_suite' , 'off') %}
         {% else %}
         climate.set_operation_mode
         {% endif %}
       data:
         entity_id: climate.ar_condicionado_da_suite
-        operation_mode: "idle"
+        operation_mode: 'off'
     - wait_template: "{{is_state('script.tts_bom_dia', 'off')}}"
     - service: switch.turn_on
       entity_id: switch.tv_lg_suite
@@ -544,7 +547,7 @@
     - service: automation.turn_on
       entity_id: automation.luzes_da_casa__sala
     - service_template: >
-        {% if is_state('climate.ar_condicionado_da_suite' , 'idle') %}
+        {% if is_state('climate.ar_condicionado_da_suite' , 'off') %}
         {% else %}
           script.ar_suite_display
         {% endif %}
@@ -1151,7 +1154,7 @@
         - light.corredor
         - light.cozinha
         - light.entrada
-        - light.gateway_light_34ce00907e65
+        - light.gateway_light_7811dcb7ea3d
         - light.gateway_light_34ce0090940e
         - light.ledcozinhabalcao
         - light.ledquartotv
@@ -1230,6 +1233,7 @@
         - device_tracker.tabletaut
         - device_tracker.ipad_casa
         - device_tracker.ipod
+        - device_tracker.xiaomi_hub_casa
         - device_tracker.rmprosuite
         - device_tracker.rmminisala
         - device_tracker.rmminiquarto
@@ -1298,3 +1302,15 @@
       actionName: RESTART_HA
   action:
     - service: homeassistant.restart
+
+- alias: Push - Testes
+  trigger:
+    platform: event
+    event_type: ios.notification_action_fired
+  action:
+    - service_template: >
+        {% if trigger.event.data.actionName == 'TESTE_1' %}
+          script.cubo_sala_luz
+        {% elif trigger.event.data.actionName == 'TESTE_2' %}
+          script.cubo_sala_persiana
+        {% endif %}

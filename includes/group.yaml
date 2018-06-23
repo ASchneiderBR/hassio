@@ -67,7 +67,6 @@ sala:
   - binary_sensor.door_window_sensor_158d0001d6851d
   - binary_sensor.motion_sensor_158d0001225607
   - sensor.humidity_158d0001700b20
-  - sensor.illumination_34ce00907e65
   - climate.ar_condicionado_da_sala
   - script.ar_sala_display
   - script.ar_sala_swing
@@ -78,7 +77,7 @@ sala:
   - switch.home_theater_sala
   - script.home_theater_sala_volup_x6
   - script.home_theater_sala_voldown_x6
-  - light.gateway_light_34ce00907e65
+  - light.gateway_light_7811dcb7ea3d
   - light.corredor
   - light.ledsaladesktop
   - light.sala_principal
@@ -126,7 +125,7 @@ dispositivos:
   - device_tracker.nas
   - device_tracker.google_home_mini_sala
   - device_tracker.google_home_mini_suite
-  - device_tracker.xiaomi_hub
+  - device_tracker.xiaomi_hub_casa
   - device_tracker.rfbridgecasa
   - device_tracker.tabletaut
   - device_tracker.ipad_casa
@@ -143,6 +142,7 @@ dispositivos:
 tempo:
   control: hidden
   entities:
+  - weather.yweather
   - sun.sun
   - sensor.dark_sky_summary
   - sensor.dark_sky_temperature

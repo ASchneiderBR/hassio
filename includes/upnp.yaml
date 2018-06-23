@@ -1,0 +1,4 @@
+ports:
+  hass: 8000
+port_mapping: true
+local_ip: 192.168.1.12

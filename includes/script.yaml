@@ -947,11 +947,6 @@ tv_lg_sala_ligar_tudo:
     entity_id: switch.home_theater_sala
   - condition: template
     value_template: "{% if is_state('light.ledsalatv' , 'off') %}True{% else %}False{% endif %}"
-#  - service: light.turn_on
-#    entity_id: light.gateway_light_34ce00907e65
-#    data: 
-#      brightness: 146
-#      rgb_color: [255,0,0]
   - service: light.turn_on
     data:
       entity_id: light.ledsalatv
@@ -973,7 +968,6 @@ tv_lg_sala_desligar_tudo:
       {% endif %}
     entity_id:
       - light.ledsalatv
-#      - light.gateway_light_34ce00907e65
 
 tts_porta_entrada:
   alias: "Entrando em casa"
@@ -1156,12 +1150,12 @@ botao_xiaomi_suite_02_click_2:
     data_template:
       entity_id: climate.ar_condicionado_da_suite
       operation_mode: >
-        {% if states.climate.ar_condicionado_da_suite.attributes.current_temperature | int >= 25 and (states.climate.ar_condicionado_da_suite.state == 'idle' or states.climate.ar_condicionado_da_suite.state == 'off') %}
+        {% if states.climate.ar_condicionado_da_suite.attributes.current_temperature | int >= 25 and (states.climate.ar_condicionado_da_suite.state == 'off' or states.climate.ar_condicionado_da_suite.state == 'off') %}
           cool
-        {% elif states.climate.ar_condicionado_da_suite.attributes.current_temperature | int <= 24 and (states.climate.ar_condicionado_da_suite.state == 'idle' or states.climate.ar_condicionado_da_suite.state == 'off') %}
+        {% elif states.climate.ar_condicionado_da_suite.attributes.current_temperature | int <= 24 and (states.climate.ar_condicionado_da_suite.state == 'off' or states.climate.ar_condicionado_da_suite.state == 'off') %}
           heat
         {% else %}
-          idle
+          'off'
         {% endif %}
   - condition: template
     value_template: "{% if (is_state('climate.ar_condicionado_da_suite' , 'auto') or is_state('climate.ar_condicionado_da_suite' , 'cool') or is_state('climate.ar_condicionado_da_suite' , 'heat')) and is_state('input_boolean.boa_noite' , 'on') %}True{% else %}False{% endif %}"
@@ -1448,7 +1442,7 @@ tts_boa_noite:
           Automação boa noite iniciada. A temperatura do quarto, atualmente é de {{ states.sensor.temperature_158d0001dcb597.state | int }} graus.
         {%- endmacro -%}
         {%- macro ar_condicionado() -%}
-            {%- if is_state('climate.ar_condicionado_da_suite', 'idle') -%}
+            {%- if is_state('climate.ar_condicionado_da_suite', 'off') -%}
               desligado.
             {%- else -%}
               ligado no modo 
@@ -1961,7 +1955,7 @@ muvrh_desligar_tudo:
   sequence:
   - service: climate.set_operation_mode
     data_template:
-      operation_mode: idle
+      operation_mode: 'off'
       entity_id:
         - climate.ar_condicionado_da_entrada_203
         - climate.ar_condicionado_da_nossa_sala
@@ -1995,7 +1989,7 @@ muvrh_desligar_sala_203:
   sequence:
   - service: climate.set_operation_mode
     data_template:
-      operation_mode: idle
+      operation_mode: 'off'
       entity_id:
         - climate.ar_condicionado_da_entrada_203
         - climate.ar_condicionado_da_nossa_sala
@@ -2021,7 +2015,7 @@ muvrh_desligar_sala_303:
   sequence:
   - service: climate.set_operation_mode
     data_template:
-      operation_mode: idle
+      operation_mode: 'off'
       entity_id:
         - climate.ar_condicionado_da_sala_303
   - service: light.turn_off
@@ -2039,3 +2033,14 @@ muvrh_desligar_sala_303:
     data:
       title: "Alerta MuvRH"
       message: "Todos os dispositivos e luzes da sala 303 foram desligados"
+
+testes_ios:
+  alias: Testes com iOS
+  sequence:
+  - service: notify.ios_iphone_de_antonio
+    data:
+      title: "TESTE"
+      message: "O que queres fazer?"
+      data:
+        push:
+          category: "TESTES"

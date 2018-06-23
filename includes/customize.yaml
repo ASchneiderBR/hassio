@@ -393,12 +393,15 @@ cover.garagem_muvrh_interno:
 binary_sensor.door_window_sensor_158d0001d6851d:
   friendly_name: "Entrada casa"
   icon: mdi:glassdoor
+  device_class: door
 binary_sensor.door_window_sensor_158d0001d68545:
   friendly_name: "Box do banheiro da suíte"
   icon: mdi:glassdoor
+  device_class: door
 binary_sensor.door_window_sensor_158d0001e035a2:
   friendly_name: "Box do banheiro social"
   icon: mdi:glassdoor
+  device_class: door
 binary_sensor.motion_sensor_158d000120af26:
   friendly_name: "Movimento Suíte"
   icon: mdi:walk
@@ -441,7 +444,7 @@ binary_sensor.switch_158d0001d8eb3d:
 binary_sensor.switch_158d0001d8ea74:
   friendly_name: "Botão suíte 02"
   icon: mdi:cursor-pointer
-light.gateway_light_34ce00907e65:
+light.gateway_light_7811dcb7ea3d:
   friendly_name: "Luz Hub Xiaomi"
   icon: mdi:lightbulb
 light.gateway_Light_34ce0090940e:
@@ -514,9 +517,11 @@ script.ar_sala_display:
 binary_sensor.door_window_sensor_158d0001bf2a09:
   friendly_name: "Entrada sala 203"
   icon: mdi:glassdoor
+  device_class: door
 binary_sensor.door_window_sensor_158d0001b8671f:
   friendly_name: "Entrada sala 303"
   icon: mdi:glassdoor
+  device_class: door
 device_tracker.rmminioperacoes:
   homebridge_hidden: true
   friendly_name: "RM Mini Sala de operações"
