@@ -5,6 +5,9 @@
   filename: webostv2.conf
   customize:
     sources:
+      - hdmi1
+      - hdmi2
+      - hdmi3
       - livetv
       - youtube
       - netflix
@@ -21,6 +24,9 @@
   filename: webostv1.conf
   customize:
     sources:
+      - hdmi1
+      - hdmi2
+      - hdmi3
       - livetv
       - youtube
       - netflix

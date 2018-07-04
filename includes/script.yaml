@@ -75,7 +75,7 @@ garagem_casa:
   - service: switch.broadlink_send_packet_192_168_1_32
     data:
       packet:
-      - sgCEAxoMGgwaDBoMDRkaDBoMDRgaDBoMGgwaDBoMGgwaDBoMGgwaDBoMGgwNGRoMGQwOGA4YGgwNGQ4YGgwNGRoMDRkaDA0ZDRkZDA4YGgwaDBoMGgwaDBoMGgwaDBoMGgwaDBkNGQwOGBoMGgwOAAIFDQwODA0MDQwNDQ0MDQwNDA4MDQwNDA1+GgwNGRoMDRkaDA0ZGgwNGQ0ZDRgOGBoMGgwaDBoMGgwNGRoMGgwNGRoMGgsaDRoMGgsaDBoMGgwaDBoMGgwaDA0ZGgwaDA0ZDRgaDQ0YDhgaDA4ZGQwNGRoMDRkNGRoMDRkaDBkNGQ0aCxsLGgwaDBoMGgwaDBoMGgwaDA0ZGgwaDA0AAgUODA0MDQwODA0MDQwODA0MDQwNDA0NDX4aDA0ZGQwOGBoMDRkaDA0ZDRkNGQ0ZGgwaCxoNGQwaDA4YGgwaDA0ZGgwaDBoMGgwaDBoMGgwaDBkNGQwaDBoMDhgaDBoMDRkNGRoMDRkNGRoMDRkZDA4YGgwOGA4YGgwNGRoMGgwaDBoMGgwaDBoMGQwaDBoMGgwaDBoMDRkaDBoMDQACBg0MDgsODA0MDQwOCw4MDQwNDA4LDgwNfhoMDRkaDA0ZGgwNGRkMDhgOGA4YDRkaDBoMGgwaDBoMDRkaDBoLDhkZDBoMGgwaDBoMGgwaDBoMGgwaDBoMGgwNGBsLGgwOGA4YGgwNGQ4YGgwNGRoMDRkaDA0YDhkaDA0YGgwaDBoMGgwaDBoMGgwaDBoMGgwaDBoMGgwNGBsLGgwNAAIGDQ0NDA0MDQwOCw4MDQwNDA4MDQwNDA59GgwOGBoMDRkaDA0ZGgwNGQ0ZDRkNGRkNGQwaDBoMGgwNGRoMGgwNGRoMGgwaDBoMGgwZDBsLGwsaDRkMGgwaDA0ZGgwaDA0ZDRkaDA0YDhgaDA4YGgwOGBoMDhgOGBoMDRkaDBoMGgwaDBoLGwwZDBoMGgwaDBoMGgwaDA0ZGgwaDA0AAgYNDA0MDgwNDA0MDgsODA0MDQwODA0MDX4aDA0ZGgwNGBoNDRgaDA4YDhgOGA4YGgwaDBoMGgwaDA0ZGgsbCw4YGgwaDBoMGgwaDBoMGgwaDBoMGgwaDBoMDRkZDBoMDhgOGBoMDhgOGBoMDRkaDA0ZGgwNGQ0YGg0NGBoMGgwaDBoMGgwaDBoMGgwaDBoMGgwZDRoLDhkaCxoMDgAF3AAAAAA==
+      - sgCEAw0ZDRkZDRkNDRkZDBoMDRkNGQ0ZDRkNGQ0ZGQ0ZDQwZDRoMGRoMDRkNGRkNGQ0NGQwaGQwNGgwZGgwNGRkNDRkZDQwaDBoZDA0ZGgwaDBkNGQ0ZDRkNGQ0ZDBoMGgwaDBoMDRkZDRkNGQ0MAAIGDQwNDA0NDA0NDA0MDQ0NDA0MDQ0MDQ1+GQ0ZDQwZDRkNGRoMDRkaDBkNDBoZDRkNDBkNGRoMGgwNGRkNGQ0MGgwZDRkNGQ0ZDRkaDBkNDRkMGgwaGQ0MGQ0ZGgwZDQ0ZDRkZDQwaDBoZDA0ZGgwNGRkNDRkMGhkNDBoZDRkMGgwaDBkNGQ0ZDRkNGQ0ZDRkMGgwNGRoMGQ0ZDQ0AAgUNDQwNDA0NDA0NDA0MDQ0MDQ0MDQwNDX4ZDRkNDRkMGgwaGQwNGRoMGgwNGRkNGQ0MGgwaGQ0ZDA0ZGQ0ZDQ0ZDRkNGQwaDBkNGRoMGgwNGQ0ZDRkZDQwaDBoZDBoMDRkNGRkNDRkNGRkMDRoZDQwZGgwNGQ0ZGQ0NGRkNGQ0ZDRkMGgwaDBkNGQ0ZDRkNGQ0ZDQwZGgwaDBkNDQACBQ0NDA0NDA0NDA0MDQ0MDQ0MDQ0MDQwNfhoMGQ0NGQ0ZDBoZDA0ZGgwaDA0ZGQ0ZDQ0ZDRkZDRkNDBkaDBoMDRkNGQ0ZDRkMGgwZGgwaDA0ZDRkNGRkNDRkMGhkNGQ0MGQ0ZGgwNGQ0ZGQ0MGhkNDBkaDA0ZDRkaDA0ZGQ0ZDRkMGg0ZDBoMGgwaDBkNGQ0ZDRkNDBoZDBoNGQwNAAIGDA0NDA0NDA0MDQ0MDQwNDQwNDQwNDA1/GQwaDA0ZDRkNGRkNDRkZDRkMDRkaDRkMDRkNGRkNGQ0MGhkMGg0MGQ0ZDRkNGQ0ZDRkZDRkMDRkNGQ0ZGgwNGQ0ZGQ0ZDQwaDBkaDA0ZDRkaDA0ZGQ0MGhkNDRkMGRoMDRkZDRkNGQ0ZDBoNGQwaDBoMGgwaDBoMGQ0NGRkNGQ0ZDQwAAgYNDA0MDQ0MDQ0MDQ0MDQ0MDQwNDQwNDH8ZDRkNDBkNGQ0ZGgwNGRkNGQ0MGhkMGgwNGQ0ZGQ0aDA0ZGQ0ZDQwaDBkNGQ0ZDRkNGRkNGQ0NGQ0ZDBkaDA0ZDRkZDRkNDRkMGhkMDRoMGhkMDRkaDA0ZGgwNGQ0ZGQwNGRoMGgwaDBoMGQ0ZDRkMGg0ZDRkMGgwaDA0ZGQ0ZDRkNDAAF3AAAAAA
   alias: "Garagem casa"
 
 ar_suite_swing:
@@ -1155,11 +1155,11 @@ botao_xiaomi_suite_02_click_2:
         {% elif states.climate.ar_condicionado_da_suite.attributes.current_temperature | int <= 24 and (states.climate.ar_condicionado_da_suite.state == 'off' or states.climate.ar_condicionado_da_suite.state == 'off') %}
           heat
         {% else %}
-          'off'
+          off
         {% endif %}
   - condition: template
     value_template: "{% if (is_state('climate.ar_condicionado_da_suite' , 'auto') or is_state('climate.ar_condicionado_da_suite' , 'cool') or is_state('climate.ar_condicionado_da_suite' , 'heat')) and is_state('input_boolean.boa_noite' , 'on') %}True{% else %}False{% endif %}"
-  - delay: 00:00:03
+  - delay: 00:00:02
   - service: script.ar_suite_display
 
 botao_xiaomi_suite_02_click_3:
@@ -1445,13 +1445,11 @@ tts_boa_noite:
             {%- if is_state('climate.ar_condicionado_da_suite', 'off') -%}
               desligado.
             {%- else -%}
-              ligado no modo 
                 {%- if is_state('climate.ar_condicionado_da_suite', 'cool') -%}
-                  resfriar
+                  ligado no modo resfriar para {{ states.climate.ar_condicionado_da_suite.attributes.temperature | int }} graus. Também desliguei o visor luminoso para não incomodar durante a noite.
                 {%- else -%}
-                  aquecer
+                  ligado no modo aquecer para {{ states.climate.ar_condicionado_da_suite.attributes.temperature | int }} graus. Também desliguei o visor luminoso para não incomodar durante a noite.
                 {%- endif -%}
-                  para {{ states.climate.ar_condicionado_da_suite.attributes.temperature | int }} graus. Também desliguei o visor luminoso para não incomodar durante a noite.
             {%- endif -%}
         {%- endmacro -%}
         {%- macro temp_amanha() -%}
@@ -1518,7 +1516,7 @@ tts_boa_noite:
             "Esta é a hora das estrelas e não da escuridão!",
             "Esta noite vai trazer sonhos lindos e a luz das estrelas vai levar você até eles. Durmam bem.",
             "Este é o momento de descansar e recuperar forças para o dia que vai nascer em breve!",
-            "Eu posso até dispensar o brilho das estrelas, pois sua luz ilumina toda minha vida. Boa noite, minha princesa!",
+            "Eu posso até dispensar o brilho das estrelas, pois sua luz ilumina toda minha vida.",
             "Já viu como a lua está sorrindo para você essa noite?",
             "Mude o modo que você olha para as coisas, e as coisas que você olha mudarão!",
             "Na hora do descanso só quero sentir que fiz tudo do meu jeito!",
@@ -1950,40 +1948,6 @@ tv_lg_dinamica_303_hdmi4:
 
 # MuvRH
 
-muvrh_desligar_tudo:
-  alias: "Desligar tudo MuvRH"
-  sequence:
-  - service: climate.set_operation_mode
-    data_template:
-      operation_mode: 'off'
-      entity_id:
-        - climate.ar_condicionado_da_entrada_203
-        - climate.ar_condicionado_da_nossa_sala
-        - climate.ar_condicionado_da_sala_303
-        - climate.ar_condicionado_da_sala_de_operacoes
-  - service: light.turn_off
-    entity_id:
-      - light.gateway_light_34ce0090940e
-      - light.muv203nossasala
-      - light.muv203operacoes
-      - light.muv203entrada
-      - light.muv203banheiro
-      - light.muv303entrada
-      - light.muv303dinamica
-      - light.muv303corredor
-      - light.303leddinamica
-      - light.muv303banheiro
-  - service: switch.turn_off
-    entity_id:
-      - switch.tv_sala_operacoes
-      - switch.muv203bebedouro
-      - switch.tv_dinamica_303
-      - switch.muv303bebedouro
-  - service: notify.TUDO
-    data:
-      title: "Alerta MuvRH"
-      message: "Todos os dispositivos e luzes da MuvRH foram desligados"
-
 muvrh_desligar_sala_203:
   alias: "Desligar tudo na sala 203"
   sequence:
@@ -2034,6 +1998,16 @@ muvrh_desligar_sala_303:
       title: "Alerta MuvRH"
       message: "Todos os dispositivos e luzes da sala 303 foram desligados"
 
+muvrh_desligar_tudo:
+  alias: "Desligar tudo na empresa"
+  sequence:
+  - service: script.muvrh_desligar_sala_203
+  - service: script.muvrh_desligar_sala_303
+  - service: notify.TUDO
+    data:
+      title: "Alerta MuvRH"
+      message: "Todos os dispositivos e luzes da MuvRH foram desligados"
+
 testes_ios:
   alias: Testes com iOS
   sequence:
@@ -2044,3 +2018,64 @@ testes_ios:
       data:
         push:
           category: "TESTES"
+
+casa_desligar_tudo_noite:
+  alias: "Desligar tudo em casa"
+  sequence:
+  - service: cover.close_cover
+    entity_id: cover.persiana_suite
+  - service_template: >
+      {% if is_state('climate.ar_condicionado_da_suite' , 'off') %}
+      {% else %}
+        script.ar_suite_display
+      {% endif %}
+  - service_template: >
+      {% if is_state('climate.ar_condicionado_da_sala' , 'off') %}
+      {% else %}
+        climate.set_operation_mode
+      {% endif %}
+    data:
+      operation_mode: 'off'
+      entity_id: climate.ar_condicionado_da_sala
+  - service: switch.turn_off
+    entity_id:
+      - switch.chuveirosuite
+#      - switch.desktop
+      - switch.toalheiro
+      - switch.tv_lg_sala
+      - switch.tv_lg_suite
+  - service: light.turn_off
+    entity_id:
+      - light.area_servico
+      - light.banheiro_social
+      - light.corredor
+      - light.cozinha
+      - light.entrada
+      - light.gateway_light_7811dcb7ea3d
+      - light.ledchaocozinha
+      - light.ledcozinhabalcao
+      - light.ledquartotv
+      - light.ledsaladesktop
+      - light.ledsalatv
+      - light.ledsuitecama
+      - light.ledsuitetv
+      - light.mesa_jantar
+  - condition: state
+    entity_id: input_boolean.visita_casa
+    state: 'off'
+  - service_template: >
+      {% if is_state('climate.ar_condicionado_do_quarto' , 'off') %}
+      {% else %}
+        climate.set_operation_mode
+      {% endif %}
+    data:
+      operation_mode: 'off'
+      entity_id: climate.ar_condicionado_do_quarto
+  - service: light.turn_off
+    entity_id:
+      - light.quarto
+      - light.ledquartotv
+  - service: switch.turn_off
+    entity_id:
+      - switch.chuveirosocial
+      - switch.tv_lg_quarto

@@ -32,6 +32,7 @@ filter:
     - input_boolean.visita_casa
     - input_boolean.entrar_muvrh
     - input_boolean.sair_muvrh
+    - input_boolean.muvrh_desligar_tudo  
     - binary_sensor.antonio
     - binary_sensor.casa_movimento
     - binary_sensor.door_window_sensor_158d0001b8671f
@@ -74,9 +75,10 @@ filter:
     - light.corredor
     - light.cozinha
     - light.entrada
-    - light.gateway_light_34ce00907e65
+    - light.gateway_light_7811dcb7ea3d
     - light.gateway_light_34ce0090940e
     - light.ledcozinhabalcao
+    - light.ledchaocozinha
     - light.ledquartotv
     - light.ledsaladesktop
     - light.ledsalatv

@@ -105,6 +105,7 @@ cozinha:
   - sensor.temperature_158d00019cec0c
   - light.cozinha
   - light.ledcozinhabalcao
+  - light.ledchaocozinha
   - light.area_servico
   name: Cozinha
   view: false
@@ -142,7 +143,7 @@ dispositivos:
 tempo:
   control: hidden
   entities:
-  - weather.yweather
+  - weather.tempo
   - sun.sun
   - sensor.dark_sky_summary
   - sensor.dark_sky_temperature
@@ -384,11 +385,11 @@ funcoes_tablet_entrada:
   - light.entrada
   - light.cozinha
   - light.ledcozinhabalcao
+  - light.ledchaocozinha
   - light.area_servico
   - light.mesa_jantar
   - light.sala_painel_desktop
   - light.sala_principal
-  - light.corredor
   name: Tablet entrada
   view: false
 
@@ -515,6 +516,7 @@ dispositivos_muvrh:
   - device_tracker.pi3b_tv_sala_operacoes
   - device_tracker.xiaomi_hub_muvrh
   - device_tracker.chromecast_sala303
+  - device_tracker.rfbridgemuvrh
   - device_tracker.rmpro_sala203
   - device_tracker.rmminioperacoes
   - device_tracker.rmminientrada203

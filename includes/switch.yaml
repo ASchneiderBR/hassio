@@ -136,7 +136,7 @@
 
     tv_dinamica_303:
       friendly_name: "Tv da sala de dinâmica"
-      value_template: "{% if is_state('binary_sensor.estado_tv_sala_operacoes', 'on') %}on{% else %}off{% endif %}"
+      value_template: "{% if is_state('binary_sensor.estado_tv_sala_dinamica', 'on') %}on{% else %}off{% endif %}"
       turn_on:
         service: script.tv_lg_dinamica_303_power_on
         entity_id: script.tv_lg_dinamica_303_power_on
@@ -185,15 +185,15 @@
   qos: 1
   retain: true
 
-- name: muv203bebedouro
-  platform: mqtt
-  state_topic: muv203bebedouro/relay/0
-  command_topic: muv203bebedouro/relay/0/set
-  payload_on: 1
-  payload_off: 0
-  availability_topic: muv203bebedouro/status
-  payload_available: 1
-  payload_not_available: 0
+- platform: mqtt
+  name: "muv203bebedouro"
+  command_topic: "cmnd/muv203bebedouro/POWER"
+  state_topic: "stat/muv203bebedouro/POWER"
+  availability_topic: "tele/muv203bebedouro/LWT"
+  payload_available: "Online"
+  payload_not_available: "Offline"
+  qos: 1
+  retain: true
 
 - platform: mqtt
   name: "muv303bebedouro"

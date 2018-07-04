@@ -249,16 +249,16 @@
     - delay: 00:01:00
     - service: alarm_control_panel.alarm_disarm
       entity_id: alarm_control_panel.alarme
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.chegar_casa
     - wait_template: "{{is_state('binary_sensor.door_window_sensor_158d0001d6851d', 'on')}}"
       timeout: 00:09:00
-    - delay: 00:00:15
+    - delay: 00:00:20
     - service_template: >
         {% if is_state('switch.tv_lg_sala', 'off') %}
           switch.turn_on
         {% endif %}
       entity_id: switch.tv_lg_sala
-    - service: input_boolean.turn_off
-      entity_id: input_boolean.chegar_casa
 
 - alias: Desligar toalheiro após 2 horas
   trigger:
@@ -315,7 +315,7 @@
   trigger:
     platform: state
     entity_id: binary_sensor.motion_sensor_158d000120af26
-    from: 'off'
+#    from: 'off'
     to: 'on'
   condition:
     condition: state
@@ -335,7 +335,7 @@
   trigger:
     platform: state
     entity_id: binary_sensor.motion_sensor_158d00016c01fd
-    from: 'off'
+#    from: 'off'
     to: 'on'
   condition:
     condition: state
@@ -356,7 +356,7 @@
   trigger:
     platform: state
     entity_id: binary_sensor.motion_sensor_158d00016da83a
-    from: 'off'
+#    from: 'off'
     to: 'on'
   condition:
     condition: state
@@ -377,7 +377,7 @@
   trigger:
     platform: state
     entity_id: binary_sensor.motion_sensor_158d00015b6c81
-    from: 'off'
+#    from: 'off'
     to: 'on'
   condition:
     condition: state
@@ -397,7 +397,7 @@
   trigger:
     platform: state
     entity_id: binary_sensor.motion_sensor_158d0001225607
-    from: 'off'
+#    from: 'off'
     to: 'on'
   condition:
     condition: and
@@ -422,7 +422,7 @@
   trigger:
     platform: state
     entity_id: binary_sensor.motion_sensor_158d0001231d4d
-    from: 'off'
+#    from: 'off'
     to: 'on'
   condition:
     condition: state
@@ -442,7 +442,7 @@
   trigger:
     platform: state
     entity_id: binary_sensor.door_window_sensor_158d0001d6851d
-    from: 'off'
+#    from: 'off'
     to: 'on'
   condition:
     condition: state
@@ -509,7 +509,7 @@
     - service_template: >
         {% if is_state('climate.ar_condicionado_da_suite' , 'off') %}
         {% else %}
-        climate.set_operation_mode
+          climate.set_operation_mode
         {% endif %}
       data:
         entity_id: climate.ar_condicionado_da_suite
@@ -531,26 +531,12 @@
       data:
         title: "Automação"
         message: "Aprontando a casa. Boa noite!"
-    - service: switch.turn_off
-      entity_id:
-        - switch.tv_lg_suite
-    - service: light.turn_off
-      entity_id:
-        - light.ledsuitetv
-        - light.ledsuitecama
-    - service: cover.close_cover
-      entity_id: cover.persiana_suite
     - service: automation.turn_off
       entity_id:
         - automation.luzes_da_casa__suite
         - automation.luzes_da_casa__quarto
-    - service: automation.turn_on
-      entity_id: automation.luzes_da_casa__sala
-    - service_template: >
-        {% if is_state('climate.ar_condicionado_da_suite' , 'off') %}
-        {% else %}
-          script.ar_suite_display
-        {% endif %}
+    - service: script.casa_desligar_tudo_noite
+    - wait_template: "{{is_state('script.casa_desligar_tudo_noite', 'off')}}"
     - service: script.tts_boa_noite
 
 - alias: Rotina - Ações ao por do sol
@@ -569,7 +555,7 @@
         - automation.luzes_da_casa__suite
         - automation.luzes_da_casa__sala
         - automation.luzes_da_casa__entrando_em_casa
-        - automation.muvrh_203__luz_da_entrada
+#        - automation.muvrh_203__luz_da_entrada
         - automation.muvrh_203__luz_do_banheiro
         - automation.muvrh_203__luz_da_sala_de_operacoes
         - automation.muvrh_203__luz_da_nossa_sala
@@ -593,7 +579,7 @@
         - automation.luzes_da_casa__suite
         - automation.luzes_da_casa__sala
         - automation.luzes_da_casa__entrando_em_casa
-        - automation.muvrh_203__luz_da_entrada
+#        - automation.muvrh_203__luz_da_entrada
         - automation.muvrh_203__luz_do_banheiro
         - automation.muvrh_203__luz_da_sala_de_operacoes
         - automation.muvrh_203__luz_da_nossa_sala
@@ -783,6 +769,21 @@
           script.rf_chuveiro_social_toggle
         {% endif %}
 
+- alias: Automação - RF Bridge MuvRH
+  trigger:
+    platform: mqtt
+    topic: tele/rfbridgemuvrh/RESULT
+  condition:
+    condition: template
+    value_template: "{% if trigger.payload_json.RfReceived.RfKey == 'None' %}False{% else %}True{% endif %}"
+  action:
+    - service_template: >
+        {% if trigger.payload_json.RfReceived.RfKey == 1 %}
+          script.rf_chegar_no_trabalho
+        {% elif trigger.payload_json.RfReceived.RfKey == 2 %}
+          script.rf_sair_no_trabalho
+        {% endif %}
+
 - alias: Solicitar status celulares
   trigger:
     platform: time
@@ -808,6 +809,7 @@
         entity_id: light.ledsaladesktop
 
 - alias: MuvRH 203 - Ligar tudo quando primeiro chegar
+  initial_state: True
   trigger:
     platform: state
     entity_id: binary_sensor.door_window_sensor_158d0001bf2a09
@@ -842,10 +844,11 @@
       entity_id: light.muv203operacoes
 
 - alias: MuvRH 203 - Luz da entrada
+  initial_state: True
   trigger:
     platform: state
     entity_id: binary_sensor.motion_sensor_158d0001ad6b83
-    from: 'off'
+#    from: 'off'
     to: 'on'
   condition:
     condition: state
@@ -854,18 +857,18 @@
   action:
     - service: light.turn_on
       entity_id: light.muv203entrada
-    - wait_template: "{% if states.binary_sensor.motion_sensor_158d0001ad6b83.attributes['No motion since'] | int >= states.input_select.tempo_muvrh_203_entrada.state | int and states.binary_sensor.motion_sensor_158d0001ad6b83.state == 'off' %}True{% else %}False{% endif %}"
-    - condition: state
-      entity_id: light.muv203entrada
-      state: 'on'
-    - service: light.turn_off
-      entity_id: light.muv203entrada
+#    - wait_template: "{% if states.binary_sensor.motion_sensor_158d0001ad6b83.attributes['No motion since'] | int >= states.input_select.tempo_muvrh_203_entrada.state | int and states.binary_sensor.motion_sensor_158d0001ad6b83.state == 'off' %}True{% else %}False{% endif %}"
+#    - condition: state
+#      entity_id: light.muv203entrada
+#      state: 'on'
+#    - service: light.turn_off
+#      entity_id: light.muv203entrada
 
 - alias: MuvRH 203 - Luz do banheiro
   trigger:
     platform: state
     entity_id: binary_sensor.motion_sensor_158d0001e43ef1
-    from: 'off'
+#    from: 'off'
     to: 'on'
   condition:
     condition: state
@@ -885,7 +888,7 @@
   trigger:
     platform: state
     entity_id: binary_sensor.motion_sensor_158d0001e420d0
-    from: 'off'
+#    from: 'off'
     to: 'on'
   condition:
     condition: state
@@ -894,18 +897,18 @@
   action:
     - service: light.turn_on
       entity_id: light.muv203operacoes
-    - wait_template: "{% if states.binary_sensor.motion_sensor_158d0001e420d0.attributes['No motion since'] | int >= states.input_select.tempo_muvrh_203_salaoperacoes.state | int and states.binary_sensor.motion_sensor_158d0001e420d0.state == 'off' %}True{% else %}False{% endif %}"
-    - condition: state
-      entity_id: light.muv203operacoes
-      state: 'on'
-    - service: light.turn_off
-      entity_id: light.muv203operacoes
+#    - wait_template: "{% if states.binary_sensor.motion_sensor_158d0001e420d0.attributes['No motion since'] | int >= states.input_select.tempo_muvrh_203_salaoperacoes.state | int and states.binary_sensor.motion_sensor_158d0001e420d0.state == 'off' %}True{% else %}False{% endif %}"
+#    - condition: state
+#      entity_id: light.muv203operacoes
+#      state: 'on'
+#    - service: light.turn_off
+#      entity_id: light.muv203operacoes
 
 - alias: MuvRH 203 - Luz da nossa sala
   trigger:
     platform: state
     entity_id: binary_sensor.motion_sensor_158d0001e02f9a
-    from: 'off'
+#    from: 'off'
     to: 'on'
   condition:
     condition: state
@@ -914,18 +917,18 @@
   action:
     - service: light.turn_on
       entity_id: light.muv203nossasala
-    - wait_template: "{% if states.binary_sensor.motion_sensor_158d0001e02f9a.attributes['No motion since'] | int >= states.input_select.tempo_muvrh_203_nossasala.state | int and states.binary_sensor.motion_sensor_158d0001e02f9a.state == 'off' %}True{% else %}False{% endif %}"
-    - condition: state
-      entity_id: light.muv203nossasala
-      state: 'on'
-    - service: light.turn_off
-      entity_id: light.muv203nossasala
+#    - wait_template: "{% if states.binary_sensor.motion_sensor_158d0001e02f9a.attributes['No motion since'] | int >= states.input_select.tempo_muvrh_203_nossasala.state | int and states.binary_sensor.motion_sensor_158d0001e02f9a.state == 'off' %}True{% else %}False{% endif %}"
+#    - condition: state
+#      entity_id: light.muv203nossasala
+#      state: 'on'
+#    - service: light.turn_off
+#      entity_id: light.muv203nossasala
 
 - alias: MuvRH 303 - Luz da entrada
   trigger:
     platform: state
     entity_id: binary_sensor.motion_sensor_158d0001e44035
-    from: 'off'
+#    from: 'off'
     to: 'on'
   condition:
     condition: state
@@ -934,18 +937,18 @@
   action:
     - service: light.turn_on
       entity_id: light.muv303entrada
-    - wait_template: "{% if states.binary_sensor.motion_sensor_158d0001e44035.attributes['No motion since'] | int >= states.input_select.tempo_muvrh_303_entrada.state | int and states.binary_sensor.motion_sensor_158d0001e44035.state == 'off' %}True{% else %}False{% endif %}"
-    - condition: state
-      entity_id: light.muv303entrada
-      state: 'on'
-    - service: light.turn_off
-      entity_id: light.muv303entrada
+#    - wait_template: "{% if states.binary_sensor.motion_sensor_158d0001e44035.attributes['No motion since'] | int >= states.input_select.tempo_muvrh_303_entrada.state | int and states.binary_sensor.motion_sensor_158d0001e44035.state == 'off' %}True{% else %}False{% endif %}"
+#    - condition: state
+#      entity_id: light.muv303entrada
+#      state: 'on'
+#    - service: light.turn_off
+#      entity_id: light.muv303entrada
 
 - alias: MuvRH 303 - Luz da dinâmica
   trigger:
     platform: state
     entity_id: binary_sensor.motion_sensor_158d0001a24bdc
-    from: 'off'
+#    from: 'off'
     to: 'on'
   condition:
     condition: state
@@ -954,12 +957,12 @@
   action:
     - service: light.turn_on
       entity_id: light.muv303dinamica
-    - wait_template: "{% if states.binary_sensor.motion_sensor_158d0001a24bdc.attributes['No motion since'] | int >= states.input_select.tempo_muvrh_303_dinamica.state | int and states.binary_sensor.motion_sensor_158d0001a24bdc.state == 'off' %}True{% else %}False{% endif %}"
-    - condition: state
-      entity_id: light.muv303dinamica
-      state: 'on'
-    - service: light.turn_off
-      entity_id: light.muv303dinamica
+#    - wait_template: "{% if states.binary_sensor.motion_sensor_158d0001a24bdc.attributes['No motion since'] | int >= states.input_select.tempo_muvrh_303_dinamica.state | int and states.binary_sensor.motion_sensor_158d0001a24bdc.state == 'off' %}True{% else %}False{% endif %}"
+#    - condition: state
+#      entity_id: light.muv303dinamica
+#      state: 'on'
+#    - service: light.turn_off
+#      entity_id: light.muv303dinamica
 
 - alias: MuvRH 303 - Luz do banheiro
   trigger:
@@ -981,30 +984,30 @@
     - service: light.turn_off
       entity_id: light.muv303banheiro
 
-- alias: MuvRH 203 - Luz temporizador entrada
-  trigger:
-    platform: state
-    entity_id: binary_sensor.door_window_sensor_158d0001bf2a09
-    from: 'off'
-    to: 'on'
-  condition:
-    condition: and
-    conditions:
-      - condition: state
-        entity_id: binary_sensor.motion_sensor_158d0001ad6b83
-        state: 'off'
-      - condition: state
-        entity_id: light.muv203entrada
-        state: 'off'
-  action:
-    - service: light.turn_on
-      entity_id: light.muv203entrada
-    - delay: 00:01:00
-    - condition: state
-      entity_id: light.muv203entrada
-      state: 'on'
-    - service: light.turn_off
-      entity_id: light.muv203entrada
+#- alias: MuvRH 203 - Luz temporizador entrada
+#  trigger:
+#    platform: state
+#    entity_id: binary_sensor.door_window_sensor_158d0001bf2a09
+##    from: 'off'
+#    to: 'on'
+#  condition:
+#    condition: and
+#    conditions:
+#      - condition: state
+#        entity_id: binary_sensor.motion_sensor_158d0001ad6b83
+#        state: 'off'
+#      - condition: state
+#        entity_id: light.muv203entrada
+#        state: 'off'
+#  action:
+#    - service: light.turn_on
+#      entity_id: light.muv203entrada
+#    - delay: 00:01:00
+#    - condition: state
+#      entity_id: light.muv203entrada
+#      state: 'on'
+#    - service: light.turn_off
+#      entity_id: light.muv203entrada
 
 - alias: Sensores - Portas - MuvRH
   trigger:
@@ -1157,14 +1160,12 @@
         - light.gateway_light_7811dcb7ea3d
         - light.gateway_light_34ce0090940e
         - light.ledcozinhabalcao
+        - light.ledchaocozinha
         - light.ledquartotv
         - light.ledsaladesktop
         - light.ledsalatv
         - light.ledsuitecama
         - light.ledsuitetv
-        - light.luzes_principais_cozinha
-        - light.luzes_principais_quarto
-        - light.luzes_principais_sala
         - light.mesa_jantar
         - light.muv203banheiro
         - light.muv203entrada
@@ -1242,6 +1243,8 @@
         - device_tracker.camera_cozinha
         - device_tracker.google_home_mini_sala
         - device_tracker.google_home_mini_suite
+        - device_tracker.rfbridgecasa
+        - device_tracker.rfbridgemuvrh
       to: 'not_home'
       for:
         minutes: 15
@@ -1314,3 +1317,15 @@
         {% elif trigger.event.data.actionName == 'TESTE_2' %}
           script.cubo_sala_persiana
         {% endif %}
+
+- alias: MuvRH - Desligar tudo
+  initial_state: True
+  trigger:
+    platform: state
+    entity_id: input_boolean.muvrh_desligar_tudo
+    to: 'on'
+  action:
+    - service: script.muvrh_desligar_tudo
+    - delay: 00:00:10
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.muvrh_desligar_tudo

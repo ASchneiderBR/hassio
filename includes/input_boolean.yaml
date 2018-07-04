@@ -29,3 +29,8 @@ bom_dia:
 boa_noite:
   name: Boa noite
   icon: mdi:weather-night
+
+muvrh_desligar_tudo:
+  name: Desligar tudo na MuvRH
+  initial: off
+  icon: mdi:flash-off
