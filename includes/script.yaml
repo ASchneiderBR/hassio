@@ -2003,10 +2003,6 @@ muvrh_desligar_tudo:
   sequence:
   - service: script.muvrh_desligar_sala_203
   - service: script.muvrh_desligar_sala_303
-  - service: notify.TUDO
-    data:
-      title: "Alerta MuvRH"
-      message: "Todos os dispositivos e luzes da MuvRH foram desligados"
 
 testes_ios:
   alias: Testes com iOS
@@ -2079,3 +2075,14 @@ casa_desligar_tudo_noite:
     entity_id:
       - switch.chuveirosocial
       - switch.tv_lg_quarto
+
+speed_test:
+  alias: Teste de velocidade da internet
+  sequence:
+  - service: sensor.update_fastdotcom
+  - wait_template: "{% if as_timestamp(now()) | int - as_timestamp(states.sensor.fastcom_download.last_updated) | int <= 5 %}True{% else %}False{% endif %}"
+    timeout: 00:02:00
+  - service: notify.ios_iphone_de_antonio
+    data_template:
+      title: "Sistema"
+      message: "A velocidade da internet em casa é de {{ states.sensor.fastcom_download.state | int}} Mbit/s"

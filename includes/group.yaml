@@ -167,6 +167,7 @@ sensorescasa:
   control: hidden
   entities:
   - sensor.fastcom_download
+  - script.speed_test
   - sensor.luzes_ligadas
   - sensor.interruptores_ligados
   - binary_sensor.door_window_sensor_158d0001d6851d

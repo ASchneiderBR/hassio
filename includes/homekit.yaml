@@ -113,3 +113,4 @@ filter:
     - switch.tv_lg_sala
     - switch.tv_lg_suite
     - switch.tv_sala_operacoes
+    - script.speed_test

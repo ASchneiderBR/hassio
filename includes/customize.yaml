@@ -494,6 +494,9 @@ script.ar_quarto_display:
 script.ar_sala_display:
   icon: mdi:lightbulb-on-outline
 
+script.speed_test:
+  icon: mdi:speedometer
+
 binary_sensor.door_window_sensor_158d0001bf2a09:
   friendly_name: "Entrada sala 203"
   icon: mdi:glassdoor
