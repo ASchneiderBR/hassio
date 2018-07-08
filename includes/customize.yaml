@@ -707,3 +707,9 @@ sensor.dark_sky_overnight_low_temperature:
 
 sensor.dark_sky_overnight_low_temperature_1:
   friendly_name: "Temperatura mínima amanhã"
+
+input_select.estados_de_succao:
+  icon: mdi:speedometer
+  
+input_select.zonas_de_aspiracao:
+  icon: mdi:map-marker

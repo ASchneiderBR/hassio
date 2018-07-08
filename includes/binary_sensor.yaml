@@ -46,8 +46,16 @@
       device_class: occupancy
 
 - platform: mqtt
-  name: "Estado TV sala operações"
+  name: "Estado TV sala dinâmica"
   state_topic: "tele/muv303tvdinamica/LWT"
+  value_template: "{{ value }}"
+  payload_on: "Online"
+  payload_off: "Offline"
+  device_class: power
+
+- platform: mqtt
+  name: "Estado TV sala operações"
+  state_topic: "tele/muv203tvoperacoes/LWT"
   value_template: "{{ value }}"
   payload_on: "Online"
   payload_off: "Offline"

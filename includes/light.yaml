@@ -204,6 +204,32 @@
   payload_available: "Online"
   payload_not_available: "Offline"
 
+- platform: mqtt
+  name: "ledchaocozinha"
+  effect_list:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+  state_topic: "stat/ledchaocozinha/POWER"
+  command_topic: "cmnd/ledchaocozinha/POWER"
+  brightness_state_topic: "cmnd/ledchaocozinha/Dimmer"
+  brightness_command_topic: "cmnd/ledchaocozinha/Dimmer"
+  brightness_scale: 100
+  rgb_state_topic: "cmnd/ledchaocozinha/Color"
+  rgb_command_topic: "cmnd/ledchaocozinha/Color"
+  effect_command_topic: "cmnd/ledchaocozinha/Scheme"
+  effect_state_topic: "cmnd/ledchaocozinha/Scheme"
+  state_value_template: "{{ value }}"
+  brightness_value_template: "{{ value }}"
+  effect_value_template: "{{ value }}"
+  retain: false
+  qos: 1
+  availability_topic: "tele/ledchaocozinha/LWT"
+  payload_available: "Online"
+  payload_not_available: "Offline"
+
 - platform: flux_led
   devices:
     192.168.1.30:
@@ -328,19 +354,21 @@
   entities:
     - light.ledsalatv
     - light.ledsaladesktop
-    - light.gateway_light_34ce00907e65
+    - light.gateway_light_7811dcb7ea3d
 
 - platform: group
   name: Luzes principais cozinha
   entities:
     - light.cozinha
     - light.ledcozinhabalcao
+    - light.ledchaocozinha
 
 - platform: group
   name: Todas as luzes cozinha
   entities:
     - light.cozinha
     - light.ledcozinhabalcao
+    - light.ledchaocozinha
     - light.area_servico
 
 - platform: group

@@ -52,6 +52,10 @@
         topic: "cmnd/sonoffs/power"
         qos: 0
         retain: 0
+    - service: input_select.select_option
+      entity_id: input_select.estados_de_succao
+      data_template:
+        option: "Balanceado"
     - service: cover.close_cover
       entity_id:
         - cover.garagem_muvrh_interno
@@ -71,7 +75,6 @@
         - automation.luzes_da_casa__suite
         - automation.luzes_da_casa__sala
         - automation.luzes_da_casa__entrando_em_casa
-        - automation.muvrh_203__luz_da_entrada
         - automation.muvrh_203__luz_do_banheiro
         - automation.muvrh_203__luz_da_sala_de_operacoes
         - automation.muvrh_203__luz_da_nossa_sala
@@ -90,7 +93,7 @@
     - service: persistent_notification.create
       data:
         message: "Hassio iniciado com sucesso às {{now().strftime('%H:%M')}}"
-        title: "Sistema reiniciado"
+        title: "Sistema"
     - service: notify.ios_iphone_de_antonio
       data:
         title: "Sistema"
@@ -1244,7 +1247,7 @@
         - device_tracker.google_home_mini_sala
         - device_tracker.google_home_mini_suite
         - device_tracker.rfbridgecasa
-        - device_tracker.rfbridgemuvrh
+        - device_tracker.aspirador_xiaomi
       to: 'not_home'
       for:
         minutes: 15
@@ -1256,10 +1259,12 @@
         - device_tracker.camera_04
         - device_tracker.camera_05
         - device_tracker.xiaomi_hub_muvrh
+        - device_tracker.rfbridgemuvrh
         - device_tracker.rmpro_sala203
         - device_tracker.rmminientrada203
         - device_tracker.rmminioperacoes
         - device_tracker.rmminisala303
+        - device_tracker.chromecast_sala303
       to: 'not_home'
       for:
         minutes: 15

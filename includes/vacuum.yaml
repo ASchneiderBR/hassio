@@ -1,0 +1,4 @@
+- platform: xiaomi_miio
+  name: Aspirador
+  host: 192.168.1.55
+  token: !secret RoboRock_token

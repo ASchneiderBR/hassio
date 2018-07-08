@@ -145,6 +145,20 @@
         entity_id: script.tv_lg_dinamica_303_power_off
       icon_template: mdi:television
 
+    aspirador:
+      friendly_name: "Aspirador"
+      value_template: "{{ states.vacuum.aspirador.state }}"
+      turn_on:
+        service: input_select.select_option
+        entity_id: input_select.zonas_de_aspiracao
+        data_template:
+          option: "Casa Toda"
+      turn_off:
+        service: vacuum.turn_off
+        data:
+          entity_id: vacuum.aspirador
+      icon_template: mdi:robot-vacuum
+
 - platform: mqtt
   name: "Toalheiro"
   command_topic: "cmnd/toalheiro/POWER"

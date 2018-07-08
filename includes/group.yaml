@@ -4,6 +4,7 @@ default_view:
   - group.pessoas
   - group.tempo
   - group.sistema
+  - group.aspirador
   - group.dispositivos
   - group.celulares
   - group.sensorescasa
@@ -12,8 +13,7 @@ default_view:
   - group.google_home_casa
   - group.spotify_player
   - group.spotify_controles
-  - group.all_automations
-  - camera.teste
+#  - group.all_automations
   name: Casa
   icon: mdi:home
 
@@ -127,14 +127,13 @@ dispositivos:
   - device_tracker.google_home_mini_sala
   - device_tracker.google_home_mini_suite
   - device_tracker.xiaomi_hub_casa
+  - device_tracker.aspirador_xiaomi
   - device_tracker.rfbridgecasa
   - device_tracker.tabletaut
   - device_tracker.ipad_casa
-  - device_tracker.ipod
   - device_tracker.rmprosuite
   - device_tracker.rmminisala
   - device_tracker.rmminiquarto
-  - device_tracker.impressorahpcasa
   - device_tracker.camera_sala
   - device_tracker.camera_cozinha
   name: Dispositivos
@@ -225,16 +224,16 @@ alarme:
   name: Alarme
   view: false
 
-scripts:
-  control: hidden
-  entities:
-  - group.scripts_tv_suite
-  - group.scripts_tv_quarto
-  - group.scripts_tv_sala
-  - group.scripts_home_sala
-  - group.scripts_garagem_casa
-  name: Scripts
-  view: true
+#scripts:
+#  control: hidden
+#  entities:
+#  - group.scripts_tv_suite
+#  - group.scripts_tv_quarto
+#  - group.scripts_tv_sala
+#  - group.scripts_home_sala
+#  - group.scripts_garagem_casa
+#  name: Scripts
+#  view: true
 
 tvs:
   control: hidden
@@ -406,6 +405,18 @@ casa_movimento:
   name: Movimento em casa
   view: false
 
+aspirador:
+  control: hidden
+  entities:
+  - vacuum.aspirador
+  - sensor.xiaomi_status
+  - sensor.xiaomi_battery_level
+  - input_select.estados_de_succao
+  - input_select.zonas_de_aspiracao
+
+  name: Aspirador Xiaomi
+  view: false
+
 automacoes:
   entities:
   - group.automacoes_luzes_casa
@@ -522,7 +533,6 @@ dispositivos_muvrh:
   - device_tracker.rmminioperacoes
   - device_tracker.rmminientrada203
   - device_tracker.rmminisala303
-  - device_tracker.camera_entrevistas
   - device_tracker.celular_branco
   - device_tracker.celular_motog5s_muvrh
   - device_tracker.impressora_canon

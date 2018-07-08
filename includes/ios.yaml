@@ -15,3 +15,19 @@ push:
           authenticationRequired: yes
           destructive: no
           behavior: 'default'
+
+    - name: Testes
+      identifier: 'TESTES'
+      actions:
+        - identifier: 'TESTE_1'
+          title: 'Luz'
+          activationMode: 'background'
+          authenticationRequired: yes
+          destructive: yes
+          behavior: 'default'
+        - identifier: 'TESTE_2'
+          title: 'Persiana'
+          activationMode: 'background'
+          authenticationRequired: yes
+          destructive: no
+          behavior: 'default'

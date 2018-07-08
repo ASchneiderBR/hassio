@@ -89,6 +89,10 @@ exclude:
     - sensor.spotify_shuffle
     - sensor.spotify_source
     - sensor.spotify_volume
+    - sensor.xiaomi_main_brush_left
+    - sensor.xiaomi_side_brush_left
+    - sensor.xiaomi_filter_left
+    - sensor.xiaomi_suction
 include:
   entities:
     - group.pessoas

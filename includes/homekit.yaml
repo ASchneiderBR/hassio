@@ -34,6 +34,7 @@ filter:
     - input_boolean.sair_muvrh
     - input_boolean.muvrh_desligar_tudo  
     - binary_sensor.antonio
+    - binary_sensor.roberta
     - binary_sensor.casa_movimento
     - binary_sensor.door_window_sensor_158d0001b8671f
     - binary_sensor.door_window_sensor_158d0001bf2a09
@@ -53,7 +54,6 @@ filter:
     - binary_sensor.motion_sensor_158d0001e420d0
     - binary_sensor.motion_sensor_158d0001e43ef1
     - binary_sensor.motion_sensor_158d0001e44035
-    - binary_sensor.roberta
     - sensor.temperature_158d00019cec0c
     - alarm_control_panel.alarme
     - climate.ar_condicionado_da_entrada_203
@@ -98,6 +98,7 @@ filter:
     - light.suite_banheiro
     - light.suite_principal
     - switch.automacoes_luzes
+    - switch.aspirador
     - switch.chuveirosocial
     - switch.chuveirosuite
     - switch.desktop
@@ -114,3 +115,9 @@ filter:
     - switch.tv_lg_suite
     - switch.tv_sala_operacoes
     - script.speed_test
+    - script.aspirador_homekit_zona_toda_casa
+    - script.aspirador_homekit_zona_sala
+    - script.aspirador_homekit_zona_mesa_jantar
+    - script.aspirador_homekit_zona_entrada
+    - script.aspirador_homekit_zona_cozinha
+    - script.aspirador_homekit_zona_quartos

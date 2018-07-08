@@ -1,0 +1,426 @@
+sensor:
+
+  - platform: template
+    sensors:
+      xiaomi_status:
+        entity_id: vacuum.aspirador
+        value_template: >
+            {% if states.vacuum.aspirador.attributes.status == "Charging" %}
+              Carregando
+            {% elif states.vacuum.aspirador.attributes.status == "Cleaning" %}
+              Limpando
+            {% elif states.vacuum.aspirador.attributes.status == "Returning home" %}
+              Voltando para a base
+            {% elif states.vacuum.aspirador.attributes.status == "Zoned cleaning" %}
+              Limpando zona
+            {% elif states.vacuum.aspirador.attributes.status == "Manual mode" %}
+              Modo manual
+            {% elif states.vacuum.aspirador.attributes.status == "Going to target" %}
+              Indo até o local
+            {% elif states.vacuum.aspirador.attributes.status == "Charger disconnected" %}
+              Parado
+            {% elif states.vacuum.aspirador.attributes.status == "Error" %}
+              Erro
+            {% elif states.vacuum.aspirador.attributes.status == "Unknown" %}
+              Desconhecido
+            {% elif states.vacuum.aspirador.attributes.status == "Idle" %}
+              Parado
+            {% else %}
+              {{ states.vacuum.aspirador.attributes.status }}
+            {%- endif %}
+        friendly_name: 'Estado do aspirador'
+        icon_template: mdi:altimeter
+
+      xiaomi_battery_level:
+        entity_id: vacuum.aspirador
+        friendly_name: 'Bateria do aspirador'
+        value_template: '{{ states.vacuum.aspirador.attributes.battery_level | float | int }}'
+        unit_of_measurement: '%'
+        device_class: battery
+
+input_select:
+  
+  estados_de_succao:
+    name: 'Tipo de aspiração'
+    initial: Balanceado
+    options:
+      - Silencioso
+      - Balanceado
+      - Turbo
+      - Turbo máximo
+
+  zonas_de_aspiracao:
+    name: Qual a zona a aspirar?
+    options:
+      - Escolher zona
+      - Casa toda
+      - Sala inteira
+      - Tapete
+      - Mesa de jantar
+      - Entrada
+      - Cozinha
+      - Banheiro social
+      - Banheiro da suíte
+      - Quarto
+      - Suite
+      - Suíte mais banheiro
+      - Quartos e banheiros
+
+automation:
+
+#Coloca o aspirador em modo silencioso    
+  - alias: Aspirador - Modo de aspiração
+    trigger:
+      platform: state
+      entity_id: input_select.estados_de_succao
+    action:
+      - service_template: >
+          {% if trigger.to_state.state == 'Silencioso' %}
+            script.aspirador_set_quiet
+          {% elif trigger.to_state.state == 'Balanceado' %}
+            script.aspirador_set_balanced
+          {% elif trigger.to_state.state == 'Turbo' %}
+            script.aspirador_set_turbo
+          {% elif trigger.to_state.state == 'Turbo máximo' %}
+            script.aspirador_set_max
+          {% endif %}
+  
+#Escolher a zona a aspirar
+
+  - alias: Aspirador - Escolher a zona para aspirar
+    hide_entity: True
+    trigger:
+      platform: state
+      entity_id: input_select.zonas_de_aspiracao
+      from: 'Escolher zona'
+    action:
+      - service_template: >
+          {% if states.input_select.zonas_de_aspiracao.state == "Casa Toda" %}
+            script.aspirador_zona_casa_toda
+          {% elif states.input_select.zonas_de_aspiracao.state == "Sala inteira" %}
+            script.aspirador_zona_sala_inteira
+          {% elif states.input_select.zonas_de_aspiracao.state == "Tapete" %}
+            script.aspirador_zona_tapete
+          {% elif states.input_select.zonas_de_aspiracao.state == "Mesa de jantar" %}
+            script.aspirador_zona_mesa_jantar
+          {% elif states.input_select.zonas_de_aspiracao.state == "Entrada" %}
+            script.aspirador_zona_entrada
+          {% elif states.input_select.zonas_de_aspiracao.state == "Cozinha" %}
+            script.aspirador_zona_cozinha
+          {% elif states.input_select.zonas_de_aspiracao.state == "Banheiro social" %}
+            script.aspirador_zona_banheiro_social
+          {% elif states.input_select.zonas_de_aspiracao.state == "Banheiro da suíte" %}
+            script.aspirador_zona_banheiro_suite
+          {% elif states.input_select.zonas_de_aspiracao.state == "Quarto" %}
+            script.aspirador_zona_quarto
+          {% elif states.input_select.zonas_de_aspiracao.state == "Suite" %}
+            script.aspirador_zona_suite
+          {% elif states.input_select.zonas_de_aspiracao.state == "Suíte mais banheiro" %}
+            script.aspirador_zona_suite_e_banheiro
+          {% elif states.input_select.zonas_de_aspiracao.state == "Quartos e banheiros" %}
+            script.aspirador_zona_quartos_e_banheiros
+          {% else %}
+          {% endif %}
+      - delay: 00:01:00
+      - wait_template: "{{is_state('sensor.xiaomi_status', 'Carregando')}}"
+      - delay: 00:00:03
+      - service: input_select.select_option
+        entity_id: input_select.zonas_de_aspiracao
+        data_template:
+          option: "Escolher zona"
+      - service: input_select.select_option
+        entity_id: input_select.estados_de_succao
+        data_template:
+          option: "Balanceado"
+
+# MEUS
+
+  - alias: Aspirador - Avisar quando terminar
+    initial_state: True
+    trigger:
+      - platform: state
+        entity_id: sensor.xiaomi_status
+        to: 'Parado'
+      - platform: state
+        entity_id: sensor.xiaomi_status
+        to: 'Carregando'
+      - platform: state
+        entity_id: sensor.xiaomi_status
+        to: 'Erro'
+    action:
+      - service_template: >
+          {% if trigger.to_state.state == 'Parado' %}
+            script.aspirador_alerta_parado
+          {% elif trigger.to_state.state == 'Carregando' %}
+            script.aspirador_alerta_carregando
+          {% elif trigger.to_state.state == 'Erro' %}
+            script.aspirador_alerta_erro
+          {% endif %}
+
+script:
+
+  aspirador_set_quiet:
+    sequence:
+      service: vacuum.set_fan_speed
+      data:
+        entity_id: vacuum.aspirador
+        fan_speed: Quiet
+
+  aspirador_set_balanced:
+    sequence:
+      service: vacuum.set_fan_speed
+      data:
+        entity_id: vacuum.aspirador
+        fan_speed: Balanced
+
+  aspirador_set_turbo:
+    sequence:
+      service: vacuum.set_fan_speed
+      data:
+        entity_id: vacuum.aspirador
+        fan_speed: Turbo
+ 
+  aspirador_set_max:
+    sequence:
+      service: vacuum.set_fan_speed
+      data:
+        entity_id: vacuum.aspirador
+        fan_speed: Max
+
+# Zonas
+
+  aspirador_zona_casa_toda:
+    sequence:
+    - service: homeassistant.turn_on
+      data:
+        entity_id: vacuum.aspirador
+    - service: script.aspirador_alerta_iniciando
+
+  aspirador_zona_sala_inteira:
+    sequence:
+    - service: vacuum.send_command
+      data:
+        entity_id: vacuum.aspirador
+        command: app_zoned_clean
+        params: [[22674,21998,26074,31348,1]]
+    - service: script.aspirador_alerta_iniciando
+
+  aspirador_zona_tapete:
+    sequence:
+    - service: vacuum.send_command
+      data:
+        entity_id: vacuum.aspirador
+        command: app_zoned_clean
+        params: [[23746,23540,25096,25240,2]]
+    - service: script.aspirador_alerta_iniciando
+
+  aspirador_zona_mesa_jantar:
+    sequence:
+    - service: vacuum.send_command
+      data:
+        entity_id: vacuum.aspirador
+        command: app_zoned_clean
+        params: [[23674,26527,25774,28827,1]]
+    - service: script.aspirador_alerta_iniciando
+
+  aspirador_zona_entrada:
+    sequence:
+    - service: vacuum.send_command
+      data:
+        entity_id: vacuum.aspirador
+        command: app_zoned_clean
+        params: [[23759,29577,24809,31277,1]]
+    - service: script.aspirador_alerta_iniciando
+
+  aspirador_zona_cozinha:
+    sequence:
+    - service: vacuum.send_command
+      data:
+        entity_id: vacuum.aspirador
+        command: app_zoned_clean
+        params: [[18877,29579,23527,31279,1]]
+    - service: script.aspirador_alerta_iniciando
+
+  aspirador_zona_banheiro_social:
+    sequence:
+    - service: input_select.select_option
+      entity_id: input_select.estados_de_succao
+      data_template:
+        option: "Turbo"
+    - service: vacuum.send_command
+      data:
+        entity_id: vacuum.aspirador
+        command: app_zoned_clean
+        params: [[19420,25570,21170,26720,2]]
+    - service: script.aspirador_alerta_iniciando
+
+  aspirador_zona_banheiro_suite:
+    sequence:
+    - service: vacuum.send_command
+      data:
+        entity_id: vacuum.aspirador
+        command: app_zoned_clean
+        params: [[19437,24167,21187,25317,2]]
+    - service: script.aspirador_alerta_iniciando
+
+  aspirador_zona_quarto:
+    sequence:
+    - service: vacuum.send_command
+      data:
+        entity_id: vacuum.aspirador
+        command: app_zoned_clean
+        params: [[18475,26894,21875,29294,1]]
+    - service: script.aspirador_alerta_iniciando
+
+  aspirador_zona_suite:
+    sequence:
+    - service: vacuum.send_command
+      data:
+        entity_id: vacuum.aspirador
+        command: app_zoned_clean
+        params: [[18691,20849,22741,24099,1]]
+    - service: script.aspirador_alerta_iniciando
+
+  aspirador_zona_suite_e_banheiro:
+    sequence:
+    - service: vacuum.send_command
+      data:
+        entity_id: vacuum.aspirador
+        command: app_zoned_clean
+        params: [[18561,20733,22811,25383,1]]
+    - service: script.aspirador_alerta_iniciando
+
+  aspirador_zona_quartos_e_banheiros:
+    sequence:
+    - service: vacuum.send_command
+      data:
+        entity_id: vacuum.aspirador
+        command: app_zoned_clean
+        params: [[18435,21077,22535,29327,1]]
+    - service: script.aspirador_alerta_iniciando
+
+# Meus
+
+  aspirador_alerta_iniciando:
+    alias: Aspirador casa - Iniciando
+    sequence:
+    - service: notify.TUDO
+      data_template:
+        title: "Alerta Casa"
+        message: "O aspirador iniciou a limpeza na zona: {{ states.input_select.zonas_de_aspiracao.state | lower }}."
+    - condition: state
+      entity_id: input_boolean.boa_noite
+      state: 'off'
+    - service: tts.amazon_polly_say
+      entity_id:
+        - media_player.sala
+        - media_player.suite
+      data_template:
+        message: <speak><amazon:auto-breaths frequency='medium'>E lá vai ele... Iniciando a limpeza na zona {{ states.input_select.zonas_de_aspiracao.state | lower }}.</amazon:auto-breaths></speak>
+
+  aspirador_alerta_parado:
+    alias: Aspirador casa - Parado
+    sequence:
+    - service: notify.TUDO
+      data_template:
+        title: "Alerta Casa"
+        message: "O aspirador parou. Estava limpando a zona: {{ states.input_select.zonas_de_aspiracao.state | lower }}. {% if 'Error' in states.vacuum.aspirador.attributes %}Código de erro: {{ states.vacuum.aspirador.attributes.Error }}.{% else %}{% endif %}"
+    - condition: state
+      entity_id: input_boolean.boa_noite
+      state: 'off'
+    - service: tts.amazon_polly_say
+      entity_id:
+        - media_player.sala
+        - media_player.suite
+      data_template:
+        message: <speak><amazon:auto-breaths frequency='medium'>O aspirador parou limpando a zona {{ states.input_select.zonas_de_aspiracao.state | lower }}. {% if 'Error' in states.vacuum.aspirador.attributes %}Código de erro é {{ states.vacuum.aspirador.attributes.Error }}.{% else %}{% endif %}</amazon:auto-breaths></speak>
+
+  aspirador_alerta_carregando:
+    alias: Aspirador casa - Voltou para casa
+    sequence:
+    - service: notify.TUDO
+      data_template:
+        title: "Alerta Casa"
+        message: "O aspirador terminou seu trabalho na zona {{ states.input_select.zonas_de_aspiracao.state | lower }}. Limpou cerca de {{ states.vacuum.aspirador.attributes.cleaned_area }} metros quadrados durante {{ states.vacuum.aspirador.attributes.cleaning_time }} minutos e está carregando no momento."
+    - condition: state
+      entity_id: input_boolean.boa_noite
+      state: 'off'
+    - service: tts.amazon_polly_say
+      entity_id:
+        - media_player.sala
+        - media_player.suite
+      data_template:
+        message: <speak><amazon:auto-breaths frequency='medium'>Olha quem está de volta! O aspirador terminou seu trabalho na zona {{ states.input_select.zonas_de_aspiracao.state | lower }}. Limpou cerca de {{ states.vacuum.aspirador.attributes.cleaned_area }} metros quadrados durante {{ states.vacuum.aspirador.attributes.cleaning_time }} minutos e está carregando no momento.</amazon:auto-breaths></speak>
+
+  aspirador_alerta_erro:
+    alias: Aspirador casa - Erro
+    sequence:
+    - service: notify.TUDO
+      data_template:
+        title: "Alerta Casa"
+        message: "O aspirador está parado e acusou erro limpando a zona {{ states.input_select.zonas_de_aspiracao.state | lower }}."
+    - condition: state
+      entity_id: input_boolean.boa_noite
+      state: 'off'
+    - service: tts.amazon_polly_say
+      entity_id:
+        - media_player.sala
+        - media_player.suite
+      data_template:
+        message: <speak><amazon:auto-breaths frequency='medium'>O aspirador está parado e acusou erro!</amazon:auto-breaths></speak>
+
+  aspirador_voltar_dock:
+    alias: Aspirador casa - Parar e voltar
+    sequence:
+    - service: vacuum.turn_off
+      entity_id: vacuum.aspirador
+
+# HomeKit scripts
+
+  aspirador_homekit_zona_toda_casa:
+    alias: Aspirador casa - Aspirar zona casa toda
+    sequence:
+    - service: input_select.select_option
+      entity_id: input_select.zonas_de_aspiracao
+      data_template:
+        option: "Casa toda"
+
+  aspirador_homekit_zona_sala:
+    alias: Aspirador casa - Aspirar zona sala inteira
+    sequence:
+    - service: input_select.select_option
+      entity_id: input_select.zonas_de_aspiracao
+      data_template:
+        option: "Sala inteira"
+
+  aspirador_homekit_zona_mesa_jantar:
+    alias: Aspirador casa - Aspirar zona mesa de jantar
+    sequence:
+    - service: input_select.select_option
+      entity_id: input_select.zonas_de_aspiracao
+      data_template:
+        option: "Mesa de jantar"
+
+  aspirador_homekit_zona_entrada:
+    alias: Aspirador casa - Aspirar zona entrada
+    sequence:
+    - service: input_select.select_option
+      entity_id: input_select.zonas_de_aspiracao
+      data_template:
+        option: "Entrada"
+
+  aspirador_homekit_zona_cozinha:
+    alias: Aspirador casa - Aspirar zona cozinha
+    sequence:
+    - service: input_select.select_option
+      entity_id: input_select.zonas_de_aspiracao
+      data_template:
+        option: "Cozinha"
+
+  aspirador_homekit_zona_quartos:
+    alias: Aspirador casa - Aspirar zona quartos e banheiros
+    sequence:
+    - service: input_select.select_option
+      entity_id: input_select.zonas_de_aspiracao
+      data_template:
+        option: "Quartos e banheiros"
