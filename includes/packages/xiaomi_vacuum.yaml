@@ -38,6 +38,15 @@ sensor:
         unit_of_measurement: '%'
         device_class: battery
 
+input_number:
+
+  aspirador_passadas:
+    name: Passadas
+    initial: 1
+    min: 1
+    max: 3
+    step: 1
+
 input_select:
   
   estados_de_succao:
@@ -48,6 +57,7 @@ input_select:
       - Balanceado
       - Turbo
       - Turbo máximo
+      - Pano úmido
 
   zonas_de_aspiracao:
     name: Qual a zona a aspirar?
@@ -83,6 +93,8 @@ automation:
             script.aspirador_set_turbo
           {% elif trigger.to_state.state == 'Turbo máximo' %}
             script.aspirador_set_max
+          {% elif trigger.to_state.state == 'Pano úmido' %}
+            script.aspirador_set_mop
           {% endif %}
   
 #Escolher a zona a aspirar
@@ -187,6 +199,13 @@ script:
         entity_id: vacuum.aspirador
         fan_speed: Max
 
+  aspirador_set_mop:
+    sequence:
+      service: vacuum.set_fan_speed
+      data:
+        entity_id: vacuum.aspirador
+        fan_speed: 105
+
 # Zonas
 
   aspirador_zona_casa_toda:
@@ -199,104 +218,104 @@ script:
   aspirador_zona_sala_inteira:
     sequence:
     - service: vacuum.send_command
-      data:
+      data_template:
         entity_id: vacuum.aspirador
         command: app_zoned_clean
-        params: [[22674,21998,26074,31348,1]]
+        params: '[[22674,21998,26074,31348,{{ states("input_number.aspirador_passadas") }}]]'
     - service: script.aspirador_alerta_iniciando
 
   aspirador_zona_tapete:
     sequence:
     - service: vacuum.send_command
-      data:
+      data_template:
         entity_id: vacuum.aspirador
         command: app_zoned_clean
-        params: [[23746,23540,25096,25240,2]]
+        params: '[[23746,23540,25096,25240,{{ states("input_number.aspirador_passadas") }}]]'
     - service: script.aspirador_alerta_iniciando
 
   aspirador_zona_mesa_jantar:
     sequence:
     - service: vacuum.send_command
-      data:
+      data_template:
         entity_id: vacuum.aspirador
         command: app_zoned_clean
-        params: [[23674,26527,25774,28827,1]]
+        params: '[[23674,26527,25774,28827,{{ states("input_number.aspirador_passadas") }}]]'
     - service: script.aspirador_alerta_iniciando
 
   aspirador_zona_entrada:
     sequence:
     - service: vacuum.send_command
-      data:
+      data_template:
         entity_id: vacuum.aspirador
         command: app_zoned_clean
-        params: [[23759,29577,24809,31277,1]]
+        params: '[[23759,29577,24809,31277,{{ states("input_number.aspirador_passadas") }}]]'
     - service: script.aspirador_alerta_iniciando
 
   aspirador_zona_cozinha:
     sequence:
     - service: vacuum.send_command
-      data:
+      data_template:
         entity_id: vacuum.aspirador
         command: app_zoned_clean
-        params: [[18877,29579,23527,31279,1]]
+        params: '[[18877,29579,23527,31279,{{ states("input_number.aspirador_passadas") }}]]'
     - service: script.aspirador_alerta_iniciando
 
   aspirador_zona_banheiro_social:
     sequence:
     - service: input_select.select_option
       entity_id: input_select.estados_de_succao
-      data_template:
+      data:
         option: "Turbo"
     - service: vacuum.send_command
-      data:
+      data_template:
         entity_id: vacuum.aspirador
         command: app_zoned_clean
-        params: [[19420,25570,21170,26720,2]]
+        params: '[[19420,25570,21170,26720,{{ states("input_number.aspirador_passadas") }}]]'
     - service: script.aspirador_alerta_iniciando
 
   aspirador_zona_banheiro_suite:
     sequence:
     - service: vacuum.send_command
-      data:
+      data_template:
         entity_id: vacuum.aspirador
         command: app_zoned_clean
-        params: [[19437,24167,21187,25317,2]]
+        params: '[[19437,24167,21187,25317,{{ states("input_number.aspirador_passadas") }}]]'
     - service: script.aspirador_alerta_iniciando
 
   aspirador_zona_quarto:
     sequence:
     - service: vacuum.send_command
-      data:
+      data_template:
         entity_id: vacuum.aspirador
         command: app_zoned_clean
-        params: [[18475,26894,21875,29294,1]]
+        params: '[[18475,26894,21875,29294,{{ states("input_number.aspirador_passadas") }}]]'
     - service: script.aspirador_alerta_iniciando
 
   aspirador_zona_suite:
     sequence:
     - service: vacuum.send_command
-      data:
+      data_template:
         entity_id: vacuum.aspirador
         command: app_zoned_clean
-        params: [[18691,20849,22741,24099,1]]
+        params: '[[18691,20849,22741,24099,{{ states("input_number.aspirador_passadas") }}]]'
     - service: script.aspirador_alerta_iniciando
 
   aspirador_zona_suite_e_banheiro:
     sequence:
     - service: vacuum.send_command
-      data:
+      data_template:
         entity_id: vacuum.aspirador
         command: app_zoned_clean
-        params: [[18561,20733,22811,25383,1]]
+        params: '[[18561,20733,22811,25383,{{ states("input_number.aspirador_passadas") }}]]'
     - service: script.aspirador_alerta_iniciando
 
   aspirador_zona_quartos_e_banheiros:
     sequence:
     - service: vacuum.send_command
-      data:
+      data_template:
         entity_id: vacuum.aspirador
         command: app_zoned_clean
-        params: [[18435,21077,22535,29327,1]]
+        params: '[[18435,21077,22535,29327,{{ states("input_number.aspirador_passadas") }}]]'
     - service: script.aspirador_alerta_iniciando
 
 # Meus

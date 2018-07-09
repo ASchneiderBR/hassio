@@ -713,3 +713,6 @@ input_select.estados_de_succao:
   
 input_select.zonas_de_aspiracao:
   icon: mdi:map-marker
+
+input_number.aspirador_passadas:
+  icon: mdi:shuffle-disabled
