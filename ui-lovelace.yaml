@@ -1,21 +1,24 @@
 resources:
   - url: /local/gauge-card.js
     type: js
+  - url: /local/monster-card.js
+    type: js
+  - url: /local/bignumber-card.js
+    type: js
 
 title: Casa Antonio e Roberta
 views:
   - title: Casa
     id: casa
     cards:
-      - type: glance
-        title: Pessoas
-        entities:
-          - device_tracker.antonio
-          - device_tracker.roberta
-
       - type: vertical-stack
         title: Sistema
         cards:
+          - type: glance
+            title: Pessoas
+            entities:
+              - device_tracker.antonio
+              - device_tracker.roberta
           - type: glance
             title: Sistema
             entities:
@@ -44,202 +47,195 @@ views:
                   amber: 30
                   green: 0
 
-      - type: entity-filter
-        card:
-          title: Dispositivos Offline (atenção)
-        entities:
-          - switch.desktop
-          - switch.servidor
-          - device_tracker.nas
-          - device_tracker.google_home_mini_sala
-          - device_tracker.google_home_mini_suite
-          - device_tracker.xiaomi_hub_casa
-          - device_tracker.aspirador_xiaomi
-          - device_tracker.rfbridgecasa
-          - device_tracker.tabletaut
-          - device_tracker.ipad_casa
-          - device_tracker.rmprosuite
-          - device_tracker.rmminisala
-          - device_tracker.rmminiquarto
-          - device_tracker.camera_sala
-          - device_tracker.camera_cozinha
-        state_filter:
-          - 'not_home'
-
-      - type: entity-filter
-        card:
-          title: Dispositivos Indisponíveis (atenção)
-        entities:
-          - binary_sensor.casa_movimento
-          - binary_sensor.cube_158d00010b2e3e
-          - binary_sensor.cube_158d00010b2e64
-          - binary_sensor.door_window_sensor_158d0001b8671f
-          - binary_sensor.door_window_sensor_158d0001bf2a09
-          - binary_sensor.door_window_sensor_158d0001d6851d
-          - binary_sensor.door_window_sensor_158d0001d68545
-          - binary_sensor.door_window_sensor_158d0001e035a2
-          - binary_sensor.motion_sensor_158d000120af26
-          - binary_sensor.motion_sensor_158d0001225607
-          - binary_sensor.motion_sensor_158d0001231d4d
-          - binary_sensor.motion_sensor_158d00015b6c81
-          - binary_sensor.motion_sensor_158d00016c01fd
-          - binary_sensor.motion_sensor_158d00016da83a
-          - binary_sensor.motion_sensor_158d0001a24bdc
-          - binary_sensor.motion_sensor_158d0001ad6b83
-          - binary_sensor.motion_sensor_158d0001ad6c20
-          - binary_sensor.motion_sensor_158d0001e02f9a
-          - binary_sensor.motion_sensor_158d0001e420d0
-          - binary_sensor.motion_sensor_158d0001e43ef1
-          - binary_sensor.motion_sensor_158d0001e44035
-          - binary_sensor.switch_158d000120ea75
-          - binary_sensor.switch_158d000121090f
-          - binary_sensor.switch_158d0001d8e9cf
-          - binary_sensor.switch_158d0001d8e9f8
-          - binary_sensor.switch_158d0001d8ea74
-          - binary_sensor.switch_158d0001d8eabc
-          - binary_sensor.switch_158d0001d8eb3d
-          - binary_sensor.switch_158d0001d9073f
-          - binary_sensor.tv_quarto
-          - light.303leddinamica
-          - light.area_servico
-          - light.banheiro_social
-          - light.corredor
-          - light.cozinha
-          - light.entrada
-          - light.gateway_light_34ce0090940e
-          - light.gateway_light_7811dcb7ea3d
-          - light.ledchaocozinha
-          - light.ledcozinhabalcao
-          - light.ledquartotv
-          - light.ledsaladesktop
-          - light.ledsalatv
-          - light.ledsuitecama
-          - light.ledsuitetv
-          - light.mesa_jantar
-          - light.muv203banheiro
-          - light.muv203entrada
-          - light.muv203nossasala
-          - light.muv203operacoes
-          - light.muv303banheiro
-          - light.muv303corredor
-          - light.muv303dinamica
-          - light.muv303entrada
-          - light.quarto
-          - light.sala_principal
-          - light.suite_banheiro
-          - light.suite_principal
-          - sensor.humidity_158d00015633b4
-          - sensor.humidity_158d0001700b20
-          - sensor.humidity_158d0001702175
-          - sensor.humidity_158d0001703b44
-          - sensor.humidity_158d00019cec0c
-          - sensor.humidity_158d0001d7e65d
-          - sensor.humidity_158d0001dcb597
-          - sensor.illumination_158d0001a24bdc
-          - sensor.illumination_158d0001ad6b83
-          - sensor.illumination_158d0001ad6c20
-          - sensor.illumination_158d0001e02f9a
-          - sensor.illumination_158d0001e420d0
-          - sensor.illumination_158d0001e43ef1
-          - sensor.illumination_158d0001e44035
-          - sensor.illumination_34ce0090940e
-          - sensor.illumination_7811dcb7ea3d
-          - sensor.muvrh_temperature
-          - sensor.temperatura_real_nossa_sala
-          - sensor.temperature_158d00015633b4
-          - sensor.temperature_158d0001700b20
-          - sensor.temperature_158d0001702175
-          - sensor.temperature_158d0001703b44
-          - sensor.temperature_158d00019cec0c
-          - sensor.temperature_158d0001d7e65d
-          - sensor.temperature_158d0001dcb597
-          - sensor.xiaomi_battery_level
-          - sensor.xiaomi_status
-          - switch.aspirador
-          - switch.automacoes_luzes
-          - switch.chuveirosocial
-          - switch.chuveirosuite
-          - switch.desktop
-          - switch.home_theater_sala
-          - switch.muv203bebedouro
-          - switch.muv303bebedouro
-          - switch.servidor
-          - switch.sirene
-          - switch.sistema_alarme_casa
-          - switch.toalheiro
-        state_filter:
-          - 'unavailable'
+          - type: entities
+            title: Internet
+            show_header_toggle: no
+            entities:
+              - sensor.fastcom_download
+              - script.speed_test
 
       - type: vertical-stack
         cards:
-          - type: entities
-            title: Tempo agora
-            entities:
-              - sun.sun
-              - sensor.dark_sky_summary
-              - sensor.pws_weather_1h
-              - sensor.dark_sky_cloud_coverage
-              - sensor.dark_sky_precip_probability
-          - type: weather-forecast
-            entity: weather.tempo
+          - type: vertical-stack
+            cards:
+              - type: entities
+                title: Tempo agora
+                entities:
+                  - sun.sun
+                  - sensor.dark_sky_summary
+                  - sensor.pws_weather_1h
+                  - sensor.dark_sky_cloud_coverage
+                  - sensor.dark_sky_precip_probability
+              - type: weather-forecast
+                entity: weather.tempo
 
-      - type: entities
-        title: Aspirador
-        show_header_toggle: no
-        entities:
-          - vacuum.aspirador
-          - sensor.xiaomi_status
-          - sensor.xiaomi_battery_level
-          - input_select.estados_de_succao
-          - input_select.zonas_de_aspiracao
-
-      - type: vertical-stack
-        cards:
-          - type: entities
-            title: Celular Antonio
-            entities:
-              - device_tracker.iphone_de_antonio
-              - sensor.iphone_de_antonio_battery_level
-              - sensor.iphone_de_antonio_battery_state
-          - type: entities
-            title: Celular Roberta
-            entities:
-              - device_tracker.iphone_de_roberta
-              - sensor.iphone_de_roberta_battery_level
-              - sensor.iphone_de_roberta_battery_state
-          - type: entities
-            title: iPad Casa
-            entities:
-              - device_tracker.ipad_de_antonio
-              - sensor.ipad_casa_antonio_e_roberta_battery_level
-              - sensor.ipad_casa_antonio_e_roberta_battery_state
-
-      - type: entities
-        title: Internet
-        show_header_toggle: no
-        entities:
-          - sensor.fastcom_download
-          - script.speed_test
-
-      - type: entity-filter
-        card:
-          title: Sensores ativos
-        entities:
-          - sensor.interruptores_ligados
-          - binary_sensor.door_window_sensor_158d0001d6851d
-          - binary_sensor.door_window_sensor_158d0001d68545
-          - binary_sensor.door_window_sensor_158d0001e035a2
-          - binary_sensor.motion_sensor_158d000120af26
-          - binary_sensor.motion_sensor_158d0001225607
-          - binary_sensor.motion_sensor_158d0001231d4d
-          - binary_sensor.motion_sensor_158d00015b6c81
-          - binary_sensor.motion_sensor_158d00016c01fd
-          - binary_sensor.motion_sensor_158d00016da83a
-        state_filter:
-          - 'on'
+              - type: vertical-stack
+                cards:
+                  - type: entities
+                    title: Celular Antonio
+                    entities:
+                      - device_tracker.iphone_de_antonio
+                      - sensor.iphone_de_antonio_battery_level
+                      - sensor.iphone_de_antonio_battery_state
+                  - type: entities
+                    title: Celular Roberta
+                    entities:
+                      - device_tracker.iphone_de_roberta
+                      - sensor.iphone_de_roberta_battery_level
+                      - sensor.iphone_de_roberta_battery_state
+                  - type: entities
+                    title: iPad Casa
+                    entities:
+                      - device_tracker.ipad_de_antonio
+                      - sensor.ipad_casa_antonio_e_roberta_battery_level
+                      - sensor.ipad_casa_antonio_e_roberta_battery_state
 
       - type: vertical-stack
         cards:
+
+          - type: entity-filter
+            card:
+              title: Dispositivos Offline (atenção)
+            entities:
+              - switch.desktop
+              - switch.servidor
+              - device_tracker.nas
+              - device_tracker.google_home_mini_sala
+              - device_tracker.google_home_mini_suite
+              - device_tracker.xiaomi_hub_casa
+              - device_tracker.aspirador_xiaomi
+              - device_tracker.rfbridgecasa
+              - device_tracker.tabletaut
+              - device_tracker.ipad_casa
+              - device_tracker.rmprosuite
+              - device_tracker.rmminisala
+              - device_tracker.rmminiquarto
+              - device_tracker.camera_sala
+              - device_tracker.camera_cozinha
+            state_filter:
+              - 'not_home'
+
+          - type: entity-filter
+            card:
+              title: Dispositivos Indisponíveis (atenção)
+            entities:
+              - binary_sensor.casa_movimento
+              - binary_sensor.cube_158d00010b2e3e
+              - binary_sensor.cube_158d00010b2e64
+              - binary_sensor.door_window_sensor_158d0001b8671f
+              - binary_sensor.door_window_sensor_158d0001bf2a09
+              - binary_sensor.door_window_sensor_158d0001d6851d
+              - binary_sensor.door_window_sensor_158d0001d68545
+              - binary_sensor.door_window_sensor_158d0001e035a2
+              - binary_sensor.motion_sensor_158d000120af26
+              - binary_sensor.motion_sensor_158d0001225607
+              - binary_sensor.motion_sensor_158d0001231d4d
+              - binary_sensor.motion_sensor_158d00015b6c81
+              - binary_sensor.motion_sensor_158d00016c01fd
+              - binary_sensor.motion_sensor_158d00016da83a
+              - binary_sensor.motion_sensor_158d0001a24bdc
+              - binary_sensor.motion_sensor_158d0001ad6b83
+              - binary_sensor.motion_sensor_158d0001ad6c20
+              - binary_sensor.motion_sensor_158d0001e02f9a
+              - binary_sensor.motion_sensor_158d0001e420d0
+              - binary_sensor.motion_sensor_158d0001e43ef1
+              - binary_sensor.motion_sensor_158d0001e44035
+              - binary_sensor.switch_158d000120ea75
+              - binary_sensor.switch_158d000121090f
+              - binary_sensor.switch_158d0001d8e9cf
+              - binary_sensor.switch_158d0001d8e9f8
+              - binary_sensor.switch_158d0001d8ea74
+              - binary_sensor.switch_158d0001d8eabc
+              - binary_sensor.switch_158d0001d8eb3d
+              - binary_sensor.switch_158d0001d9073f
+              - binary_sensor.tv_quarto
+              - light.303leddinamica
+              - light.area_servico
+              - light.banheiro_social
+              - light.corredor
+              - light.cozinha
+              - light.entrada
+              - light.gateway_light_34ce0090940e
+              - light.gateway_light_7811dcb7ea3d
+              - light.ledchaocozinha
+              - light.ledcozinhabalcao
+              - light.ledquartotv
+              - light.ledsaladesktop
+              - light.ledsalatv
+              - light.ledsuitecama
+              - light.ledsuitetv
+              - light.mesa_jantar
+              - light.muv203banheiro
+              - light.muv203entrada
+              - light.muv203nossasala
+              - light.muv203operacoes
+              - light.muv303banheiro
+              - light.muv303corredor
+              - light.muv303dinamica
+              - light.muv303entrada
+              - light.quarto
+              - light.sala_principal
+              - light.suite_banheiro
+              - light.suite_principal
+              - sensor.humidity_158d00015633b4
+              - sensor.humidity_158d0001700b20
+              - sensor.humidity_158d0001702175
+              - sensor.humidity_158d0001703b44
+              - sensor.humidity_158d00019cec0c
+              - sensor.humidity_158d0001d7e65d
+              - sensor.humidity_158d0001dcb597
+              - sensor.illumination_158d0001a24bdc
+              - sensor.illumination_158d0001ad6b83
+              - sensor.illumination_158d0001ad6c20
+              - sensor.illumination_158d0001e02f9a
+              - sensor.illumination_158d0001e420d0
+              - sensor.illumination_158d0001e43ef1
+              - sensor.illumination_158d0001e44035
+              - sensor.illumination_34ce0090940e
+              - sensor.illumination_7811dcb7ea3d
+              - sensor.muvrh_temperature
+              - sensor.temperatura_real_nossa_sala
+              - sensor.temperature_158d00015633b4
+              - sensor.temperature_158d0001700b20
+              - sensor.temperature_158d0001702175
+              - sensor.temperature_158d0001703b44
+              - sensor.temperature_158d00019cec0c
+              - sensor.temperature_158d0001d7e65d
+              - sensor.temperature_158d0001dcb597
+              - sensor.xiaomi_battery_level
+              - sensor.xiaomi_status
+              - switch.aspirador
+              - switch.automacoes_luzes
+              - switch.chuveirosocial
+              - switch.chuveirosuite
+              - switch.desktop
+              - switch.home_theater_sala
+              - switch.muv203bebedouro
+              - switch.muv303bebedouro
+              - switch.servidor
+              - switch.sirene
+              - switch.sistema_alarme_casa
+              - switch.toalheiro
+            state_filter:
+              - 'unavailable'
+
+          - type: entity-filter
+            card:
+              title: Sensores ativos
+            entities:
+              - sensor.interruptores_ligados
+              - binary_sensor.door_window_sensor_158d0001d6851d
+              - binary_sensor.door_window_sensor_158d0001d68545
+              - binary_sensor.door_window_sensor_158d0001e035a2
+              - binary_sensor.motion_sensor_158d000120af26
+              - binary_sensor.motion_sensor_158d0001225607
+              - binary_sensor.motion_sensor_158d0001231d4d
+              - binary_sensor.motion_sensor_158d00015b6c81
+              - binary_sensor.motion_sensor_158d00016c01fd
+              - binary_sensor.motion_sensor_158d00016da83a
+            state_filter:
+              - 'on'
+
           - type: entity-filter
             card:
               title: Luzes ligadas
@@ -283,14 +279,18 @@ views:
               - switch.tv_lg_suite
             state_filter:
               - 'on'
+
           - type: entity-filter
             card:
               title: Persianas abertas
             show_header_toggle: yes
             entities:
-              - cover.persiana_suite
-              - cover.persiana_quarto
-              - cover.persiana_sala
+              - entity: cover.persiana_suite
+                name: Suíte
+              - entity: cover.persiana_quarto
+                name: Quarto
+              - entity: cover.persiana_sala
+                name: Sala
             state_filter:
               - 'open'
 
@@ -306,41 +306,57 @@ views:
               - 'heat'
               - 'auto'
 
-      - type: entities
-        title: Alarme
-        show_header_toggle: no
-        entities:
-          - alarm_control_panel.alarme
-          - switch.sirene
-
       - type: vertical-stack
         cards:
+
           - type: entities
-            title: Tvs
+            title: Alarme
             show_header_toggle: no
             entities:
-              - entity: media_player.tv_suite
-                name: Suíte
-              - entity: media_player.tv_sala
-                name: Sala
+              - alarm_control_panel.alarme
+              - switch.sirene
+    
           - type: entities
-            title: Google Home
+            title: Aspirador
             show_header_toggle: no
             entities:
-              - entity: media_player.suite
-                name: Suíte
-              - entity: media_player.sala
-                name: Sala
-          - type: entities
-            title: Spotify
-            show_header_toggle: no
-            entities:
-              - media_player.spotify
-              - input_select.spotify_playlist
-              - input_select.spotify_source
-              - script.spotify_play
-              - input_number.spotify_volume
-              - input_boolean.spotify_shuffle
+              - vacuum.aspirador
+              - sensor.xiaomi_status
+              - sensor.xiaomi_battery_level
+              - input_number.aspirador_passadas
+              - input_select.estados_de_succao
+              - input_select.zonas_de_aspiracao
+
+          - type: vertical-stack
+            cards:
+              - type: entities
+                title: Tvs
+                show_header_toggle: no
+                entities:
+                  - entity: media_player.tv_suite
+                    name: Suíte
+                  - entity: media_player.tv_sala
+                    name: Sala
+
+              - type: entities
+                title: Google Home
+                show_header_toggle: no
+                entities:
+                  - entity: media_player.suite
+                    name: Suíte
+                  - entity: media_player.sala
+                    name: Sala
+
+              - type: entities
+                title: Spotify
+                show_header_toggle: no
+                entities:
+                  - media_player.spotify
+                  - input_select.spotify_playlist
+                  - input_select.spotify_source
+                  - script.spotify_play
+                  - input_number.spotify_volume
+                  - input_boolean.spotify_shuffle
 
   - title: Cômodos
     id: comodos
@@ -431,95 +447,96 @@ views:
   - title: Automações
     id: automacoes
     cards:
-      - type: entities
-        title: Luzes da casa
-        show_header_toggle: no
-        entities:
-          - automation.luzes_da_casa__banheiro_social
-          - automation.luzes_da_casa__banheiro_suite
-          - automation.luzes_da_casa__cozinha
-          - automation.luzes_da_casa__quarto
-          - automation.luzes_da_casa__suite
-          - automation.luzes_da_casa__sala
-          - automation.luzes_da_casa__entrando_em_casa
+      - type: vertical-stack
+        cards:
+          - type: entities
+            title: Rotinas casa
+            show_header_toggle: no
+            entities:
+              - automation.rotina__acoes_ao_nascer_do_sol
+              - automation.rotina__acoes_ao_por_do_sol
+              - automation.rotina__boa_noite
+              - automation.rotina__bom_dia
+          - type: entities
+            title: Luzes casa
+            show_header_toggle: no
+            entities:
+              - automation.luzes_da_casa__banheiro_social
+              - automation.luzes_da_casa__banheiro_suite
+              - automation.luzes_da_casa__cozinha
+              - automation.luzes_da_casa__quarto
+              - automation.luzes_da_casa__suite
+              - automation.luzes_da_casa__sala
+              - automation.luzes_da_casa__entrando_em_casa
+          - type: entities
+            title: Luzes MuvRH
+            show_header_toggle: no
+            entities:
+              - automation.muvrh_203__luz_da_entrada
+              - automation.muvrh_203__luz_do_banheiro
+              - automation.muvrh_203__luz_da_sala_de_operacoes
+              - automation.muvrh_203__luz_da_nossa_sala
+              - automation.muvrh_203__ligar_tudo_quando_primeiro_chegar
+              - automation.muvrh_203__luz_temporizador_entrada
+              - automation.muvrh_303__luz_da_entrada
+              - automation.muvrh_303__luz_da_dinamica
+              - automation.muvrh_303__luz_do_banheiro
 
-      - type: entities
-        title: Rotinas
-        show_header_toggle: no
-        entities:
-          - automation.rotina__acoes_ao_nascer_do_sol
-          - automation.rotina__acoes_ao_por_do_sol
-          - automation.rotina__boa_noite
-          - automation.rotina__bom_dia
+      - type: vertical-stack
+        cards:
+          - type: entities
+            title: Alertas
+            show_header_toggle: no
+            entities:
+              - automation.alerta__uso_cpu_em_alta_por_muito_tempo
+              - automation.alerta__dispositivo_indisponivel
+              - automation.alerta__bateria_fraca
+              - automation.alerta__avisar_quando_dispositivo_ficar_offline
+              - automation.alarme__aviso_alarme_ativado
+              - automation.sensores__porta_da_entrada_aberta
+              - automation.sensores__porta_ou_janela_aberta_por_muito_tempo
+          - type: entities
+            title: Botões Xiaomi casa
+            show_header_toggle: no
+            entities:
+              - automation.botao_xiaomi_banheiro_social
+              - automation.botao_xiaomi_banheiro_suite
+              - automation.botao_xiaomi_cozinha
+              - automation.botao_xiaomi_quarto
+              - automation.botao_xiaomi_sala_01
+              - automation.botao_xiaomi_sala_02
+              - automation.botao_xiaomi_suite_01
+              - automation.botao_xiaomi_suite_02
+          - type: entities
+            title: Cubos casa
+            show_header_toggle: no
+            entities:
+              - automation.cubo_sala
+              - automation.cubo_suite
 
-      - type: entities
-        title: Alertas
-        show_header_toggle: no
-        entities:
-          - automation.alerta__uso_cpu_em_alta_por_muito_tempo
-          - automation.alerta__dispositivo_indisponivel
-          - automation.alerta__bateria_fraca
-          - automation.alerta__avisar_quando_dispositivo_ficar_offline
-          - automation.alarme__aviso_alarme_ativado
-          - automation.sensores__porta_da_entrada_aberta
-          - automation.sensores__porta_ou_janela_aberta_por_muito_tempo
-
-      - type: entities
-        title: Botões Xiaomi Casa
-        show_header_toggle: no
-        entities:
-          - automation.botao_xiaomi_banheiro_social
-          - automation.botao_xiaomi_banheiro_suite
-          - automation.botao_xiaomi_cozinha
-          - automation.botao_xiaomi_quarto
-          - automation.botao_xiaomi_sala_01
-          - automation.botao_xiaomi_sala_02
-          - automation.botao_xiaomi_suite_01
-          - automation.botao_xiaomi_suite_02
-
-      - type: entities
-        title: Cubos casa
-        show_header_toggle: no
-        entities:
-          - automation.cubo_sala
-          - automation.cubo_suite
-
-      - type: entities
-        title: Temporizadores casa
-        show_header_toggle: no
-        entities:
-          - input_select.tempo_luz_suite
-          - input_select.tempo_luz_banheiro_suite
-          - input_select.tempo_luz_banheiro_social
-          - input_select.tempo_luz_quarto
-          - input_select.tempo_luz_sala
-          - input_select.tempo_luz_cozinha
-
-      - type: entities
-        title: Automações MuvRH
-        show_header_toggle: no
-        entities:
-          - automation.muvrh_203__luz_da_entrada
-          - automation.muvrh_203__luz_do_banheiro
-          - automation.muvrh_203__luz_da_sala_de_operacoes
-          - automation.muvrh_203__luz_da_nossa_sala
-          - automation.muvrh_203__ligar_tudo_quando_primeiro_chegar
-          - automation.muvrh_203__luz_temporizador_entrada
-          - automation.muvrh_303__luz_da_entrada
-          - automation.muvrh_303__luz_da_dinamica
-          - automation.muvrh_303__luz_do_banheiro
-
-      - type: entities
-        title: Temporizadores Muvrh
-        show_header_toggle: no
-        entities:
-          - input_select.tempo_muvrh_203_entrada
-          - input_select.tempo_muvrh_203_banheiro
-          - input_select.tempo_muvrh_203_salaoperacoes
-          - input_select.tempo_muvrh_203_nossasala
-          - input_select.tempo_muvrh_303_entrada
-          - input_select.tempo_muvrh_303_dinamica
-          - input_select.tempo_muvrh_303_banheiro
+      - type: vertical-stack
+        cards:
+          - type: entities
+            title: Temporizadores casa
+            show_header_toggle: no
+            entities:
+              - input_select.tempo_luz_suite
+              - input_select.tempo_luz_banheiro_suite
+              - input_select.tempo_luz_banheiro_social
+              - input_select.tempo_luz_quarto
+              - input_select.tempo_luz_sala
+              - input_select.tempo_luz_cozinha
+          - type: entities
+            title: Temporizadores Muvrh
+            show_header_toggle: no
+            entities:
+              - input_select.tempo_muvrh_203_entrada
+              - input_select.tempo_muvrh_203_banheiro
+              - input_select.tempo_muvrh_203_salaoperacoes
+              - input_select.tempo_muvrh_203_nossasala
+              - input_select.tempo_muvrh_303_entrada
+              - input_select.tempo_muvrh_303_dinamica
+              - input_select.tempo_muvrh_303_banheiro
 
   - title: MuvRH
     id: muvrh
@@ -720,3 +737,14 @@ views:
 
           - type: picture-entity
             entity: camera.muvrh_203__operacoes
+
+  - title: Testes
+    id: testes
+    cards:
+      - type: custom:monster-card
+        card:
+          type: entities
+          tittle: Monster
+        filter:
+          include:
+            - domain: climate

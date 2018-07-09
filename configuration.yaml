@@ -48,7 +48,7 @@ group: !include includes/group.yaml
 homekit: !include includes/homekit.yaml
 http: !include includes/http.yaml
 input_boolean: !include includes/input_boolean.yaml
-#input_number: !include includes/input_number.yaml
+input_number: !include includes/input_number.yaml
 input_select: !include includes/input_select.yaml
 ios: !include includes/ios.yaml
 light: !include includes/light.yaml
