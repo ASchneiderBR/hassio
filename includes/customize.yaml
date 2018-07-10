@@ -716,3 +716,15 @@ input_select.zonas_de_aspiracao:
 
 input_number.aspirador_passadas:
   icon: mdi:shuffle-disabled
+
+input_select.rf_bridge_device_select:
+  icon: mdi:access-point
+
+input_select.rf_bridge_mode_select:
+  icon: mdi:swap-vertical
+
+input_select.rf_bridge_key_select:
+  icon: mdi:format-list-numbers
+
+script.rf_bridge_send_command:
+  icon: mdi:send

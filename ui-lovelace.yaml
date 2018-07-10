@@ -312,6 +312,18 @@ views:
         cards:
 
           - type: entities
+            title: Controles Rf Bridge
+            show_header_toggle: no
+            entities:
+              - input_select.rf_bridge_device_select
+              - input_select.rf_bridge_mode_select
+              - input_select.rf_bridge_key_select
+              - script.rf_bridge_send_command
+
+      - type: vertical-stack
+        cards:
+
+          - type: entities
             title: Alarme
             show_header_toggle: no
             entities:

@@ -1,0 +1,73 @@
+input_select:
+  
+  rf_bridge_device_select:
+    name: 'Dispositivo'
+    initial: Selecionar
+    options:
+      - "Selecionar"
+      - "Casa"
+      - "MuvRH"
+
+  rf_bridge_mode_select:
+    name: 'Modo'
+    initial: Selecionar
+    options:
+      - "Selecionar"
+      - "Aprender"
+      - "Enviar"
+
+  rf_bridge_key_select:
+    name: 'Key'
+    initial: Selecionar
+    options:
+      - "Selecionar"
+      - "01"
+      - "02"
+      - "03"
+      - "04"
+      - "05"
+      - "06"
+      - "07"
+      - "08"
+      - "09"
+      - "10"
+      - "11"
+      - "12"
+      - "13"
+      - "14"
+      - "15"
+      - "16"
+
+script:
+
+  rf_bridge_send_command:
+    alias: 'Enviar comando'
+    sequence:
+    - service: mqtt.publish
+      data_template:
+        topic: 'cmnd/{% if states.input_select.rf_bridge_device_select.state == "Casa" %}rfbridgecasa{% elif states.input_select.rf_bridge_device_select.state == "MuvRH" %}rfbridgemuvrh{% endif %}/backlog'
+        payload: 'rfkey{{ states("input_select.rf_bridge_key_select") }} {% if states.input_select.rf_bridge_mode_select.state == "Aprender" %}2{% elif states.input_select.rf_bridge_mode_select.state == "Enviar" %}1{% endif %}'
+    - service: input_select.select_option
+      entity_id: input_select.rf_bridge_device_select
+      data_template:
+        option: "Selecionar"
+    - service: input_select.select_option
+      entity_id: input_select.rf_bridge_mode_select
+      data_template:
+        option: "Selecionar"
+    - service: input_select.select_option
+      entity_id: input_select.rf_bridge_key_select
+      data_template:
+        option: "Selecionar"
+
+group:
+
+  rf_bridge_controles:
+    control: hidden
+    entities:
+    - input_select.rf_bridge_device_select
+    - input_select.rf_bridge_mode_select
+    - input_select.rf_bridge_key_select
+    - script.rf_bridge_send_command
+    name: Controles Rf Bridge
+    view: false
