@@ -1,9 +1,11 @@
 resources:
-  - url: /local/gauge-card.js
+  - url: /local/gauge-card.js?ver2
     type: js
-  - url: /local/monster-card.js
+  - url: /local/monster-card.js?ver2
     type: js
-  - url: /local/bignumber-card.js
+  - url: /local/bignumber-card.js?ver2
+    type: js
+  - url: /local/entity-attributes-card.js?ver2
     type: js
 
 title: Casa Antonio e Roberta
@@ -538,6 +540,120 @@ views:
               - input_select.tempo_muvrh_303_dinamica
               - input_select.tempo_muvrh_303_banheiro
 
+  - title: Tablet entrada
+    id: tablet
+    cards:
+
+      - type: vertical-stack
+        cards:
+
+          - type: entities
+            title: Tempo
+            show_header_toggle: no
+            entities:
+              - sensor.pws_weather_1h
+
+          - type: picture-entity
+            name: Alarme
+            show_info: false
+            tap_action: toggle
+            image: /local/lovelace/images/alarm_off.png
+            state_image: 
+              "on": /local/lovelace/images/alarm_on.png
+              "off": /local/lovelace/images/alarm_off.png
+            entity: switch.sistema_alarme_casa
+
+
+          - type: vertical-stack
+            cards:
+
+              - type: horizontal-stack
+                cards:
+                  - type: picture-entity
+                    name: Entrada
+                    tap_action: toggle
+                    image: /local/lovelace/images/switch_off.png
+                    state_image: 
+                      "on": /local/lovelace/images/switch_on.png
+                      "off": /local/lovelace/images/switch_off.png
+                    entity: light.entrada
+
+                  - type: picture-entity
+                    name: Cozinha
+                    tap_action: toggle
+                    image: /local/lovelace/images/switch_off.png
+                    state_image: 
+                      "on": /local/lovelace/images/switch_on.png
+                      "off": /local/lovelace/images/switch_off.png
+                    entity: light.cozinha
+
+          - type: vertical-stack
+            cards:
+                - type: horizontal-stack
+                  cards:
+                    - type: picture-entity
+                      name: Balcão
+                      tap_action: toggle
+                      image: /local/lovelace/images/switch_off.png
+                      state_image: 
+                        "on": /local/lovelace/images/switch_on.png
+                        "off": /local/lovelace/images/switch_off.png
+                      entity: light.ledcozinhabalcao
+
+                    - type: picture-entity
+                      name: Chão
+                      tap_action: toggle
+                      image: /local/lovelace/images/switch_off.png
+                      state_image: 
+                        "on": /local/lovelace/images/switch_on.png
+                        "off": /local/lovelace/images/switch_off.png
+                      entity: light.ledchaocozinha
+
+          - type: vertical-stack
+            cards:
+                - type: horizontal-stack
+                  cards:
+                    - type: picture-entity
+                      name: Área serviço
+                      tap_action: toggle
+                      image: /local/lovelace/images/switch_off.png
+                      state_image: 
+                        "on": /local/lovelace/images/switch_on.png
+                        "off": /local/lovelace/images/switch_off.png
+                      entity: light.area_servico
+
+                    - type: picture-entity
+                      name: Mesa jantar
+                      tap_action: toggle
+                      image: /local/lovelace/images/switch_off.png
+                      state_image: 
+                        "on": /local/lovelace/images/switch_on.png
+                        "off": /local/lovelace/images/switch_off.png
+                      entity: light.mesa_jantar
+
+
+          - type: vertical-stack
+            cards:
+                - type: horizontal-stack
+                  cards:
+                    - type: picture-entity
+                      name: Painel
+                      tap_action: toggle
+                      image: /local/lovelace/images/switch_off.png
+                      state_image: 
+                        "on": /local/lovelace/images/switch_on.png
+                        "off": /local/lovelace/images/switch_off.png
+                      entity: light.ledsaladesktop
+
+                    - type: picture-entity
+                      name: Sala
+                      tap_action: toggle
+                      image: /local/lovelace/images/switch_off.png
+                      state_image: 
+                        "on": /local/lovelace/images/switch_on.png
+                        "off": /local/lovelace/images/switch_off.png
+                      entity: light.sala_principal
+
   - title: MuvRH
     id: muvrh
     cards:
@@ -629,7 +745,7 @@ views:
               - device_tracker.impressora_canon
               - device_tracker.impressora_laser
             state_filter:
-              - 'on'
+              - 'not_home'
 
           - type: entity-filter
             card:
@@ -738,13 +854,3 @@ views:
           - type: picture-entity
             entity: camera.muvrh_203__operacoes
 
-  - title: Testes
-    id: testes
-    cards:
-      - type: custom:monster-card
-        card:
-          type: entities
-          tittle: Monster
-        filter:
-          include:
-            - domain: climate
