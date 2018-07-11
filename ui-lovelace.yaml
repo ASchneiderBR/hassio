@@ -312,7 +312,7 @@ views:
         cards:
 
           - type: entities
-            title: Controles Rf Bridge
+            title: Controles RF Bridge
             show_header_toggle: no
             entities:
               - input_select.rf_bridge_device_select
@@ -337,7 +337,7 @@ views:
               - vacuum.aspirador
               - sensor.xiaomi_status
               - sensor.xiaomi_battery_level
-              - input_number.aspirador_passadas
+              #- input_number.aspirador_passadas
               - input_select.estados_de_succao
               - input_select.zonas_de_aspiracao
 
@@ -406,7 +406,6 @@ views:
           - script.ar_quarto_display
           - script.ar_quarto_swing
           - cover.persiana_quarto
-          - switch.ledquartotv
           - switch.tv_lg_quarto
           - light.ledquartotv
           - light.quarto
@@ -465,7 +464,7 @@ views:
         cards:
           - type: entities
             title: Rotinas casa
-            show_header_toggle: no
+            show_header_toggle: yes
             entities:
               - automation.rotina__acoes_ao_nascer_do_sol
               - automation.rotina__acoes_ao_por_do_sol
@@ -473,7 +472,7 @@ views:
               - automation.rotina__bom_dia
           - type: entities
             title: Luzes casa
-            show_header_toggle: no
+            show_header_toggle: yes
             entities:
               - automation.luzes_da_casa__banheiro_social
               - automation.luzes_da_casa__banheiro_suite
@@ -484,14 +483,13 @@ views:
               - automation.luzes_da_casa__entrando_em_casa
           - type: entities
             title: Luzes MuvRH
-            show_header_toggle: no
+            show_header_toggle: yes
             entities:
+              - automation.muvrh_203__ligar_tudo_quando_primeiro_chegar
               - automation.muvrh_203__luz_da_entrada
               - automation.muvrh_203__luz_do_banheiro
               - automation.muvrh_203__luz_da_sala_de_operacoes
               - automation.muvrh_203__luz_da_nossa_sala
-              - automation.muvrh_203__ligar_tudo_quando_primeiro_chegar
-              - automation.muvrh_203__luz_temporizador_entrada
               - automation.muvrh_303__luz_da_entrada
               - automation.muvrh_303__luz_da_dinamica
               - automation.muvrh_303__luz_do_banheiro
@@ -500,18 +498,17 @@ views:
         cards:
           - type: entities
             title: Alertas
-            show_header_toggle: no
+            show_header_toggle: yes
             entities:
               - automation.alerta__uso_cpu_em_alta_por_muito_tempo
               - automation.alerta__dispositivo_indisponivel
               - automation.alerta__bateria_fraca
-              - automation.alerta__avisar_quando_dispositivo_ficar_offline
               - automation.alarme__aviso_alarme_ativado
-              - automation.sensores__porta_da_entrada_aberta
-              - automation.sensores__porta_ou_janela_aberta_por_muito_tempo
+              - automation.sensores__porta_da_entrada_aberta__casa
+              - automation.sensores__porta_ou_janela_aberta_por_muito_tempo__casa
           - type: entities
             title: Botões Xiaomi casa
-            show_header_toggle: no
+            show_header_toggle: yes
             entities:
               - automation.botao_xiaomi_banheiro_social
               - automation.botao_xiaomi_banheiro_suite
@@ -523,7 +520,7 @@ views:
               - automation.botao_xiaomi_suite_02
           - type: entities
             title: Cubos casa
-            show_header_toggle: no
+            show_header_toggle: yes
             entities:
               - automation.cubo_sala
               - automation.cubo_suite
@@ -556,115 +553,130 @@ views:
     id: tablet
     cards:
 
-      - type: vertical-stack
-        cards:
+      - type: entities
+        title: Tablet entrada
+        show_header_toggle: no
+        entities:
+          - sensor.pws_weather_1h
+          - switch.sistema_alarme_casa
+          - light.entrada
+          - light.cozinha
+          - light.ledcozinhabalcao
+          - light.ledchaocozinha
+          - light.area_servico
+          - light.mesa_jantar
+          - light.ledsaladesktop
+          - light.sala_principal
 
-          - type: entities
-            title: Tempo
-            show_header_toggle: no
-            entities:
-              - sensor.pws_weather_1h
-
-          - type: picture-entity
-            name: Alarme
-            show_info: false
-            tap_action: toggle
-            image: /local/lovelace/images/alarm_off.png
-            state_image: 
-              "on": /local/lovelace/images/alarm_on.png
-              "off": /local/lovelace/images/alarm_off.png
-            entity: switch.sistema_alarme_casa
-
-
-          - type: vertical-stack
-            cards:
-
-              - type: horizontal-stack
-                cards:
-                  - type: picture-entity
-                    name: Entrada
-                    tap_action: toggle
-                    image: /local/lovelace/images/switch_off.png
-                    state_image: 
-                      "on": /local/lovelace/images/switch_on.png
-                      "off": /local/lovelace/images/switch_off.png
-                    entity: light.entrada
-
-                  - type: picture-entity
-                    name: Cozinha
-                    tap_action: toggle
-                    image: /local/lovelace/images/switch_off.png
-                    state_image: 
-                      "on": /local/lovelace/images/switch_on.png
-                      "off": /local/lovelace/images/switch_off.png
-                    entity: light.cozinha
-
-          - type: vertical-stack
-            cards:
-                - type: horizontal-stack
-                  cards:
-                    - type: picture-entity
-                      name: Balcão
-                      tap_action: toggle
-                      image: /local/lovelace/images/switch_off.png
-                      state_image: 
-                        "on": /local/lovelace/images/switch_on.png
-                        "off": /local/lovelace/images/switch_off.png
-                      entity: light.ledcozinhabalcao
-
-                    - type: picture-entity
-                      name: Chão
-                      tap_action: toggle
-                      image: /local/lovelace/images/switch_off.png
-                      state_image: 
-                        "on": /local/lovelace/images/switch_on.png
-                        "off": /local/lovelace/images/switch_off.png
-                      entity: light.ledchaocozinha
-
-          - type: vertical-stack
-            cards:
-                - type: horizontal-stack
-                  cards:
-                    - type: picture-entity
-                      name: Área serviço
-                      tap_action: toggle
-                      image: /local/lovelace/images/switch_off.png
-                      state_image: 
-                        "on": /local/lovelace/images/switch_on.png
-                        "off": /local/lovelace/images/switch_off.png
-                      entity: light.area_servico
-
-                    - type: picture-entity
-                      name: Mesa jantar
-                      tap_action: toggle
-                      image: /local/lovelace/images/switch_off.png
-                      state_image: 
-                        "on": /local/lovelace/images/switch_on.png
-                        "off": /local/lovelace/images/switch_off.png
-                      entity: light.mesa_jantar
-
-
-          - type: vertical-stack
-            cards:
-                - type: horizontal-stack
-                  cards:
-                    - type: picture-entity
-                      name: Painel
-                      tap_action: toggle
-                      image: /local/lovelace/images/switch_off.png
-                      state_image: 
-                        "on": /local/lovelace/images/switch_on.png
-                        "off": /local/lovelace/images/switch_off.png
-                      entity: light.ledsaladesktop
-
-                    - type: picture-entity
-                      name: Sala
-                      tap_action: toggle
-                      image: /local/lovelace/images/switch_off.png
-                      state_image: 
-                        "on": /local/lovelace/images/switch_on.png
-                        "off": /local/lovelace/images/switch_off.png
-                      entity: light.sala_principal
+#      - type: vertical-stack
+#        cards:
+#
+#          - type: entities
+#            title: Tempo
+#            show_header_toggle: no
+#            entities:
+#              - sensor.pws_weather_1h
+#
+#          - type: picture-entity
+#            name: Alarme
+#            show_info: false
+#            tap_action: toggle
+#            image: /local/lovelace/images/alarm_off.png
+#            state_image: 
+#              "on": /local/lovelace/images/alarm_on.png
+#              "off": /local/lovelace/images/alarm_off.png
+#            entity: switch.sistema_alarme_casa
+#
+#
+#          - type: vertical-stack
+#            cards:
+#
+#              - type: horizontal-stack
+#                cards:
+#                  - type: picture-entity
+#                    name: Entrada
+#                    tap_action: toggle
+#                    image: /local/lovelace/images/switch_off.png
+#                    state_image: 
+#                      "on": /local/lovelace/images/switch_on.png
+#                      "off": /local/lovelace/images/switch_off.png
+#                    entity: light.entrada
+#
+#                  - type: picture-entity
+#                    name: Cozinha
+#                    tap_action: toggle
+#                    image: /local/lovelace/images/switch_off.png
+#                    state_image: 
+#                      "on": /local/lovelace/images/switch_on.png
+#                      "off": /local/lovelace/images/switch_off.png
+#                    entity: light.cozinha
+#
+#          - type: vertical-stack
+#            cards:
+#                - type: horizontal-stack
+#                  cards:
+#                    - type: picture-entity
+#                      name: Balcão
+#                      tap_action: toggle
+#                      image: /local/lovelace/images/switch_off.png
+#                      state_image: 
+#                        "on": /local/lovelace/images/switch_on.png
+#                        "off": /local/lovelace/images/switch_off.png
+#                      entity: light.ledcozinhabalcao
+#
+#                    - type: picture-entity
+#                      name: Chão
+#                      tap_action: toggle
+#                      image: /local/lovelace/images/switch_off.png
+#                      state_image: 
+#                        "on": /local/lovelace/images/switch_on.png
+#                        "off": /local/lovelace/images/switch_off.png
+#                      entity: light.ledchaocozinha
+#
+#          - type: vertical-stack
+#            cards:
+#                - type: horizontal-stack
+#                  cards:
+#                    - type: picture-entity
+#                      name: Área serviço
+#                      tap_action: toggle
+#                      image: /local/lovelace/images/switch_off.png
+#                      state_image: 
+#                        "on": /local/lovelace/images/switch_on.png
+#                        "off": /local/lovelace/images/switch_off.png
+#                      entity: light.area_servico
+#
+#                    - type: picture-entity
+#                      name: Mesa jantar
+#                      tap_action: toggle
+#                      image: /local/lovelace/images/switch_off.png
+#                      state_image: 
+#                        "on": /local/lovelace/images/switch_on.png
+#                        "off": /local/lovelace/images/switch_off.png
+#                      entity: light.mesa_jantar
+#
+#
+#          - type: vertical-stack
+#            cards:
+#                - type: horizontal-stack
+#                  cards:
+#                    - type: picture-entity
+#                      name: Painel
+#                      tap_action: toggle
+#                      image: /local/lovelace/images/switch_off.png
+#                      state_image: 
+#                        "on": /local/lovelace/images/switch_on.png
+#                        "off": /local/lovelace/images/switch_off.png
+#                      entity: light.ledsaladesktop
+#
+#                    - type: picture-entity
+#                      name: Sala
+#                      tap_action: toggle
+#                      image: /local/lovelace/images/switch_off.png
+#                      state_image: 
+#                        "on": /local/lovelace/images/switch_on.png
+#                        "off": /local/lovelace/images/switch_off.png
+#                      entity: light.sala_principal
 
   - title: MuvRH
     id: muvrh

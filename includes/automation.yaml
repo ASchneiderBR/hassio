@@ -78,6 +78,21 @@
         - automation.muvrh_203__luz_do_banheiro
         - automation.muvrh_203__luz_da_sala_de_operacoes
         - automation.muvrh_203__luz_da_nossa_sala
+    - service: input_select.select_option
+      entity_id: input_select.estados_de_succao
+      data_template:
+        option: >
+          {% if states.vacuum.aspirador.attributes.fan_speed == 'Quiet' %}
+            "Silencioso"
+          {% elif states.vacuum.aspirador.attributes.fan_speed == 'Balanced' %}
+            "Balanceado"
+          {% elif states.vacuum.aspirador.attributes.fan_speed == 'Turbo' %}
+            "Turbo"
+          {% elif states.vacuum.aspirador.attributes.fan_speed == 'Max' %}
+            "Turbo máximo"
+          {% elif states.vacuum.aspirador.attributes.fan_speed == '105' %}
+            "Pano úmido"
+          {% endif %}
     - service: media_player.volume_set
       entity_id: media_player.sala
       data:

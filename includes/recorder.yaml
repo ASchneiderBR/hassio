@@ -50,6 +50,7 @@ exclude:
     - sensor.igd_sent_bytes
     - sensor.illumination_34ce00907e65
     - sensor.illumination_34ce0090940e
+    - sensor.illumination_7811dcb7ea3d
     - sensor.interruptores_ligados
     - sensor.luzes_ligadas
     - input_select.tempo_luz_banheiro_social
@@ -65,6 +66,9 @@ exclude:
     - input_select.tempo_muvrh_303_banheiro
     - input_select.tempo_muvrh_303_dinamica
     - input_select.tempo_muvrh_303_entrada
+    - input_select.rf_bridge_device_select
+    - input_select.rf_bridge_mode_select
+    - input_select.rf_bridge_key_select
     - input_boolean.boa_noite
     - input_boolean.bom_dia
     - input_boolean.chegar_casa

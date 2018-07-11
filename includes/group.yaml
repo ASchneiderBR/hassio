@@ -388,7 +388,7 @@ funcoes_tablet_entrada:
   - light.ledchaocozinha
   - light.area_servico
   - light.mesa_jantar
-  - light.sala_painel_desktop
+  - light.ledsaladesktop
   - light.sala_principal
   name: Tablet entrada
   view: false
