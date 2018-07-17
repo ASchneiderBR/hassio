@@ -9,6 +9,10 @@ Casa:
 
 ![Screenshot](https://github.com/tatunts/hassio/blob/master/Screens/home.PNG)
 
+Automações:
+
+![Screenshot](https://github.com/tatunts/hassio/blob/master/Screens/automations.PNG)
+
 Trabalho:
 
 ![Screenshot](https://github.com/tatunts/hassio/blob/master/Screens/work.PNG)
