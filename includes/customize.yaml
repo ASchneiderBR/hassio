@@ -352,17 +352,14 @@ cover.garagem_muvrh_interno:
 
 binary_sensor.door_window_sensor_158d0001d6851d:
   friendly_name: "Entrada casa"
-  icon: mdi:glassdoor
   device_class: door
 
 binary_sensor.door_window_sensor_158d0001d68545:
   friendly_name: "Box do banheiro da suíte"
-  icon: mdi:glassdoor
   device_class: door
 
 binary_sensor.door_window_sensor_158d0001e035a2:
   friendly_name: "Box do banheiro social"
-  icon: mdi:glassdoor
   device_class: door
 
 binary_sensor.motion_sensor_158d000120af26:
@@ -499,12 +496,10 @@ script.speed_test:
 
 binary_sensor.door_window_sensor_158d0001bf2a09:
   friendly_name: "Entrada sala 203"
-  icon: mdi:glassdoor
   device_class: door
 
 binary_sensor.door_window_sensor_158d0001b8671f:
   friendly_name: "Entrada sala 303"
-  icon: mdi:glassdoor
   device_class: door
 
 device_tracker.rmminioperacoes:
@@ -728,3 +723,6 @@ input_select.rf_bridge_key_select:
 
 script.rf_bridge_send_command:
   icon: mdi:send
+
+switch.aspirador:
+  icon: mdi:robot-vacuum

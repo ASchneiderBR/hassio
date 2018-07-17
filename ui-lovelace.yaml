@@ -1,11 +1,11 @@
 resources:
-  - url: /local/gauge-card.js?ver2
+  - url: /local/lovelace/custom_ui/gauge-card.js?ver2
     type: js
-  - url: /local/monster-card.js?ver2
+  - url: /local/lovelace/custom_ui/monster-card.js?ver4
     type: js
-  - url: /local/bignumber-card.js?ver2
+  - url: /local/lovelace/custom_ui/bignumber-card.js?ver2
     type: js
-  - url: /local/entity-attributes-card.js?ver2
+  - url: /local/lovelace/custom_ui/entity-attributes-card.js?ver7
     type: js
 
 title: Casa Antonio e Roberta
@@ -13,6 +13,7 @@ views:
   - title: Casa
     id: casa
     cards:
+
       - type: vertical-stack
         title: Sistema
         cards:
@@ -21,7 +22,7 @@ views:
             entities:
               - device_tracker.antonio
               - device_tracker.roberta
-          - type: glance
+          - type: entities
             title: Sistema
             entities:
               - entity: sensor.disk_use_percent_home
@@ -97,7 +98,7 @@ views:
 
           - type: entity-filter
             card:
-              title: Dispositivos Offline (atenção)
+              title: Dispositivos offline (atenção)
             entities:
               - switch.desktop
               - switch.servidor
@@ -119,7 +120,7 @@ views:
 
           - type: entity-filter
             card:
-              title: Dispositivos Indisponíveis (atenção)
+              title: Dispositivos indisponíveis (atenção)
             entities:
               - binary_sensor.casa_movimento
               - binary_sensor.cube_158d00010b2e3e
@@ -221,6 +222,19 @@ views:
             state_filter:
               - 'unavailable'
 
+          - type: custom:monster-card
+            card:
+              type: entities
+              title: Baterias fracas (atenção)
+            filter:
+              include:
+                - domain: binary_sensor
+                  attributes:
+                    battery_level: '< 10'
+                - domain: sensor
+                  attributes:
+                    battery_level: '< 10'
+
           - type: entity-filter
             card:
               title: Sensores ativos
@@ -312,18 +326,6 @@ views:
         cards:
 
           - type: entities
-            title: Controles RF Bridge
-            show_header_toggle: no
-            entities:
-              - input_select.rf_bridge_device_select
-              - input_select.rf_bridge_mode_select
-              - input_select.rf_bridge_key_select
-              - script.rf_bridge_send_command
-
-      - type: vertical-stack
-        cards:
-
-          - type: entities
             title: Alarme
             show_header_toggle: no
             entities:
@@ -334,12 +336,36 @@ views:
             title: Aspirador
             show_header_toggle: no
             entities:
-              - vacuum.aspirador
+              - switch.aspirador
               - sensor.xiaomi_status
               - sensor.xiaomi_battery_level
-              #- input_number.aspirador_passadas
               - input_select.estados_de_succao
               - input_select.zonas_de_aspiracao
+              - type: custom:entity-attributes-card
+                entity: vacuum.aspirador
+                attributes:
+                  - key: vacuum.aspirador.cleaning_time
+                    name: Tempo limpando (último)
+                  - key: vacuum.aspirador.cleaned_area
+                    name: Área limpa (último)
+                  - key: vacuum.aspirador.main_brush_left
+                    name: Escova principal (horas)
+                  - key: vacuum.aspirador.side_brush_left
+                    name: Escova lateral (horas)
+                  - key: vacuum.aspirador.filter_left
+                    name: Filtro (horas)
+
+          - type: vertical-stack
+            cards:
+
+              - type: entities
+                title: Controles RF Bridge
+                show_header_toggle: no
+                entities:
+                  - input_select.rf_bridge_device_select
+                  - input_select.rf_bridge_mode_select
+                  - input_select.rf_bridge_key_select
+                  - script.rf_bridge_send_command
 
           - type: vertical-stack
             cards:
@@ -361,16 +387,16 @@ views:
                   - entity: media_player.sala
                     name: Sala
 
-              - type: entities
-                title: Spotify
-                show_header_toggle: no
-                entities:
-                  - media_player.spotify
-                  - input_select.spotify_playlist
-                  - input_select.spotify_source
-                  - script.spotify_play
-                  - input_number.spotify_volume
-                  - input_boolean.spotify_shuffle
+#              - type: entities
+#                title: Spotify
+#                show_header_toggle: no
+#                entities:
+#                  - media_player.spotify
+#                  - input_select.spotify_playlist
+#                  - input_select.spotify_source
+#                  - script.spotify_play
+#                  - input_number.spotify_volume
+#                  - input_boolean.spotify_shuffle
 
   - title: Cômodos
     id: comodos
@@ -754,9 +780,8 @@ views:
         cards:
           - type: entity-filter
             card:
-              title: Dispositivos Offline (atenção)
+              title: Dispositivos offline (atenção)
             entities:
-              - device_tracker.pi3b_tv_sala_operacoes
               - device_tracker.xiaomi_hub_muvrh
               - device_tracker.chromecast_sala303
               - device_tracker.rfbridgemuvrh
@@ -878,3 +903,393 @@ views:
           - type: picture-entity
             entity: camera.muvrh_203__operacoes
 
+  - title: Testes
+    id: testes
+    cards:
+
+      - type: vertical-stack
+        cards:
+          - type: entities
+            title: Casa
+            show_header_toggle: no
+            entities:
+              - sensor.pws_weather_1h
+              - switch.sistema_alarme_casa
+
+          - type: picture-elements
+            #title: Mapa
+            image: /local/lovelace/images/floor_plan_casa5.png
+            elements:
+
+              # Sala
+
+              - type: state-icon
+                tap_action: toggle
+                entity: binary_sensor.door_window_sensor_158d0001d6851d
+                style:
+                  top: 12%
+                  left: 74.8%
+
+              - type: state-icon
+                tap_action: toggle
+                entity: light.entrada
+                style:
+                  top: 17%
+                  left: 74.8%
+
+              - type: state-icon
+                tap_action: toggle
+                entity: light.gateway_light_7811dcb7ea3d
+                style:
+                  top: 29%
+                  left: 65%
+
+              - type: state-icon
+                tap_action: toggle
+                entity: light.mesa_jantar
+                style:
+                  top: 44%
+                  left: 79%
+
+              - type: state-icon
+                tap_action: toggle
+                entity: light.ledsaladesktop
+                style:
+                  top: 41%
+                  left: 56.5%
+
+              - type: state-icon
+                tap_action: toggle
+                entity: switch.desktop
+                style:
+                  top: 37%
+                  left: 67.5%
+
+              - type: state-icon
+                tap_action: toggle
+                entity: switch.servidor
+                style:
+                  top: 37%
+                  left: 62%
+
+              - type: state-icon
+                tap_action: toggle
+                entity: binary_sensor.motion_sensor_158d0001225607
+                style:
+                  top: 52.5%
+                  left: 73.5%
+
+              - type: state-icon
+                entity: climate.ar_condicionado_da_sala
+                style:
+                  top: 57.5%
+                  left: 73.5%
+
+              - type: state-label
+                tap_action: toggle
+                entity: sensor.temperature_158d0001700b20
+                style:
+                  top: 62%
+                  left: 73.5%
+
+              - type: state-label
+                tap_action: toggle
+                entity: sensor.humidity_158d0001700b20
+                style:
+                  top: 65%
+                  left: 73.5%
+
+              - type: state-icon
+                tap_action: toggle
+                entity: light.sala_principal
+                style:
+                  top: 73%
+                  left: 73.5%
+
+              - type: state-icon
+                tap_action: toggle
+                entity: switch.tv_lg_sala
+                style:
+                  top: 70%
+                  left: 86.8%
+
+              - type: state-icon
+                tap_action: toggle
+                entity: switch.home_theater_sala
+                style:
+                  top: 74%
+                  left: 86.8%
+
+              - type: state-icon
+                tap_action: toggle
+                entity: light.ledsalatv
+                style:
+                  top: 78%
+                  left: 86.8%
+
+              - type: state-icon
+                tap_action: toggle
+                entity: switch.aspirador
+                style:
+                  top: 57.5%
+                  left: 86.8%
+
+              - type: state-icon
+                tap_action: toggle
+                entity: cover.persiana_sala
+                style:
+                  top: 80%
+                  left: 73.5%
+
+              - type: state-icon
+                tap_action: toggle
+                entity: light.corredor
+                style:
+                  top: 51.5%
+                  left: 44.5%
+
+              # Cozinha
+
+              - type: state-icon
+                tap_action: toggle
+                entity: light.cozinha
+                style:
+                  top: 17%
+                  left: 50%
+
+              - type: state-icon
+                tap_action: toggle
+                entity: light.ledcozinhabalcao
+                style:
+                  top: 12%
+                  left: 55%
+
+              - type: state-icon
+                tap_action: toggle
+                entity: light.ledchaocozinha
+                style:
+                  top: 12%
+                  left: 60%
+
+              - type: state-icon
+                tap_action: toggle
+                entity: light.area_servico
+                style:
+                  top: 17%
+                  left: 21%
+
+              - type: state-icon
+                tap_action: toggle
+                entity: binary_sensor.motion_sensor_158d0001231d4d
+                style:
+                  top: 13%
+                  left: 37%
+
+              - type: state-label
+                tap_action: toggle
+                entity: sensor.temperature_158d00019cec0c
+                style:
+                  top: 17%
+                  left: 37%
+
+              - type: state-label
+                tap_action: toggle
+                entity: sensor.humidity_158d00019cec0c
+                style:
+                  top: 20%
+                  left: 37%
+
+              # Quarto
+
+              - type: state-icon
+                tap_action: toggle
+                entity: light.quarto
+                style:
+                  top: 34%
+                  left: 33%
+
+              - type: state-icon
+                tap_action: toggle
+                entity: light.ledquartotv
+                style:
+                  top: 36%
+                  left: 43%
+
+              - type: state-icon
+                tap_action: toggle
+                entity: switch.tv_lg_quarto
+                style:
+                  top: 32%
+                  left: 43%
+
+              - type: state-icon
+                tap_action: toggle
+                entity: binary_sensor.motion_sensor_158d00015b6c81
+                style:
+                  top: 29%
+                  left: 23.2%
+
+              - type: state-icon
+                entity: climate.ar_condicionado_do_quarto
+                style:
+                  top: 33.5%
+                  left: 23.2%
+
+              - type: state-label
+                tap_action: toggle
+                entity: sensor.temperature_158d0001702175
+                style:
+                  top: 37.5%
+                  left: 23.2%
+
+              - type: state-label
+                tap_action: toggle
+                entity: sensor.humidity_158d0001702175
+                style:
+                  top: 40.3%
+                  left: 23.2%
+
+              - type: state-icon
+                tap_action: toggle
+                entity: cover.persiana_quarto
+                style:
+                  top: 34%
+                  left: 13%
+
+              # Banheiro social
+
+              - type: state-icon
+                tap_action: toggle
+                entity: binary_sensor.motion_sensor_158d00016da83a
+                style:
+                  top: 48.4%
+                  left: 36%
+
+              - type: state-icon
+                tap_action: toggle
+                entity: binary_sensor.door_window_sensor_158d0001e035a2
+                style:
+                  top: 48.4%
+                  left: 22%
+
+              - type: state-icon
+                tap_action: toggle
+                entity: light.banheiro_social
+                style:
+                  top: 50%
+                  left: 29%
+
+              - type: state-icon
+                tap_action: toggle
+                entity: switch.chuveirosocial
+                style:
+                  top: 52.8%
+                  left: 22%
+
+              # Banheiro suite
+
+              - type: state-icon
+                tap_action: toggle
+                entity: binary_sensor.motion_sensor_158d00016c01fd
+                style:
+                  top: 64%
+                  left: 36%
+
+              - type: state-icon
+                tap_action: toggle
+                entity: binary_sensor.door_window_sensor_158d0001d68545
+                style:
+                  top: 64%
+                  left: 22%
+
+              - type: state-icon
+                tap_action: toggle
+                entity: light.suite_banheiro
+                style:
+                  top: 59.5%
+                  left: 29%
+
+              - type: state-icon
+                tap_action: toggle
+                entity: switch.chuveirosuite
+                style:
+                  top: 59.5%
+                  left: 22%
+
+              - type: state-icon
+                tap_action: toggle
+                entity: switch.toalheiro
+                style:
+                  top: 64%
+                  left: 29%
+
+              # Suite
+
+              - type: state-icon
+                tap_action: toggle
+                entity: light.suite_principal
+                style:
+                  top: 61%
+                  left: 45%
+
+              - type: state-icon
+                tap_action: toggle
+                entity: light.suite_principal
+                style:
+                  top: 80%
+                  left: 24.5%
+
+              - type: state-icon
+                tap_action: toggle
+                entity: light.ledsuitetv
+                style:
+                  top: 82%
+                  left: 50%
+
+              - type: state-icon
+                tap_action: toggle
+                entity: light.ledsuitecama
+                style:
+                  top: 80%
+                  left: 16%
+
+              - type: state-icon
+                tap_action: toggle
+                entity: switch.tv_lg_suite
+                style:
+                  top: 78%
+                  left: 50%
+
+              - type: state-icon
+                tap_action: toggle
+                entity: binary_sensor.motion_sensor_158d000120af26
+                style:
+                  top: 72.1%
+                  left: 36%
+
+              - type: state-icon
+                entity: climate.ar_condicionado_da_suite
+                style:
+                  top: 76.7%
+                  left: 36%
+
+              - type: state-label
+                tap_action: toggle
+                entity: sensor.temperature_158d0001dcb597
+                style:
+                  top: 80.5%
+                  left: 36%
+
+              - type: state-label
+                tap_action: toggle
+                entity: sensor.humidity_158d0001dcb597
+                style:
+                  top: 83.2%
+                  left: 36%
+
+              - type: state-icon
+                tap_action: toggle
+                entity: cover.persiana_suite
+                style:
+                  top: 88%
+                  left: 36%

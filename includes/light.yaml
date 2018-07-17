@@ -347,6 +347,18 @@
   payload_available: "Online"
   payload_not_available: "Offline"
 
+- platform: template
+  lights:
+    ledsalatv_colorloop:
+      friendly_name: "Led da TV da sala"
+      icon_template: mdi:led-strip
+      turn_on:
+        service: script.ledsalatv_ligar_colorloop
+      turn_off:
+        service: light.turn_off
+        data:
+          entity_id: light.ledsalatv
+
 #Grupos de luzes
 
 - platform: group

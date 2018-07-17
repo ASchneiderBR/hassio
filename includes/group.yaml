@@ -45,7 +45,6 @@ quarto:
   - script.ar_quarto_display
   - script.ar_quarto_swing
   - cover.persiana_quarto
-  - switch.ledquartotv
   - switch.tv_lg_quarto
   - light.ledquartotv
   - light.quarto

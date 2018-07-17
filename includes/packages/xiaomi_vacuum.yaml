@@ -12,7 +12,7 @@ sensor:
             {% elif states.vacuum.aspirador.attributes.status == "Returning home" %}
               Voltando para a base
             {% elif states.vacuum.aspirador.attributes.status == "Zoned cleaning" %}
-              Limpando zona
+              Limpando
             {% elif states.vacuum.aspirador.attributes.status == "Manual mode" %}
               Modo manual
             {% elif states.vacuum.aspirador.attributes.status == "Going to target" %}
@@ -25,6 +25,8 @@ sensor:
               Desconhecido
             {% elif states.vacuum.aspirador.attributes.status == "Idle" %}
               Parado
+            {% elif states.vacuum.aspirador.attributes.status == "Paused" %}
+              Pausado
             {% else %}
               {{ states.vacuum.aspirador.attributes.status }}
             {%- endif %}
@@ -37,6 +39,25 @@ sensor:
         value_template: '{{ states.vacuum.aspirador.attributes.battery_level | float | int }}'
         unit_of_measurement: '%'
         device_class: battery
+
+switch:
+
+  - platform: template
+    switches:
+      aspirador:
+        friendly_name: "Aspirador"
+        value_template: "{{ states.vacuum.aspirador.state }}"
+        turn_on:
+          service: input_select.select_option
+          entity_id: input_select.zonas_de_aspiracao
+          data_template:
+            option: "Casa toda"
+        turn_off:
+          service: vacuum.turn_off
+          data:
+            entity_id: vacuum.aspirador
+        icon_template: mdi:robot-vacuum
+
 
 input_number:
 
@@ -75,10 +96,12 @@ input_select:
       - Suite
       - Suíte mais banheiro
       - Quartos e banheiros
+      - Somente piso
 
 automation:
 
-#Coloca o aspirador em modo silencioso    
+#Coloca o aspirador em modo silencioso
+
   - alias: Aspirador - Modo de aspiração
     trigger:
       platform: state
@@ -131,6 +154,8 @@ automation:
             script.aspirador_zona_suite_e_banheiro
           {% elif states.input_select.zonas_de_aspiracao.state == "Quartos e banheiros" %}
             script.aspirador_zona_quartos_e_banheiros
+          {% elif states.input_select.zonas_de_aspiracao.state == "Somente piso" %}
+            script.aspirador_zona_mop
           {% else %}
           {% endif %}
       - delay: 00:01:00
@@ -150,9 +175,15 @@ automation:
     trigger:
       - platform: state
         entity_id: sensor.xiaomi_status
+        from: 'Limpando'
         to: 'Parado'
+        for:
+          hours: 0
+          minutes: 0
+          seconds: 10
       - platform: state
         entity_id: sensor.xiaomi_status
+        from: 'Voltando para a base'
         to: 'Carregando'
       - platform: state
         entity_id: sensor.xiaomi_status
@@ -208,54 +239,56 @@ script:
 
   aspirador_zona_casa_toda:
     sequence:
-    - service: homeassistant.turn_on
+    - service: vacuum.send_command
       data:
         entity_id: vacuum.aspirador
+        command: app_zoned_clean
+        params: [[17327,20045,27427,32995,1]]
     - service: script.aspirador_alerta_iniciando
 
   aspirador_zona_sala_inteira:
     sequence:
     - service: vacuum.send_command
-      data_template:
+      data:
         entity_id: vacuum.aspirador
         command: app_zoned_clean
-        params: [[22674,21998,26074,31348,1]]
+        params: [[22907,22144,26257,31194,1]]
     - service: script.aspirador_alerta_iniciando
 
   aspirador_zona_tapete:
     sequence:
     - service: vacuum.send_command
-      data_template:
+      data:
         entity_id: vacuum.aspirador
         command: app_zoned_clean
-        params: [[23746,23540,25096,25240,1]]
+        params: [[23951,23589,25151,25289,1]]
     - service: script.aspirador_alerta_iniciando
 
   aspirador_zona_mesa_jantar:
     sequence:
     - service: vacuum.send_command
-      data_template:
+      data:
         entity_id: vacuum.aspirador
         command: app_zoned_clean
-        params: [[23674,26527,25774,28827,1]]
+        params: [[23844,26228,26044,28778,1]]
     - service: script.aspirador_alerta_iniciando
 
   aspirador_zona_entrada:
     sequence:
     - service: vacuum.send_command
-      data_template:
+      data:
         entity_id: vacuum.aspirador
         command: app_zoned_clean
-        params: [[23759,29577,24809,31277,1]]
+        params: [[23952,28985,25302,31185,1]]
     - service: script.aspirador_alerta_iniciando
 
   aspirador_zona_cozinha:
     sequence:
     - service: vacuum.send_command
-      data_template:
+      data:
         entity_id: vacuum.aspirador
         command: app_zoned_clean
-        params: [[18877,29579,23527,31279,1]]
+        params: [[19214,29554,23864,31404,1]]
     - service: script.aspirador_alerta_iniciando
 
   aspirador_zona_banheiro_social:
@@ -263,57 +296,70 @@ script:
     - service: input_select.select_option
       entity_id: input_select.estados_de_succao
       data:
-        option: "Turbo"
+        option: Turbo
     - service: vacuum.send_command
-      data_template:
+      data:
         entity_id: vacuum.aspirador
         command: app_zoned_clean
-        params: [[19420,25570,21170,26720,1]]
+        params: [[19595,25649,21395,26849,1]]
     - service: script.aspirador_alerta_iniciando
 
   aspirador_zona_banheiro_suite:
     sequence:
     - service: vacuum.send_command
-      data_template:
+      data:
         entity_id: vacuum.aspirador
         command: app_zoned_clean
-        params: [[19437,24167,21187,25317,1]]
+        params: [[19660,24247,21460,25447,1]]
     - service: script.aspirador_alerta_iniciando
 
   aspirador_zona_quarto:
     sequence:
     - service: vacuum.send_command
-      data_template:
+      data:
         entity_id: vacuum.aspirador
         command: app_zoned_clean
-        params: [[18475,26894,21875,29294,1]]
+        params: [[18726,27039,22426,29439,1]]
     - service: script.aspirador_alerta_iniciando
 
   aspirador_zona_suite:
     sequence:
     - service: vacuum.send_command
-      data_template:
+      data:
         entity_id: vacuum.aspirador
         command: app_zoned_clean
-        params: [[18691,20849,22741,24099,1]]
+        params: [[18645,21070,22995,24070,1]]
     - service: script.aspirador_alerta_iniciando
 
   aspirador_zona_suite_e_banheiro:
     sequence:
     - service: vacuum.send_command
-      data_template:
+      data:
         entity_id: vacuum.aspirador
         command: app_zoned_clean
-        params: [[18561,20733,22811,25383,1]]
+        params: [[18570,21027,22970,25527,1]]
     - service: script.aspirador_alerta_iniciando
 
   aspirador_zona_quartos_e_banheiros:
     sequence:
     - service: vacuum.send_command
-      data_template:
+      data:
         entity_id: vacuum.aspirador
         command: app_zoned_clean
-        params: [[18435,21077,22535,29327,1]]
+        params: [[17980,21210,22830,29610,1]]
+    - service: script.aspirador_alerta_iniciando
+
+  aspirador_zona_mop:
+    sequence:
+    - service: input_select.select_option
+      entity_id: input_select.estados_de_succao
+      data:
+        option: Pano úmido
+    - service: vacuum.send_command
+      data:
+        entity_id: vacuum.aspirador
+        command: app_zoned_clean
+        params: [[17721,25369,27121,32169,1],[18080,20509,22930,25659,1],[25122,22132,26122,25682,1]]
     - service: script.aspirador_alerta_iniciando
 
   aspirador_voltar_dock:
@@ -361,6 +407,8 @@ script:
   aspirador_alerta_carregando:
     alias: Aspirador casa - Voltou para casa
     sequence:
+    - condition: template
+      value_template: "{% if is_state('input_select.zonas_de_aspiracao', 'Escolher zona') %}False{% else %}True{% endif %}"
     - service: notify.TUDO
       data_template:
         title: "Alerta Casa"

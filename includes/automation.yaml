@@ -8,7 +8,7 @@
       entity_id: media_player.tv_sala
       to: 'off'
       for:
-        seconds: 3
+        seconds: 10
   action:
     - service_template: >
         {% if is_state('media_player.tv_sala' , 'playing') and is_state('switch.home_theater_sala', 'off') %}
@@ -55,7 +55,7 @@
     - service: input_select.select_option
       entity_id: input_select.estados_de_succao
       data_template:
-        option: "Balanceado"
+        option: Balanceado
     - service: cover.close_cover
       entity_id:
         - cover.garagem_muvrh_interno
@@ -83,16 +83,32 @@
       data_template:
         option: >
           {% if states.vacuum.aspirador.attributes.fan_speed == 'Quiet' %}
-            "Silencioso"
+            Silencioso
           {% elif states.vacuum.aspirador.attributes.fan_speed == 'Balanced' %}
-            "Balanceado"
+            Balanceado
           {% elif states.vacuum.aspirador.attributes.fan_speed == 'Turbo' %}
-            "Turbo"
+            Turbo
           {% elif states.vacuum.aspirador.attributes.fan_speed == 'Max' %}
-            "Turbo máximo"
+            Turbo máximo
           {% elif states.vacuum.aspirador.attributes.fan_speed == '105' %}
-            "Pano úmido"
+            Pano úmido
           {% endif %}
+    - service_template: >
+        {% if is_state('alarm_control_panel.alarme', 'disarmed') %}
+          {% if is_state('group.pessoas', 'home') %}script.alarme_armar_casa{% else %}script.alarme_armar_fora{% endif %}
+        {% endif %}
+    - service_template: >
+        {% if (is_state('light.gateway_light_34ce0090940e', 'on' ) or is_state('light.gateway_light_34ce0090940e', 'off' )) and (is_state('light.gateway_light_7811dcb7ea3d', 'on' ) or is_state('light.gateway_light_7811dcb7ea3d', 'off' )) %}
+          homekit.start
+        {% else %}
+          script.homekit_no_start
+        {% endif %}
+    - service: homeassistant.turn_on
+      entity_id: automation.alarme__aviso_alarme_ativado
+    - service: persistent_notification.create
+      data:
+        message: "Hassio iniciado com sucesso às {{now().strftime('%H:%M')}}"
+        title: "Sistema"
     - service: media_player.volume_set
       entity_id: media_player.sala
       data:
@@ -105,26 +121,6 @@
       data:
         title: "Sistema"
         message: "Home Assistant foi reinicializado"
-    - service: persistent_notification.create
-      data:
-        message: "Hassio iniciado com sucesso às {{now().strftime('%H:%M')}}"
-        title: "Sistema"
-    - service: notify.ios_iphone_de_antonio
-      data:
-        title: "Sistema"
-        message: "Iniciar o componente HomeKit?"
-        data:
-          push:
-            category: "homekit_start"
-    - delay: 00:00:10
-    - service_template: >
-        {% if is_state('group.pessoas', 'home') %}
-          alarm_control_panel.alarm_arm_home
-        {% else %}
-          alarm_control_panel.alarm_arm_away
-        {% endif %}
-      entity_id: alarm_control_panel.alarme
-
 
 - alias: Garagem MuvRH
   trigger:
@@ -191,6 +187,7 @@
       entity_id: alarm_control_panel.alarme
 
 - alias: Alarme - Aviso alarme ativado
+  initial_state: False
   trigger:
     platform: state
     entity_id: alarm_control_panel.alarme

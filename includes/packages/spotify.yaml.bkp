@@ -1,0 +1,180 @@
+media_player:
+  - platform: spotify
+    client_id: !secret spotify_client_id
+    client_secret: !secret spotify_client_secret
+
+group:
+  spotify_player:
+    name: Spotify Player
+    entities:
+      - media_player.spotify
+  
+  spotify_controles:
+    name: Spotify Controles
+    control: hidden
+    entities:
+      - input_select.spotify_playlist
+      - input_select.spotify_source
+      - script.spotify_play
+      - input_number.spotify_volume
+      - input_boolean.spotify_shuffle
+
+homeassistant:
+  customize:
+    script.spotify_play:
+      friendly_name: 'Play'
+      icon: mdi:play
+
+sensor:
+  - platform: template
+    sensors:
+      spotify_volume:
+        friendly_name: "Spotify Volume"
+        value_template: "{{ states.media_player.spotify.attributes.volume_level }}"
+  - platform: template
+    sensors:
+      spotify_shuffle:
+        friendly_name: "Spotify Shuffle"
+        value_template: "{{ states.media_player.spotify.attributes.shuffle }}"
+  - platform: template
+    sensors:
+      spotify_source:
+        friendly_name: "Spotify Source"
+        value_template: "{{ states.media_player.spotify.attributes.source }}"
+
+input_number:
+  spotify_volume:
+    name: Volume
+    icon: mdi:volume-high
+    initial: 100
+    min: 0
+    max: 100
+    step: 10
+
+input_select:
+  spotify_playlist:
+    name: 'Playlist:'
+    options:
+      - Calmas
+      - Eletrônicas
+      - Jazz
+      - Clássicas
+    icon: mdi:spotify
+  spotify_source:
+    name: 'Fonte:'
+    options:
+      - Sala
+      - Suíte
+    initial: Sala
+    icon: mdi:speaker-wireless
+
+input_boolean:
+  spotify_shuffle:
+    name: Shuffle
+    icon: mdi:shuffle-variant
+
+script:
+  spotify_play:
+    alias: "Tocar playlist selecionada no Spotify"
+    sequence:
+      - service: media_player.select_source
+        data_template: 
+          entity_id: media_player.spotify
+          source: >
+            {% if is_state("input_select.spotify_source", "Sala") %} Sala
+            {% elif is_state("input_select.spotify_source", "Suíte") %} Suíte
+            {% endif %}
+      - service: media_player.play_media
+        data_template:
+          entity_id: media_player.spotify
+          media_content_type: playlist
+          media_content_id: >
+            {% if is_state("input_select.spotify_playlist", "Calmas") %} spotify:user:spotify:playlist:37i9dQZF1DXakWdSZ8mUMO
+            {% elif is_state("input_select.spotify_playlist", "Eletrônicas") %} spotify:user:spotify:playlist:5dfbLgeesT8gixq1GTWBoU
+            {% elif is_state("input_select.spotify_playlist", "Jazz") %} spotify:user:spotify:playlist:37i9dQZF1DX4WYpdgoIcn6
+            {% elif is_state("input_select.spotify_playlist", "Clássicas") %} spotify:user:spotify:playlist:6IjDl5eRczFdgZkKYXhuHZ
+            {% endif %}
+
+automation:
+  - alias: 'Spotify Volume (Set)'
+    trigger:
+      platform: state
+      entity_id: input_number.spotify_volume
+    action:
+      service: media_player.volume_set
+      data_template:
+        entity_id: media_player.spotify
+        volume_level: '{{  states.input_number.spotify_volume.state | int / 100  }}'
+  
+  - alias: 'Spotify Volume (Sync)'
+    trigger:
+      - platform: homeassistant
+        event: start
+      - platform: state
+        entity_id: sensor.spotify_volume
+    action:
+      - delay:
+          seconds: 5
+      - service: input_number.set_value
+        data_template:
+          entity_id: input_number.spotify_volume
+          value: '{{  states.sensor.spotify_volume.state | float | round(2) * 100  }}'
+  
+  - alias: 'Spotify Shuffle (Set)'
+    trigger:
+      platform: state
+      entity_id: input_boolean.spotify_shuffle
+    action:
+      service: media_player.shuffle_set
+      data_template:
+        entity_id: media_player.spotify
+        shuffle: >
+          {% if is_state('input_boolean.spotify_shuffle', 'off') %} 
+          false
+          {% elif is_state('input_boolean.spotify_shuffle', 'on') %}
+          true
+          {% endif %}
+  
+  - alias: 'Spotify Shuffle (Sync)'
+    trigger:
+      - platform: homeassistant
+        event: start
+      - platform: state
+        entity_id: sensor.spotify_shuffle
+    action:
+      - delay:
+          seconds: 5
+      - service_template: >
+          {% if states.sensor.spotify_shuffle.state == 'False' %}
+            input_boolean.turn_off
+          {% else %}
+            input_boolean.turn_on
+          {% endif %}
+        data:
+          entity_id: input_boolean.spotify_shuffle
+
+  - alias: 'Spotify Source (Sync)'
+    trigger:
+      - platform: homeassistant
+        event: start
+      - platform: state
+        entity_id: sensor.spotify_source
+    action:
+      service: input_select.select_option
+      entity_id: input_select.spotify_source
+      data_template:
+        option: '{{  states.sensor.spotify_source.state  }}'
+
+# Multiplos Spotify
+
+#- platform: spotify
+#  name: Spotify Office
+#  client_id: !secret spotify_office_client_id
+#  client_secret: !secret spotify_office_client_secret
+#  cache_path: '.spotify_office'
+#
+#- platform: spotify
+#  name: Spotify Living Room
+#  client_id: !secret spotify_livingroom_client_id
+#  client_secret: !secret spotify_livingroom_client_secret
+#  cache_path: '.spotify_livingroom'

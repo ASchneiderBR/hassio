@@ -969,6 +969,16 @@ tv_lg_sala_desligar_tudo:
     entity_id:
       - light.ledsalatv
 
+ledsalatv_ligar_colorloop:
+  alias: "Ligar Led da TV da sala com efeito"
+  sequence:
+  - service: light.turn_on
+    entity_id: light.ledsalatv
+  - service: light.turn_on
+    data:
+      entity_id: light.ledsalatv
+      effect: colorloop
+
 tts_porta_entrada:
   alias: "Entrando em casa"
   sequence:
@@ -2087,3 +2097,23 @@ speed_test:
     data_template:
       title: "Sistema"
       message: "A velocidade da internet em casa é de {{ states.sensor.fastcom_download.state | int}} Mbit/s"
+
+homekit_no_start:
+  alias: Iniciar HomeKit
+  sequence:
+  - service: notify.ios_iphone_de_antonio
+    data:
+      title: "Sistema"
+      message: "Sistema iniciado sem o componente HomeKit"
+
+alarme_armar_casa:
+  alias: Armar alarme em casa
+  sequence:
+  - service: alarm_control_panel.alarm_arm_home
+    entity_id: alarm_control_panel.alarme
+
+alarme_armar_fora:
+  alias: Armar alarme fora de casa
+  sequence:
+  - service: alarm_control_panel.alarm_arm_away
+    entity_id: alarm_control_panel.alarme

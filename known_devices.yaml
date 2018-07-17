@@ -73,7 +73,7 @@ iphone_de_roberta:
 camera_sala:
   hide_if_away: false
   icon: mdi:camera
-  mac: B0:D5:9D:8F:84:E1
+  mac: B0:D5:9D:65:E5:D1
   name: Câmera da sala
   picture: https://ae01.alicdn.com/kf/HTB1MT81LpXXXXa7XVXXq6xXFXXXM/International-Edition-Xiaoyi-YI-Home-Camera-HD-720P-Xiaoyi-IP-Camera-110-Wide-Angle-Two.jpg
   track: true
@@ -82,7 +82,7 @@ camera_sala:
 camera_cozinha:
   hide_if_away: false
   icon: mdi:camera
-  mac: B0:D5:9D:65:E5:D1
+  mac: B0:D5:9D:8F:84:E1
   name: Câmera da cozinha
   picture: https://media.takealot.com/covers_tsins/44241483/44241483-1-zoom.jpg
   track: true
@@ -186,15 +186,6 @@ luzsalaprincipal:
   picture: https://images-na.ssl-images-amazon.com/images/I/319HtdkGgOL.jpg
   track: false
   vendor: Sonoff
-
-xiaomi_hub:
-  hide_if_away: false
-  icon:
-  mac: 34:CE:00:90:7E:65
-  name: Xiaomi HUB Casa
-  picture: https://www.nextbuying.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/p/0/p000522-01.jpg
-  track: true
-  vendor: Xiaomi
 
 luzsuiteprincipal:
   hide_if_away: false
@@ -390,7 +381,7 @@ notebook_antonio:
   icon:
   mac: 2C:59:E5:BE:28:FB
   name: Notebook Antonio
-  picture: http://www.www8-hp.com/br/pt/images/T-Gateway_EverydayComputing_Pavilion_Sleekbook--C-tcm226-1324129.jpg
+  picture: https://img3.ecommerceresponsivo.com.br/padrao/239-large_default/ultrabook-hp-pavilion-14-b080br-com-intel-core-i5-4gb-500gb-32gb-sdd-led-14-windows-8.jpg
   track: true
   vendor: Hewlett Packard
 
@@ -398,7 +389,7 @@ camera_01:
   hide_if_away: false
   icon:
   mac: B0:D5:9D:23:E9:9B
-  name: Camera 01
+  name: Camera 01 - Entrada 203
   picture: https://media.takealot.com/covers_tsins/44241483/44241483-1-zoom.jpg
   track: true
   vendor: Xiaomi
@@ -407,7 +398,7 @@ camera_02:
   hide_if_away: false
   icon:
   mac: B0:D5:9D:26:BE:FF
-  name: Camera 02
+  name: Camera 02 - Operações
   picture: https://media.takealot.com/covers_tsins/44241483/44241483-1-zoom.jpg
   track: true
   vendor: Xiaomi
@@ -416,16 +407,16 @@ camera_05:
   hide_if_away: false
   icon:
   mac: B0:D5:9D:52:A3:14
-  name: Camera 05
+  name: Camera 05 - Dinâmica
   picture: https://media.takealot.com/covers_tsins/44241483/44241483-1-zoom.jpg
   track: true
   vendor: Xiaomi
 
-celular_azul:
+celular_branco:
   hide_if_away: false
   icon:
   mac: 00:16:98:EB:02:6C
-  name: Celular Azul
+  name: Celular branco
   picture: https://http2.mlstatic.com/celular-smartphone-alcatel-pixi-4-5-preto-ot5045-D_NQ_NP_749414-MLB26396945712_112017-F.jpg
   track: true
   vendor: Alcatel
@@ -443,7 +434,7 @@ camera_03:
   hide_if_away: false
   icon:
   mac: B0:D5:9D:27:E5:DF
-  name: Camera 03
+  name: Camera 03 - Nossa sala
   picture: https://media.takealot.com/covers_tsins/44241483/44241483-1-zoom.jpg
   track: true
   vendor: Xiaomi
@@ -452,7 +443,7 @@ camera_04:
   hide_if_away: false
   icon:
   mac: B0:D5:9D:52:A2:51
-  name: Camera 04
+  name: Camera 04 - Entrada 303
   picture: https://media.takealot.com/covers_tsins/44241483/44241483-1-zoom.jpg
   track: true
   vendor: Xiaomi
@@ -552,7 +543,7 @@ notebook_roberta:
   icon:
   mac: 80:56:F2:CB:05:1D
   name: Notebook Roberta
-  picture: http://www.www8-hp.com/br/pt/images/T-Gateway_EverydayComputing_Pavilion_Sleekbook--C-tcm226-1324129.jpg
+  picture: https://img3.ecommerceresponsivo.com.br/padrao/239-large_default/ultrabook-hp-pavilion-14-b080br-com-intel-core-i5-4gb-500gb-32gb-sdd-led-14-windows-8.jpg
   track: true
   vendor: Hon Hai Precision Ind. Co.,Ltd.
 
@@ -735,3 +726,331 @@ google_home_mini_sala:
   picture: http://i.expansys.com/i/b/b307761.jpg
   track: true
   vendor: Google
+
+ec3dfd683eb3:
+  hide_if_away: false
+  icon:
+  mac: EC:3D:FD:68:3E:B3
+  name: ec3dfd683eb3
+  picture:
+  track: false
+  vendor: SHENZHEN BILIAN ELECTRONIC CO.，LTD
+
+acd1b8c1c7f3:
+  hide_if_away: false
+  icon:
+  mac: AC:D1:B8:C1:C7:F3
+  name: acd1b8c1c7f3
+  picture:
+  track: false
+  vendor: Hon Hai Precision Ind. Co.,Ltd.
+
+6001948875f7:
+  hide_if_away: false
+  icon:
+  mac: 60:01:94:88:75:F7
+  name: 6001948875f7
+  picture:
+  track: false
+  vendor: Espressif Inc.
+
+586356a1183d:
+  hide_if_away: false
+  icon:
+  mac: 58:63:56:A1:18:3D
+  name: 586356a1183d
+  picture:
+  track: false
+  vendor: FN-LINK TECHNOLOGY LIMITED
+
+20d160c9f87e:
+  hide_if_away: false
+  icon:
+  mac: 20:D1:60:C9:F8:7E
+  name: 20d160c9f87e
+  picture:
+  track: false
+  vendor: Private
+
+107b44c1e678:
+  hide_if_away: false
+  icon:
+  mac: 10:7B:44:C1:E6:78
+  name: 107b44c1e678
+  picture:
+  track: false
+  vendor: ASUSTek COMPUTER INC.
+
+hassio:
+  hide_if_away: false
+  icon:
+  mac: B8:27:EB:79:CC:F5
+  name: hassio
+  picture:
+  track: false
+
+deco_m5:
+  hide_if_away: false
+  icon:
+  mac: B0:4E:26:5A:0A:B5
+  name: deco M5
+  picture:
+  track: false
+
+88835db02678:
+  hide_if_away: false
+  icon:
+  mac: 88:83:5D:B0:26:78
+  name: 88835db02678
+  picture:
+  track: false
+
+muv303tvdinamica4374:
+  hide_if_away: false
+  icon:
+  mac: 5C:CF:7F:A4:51:16
+  name: muv303tvdinamica-4374
+  picture:
+  track: false
+
+hassio_2:
+  hide_if_away: false
+  icon:
+  mac: B8:27:EB:55:40:A1
+  name: hassio
+  picture:
+  track: false
+
+android80736a36aa0f99f4:
+  hide_if_away: false
+  icon:
+  mac: D0:04:01:8D:C3:82
+  name: android-80736a36aa0f99f4
+  picture:
+  track: false
+
+androidf55a3c372d75347a:
+  hide_if_away: false
+  icon:
+  mac: 84:10:0D:32:A3:2D
+  name: android-f55a3c372d75347a
+  picture:
+  track: false
+
+ec3dfd5400e0:
+  hide_if_away: false
+  icon:
+  mac: EC:3D:FD:54:00:E0
+  name: ec3dfd5400e0
+  picture:
+  track: false
+
+sensorgaragem6402:
+  hide_if_away: false
+  icon:
+  mac: EC:FA:BC:0D:59:02
+  name: sensorgaragem-6402
+  picture:
+  track: false
+
+cozinhaprincipal2461:
+  hide_if_away: false
+  icon:
+  mac: 60:01:94:3F:09:9D
+  name: cozinhaprincipal-2461
+  picture:
+  track: false
+
+cassios7:
+  hide_if_away: false
+  icon:
+  mac: 4C:66:41:5C:26:34
+  name: CassioS7
+  picture:
+  track: false
+
+chromecast_sala303:
+  hide_if_away: false
+  icon:
+  mac: 48:D6:D5:29:02:40
+  name: Chromecast sala 303
+  picture: https://images-na.ssl-images-amazon.com/images/I/3140etF1H2L.jpg
+  track: true
+
+hassio_3:
+  hide_if_away: false
+  icon:
+  mac: B8:27:EB:BF:14:E3
+  name: hassio
+  picture:
+  track: false
+
+gustavoasiphone:
+  hide_if_away: false
+  icon:
+  mac: 6C:96:CF:93:E5:FA
+  name: GustavoasiPhone
+  picture:
+  track: false
+
+desktopr4vcokd:
+  hide_if_away: false
+  icon:
+  mac: C8:21:58:83:C9:99
+  name: DESKTOP-R4VCOKD
+  picture:
+  track: false
+
+ipaddeantonio:
+  hide_if_away: false
+  icon:
+  mac: 54:E4:3A:D1:4B:D1
+  name: iPad-de-Antonio
+  picture:
+  track: false
+
+auxiliardeck3754:
+  hide_if_away: false
+  icon:
+  mac: 2C:3A:E8:2E:AE:AA
+  name: auxiliardeck-3754
+  picture:
+  track: false
+
+celular_motog5s_muvrh:
+  hide_if_away: false
+  icon:
+  mac: 38:80:DF:04:0B:54
+  name: Celular Moto G5s
+  picture: https://cdn.eglobalcentral.nl/images/magictoolbox_cache/8c95d73fec130487c102a73bf1ab42ce/2/0/20893/thumb360x360/2476004454/motorola-moto-g5-plus-xt1685-32gb-4g-dual-bbfpk1.jpg
+  track: true
+
+desktopc72aetk:
+  hide_if_away: false
+  icon:
+  mac: 60:45:CB:23:89:FB
+  name: DESKTOP-C72AETK
+  picture:
+  track: false
+
+d1_mini5372:
+  hide_if_away: false
+  icon:
+  mac: 68:C6:3A:D6:34:FC
+  name: d1 mini-5372
+  picture:
+  track: false
+
+quarto1armario3322:
+  hide_if_away: false
+  icon:
+  mac: 5C:CF:7F:57:CC:FA
+  name: quarto1armario-3322
+  picture:
+  track: false
+
+iphonedrederico:
+  hide_if_away: false
+  icon:
+  mac: 28:5A:EB:BD:0B:BF
+  name: iPhonedrederico
+  picture:
+  track: false
+
+androidb3c0755021c69cec:
+  hide_if_away: false
+  icon:
+  mac: CC:61:E5:FF:EA:34
+  name: android-b3c0755021c69cec
+  picture:
+  track: false
+
+node_mcu_teste6777:
+  hide_if_away: false
+  icon:
+  mac: EC:FA:BC:0D:5A:79
+  name: node mcu teste-6777
+  picture:
+  track: false
+
+android6f9c8b0cde9c24a6:
+  hide_if_away: false
+  icon:
+  mac: 90:68:C3:A5:E2:A5
+  name: android-6f9c8b0cde9c24a6
+  picture:
+  track: false
+
+xiaomi_hub_casa:
+  hide_if_away: false
+  icon:
+  mac: 78:11:DC:B7:EA:3D
+  name: Xiaomi HUB Casa
+  picture: https://www.nextbuying.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/p/0/p000522-01.jpg
+  track: true
+  vendor: Xiaomi
+
+muvrh_04:
+  hide_if_away: false
+  icon:
+  mac: 00:1E:65:03:F1:A2
+  name: MuvRH 04
+  picture: https://cnet1.cbsistatic.com/img/ujNmQpGqVeLguopc_8VFsO2TU_w=/194x146/2017/01/19/bb495bf3-c081-4cb0-8ed2-ecc8a488da3b/bb495bf3-c081-4cb0-8ed2-ecc8a488da3b.jpg
+  track: true
+
+d0771415b266:
+  hide_if_away: false
+  icon:
+  mac: D0:77:14:15:B2:66
+  name: d0771415b266
+  picture:
+  track: false
+
+ledsalatv2420:
+  hide_if_away: false
+  icon:
+  mac: 60:01:94:88:69:74
+  name: ledsalatv-2420
+  picture:
+  track: false
+
+rfbridgemuvrh:
+  hide_if_away: false
+  icon:
+  mac: 60:01:94:9E:F0:0E
+  name: Sonoff RF bridge MuvRH
+  picture: https://cdn.itead.cc/media/catalog/product/r/f/rf-bridge_03_1.jpg
+  track: true
+  vendor: Sonoff
+
+aspirador_xiaomi:
+  hide_if_away: false
+  icon:
+  mac: 78:11:DC:ED:B8:24
+  name: Aspirador Xiaomi
+  picture: https://cdn.shopify.com/s/files/1/2654/9742/products/International-Version-Xiaomi-Mijia-Roborock-Vacuum-Cleaner-2-Auto-Area-Cleaning-Suction-2in1-Sweeping-Mopping-LDS.jpg?v=1519635982
+  track: true
+
+ec3dfd5dd549:
+  hide_if_away: false
+  icon:
+  mac: EC:3D:FD:5D:D5:49
+  name: ec3dfd5dd549
+  picture:
+  track: false
+
+tasmota_sonoff_clean4898:
+  hide_if_away: false
+  icon:
+  mac: 60:01:94:8E:53:22
+  name: tasmota sonoff clean-4898
+  picture:
+  track: false
+
+dual_tests:
+  hide_if_away: false
+  icon:
+  mac: 60:01:94:98:CC:39
+  name: dual tests
+  picture:
+  track: false
