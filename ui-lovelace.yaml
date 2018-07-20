@@ -122,11 +122,24 @@ views:
             card:
               title: Dispositivos indisponíveis (atenção)
             entities:
-              - binary_sensor.casa_movimento
-              - binary_sensor.cube_158d00010b2e3e
-              - binary_sensor.cube_158d00010b2e64
-              - binary_sensor.door_window_sensor_158d0001b8671f
-              - binary_sensor.door_window_sensor_158d0001bf2a09
+              - light.area_servico
+              - light.banheiro_social
+              - light.corredor
+              - light.cozinha
+              - light.entrada
+              - light.gateway_light_34ce0090940e
+              - light.ledchaocozinha
+              - light.ledcozinhabalcao
+              - light.ledquartotv
+              - light.ledsaladesktop
+              - light.ledsalatv
+              - light.ledsuitecama
+              - light.ledsuitetv
+              - light.mesa_jantar
+              - light.quarto
+              - light.sala_principal
+              - light.suite_banheiro
+              - light.suite_principal
               - binary_sensor.door_window_sensor_158d0001d6851d
               - binary_sensor.door_window_sensor_158d0001d68545
               - binary_sensor.door_window_sensor_158d0001e035a2
@@ -136,88 +149,18 @@ views:
               - binary_sensor.motion_sensor_158d00015b6c81
               - binary_sensor.motion_sensor_158d00016c01fd
               - binary_sensor.motion_sensor_158d00016da83a
-              - binary_sensor.motion_sensor_158d0001a24bdc
-              - binary_sensor.motion_sensor_158d0001ad6b83
-              - binary_sensor.motion_sensor_158d0001ad6c20
-              - binary_sensor.motion_sensor_158d0001e02f9a
-              - binary_sensor.motion_sensor_158d0001e420d0
-              - binary_sensor.motion_sensor_158d0001e43ef1
-              - binary_sensor.motion_sensor_158d0001e44035
-              - binary_sensor.switch_158d000120ea75
-              - binary_sensor.switch_158d000121090f
-              - binary_sensor.switch_158d0001d8e9cf
-              - binary_sensor.switch_158d0001d8e9f8
-              - binary_sensor.switch_158d0001d8ea74
-              - binary_sensor.switch_158d0001d8eabc
-              - binary_sensor.switch_158d0001d8eb3d
-              - binary_sensor.switch_158d0001d9073f
-              - binary_sensor.tv_quarto
-              - light.303leddinamica
-              - light.area_servico
-              - light.banheiro_social
-              - light.corredor
-              - light.cozinha
-              - light.entrada
-              - light.gateway_light_34ce0090940e
-              - light.gateway_light_7811dcb7ea3d
-              - light.ledchaocozinha
-              - light.ledcozinhabalcao
-              - light.ledquartotv
-              - light.ledsaladesktop
-              - light.ledsalatv
-              - light.ledsuitecama
-              - light.ledsuitetv
-              - light.mesa_jantar
-              - light.muv203banheiro
-              - light.muv203entrada
-              - light.muv203nossasala
-              - light.muv203operacoes
-              - light.muv303banheiro
-              - light.muv303corredor
-              - light.muv303dinamica
-              - light.muv303entrada
-              - light.quarto
-              - light.sala_principal
-              - light.suite_banheiro
-              - light.suite_principal
-              - sensor.humidity_158d00015633b4
               - sensor.humidity_158d0001700b20
               - sensor.humidity_158d0001702175
-              - sensor.humidity_158d0001703b44
               - sensor.humidity_158d00019cec0c
-              - sensor.humidity_158d0001d7e65d
               - sensor.humidity_158d0001dcb597
-              - sensor.illumination_158d0001a24bdc
-              - sensor.illumination_158d0001ad6b83
-              - sensor.illumination_158d0001ad6c20
-              - sensor.illumination_158d0001e02f9a
-              - sensor.illumination_158d0001e420d0
-              - sensor.illumination_158d0001e43ef1
-              - sensor.illumination_158d0001e44035
-              - sensor.illumination_34ce0090940e
-              - sensor.illumination_7811dcb7ea3d
-              - sensor.muvrh_temperature
-              - sensor.temperatura_real_nossa_sala
-              - sensor.temperature_158d00015633b4
+              - sensor.illumination_34ce00907e65
               - sensor.temperature_158d0001700b20
               - sensor.temperature_158d0001702175
-              - sensor.temperature_158d0001703b44
               - sensor.temperature_158d00019cec0c
-              - sensor.temperature_158d0001d7e65d
               - sensor.temperature_158d0001dcb597
-              - sensor.xiaomi_battery_level
-              - sensor.xiaomi_status
-              - switch.aspirador
-              - switch.automacoes_luzes
               - switch.chuveirosocial
               - switch.chuveirosuite
-              - switch.desktop
-              - switch.home_theater_sala
-              - switch.muv203bebedouro
-              - switch.muv303bebedouro
-              - switch.servidor
               - switch.sirene
-              - switch.sistema_alarme_casa
               - switch.toalheiro
             state_filter:
               - 'unavailable'
@@ -1293,3 +1236,11 @@ views:
                 style:
                   top: 88%
                   left: 36%
+
+      - type: map
+        aspect_ratio: 100%
+        entities:
+          - entity: device_tracker.iphone_de_antonio
+          - entity: device_tracker.iphone_de_roberta
+          - zone.home
+          - zone.trabalho

@@ -466,6 +466,14 @@ script:
       data_template:
         option: "Mesa de jantar"
 
+  aspirador_homekit_zona_tapete:
+    alias: Aspirador casa - Aspirar zona tapete
+    sequence:
+    - service: input_select.select_option
+      entity_id: input_select.zonas_de_aspiracao
+      data_template:
+        option: "Tapete"
+
   aspirador_homekit_zona_entrada:
     alias: Aspirador casa - Aspirar zona entrada
     sequence:
@@ -489,3 +497,20 @@ script:
       entity_id: input_select.zonas_de_aspiracao
       data_template:
         option: "Quartos e banheiros"
+
+# Customize
+
+homeassistant:
+  customize:
+
+    switch.aspirador:
+      icon: mdi:robot-vacuum
+
+    input_select.estados_de_succao:
+      icon: mdi:speedometer
+
+    input_select.zonas_de_aspiracao:
+      icon: mdi:map-marker
+
+    input_number.aspirador_passadas:
+      icon: mdi:shuffle-disabled

@@ -5,6 +5,7 @@ tempo_luz_suite:
    - 180
    - 300
    - 600
+   - 1200
   initial: 180
   icon: mdi:timer
 
@@ -15,6 +16,7 @@ tempo_luz_banheiro_suite:
    - 180
    - 300
    - 600
+   - 1200
   initial: 180
   icon: mdi:timer
 
@@ -25,6 +27,7 @@ tempo_luz_banheiro_social:
    - 180
    - 300
    - 600
+   - 1200
   initial: 180
   icon: mdi:timer
 
@@ -35,6 +38,7 @@ tempo_luz_quarto:
    - 180
    - 300
    - 600
+   - 1200
   initial: 180
   icon: mdi:timer
 
@@ -45,6 +49,7 @@ tempo_luz_sala:
    - 180
    - 300
    - 600
+   - 1200
   initial: 180
   icon: mdi:timer
 
@@ -55,6 +60,7 @@ tempo_luz_cozinha:
    - 180
    - 300
    - 600
+   - 1200
   initial: 300
   icon: mdi:timer
 
@@ -67,7 +73,8 @@ tempo_muvrh_203_entrada:
    - 180
    - 300
    - 600
-  initial: 600
+   - 1200
+  initial: 1200
   icon: mdi:timer
 
 tempo_muvrh_203_banheiro:
@@ -77,6 +84,7 @@ tempo_muvrh_203_banheiro:
    - 180
    - 300
    - 600
+   - 1200
   initial: 180
   icon: mdi:timer
 
@@ -87,7 +95,8 @@ tempo_muvrh_203_salaoperacoes:
    - 180
    - 300
    - 600
-  initial: 300
+   - 1200
+  initial: 1200
   icon: mdi:timer
 
 tempo_muvrh_203_nossasala:
@@ -97,7 +106,8 @@ tempo_muvrh_203_nossasala:
    - 180
    - 300
    - 600
-  initial: 600
+   - 1200
+  initial: 1200
   icon: mdi:timer
 
 tempo_muvrh_303_entrada:
@@ -107,7 +117,8 @@ tempo_muvrh_303_entrada:
    - 180
    - 300
    - 600
-  initial: 600
+   - 1200
+  initial: 1200
   icon: mdi:timer
 
 tempo_muvrh_303_dinamica:
@@ -117,7 +128,8 @@ tempo_muvrh_303_dinamica:
    - 180
    - 300
    - 600
-  initial: 600
+   - 1200
+  initial: 1200
   icon: mdi:timer
 
 tempo_muvrh_303_banheiro:
@@ -127,5 +139,6 @@ tempo_muvrh_303_banheiro:
    - 180
    - 300
    - 600
+   - 1200
   initial: 180
   icon: mdi:timer

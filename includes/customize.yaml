@@ -702,27 +702,3 @@ sensor.dark_sky_overnight_low_temperature:
 
 sensor.dark_sky_overnight_low_temperature_1:
   friendly_name: "Temperatura mínima amanhã"
-
-input_select.estados_de_succao:
-  icon: mdi:speedometer
-  
-input_select.zonas_de_aspiracao:
-  icon: mdi:map-marker
-
-input_number.aspirador_passadas:
-  icon: mdi:shuffle-disabled
-
-input_select.rf_bridge_device_select:
-  icon: mdi:access-point
-
-input_select.rf_bridge_mode_select:
-  icon: mdi:swap-vertical
-
-input_select.rf_bridge_key_select:
-  icon: mdi:format-list-numbers
-
-script.rf_bridge_send_command:
-  icon: mdi:send
-
-switch.aspirador:
-  icon: mdi:robot-vacuum

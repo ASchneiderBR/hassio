@@ -863,7 +863,6 @@
   trigger:
     platform: state
     entity_id: binary_sensor.motion_sensor_158d0001ad6b83
-#    from: 'off'
     to: 'on'
   condition:
     condition: state
@@ -872,18 +871,17 @@
   action:
     - service: light.turn_on
       entity_id: light.muv203entrada
-#    - wait_template: "{% if states.binary_sensor.motion_sensor_158d0001ad6b83.attributes['No motion since'] | int >= states.input_select.tempo_muvrh_203_entrada.state | int and states.binary_sensor.motion_sensor_158d0001ad6b83.state == 'off' %}True{% else %}False{% endif %}"
-#    - condition: state
-#      entity_id: light.muv203entrada
-#      state: 'on'
-#    - service: light.turn_off
-#      entity_id: light.muv203entrada
+    - wait_template: "{% if states.binary_sensor.motion_sensor_158d0001ad6b83.attributes['No motion since'] | int >= states.input_select.tempo_muvrh_203_entrada.state | int and states.binary_sensor.motion_sensor_158d0001ad6b83.state == 'off' %}True{% else %}False{% endif %}"
+    - condition: state
+      entity_id: light.muv203entrada
+      state: 'on'
+    - service: light.turn_off
+      entity_id: light.muv203entrada
 
 - alias: MuvRH 203 - Luz do banheiro
   trigger:
     platform: state
     entity_id: binary_sensor.motion_sensor_158d0001e43ef1
-#    from: 'off'
     to: 'on'
   condition:
     condition: state
@@ -903,7 +901,6 @@
   trigger:
     platform: state
     entity_id: binary_sensor.motion_sensor_158d0001e420d0
-#    from: 'off'
     to: 'on'
   condition:
     condition: state
@@ -912,18 +909,17 @@
   action:
     - service: light.turn_on
       entity_id: light.muv203operacoes
-#    - wait_template: "{% if states.binary_sensor.motion_sensor_158d0001e420d0.attributes['No motion since'] | int >= states.input_select.tempo_muvrh_203_salaoperacoes.state | int and states.binary_sensor.motion_sensor_158d0001e420d0.state == 'off' %}True{% else %}False{% endif %}"
-#    - condition: state
-#      entity_id: light.muv203operacoes
-#      state: 'on'
-#    - service: light.turn_off
-#      entity_id: light.muv203operacoes
+    - wait_template: "{% if states.binary_sensor.motion_sensor_158d0001e420d0.attributes['No motion since'] | int >= states.input_select.tempo_muvrh_203_salaoperacoes.state | int and states.binary_sensor.motion_sensor_158d0001e420d0.state == 'off' %}True{% else %}False{% endif %}"
+    - condition: state
+      entity_id: light.muv203operacoes
+      state: 'on'
+    - service: light.turn_off
+      entity_id: light.muv203operacoes
 
 - alias: MuvRH 203 - Luz da nossa sala
   trigger:
     platform: state
     entity_id: binary_sensor.motion_sensor_158d0001e02f9a
-#    from: 'off'
     to: 'on'
   condition:
     condition: state
@@ -932,18 +928,17 @@
   action:
     - service: light.turn_on
       entity_id: light.muv203nossasala
-#    - wait_template: "{% if states.binary_sensor.motion_sensor_158d0001e02f9a.attributes['No motion since'] | int >= states.input_select.tempo_muvrh_203_nossasala.state | int and states.binary_sensor.motion_sensor_158d0001e02f9a.state == 'off' %}True{% else %}False{% endif %}"
-#    - condition: state
-#      entity_id: light.muv203nossasala
-#      state: 'on'
-#    - service: light.turn_off
-#      entity_id: light.muv203nossasala
+    - wait_template: "{% if states.binary_sensor.motion_sensor_158d0001e02f9a.attributes['No motion since'] | int >= states.input_select.tempo_muvrh_203_nossasala.state | int and states.binary_sensor.motion_sensor_158d0001e02f9a.state == 'off' %}True{% else %}False{% endif %}"
+    - condition: state
+      entity_id: light.muv203nossasala
+      state: 'on'
+    - service: light.turn_off
+      entity_id: light.muv203nossasala
 
 - alias: MuvRH 303 - Luz da entrada
   trigger:
     platform: state
     entity_id: binary_sensor.motion_sensor_158d0001e44035
-#    from: 'off'
     to: 'on'
   condition:
     condition: state
@@ -952,18 +947,17 @@
   action:
     - service: light.turn_on
       entity_id: light.muv303entrada
-#    - wait_template: "{% if states.binary_sensor.motion_sensor_158d0001e44035.attributes['No motion since'] | int >= states.input_select.tempo_muvrh_303_entrada.state | int and states.binary_sensor.motion_sensor_158d0001e44035.state == 'off' %}True{% else %}False{% endif %}"
-#    - condition: state
-#      entity_id: light.muv303entrada
-#      state: 'on'
-#    - service: light.turn_off
-#      entity_id: light.muv303entrada
+    - wait_template: "{% if states.binary_sensor.motion_sensor_158d0001e44035.attributes['No motion since'] | int >= states.input_select.tempo_muvrh_303_entrada.state | int and states.binary_sensor.motion_sensor_158d0001e44035.state == 'off' %}True{% else %}False{% endif %}"
+    - condition: state
+      entity_id: light.muv303entrada
+      state: 'on'
+    - service: light.turn_off
+      entity_id: light.muv303entrada
 
 - alias: MuvRH 303 - Luz da dinâmica
   trigger:
     platform: state
     entity_id: binary_sensor.motion_sensor_158d0001a24bdc
-#    from: 'off'
     to: 'on'
   condition:
     condition: state
@@ -972,12 +966,12 @@
   action:
     - service: light.turn_on
       entity_id: light.muv303dinamica
-#    - wait_template: "{% if states.binary_sensor.motion_sensor_158d0001a24bdc.attributes['No motion since'] | int >= states.input_select.tempo_muvrh_303_dinamica.state | int and states.binary_sensor.motion_sensor_158d0001a24bdc.state == 'off' %}True{% else %}False{% endif %}"
-#    - condition: state
-#      entity_id: light.muv303dinamica
-#      state: 'on'
-#    - service: light.turn_off
-#      entity_id: light.muv303dinamica
+    - wait_template: "{% if states.binary_sensor.motion_sensor_158d0001a24bdc.attributes['No motion since'] | int >= states.input_select.tempo_muvrh_303_dinamica.state | int and states.binary_sensor.motion_sensor_158d0001a24bdc.state == 'off' %}True{% else %}False{% endif %}"
+    - condition: state
+      entity_id: light.muv303dinamica
+      state: 'on'
+    - service: light.turn_off
+      entity_id: light.muv303dinamica
 
 - alias: MuvRH 303 - Luz do banheiro
   trigger:

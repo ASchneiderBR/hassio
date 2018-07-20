@@ -118,6 +118,6 @@ filter:
     - script.aspirador_homekit_zona_toda_casa
     - script.aspirador_homekit_zona_sala
     - script.aspirador_homekit_zona_mesa_jantar
-    - script.aspirador_homekit_zona_entrada
+    - script.aspirador_homekit_zona_tapete
     - script.aspirador_homekit_zona_cozinha
     - script.aspirador_homekit_zona_quartos
