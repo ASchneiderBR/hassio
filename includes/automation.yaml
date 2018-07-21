@@ -330,7 +330,6 @@
   trigger:
     platform: state
     entity_id: binary_sensor.motion_sensor_158d000120af26
-#    from: 'off'
     to: 'on'
   condition:
     condition: state
@@ -339,7 +338,7 @@
   action:
     - service: light.turn_on
       entity_id: light.todos_os_leds_suite
-    - wait_template: "{% if states.binary_sensor.motion_sensor_158d000120af26.attributes['No motion since'] | int >= states.input_select.tempo_luz_suite.state | int and states.binary_sensor.motion_sensor_158d000120af26.state == 'off' %}True{% else %}False{% endif %}"
+    - wait_template: "{% if (states.binary_sensor.motion_sensor_158d000120af26.attributes['No motion since'] | int >= states.input_select.tempo_luz_suite.state | int and states.binary_sensor.motion_sensor_158d000120af26.state == 'off') or states.light.todos_os_leds_suite.state == 'off' %}True{% else %}False{% endif %}"
     - condition: state
       entity_id: light.todos_os_leds_suite
       state: 'on'
@@ -350,7 +349,6 @@
   trigger:
     platform: state
     entity_id: binary_sensor.motion_sensor_158d00016c01fd
-#    from: 'off'
     to: 'on'
   condition:
     condition: state
@@ -359,7 +357,7 @@
   action:
     - service: light.turn_on
       entity_id: light.suite_banheiro
-    - wait_template: "{% if states.binary_sensor.motion_sensor_158d00016c01fd.attributes['No motion since'] | int >= states.input_select.tempo_luz_banheiro_suite.state | int and states.binary_sensor.motion_sensor_158d00016c01fd.state == 'off' %}True{% else %}False{% endif %}"
+    - wait_template: "{% if (states.binary_sensor.motion_sensor_158d00016c01fd.attributes['No motion since'] | int >= states.input_select.tempo_luz_banheiro_suite.state | int and states.binary_sensor.motion_sensor_158d00016c01fd.state == 'off') or states.light.suite_banheiro.state == 'off' %}True{% else %}False{% endif %}"
     - wait_template: "{% if states.switch.chuveirosuite.state == 'off' and as_timestamp(now()) - as_timestamp(states.switch.chuveirosuite.last_updated) | int >= states.input_select.tempo_luz_banheiro_suite.state | int and states.binary_sensor.motion_sensor_158d00016c01fd.attributes['No motion since'] | int >= states.input_select.tempo_luz_banheiro_suite.state | int %}True{% else %}False{% endif %}"
     - condition: state
       entity_id: light.suite_banheiro
@@ -371,7 +369,6 @@
   trigger:
     platform: state
     entity_id: binary_sensor.motion_sensor_158d00016da83a
-#    from: 'off'
     to: 'on'
   condition:
     condition: state
@@ -380,7 +377,7 @@
   action:
     - service: light.turn_on
       entity_id: light.banheiro_social
-    - wait_template: "{% if states.binary_sensor.motion_sensor_158d00016da83a.attributes['No motion since'] | int >= states.input_select.tempo_luz_banheiro_social.state | int and states.binary_sensor.motion_sensor_158d00016da83a.state == 'off' %}True{% else %}False{% endif %}"
+    - wait_template: "{% if (states.binary_sensor.motion_sensor_158d00016da83a.attributes['No motion since'] | int >= states.input_select.tempo_luz_banheiro_social.state | int and states.binary_sensor.motion_sensor_158d00016da83a.state == 'off') or states.light.banheiro_social.state == 'off' %}True{% else %}False{% endif %}"
     - wait_template: "{% if states.switch.chuveirosocial.state == 'off' and as_timestamp(now()) - as_timestamp(states.switch.chuveirosocial.last_updated) | int >= states.input_select.tempo_luz_banheiro_social.state | int and states.binary_sensor.motion_sensor_158d00016da83a.attributes['No motion since'] | int >= states.input_select.tempo_luz_banheiro_social.state | int %}True{% else %}False{% endif %}"
     - condition: state
       entity_id: light.banheiro_social
@@ -392,7 +389,6 @@
   trigger:
     platform: state
     entity_id: binary_sensor.motion_sensor_158d00015b6c81
-#    from: 'off'
     to: 'on'
   condition:
     condition: state
@@ -401,7 +397,7 @@
   action:
     - service: light.turn_on
       entity_id: light.luzes_principais_quarto
-    - wait_template: "{% if states.binary_sensor.motion_sensor_158d00015b6c81.attributes['No motion since'] | int >= states.input_select.tempo_luz_quarto.state | int and states.binary_sensor.motion_sensor_158d00015b6c81.state == 'off' %}True{% else %}False{% endif %}"
+    - wait_template: "{% if (states.binary_sensor.motion_sensor_158d00015b6c81.attributes['No motion since'] | int >= states.input_select.tempo_luz_quarto.state | int and states.binary_sensor.motion_sensor_158d00015b6c81.state == 'off') or states.light.luzes_principais_quarto.state == 'off' %}True{% else %}False{% endif %}"
     - condition: state
       entity_id: light.luzes_principais_quarto
       state: 'on'
@@ -412,7 +408,6 @@
   trigger:
     platform: state
     entity_id: binary_sensor.motion_sensor_158d0001225607
-#    from: 'off'
     to: 'on'
   condition:
     condition: and
@@ -426,7 +421,7 @@
   action:
     - service: light.turn_on
       entity_id: light.luzes_principais_sala
-    - wait_template: "{% if states.binary_sensor.motion_sensor_158d0001225607.attributes['No motion since'] | int >= states.input_select.tempo_luz_sala.state | int and states.binary_sensor.motion_sensor_158d0001225607.state == 'off' %}True{% else %}False{% endif %}"
+    - wait_template: "{% if (states.binary_sensor.motion_sensor_158d0001225607.attributes['No motion since'] | int >= states.input_select.tempo_luz_sala.state | int and states.binary_sensor.motion_sensor_158d0001225607.state == 'off') or states.light.luzes_principais_sala.state == 'off' %}True{% else %}False{% endif %}"
     - condition: state
       entity_id: light.luzes_principais_sala
       state: 'on'
@@ -437,7 +432,6 @@
   trigger:
     platform: state
     entity_id: binary_sensor.motion_sensor_158d0001231d4d
-#    from: 'off'
     to: 'on'
   condition:
     condition: state
@@ -446,7 +440,7 @@
   action:
     - service: light.turn_on
       entity_id: light.luzes_principais_cozinha
-    - wait_template: "{% if states.binary_sensor.motion_sensor_158d0001231d4d.attributes['No motion since'] | int >= states.input_select.tempo_luz_cozinha.state | int and states.binary_sensor.motion_sensor_158d0001231d4d.state == 'off' %}True{% else %}False{% endif %}"
+    - wait_template: "{% if (states.binary_sensor.motion_sensor_158d0001231d4d.attributes['No motion since'] | int >= states.input_select.tempo_luz_cozinha.state | int and states.binary_sensor.motion_sensor_158d0001231d4d.state == 'off') or states.light.luzes_principais_cozinha.state == 'off' %}True{% else %}False{% endif %}"
     - condition: state
       entity_id: light.luzes_principais_cozinha
       state: 'on'
@@ -457,7 +451,6 @@
   trigger:
     platform: state
     entity_id: binary_sensor.door_window_sensor_158d0001d6851d
-#    from: 'off'
     to: 'on'
   condition:
     condition: state
@@ -871,7 +864,7 @@
   action:
     - service: light.turn_on
       entity_id: light.muv203entrada
-    - wait_template: "{% if states.binary_sensor.motion_sensor_158d0001ad6b83.attributes['No motion since'] | int >= states.input_select.tempo_muvrh_203_entrada.state | int and states.binary_sensor.motion_sensor_158d0001ad6b83.state == 'off' %}True{% else %}False{% endif %}"
+    - wait_template: "{% if (states.binary_sensor.motion_sensor_158d0001ad6b83.attributes['No motion since'] | int >= states.input_select.tempo_muvrh_203_entrada.state | int and states.binary_sensor.motion_sensor_158d0001ad6b83.state == 'off') or states.light.muv203entrada.state == 'off' %}True{% else %}False{% endif %}"
     - condition: state
       entity_id: light.muv203entrada
       state: 'on'
@@ -890,7 +883,7 @@
   action:
     - service: light.turn_on
       entity_id: light.muv203banheiro
-    - wait_template: "{% if states.binary_sensor.motion_sensor_158d0001e43ef1.attributes['No motion since'] | int >= states.input_select.tempo_muvrh_203_banheiro.state | int and states.binary_sensor.motion_sensor_158d0001e43ef1.state == 'off' %}True{% else %}False{% endif %}"
+    - wait_template: "{% if (states.binary_sensor.motion_sensor_158d0001e43ef1.attributes['No motion since'] | int >= states.input_select.tempo_muvrh_203_banheiro.state | int and states.binary_sensor.motion_sensor_158d0001e43ef1.state == 'off') or states.light.muv203banheiro.state == 'off' %}True{% else %}False{% endif %}"
     - condition: state
       entity_id: light.muv203banheiro
       state: 'on'
@@ -909,7 +902,7 @@
   action:
     - service: light.turn_on
       entity_id: light.muv203operacoes
-    - wait_template: "{% if states.binary_sensor.motion_sensor_158d0001e420d0.attributes['No motion since'] | int >= states.input_select.tempo_muvrh_203_salaoperacoes.state | int and states.binary_sensor.motion_sensor_158d0001e420d0.state == 'off' %}True{% else %}False{% endif %}"
+    - wait_template: "{% if (states.binary_sensor.motion_sensor_158d0001e420d0.attributes['No motion since'] | int >= states.input_select.tempo_muvrh_203_salaoperacoes.state | int and states.binary_sensor.motion_sensor_158d0001e420d0.state == 'off') or states.light.muv203operacoes.state == 'off' %}True{% else %}False{% endif %}"
     - condition: state
       entity_id: light.muv203operacoes
       state: 'on'
@@ -928,7 +921,7 @@
   action:
     - service: light.turn_on
       entity_id: light.muv203nossasala
-    - wait_template: "{% if states.binary_sensor.motion_sensor_158d0001e02f9a.attributes['No motion since'] | int >= states.input_select.tempo_muvrh_203_nossasala.state | int and states.binary_sensor.motion_sensor_158d0001e02f9a.state == 'off' %}True{% else %}False{% endif %}"
+    - wait_template: "{% if (states.binary_sensor.motion_sensor_158d0001e02f9a.attributes['No motion since'] | int >= states.input_select.tempo_muvrh_203_nossasala.state | int and states.binary_sensor.motion_sensor_158d0001e02f9a.state == 'off') or states.light.muv203nossasala.state == 'off' %}True{% else %}False{% endif %}"
     - condition: state
       entity_id: light.muv203nossasala
       state: 'on'
@@ -947,7 +940,7 @@
   action:
     - service: light.turn_on
       entity_id: light.muv303entrada
-    - wait_template: "{% if states.binary_sensor.motion_sensor_158d0001e44035.attributes['No motion since'] | int >= states.input_select.tempo_muvrh_303_entrada.state | int and states.binary_sensor.motion_sensor_158d0001e44035.state == 'off' %}True{% else %}False{% endif %}"
+    - wait_template: "{% if (states.binary_sensor.motion_sensor_158d0001e44035.attributes['No motion since'] | int >= states.input_select.tempo_muvrh_303_entrada.state | int and states.binary_sensor.motion_sensor_158d0001e44035.state == 'off') or states.light.muv303entrada.state == 'off' %}True{% else %}False{% endif %}"
     - condition: state
       entity_id: light.muv303entrada
       state: 'on'
@@ -966,7 +959,7 @@
   action:
     - service: light.turn_on
       entity_id: light.muv303dinamica
-    - wait_template: "{% if states.binary_sensor.motion_sensor_158d0001a24bdc.attributes['No motion since'] | int >= states.input_select.tempo_muvrh_303_dinamica.state | int and states.binary_sensor.motion_sensor_158d0001a24bdc.state == 'off' %}True{% else %}False{% endif %}"
+    - wait_template: "{% if (states.binary_sensor.motion_sensor_158d0001a24bdc.attributes['No motion since'] | int >= states.input_select.tempo_muvrh_303_dinamica.state | int and states.binary_sensor.motion_sensor_158d0001a24bdc.state == 'off') or states.light.muv303dinamica.state == 'off' %}True{% else %}False{% endif %}"
     - condition: state
       entity_id: light.muv303dinamica
       state: 'on'
@@ -986,7 +979,7 @@
   action:
     - service: light.turn_on
       entity_id: light.muv303banheiro
-    - wait_template: "{% if states.binary_sensor.motion_sensor_158d0001ad6c20.attributes['No motion since'] | int >= states.input_select.tempo_muvrh_303_banheiro.state | int and states.binary_sensor.motion_sensor_158d0001ad6c20.state == 'off' %}True{% else %}False{% endif %}"
+    - wait_template: "{% if (states.binary_sensor.motion_sensor_158d0001ad6c20.attributes['No motion since'] | int >= states.input_select.tempo_muvrh_303_banheiro.state | int and states.binary_sensor.motion_sensor_158d0001ad6c20.state == 'off') or states.light.muv303banheiro.state == 'off' %}True{% else %}False{% endif %}"
     - condition: state
       entity_id: light.muv303banheiro
       state: 'on'

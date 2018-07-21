@@ -261,7 +261,7 @@ script:
       data:
         entity_id: vacuum.aspirador
         command: app_zoned_clean
-        params: [[23951,23589,25151,25289,1]]
+        params: [[23951,23589,25151,25289,2]]
     - service: script.aspirador_alerta_iniciando
 
   aspirador_zona_mesa_jantar:
@@ -301,16 +301,20 @@ script:
       data:
         entity_id: vacuum.aspirador
         command: app_zoned_clean
-        params: [[19595,25649,21395,26849,1]]
+        params: [[19595,25649,21395,26849,2]]
     - service: script.aspirador_alerta_iniciando
 
   aspirador_zona_banheiro_suite:
     sequence:
+    - service: input_select.select_option
+      entity_id: input_select.estados_de_succao
+      data:
+        option: Turbo
     - service: vacuum.send_command
       data:
         entity_id: vacuum.aspirador
         command: app_zoned_clean
-        params: [[19660,24247,21460,25447,1]]
+        params: [[19660,24247,21460,25447,2]]
     - service: script.aspirador_alerta_iniciando
 
   aspirador_zona_quarto:
