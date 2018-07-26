@@ -2044,6 +2044,7 @@ casa_desligar_tudo_noite:
     data:
       operation_mode: 'off'
       entity_id: climate.ar_condicionado_da_sala
+  - delay: 00:00:02
   - service: switch.turn_off
     entity_id:
       - switch.chuveirosuite

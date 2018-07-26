@@ -86,17 +86,6 @@ sala:
   name: Sala
   view: false
 
-luzes_sala:
-  entities:
-  - light.gateway_light_34ce00907e65
-  - light.corredor
-  - light.sala_principal
-  - light.ledsalatv
-  - light.mesa_jantar
-  - light.entrada
-  name: Todas as luzes da sala
-  view: false
-
 cozinha:
   entities:
   - binary_sensor.motion_sensor_158d0001231d4d

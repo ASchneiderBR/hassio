@@ -1,3 +1,6 @@
-- platform: ffmpeg
+- platform: onvif
   name: "MuvRH 203 - Operações"
-  input: rtsp://192.168.1.54:554/onvif1
+  host: 192.168.1.54
+  username: !secret camera_203_operacoes_user
+  password: !secret camera_203_operacoes_pass
+  extra_arguments: -rtsp_transport udp
