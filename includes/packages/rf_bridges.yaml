@@ -60,6 +60,36 @@ script:
       data_template:
         option: "Selecionar"
 
+  rf_chegar_em_casa:
+    alias: "Automação chegar em casa - RF"
+    sequence:
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.chegar_casa
+
+  rf_chegar_no_trabalho:
+    alias: "Automação chegar no trabalho - RF"
+    sequence:
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.entrar_muvrh
+
+  rf_sair_no_trabalho:
+    alias: "Automação sair no trabalho - RF"
+    sequence:
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.sair_muvrh
+
+  rf_chuveiro_suite_toggle:
+    alias: "Ligar ou desligar chuveiro da súite - RF"
+    sequence:
+    - service: switch.toggle
+      entity_id: switch.chuveirosuite
+
+  rf_chuveiro_social_toggle:
+    alias: "Ligar ou desligar chuveiro social - RF"
+    sequence:
+    - service: switch.toggle
+      entity_id: switch.chuveirosocial
+
 group:
 
   rf_bridge_controles:
@@ -86,3 +116,43 @@ homeassistant:
     
     script.rf_bridge_send_command:
       icon: mdi:send
+
+automation:
+
+- alias: Automação - RF Bridge Casa
+  trigger:
+    platform: mqtt
+    topic: tele/rfbridgecasa/RESULT
+  condition:
+    condition: template
+    value_template: "{% if trigger.payload_json.RfReceived.RfKey == 'None' %}False{% else %}True{% endif %}"
+  action:
+    - service_template: >
+        {% if trigger.payload_json.RfReceived.RfKey == 1 %}
+          script.rf_chegar_em_casa
+        {% elif trigger.payload_json.RfReceived.RfKey == 2 %}
+          script.garagem_casa_abrir
+        {% elif trigger.payload_json.RfReceived.RfKey == 3 %}
+          script.rf_chegar_em_casa
+        {% elif trigger.payload_json.RfReceived.RfKey == 4 %}
+          script.rf_sair_no_trabalho
+        {% elif trigger.payload_json.RfReceived.RfKey == 5 %}
+          script.rf_chuveiro_suite_toggle
+        {% elif trigger.payload_json.RfReceived.RfKey == 6 %}
+          script.rf_chuveiro_social_toggle
+        {% endif %}
+
+- alias: Automação - RF Bridge MuvRH
+  trigger:
+    platform: mqtt
+    topic: tele/rfbridgemuvrh/RESULT
+  condition:
+    condition: template
+    value_template: "{% if trigger.payload_json.RfReceived.RfKey == 'None' %}False{% else %}True{% endif %}"
+  action:
+    - service_template: >
+        {% if trigger.payload_json.RfReceived.RfKey == 1 %}
+          script.rf_chegar_no_trabalho
+        {% elif trigger.payload_json.RfReceived.RfKey == 2 %}
+          script.rf_sair_no_trabalho
+        {% endif %}

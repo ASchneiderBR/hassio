@@ -113,10 +113,11 @@
       entity_id: media_player.sala
       data:
         volume_level: 0.7
-    - service: tts.amazon_polly_say
-      entity_id: media_player.sala
-      data_template:
-        message: <speak>O sistema foi reiniciado.</speak>
+    - service: media_player.play_media
+      data:
+        entity_id: media_player.sala
+        media_content_id: 'http://192.168.1.12:8123/local/audio/tts/sistema_reiniciado.mp3'
+        media_content_type: 'audio/mp3'
     - service: notify.ios_iphone_de_antonio
       data:
         title: "Sistema"
@@ -166,10 +167,11 @@
       entity_id: media_player.sala
       data:
         volume_level: 0.7
-    - service: tts.amazon_polly_say
-      entity_id: media_player.sala
-      data_template:
-        message: <speak>O alarme foi desarmado! Rearmando em 10 minutos.</speak>
+    - service: media_player.play_media
+      data:
+        entity_id: media_player.sala
+        media_content_id: 'http://192.168.1.12:8123/local/audio/tts/alarme_desarmado.mp3'
+        media_content_type: 'audio/mp3'
     - service: notify.TUDO
       data:
         title: "Alarme da casa"
@@ -197,10 +199,11 @@
       entity_id: media_player.sala
       data:
         volume_level: 0.7
-    - service: tts.amazon_polly_say
-      entity_id: media_player.sala
-      data_template:
-        message: <speak>O alarme foi armado!</speak>
+    - service: media_player.play_media
+      data:
+        entity_id: media_player.sala
+        media_content_id: 'http://192.168.1.12:8123/local/audio/tts/alarme_armado.mp3'
+        media_content_type: 'audio/mp3'
     - service: notify.TUDO
       data:
         title: "Alarme da casa"
@@ -257,10 +260,11 @@
       entity_id: media_player.sala
       data:
         volume_level: 0.7
-    - service: tts.amazon_polly_say
-      entity_id: media_player.sala
-      data_template:
-        message: <speak>Automação chegando em casa iniciada, abrindo a garagem.</speak>
+    - service: media_player.play_media
+      data:
+        entity_id: media_player.sala
+        media_content_id: 'http://192.168.1.12:8123/local/audio/tts/automacao_chegando_em_casa.mp3'
+        media_content_type: 'audio/mp3'
     - delay: 00:01:00
     - service: alarm_control_panel.alarm_disarm
       entity_id: alarm_control_panel.alarme
@@ -814,44 +818,6 @@
           script.botao_xiaomi_cozinha_click_2
         {% elif trigger.event.data.click_type == 'long_click_press' %}
           script.botao_xiaomi_cozinha_click_3
-        {% endif %}
-
-- alias: Automação - RF Bridge Casa
-  trigger:
-    platform: mqtt
-    topic: tele/rfbridgecasa/RESULT
-  condition:
-    condition: template
-    value_template: "{% if trigger.payload_json.RfReceived.RfKey == 'None' %}False{% else %}True{% endif %}"
-  action:
-    - service_template: >
-        {% if trigger.payload_json.RfReceived.RfKey == 1 %}
-          script.rf_chegar_em_casa
-        {% elif trigger.payload_json.RfReceived.RfKey == 2 %}
-          script.garagem_casa_abrir
-        {% elif trigger.payload_json.RfReceived.RfKey == 3 %}
-          script.rf_chegar_em_casa
-        {% elif trigger.payload_json.RfReceived.RfKey == 4 %}
-          script.rf_sair_no_trabalho
-        {% elif trigger.payload_json.RfReceived.RfKey == 5 %}
-          script.rf_chuveiro_suite_toggle
-        {% elif trigger.payload_json.RfReceived.RfKey == 6 %}
-          script.rf_chuveiro_social_toggle
-        {% endif %}
-
-- alias: Automação - RF Bridge MuvRH
-  trigger:
-    platform: mqtt
-    topic: tele/rfbridgemuvrh/RESULT
-  condition:
-    condition: template
-    value_template: "{% if trigger.payload_json.RfReceived.RfKey == 'None' %}False{% else %}True{% endif %}"
-  action:
-    - service_template: >
-        {% if trigger.payload_json.RfReceived.RfKey == 1 %}
-          script.rf_chegar_no_trabalho
-        {% elif trigger.payload_json.RfReceived.RfKey == 2 %}
-          script.rf_sair_no_trabalho
         {% endif %}
 
 - alias: Solicitar status celulares

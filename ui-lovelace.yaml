@@ -7,6 +7,8 @@ resources:
     type: js
   - url: /local/lovelace/custom_ui/entity-attributes-card.js?ver7
     type: js
+  - url: /local/lovelace/custom_ui/weather-card.js?ver12
+    type: js
 
 title: Casa Antonio e Roberta
 views:
@@ -493,6 +495,13 @@ views:
             entities:
               - automation.cubo_sala
               - automation.cubo_suite
+          - type: entities
+            title: RF Bridges
+            show_header_toggle: yes
+            entities:
+              - automation.automacao__rf_bridge_casa
+              - automation.automacao__rf_bridge_muvrh
+
 
       - type: vertical-stack
         cards:
@@ -867,7 +876,7 @@ views:
               # Sala
 
               - type: state-icon
-                tap_action: toggle
+                tap_action: more-info
                 entity: binary_sensor.door_window_sensor_158d0001d6851d
                 style:
                   top: 12%
@@ -1109,7 +1118,7 @@ views:
                   left: 36%
 
               - type: state-icon
-                tap_action: toggle
+                tap_action: more-info
                 entity: binary_sensor.door_window_sensor_158d0001e035a2
                 style:
                   top: 48.4%
@@ -1139,7 +1148,7 @@ views:
                   left: 36%
 
               - type: state-icon
-                tap_action: toggle
+                tap_action: more-info
                 entity: binary_sensor.door_window_sensor_158d0001d68545
                 style:
                   top: 64%
@@ -1244,3 +1253,7 @@ views:
           - entity: device_tracker.iphone_de_roberta
           - zone.home
           - zone.trabalho
+
+      - type: "custom:weather-card"
+        entity_weather: weather.tempo
+        entity_sun: sun.sun

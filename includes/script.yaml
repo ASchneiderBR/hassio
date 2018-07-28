@@ -1046,10 +1046,13 @@ tts_entrando_casa_alarme:
     entity_id: media_player.sala
     data:
       volume_level: 1
-  - service: tts.amazon_polly_say
-    entity_id: media_player.sala
-    data_template:
-      message: <speak><amazon:auto-breaths frequency='medium'>Sua entrada não está autorizada! Sua entrada não está autorizada! Sua entrada não está autorizada! Sua entrada não está autorizada! Sua entrada não está autorizada! Sua entrada não está autorizada! Sua entrada não está autorizada! Sua entrada não está autorizada! Sua entrada não está autorizada! Sua entrada não está autorizada! Sua entrada não está autorizada! Sua entrada não está autorizada! Sua entrada não está autorizada!</amazon:auto-breaths></speak>
+  - service: media_player.play_media
+    data:
+      entity_id:
+        - media_player.sala
+        - media_player.suite
+      media_content_id: 'http://192.168.1.12:8123/local/audio/tts/alarme_entrada_nao_autorizada.mp3'
+      media_content_type: 'audio/mp3'
 
 tts_status_casa:
   alias: "Falar status da casa"
@@ -1320,36 +1323,6 @@ botao_xiaomi_cozinha_click_3:
   - service: light.toggle
     entity_id: light.todas_as_luzes_cozinha
 
-rf_chegar_em_casa:
-  alias: "Automação chegar em casa - RF"
-  sequence:
-  - service: input_boolean.turn_on
-    entity_id: input_boolean.chegar_casa
-
-rf_chegar_no_trabalho:
-  alias: "Automação chegar no trabalho - RF"
-  sequence:
-  - service: input_boolean.turn_on
-    entity_id: input_boolean.entrar_muvrh
-
-rf_sair_no_trabalho:
-  alias: "Automação sair no trabalho - RF"
-  sequence:
-  - service: input_boolean.turn_on
-    entity_id: input_boolean.sair_muvrh
-
-rf_chuveiro_suite_toggle:
-  alias: "Ligar ou desligar chuveiro da súite - RF"
-  sequence:
-  - service: switch.toggle
-    entity_id: switch.chuveirosuite
-
-rf_chuveiro_social_toggle:
-  alias: "Ligar ou desligar chuveiro social - RF"
-  sequence:
-  - service: switch.toggle
-    entity_id: switch.chuveirosocial
-
 entrada_luz_temporizador:
   alias: "Liga a luz de entrada por 1 minuto"
   sequence:
@@ -1420,10 +1393,11 @@ tts_abrindo_persiana_sala:
     entity_id: media_player.sala
     data:
       volume_level: 0.7
-  - service: tts.amazon_polly_say
-    entity_id: media_player.sala
-    data_template:
-      message: <speak><amazon:auto-breaths frequency='medium'>Abrindo a persiana da sala</amazon:auto-breaths></speak>
+  - service: media_player.play_media
+    data:
+      entity_id: media_player.sala
+      media_content_id: 'http://192.168.1.12:8123/local/audio/tts/alerta_abrindo_persiana_sala.mp3'
+      media_content_type: 'audio/mp3'
 
 tts_fechando_persiana_sala:
   alias: 'Fechando persiana da sala'
@@ -1432,10 +1406,11 @@ tts_fechando_persiana_sala:
     entity_id: media_player.sala
     data:
       volume_level: 0.7
-  - service: tts.amazon_polly_say
-    entity_id: media_player.sala
-    data_template:
-      message: <speak><amazon:auto-breaths frequency='medium'>Fechando a persiana da sala</amazon:auto-breaths></speak>
+  - service: media_player.play_media
+    data:
+      entity_id: media_player.sala
+      media_content_id: 'http://192.168.1.12:8123/local/audio/tts/alerta_fechando_persiana_sala.mp3'
+      media_content_type: 'audio/mp3'
 
 tts_boa_noite:
   alias: 'Texto para automação boa noite'
@@ -2091,6 +2066,13 @@ casa_desligar_tudo_noite:
 speed_test:
   alias: Teste de velocidade da internet
   sequence:
+  - service: media_player.play_media
+    data:
+      entity_id:
+        - media_player.sala
+        - media_player.suite
+      media_content_id: 'http://192.168.1.12:8123/local/audio/tts/alerta_iniciando_teste_internet.mp3'
+      media_content_type: 'audio/mp3'
   - service: sensor.update_fastdotcom
   - wait_template: "{% if as_timestamp(now()) | int - as_timestamp(states.sensor.fastcom_download.last_updated) | int <= 5 %}True{% else %}False{% endif %}"
     timeout: 00:02:00
@@ -2098,6 +2080,12 @@ speed_test:
     data_template:
       title: "Sistema"
       message: "A velocidade da internet em casa é de {{ states.sensor.fastcom_download.state | int}} Mbit/s"
+  - service: tts.amazon_polly_say
+    entity_id:
+      - media_player.sala
+      - media_player.suite
+    data_template:
+      message: <speak><amazon:auto-breaths frequency='medium'>Pronto, verifiquei aqui. Atualmente estão chegando {{ states.sensor.fastcom_download.state | int}} mégas aqui em casa. {% if states.sensor.fastcom_download.state | int <= 20 %}Está muito lenta, estão baixando algo neste momento ou algo de errado está acontecendo pois deveriam estar chegando 50 mégas. O Antônio já foi avisado!{% endif %}</amazon:auto-breaths></speak>
 
 homekit_no_start:
   alias: Iniciar HomeKit

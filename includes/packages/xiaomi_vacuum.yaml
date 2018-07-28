@@ -261,7 +261,7 @@ script:
       data:
         entity_id: vacuum.aspirador
         command: app_zoned_clean
-        params: [[23951,23589,25151,25289,2]]
+        params: [[23624,23391,25174,25341,2]]
     - service: script.aspirador_alerta_iniciando
 
   aspirador_zona_mesa_jantar:
@@ -437,12 +437,11 @@ script:
     - condition: state
       entity_id: input_boolean.boa_noite
       state: 'off'
-    - service: tts.amazon_polly_say
-      entity_id:
-        - media_player.sala
-        - media_player.suite
-      data_template:
-        message: <speak><amazon:auto-breaths frequency='medium'>O aspirador está parado e acusou erro!</amazon:auto-breaths></speak>
+    - service: media_player.play_media
+      data:
+        entity_id: media_player.sala
+        media_content_id: 'http://192.168.1.12:8123/local/audio/tts/alerta_aspirador_parado_erro.mp3'
+        media_content_type: 'audio/mp3'
 
 # HomeKit scripts
 
@@ -453,6 +452,7 @@ script:
       entity_id: input_select.zonas_de_aspiracao
       data_template:
         option: "Casa toda"
+    - delay: 00:00:10
 
   aspirador_homekit_zona_sala:
     alias: Aspirador casa - Aspirar zona sala inteira
@@ -461,6 +461,7 @@ script:
       entity_id: input_select.zonas_de_aspiracao
       data_template:
         option: "Sala inteira"
+    - delay: 00:00:10
 
   aspirador_homekit_zona_mesa_jantar:
     alias: Aspirador casa - Aspirar zona mesa de jantar
@@ -469,6 +470,7 @@ script:
       entity_id: input_select.zonas_de_aspiracao
       data_template:
         option: "Mesa de jantar"
+    - delay: 00:00:10
 
   aspirador_homekit_zona_tapete:
     alias: Aspirador casa - Aspirar zona tapete
@@ -477,6 +479,7 @@ script:
       entity_id: input_select.zonas_de_aspiracao
       data_template:
         option: "Tapete"
+    - delay: 00:00:10
 
   aspirador_homekit_zona_entrada:
     alias: Aspirador casa - Aspirar zona entrada
@@ -485,6 +488,7 @@ script:
       entity_id: input_select.zonas_de_aspiracao
       data_template:
         option: "Entrada"
+    - delay: 00:00:10
 
   aspirador_homekit_zona_cozinha:
     alias: Aspirador casa - Aspirar zona cozinha
@@ -493,6 +497,7 @@ script:
       entity_id: input_select.zonas_de_aspiracao
       data_template:
         option: "Cozinha"
+    - delay: 00:00:10
 
   aspirador_homekit_zona_quartos:
     alias: Aspirador casa - Aspirar zona quartos e banheiros
@@ -501,6 +506,7 @@ script:
       entity_id: input_select.zonas_de_aspiracao
       data_template:
         option: "Quartos e banheiros"
+    - delay: 00:00:10
 
 # Customize
 
