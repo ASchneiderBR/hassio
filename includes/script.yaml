@@ -1193,7 +1193,7 @@ botao_xiaomi_banheiro_suite_click_1:
   alias: "Luz do banheiro da suíte"
   sequence:
   - service: light.toggle
-    entity_id: light.suite_banheiro
+    entity_id: light.tudo_banheiro_suite
 
 botao_xiaomi_banheiro_suite_click_2:
   alias: "Toalheiro"
@@ -1225,16 +1225,16 @@ botao_xiaomi_banheiro_suite_click_3:
     entity_id: switch.chuveirosuite
 
 botao_xiaomi_banheiro_social_click_1:
-  alias: "Luz do banheiro social"
+  alias: "Luz principal do banheiro social"
   sequence:
   - service: light.toggle
-    entity_id: light.banheiro_social
+    entity_id: light.tudo_banheiro_social
 
 botao_xiaomi_banheiro_social_click_2:
-  alias: "Luz do banheiro social"
+  alias: "Luz do espelho do banheiro social"
   sequence:
   - service: light.toggle
-    entity_id: light.banheiro_social
+    entity_id: light.banheiro_social_espelho
 
 botao_xiaomi_banheiro_social_click_3:
   alias: "Chuveiro banheiro social"
@@ -2030,7 +2030,8 @@ casa_desligar_tudo_noite:
   - service: light.turn_off
     entity_id:
       - light.area_servico
-      - light.banheiro_social
+      - light.suite_banheiro_principal
+      - light.suite_banheiro_espelho
       - light.corredor
       - light.cozinha
       - light.entrada
@@ -2058,6 +2059,8 @@ casa_desligar_tudo_noite:
     entity_id:
       - light.quarto
       - light.ledquartotv
+      - light.banheiro_social_principal
+      - light.banheiro_social_espelho
   - service: switch.turn_off
     entity_id:
       - switch.chuveirosocial

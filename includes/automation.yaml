@@ -366,13 +366,19 @@
     to: 'on'
   condition:
     condition: state
-    entity_id: light.suite_banheiro
+    entity_id: light.tudo_banheiro_suite
     state: 'off'
   action:
     - service: light.turn_on
-      entity_id: light.suite_banheiro
+      data_template:
+        entity_id: >
+            {% if is_state('input_boolean.boa_noite' , 'off') %}
+              light.tudo_banheiro_suite
+            {% else %}
+              light.suite_banheiro_espelho
+            {% endif %}
     - wait_template: >
-        {% set light = "light.suite_banheiro" %}
+        {% set light = "light.tudo_banheiro_suite" %}
         {% set timmer_input = "input_select.tempo_luz_banheiro_suite" %}
         {% set motion_sensor = "binary_sensor.motion_sensor_158d00016c01fd" %}
 
@@ -384,10 +390,10 @@
         {% if is_state('light' , 'off') or (motion >= time and sensor_state == 'off') %}True{% else %}False{% endif %}
     - wait_template: "{% if states.switch.chuveirosuite.state == 'off' and as_timestamp(now()) - as_timestamp(states.switch.chuveirosuite.last_updated) | int >= states.input_select.tempo_luz_banheiro_suite.state | int and states.binary_sensor.motion_sensor_158d00016c01fd.attributes['No motion since'] | int >= states.input_select.tempo_luz_banheiro_suite.state | int %}True{% else %}False{% endif %}"
     - condition: state
-      entity_id: light.suite_banheiro
+      entity_id: light.tudo_banheiro_suite
       state: 'on'
     - service: light.turn_off
-      entity_id: light.suite_banheiro
+      entity_id: light.tudo_banheiro_suite
 
 - alias: Luzes da casa - Banheiro Social
   trigger:
@@ -396,13 +402,19 @@
     to: 'on'
   condition:
     condition: state
-    entity_id: light.banheiro_social
+    entity_id: light.tudo_banheiro_social
     state: 'off'
   action:
     - service: light.turn_on
-      entity_id: light.banheiro_social
+      data_template:
+        entity_id: >
+            {% if is_state('input_boolean.boa_noite' , 'off') %}
+              light.tudo_banheiro_social
+            {% else %}
+              light.banheiro_social_espelho
+            {% endif %}
     - wait_template: >
-        {% set light = "light.banheiro_social" %}
+        {% set light = "light.tudo_banheiro_social" %}
         {% set timmer_input = "input_select.tempo_luz_banheiro_social" %}
         {% set motion_sensor = "binary_sensor.motion_sensor_158d00016da83a" %}
 
@@ -414,10 +426,10 @@
         {% if is_state('light' , 'off') or (motion >= time and sensor_state == 'off') %}True{% else %}False{% endif %}
     - wait_template: "{% if states.switch.chuveirosocial.state == 'off' and as_timestamp(now()) - as_timestamp(states.switch.chuveirosocial.last_updated) | int >= states.input_select.tempo_luz_banheiro_social.state | int and states.binary_sensor.motion_sensor_158d00016da83a.attributes['No motion since'] | int >= states.input_select.tempo_luz_banheiro_social.state | int %}True{% else %}False{% endif %}"
     - condition: state
-      entity_id: light.banheiro_social
+      entity_id: light.tudo_banheiro_social
       state: 'on'
     - service: light.turn_off
-      entity_id: light.banheiro_social
+      entity_id: light.tudo_banheiro_social
 
 - alias: Luzes da casa - Quarto
   trigger:
@@ -1246,7 +1258,8 @@
     - platform: state
       entity_id:
         - light.area_servico
-        - light.banheiro_social
+        - light.banheiro_social_principal
+        - light.banheiro_social_espelho
         - light.corredor
         - light.cozinha
         - light.entrada
@@ -1266,7 +1279,8 @@
         - light.muv203operacoes
         - light.quarto
         - light.sala_principal
-        - light.suite_banheiro
+        - light.suite_banheiro_principal
+        - light.suite_banheiro_espelho
         - light.suite_principal
         - light.muv303entrada
         - light.muv303dinamica

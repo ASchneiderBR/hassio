@@ -71,7 +71,8 @@ filter:
     - cover.persiana_suite
     - light.303leddinamica
     - light.area_servico
-    - light.banheiro_social
+    - light.banheiro_social_principal
+    - light.banheiro_social_espelho
     - light.corredor
     - light.cozinha
     - light.entrada
@@ -95,7 +96,8 @@ filter:
     - light.muv303entrada
     - light.quarto
     - light.sala_principal
-    - light.suite_banheiro
+    - light.suite_banheiro_principal
+    - light.suite_banheiro_espelho
     - light.suite_principal
     - switch.automacoes_luzes
     - switch.aspirador

@@ -31,9 +31,19 @@
   retain: false
 
 - platform: mqtt
-  name: "suite_banheiro"
-  command_topic: "cmnd/banheirosuite/POWER"
-  state_topic: "stat/banheirosuite/POWER"
+  name: "suite_banheiro_principal"
+  command_topic: "cmnd/banheirosuite/POWER3"
+  state_topic: "stat/banheirosuite/POWER3"
+  availability_topic: "tele/banheirosuite/LWT"
+  payload_available: "Online"
+  payload_not_available: "Offline"
+  qos: 1
+  retain: false
+
+- platform: mqtt
+  name: "suite_banheiro_espelho"
+  command_topic: "cmnd/banheirosuite/POWER4"
+  state_topic: "stat/banheirosuite/POWER4"
   availability_topic: "tele/banheirosuite/LWT"
   payload_available: "Online"
   payload_not_available: "Offline"
@@ -51,9 +61,19 @@
   retain: false
 
 - platform: mqtt
-  name: "banheiro_social"
-  command_topic: "cmnd/banheirosocial/POWER"
-  state_topic: "stat/banheirosocial/POWER"
+  name: "banheiro_social_principal"
+  command_topic: "cmnd/banheirosocial/POWER2"
+  state_topic: "stat/banheirosocial/POWER2"
+  availability_topic: "tele/banheirosocial/LWT"
+  payload_available: "Online"
+  payload_not_available: "Offline"
+  qos: 1
+  retain: false
+
+- platform: mqtt
+  name: "banheiro_social_espelho"
+  command_topic: "cmnd/banheirosocial/POWER1"
+  state_topic: "stat/banheirosocial/POWER1"
   availability_topic: "tele/banheirosocial/LWT"
   payload_available: "Online"
   payload_not_available: "Offline"
@@ -401,3 +421,15 @@
   entities:
     - light.ledsuitetv
     - light.ledsuitecama
+
+- platform: group
+  name: Tudo banheiro suíte
+  entities:
+    - light.suite_banheiro_principal
+    - light.suite_banheiro_espelho
+
+- platform: group
+  name: Tudo banheiro social
+  entities:
+    - light.banheiro_social_principal
+    - light.banheiro_social_espelho

@@ -128,14 +128,20 @@ sun.sun:
 light.suite_principal:
   friendly_name: "Luz principal da suíte"
 
-light.suite_banheiro:
-  friendly_name: "Luz do banheiro da suíte"
+light.suite_banheiro_principal:
+  friendly_name: "Luz principal do banheiro da suíte"
+
+light.suite_banheiro_espelho:
+  friendly_name: "Luz do espelho do banheiro da suíte"
 
 light.corredor:
   friendly_name: "Luz do corredor"
 
-light.banheiro_social:
-  friendly_name: "Luz do banheiro social"
+light.banheiro_social_principal:
+  friendly_name: "Luz principal do banheiro social"
+
+light.banheiro_social_espelho:
+  friendly_name: "Luz do espelho do banheiro social"
 
 light.quarto:
   friendly_name: "Luz principal do quarto"

@@ -147,9 +147,9 @@
 
 - platform: mqtt
   name: "Toalheiro"
-  command_topic: "cmnd/toalheiro/POWER"
-  state_topic: "stat/toalheiro/POWER"
-  availability_topic: "tele/toalheiro/LWT"
+  command_topic: "cmnd/banheirosuite/POWER1"
+  state_topic: "stat/banheirosuite/POWER1"
+  availability_topic: "tele/banheirosuite/LWT"
   payload_available: "Online"
   payload_not_available: "Offline"
   qos: 1
@@ -157,9 +157,9 @@
 
 - platform: mqtt
   name: "chuveirosuite"
-  command_topic: "cmnd/chuveirosuite/POWER"
-  state_topic: "stat/chuveirosuite/POWER"
-  availability_topic: "tele/chuveirosuite/LWT"
+  command_topic: "cmnd/banheirosuite/POWER2"
+  state_topic: "stat/banheirosuite/POWER2"
+  availability_topic: "tele/banheirosuite/LWT"
   payload_available: "Online"
   payload_not_available: "Offline"
   qos: 1
