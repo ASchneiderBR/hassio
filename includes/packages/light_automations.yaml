@@ -22,10 +22,8 @@ automation:
 
           {%- set motion = state_attr(motion_sensor, 'No motion since') | int -%}
           {%- set time = states(timmer_input) | int -%}
-          {%- set light_state = states(light) -%}
-          {%- set sensor_state = states(motion_sensor) -%}
 
-          {%- if is_state(light , 'off') or (motion >= time and sensor_state == 'off') -%}true{%- else -%}false{%- endif %}
+          {%- if is_state(light , 'off') or (motion >= time and is_state(motion_sensor , 'off')) -%}true{%- else -%}false{%- endif %}
       - condition: state
         entity_id: light.todos_os_leds_suite
         state: 'on'
@@ -58,10 +56,8 @@ automation:
 
           {%- set motion = state_attr(motion_sensor, 'No motion since') | int -%}
           {%- set time = states(timmer_input) | int -%}
-          {%- set light_state = states(light) -%}
-          {%- set sensor_state = states(motion_sensor) -%}
 
-          {%- if is_state(light , 'off') or (motion >= time and sensor_state == 'off') -%}true{%- else -%}false{%- endif %}
+          {%- if is_state(light , 'off') or (motion >= time and is_state(motion_sensor , 'off')) -%}true{%- else -%}false{%- endif %}
       - wait_template: "{%- if (states.switch.chuveirosuite.state == 'off') and as_timestamp(now()) - as_timestamp(states.switch.chuveirosuite.last_updated) | int >= states.input_select.tempo_luz_banheiro_suite.state | int and states.binary_sensor.motion_sensor_158d00016c01fd.attributes['No motion since'] | int >= states.input_select.tempo_luz_banheiro_suite.state | int -%}true{%- else -%}false{%- endif %}"
 #      - wait_template: >
 #          {% set light = "light.tudo_banheiro_suite" -%}
@@ -110,10 +106,8 @@ automation:
 
           {%- set motion = state_attr(motion_sensor, 'No motion since') | int -%}
           {%- set time = states(timmer_input) | int -%}
-          {%- set light_state = states(light) -%}
-          {%- set sensor_state = states(motion_sensor) -%}
 
-          {%- if is_state(light , 'off') or (motion >= time and sensor_state == 'off') -%}true{%- else -%}false{%- endif %}
+          {%- if is_state(light , 'off') or (motion >= time and is_state(motion_sensor , 'off')) -%}true{%- else -%}false{%- endif %}
       - wait_template: "{%- if (states.switch.chuveirosocial.state == 'off') and as_timestamp(now()) - as_timestamp(states.switch.chuveirosocial.last_updated) | int >= states.input_select.tempo_luz_banheiro_social.state | int and states.binary_sensor.motion_sensor_158d00016da83a.attributes['No motion since'] | int >= states.input_select.tempo_luz_banheiro_social.state | int -%}true{%- else -%}false{%- endif %}"
 #      - wait_template: >
 #          {% set light = "light.tudo_banheiro_social" -%}
@@ -156,10 +150,8 @@ automation:
 
           {%- set motion = state_attr(motion_sensor, 'No motion since') | int -%}
           {%- set time = states(timmer_input) | int -%}
-          {%- set light_state = states(light) -%}
-          {%- set sensor_state = states(motion_sensor) -%}
 
-          {%- if is_state(light , 'off') or (motion >= time and sensor_state == 'off') -%}true{%- else -%}false{%- endif %}
+          {%- if is_state(light , 'off') or (motion >= time and is_state(motion_sensor , 'off')) -%}true{%- else -%}false{%- endif %}
       - condition: state
         entity_id: light.luzes_principais_quarto
         state: 'on'
@@ -191,10 +183,8 @@ automation:
 
           {%- set motion = state_attr(motion_sensor, 'No motion since') | int -%}
           {%- set time = states(timmer_input) | int -%}
-          {%- set light_state = states(light) -%}
-          {%- set sensor_state = states(motion_sensor) -%}
 
-          {%- if is_state(light , 'off') or (motion >= time and sensor_state == 'off') -%}true{%- else -%}false{%- endif %}
+          {%- if is_state(light , 'off') or (motion >= time and is_state(motion_sensor , 'off')) -%}true{%- else -%}false{%- endif %}
       - condition: state
         entity_id: light.luzes_principais_sala
         state: 'on'
@@ -221,10 +211,8 @@ automation:
 
           {%- set motion = state_attr(motion_sensor, 'No motion since') | int -%}
           {%- set time = states(timmer_input) | int -%}
-          {%- set light_state = states(light) -%}
-          {%- set sensor_state = states(motion_sensor) -%}
 
-          {%- if is_state(light , 'off') or (motion >= time and sensor_state == 'off') -%}true{%- else -%}false{%- endif %}
+          {%- if is_state(light , 'off') or (motion >= time and is_state(motion_sensor , 'off')) -%}true{%- else -%}false{%- endif %}
       - condition: state
         entity_id: light.luzes_principais_cozinha
         state: 'on'
@@ -254,10 +242,8 @@ automation:
 
           {%- set motion = state_attr(motion_sensor, 'No motion since') | int -%}
           {%- set time = states(timmer_input) | int -%}
-          {%- set light_state = states(light) -%}
-          {%- set sensor_state = states(motion_sensor) -%}
 
-          {%- if is_state(light , 'off') or (motion >= time and sensor_state == 'off') -%}true{%- else -%}false{%- endif %}
+          {%- if is_state(light , 'off') or (motion >= time and is_state(motion_sensor , 'off')) -%}true{%- else -%}false{%- endif %}
       - condition: state
         entity_id: light.muv203entrada
         state: 'on'
@@ -284,10 +270,8 @@ automation:
 
           {%- set motion = state_attr(motion_sensor, 'No motion since') | int -%}
           {%- set time = states(timmer_input) | int -%}
-          {%- set light_state = states(light) -%}
-          {%- set sensor_state = states(motion_sensor) -%}
 
-          {%- if is_state(light , 'off') or (motion >= time and sensor_state == 'off') -%}true{%- else -%}false{%- endif %}
+          {%- if is_state(light , 'off') or (motion >= time and is_state(motion_sensor , 'off')) -%}true{%- else -%}false{%- endif %}
       - condition: state
         entity_id: light.muv203banheiro
         state: 'on'
@@ -314,10 +298,8 @@ automation:
 
           {%- set motion = state_attr(motion_sensor, 'No motion since') | int -%}
           {%- set time = states(timmer_input) | int -%}
-          {%- set light_state = states(light) -%}
-          {%- set sensor_state = states(motion_sensor) -%}
 
-          {%- if is_state(light , 'off') or (motion >= time and sensor_state == 'off') -%}true{%- else -%}false{%- endif %}
+          {%- if is_state(light , 'off') or (motion >= time and is_state(motion_sensor , 'off')) -%}true{%- else -%}false{%- endif %}
       - condition: state
         entity_id: light.muv203operacoes
         state: 'on'
@@ -344,10 +326,8 @@ automation:
 
           {%- set motion = state_attr(motion_sensor, 'No motion since') | int -%}
           {%- set time = states(timmer_input) | int -%}
-          {%- set light_state = states(light) -%}
-          {%- set sensor_state = states(motion_sensor) -%}
 
-          {%- if is_state(light , 'off') or (motion >= time and sensor_state == 'off') -%}true{%- else -%}false{%- endif %}
+          {%- if is_state(light , 'off') or (motion >= time and is_state(motion_sensor , 'off')) -%}true{%- else -%}false{%- endif %}
       - condition: state
         entity_id: light.muv203nossasala
         state: 'on'
@@ -374,10 +354,8 @@ automation:
 
           {%- set motion = state_attr(motion_sensor, 'No motion since') | int -%}
           {%- set time = states(timmer_input) | int -%}
-          {%- set light_state = states(light) -%}
-          {%- set sensor_state = states(motion_sensor) -%}
 
-          {%- if is_state(light , 'off') or (motion >= time and sensor_state == 'off') -%}true{%- else -%}false{%- endif %}
+          {%- if is_state(light , 'off') or (motion >= time and is_state(motion_sensor , 'off')) -%}true{%- else -%}false{%- endif %}
       - condition: state
         entity_id: light.muv303entrada
         state: 'on'
@@ -405,10 +383,8 @@ automation:
 
           {%- set motion = state_attr(motion_sensor, 'No motion since') | int -%}
           {%- set time = states(timmer_input) | int -%}
-          {%- set light_state = states(light) -%}
-          {%- set sensor_state = states(motion_sensor) -%}
 
-          {%- if is_state(light , 'off') or (motion >= time and sensor_state == 'off') -%}true{%- else -%}false{%- endif %}
+          {%- if is_state(light , 'off') or (motion >= time and is_state(motion_sensor , 'off')) -%}true{%- else -%}false{%- endif %}
       - condition: state
         entity_id: light.muv303dinamica
         state: 'on'
@@ -436,10 +412,8 @@ automation:
 
           {%- set motion = state_attr(motion_sensor, 'No motion since') | int -%}
           {%- set time = states(timmer_input) | int -%}
-          {%- set light_state = states(light) -%}
-          {%- set sensor_state = states(motion_sensor) -%}
 
-          {%- if is_state(light , 'off') or (motion >= time and sensor_state == 'off') -%}true{%- else -%}false{%- endif %}
+          {%- if is_state(light , 'off') or (motion >= time and is_state(motion_sensor , 'off')) -%}true{%- else -%}false{%- endif %}
       - condition: state
         entity_id: light.muv303banheiro
         state: 'on'
