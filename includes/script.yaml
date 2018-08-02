@@ -1018,7 +1018,7 @@ tts_porta_entrada:
         {%- endmacro -%}
         {%- macro porta_entrada() -%}
           {% set porta_entrada = [
-            "Ainda bem, o Magne deu muito trabalho aqui em casa.",
+            "Ainda bem, o Magno deu muito trabalho aqui em casa.",
             "Rápido! O Magno vai fugir... Quem dera!",
             "Até mais! Ou seria olá? Não sou muito bom nisso, desculpe.",
             "Quem está aí? Ah! É você!",

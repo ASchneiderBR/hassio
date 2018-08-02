@@ -1,13 +1,13 @@
 resources:
-  - url: /local/lovelace/custom_ui/gauge-card.js?ver2
+  - url: /local/lovelace/custom_ui/gauge-card.js?3
     type: js
-  - url: /local/lovelace/custom_ui/monster-card.js?ver4
+  - url: /local/lovelace/custom_ui/monster-card.js?3
     type: js
-  - url: /local/lovelace/custom_ui/bignumber-card.js?ver2
+  - url: /local/lovelace/custom_ui/bignumber-card.js?3
     type: js
-  - url: /local/lovelace/custom_ui/entity-attributes-card.js?ver7
+  - url: /local/lovelace/custom_ui/entity-attributes-card.js?3
     type: js
-  - url: /local/lovelace/custom_ui/weather-card.js?ver12
+  - url: /local/lovelace/custom_ui/weather-card.js?3
     type: js
 
 title: Casa Antonio e Roberta
@@ -56,7 +56,8 @@ views:
             title: Internet
             show_header_toggle: no
             entities:
-              - sensor.fastcom_download
+              - entity: sensor.fastcom_download
+                secondary_info: last-changed
               - script.speed_test
 
       - type: vertical-stack
@@ -79,19 +80,22 @@ views:
                   - type: entities
                     title: Celular Antonio
                     entities:
-                      - device_tracker.iphone_de_antonio
+                      - entity: device_tracker.iphone_de_antonio
+                        secondary_info: last-changed
                       - sensor.iphone_de_antonio_battery_level
                       - sensor.iphone_de_antonio_battery_state
                   - type: entities
                     title: Celular Roberta
                     entities:
-                      - device_tracker.iphone_de_roberta
+                      - entity: device_tracker.iphone_de_roberta
+                        secondary_info: last-changed
                       - sensor.iphone_de_roberta_battery_level
                       - sensor.iphone_de_roberta_battery_state
                   - type: entities
                     title: iPad Casa
                     entities:
-                      - device_tracker.ipad_de_antonio
+                      - entity: device_tracker.ipad_de_antonio
+                        secondary_info: last-changed
                       - sensor.ipad_casa_antonio_e_roberta_battery_level
                       - sensor.ipad_casa_antonio_e_roberta_battery_state
 
@@ -102,21 +106,36 @@ views:
             card:
               title: Dispositivos offline (atenção)
             entities:
-              - switch.desktop
-              - switch.servidor
-              - device_tracker.nas
-              - device_tracker.google_home_mini_sala
-              - device_tracker.google_home_mini_suite
-              - device_tracker.xiaomi_hub_casa
-              - device_tracker.aspirador_xiaomi
-              - device_tracker.rfbridgecasa
-              - device_tracker.tabletaut
-              - device_tracker.ipad_casa
-              - device_tracker.rmprosuite
-              - device_tracker.rmminisala
-              - device_tracker.rmminiquarto
-              - device_tracker.camera_sala
-              - device_tracker.camera_cozinha
+              - entity: switch.desktop
+                secondary_info: last-changed
+              - entity: switch.servidor
+                secondary_info: last-changed
+              - entity: device_tracker.nas
+                secondary_info: last-changed
+              - entity: device_tracker.google_home_mini_sala
+                secondary_info: last-changed
+              - entity: device_tracker.google_home_mini_suite
+                secondary_info: last-changed
+              - entity: device_tracker.xiaomi_hub_casa
+                secondary_info: last-changed
+              - entity: device_tracker.aspirador_xiaomi
+                secondary_info: last-changed
+              - entity: device_tracker.rfbridgecasa
+                secondary_info: last-changed
+              - entity: device_tracker.tabletaut
+                secondary_info: last-changed
+              - entity: device_tracker.ipad_casa
+                secondary_info: last-changed
+              - entity: device_tracker.rmprosuite
+                secondary_info: last-changed
+              - entity: device_tracker.rmminisala
+                secondary_info: last-changed
+              - entity: device_tracker.rmminiquarto
+                secondary_info: last-changed
+              - entity: device_tracker.camera_sala
+                secondary_info: last-changed
+              - entity: device_tracker.camera_cozinha
+                secondary_info: last-changed
             state_filter:
               - 'not_home'
 
@@ -124,46 +143,90 @@ views:
             card:
               title: Dispositivos indisponíveis (atenção)
             entities:
-              - light.area_servico
-              - light.banheiro_social
-              - light.corredor
-              - light.cozinha
-              - light.entrada
-              - light.gateway_light_34ce0090940e
-              - light.ledchaocozinha
-              - light.ledcozinhabalcao
-              - light.ledquartotv
-              - light.ledsaladesktop
-              - light.ledsalatv
-              - light.ledsuitecama
-              - light.ledsuitetv
-              - light.mesa_jantar
-              - light.quarto
-              - light.sala_principal
-              - light.suite_banheiro
-              - light.suite_principal
-              - binary_sensor.door_window_sensor_158d0001d6851d
-              - binary_sensor.door_window_sensor_158d0001d68545
-              - binary_sensor.door_window_sensor_158d0001e035a2
-              - binary_sensor.motion_sensor_158d000120af26
-              - binary_sensor.motion_sensor_158d0001225607
-              - binary_sensor.motion_sensor_158d0001231d4d
-              - binary_sensor.motion_sensor_158d00015b6c81
-              - binary_sensor.motion_sensor_158d00016c01fd
-              - binary_sensor.motion_sensor_158d00016da83a
-              - sensor.humidity_158d0001700b20
-              - sensor.humidity_158d0001702175
-              - sensor.humidity_158d00019cec0c
-              - sensor.humidity_158d0001dcb597
-              - sensor.illumination_34ce00907e65
-              - sensor.temperature_158d0001700b20
-              - sensor.temperature_158d0001702175
-              - sensor.temperature_158d00019cec0c
-              - sensor.temperature_158d0001dcb597
-              - switch.chuveirosocial
-              - switch.chuveirosuite
-              - switch.sirene
-              - switch.toalheiro
+              - entity: light.area_servico
+                secondary_info: last-changed
+              - entity: light.banheiro_social_principal
+                secondary_info: last-changed
+              - entity: light.banheiro_social_espelho
+                secondary_info: last-changed
+              - entity: light.corredor
+                secondary_info: last-changed
+              - entity: light.cozinha
+                secondary_info: last-changed
+              - entity: light.entrada
+                secondary_info: last-changed
+              - entity: light.gateway_light_34ce0090940e
+                secondary_info: last-changed
+              - entity: light.ledchaocozinha
+                secondary_info: last-changed
+              - entity: light.ledcozinhabalcao
+                secondary_info: last-changed
+              - entity: light.ledquartotv
+                secondary_info: last-changed
+              - entity: light.ledsaladesktop
+                secondary_info: last-changed
+              - entity: light.ledsalatv
+                secondary_info: last-changed
+              - entity: light.ledsuitecama
+                secondary_info: last-changed
+              - entity: light.ledsuitetv
+                secondary_info: last-changed
+              - entity: light.mesa_jantar
+                secondary_info: last-changed
+              - entity: light.quarto
+                secondary_info: last-changed
+              - entity: light.sala_principal
+                secondary_info: last-changed
+              - entity: light.suite_banheiro_principal
+                secondary_info: last-changed
+              - entity: light.suite_banheiro_espelho
+                secondary_info: last-changed
+              - entity: light.suite_principal
+                secondary_info: last-changed
+              - entity: binary_sensor.door_window_sensor_158d0001d6851d
+                secondary_info: last-changed
+              - entity: binary_sensor.door_window_sensor_158d0001d68545
+                secondary_info: last-changed
+              - entity: binary_sensor.door_window_sensor_158d0001e035a2
+                secondary_info: last-changed
+              - entity: binary_sensor.motion_sensor_158d000120af26
+                secondary_info: last-changed
+              - entity: binary_sensor.motion_sensor_158d0001225607
+                secondary_info: last-changed
+              - entity: binary_sensor.motion_sensor_158d0001231d4d
+                secondary_info: last-changed
+              - entity: binary_sensor.motion_sensor_158d00015b6c81
+                secondary_info: last-changed
+              - entity: binary_sensor.motion_sensor_158d00016c01fd
+                secondary_info: last-changed
+              - entity: binary_sensor.motion_sensor_158d00016da83a
+                secondary_info: last-changed
+              - entity: sensor.humidity_158d0001700b20
+                secondary_info: last-changed
+              - entity: sensor.humidity_158d0001702175
+                secondary_info: last-changed
+              - entity: sensor.humidity_158d00019cec0c
+                secondary_info: last-changed
+              - entity: sensor.humidity_158d0001dcb597
+                secondary_info: last-changed
+              - entity: sensor.illumination_34ce00907e65
+                secondary_info: last-changed
+              - entity: sensor.temperature_158d0001700b20
+                secondary_info: last-changed
+              - entity: sensor.temperature_158d0001702175
+                secondary_info: last-changed
+              - entity: sensor.temperature_158d00019cec0c
+                secondary_info: last-changed
+              - entity: sensor.temperature_158d0001dcb597
+                secondary_info: last-changed
+              - entity: switch.chuveirosocial
+                secondary_info: last-changed
+              - entity: switch.chuveirosuite
+                secondary_info: last-changed
+              - entity: switch.sirene
+                secondary_info: last-changed
+              - entity: switch.toalheiro
+                secondary_info: last-changed
             state_filter:
               - 'unavailable'
 
@@ -184,16 +247,26 @@ views:
             card:
               title: Sensores ativos
             entities:
-              - sensor.interruptores_ligados
-              - binary_sensor.door_window_sensor_158d0001d6851d
-              - binary_sensor.door_window_sensor_158d0001d68545
-              - binary_sensor.door_window_sensor_158d0001e035a2
-              - binary_sensor.motion_sensor_158d000120af26
-              - binary_sensor.motion_sensor_158d0001225607
-              - binary_sensor.motion_sensor_158d0001231d4d
-              - binary_sensor.motion_sensor_158d00015b6c81
-              - binary_sensor.motion_sensor_158d00016c01fd
-              - binary_sensor.motion_sensor_158d00016da83a
+              - entity: sensor.interruptores_ligados
+                secondary_info: last-changed
+              - entity: binary_sensor.door_window_sensor_158d0001d6851d
+                secondary_info: last-changed
+              - entity: binary_sensor.door_window_sensor_158d0001d68545
+                secondary_info: last-changed
+              - entity: binary_sensor.door_window_sensor_158d0001e035a2
+                secondary_info: last-changed
+              - entity: binary_sensor.motion_sensor_158d000120af26
+                secondary_info: last-changed
+              - entity: binary_sensor.motion_sensor_158d0001225607
+                secondary_info: last-changed
+              - entity: binary_sensor.motion_sensor_158d0001231d4d
+                secondary_info: last-changed
+              - entity: binary_sensor.motion_sensor_158d00015b6c81
+                secondary_info: last-changed
+              - entity: binary_sensor.motion_sensor_158d00016c01fd
+                secondary_info: last-changed
+              - entity: binary_sensor.motion_sensor_158d00016da83a
+                secondary_info: last-changed
             state_filter:
               - 'on'
 
@@ -202,24 +275,46 @@ views:
               title: Luzes ligadas
             show_header_toggle: yes
             entities:
-              - light.area_servico
-              - light.banheiro_social
-              - light.corredor
-              - light.cozinha
-              - light.entrada
-              - light.gateway_light_7811dcb7ea3d
-              - light.ledchaocozinha
-              - light.ledcozinhabalcao
-              - light.ledquartotv
-              - light.ledsaladesktop
-              - light.ledsalatv
-              - light.ledsuitecama
-              - light.ledsuitetv
-              - light.mesa_jantar
-              - light.quarto
-              - light.sala_principal
-              - light.suite_banheiro
-              - light.suite_principal
+              - entity: light.area_servico
+                secondary_info: last-changed
+              - entity: light.banheiro_social_principal
+                secondary_info: last-changed
+              - entity: light.corredor
+                secondary_info: last-changed
+              - entity: light.cozinha
+                secondary_info: last-changed
+              - entity: light.entrada
+                secondary_info: last-changed
+              - entity: light.gateway_light_7811dcb7ea3d
+                secondary_info: last-changed
+              - entity: light.ledchaocozinha
+                secondary_info: last-changed
+              - entity: light.ledcozinhabalcao
+                secondary_info: last-changed
+              - entity: light.ledsaladesktop
+                secondary_info: last-changed
+              - entity: light.ledsalatv
+                secondary_info: last-changed
+              - entity: light.ledsuitecama
+                secondary_info: last-changed
+              - entity: light.ledsuitetv
+                secondary_info: last-changed
+              - entity: light.mesa_jantar
+                secondary_info: last-changed
+              - entity: light.quarto
+                secondary_info: last-changed
+              - entity: light.ledquartotv
+                secondary_info: last-changed
+              - entity: light.sala_principal
+                secondary_info: last-changed
+              - entity: light.suite_banheiro_principal
+                secondary_info: last-changed
+              - entity: light.suite_principal
+                secondary_info: last-changed
+              - entity: light.suite_banheiro_espelho
+                secondary_info: last-changed
+              - entity: light.banheiro_social_espelho
+                secondary_info: last-changed
             state_filter:
               - 'on'
           - type: entity-filter
@@ -227,17 +322,28 @@ views:
               title: Dispositivos ligados
             show_header_toggle: yes
             entities:
-              - switch.aspirador
-              - switch.chuveirosocial
-              - switch.chuveirosuite
-              - switch.desktop
-              - switch.home_theater_sala
-              - switch.servidor
-              - switch.sirene
-              - switch.toalheiro
-              - switch.tv_lg_quarto
-              - switch.tv_lg_sala
-              - switch.tv_lg_suite
+              - entity: switch.aspirador
+                secondary_info: last-changed
+              - entity: switch.chuveirosocial
+                secondary_info: last-changed
+              - entity: switch.chuveirosuite
+                secondary_info: last-changed
+              - entity: switch.desktop
+                secondary_info: last-changed
+              - entity: switch.home_theater_sala
+                secondary_info: last-changed
+              - entity: switch.servidor
+                secondary_info: last-changed
+              - entity: switch.sirene
+                secondary_info: last-changed
+              - entity: switch.toalheiro
+                secondary_info: last-changed
+              - entity: switch.tv_lg_quarto
+                secondary_info: last-changed
+              - entity: switch.tv_lg_sala
+                secondary_info: last-changed
+              - entity: switch.tv_lg_suite
+                secondary_info: last-changed
             state_filter:
               - 'on'
 
@@ -259,9 +365,12 @@ views:
             card:
               title: Ares condicionados ligados
             entities:
-              - climate.ar_condicionado_da_suite
-              - climate.ar_condicionado_da_sala
-              - climate.ar_condicionado_da_quarto
+              - entity: climate.ar_condicionado_da_suite
+                secondary_info: last-changed
+              - entity: climate.ar_condicionado_da_sala
+                secondary_info: last-changed
+              - entity: climate.ar_condicionado_da_quarto
+                secondary_info: last-changed
             state_filter:
               - 'cool'
               - 'heat'
@@ -276,7 +385,13 @@ views:
             entities:
               - alarm_control_panel.alarme
               - switch.sirene
-    
+
+          - type: entities
+            title: Garagem
+            show_header_toggle: no
+            entities:
+              - script.garagem_casa
+
           - type: entities
             title: Aspirador
             show_header_toggle: no
@@ -288,17 +403,20 @@ views:
               - input_select.zonas_de_aspiracao
               - type: custom:entity-attributes-card
                 entity: vacuum.aspirador
-                attributes:
-                  - key: vacuum.aspirador.cleaning_time
-                    name: Tempo limpando (último)
-                  - key: vacuum.aspirador.cleaned_area
-                    name: Área limpa (último)
-                  - key: vacuum.aspirador.main_brush_left
-                    name: Escova principal (horas)
-                  - key: vacuum.aspirador.side_brush_left
-                    name: Escova lateral (horas)
-                  - key: vacuum.aspirador.filter_left
-                    name: Filtro (horas)
+                heading_name: Status
+                heading_state: Valor
+                filter:
+                  include:
+                    - key: vacuum.aspirador.cleaning_time
+                      name: Tempo limpando (último)
+                    - key: vacuum.aspirador.cleaned_area
+                      name: Área limpa (último)
+                    - key: vacuum.aspirador.main_brush_left
+                      name: Escova principal (horas)
+                    - key: vacuum.aspirador.side_brush_left
+                      name: Escova lateral (horas)
+                    - key: vacuum.aspirador.filter_left
+                      name: Filtro (horas)
 
           - type: vertical-stack
             cards:
@@ -363,7 +481,8 @@ views:
           - light.suite_principal
           - binary_sensor.motion_sensor_158d00016c01fd
           - binary_sensor.door_window_sensor_158d0001d68545
-          - light.suite_banheiro
+          - light.suite_banheiro_principal
+          - light.suite_banheiro_espelho
           - switch.chuveirosuite
           - switch.toalheiro
 
@@ -387,7 +506,8 @@ views:
         entities:
           - binary_sensor.motion_sensor_158d00016da83a
           - binary_sensor.door_window_sensor_158d0001e035a2
-          - light.banheiro_social
+          - light.banheiro_social_principal
+          - light.banheiro_social_espelho
           - switch.chuveirosocial
 
       - type: entities
@@ -734,17 +854,28 @@ views:
             card:
               title: Dispositivos offline (atenção)
             entities:
-              - device_tracker.xiaomi_hub_muvrh
-              - device_tracker.chromecast_sala303
-              - device_tracker.rfbridgemuvrh
-              - device_tracker.rmpro_sala203
-              - device_tracker.rmminioperacoes
-              - device_tracker.rmminientrada203
-              - device_tracker.rmminisala303
-              - device_tracker.celular_branco
-              - device_tracker.celular_motog5s_muvrh
-              - device_tracker.impressora_canon
-              - device_tracker.impressora_laser
+              - entity: device_tracker.xiaomi_hub_muvrh
+                secondary_info: last-changed
+              - entity: device_tracker.chromecast_sala303
+                secondary_info: last-changed
+              - entity: device_tracker.rfbridgemuvrh
+                secondary_info: last-changed
+              - entity: device_tracker.rmpro_sala203
+                secondary_info: last-changed
+              - entity: device_tracker.rmminioperacoes
+                secondary_info: last-changed
+              - entity: device_tracker.rmminientrada203
+                secondary_info: last-changed
+              - entity: device_tracker.rmminisala303
+                secondary_info: last-changed
+              - entity: device_tracker.celular_branco
+                secondary_info: last-changed
+              - entity: device_tracker.celular_motog5s_muvrh
+                secondary_info: last-changed
+              - entity: device_tracker.impressora_canon
+                secondary_info: last-changed
+              - entity: device_tracker.impressora_laser
+                secondary_info: last-changed
             state_filter:
               - 'not_home'
 
@@ -752,20 +883,52 @@ views:
             card:
               title: Dispositivos indisponíveis (atenção)
             entities:
-              - light.gateway_light_34ce0090940e
-              - light.muv203nossasala
-              - light.muv203operacoes
-              - light.muv203entrada
-              - light.muv203banheiro
-              - light.muv303entrada
-              - light.muv303dinamica
-              - light.muv303corredor
-              - light.303leddinamica
-              - light.muv303banheiro
-              - switch.tv_sala_operacoes
-              - switch.muv203bebedouro
-              - switch.tv_dinamica_303
-              - switch.muv303bebedouro
+              - entity: light.gateway_light_34ce0090940e
+                secondary_info: last-changed
+              - entity: light.muv203nossasala
+                secondary_info: last-changed
+              - entity: light.muv203operacoes
+                secondary_info: last-changed
+              - entity: light.muv203entrada
+                secondary_info: last-changed
+              - entity: light.muv203banheiro
+                secondary_info: last-changed
+              - entity: light.muv303entrada
+                secondary_info: last-changed
+              - entity: light.muv303dinamica
+                secondary_info: last-changed
+              - entity: light.muv303corredor
+                secondary_info: last-changed
+              - entity: light.303leddinamica
+                secondary_info: last-changed
+              - entity: light.muv303banheiro
+                secondary_info: last-changed
+              - entity: switch.tv_sala_operacoes
+                secondary_info: last-changed
+              - entity: switch.muv203bebedouro
+                secondary_info: last-changed
+              - entity: switch.tv_dinamica_303
+                secondary_info: last-changed
+              - entity: switch.muv303bebedouro
+                secondary_info: last-changed
+              - entity: binary_sensor.door_window_sensor_158d0001bf2a09
+                secondary_info: last-changed
+              - entity: binary_sensor.door_window_sensor_158d0001b8671f
+                secondary_info: last-changed
+              - entity: binary_sensor.motion_sensor_158d0001e02f9a
+                secondary_info: last-changed
+              - entity: binary_sensor.motion_sensor_158d0001e420d0
+                secondary_info: last-changed
+              - entity: binary_sensor.motion_sensor_158d0001ad6b83
+                secondary_info: last-changed
+              - entity: binary_sensor.motion_sensor_158d0001e43ef1
+                secondary_info: last-changed
+              - entity: binary_sensor.motion_sensor_158d0001e44035
+                secondary_info: last-changed
+              - entity: binary_sensor.motion_sensor_158d0001ad6c20
+                secondary_info: last-changed
+              - entity: binary_sensor.motion_sensor_158d0001a24bdc
+                secondary_info: last-changed
             state_filter:
               - 'unavailable'
     
@@ -773,15 +936,24 @@ views:
             card:
               title: Sensores ligados
             entities:
-              - binary_sensor.door_window_sensor_158d0001bf2a09
-              - binary_sensor.door_window_sensor_158d0001b8671f
-              - binary_sensor.motion_sensor_158d0001e02f9a
-              - binary_sensor.motion_sensor_158d0001e420d0
-              - binary_sensor.motion_sensor_158d0001ad6b83
-              - binary_sensor.motion_sensor_158d0001e43ef1
-              - binary_sensor.motion_sensor_158d0001e44035
-              - binary_sensor.motion_sensor_158d0001ad6c20
-              - binary_sensor.motion_sensor_158d0001a24bdc
+              - entity: binary_sensor.door_window_sensor_158d0001bf2a09
+                secondary_info: last-changed
+              - entity: binary_sensor.door_window_sensor_158d0001b8671f
+                secondary_info: last-changed
+              - entity: binary_sensor.motion_sensor_158d0001e02f9a
+                secondary_info: last-changed
+              - entity: binary_sensor.motion_sensor_158d0001e420d0
+                secondary_info: last-changed
+              - entity: binary_sensor.motion_sensor_158d0001ad6b83
+                secondary_info: last-changed
+              - entity: binary_sensor.motion_sensor_158d0001e43ef1
+                secondary_info: last-changed
+              - entity: binary_sensor.motion_sensor_158d0001e44035
+                secondary_info: last-changed
+              - entity: binary_sensor.motion_sensor_158d0001ad6c20
+                secondary_info: last-changed
+              - entity: binary_sensor.motion_sensor_158d0001a24bdc
+                secondary_info: last-changed
             state_filter:
               - 'on'
 
@@ -789,14 +961,22 @@ views:
             card:
               title: Computadores ligados
             entities:
-              - device_tracker.notebook_antonio
-              - device_tracker.notebook_roberta
-              - device_tracker.muvrh_01
-              - device_tracker.muvrh_02
-              - device_tracker.muvrh_03
-              - device_tracker.muvrh_04
-              - device_tracker.muvrh_05
-              - device_tracker.muvrh_06
+              - entity: device_tracker.notebook_antonio
+                secondary_info: last-changed
+              - entity: device_tracker.notebook_roberta
+                secondary_info: last-changed
+              - entity: device_tracker.muvrh_01
+                secondary_info: last-changed
+              - entity: device_tracker.muvrh_02
+                secondary_info: last-changed
+              - entity: device_tracker.muvrh_03
+                secondary_info: last-changed
+              - entity: device_tracker.muvrh_04
+                secondary_info: last-changed
+              - entity: device_tracker.muvrh_05
+                secondary_info: last-changed
+              - entity: device_tracker.muvrh_06
+                secondary_info: last-changed
             state_filter:
               - 'home'
 
@@ -804,16 +984,26 @@ views:
             card:
               title: Luzes ligadas
             entities:
-              - light.gateway_light_34ce0090940e
-              - light.muv203nossasala
-              - light.muv203operacoes
-              - light.muv203entrada
-              - light.muv203banheiro
-              - light.muv303entrada
-              - light.muv303dinamica
-              - light.muv303corredor
-              - light.303leddinamica
-              - light.muv303banheiro
+              - entity: light.gateway_light_34ce0090940e
+                secondary_info: last-changed
+              - entity: light.muv203nossasala
+                secondary_info: last-changed
+              - entity: light.muv203operacoes
+                secondary_info: last-changed
+              - entity: light.muv203entrada
+                secondary_info: last-changed
+              - entity: light.muv203banheiro
+                secondary_info: last-changed
+              - entity: light.muv303entrada
+                secondary_info: last-changed
+              - entity: light.muv303dinamica
+                secondary_info: last-changed
+              - entity: light.muv303corredor
+                secondary_info: last-changed
+              - entity: light.303leddinamica
+                secondary_info: last-changed
+              - entity: light.muv303banheiro
+                secondary_info: last-changed
             state_filter:
               - 'on'
 
@@ -821,10 +1011,14 @@ views:
             card:
               title: Dispositivos ligados
             entities:
-              - switch.tv_sala_operacoes
-              - switch.muv203bebedouro
-              - switch.tv_dinamica_303
-              - switch.muv303bebedouro
+              - entity: switch.tv_sala_operacoes
+                secondary_info: last-changed
+              - entity: switch.muv203bebedouro
+                secondary_info: last-changed
+              - entity: switch.tv_dinamica_303
+                secondary_info: last-changed
+              - entity: switch.muv303bebedouro
+                secondary_info: last-changed
             state_filter:
               - 'on'
 
@@ -832,10 +1026,14 @@ views:
             card:
               title: Ares condicionados ligados
             entities:
-              - climate.ar_condicionado_da_nossa_sala
-              - climate.ar_condicionado_da_sala_de_operacoes
-              - climate.ar_condicionado_da_entrada_203
-              - climate.ar_condicionado_da_sala_303
+              - entity: climate.ar_condicionado_da_nossa_sala
+                secondary_info: last-changed
+              - entity: climate.ar_condicionado_da_sala_de_operacoes
+                secondary_info: last-changed
+              - entity: climate.ar_condicionado_da_entrada_203
+                secondary_info: last-changed
+              - entity: climate.ar_condicionado_da_sala_303
+                secondary_info: last-changed
             state_filter:
               - 'cool'
               - 'heat'
@@ -925,7 +1123,7 @@ views:
                   left: 62%
 
               - type: state-icon
-                tap_action: toggle
+                tap_action: more-info
                 entity: binary_sensor.motion_sensor_158d0001225607
                 style:
                   top: 52.5%
@@ -938,14 +1136,12 @@ views:
                   left: 73.5%
 
               - type: state-label
-                tap_action: toggle
                 entity: sensor.temperature_158d0001700b20
                 style:
                   top: 62%
                   left: 73.5%
 
               - type: state-label
-                tap_action: toggle
                 entity: sensor.humidity_158d0001700b20
                 style:
                   top: 65%
@@ -1031,21 +1227,19 @@ views:
                   left: 21%
 
               - type: state-icon
-                tap_action: toggle
+                tap_action: more-info
                 entity: binary_sensor.motion_sensor_158d0001231d4d
                 style:
                   top: 13%
                   left: 37%
 
               - type: state-label
-                tap_action: toggle
                 entity: sensor.temperature_158d00019cec0c
                 style:
                   top: 17%
                   left: 37%
 
               - type: state-label
-                tap_action: toggle
                 entity: sensor.humidity_158d00019cec0c
                 style:
                   top: 20%
@@ -1075,7 +1269,7 @@ views:
                   left: 43%
 
               - type: state-icon
-                tap_action: toggle
+                tap_action: more-info
                 entity: binary_sensor.motion_sensor_158d00015b6c81
                 style:
                   top: 29%
@@ -1088,14 +1282,12 @@ views:
                   left: 23.2%
 
               - type: state-label
-                tap_action: toggle
                 entity: sensor.temperature_158d0001702175
                 style:
                   top: 37.5%
                   left: 23.2%
 
               - type: state-label
-                tap_action: toggle
                 entity: sensor.humidity_158d0001702175
                 style:
                   top: 40.3%
@@ -1111,7 +1303,7 @@ views:
               # Banheiro social
 
               - type: state-icon
-                tap_action: toggle
+                tap_action: more-info
                 entity: binary_sensor.motion_sensor_158d00016da83a
                 style:
                   top: 48.4%
@@ -1126,7 +1318,7 @@ views:
 
               - type: state-icon
                 tap_action: toggle
-                entity: light.banheiro_social
+                entity: light.tudo_banheiro_social
                 style:
                   top: 50%
                   left: 29%
@@ -1141,7 +1333,7 @@ views:
               # Banheiro suite
 
               - type: state-icon
-                tap_action: toggle
+                tap_action: more-info
                 entity: binary_sensor.motion_sensor_158d00016c01fd
                 style:
                   top: 64%
@@ -1156,7 +1348,7 @@ views:
 
               - type: state-icon
                 tap_action: toggle
-                entity: light.suite_banheiro
+                entity: light.tudo_banheiro_suite
                 style:
                   top: 59.5%
                   left: 29%
@@ -1213,7 +1405,7 @@ views:
                   left: 50%
 
               - type: state-icon
-                tap_action: toggle
+                tap_action: more-info
                 entity: binary_sensor.motion_sensor_158d000120af26
                 style:
                   top: 72.1%
@@ -1226,14 +1418,12 @@ views:
                   left: 36%
 
               - type: state-label
-                tap_action: toggle
                 entity: sensor.temperature_158d0001dcb597
                 style:
                   top: 80.5%
                   left: 36%
 
               - type: state-label
-                tap_action: toggle
                 entity: sensor.humidity_158d0001dcb597
                 style:
                   top: 83.2%
@@ -1253,7 +1443,3 @@ views:
           - entity: device_tracker.iphone_de_roberta
           - zone.home
           - zone.trabalho
-
-      - type: "custom:weather-card"
-        entity_weather: weather.tempo
-        entity_sun: sun.sun
