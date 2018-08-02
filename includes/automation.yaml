@@ -433,10 +433,9 @@
 
 - alias: Rotina - Ações ao por do sol
   trigger:
-    platform: numeric_state
-    entity_id: sun.sun
-    value_template: '{{ state.attributes.elevation | int }}'
-    below: 3
+    platform: sun
+    event: sunset
+    offset: '-00:15:00'
   action:
     - service: homeassistant.turn_on
       entity_id:
@@ -457,10 +456,9 @@
 
 - alias: Rotina - Ações ao nascer do sol
   trigger:
-    platform: numeric_state
-    entity_id: sun.sun
-    value_template: '{{ state.attributes.elevation | int }}'
-    above: 1
+    platform: sun
+    event: sunrise
+    offset: '-00:15:00'
   action:
     - service: homeassistant.turn_off
       entity_id:
@@ -1048,28 +1046,3 @@
     - delay: 00:00:10
     - service: input_boolean.turn_off
       entity_id: input_boolean.muvrh_desligar_tudo
-
-- alias: Luzes da casa - Quarto
-  trigger:
-    platform: state
-    entity_id: binary_sensor.motion_sensor_158d00015b6c81
-    to: 'on'
-  condition:
-    condition: state
-    entity_id: light.luzes_principais_quarto
-    state: 'off'
-  action:
-    - service: light.turn_on
-      entity_id: light.luzes_principais_quarto
-    - delay: 00:00:05
-    - wait_template: >
-        {% set light = "light.luzes_principais_quarto" -%}
-        {%- set timmer_input = "input_select.tempo_luz_quarto" -%}
-        {%- set motion_sensor = "binary_sensor.motion_sensor_158d00015b6c81" -%}
-        {%- set motion = state_attr(motion_sensor, 'No motion since') | int -%}
-        {%- set time = states(timmer_input) | int -%}
-        {%- set light_state = states(light) -%}
-        {%- set sensor_state = states(motion_sensor) -%}
-        {%- if is_state(light , 'off') or (motion == time and sensor_state == 'off') -%}true{%- else -%}false{%- endif %}
-    - service: light.turn_off
-      entity_id: light.luzes_principais_quarto
