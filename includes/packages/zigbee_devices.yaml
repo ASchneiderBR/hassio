@@ -1,0 +1,370 @@
+sensor:
+
+# Botões
+
+  - platform: "mqtt"
+    name: "Botão sala 01"
+    state_topic: "zigbee2mqtt/casa_xiaomi_botao_sala_01"
+    availability_topic: "zigbee2mqtt/bridge/state"
+    icon: "mdi:toggle-switch"
+    value_template: "{{ value_json.click }}"
+    qos: 1
+    json_attributes: 
+      - "battery"
+      - "voltage"
+      - "action"
+      - "duration"
+
+  - platform: "mqtt"
+    name: "Botão sala 02"
+    state_topic: "zigbee2mqtt/casa_xiaomi_botao_sala_02"
+    availability_topic: "zigbee2mqtt/bridge/state"
+    icon: "mdi:toggle-switch"
+    value_template: "{{ value_json.click }}"
+    qos: 1
+    json_attributes: 
+      - "battery"
+      - "voltage"
+      - "action"
+      - "duration"
+
+  - platform: "mqtt"
+    name: "Botão cozinha 01"
+    state_topic: "zigbee2mqtt/casa_xiaomi_botao_cozinha_01"
+    availability_topic: "zigbee2mqtt/bridge/state"
+    icon: "mdi:toggle-switch"
+    value_template: "{{ value_json.click }}"
+    qos: 1
+    json_attributes: 
+      - "battery"
+      - "voltage"
+      - "action"
+      - "duration"
+
+  - platform: "mqtt"
+    name: "Botão quarto 01"
+    state_topic: "zigbee2mqtt/casa_xiaomi_botao_quarto_01"
+    availability_topic: "zigbee2mqtt/bridge/state"
+    icon: "mdi:toggle-switch"
+    value_template: "{{ value_json.click }}"
+    qos: 1
+    json_attributes: 
+      - "battery"
+      - "voltage"
+      - "action"
+      - "duration"
+
+  - platform: "mqtt"
+    name: "Botão banheiro social 01"
+    state_topic: "zigbee2mqtt/casa_xiaomi_botao_banheiro_social_01"
+    availability_topic: "zigbee2mqtt/bridge/state"
+    icon: "mdi:toggle-switch"
+    value_template: "{{ value_json.click }}"
+    qos: 1
+    json_attributes: 
+      - "battery"
+      - "voltage"
+      - "action"
+      - "duration"
+
+  - platform: "mqtt"
+    name: "Botão banheiro suíte 01"
+    state_topic: "zigbee2mqtt/casa_xiaomi_botao_banheiro_suite_01"
+    availability_topic: "zigbee2mqtt/bridge/state"
+    icon: "mdi:toggle-switch"
+    value_template: "{{ value_json.click }}"
+    qos: 1
+    json_attributes: 
+      - "battery"
+      - "voltage"
+      - "action"
+      - "duration"
+
+  - platform: "mqtt"
+    name: "Botão suíte 01"
+    state_topic: "zigbee2mqtt/casa_xiaomi_botao_suite_01"
+    availability_topic: "zigbee2mqtt/bridge/state"
+    icon: "mdi:toggle-switch"
+    value_template: "{{ value_json.click }}"
+    qos: 1
+    json_attributes: 
+      - "battery"
+      - "voltage"
+      - "action"
+      - "duration"
+
+  - platform: "mqtt"
+    name: "Botão suíte 02"
+    state_topic: "zigbee2mqtt/casa_xiaomi_botao_suite_02"
+    availability_topic: "zigbee2mqtt/bridge/state"
+    icon: "mdi:toggle-switch"
+    value_template: "{{ value_json.click }}"
+    qos: 1
+    json_attributes: 
+      - "battery"
+      - "voltage"
+      - "action"
+      - "duration"
+
+# Cubos
+
+  - platform: "mqtt"
+    name: "Cubo sala 01"
+    state_topic: "zigbee2mqtt/casa_xiaomi_cubo_sala_01"
+    availability_topic: "zigbee2mqtt/bridge/state"
+    icon: "mdi:gesture-double-tap"
+    value_template: "{{ value_json.action }}"
+    qos: 1
+    json_attributes: 
+      - "battery"
+      - "voltage"
+      - "angle"
+      - "side"
+      - "from_side"
+      - "to_side"
+      - "brightness"
+
+  - platform: "mqtt"
+    name: "Cubo suíte 01"
+    state_topic: "zigbee2mqtt/casa_xiaomi_cubo_suite_01"
+    availability_topic: "zigbee2mqtt/bridge/state"
+    icon: "mdi:gesture-double-tap"
+    value_template: "{{ value_json.action }}"
+    qos: 1
+    json_attributes: 
+      - "battery"
+      - "voltage"
+      - "angle"
+      - "side"
+      - "from_side"
+      - "to_side"
+      - "brightness"
+
+# Temperatura
+
+  - platform: "mqtt"
+    name: "Temperatura cozinha"
+    device_class: temperature
+    state_topic: "zigbee2mqtt/casa_xiaomi_temperatura_cozinha"
+    availability_topic: "zigbee2mqtt/bridge/state"
+    unit_of_measurement: "°C"
+    icon: "mdi:temperature-celsius"
+    value_template: "{{ value_json.temperature }}"
+    qos: 1
+    json_attributes: 
+      - "battery"
+      - "voltage"
+
+  - platform: "mqtt"
+    name: "Umidade cozinha"
+    device_class: humidity
+    state_topic: "zigbee2mqtt/casa_xiaomi_temperatura_cozinha"
+    availability_topic: "zigbee2mqtt/bridge/state"
+    unit_of_measurement: "%"
+    icon: "mdi:water-percent"
+    value_template: "{{ value_json.humidity }}"
+    qos: 1
+    json_attributes: 
+      - "battery"
+      - "voltage"
+
+  - platform: "mqtt"
+    name: "Temperatura sala"
+    device_class: temperature
+    state_topic: "zigbee2mqtt/casa_xiaomi_temperatura_sala"
+    availability_topic: "zigbee2mqtt/bridge/state"
+    unit_of_measurement: "°C"
+    icon: "mdi:temperature-celsius"
+    value_template: "{{ value_json.temperature }}"
+    qos: 1
+    json_attributes: 
+      - "battery"
+      - "voltage"
+
+  - platform: "mqtt"
+    name: "Umidade sala"
+    device_class: humidity
+    state_topic: "zigbee2mqtt/casa_xiaomi_temperatura_sala"
+    availability_topic: "zigbee2mqtt/bridge/state"
+    unit_of_measurement: "%"
+    icon: "mdi:water-percent"
+    value_template: "{{ value_json.humidity }}"
+    qos: 1
+    json_attributes: 
+      - "battery"
+      - "voltage"
+
+  - platform: "mqtt"
+    name: "Temperatura quarto"
+    device_class: temperature
+    state_topic: "zigbee2mqtt/casa_xiaomi_temperatura_quarto"
+    availability_topic: "zigbee2mqtt/bridge/state"
+    unit_of_measurement: "°C"
+    icon: "mdi:temperature-celsius"
+    value_template: "{{ value_json.temperature }}"
+    qos: 1
+    json_attributes: 
+      - "battery"
+      - "voltage"
+
+  - platform: "mqtt"
+    name: "Umidade quarto"
+    device_class: humidity
+    state_topic: "zigbee2mqtt/casa_xiaomi_temperatura_quarto"
+    availability_topic: "zigbee2mqtt/bridge/state"
+    unit_of_measurement: "%"
+    icon: "mdi:water-percent"
+    value_template: "{{ value_json.humidity }}"
+    qos: 1
+    json_attributes: 
+      - "battery"
+      - "voltage"
+
+  - platform: "mqtt"
+    name: "Temperatura suite"
+    device_class: temperature
+    state_topic: "zigbee2mqtt/casa_xiaomi_temperatura_suite"
+    availability_topic: "zigbee2mqtt/bridge/state"
+    unit_of_measurement: "°C"
+    icon: "mdi:temperature-celsius"
+    value_template: "{{ value_json.temperature }}"
+    qos: 1
+    json_attributes: 
+      - "battery"
+      - "voltage"
+
+  - platform: "mqtt"
+    name: "Umidade suite"
+    device_class: humidity
+    state_topic: "zigbee2mqtt/casa_xiaomi_temperatura_suite"
+    availability_topic: "zigbee2mqtt/bridge/state"
+    unit_of_measurement: "%"
+    icon: "mdi:water-percent"
+    value_template: "{{ value_json.humidity }}"
+    qos: 1
+    json_attributes: 
+      - "battery"
+      - "voltage"
+
+# Movimento
+
+binary_sensor:
+
+  - platform: "mqtt"
+    name: "Movimento cozinha"
+    state_topic: "zigbee2mqtt/casa_xiaomi_movimento_cozinha"
+    availability_topic: "zigbee2mqtt/bridge/state"
+    payload_on: true
+    payload_off: false
+    value_template: "{{ value_json.occupancy }}"
+    qos: 1
+    device_class: "motion"
+    json_attributes: 
+      - "battery"
+      - "voltage"
+
+  - platform: "mqtt"
+    name: "Movimento sala"
+    state_topic: "zigbee2mqtt/casa_xiaomi_movimento_sala"
+    availability_topic: "zigbee2mqtt/bridge/state"
+    payload_on: true
+    payload_off: false
+    value_template: "{{ value_json.occupancy }}"
+    qos: 1
+    device_class: "motion"
+    json_attributes: 
+      - "battery"
+      - "voltage"
+
+  - platform: "mqtt"
+    name: "Movimento quarto"
+    state_topic: "zigbee2mqtt/casa_xiaomi_movimento_quarto"
+    availability_topic: "zigbee2mqtt/bridge/state"
+    payload_on: true
+    payload_off: false
+    value_template: "{{ value_json.occupancy }}"
+    qos: 1
+    device_class: "motion"
+    json_attributes: 
+      - "battery"
+      - "voltage"
+
+  - platform: "mqtt"
+    name: "Movimento banheiro social"
+    state_topic: "zigbee2mqtt/casa_xiaomi_movimento_banheiro_social"
+    availability_topic: "zigbee2mqtt/bridge/state"
+    payload_on: true
+    payload_off: false
+    value_template: "{{ value_json.occupancy }}"
+    qos: 1
+    device_class: "motion"
+    json_attributes: 
+      - "battery"
+      - "voltage"
+
+  - platform: "mqtt"
+    name: "Movimento banheiro suíte"
+    state_topic: "zigbee2mqtt/casa_xiaomi_movimento_banheiro_suite"
+    availability_topic: "zigbee2mqtt/bridge/state"
+    payload_on: true
+    payload_off: false
+    value_template: "{{ value_json.occupancy }}"
+    qos: 1
+    device_class: "motion"
+    json_attributes: 
+      - "battery"
+      - "voltage"
+
+  - platform: "mqtt"
+    name: "Movimento suíte"
+    state_topic: "zigbee2mqtt/casa_xiaomi_movimento_suite"
+    availability_topic: "zigbee2mqtt/bridge/state"
+    payload_on: true
+    payload_off: false
+    value_template: "{{ value_json.occupancy }}"
+    qos: 1
+    device_class: "motion"
+    json_attributes: 
+      - "battery"
+      - "voltage"
+
+#Abertura porta
+
+  - platform: "mqtt"
+    name: "Box banheiro social"
+    state_topic: "zigbee2mqtt/casa_xiaomi_abertura_banheiro_social"
+    availability_topic: "zigbee2mqtt/bridge/state"
+    payload_on: false
+    payload_off: true
+    value_template: "{{ value_json.contact }}"
+    qos: 1
+    device_class: "door"
+    json_attributes: 
+      - "battery"
+      - "voltage"
+
+  - platform: "mqtt"
+    name: "Box banheiro suíte"
+    state_topic: "zigbee2mqtt/casa_xiaomi_abertura_banheiro_suite"
+    availability_topic: "zigbee2mqtt/bridge/state"
+    payload_on: false
+    payload_off: true
+    value_template: "{{ value_json.contact }}"
+    qos: 1
+    device_class: "door"
+    json_attributes: 
+      - "battery"
+      - "voltage"
+
+  - platform: "mqtt"
+    name: "Entrada casa"
+    state_topic: "zigbee2mqtt/casa_xiaomi_abertura_entrada_casa"
+    availability_topic: "zigbee2mqtt/bridge/state"
+    payload_on: false
+    payload_off: true
+    value_template: "{{ value_json.contact }}"
+    qos: 1
+    device_class: "door"
+    json_attributes: 
+      - "battery"
+      - "voltage"

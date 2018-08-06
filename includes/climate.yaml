@@ -8,7 +8,7 @@
   min_temp: 18
   max_temp: 30
   target_temp: 24
-  temp_sensor: sensor.temperature_158d0001dcb597
+  temp_sensor: sensor.temperatura_suite
   default_operation: 'off'
   default_fan_mode: low
   customize:
@@ -30,7 +30,7 @@
   min_temp: 18
   max_temp: 30
   target_temp: 24
-  temp_sensor: sensor.temperature_158d0001700b20
+  temp_sensor: sensor.temperatura_sala
   default_operation: 'off'
   default_fan_mode: mid
   customize:
@@ -52,7 +52,7 @@
   min_temp: 18
   max_temp: 30
   target_temp: 24
-  temp_sensor: sensor.temperature_158d0001702175
+  temp_sensor: sensor.temperatura_quarto
   default_operation: 'off'
   default_fan_mode: low
   customize:

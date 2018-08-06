@@ -386,7 +386,6 @@
   entities:
     - light.ledsalatv
     - light.ledsaladesktop
-    - light.gateway_light_7811dcb7ea3d
 
 - platform: group
   name: Luzes principais cozinha

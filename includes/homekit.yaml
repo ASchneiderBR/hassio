@@ -38,15 +38,15 @@ filter:
     - binary_sensor.casa_movimento
     - binary_sensor.door_window_sensor_158d0001b8671f
     - binary_sensor.door_window_sensor_158d0001bf2a09
-    - binary_sensor.door_window_sensor_158d0001d6851d
-    - binary_sensor.door_window_sensor_158d0001d68545
-    - binary_sensor.door_window_sensor_158d0001e035a2
-    - binary_sensor.motion_sensor_158d000120af26
-    - binary_sensor.motion_sensor_158d0001225607
-    - binary_sensor.motion_sensor_158d0001231d4d
-    - binary_sensor.motion_sensor_158d00015b6c81
-    - binary_sensor.motion_sensor_158d00016c01fd
-    - binary_sensor.motion_sensor_158d00016da83a
+    - binary_sensor.entrada_casa
+    - binary_sensor.box_banheiro_suite
+    - binary_sensor.box_banheiro_social
+    - binary_sensor.movimento_suite
+    - binary_sensor.movimento_sala
+    - binary_sensor.movimento_cozinha
+    - binary_sensor.movimento_quarto
+    - binary_sensor.movimento_banheiro_suite
+    - binary_sensor.movimento_banheiro_social
     - binary_sensor.motion_sensor_158d0001a24bdc
     - binary_sensor.motion_sensor_158d0001ad6b83
     - binary_sensor.motion_sensor_158d0001ad6c20
@@ -54,7 +54,7 @@ filter:
     - binary_sensor.motion_sensor_158d0001e420d0
     - binary_sensor.motion_sensor_158d0001e43ef1
     - binary_sensor.motion_sensor_158d0001e44035
-    - sensor.temperature_158d00019cec0c
+    - sensor.temperatura_cozinha
     - alarm_control_panel.alarme
     - climate.ar_condicionado_da_entrada_203
     - climate.ar_condicionado_da_nossa_sala
@@ -76,7 +76,6 @@ filter:
     - light.corredor
     - light.cozinha
     - light.entrada
-    - light.gateway_light_7811dcb7ea3d
     - light.gateway_light_34ce0090940e
     - light.ledcozinhabalcao
     - light.ledchaocozinha

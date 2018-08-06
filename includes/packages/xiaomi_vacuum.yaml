@@ -59,14 +59,14 @@ switch:
         icon_template: mdi:robot-vacuum
 
 
-input_number:
-
-  aspirador_passadas:
-    name: Passadas
-    initial: 1
-    min: 1
-    max: 3
-    step: 1
+#input_number:
+#
+#  aspirador_passadas:
+#    name: Passadas
+#    initial: 1
+#    min: 1
+#    max: 3
+#    step: 1
 
 input_select:
   
@@ -261,7 +261,7 @@ script:
       data:
         entity_id: vacuum.aspirador
         command: app_zoned_clean
-        params: [[23993,23495,25193,25245,2]]
+        params: [[23792,23465,24992,25165,2]]
     - service: script.aspirador_alerta_iniciando
 
   aspirador_zona_mesa_jantar:

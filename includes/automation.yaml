@@ -36,7 +36,7 @@
     - delay: 00:00:06
     - service: notify.tv_sala
       data_template:
-        message: "Olá! A temperatura da sala é de {{ states.sensor.temperature_158d0001700b20.state | int }}ºC. Lá fora está {{ states.sensor.dark_sky_summary.state | lower }} com {{ states.sensor.dark_sky_temperature.state | int }}ºC."
+        message: "Olá! A temperatura da sala é de {{ states.sensor.temperatura_sala.state | int }}ºC. Lá fora está {{ states.sensor.dark_sky_summary.state | lower }} com {{ states.sensor.dark_sky_temperature.state | int }}ºC."
 
 - alias: Ações de reinicialização
   trigger:
@@ -78,6 +78,9 @@
         - automation.muvrh_203__luz_do_banheiro
         - automation.muvrh_203__luz_da_sala_de_operacoes
         - automation.muvrh_203__luz_da_nossa_sala
+        - automation.muvrh_303__luz_do_banheiro
+        - automation.muvrh_303__luz_da_dinamica
+        - automation.muvrh_303__luz_da_entrada
     - service: input_select.select_option
       entity_id: input_select.estados_de_succao
       data_template:
@@ -98,7 +101,7 @@
           {% if is_state('group.pessoas', 'home') %}script.alarme_armar_casa{% else %}script.alarme_armar_fora{% endif %}
         {% endif %}
     - service_template: >
-        {% if (is_state('light.gateway_light_34ce0090940e', 'on' ) or is_state('light.gateway_light_34ce0090940e', 'off' )) and (is_state('light.gateway_light_7811dcb7ea3d', 'on' ) or is_state('light.gateway_light_7811dcb7ea3d', 'off' )) %}
+        {% if (is_state('light.gateway_light_34ce0090940e', 'on' ) or is_state('light.gateway_light_34ce0090940e', 'off' )) %}
           homekit.start
         {% else %}
           script.homekit_no_start
@@ -212,7 +215,7 @@
 - alias: Sensores - Porta da entrada aberta - Casa
   trigger:
     platform: state
-    entity_id: binary_sensor.door_window_sensor_158d0001d6851d
+    entity_id: binary_sensor.entrada_casa
     to: 'on'
   action:
     - service: script.entrada_luz_temporizador
@@ -270,7 +273,7 @@
       entity_id: alarm_control_panel.alarme
     - service: input_boolean.turn_off
       entity_id: input_boolean.chegar_casa
-    - wait_template: "{{is_state('binary_sensor.door_window_sensor_158d0001d6851d', 'on')}}"
+    - wait_template: "{{is_state('binary_sensor.entrada_casa', 'on')}}"
       timeout: 00:09:00
     - delay: 00:00:20
     - service_template: >
@@ -334,7 +337,7 @@
 - alias: Luzes da casa - Entrando em casa
   trigger:
     platform: state
-    entity_id: binary_sensor.door_window_sensor_158d0001d6851d
+    entity_id: binary_sensor.entrada_casa
     to: 'on'
   condition:
     condition: state
@@ -348,7 +351,7 @@
   trigger:
     platform: state
     entity_id:
-      - binary_sensor.door_window_sensor_158d0001d6851d
+      - binary_sensor.entrada_casa
     to: 'on'
     for:
       minutes: 1
@@ -501,67 +504,83 @@
 
 - alias: Botão Xiaomi quarto
   trigger:
-    - platform: event
-      event_type: click
-      event_data:
-        entity_id: binary_sensor.switch_158d000120ea75
+    platform: mqtt
+    topic: 'zigbee2mqtt/casa_xiaomi_botao_quarto_01'
   action:
     - service_template: >
-        {% if trigger.event.data.click_type == 'single' %}
-          script.botao_xiaomi_quarto_click_1
-        {% elif trigger.event.data.click_type == 'double' %}
-          script.botao_xiaomi_quarto_click_2
-        {% elif trigger.event.data.click_type == 'long_click_press' %}
-          script.botao_xiaomi_quarto_click_3
+        {% if trigger.payload_json.click == 'single' %}
+          script.botao_xiaomi_quarto_01_single
+        {% elif trigger.payload_json.click == 'double' %}
+          script.botao_xiaomi_quarto_01_double
+        {% elif trigger.payload_json.click == 'triple' %}
+          script.botao_xiaomi_quarto_01_triple
+        {% elif trigger.payload_json.click == 'quadruple' %}
+          script.botao_xiaomi_quarto_01_quadruple
+        {% elif trigger.payload_json.click == 'many' %}
+          script.botao_xiaomi_quarto_01_many
+        {% elif trigger.payload_json.click == 'long' %}
+          script.botao_xiaomi_quarto_01_long
         {% endif %}
 
 - alias: Botão Xiaomi suite 01
   trigger:
-    - platform: event
-      event_type: click
-      event_data:
-        entity_id: binary_sensor.switch_158d0001d8e9f8
+    platform: mqtt
+    topic: 'zigbee2mqtt/casa_xiaomi_botao_suite_01'
   action:
     - service_template: >
-        {% if trigger.event.data.click_type == 'single' %}
-          script.botao_xiaomi_suite_01_click_1
-        {% elif trigger.event.data.click_type == 'double' %}
-          script.botao_xiaomi_suite_01_click_2
-        {% elif trigger.event.data.click_type == 'long_click_press' %}
-          script.botao_xiaomi_suite_01_click_3
+        {% if trigger.payload_json.click == 'single' %}
+          script.botao_xiaomi_suite_01_single
+        {% elif trigger.payload_json.click == 'double' %}
+          script.botao_xiaomi_suite_01_double
+        {% elif trigger.payload_json.click == 'triple' %}
+          script.botao_xiaomi_suite_01_triple
+        {% elif trigger.payload_json.click == 'quadruple' %}
+          script.botao_xiaomi_suite_01_quadruple
+        {% elif trigger.payload_json.click == 'many' %}
+          script.botao_xiaomi_suite_01_many
+        {% elif trigger.payload_json.click == 'long' %}
+          script.botao_xiaomi_suite_01_long
         {% endif %}
 
 - alias: Botão Xiaomi suite 02
   trigger:
-    - platform: event
-      event_type: click
-      event_data:
-        entity_id: binary_sensor.switch_158d0001d8ea74
+    platform: mqtt
+    topic: 'zigbee2mqtt/casa_xiaomi_botao_suite_02'
   action:
     - service_template: >
-        {% if trigger.event.data.click_type == 'single' %}
-          script.botao_xiaomi_suite_02_click_1
-        {% elif trigger.event.data.click_type == 'double' %}
-          script.botao_xiaomi_suite_02_click_2
-        {% elif trigger.event.data.click_type == 'long_click_press' %}
-          script.botao_xiaomi_suite_02_click_3
+        {% if trigger.payload_json.click == 'single' %}
+          script.botao_xiaomi_suite_02_single
+        {% elif trigger.payload_json.click == 'double' %}
+          script.botao_xiaomi_suite_02_double
+        {% elif trigger.payload_json.click == 'triple' %}
+          script.botao_xiaomi_suite_02_triple
+        {% elif trigger.payload_json.click == 'quadruple' %}
+          script.botao_xiaomi_suite_02_quadruple
+        {% elif trigger.payload_json.click == 'many' %}
+          script.botao_xiaomi_suite_02_many
+        {% elif trigger.payload_json.click == 'long' %}
+          script.botao_xiaomi_suite_02_long
         {% endif %}
 
 - alias: Botão Xiaomi banheiro suite
   trigger:
-    - platform: event
-      event_type: click
-      event_data:
-        entity_id: binary_sensor.switch_158d0001d8eabc
+    platform: mqtt
+    topic: 'zigbee2mqtt/casa_xiaomi_botao_banheiro_suite_01'
   action:
     - service_template: >
-        {% if trigger.event.data.click_type == 'single' %}
-          script.botao_xiaomi_banheiro_suite_click_1
-        {% elif trigger.event.data.click_type == 'double' %}
-          script.botao_xiaomi_banheiro_suite_click_2
-        {% elif trigger.event.data.click_type == 'long_click_press' %}
+        {% if trigger.payload_json.click == 'single' %}
+          script.botao_xiaomi_banheiro_suite_01_single
+        {% elif trigger.payload_json.click == 'double' %}
+          script.botao_xiaomi_banheiro_suite_01_double
+        {% elif trigger.payload_json.click == 'triple' %}
+          script.botao_xiaomi_banheiro_suite_01_triple
+        {% elif trigger.payload_json.click == 'quadruple' %}
+          script.botao_xiaomi_banheiro_suite_01_quadruple
+        {% elif trigger.payload_json.click == 'many' %}
+          script.botao_xiaomi_banheiro_suite_01_many
+        {% elif trigger.payload_json.click == 'long' %}
           {% if is_state('switch.chuveirosuite' , 'off') %}
-            script.botao_xiaomi_banheiro_suite_click_3
+            script.botao_xiaomi_banheiro_suite_01_long
           {% else %}
             homeassistant.turn_off
           {% endif %}
@@ -574,66 +593,91 @@
 
 - alias: Botão Xiaomi banheiro social
   trigger:
-    - platform: event
-      event_type: click
-      event_data:
-        entity_id: binary_sensor.switch_158d0001d8eb3d
+    platform: mqtt
+    topic: 'zigbee2mqtt/casa_xiaomi_botao_banheiro_social_01'
   action:
     - service_template: >
-        {% if trigger.event.data.click_type == 'single' %}
-          script.botao_xiaomi_banheiro_social_click_1
-        {% elif trigger.event.data.click_type == 'double' %}
-          script.botao_xiaomi_banheiro_social_click_2
-        {% elif trigger.event.data.click_type == 'long_click_press' %}
-          script.botao_xiaomi_banheiro_social_click_3
+        {% if trigger.payload_json.click == 'single' %}
+          script.botao_xiaomi_banheiro_social_01_single
+        {% elif trigger.payload_json.click == 'double' %}
+          script.botao_xiaomi_banheiro_social_01_double
+        {% elif trigger.payload_json.click == 'triple' %}
+          script.botao_xiaomi_banheiro_social_01_triple
+        {% elif trigger.payload_json.click == 'quadruple' %}
+          script.botao_xiaomi_banheiro_social_01_quadruple
+        {% elif trigger.payload_json.click == 'many' %}
+          script.botao_xiaomi_banheiro_social_01_many
+        {% elif trigger.payload_json.click == 'long' %}
+          {% if is_state('switch.chuveirosocial' , 'off') %}
+            script.botao_xiaomi_banheiro_social_01_long
+          {% else %}
+            homeassistant.turn_off
+          {% endif %}
         {% endif %}
+      data_template:
+        entity_id: >
+          {% if is_state('switch.chuveirosocial' , 'on') %}
+            switch.chuveirosocial, script.botao_xiaomi_banheiro_social_click_3
+          {% endif %}
 
 - alias: Botão Xiaomi sala 01
   trigger:
-    - platform: event
-      event_type: click
-      event_data:
-        entity_id: binary_sensor.switch_158d000121090f
+    platform: mqtt
+    topic: 'zigbee2mqtt/casa_xiaomi_botao_sala_01'
   action:
     - service_template: >
-        {% if trigger.event.data.click_type == 'single' %}
-          script.botao_xiaomi_sala_01_click_1
-        {% elif trigger.event.data.click_type == 'double' %}
-          script.botao_xiaomi_sala_01_click_2
-        {% elif trigger.event.data.click_type == 'long_click_press' %}
-          script.botao_xiaomi_sala_01_click_3
+        {% if trigger.payload_json.click == 'single' %}
+          script.botao_xiaomi_sala_01_single
+        {% elif trigger.payload_json.click == 'double' %}
+          script.botao_xiaomi_sala_01_double
+        {% elif trigger.payload_json.click == 'triple' %}
+          script.botao_xiaomi_sala_01_triple
+        {% elif trigger.payload_json.click == 'quadruple' %}
+          script.botao_xiaomi_sala_01_quadruple
+        {% elif trigger.payload_json.click == 'many' %}
+          script.botao_xiaomi_sala_01_many
+        {% elif trigger.payload_json.click == 'long' %}
+          script.botao_xiaomi_sala_01_long
         {% endif %}
 
 - alias: Botão Xiaomi sala 02
   trigger:
-    - platform: event
-      event_type: click
-      event_data:
-        entity_id: binary_sensor.switch_158d0001d8e9cf
+    platform: mqtt
+    topic: 'zigbee2mqtt/casa_xiaomi_botao_sala_02'
   action:
     - service_template: >
-        {% if trigger.event.data.click_type == 'single' %}
-          script.botao_xiaomi_sala_02_click_1
-        {% elif trigger.event.data.click_type == 'double' %}
-          script.botao_xiaomi_sala_02_click_2
-        {% elif trigger.event.data.click_type == 'long_click_press' %}
-          script.botao_xiaomi_sala_02_click_3
+        {% if trigger.payload_json.click == 'single' %}
+          script.botao_xiaomi_sala_02_single
+        {% elif trigger.payload_json.click == 'double' %}
+          script.botao_xiaomi_sala_02_double
+        {% elif trigger.payload_json.click == 'triple' %}
+          script.botao_xiaomi_sala_02_triple
+        {% elif trigger.payload_json.click == 'quadruple' %}
+          script.botao_xiaomi_sala_02_quadruple
+        {% elif trigger.payload_json.click == 'many' %}
+          script.botao_xiaomi_sala_02_many
+        {% elif trigger.payload_json.click == 'long' %}
+          script.botao_xiaomi_sala_02_long
         {% endif %}
 
 - alias: Botão Xiaomi cozinha
   trigger:
-    - platform: event
-      event_type: click
-      event_data:
-        entity_id: binary_sensor.switch_158d0001d9073f
+    platform: mqtt
+    topic: 'zigbee2mqtt/casa_xiaomi_botao_cozinha_01'
   action:
     - service_template: >
-        {% if trigger.event.data.click_type == 'single' %}
-          script.botao_xiaomi_cozinha_click_1
-        {% elif trigger.event.data.click_type == 'double' %}
-          script.botao_xiaomi_cozinha_click_2
-        {% elif trigger.event.data.click_type == 'long_click_press' %}
-          script.botao_xiaomi_cozinha_click_3
+        {% if trigger.payload_json.click == 'single' %}
+          script.botao_xiaomi_cozinha_01_single
+        {% elif trigger.payload_json.click == 'double' %}
+          script.botao_xiaomi_cozinha_01_double
+        {% elif trigger.payload_json.click == 'triple' %}
+          script.botao_xiaomi_cozinha_01_triple
+        {% elif trigger.payload_json.click == 'quadruple' %}
+          script.botao_xiaomi_cozinha_01_quadruple
+        {% elif trigger.payload_json.click == 'many' %}
+          script.botao_xiaomi_cozinha_01_many
+        {% elif trigger.payload_json.click == 'long' %}
+          script.botao_xiaomi_cozinha_01_long
         {% endif %}
 
 - alias: Solicitar status celulares
@@ -757,49 +801,45 @@
 
 - alias: Cubo sala
   trigger:
-    platform: event
-    event_type: cube_action
-    event_data:
-      entity_id: binary_sensor.cube_158d00010b2e64
+    platform: mqtt
+    topic: 'zigbee2mqtt/casa_xiaomi_cubo_sala_01'
   action:
     - service_template: >
-        {% if trigger.event.data.action_type == 'flip90' %}
+        {% if trigger.payload_json.action == 'flip90' %}
           script.cubo_sala_tv_aovivo
-        {% elif trigger.event.data.action_type == 'flip180' %}
+        {% elif trigger.payload_json.action == 'flip180' %}
           script.cubo_sala_tv_youtube
-        {% elif trigger.event.data.action_type == 'tap_twice' %}
+        {% elif trigger.payload_json.action == 'tap' %}
           script.cubo_sala_luz
-        {% elif trigger.event.data.action_type == 'shake_air' %}
+        {% elif trigger.payload_json.action == 'shake' %}
           script.cubo_sala_tv_toggle
-        {% elif trigger.event.data.action_type == 'free_fall' %}
+        {% elif trigger.payload_json.action == 'fall' %}
           script.cubo_sala_persiana
-        {% elif trigger.event.data.action_type == 'rotate' and trigger.event.data.action_value | int > 0 %}
+        {% elif trigger.payload_json.action == 'rotate_right' %}
           script.home_theater_sala_volup_x3
-        {% elif trigger.event.data.action_type == 'rotate' and trigger.event.data.action_value | int < 0 %}
+        {% elif trigger.payload_json.action == 'rotate_left' %}
           script.home_theater_sala_voldown_x3
         {% endif %}
 
 - alias: Cubo suíte
   trigger:
-    platform: event
-    event_type: cube_action
-    event_data:
-      entity_id: binary_sensor.cube_158d00010b2e3e
+    platform: mqtt
+    topic: 'zigbee2mqtt/casa_xiaomi_cubo_suite_01'
   action:
     - service_template: >
-        {% if trigger.event.data.action_type == 'flip90' %}
+        {% if trigger.payload_json.action == 'flip90' %}
           script.cubo_suite_tv_aovivo
-        {% elif trigger.event.data.action_type == 'flip180' %}
+        {% elif trigger.payload_json.action == 'flip180' %}
           script.cubo_suite_tv_youtube
-        {% elif trigger.event.data.action_type == 'tap_twice' %}
+        {% elif trigger.payload_json.action == 'tap' %}
           script.cubo_suite_luz
-        {% elif trigger.event.data.action_type == 'shake_air' %}
+        {% elif trigger.payload_json.action == 'shake' %}
           script.cubo_suite_tv_toggle
-        {% elif trigger.event.data.action_type == 'free_fall' %}
+        {% elif trigger.payload_json.action == 'fall' %}
           script.cubo_suite_persiana
-        {% elif trigger.event.data.action_type == 'rotate' and trigger.event.data.action_value | int > 0 %}
+        {% elif trigger.payload_json.action == 'rotate_right' %}
           script.cubo_suite_tv_volup
-        {% elif trigger.event.data.action_type == 'rotate' and trigger.event.data.action_value | int < 0 %}
+        {% elif trigger.payload_json.action == 'rotate_left' %}
           script.cubo_suite_tv_voldown
         {% endif %}
 
@@ -836,15 +876,15 @@
         - binary_sensor.cube_158d00010b2e64
         - binary_sensor.door_window_sensor_158d0001b8671f
         - binary_sensor.door_window_sensor_158d0001bf2a09
-        - binary_sensor.door_window_sensor_158d0001d6851d
-        - binary_sensor.door_window_sensor_158d0001d68545
-        - binary_sensor.door_window_sensor_158d0001e035a2
-        - binary_sensor.motion_sensor_158d000120af26
-        - binary_sensor.motion_sensor_158d0001225607
-        - binary_sensor.motion_sensor_158d0001231d4d
-        - binary_sensor.motion_sensor_158d00015b6c81
-        - binary_sensor.motion_sensor_158d00016c01fd
-        - binary_sensor.motion_sensor_158d00016da83a
+        - binary_sensor.entrada_casa
+        - binary_sensor.box_banheiro_suite
+        - binary_sensor.box_banheiro_social
+        - binary_sensor.movimento_suite
+        - binary_sensor.movimento_sala
+        - binary_sensor.movimento_cozinha
+        - binary_sensor.movimento_quarto
+        - binary_sensor.movimento_banheiro_suite
+        - binary_sensor.movimento_banheiro_social
         - binary_sensor.motion_sensor_158d0001ad6b83
         - binary_sensor.motion_sensor_158d0001ad6c20
         - binary_sensor.motion_sensor_158d0001e02f9a
@@ -852,14 +892,6 @@
         - binary_sensor.motion_sensor_158d0001e43ef1
         - binary_sensor.motion_sensor_158d0001e44035
         - binary_sensor.motion_sensor_158d0001a24bdc
-        - binary_sensor.switch_158d000120ea75
-        - binary_sensor.switch_158d000121090f
-        - binary_sensor.switch_158d0001d8e9cf
-        - binary_sensor.switch_158d0001d8e9f8
-        - binary_sensor.switch_158d0001d8ea74
-        - binary_sensor.switch_158d0001d8eabc
-        - binary_sensor.switch_158d0001d8eb3d
-        - binary_sensor.switch_158d0001d9073f
       to: 'unavailable'
       for:
         minutes: 15
@@ -871,7 +903,6 @@
         - light.corredor
         - light.cozinha
         - light.entrada
-        - light.gateway_light_7811dcb7ea3d
         - light.gateway_light_34ce0090940e
         - light.ledcozinhabalcao
         - light.ledchaocozinha
@@ -901,12 +932,12 @@
     - platform: state
       entity_id:
         - sensor.humidity_158d00015633b4
-        - sensor.humidity_158d0001700b20
-        - sensor.humidity_158d0001702175
+        - sensor.umidade_sala
+        - sensor.umidade_quarto
         - sensor.humidity_158d0001703b44
-        - sensor.humidity_158d00019cec0c
+        - sensor.umidade_cozinha
         - sensor.humidity_158d0001d7e65d
-        - sensor.humidity_158d0001dcb597
+        - sensor.umidade_suite
         - sensor.illumination_158d0001ad6b83
         - sensor.illumination_158d0001ad6c20
         - sensor.illumination_158d0001e02f9a
@@ -916,12 +947,10 @@
         - sensor.illumination_34ce00907e65
         - sensor.illumination_34ce0090940e
         - sensor.temperature_158d00015633b4
-        - sensor.temperature_158d0001700b20
-        - sensor.temperature_158d0001702175
+        - sensor.temperatura_quarto
         - sensor.temperature_158d0001703b44
-        - sensor.temperature_158d00019cec0c
         - sensor.temperature_158d0001d7e65d
-        - sensor.temperature_158d0001dcb597
+        - sensor.temperatura_suite
       to: 'unavailable'
       for:
         minutes: 15

@@ -19,8 +19,8 @@ default_view:
 
 suite:
   entities:
-  - binary_sensor.motion_sensor_158d000120af26
-  - sensor.humidity_158d0001dcb597
+  - binary_sensor.movimento_suite
+  - sensor.umidade_suite
   - climate.ar_condicionado_da_suite
   - script.ar_suite_display
   - script.ar_suite_swing
@@ -29,8 +29,8 @@ suite:
   - light.ledsuitecama
   - light.ledsuitetv
   - light.suite_principal
-  - binary_sensor.motion_sensor_158d00016c01fd
-  - binary_sensor.door_window_sensor_158d0001d68545
+  - binary_sensor.movimento_banheiro_suite
+  - binary_sensor.box_banheiro_suite
   - light.suite_banheiro
   - switch.chuveirosuite
   - switch.toalheiro
@@ -39,8 +39,8 @@ suite:
 
 quarto:
   entities:
-  - binary_sensor.motion_sensor_158d00015b6c81
-  - sensor.humidity_158d0001702175
+  - binary_sensor.movimento_quarto
+  - sensor.umidade_quarto
   - climate.ar_condicionado_do_quarto
   - script.ar_quarto_display
   - script.ar_quarto_swing
@@ -54,8 +54,8 @@ quarto:
 banheiro2:
   control: hidden
   entities:
-  - binary_sensor.motion_sensor_158d00016da83a
-  - binary_sensor.door_window_sensor_158d0001e035a2
+  - binary_sensor.movimento_banheiro_social
+  - binary_sensor.box_banheiro_social
   - light.banheiro_social
   - switch.chuveirosocial
   name: Banheiro social
@@ -63,9 +63,9 @@ banheiro2:
 
 sala:
   entities:
-  - binary_sensor.door_window_sensor_158d0001d6851d
-  - binary_sensor.motion_sensor_158d0001225607
-  - sensor.humidity_158d0001700b20
+  - binary_sensor.entrada_casa
+  - binary_sensor.movimento_sala
+  - sensor.umidade_sala
   - climate.ar_condicionado_da_sala
   - script.ar_sala_display
   - script.ar_sala_swing
@@ -76,7 +76,6 @@ sala:
   - switch.home_theater_sala
   - script.home_theater_sala_volup_x6
   - script.home_theater_sala_voldown_x6
-  - light.gateway_light_7811dcb7ea3d
   - light.corredor
   - light.ledsaladesktop
   - light.sala_principal
@@ -88,9 +87,9 @@ sala:
 
 cozinha:
   entities:
-  - binary_sensor.motion_sensor_158d0001231d4d
-  - sensor.humidity_158d00019cec0c
-  - sensor.temperature_158d00019cec0c
+  - binary_sensor.movimento_cozinha
+  - sensor.umidade_cozinha
+  - sensor.temperatura_cozinha
   - light.cozinha
   - light.ledcozinhabalcao
   - light.ledchaocozinha
@@ -157,24 +156,24 @@ sensorescasa:
   - script.speed_test
   - sensor.luzes_ligadas
   - sensor.interruptores_ligados
-  - binary_sensor.door_window_sensor_158d0001d6851d
-  - binary_sensor.door_window_sensor_158d0001d68545
-  - binary_sensor.door_window_sensor_158d0001e035a2
-  - binary_sensor.motion_sensor_158d000120af26
-  - binary_sensor.motion_sensor_158d0001225607
-  - binary_sensor.motion_sensor_158d0001231d4d
-  - binary_sensor.motion_sensor_158d00015b6c81
-  - binary_sensor.motion_sensor_158d00016c01fd
-  - binary_sensor.motion_sensor_158d00016da83a
-  - sensor.humidity_158d0001700b20
-  - sensor.humidity_158d0001702175
-  - sensor.humidity_158d00019cec0c
-  - sensor.humidity_158d0001dcb597
+  - binary_sensor.entrada_casa
+  - binary_sensor.box_banheiro_suite
+  - binary_sensor.box_banheiro_social
+  - binary_sensor.movimento_suite
+  - binary_sensor.movimento_sala
+  - binary_sensor.movimento_cozinha
+  - binary_sensor.movimento_quarto
+  - binary_sensor.movimento_banheiro_suite
+  - binary_sensor.movimento_banheiro_social
+  - sensor.umidade_sala
+  - sensor.umidade_quarto
+  - sensor.umidade_cozinha
+  - sensor.umidade_suite
   - sensor.illumination_34ce00907e65
-  - sensor.temperature_158d0001700b20
-  - sensor.temperature_158d0001702175
-  - sensor.temperature_158d00019cec0c
-  - sensor.temperature_158d0001dcb597
+  - sensor.temperatura_sala
+  - sensor.temperatura_quarto
+  - sensor.temperatura_cozinha
+  - sensor.temperatura_suite
   name: Sensores casa
   view: false
 
@@ -367,6 +366,7 @@ tablet_entrada:
   view: true
 
 funcoes_tablet_entrada:
+  control: hidden
   entities:
   - sensor.pws_weather_1h
   - switch.sistema_alarme_casa
@@ -384,12 +384,12 @@ funcoes_tablet_entrada:
 casa_movimento:
   control: hidden
   entities:
-  - binary_sensor.motion_sensor_158d000120af26
-  - binary_sensor.motion_sensor_158d0001225607
-  - binary_sensor.motion_sensor_158d0001231d4d
-  - binary_sensor.motion_sensor_158d00015b6c81
-  - binary_sensor.motion_sensor_158d00016c01fd
-  - binary_sensor.motion_sensor_158d00016da83a
+  - binary_sensor.movimento_suite
+  - binary_sensor.movimento_sala
+  - binary_sensor.movimento_cozinha
+  - binary_sensor.movimento_quarto
+  - binary_sensor.movimento_banheiro_suite
+  - binary_sensor.movimento_banheiro_social
   name: Movimento em casa
   view: false
 

@@ -60,6 +60,14 @@ views:
                 secondary_info: last-changed
               - script.speed_test
 
+          - type: entities
+            title: ZigBee
+            show_header_toggle: no
+            entities:
+              - input_boolean.zigbee_permit_join
+              - timer.zigbee_permit_join
+              - sensor.estado_do_bridge
+
       - type: vertical-stack
         cards:
           - type: vertical-stack
@@ -183,41 +191,41 @@ views:
                 secondary_info: last-changed
               - entity: light.suite_principal
                 secondary_info: last-changed
-              - entity: binary_sensor.door_window_sensor_158d0001d6851d
+              - entity: binary_sensor.entrada_casa
                 secondary_info: last-changed
-              - entity: binary_sensor.door_window_sensor_158d0001d68545
+              - entity: binary_sensor.box_banheiro_suite
                 secondary_info: last-changed
-              - entity: binary_sensor.door_window_sensor_158d0001e035a2
+              - entity: binary_sensor.box_banheiro_social
                 secondary_info: last-changed
-              - entity: binary_sensor.motion_sensor_158d000120af26
+              - entity: binary_sensor.movimento_suite
                 secondary_info: last-changed
-              - entity: binary_sensor.motion_sensor_158d0001225607
+              - entity: binary_sensor.movimento_sala
                 secondary_info: last-changed
-              - entity: binary_sensor.motion_sensor_158d0001231d4d
+              - entity: binary_sensor.movimento_cozinha
                 secondary_info: last-changed
-              - entity: binary_sensor.motion_sensor_158d00015b6c81
+              - entity: binary_sensor.movimento_quarto
                 secondary_info: last-changed
-              - entity: binary_sensor.motion_sensor_158d00016c01fd
+              - entity: binary_sensor.movimento_banheiro_suite
                 secondary_info: last-changed
-              - entity: binary_sensor.motion_sensor_158d00016da83a
+              - entity: binary_sensor.movimento_banheiro_social
                 secondary_info: last-changed
-              - entity: sensor.humidity_158d0001700b20
+              - entity: sensor.umidade_sala
                 secondary_info: last-changed
-              - entity: sensor.humidity_158d0001702175
+              - entity: sensor.umidade_quarto
                 secondary_info: last-changed
-              - entity: sensor.humidity_158d00019cec0c
+              - entity: sensor.umidade_cozinha
                 secondary_info: last-changed
-              - entity: sensor.humidity_158d0001dcb597
+              - entity: sensor.umidade_suite
                 secondary_info: last-changed
               - entity: sensor.illumination_34ce00907e65
                 secondary_info: last-changed
-              - entity: sensor.temperature_158d0001700b20
+              - entity: sensor.temperatura_sala
                 secondary_info: last-changed
-              - entity: sensor.temperature_158d0001702175
+              - entity: sensor.temperatura_quarto
                 secondary_info: last-changed
-              - entity: sensor.temperature_158d00019cec0c
+              - entity: sensor.temperatura_cozinha
                 secondary_info: last-changed
-              - entity: sensor.temperature_158d0001dcb597
+              - entity: sensor.temperatura_suite
                 secondary_info: last-changed
               - entity: switch.chuveirosocial
                 secondary_info: last-changed
@@ -242,6 +250,12 @@ views:
                 - domain: sensor
                   attributes:
                     battery_level: '< 10'
+                - domain: binary_sensor
+                  attributes:
+                    battery: '< 10'
+                - domain: sensor
+                  attributes:
+                    battery: '< 10'
 
           - type: entity-filter
             card:
@@ -249,23 +263,23 @@ views:
             entities:
               - entity: sensor.interruptores_ligados
                 secondary_info: last-changed
-              - entity: binary_sensor.door_window_sensor_158d0001d6851d
+              - entity: binary_sensor.entrada_casa
                 secondary_info: last-changed
-              - entity: binary_sensor.door_window_sensor_158d0001d68545
+              - entity: binary_sensor.box_banheiro_suite
                 secondary_info: last-changed
-              - entity: binary_sensor.door_window_sensor_158d0001e035a2
+              - entity: binary_sensor.box_banheiro_social
                 secondary_info: last-changed
-              - entity: binary_sensor.motion_sensor_158d000120af26
+              - entity: binary_sensor.movimento_suite
                 secondary_info: last-changed
-              - entity: binary_sensor.motion_sensor_158d0001225607
+              - entity: binary_sensor.movimento_sala
                 secondary_info: last-changed
-              - entity: binary_sensor.motion_sensor_158d0001231d4d
+              - entity: binary_sensor.movimento_cozinha
                 secondary_info: last-changed
-              - entity: binary_sensor.motion_sensor_158d00015b6c81
+              - entity: binary_sensor.movimento_quarto
                 secondary_info: last-changed
-              - entity: binary_sensor.motion_sensor_158d00016c01fd
+              - entity: binary_sensor.movimento_banheiro_suite
                 secondary_info: last-changed
-              - entity: binary_sensor.motion_sensor_158d00016da83a
+              - entity: binary_sensor.movimento_banheiro_social
                 secondary_info: last-changed
             state_filter:
               - 'on'
@@ -284,8 +298,6 @@ views:
               - entity: light.cozinha
                 secondary_info: last-changed
               - entity: light.entrada
-                secondary_info: last-changed
-              - entity: light.gateway_light_7811dcb7ea3d
                 secondary_info: last-changed
               - entity: light.ledchaocozinha
                 secondary_info: last-changed
@@ -468,8 +480,8 @@ views:
         title: Suíte
         show_header_toggle: no
         entities:
-          - binary_sensor.motion_sensor_158d000120af26
-          - sensor.humidity_158d0001dcb597
+          - binary_sensor.movimento_suite
+          - sensor.umidade_suite
           - climate.ar_condicionado_da_suite
           - script.ar_suite_display
           - script.ar_suite_swing
@@ -479,8 +491,8 @@ views:
           - light.ledsuitecama
           - light.ledsuitetv
           - light.suite_principal
-          - binary_sensor.motion_sensor_158d00016c01fd
-          - binary_sensor.door_window_sensor_158d0001d68545
+          - binary_sensor.movimento_banheiro_suite
+          - binary_sensor.box_banheiro_suite
           - light.suite_banheiro_principal
           - light.suite_banheiro_espelho
           - switch.chuveirosuite
@@ -490,8 +502,8 @@ views:
         title: Quarto
         show_header_toggle: no
         entities:
-          - binary_sensor.motion_sensor_158d00015b6c81
-          - sensor.humidity_158d0001702175
+          - binary_sensor.movimento_quarto
+          - sensor.umidade_quarto
           - climate.ar_condicionado_do_quarto
           - script.ar_quarto_display
           - script.ar_quarto_swing
@@ -504,8 +516,8 @@ views:
         title: Banheiro social
         show_header_toggle: no
         entities:
-          - binary_sensor.motion_sensor_158d00016da83a
-          - binary_sensor.door_window_sensor_158d0001e035a2
+          - binary_sensor.movimento_banheiro_social
+          - binary_sensor.box_banheiro_social
           - light.banheiro_social_principal
           - light.banheiro_social_espelho
           - switch.chuveirosocial
@@ -514,9 +526,9 @@ views:
         title: Sala
         show_header_toggle: no
         entities:
-          - binary_sensor.door_window_sensor_158d0001d6851d
-          - binary_sensor.motion_sensor_158d0001225607
-          - sensor.humidity_158d0001700b20
+          - binary_sensor.entrada_casa
+          - binary_sensor.movimento_sala
+          - sensor.umidade_sala
           - climate.ar_condicionado_da_sala
           - script.ar_sala_display
           - script.ar_sala_swing
@@ -528,7 +540,6 @@ views:
           - switch.home_theater_sala
           - script.home_theater_sala_volup_x6
           - script.home_theater_sala_voldown_x6
-          - light.gateway_light_7811dcb7ea3d
           - light.corredor
           - light.ledsaladesktop
           - light.sala_principal
@@ -540,9 +551,9 @@ views:
         title: Cozinha
         show_header_toggle: no
         entities:
-          - binary_sensor.motion_sensor_158d0001231d4d
-          - sensor.humidity_158d00019cec0c
-          - sensor.temperature_158d00019cec0c
+          - binary_sensor.movimento_cozinha
+          - sensor.umidade_cozinha
+          - sensor.temperatura_cozinha
           - light.cozinha
           - light.ledcozinhabalcao
           - light.ledchaocozinha
@@ -555,7 +566,7 @@ views:
         cards:
           - type: entities
             title: Rotinas casa
-            show_header_toggle: yes
+            show_header_toggle: true
             entities:
               - automation.rotina__acoes_ao_nascer_do_sol
               - automation.rotina__acoes_ao_por_do_sol
@@ -563,7 +574,7 @@ views:
               - automation.rotina__bom_dia
           - type: entities
             title: Luzes casa
-            show_header_toggle: yes
+            show_header_toggle: true
             entities:
               - automation.luzes_da_casa__banheiro_social
               - automation.luzes_da_casa__banheiro_suite
@@ -574,7 +585,7 @@ views:
               - automation.luzes_da_casa__entrando_em_casa
           - type: entities
             title: Luzes MuvRH
-            show_header_toggle: yes
+            show_header_toggle: true
             entities:
               - automation.muvrh_203__ligar_tudo_quando_primeiro_chegar
               - automation.muvrh_203__luz_da_entrada
@@ -589,7 +600,7 @@ views:
         cards:
           - type: entities
             title: Alertas
-            show_header_toggle: yes
+            show_header_toggle: true
             entities:
               - automation.alerta__uso_cpu_em_alta_por_muito_tempo
               - automation.alerta__dispositivo_indisponivel
@@ -599,7 +610,7 @@ views:
               - automation.sensores__porta_ou_janela_aberta_por_muito_tempo__casa
           - type: entities
             title: Botões Xiaomi casa
-            show_header_toggle: yes
+            show_header_toggle: true
             entities:
               - automation.botao_xiaomi_banheiro_social
               - automation.botao_xiaomi_banheiro_suite
@@ -611,13 +622,13 @@ views:
               - automation.botao_xiaomi_suite_02
           - type: entities
             title: Cubos casa
-            show_header_toggle: yes
+            show_header_toggle: true
             entities:
               - automation.cubo_sala
               - automation.cubo_suite
           - type: entities
             title: RF Bridges
-            show_header_toggle: yes
+            show_header_toggle: true
             entities:
               - automation.automacao__rf_bridge_casa
               - automation.automacao__rf_bridge_muvrh
@@ -629,12 +640,12 @@ views:
             title: Temporizadores casa
             show_header_toggle: no
             entities:
-              - input_select.tempo_luz_suite
-              - input_select.tempo_luz_banheiro_suite
-              - input_select.tempo_luz_banheiro_social
-              - input_select.tempo_luz_quarto
-              - input_select.tempo_luz_sala
-              - input_select.tempo_luz_cozinha
+              - input_number.timmer_cozinha
+              - input_number.timmer_sala
+              - input_number.timmer_quarto
+              - input_number.timmer_banheiro_social
+              - input_number.timmer_banheiro_suite
+              - input_number.timmer_suite
           - type: entities
             title: Temporizadores Muvrh
             show_header_toggle: no
@@ -1075,7 +1086,7 @@ views:
 
               - type: state-icon
                 tap_action: more-info
-                entity: binary_sensor.door_window_sensor_158d0001d6851d
+                entity: binary_sensor.entrada_casa
                 style:
                   top: 12%
                   left: 74.8%
@@ -1086,13 +1097,6 @@ views:
                 style:
                   top: 17%
                   left: 74.8%
-
-              - type: state-icon
-                tap_action: toggle
-                entity: light.gateway_light_7811dcb7ea3d
-                style:
-                  top: 29%
-                  left: 65%
 
               - type: state-icon
                 tap_action: toggle
@@ -1124,7 +1128,7 @@ views:
 
               - type: state-icon
                 tap_action: more-info
-                entity: binary_sensor.motion_sensor_158d0001225607
+                entity: binary_sensor.movimento_sala
                 style:
                   top: 52.5%
                   left: 73.5%
@@ -1136,13 +1140,13 @@ views:
                   left: 73.5%
 
               - type: state-label
-                entity: sensor.temperature_158d0001700b20
+                entity: sensor.temperatura_sala
                 style:
                   top: 62%
                   left: 73.5%
 
               - type: state-label
-                entity: sensor.humidity_158d0001700b20
+                entity: sensor.umidade_sala
                 style:
                   top: 65%
                   left: 73.5%
@@ -1228,19 +1232,19 @@ views:
 
               - type: state-icon
                 tap_action: more-info
-                entity: binary_sensor.motion_sensor_158d0001231d4d
+                entity: binary_sensor.movimento_cozinha
                 style:
                   top: 13%
                   left: 37%
 
               - type: state-label
-                entity: sensor.temperature_158d00019cec0c
+                entity: sensor.temperatura_cozinha
                 style:
                   top: 17%
                   left: 37%
 
               - type: state-label
-                entity: sensor.humidity_158d00019cec0c
+                entity: sensor.umidade_cozinha
                 style:
                   top: 20%
                   left: 37%
@@ -1270,7 +1274,7 @@ views:
 
               - type: state-icon
                 tap_action: more-info
-                entity: binary_sensor.motion_sensor_158d00015b6c81
+                entity: binary_sensor.movimento_quarto
                 style:
                   top: 29%
                   left: 23.2%
@@ -1282,13 +1286,13 @@ views:
                   left: 23.2%
 
               - type: state-label
-                entity: sensor.temperature_158d0001702175
+                entity: sensor.temperatura_quarto
                 style:
                   top: 37.5%
                   left: 23.2%
 
               - type: state-label
-                entity: sensor.humidity_158d0001702175
+                entity: sensor.umidade_quarto
                 style:
                   top: 40.3%
                   left: 23.2%
@@ -1304,14 +1308,14 @@ views:
 
               - type: state-icon
                 tap_action: more-info
-                entity: binary_sensor.motion_sensor_158d00016da83a
+                entity: binary_sensor.movimento_banheiro_social
                 style:
                   top: 48.4%
                   left: 36%
 
               - type: state-icon
                 tap_action: more-info
-                entity: binary_sensor.door_window_sensor_158d0001e035a2
+                entity: binary_sensor.box_banheiro_social
                 style:
                   top: 48.4%
                   left: 22%
@@ -1334,14 +1338,14 @@ views:
 
               - type: state-icon
                 tap_action: more-info
-                entity: binary_sensor.motion_sensor_158d00016c01fd
+                entity: binary_sensor.movimento_banheiro_suite
                 style:
                   top: 64%
                   left: 36%
 
               - type: state-icon
                 tap_action: more-info
-                entity: binary_sensor.door_window_sensor_158d0001d68545
+                entity: binary_sensor.box_banheiro_suite
                 style:
                   top: 64%
                   left: 22%
@@ -1406,7 +1410,7 @@ views:
 
               - type: state-icon
                 tap_action: more-info
-                entity: binary_sensor.motion_sensor_158d000120af26
+                entity: binary_sensor.movimento_suite
                 style:
                   top: 72.1%
                   left: 36%
@@ -1418,13 +1422,13 @@ views:
                   left: 36%
 
               - type: state-label
-                entity: sensor.temperature_158d0001dcb597
+                entity: sensor.temperatura_suite
                 style:
                   top: 80.5%
                   left: 36%
 
               - type: state-label
-                entity: sensor.humidity_158d0001dcb597
+                entity: sensor.umidade_suite
                 style:
                   top: 83.2%
                   left: 36%

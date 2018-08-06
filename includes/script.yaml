@@ -4,6 +4,7 @@ persiana_quarto_abrir:
     data:
       packet:
       - sgGEAwwUDBQXCgwUDBUMFAwVDBQMFAwUDBUWCgwVFgoWChcKDBQMFBcMoVA2CgwVFgoMFAwUFwoWCgwVFgoXCRcKDBQMFQwUDBQMFQwUFgoNFAwUDBQXCgwUDBUMFBYKDBUMFAwUDBUMFAwUDBUMFBYLCxUWChcKFgoMFAwVFgyhUDcKCxUWCgwVDBQWChcKDBQWChcKFgoMFAwVDBQMFAwVDBQXCgwUDBQMFRYKDBUMFAwUFgoMFQwUDBQMFQwUDBUMFAwUFwoMFBcKFgoWCgwVDBQWDKFRNgoMFBcKDBQMFBcJFwoMFBcKFgoWCgwUDBUMFAwVDBQMFBcKDBQMFQwUFgoMFQwUDBQXCgwUDBUMFAwUDBUMFAwUDBUWCgwVFgoWChcJDRQMFBcMoVA2CgwVFgoMFAwVFgoWCgwVFgoWChcKDBQMFAwVDBQMFAwVFgoMFQwUDBQXCQ0UDBQMFRYKDBUMFAwUDBUMFAwVDBQMFBcJDBUWChcJFwoMFAwUFwyhUDcJDBQXCgwUDBUWChcJDBUWChcKFgoMFA0UDBQMFQwUDBQWCgwVDBQMFRYKDBQMFQwUFwkMFQwUDBUMFAwUDBUMFAwUFwoMFBcJFwoWCgwUDRQWDKFRNgoMFBYKDBULFRcKFgoMFBYKFwoWCgwVDBQMFAwUDBUMFBcKDBQMFA0UFgoMFQwUDBQXCgwUDBQMFQwUDBUMFAwUDBUWCgwUFwoWChcJDBUMFBcMoVA2CgwUFwoMFAwUFwoWCgwUFwoWChcKDBQMFAwVDBQMFAwVFgoMFQwUDBQXCgwUDBQMFRYKDBQMFQwUDBQMFQwUDBUMFBYKDBQXChcJFwoMFAwUFwyhUDcJDBQXCgwUDBQXChYKDBUWChcJFwoMFAwVDBQMFAwVDBQWCgwVCxUMFRYKDBQMFQwUFgoMFQwUDBUMFAwUDBUMFAwUFwoMFBYKFwkXCgwVDBMXDKFQNwkMFRYKDBUMFBYKFwoMFBcJFwkXCgwUDBUMFAwVDBQMFBcKDBQMFQwUFgoMFQwUDBQXCgwUDBQMFQwUDBQMFQwUDBQXCgwUFwoWChYKDBUMFBcMoVA2CgwUFgoMFQwUFwoWCgwUFwkXChYKDRQMFAwUDBUMFAwVFgoMFQwUDBQWCgwVDBQMFRYKDBQNFAwUDBQMFQwUDBQMFRYKDBUWChYKFwoMFAwUFwAF3AAAAAA==
+  - delay: 00:00:03
   alias: "Persiana abrir"
 
 persiana_quarto_fechar:
@@ -12,6 +13,7 @@ persiana_quarto_fechar:
     data:
       packet:
       - sgGEAxYKFwoWCgwVDBQMFAwVDBQMFA0UDBQXCQwVFgoMFQwUDBQXChYMoVE2CQwVFgoMFAwVFwkXCgwUFgoXChYKDBQMFQwUDBULFQwUFwoMFAwUDBULFQwUFwoWChcKCxUMFAwVDBQMFQwUDBQMFBcKDBQXCQwVDBQMFRYKFg2hUDYKDBQXCQwVDBQXChYKDBQWChcKFgoMFQwUDBQMFQwVCxUWCgwUDBUMFAwUDBUWChcJFwoMFAwUDBUMFAwVCxUMFAwVFgoMFBcKDBQMFAwVFwkXDKFQNwkMFRYKDBQMFBcKFwkMFBcKFwkXCgwUDBQNFAwUDBUMFBYKDBQMFQwUDBUMFBYKFwoWCgwUDBUMFAwVDBQMFQsVDBQWCgwUFwoMFQsVDBQXCRcMoVA3CQ0UFgoMFAwVFgoXCQwVFgoWCxYKDBQMFQwUDBQMFQwUFwoMFAwUDBUMFAwUFwoWChcJDRQMFAwVDBQMFAwVDBQMFBcKDBQXCQwVDBQMFRYKFgyhUTYKDBQXCgwUDBQXCRcKDBQXCRcKFgoMFQwUDBQMFQwUDBQXCgwUDBQNFAwUDBUWChYKFwoMFAwUDBUMFAwVCxUMFAwVFgoMFBcKCxUMFQsVFgoWDaFQNgoMFBcKDBQMFBcKFgoMFRYKFgoXCgsVDBQMFQwUDBQMFRYKDBQMFQwUDBQMFRYKFwoWCgwUDBUMFAwUDBUMFAwUDBUWCgwUFwoMFQwUDBQXCRcMoVA2CgwVFgoMFAwVFgoXCgsVFgoXChYKDBQMFQwUDBQMFQsVFgoMFQwUDBUMFAwUFwoWChYKDBULFQwUDBUMFAwVDBQMFBcKDBQWCgwVDBQMFRYKFgyiTzcJDBUWCgwVDBQWChcKDBQWChcKFwoLFQsVDBQMFQwUDBUWCgwUDBULFQwUDBQXChYLFgkNFAwVDBQMFAwUDBUMFAwVFgoMFBcKDBQMFAwVFgoWDaFQNgoMFBYLCxUMFBcJFwoMFBcKFgoWCgwVDBQMFQwUDBQMFRYKDBQMFQwUDBUMFBYKFwkXCgwVCxUMFAwUDRQMFAwUDBUWCgwVFgoMFA0UDBQXCRcMoVA2CgwVFgoMFAwVFgoWCgwVFgoWChcKDBQMFQsVDBQMFAwVFgoMFQwUDBQMFQwUFgoXChcJDBUMFAwVDBQMFAwUDBUMFBYLDBQWCgwVDBQMFRYKFgAF3AAAAAA==
+  - delay: 00:00:03
   alias: "Persiana fechar"
 
 persiana_quarto_parar:
@@ -20,6 +22,7 @@ persiana_quarto_parar:
     data:
       packet:
       - sgD+AgEUFwoWCgwUFwoWChcJDRQMFAwVDBQMFAwVFgoMFA0UDBQXCgwUFgsMFBYKDBUMFAwUDBQMFQwUDBUMFBYKDBUWChcJFwoWChcJFwyhUDYKDBUWCgwUDBUWChYKDBUWChcJFwoMFAwVDBQMFAwVDBQWCgwUDBUMFBcKDBQXCgwUFgoMFQwUDBQMFQwUDBUMFAwUFgsLFRYKFgsWChcJFwkXDKFQNwoMFBYKDBUMFBYKFwkNFBYKFwoWCgwUDBUMFAwUDBUMFBcKDBQMFAwVFgoMFBcKDBQWCgwVDBQMFQwUDBQMFQwUDBUWCgwUFwkXChYKFwoWChYMoVE2CgwUFwkMFQwUFwkXCgwUFgoXChcJDBUMFAwUDRQMFAwUFwoMFAwVDBQXCQwVFgoMFBcJDBUMFAwVDBQMFAwVDBQMFRYKDBQXCRcKFwkXChYKFg2hUDYKDBQWCwwUDBQXChYKDBQXChYKFwkMFQwUDBQNFAwUDBUWCgwUDBUMFBcJDBUWCgwUFwoMFAwUDRQMFAwVDBQMFQwUFgoMFRYKFgoXCRcKFgoXDKFQNgoMFBcKDBQMFBcKFwkMFRYKFgoXCgwUDBQMFQwUDBQNFBYKDBULFQwUFwoMFBYKDRQWCgwUDRQMFAwUDRQMFA0UDBQXCQwVFgoXChYKFgoWChcMoVA3CQwUFwoMFAwVFgoXCQwVFgoWChcKDBQMFAwVDBQMFQwUFwkMFQwUDBQXCgwUFwoMFBYKDBUMFAwVDBQMFAwUDBUMFBcKDBQWChcKFgoWChcKFgyiTzcKDBQWCgwVDBQWChcJDBUXCRcKFgoMFA0UDBQMFQwUDBQXCgwUDBQMFRYKDBQXCgwUFwoMFAwUDBUMFAwVDBQMFAwUFwoMFBcJFwoWChcJFwoWDKFQNwkNFBcJDBUMFBcJFwoMFBYKFwoWCgwVDBQMFAwVDBQMFRYKDBQMFQwUFgoMFRYKDBQXCgwUDBQMFQwUDBUMFAwUDBUWCgwUFwoWChcJFwoWChcABdwMFAwVFgoMFBcK==
+  - delay: 00:00:03
   alias: "Persiana parar"
 
 persiana_suite_abrir:
@@ -28,6 +31,7 @@ persiana_suite_abrir:
     data:
       packet:
       - sgGEAwwXDBcMFwwXGAwLGAsYDBcMFxgLDBcMGBcMCxgMFxgLDBcYCwwXDBcMGAsYFwwMFxgLDBcMFwwXGAwLGAwXDBcYCwwXDBcMGBcMnTEYDBcMFwwMFwwXDBcMFxgMCxgLFwwYCxgYCwwXDBcYDAsXDBgXDAwXGAsMFwwXDBcMFxgMCxgXDAwXDBcMFxgMCxgLGAwXGAsMFwwXDBcY/Z0xGAsYCxgLDBcMGAsYDBcYCwwXDBcMFwwXGAwLGAsYFwwMFwwXGAsMFxgMCxgMFwwXDBcYCwwXGAsMGAsYCxgXDAwXDBcMFxgLDBgLGAwXGAydMRgLGAsYCwwXDBcMFwwXGAwMFwwXDBcMFxgMCxcMFxgMDBcMFxgLDBcYCwwYCxcMGAwXGAsMFxgLDBcMGAsYFwwMFwwXDBcYCwwYCxcMGBf9nTEYDBcMFwwMFwwXDBcMFxgLDBgLGAsYCxgXDAwXDBcYCwwYCxgXDAwXGAsMFwwXDBcMGBcMCxgXDAwXDBcMFxgMCxgLGAwXGAsMFwwXDBcYDJ0xGAsYCxgMCxgMFwwXDBcYCwwXDBcMFwwXGAwLGAwXGAsMFwwYFwwLGBcMDBcMFwwXDBcYCwwXGAsMGAwXDBcYCwwXDBgLGBcMCxgMFwwXGP2dMRgLGAsYCwwXDBcMFwwXGAwMFwwXDBcMFxgLDBcMFxgMCxgMFxgLDBcYDAsXDBgLGAwXGAsMFxgLDBcMGAsYFwwMFwwXDBcYCwwXDBgLGBcMnTIXDBcMGAsMFwwXDBcMFxgMCxgMFwwXDBcYCwwXDBcYDAsYCxgXDAwXGAsMFwwXDBgLGBcMDBcYCwwXDBcMFxgMCxcNFwwXGAsMFwwXDBcYDZ0xGAsYCxgLDBcMFwwYCxgYCwwXDBcMFwwYFwsMGAsYFwwMFwwXGAsMFxgLDBcMGAwXDBcYCwwYFwwLFwwYDBcXDAwXDBcMFxgMFwsYDBgLDAABB50xGAsYDBcMCxgMFwwXDBcYCwwXDBcMGAsXGAwLGAsYGAsMFwwXGAwLGBcMDBcMFwwXDBcYCwwXGAwLGAsYDBcYCwwXDBgLGBcMFwwYCxgLDAABB50xGAwXDBcMDBcMFwwXDBcYCwwYCxgLGAwXGAsMFwwXGAsMFwwYFwwMFxcMDBcMFwwXDBgXDAwXFwwMFwwXDBcYCwwYCxgLGBcMGAsYCxgLDAAF3AAAAAA==
+  - delay: 00:00:03
   alias: "Persiana abrir"
 
 persiana_suite_fechar:
@@ -36,6 +40,7 @@ persiana_suite_fechar:
     data:
       packet:
       - sgGEAwsYDBcMFwwXGAsMFwwYCxgLGBcMDBcMFxgLDBcMFxgMCxgYCwwXDBcMFwwXGAsMGBcMCxgMFwwXGAsMFwwYFwwXDAwXDBcYCxgMnTEYCxgLGAsMGAsYDBcMFxgLDBgLFwwYCxcYDAsYCxgXDAwXDBcYCwwYFwwMFwwXDBcMFxgLDBgXDAsYCxgLGBgLDBcMFxgMFwwLGAwXGAsY/Z0xGAsYDBcLDBcMFwwYCxgXDAwXDBcMFwwXGAwLGAsYFwwMFwwXGAsMFxgLDBgLGAsYDBcYCwwXGAwLGAsYDBcXDAwXDBcYCxgMCxcMGBcMFwyeMRgLGAsYCwwXDBcMFwwXGAwMFwwXDBcMFxgMCxgLGBcMDBcMFxgLDBcYCwwYCxgLGAwXFwwMFxgLDBcMGAsXGAwMFwwXGAsYCwwYCxcYCxj9nTIXDBcMFwwMFwwXDBcMGBcMDBcMFwwXDBcYCwwXDBgXDAsYCxgXDAsYGAsMFwwXDBgLGBcMDBcYCwwXDBcMFxgMCxgMFxcMGAsMFwwXGAwXDJ0xGAsYDBcMCxgLGAwXDBcYCwwXDBgLGAsYFwwMFwwXGAwLFwwYFwwLGBcMDBcMFwwXDBgXDAwXGAsMFwwXDBcYCwwXDBcYDBcMDBcMFxgLGP2dMRgLGAwXDAsYDBcMFwwXGAsMFwwXDBcMGBcMCxgMFxgLDBcMFxgLDBgXDAwXDBcMFwwXGAsMGBcLDBgMFwwXGAsMFwwXGAwXDAsYDBcYCxgMnTEYCxgLGAsMGAsYCxgLGBcMDBcMFwwXDBcYCwwYDBcYCwwXDBcYCwwXGAsMGAsYDBcMFxgLDBcYDAsYCxgMFxgLDBcMFxgMFwwLGAsYFwwYDJ0yFwwXDBgLDBcMFwwXDBcYCwwXDBgLGAwXFwwMFwwXGAwLGAsYFwwMFxgLDBcMFwwXDBgXDAsYFwwMFwwXDBcYDAsYCxgXDBgLGAsYCwwXDAABB50yFwwXDBgLDBcMFwwXDBcYDAwXDBcMFwwXGAsMFwwXGAwMFwwXGAsMFxgLDBcMGAsYDBcYCwwXGAsMFwwXDBcYDAwXDBcYCxgLGAsYDAsYCwABCJ0xGAsYCxgLDBcMGAsYCxgXDAwXDBcMFwwXGAwLFwwYFwwMFwwXGAsMFxgLDBgLGAsYDBcYCwwXGAsMFwwXDBgXDAwXDBcYCxgLGAwXDAsYDAAF3AAAAAA==
+  - delay: 00:00:03
   alias: "Persiana fechar"
 
 persiana_suite_parar:
@@ -44,6 +49,7 @@ persiana_suite_parar:
     data:
       packet:
       - sgH2ABgMFwwXDAwXDBcMFwwYFwsMFwwYCxgLGBcMDBcMFxgLDBcMGBcLDBgXDAwXDBcMFwwXGAsMFxgLDBgLGAwXFwwMFxgLDBcYCwwXGAwLGBcMnTIXDBgLGAsMFwwXDBcMFxgMCxgMFwwXDBcYCwwXDBcYDAsXDBcYDAsYGAsMFwwXDBcMFxgMCxcYDAwXDBcMFxgLDBcYDAsXGAsMGBcMDBcYC54xFwwYCxgLDBcMFwwXDBcYDAsYDBcMFwwXGAsMFwwXGAwLGAsYGAsMFxgLDBcMFwwXDBgXDAsYFwwMFwwXDBcYDAsYFwsMGBcMDBcYCwwXGAAF3AAA==
+  - delay: 00:00:03
   alias: "Persiana parar"
 
 persiana_sala_abrir:
@@ -52,6 +58,7 @@ persiana_sala_abrir:
     data:
       packet:
       - sgGEAwwXDBcMFwwXGAsMFwwXDBgMFxgLDBcMFxgLDBcYCxkKGQsMFwwXGAsMFxgLDBcNFhkLDBcMFwwXGAsMFwwXDBgYCwwXDBcMFxgMnTEYCxgLGAsMFwwYDBYNFxgLDBcMFwwXDBcZCwwXDBcYCwwXGAsYCxgLDRYMGBgLDBcYCwwXDBcYDAwWDRcMFxgLDBcMFwwXGAsMFwwXDRcY/J4wGAwYCxgLDBcMFwwXDBcYDAwXDBcMFwwXGAsMFwwXGAsNFhkLGAsYCwwXDBcYCwwYGAsMFwwXGAsMFwwXDBcYCw0XDBcMFxgLDBcMFwwXGQudMRkKGAsYDAwXDBcMFwwXGAsNFwwXDBcMFxgLDBcMFxgLDRcXDBcMGAsMFwwXGAsMFxgMDBcMFxgLDBcMFwwXGAsMGAwXDBcYCwwXDBcMFxj9nTEYCxgLGAsMFw0XDBcMFxgLDBcMFwwXDBcYDAwXDBcYCwwXGAsYCxgLDBcNFxgLDBcYCwwXDBcYDAwXDBcMFxgLDBcMFwwXGAsNFwwXDBcYDJ0xGAsYCxgLDBcMFwwXDBgYCwwXDBcMFwwXGAsNFg0XGAsMFxgLGAsYCw0WDRYYDAwXGAsMFwwXGAsMFw0XDBcYCwwXDBcMFxgMDBYMGAwWGfydMRkLGAsYCwwXDBcMFwwXGAwMFwwXDBcMFxgLDBcMFxgMCxgYCxgLGAsMFwwXGAsNFxgLDBcMFxgLDBcMFwwXGAwMFwwXDBcYCwwXDBcMFxkLnjAYCxkLFwwMFwwXDBcMFxgLDBgMFg0XDBcYCwwXDBcYCwwXGAwXDBgLDBcMFxgLDBcZCwwXDBcYCwwXDBcMFxgLDBgLFw0XGAsMFwwXDBcYDZ0xGAsYCxgLDBcMFwwYDBcYCwwXDBcMFwwXGAsMFwwXGAwMFxgLGAsYCwwYCxgYCwwXGAsMFwwXGAsMFwwXDBcYDAwXDBcMFxgLGAwXDBgLDAABB50xGAsYCxgLDRYMGAwXDBcYCwwXDBcMFwwXGAsMGAwXGAsMFxgLGAsYCwwYDBcYCwwXGAsMFwwXGAsMFw0XDBcYCwwXDBcMFxgMGAsYCxgLDAABB50xGAsZCxgLDBcMFwwXDBcYCwwYCxgMFwwXGAsMFwwXGAsMGBcLGAwYCwwXDBcYCwwXGQoNFwwXGAsMFwwXDBcYDAwWDRcLGBgLGAsYCxgLDAAF3AAAAAA==
+  - delay: 00:00:03
   alias: "Persiana abrir"
 
 persiana_sala_fechar:
@@ -60,6 +67,7 @@ persiana_sala_fechar:
     data:
       packet:
       - sgGCAQwXGAwMFxgLGAsYCwwXDBcZCwwXGAsMFwwXGAsMFwwXDRYYDAwXDBcYCxgLDBcNFhkKGQueMBkKGQsYCwwXDBcMFwwXGQsMFwwXDBcMFxgLDBcMFxgLDRcYCxgLGAsMFwwYFwsNFxgLDBcMFxgLDBcMFwwXGQoNFwwXGAsYCwwXDBcYCxn8nTEZChgMGAsMFwwXDBcMFxgLDBcMGAwWDRcYCwwXDBcYCwwXGQsYCxgLDBcMFxgLDBcYCw0WDRYZCwwXDBcMFxgLDBgLFxkLGAsYCxgLDBcMAAEHnjAZCxgLGAsMFwwXDBcMFxgMDBcMFwwXDBcYCwwXDBcYCw0WGQsYCxgLDBcMFxgLDRcYCwwXDBcYCwwXDBcMFxgMDBcMFxgLGAsYCxgLDRYNAAEHnTEYCxgLGAsMFwwXDRcMFhkLDBcMFwwXDBcYCwwXDBcZCwwXGAsYCxgLDBcNFhkLDBcYCwwXDBcYCwwXDRYMGBgLDBcMFxgLGAsYCxkLDBcMAAXcAAAAAAAA==
+  - delay: 00:00:03
   alias: "Persiana fechar"
 
 persiana_sala_parar:
@@ -68,6 +76,7 @@ persiana_sala_parar:
     data:
       packet:
       - sgH4AJ0xGAsYDBgLDBcMFwwXDBcYCwwXDBcMFw0XFwwMFwwXGAsMFxgLGAsYCwwXDRcYCwwXGAsMFwwXGAsNFg0XDBcYCwwXGAsMFxgLDBcYDAsXGAydMRkKGAwYCwwXDBcMFwwXGAsMFw0XDBcMFxgLDBcMFxgLDBcYCxkKGAwMFwwXGAsMFxgLDBcMFxkLDBYNFwwXGAsMFxgLDBcYCwwYGAsMFxgLnjEYCxgLGAsMFwwXDBcMFxgMDBcMFwwXDBcYCwwXDBcYCwwYGAsYCxgLDBcMFxgLDBcZCg0WDRcYCwwXDBcMFxgLDRYZCgwYFwwMFxgLDBcYAAXc==
+  - delay: 00:00:03
   alias: "Persiana parar"
 
 garagem_casa:
@@ -76,6 +85,7 @@ garagem_casa:
     data:
       packet:
       - sgCEAw0ZDRkZDRkNDRkZDBoMDRkNGQ0ZDRkNGQ0ZGQ0ZDQwZDRoMGRoMDRkNGRkNGQ0NGQwaGQwNGgwZGgwNGRkNDRkZDQwaDBoZDA0ZGgwaDBkNGQ0ZDRkNGQ0ZDBoMGgwaDBoMDRkZDRkNGQ0MAAIGDQwNDA0NDA0NDA0MDQ0NDA0MDQ0MDQ1+GQ0ZDQwZDRkNGRoMDRkaDBkNDBoZDRkNDBkNGRoMGgwNGRkNGQ0MGgwZDRkNGQ0ZDRkaDBkNDRkMGgwaGQ0MGQ0ZGgwZDQ0ZDRkZDQwaDBoZDA0ZGgwNGRkNDRkMGhkNDBoZDRkMGgwaDBkNGQ0ZDRkNGQ0ZDRkMGgwNGRoMGQ0ZDQ0AAgUNDQwNDA0NDA0NDA0MDQ0MDQ0MDQwNDX4ZDRkNDRkMGgwaGQwNGRoMGgwNGRkNGQ0MGgwaGQ0ZDA0ZGQ0ZDQ0ZDRkNGQwaDBkNGRoMGgwNGQ0ZDRkZDQwaDBoZDBoMDRkNGRkNDRkNGRkMDRoZDQwZGgwNGQ0ZGQ0NGRkNGQ0ZDRkMGgwaDBkNGQ0ZDRkNGQ0ZDQwZGgwaDBkNDQACBQ0NDA0NDA0NDA0MDQ0MDQ0MDQ0MDQwNfhoMGQ0NGQ0ZDBoZDA0ZGgwaDA0ZGQ0ZDQ0ZDRkZDRkNDBkaDBoMDRkNGQ0ZDRkMGgwZGgwaDA0ZDRkNGRkNDRkMGhkNGQ0MGQ0ZGgwNGQ0ZGQ0MGhkNDBkaDA0ZDRkaDA0ZGQ0ZDRkMGg0ZDBoMGgwaDBkNGQ0ZDRkNDBoZDBoNGQwNAAIGDA0NDA0NDA0MDQ0MDQwNDQwNDQwNDA1/GQwaDA0ZDRkNGRkNDRkZDRkMDRkaDRkMDRkNGRkNGQ0MGhkMGg0MGQ0ZDRkNGQ0ZDRkZDRkMDRkNGQ0ZGgwNGQ0ZGQ0ZDQwaDBkaDA0ZDRkaDA0ZGQ0MGhkNDRkMGRoMDRkZDRkNGQ0ZDBoNGQwaDBoMGgwaDBoMGQ0NGRkNGQ0ZDQwAAgYNDA0MDQ0MDQ0MDQ0MDQ0MDQwNDQwNDH8ZDRkNDBkNGQ0ZGgwNGRkNGQ0MGhkMGgwNGQ0ZGQ0aDA0ZGQ0ZDQwaDBkNGQ0ZDRkNGRkNGQ0NGQ0ZDBkaDA0ZDRkZDRkNDRkMGhkMDRoMGhkMDRkaDA0ZGgwNGQ0ZGQwNGRoMGgwaDBoMGQ0ZDRkMGg0ZDRkMGgwaDA0ZGQ0ZDRkNDAAF3AAAAAA
+  - delay: 00:00:03
   alias: "Garagem casa"
 
 ar_suite_swing:
@@ -836,6 +846,7 @@ garagem_muvrh_rua:
     data:
       packet:
       - sgAmAhENHw0fDR8NHxwRDR8NHxwQDR8cEQ0fDR8NHxwQHBAcEA4fDR8cEA0gGxAOHxwQDR8cEA0fHBEAAU8QHBAOHw0fDR8NHxwRDR8NHxwQDSAbEA4fDR8NHxwQHBAcEQ0fDR8cEA0fHBENHxwQDR8cEA0gGxEAAU8QHBAOHw0fDR8NIBsRDR8NHxwQDR8cEA4fDR8NHxwRGxAcEQ0fDR8cEA4eHBENHxwQDR8cEA0fHBEAAU8QHBENHw0fDR8OHxwQDR8NHxwRDB8cEQ0fDR8NIBsRGxEbEQ0fDR8cEA0gGxENHxwQDR8cEA4fGxEAAU8RGxENHw0fDR8OHxwQDR8NHxwQDh8cEA0fDR8NIBsRGxEcEA0fDR8cEQ0fHBANHxwQDSAbEQ0fHBAAAU8RGxENHw0fDSANHxwQDR8NIBsRDR8cEA0fDR8OHxsRHBAcEA0fDSAcEA0fHBANHxwQDh8cEA0fHBAAAVAQHBANHw0fDh8NHxwQDR8OHxwQDR8cEA0fDh8NHxwQHBAcEA0fDh8bEQ0fHBANIBsRDR8cEA0fHBAAAVAQHBANIA0fDR8NHxwQDh8NHxwQDR8cEA0gDR8NHxwQHBEbEA4fDR8cEA0gGxAOHxsRDR8cEA0fHBEAAU8QHBAOHw0fDR8NHxwRDR8NHxwQDR8cEQ0fDR8NHxwQHBEbEQ0fDR8cEA0gGxENHxwQDR8cEA4fGxEAAU8RGxENHw0fDR8ABdwRDQ==
+  - delay: 00:00:03
 
 garagem_muvrh_interno:
   sequence:
@@ -843,6 +854,7 @@ garagem_muvrh_interno:
     data:
       packet:
       - sgCEAxAcEA4eDh8NHw4eHQ8OHg4fHA8OHxwQDh4OHg4fHBAcEBwQDh4OHh0PDh8cEBwQDh4OHh0PDh4dEAABUBAcEA0fDh4OHg4eHRANHw0fHBAOHh0QDR8NHw0fHQ8cEB0PDh8NHxwQDh4dDx0PDh4OHxwQDR8cEAABUBAcEA4eDh4OHg4fHBAOHg4eHQ8OHxwQDh4OHg4eHRAcEBwQDh4OHh0PDh4dEBwQDR8OHh0PDh4dDwABUQ8dDw4eDh8OHg4eHQ8OHw0fHBANHxwQDh4OHg8eHBAcEBwQDh4OHxwQDh4dDxwQDh4OHxwQDh4cEAABUBAcEA4eDh4OHw0fHBAOHg4eHQ8OHxwQDh4OHg4eHRAcDx0QDR8OHh0PDh8cEBwQDR8OHh0PDh4dEAABUA8dDw4fDR8NHw4eHQ8OHw0fHBAOHhwQDh4OHg4fHBAcEB0PDh8NHxwQDR8cEB0PDh4OHxwQDh4cEAABUBAcEA4eDh4OHg8eHBAOHg4eHQ8OHxwQDR8OHg4eHQ8dEBwQDh4OHhwQDh4dEBwQDR8OHh0PDh4dEAABUA8dDw4fDh4OHg4eHQ8OHw4eHQ8OHh0PDh4OHw4eHBAcEB0PDh4OHxwQDh4cEBwQDh4OHxwQDh4cEAABUBAcEA4eDh4OHg4fHBAOHg4eHRAOHhwQDh4OHg4eHRAcEBwQDh4OHh0PDh8cEBwQDh4OHh0PDh4dEAABUA8dDw4fDR8OHg4eHRANHw4eHQ8OHh0PDh4OHw0fHBAdDx0PDh4PHhwQDh4dDx0PDh4PHhwQDh4dDwABUBAcEA4eDh8NHw4eHQ8OHg4eHRANHxwQDh4OHg4eHRAcEBwQDh4OHh0PDh8cEBwQDh4OHh0QDR4dEAABUBAcEA4eDh4OHg4fHBANHw4eHQ8OHxwPDh8NHw4eHQ8dDx0QDR8NHxwQDh4dDx0QDR8OHhwQDh4dEAABTxAdDw4eDh8OHg4eHQ8OHw0fHBAOHh0PDh4OHw0fHBAcEB0PDh4OHxwQDR8cEB0PDh4OHh0QDh4cEAABUBAcEA4eDh4OHg4fHBAOHg4eHQ8OHh0QDh4OHg4eHQ8dEBwQDR8OHh0PDh4dEBwQDh4OHh0PDh4dEAABUA8dDw4fDR8OHg4eHRANHw0fHQ8OHh0PDh8NHw4eHQ8cEB0PDh8NHxwQDh4dDx0PDh8NHxwQDh4dDwAF3AAAAAA==
+  - delay: 00:00:03
 
 garagem_muvrh_sub_rua:
   sequence:
@@ -850,6 +862,7 @@ garagem_muvrh_sub_rua:
     data:
       packet:
       - rwCEAxAAAWIRHhEOIQ8gHhEeER4RDiEPIQ4hDiEOIR4RDiIdEQ8gDyEeEQ4hHhEOIQ8hHREPIR0RDyEdEQ8gHxEAAWERHhEOIQ4hHhEeER4RDiEPIA8gDyEOIR4RDiEeEQ4hDyEdEQ8gHxAPIA8hHhEOIR4RDiEeEQ4hHhEAAWIRHREOIQ8hHhEeEB8RDiEOIQ4hDyEOIR0RDyEdEQ8gDyEeEQ4hHhEOIQ4hHhEPIR0RDyAeEQ8gHxAAAWIRHREPIQ4hHhEeER4RDiEOIQ8gDyEOIR4RDiEeEQ4hDiEeEQ4hHhEOIQ8hHREPIR4RDiEeEA8hHhAAAWIRHhEOIQ4hHhEfEB4RDiEPIA8hDiEOIR4RDyAeEQ4hDiEeEQ8gHhEPIA8hHhEOIR4RDiEeEQ4hHhEAAWIQHhEOIQ8hHhEeEB4RDyEOIQ4hDiEOIR4RDyEdEQ8hDiEeEQ4hHhEOIQ8gHhEOIR4RDyEdEQ8hHhAAAWIRHhAPIQ8gHhEeER4RDiEOIQ4hDyEOIR4QDyEeEQ4hDiEeEQ4hHhEOIQ8hHREPIR4RDiEdEQ8gHhEAAWIRHhEOIQ4hHhEeER4RDiEOIQ8gDyEOIR4QDyEeEQ4hDiEeEQ4hHhEPIA8hHhEOIR4QDyEeEA8hHhEAAWERHhEOIQ4hHxAeER4RDiEOIQ8hDiEOIR4RDiEeEQ8gDyEeEQ4gHxAPIQ4hHhEOIR4RDiEeEQ4hHhEAAWIQHhEPIQ4hHhEeEB4RDyEOIQ4hDyAPIR4RDiEeEQ4hDiEeEQ4hHhEPIA8gHhEPIR4QDyEeEQ4hHhAAAWIRHhEOIQ8hHhAeER4RDiEPIA8hDiEOIR4RDyAeEQ8gDyEeEQ4hHhEOIQ4hHhEPIR0RDyAeEQ8hHRIAAWERHhEOIQ8gHhEeER4RDiEOIg4hDiEOIR4RDiEeEQ4hDyEdEQ8hHhEOIQ4hHhEOIR4RDyAeEQ4hHhEAAWIRHhEAAVIRHhEOIQ4hHhEeER4RDiEOIQ8gDyEOIR4RDiEeEQ4hDyEdEQ8hHhAPIQ4hHhEOIR4RDiEeEQ4hHhEAAWIQHxEOIQ4hHhEeER4QDyEOIQ8gDyAPIR4RDiEeEQ4hDiEeEQ4hHxAPIQ4hHhEOIR4RDiEeEA8hHhEAAWIQHhEPIQ4hHhEdER4RDyAPIQ4hDiEOIh0RDiEeEQ8gDyAfEA8hHREPIQ4hHhAPDAAF3AAAAAA==
+  - delay: 00:00:03
 
 garagem_muvrh_sub_interno:
   sequence:
@@ -857,6 +870,7 @@ garagem_muvrh_sub_interno:
     data:
       packet:
       - sACEAyEeER4RDiEOIR4RDyAeEAABYhEeEQ4hDyAeER4RHhEOIQ4hDyAPIA8hHhAPIR4QDyAPIB8RDiEeEA8hDyAeER4QDyAPIR4QDyEeEAABYhEeEQ4hDyAeER4RHhEOIQ4hDiEPIA8hHhAPIB8QDyAPIB4RDyAfEA8gDyEeEB8QDyAPIR4QDyAfEAABYhEeEQ4hDiEeER4QHhEPIA8hDiAPIQ8gHhEPIB4RDiEPIB4RDyAeEQ8gDyEeEB4RDyAPIR0RDyAfEAABYhAeEQ8gDyEeEB8QHhEOIQ8gDyEOIQ8gHhEPIB4RDiEOIR4RDiEeEQ4hDyAeER4RDyAPIB4RDiEeEQABYhAfEA8gDyAfEB4RHhEOIQ8gDyAPIA8gHxAPIB4RDyEPIB4RDiEeEA8hDiEeER4QDyEOIR4RDiEeEQABYREeEQ8gDyAeER4QHxAPIQ8gDyAPIA8hHREPIB8QDyAPIR4QDyEeEA8hDiEeER4QDyEOIR4QDyAfEAABYhEeEA8hDyAeER4QHxAPIQ4hDyAOIQ8gHxAPIB4RDyAPIR0RDyAfEA8gDyAfEB8QDyAPIR4QDyEeEAABYhEeEA8hDiEeER4QHhEPIA8hDiEOIQ8gHhEOIR4RDiEPIR0RDyAfEA8gDyEeEB8QDyAPIB8QDyAfEAABYhEeEA8gDyEeEB4RyAeEQ8gDyAfEB4RDyAPIB4RDiEeEQABYhAeEQ8gDyAfEB8QHhEPIA8gDyAPIQ4hHhEPIB4RDiEOIR4RDyAeEQ4hDyAfEB4RDiEPIB4RDiEeEQABYREeEQ8gDyAfEB4RHhEPIA8gDyAPIQ4hHhEOIR4QDyEOIR4RDiEeEQ4hDyAeER4RDiEOIR4RDiEeEQABYREeEQ8gDyAfEB4RHhAPIQ8gDyAPIQ4hHhAPIB8QDyAPIR4RDiEeEQ4hDyAeER4RDiEOIR4RDyAeEQABYhAeEQ8gDyAfEB4RHhEOIQ8gDyAPIA8gHxEOIB4RDyAPIR4RDiEeEA8hDyAeER4QDyEOIR4RDiEeEAABYhEeEQ8gDyAeER4RHhAPIQ8gDyAPIA8gHhEPIB4RDyEOIR4QDyAfEA8hDiEeEB8QDyEOIR4QDyEeEQABYREeEQ4hDyAeER4RHhAPIQ4hDiEOIQ8gHhEPIB4RDyAPIB8QDyAfEAAF3AAAAAA==
+  - delay: 00:00:03
 
 desktop_reiniciar:
   sequence:
@@ -1033,7 +1047,7 @@ tts_porta_entrada:
         {%- endmacro -%}
         <speak><amazon:auto-breaths frequency='medium'>
         {%- if((as_timestamp(now()) - as_timestamp(states.group.pessoas.last_updated)) | int < 180 and is_state('group.pessoas', 'home')) or ((as_timestamp(now()) - as_timestamp(states.group.pessoas.last_updated)) | int > 360 and is_state('group.pessoas', 'not_home')) -%}
-          {{ cumprimento() }} {{ turno() }} Seja bem vindo! Agora são <say-as interpret-as='time'>{{ now().strftime('%H:%M') }}</say-as>. Já preparei tudo para sua chegada. Aqui vão algumas informações sobre a casa. A temperatura na sala é de {{ states.sensor.temperature_158d0001700b20.state | int }} graus, sendo que na rua está {{ states.sensor.dark_sky_summary.state | lower }} com {{ states.sensor.dark_sky_temperature.state | int }} graus. Logo mais vou armar o alarme pra você, deixa comigo. {{ desejos() }}
+          {{ cumprimento() }} {{ turno() }} Seja bem vindo! Agora são <say-as interpret-as='time'>{{ now().strftime('%H:%M') }}</say-as>. Já preparei tudo para sua chegada. Aqui vão algumas informações sobre a casa. A temperatura na sala é de {{ states.sensor.temperatura_sala.state | int }} graus, sendo que na rua está {{ states.sensor.dark_sky_summary.state | lower }} com {{ states.sensor.dark_sky_temperature.state | int }} graus. Logo mais vou armar o alarme pra você, deixa comigo. {{ desejos() }}
         {%- else -%}
           {{ porta_entrada() }}
         {%- endif -%}
@@ -1064,11 +1078,11 @@ tts_status_casa:
   - service: tts.amazon_polly_say
     entity_id: media_player.sala
     data_template:
-      message: <speak><amazon:auto-breaths frequency='medium'>Olá, {% if((now().hour >= 6) and (now().hour < 12))%}bom dia{% elif((now().hour >= 12) and (now().hour <= 18))%}boa tarde{% else %}boa noite{% endif %}. Agora são <say-as interpret-as='time'>{{ now().strftime('%H:%M') }}</say-as>. Aqui vão algumas informações sobre a casa. O alarme está {% if is_state('alarm_control_panel.alarme', 'disarmed') %}desarmado{% else %}armado{% endif %}, percebo que {% if is_state('device_tracker.antonio', 'home') and is_state('device_tracker.roberta', 'home') %}tanto o Antônio quanto a Roberta estão em casa{% elif is_state('device_tracker.antonio', 'home') %}apenas o Antônio está em casa{% elif is_state('device_tracker.roberta', 'home') %}apenas a roberta está em casa{% else %}nem o Antônio nem a Roberta estão em casa{% endif %}. A temperatura na sala é de {{ states.sensor.temperature_158d0001700b20.state | int }} graus, sendo que na rua está {{ states.sensor.dark_sky_summary.state | lower }} com {{ states.sensor.dark_sky_temperature.state | int }} graus. <prosody volume='x-loud'>Ah!</prosody> Não esqueçam que quinta-feira vem a Juçara cuidar das roupas! {% if is_state('binary_sensor.muvrh_movimento_203', 'on') or is_state('binary_sensor.muvrh_movimento_303', 'on')%}Também estou detectando movimento na muv rh!{% endif %} Isto é tudo!</amazon:auto-breaths></speak>
+      message: <speak><amazon:auto-breaths frequency='medium'>Olá, {% if((now().hour >= 6) and (now().hour < 12))%}bom dia{% elif((now().hour >= 12) and (now().hour <= 18))%}boa tarde{% else %}boa noite{% endif %}. Agora são <say-as interpret-as='time'>{{ now().strftime('%H:%M') }}</say-as>. Aqui vão algumas informações sobre a casa. O alarme está {% if is_state('alarm_control_panel.alarme', 'disarmed') %}desarmado{% else %}armado{% endif %}, percebo que {% if is_state('device_tracker.antonio', 'home') and is_state('device_tracker.roberta', 'home') %}tanto o Antônio quanto a Roberta estão em casa{% elif is_state('device_tracker.antonio', 'home') %}apenas o Antônio está em casa{% elif is_state('device_tracker.roberta', 'home') %}apenas a roberta está em casa{% else %}nem o Antônio nem a Roberta estão em casa{% endif %}. A temperatura na sala é de {{ states.sensor.temperatura_sala.state | int }} graus, sendo que na rua está {{ states.sensor.dark_sky_summary.state | lower }} com {{ states.sensor.dark_sky_temperature.state | int }} graus. <prosody volume='x-loud'>Ah!</prosody> Não esqueçam que quinta-feira vem a Juçara cuidar das roupas! {% if is_state('binary_sensor.muvrh_movimento_203', 'on') or is_state('binary_sensor.muvrh_movimento_303', 'on')%}Também estou detectando movimento na muv rh!{% endif %} Isto é tudo!</amazon:auto-breaths></speak>
 
 # Botões Xiaomi
 
-botao_xiaomi_quarto_click_1:
+botao_xiaomi_quarto_01_single:
   alias: "Luzes do quarto"
   sequence:
   - service_template: >
@@ -1093,12 +1107,31 @@ botao_xiaomi_quarto_click_1:
           light.ledquartotv
         {% endif %}
 
-botao_xiaomi_quarto_click_2:
+botao_xiaomi_quarto_01_double:
   alias: "TV do quarto"
   sequence:
   - service: script.tv_lg_quarto_power
 
-botao_xiaomi_quarto_click_3:
+botao_xiaomi_quarto_01_triple:
+  alias: "Liga ou desliga ar condicionado do quarto"
+  sequence:
+  - service: climate.set_operation_mode
+    data_template:
+      entity_id: climate.ar_condicionado_do_quarto
+      operation_mode: >
+        {% if states.climate.ar_condicionado_do_quarto.attributes.current_temperature | int >= 25 and (states.climate.ar_condicionado_do_quarto.state == 'off' or states.climate.ar_condicionado_do_quarto.state == 'off') %}
+          cool
+        {% elif states.climate.ar_condicionado_do_quarto.attributes.current_temperature | int <= 24 and (states.climate.ar_condicionado_do_quarto.state == 'off' or states.climate.ar_condicionado_do_quarto.state == 'off') %}
+          heat
+        {% else %}
+          off
+        {% endif %}
+  - condition: template
+    value_template: "{% if (is_state('climate.ar_condicionado_do_quarto' , 'auto') or is_state('climate.ar_condicionado_do_quarto' , 'cool') or is_state('climate.ar_condicionado_do_quarto' , 'heat')) and is_state('input_boolean.boa_noite' , 'on') %}True{% else %}False{% endif %}"
+  - delay: 00:00:02
+  - service: script.ar_quarto_display
+
+botao_xiaomi_quarto_01_long:
   alias: "Persiana do quarto"
   sequence:
   - service_template: >
@@ -1109,7 +1142,7 @@ botao_xiaomi_quarto_click_3:
       {% endif %}
     entity_id: cover.persiana_quarto
 
-botao_xiaomi_suite_01_click_1:
+botao_xiaomi_suite_01_single:
   alias: "Luzes da suíte"
   sequence:
   - service_template: >
@@ -1134,29 +1167,12 @@ botao_xiaomi_suite_01_click_1:
           light.todos_os_leds_suite
         {% endif %}
 
-botao_xiaomi_suite_01_click_2:
+botao_xiaomi_suite_01_double:
   alias: "TV da suíte"
   sequence:
   - service: script.tv_lg_suite_power
 
-botao_xiaomi_suite_01_click_3:
-  alias: "Persiana da suíte"
-  sequence:
-  - service_template: >
-      {% if is_state('cover.persiana_suite' , 'open') %}
-        cover.close_cover
-      {% elif is_state('cover.persiana_suite' , 'closed') %}
-        cover.open_cover
-      {% endif %}
-    entity_id: cover.persiana_suite
-
-botao_xiaomi_suite_02_click_1:
-  alias: "Luz painel TV"
-  sequence:
-  - service: light.toggle
-    entity_id: light.ledsuitecama
-
-botao_xiaomi_suite_02_click_2:
+botao_xiaomi_suite_01_triple:
   alias: "Liga ou desliga ar condicionado"
   sequence:
   - service: climate.set_operation_mode
@@ -1175,7 +1191,43 @@ botao_xiaomi_suite_02_click_2:
   - delay: 00:00:02
   - service: script.ar_suite_display
 
-botao_xiaomi_suite_02_click_3:
+botao_xiaomi_suite_01_long:
+  alias: "Persiana da suíte"
+  sequence:
+  - service_template: >
+      {% if is_state('cover.persiana_suite' , 'open') %}
+        cover.close_cover
+      {% elif is_state('cover.persiana_suite' , 'closed') %}
+        cover.open_cover
+      {% endif %}
+    entity_id: cover.persiana_suite
+
+botao_xiaomi_suite_02_single:
+  alias: "Luz painel TV"
+  sequence:
+  - service: light.toggle
+    entity_id: light.ledsuitecama
+
+botao_xiaomi_suite_02_double:
+  alias: "Liga ou desliga ar condicionado"
+  sequence:
+  - service: climate.set_operation_mode
+    data_template:
+      entity_id: climate.ar_condicionado_da_suite
+      operation_mode: >
+        {% if states.climate.ar_condicionado_da_suite.attributes.current_temperature | int >= 25 and (states.climate.ar_condicionado_da_suite.state == 'off' or states.climate.ar_condicionado_da_suite.state == 'off') %}
+          cool
+        {% elif states.climate.ar_condicionado_da_suite.attributes.current_temperature | int <= 24 and (states.climate.ar_condicionado_da_suite.state == 'off' or states.climate.ar_condicionado_da_suite.state == 'off') %}
+          heat
+        {% else %}
+          off
+        {% endif %}
+  - condition: template
+    value_template: "{% if (is_state('climate.ar_condicionado_da_suite' , 'auto') or is_state('climate.ar_condicionado_da_suite' , 'cool') or is_state('climate.ar_condicionado_da_suite' , 'heat')) and is_state('input_boolean.boa_noite' , 'on') %}True{% else %}False{% endif %}"
+  - delay: 00:00:02
+  - service: script.ar_suite_display
+
+botao_xiaomi_suite_02_long:
   alias: "Boa noite/Bom dia"
   sequence:
   - service_template: >
@@ -1189,30 +1241,30 @@ botao_xiaomi_suite_02_click_3:
       {% endif %}
     entity_id: input_boolean.boa_noite
 
-botao_xiaomi_banheiro_suite_click_1:
+botao_xiaomi_banheiro_suite_01_single:
   alias: "Luz do banheiro da suíte"
   sequence:
   - service: light.toggle
     entity_id: light.tudo_banheiro_suite
 
-botao_xiaomi_banheiro_suite_click_2:
+botao_xiaomi_banheiro_suite_01_double:
   alias: "Toalheiro"
   sequence:
   - service: switch.toggle
     entity_id: switch.toalheiro
 
-botao_xiaomi_banheiro_suite_click_3:
+botao_xiaomi_banheiro_suite_01_long:
   alias: "Chuveiro banheiro da suíte"
   sequence:
   - condition: state
     entity_id: switch.chuveirosuite
     state: 'off'
-  - wait_template: "{{is_state('binary_sensor.door_window_sensor_158d0001d68545', 'off')}}"
+  - wait_template: "{{is_state('binary_sensor.box_banheiro_suite', 'off')}}"
     timeout: 00:03:00
   - service: switch.turn_on
     entity_id: switch.chuveirosuite
-  - wait_template: "{{is_state('binary_sensor.door_window_sensor_158d0001d68545', 'on')}}"
-  - wait_template: "{{is_state('binary_sensor.door_window_sensor_158d0001d68545', 'off')}}"
+  - wait_template: "{{is_state('binary_sensor.box_banheiro_suite', 'on')}}"
+  - wait_template: "{{is_state('binary_sensor.box_banheiro_suite', 'off')}}"
   - condition: state
     entity_id: switch.chuveirosuite
     state: 'on'
@@ -1220,34 +1272,34 @@ botao_xiaomi_banheiro_suite_click_3:
   - condition: state
     entity_id: switch.chuveirosuite
     state: 'on'
-  - wait_template: "{{is_state('binary_sensor.door_window_sensor_158d0001d68545', 'on')}}"
+  - wait_template: "{{is_state('binary_sensor.box_banheiro_suite', 'on')}}"
   - service: switch.turn_off
     entity_id: switch.chuveirosuite
 
-botao_xiaomi_banheiro_social_click_1:
+botao_xiaomi_banheiro_social_01_single:
   alias: "Luz principal do banheiro social"
   sequence:
   - service: light.toggle
     entity_id: light.tudo_banheiro_social
 
-botao_xiaomi_banheiro_social_click_2:
+botao_xiaomi_banheiro_social_01_double:
   alias: "Luz do espelho do banheiro social"
   sequence:
   - service: light.toggle
     entity_id: light.banheiro_social_espelho
 
-botao_xiaomi_banheiro_social_click_3:
+botao_xiaomi_banheiro_social_01_long:
   alias: "Chuveiro banheiro social"
   sequence:
   - condition: state
     entity_id: switch.chuveirosocial
     state: 'off'
-  - wait_template: "{{is_state('binary_sensor.door_window_sensor_158d0001e035a2', 'off')}}"
+  - wait_template: "{{is_state('binary_sensor.box_banheiro_social', 'off')}}"
     timeout: 00:03:00
   - service: switch.turn_on
     entity_id: switch.chuveirosocial
-  - wait_template: "{{is_state('binary_sensor.door_window_sensor_158d0001e035a2', 'on')}}"
-  - wait_template: "{{is_state('binary_sensor.door_window_sensor_158d0001e035a2', 'off')}}"
+  - wait_template: "{{is_state('binary_sensor.box_banheiro_social', 'on')}}"
+  - wait_template: "{{is_state('binary_sensor.box_banheiro_social', 'off')}}"
   - condition: state
     entity_id: switch.chuveirosocial
     state: 'on'
@@ -1255,23 +1307,48 @@ botao_xiaomi_banheiro_social_click_3:
   - condition: state
     entity_id: switch.chuveirosocial
     state: 'on'
-  - wait_template: "{{is_state('binary_sensor.door_window_sensor_158d0001e035a2', 'on')}}"
+  - wait_template: "{{is_state('binary_sensor.box_banheiro_social', 'on')}}"
   - service: switch.turn_off
     entity_id: switch.chuveirosocial
 
-botao_xiaomi_sala_01_click_1:
+botao_xiaomi_sala_01_single:
   alias: "Luz principal da sala"
   sequence:
   - service: light.toggle
     entity_id: light.sala_principal
 
-botao_xiaomi_sala_01_click_2:
+botao_xiaomi_sala_01_double:
   alias: "TV da sala"
   sequence:
   - service: switch.toggle
     entity_id: switch.tv_lg_sala
 
-botao_xiaomi_sala_01_click_3:
+botao_xiaomi_sala_01_triple:
+  alias: "Liga ou desliga ar condicionado da sala"
+  sequence:
+  - service: climate.set_operation_mode
+    data_template:
+      entity_id: climate.ar_condicionado_da_sala
+      operation_mode: >
+        {% if states.climate.ar_condicionado_da_sala.attributes.current_temperature | int >= 25 and (states.climate.ar_condicionado_da_sala.state == 'off' or states.climate.ar_condicionado_da_sala.state == 'off') %}
+          cool
+        {% elif states.climate.ar_condicionado_da_sala.attributes.current_temperature | int <= 24 and (states.climate.ar_condicionado_da_sala.state == 'off' or states.climate.ar_condicionado_da_sala.state == 'off') %}
+          heat
+        {% else %}
+          off
+        {% endif %}
+  - condition: template
+    value_template: "{% if (is_state('climate.ar_condicionado_da_sala' , 'auto') or is_state('climate.ar_condicionado_da_sala' , 'cool') or is_state('climate.ar_condicionado_da_sala' , 'heat')) and is_state('input_boolean.boa_noite' , 'on') %}True{% else %}False{% endif %}"
+  - delay: 00:00:02
+  - service: script.ar_sala_display
+
+botao_xiaomi_sala_01_quadruple:
+  alias: "Luz mesa jantar"
+  sequence:
+  - service: light.toggle
+    entity_id: light.mesa_jantar
+
+botao_xiaomi_sala_01_long:
   alias: "Persiana da sala"
   sequence:
   - service_template: >
@@ -1288,36 +1365,36 @@ botao_xiaomi_sala_01_click_3:
       {% endif %}
     entity_id: cover.persiana_sala
 
-botao_xiaomi_sala_02_click_1:
+botao_xiaomi_sala_02_single:
   alias: "Luz mesa jantar"
   sequence:
   - service: light.toggle
     entity_id: light.mesa_jantar
 
-botao_xiaomi_sala_02_click_2:
+botao_xiaomi_sala_02_double:
   alias: "Status da casa"
   sequence:
   - service: script.tts_status_casa
 
-botao_xiaomi_sala_02_click_3:
+botao_xiaomi_sala_02_long:
   alias: "Armar/desarmar alarme"
   sequence:
   - service: switch.toggle
     entity_id: switch.sistema_alarme_casa
 
-botao_xiaomi_cozinha_click_1:
+botao_xiaomi_cozinha_01_single:
   alias: "Luzes principais da cozinha"
   sequence:
   - service: light.toggle
     entity_id: light.luzes_principais_cozinha
 
-botao_xiaomi_cozinha_click_2:
+botao_xiaomi_cozinha_01_double:
   alias: "Luz área serviço"
   sequence:
   - service: light.toggle
     entity_id: light.area_servico
 
-botao_xiaomi_cozinha_click_3:
+botao_xiaomi_cozinha_01_long:
   alias: "Ligar ou desligar tudo"
   sequence:
   - service: light.toggle
@@ -1424,7 +1501,7 @@ tts_boa_noite:
     data_template:
       message: >
         {% macro inicio() -%}
-          Automação boa noite iniciada. A temperatura do quarto, atualmente é de {{ states.sensor.temperature_158d0001dcb597.state | int }} graus.
+          Automação boa noite iniciada. A temperatura do quarto, atualmente é de {{ states.sensor.temperatura_suite.state | int }} graus.
         {%- endmacro -%}
         {%- macro ar_condicionado() -%}
             {%- if is_state('climate.ar_condicionado_da_suite', 'off') -%}
@@ -2035,7 +2112,6 @@ casa_desligar_tudo_noite:
       - light.corredor
       - light.cozinha
       - light.entrada
-      - light.gateway_light_7811dcb7ea3d
       - light.ledchaocozinha
       - light.ledcozinhabalcao
       - light.ledquartotv

@@ -56,50 +56,11 @@
       friendly_name: 'Temperatura real da nossa sala'
       unit_of_measurement: '°C'
       value_template: "{{ (states.sensor.muvrh_temperature.state  | float) - 2 }}"
-#    since_last_boot_templated:
-#      friendly_name: 'Desde a última reinicialização'
-#      value_template: >
-#      value_template: >
-#        {% if states.sensor.since_last_boot.state.count("day") > 0 %}
-#        {{states.sensor.since_last_boot.state.split(",") [0] + 
-#          " and" + 
-#          states.sensor.since_last_boot.state.split(",") [1].split(":") [0] + 
-#          " hours"}}
-#        {% else %}
-#        {{ states.sensor.since_last_boot.state.split(",") [0].split(":") [0] + 
-#          " hours" }}
-#        {% endif %}
-#    luzes_ligadas:
-#      friendly_name: 'Total de luzes ligadas'
-#      value_template: "{% for state in states if ( 'light' in state.entity_id and state.domain in ['light','switch'] and state.state == 'on' ) -%}{% if loop.last -%}{{ loop.index }}{%- endif %}{% else %}0{%- endfor %}"
-#      icon_template: mdi:lightbulb
-#    interruptores_ligados:
-#      friendly_name: 'Total de dispositivos ligados'
-#      value_template: "{% for state in states if ( 'switch' in state.entity_id and state.domain in ['light','switch'] and state.state == 'on' ) -%}{% if loop.last -%}{{ loop.index }}{%- endif %}{% else %}0{%- endfor %}"
-#      icon_template: mdi:flash
-#    tv_lg_sala_source:
-#      friendly_name: 'TV Sala - Assistindo agora'
-#      value_template: "{{ states.media_player.tv_sala.attributes.source }}"
-#      icon_template: mdi:television
-#    tv_lg_suite_source:
-#      friendly_name: 'TV Suíte - Assistindo agora'
-#      value_template: "{{ states.media_player.tv_suite.attributes.source }}"
-#      icon_template: mdi:television
-#    bateria_fraca:
-#      friendly_name: 'Bateria fraca'
-#      value_template: "{% for state in states if state.domain in ['switch','binary_sensor','sensor'] and state.attributes.battery_level is defined and state.attributes.battery_level < 10 -%}{%- if loop.first %}{% elif loop.last %} e {% else %}, {% endif -%}{{ state.name }} ({{ state.attributes.battery_level |int }}%){%- else -%}Nenhum{%- endfor %}"
-#      icon_template: >
-#          {% if is_state('sensor.bateria_fraca' , 'Nenhum') %}
-#            mdi:check-circle
-#          {% else %}
-#            mdi:battery-alert
-#          {% endif %}
-#    dispositivo_indisponivel:
-#      friendly_name: 'Indisponível'
-#      value_template: "{% for state in states if ( state.domain in ['light','switch','binary_sensor','sensor'] and state.state == 'unavailable' ) -%}{%- if loop.first %}{% elif loop.last %} e {% else %}, {% endif -%}{{ state.name}}{%- else -%}Nenhum{%- endfor %}"
-#      icon_template: >
-#          {% if is_state('sensor.dispositivo_indisponivel' , 'Nenhum') %}
-#            mdi:check-circle
-#          {% else %}
-#            mdi:alert-circle
-#          {% endif %}
+
+- platform: time_date
+  display_options:
+    - 'time'
+    - 'date'
+    - 'date_time'
+    - 'time_date'
+    - 'time_utc'

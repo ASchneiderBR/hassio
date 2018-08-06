@@ -356,39 +356,7 @@ cover.garagem_muvrh_rua:
 cover.garagem_muvrh_interno:
   device_class: garage
 
-binary_sensor.door_window_sensor_158d0001d6851d:
-  friendly_name: "Entrada casa"
-  device_class: door
-
-binary_sensor.door_window_sensor_158d0001d68545:
-  friendly_name: "Box do banheiro da suíte"
-  device_class: door
-
-binary_sensor.door_window_sensor_158d0001e035a2:
-  friendly_name: "Box do banheiro social"
-  device_class: door
-
-binary_sensor.motion_sensor_158d000120af26:
-  friendly_name: "Movimento Suíte"
-  icon: mdi:walk
-
-binary_sensor.motion_sensor_158d0001225607:
-  friendly_name: "Movimento Sala"
-  icon: mdi:walk
-
-binary_sensor.motion_sensor_158d0001231d4d:
-  friendly_name: "Movimento Cozinha"
-  icon: mdi:walk
-
-binary_sensor.motion_sensor_158d00015b6c81:
-  friendly_name: "Movimento Quarto"
-  icon: mdi:walk
-
-binary_sensor.motion_sensor_158d00016c01fd:
-  friendly_name: "Movimento Banheiro Suíte"
-  icon: mdi:walk
-
-binary_sensor.motion_sensor_158d00016da83a:
+binary_sensor.movimento_banheiro_social:
   friendly_name: "Movimento Banheiro Social"
   icon: mdi:walk
 
@@ -424,29 +392,9 @@ binary_sensor.switch_158d0001d8ea74:
   friendly_name: "Botão suíte 02"
   icon: mdi:cursor-pointer
 
-light.gateway_light_7811dcb7ea3d:
-  friendly_name: "Luz Hub Xiaomi"
-  icon: mdi:lightbulb
-
 light.gateway_Light_34ce0090940e:
   friendly_name: "Luz Hub Xiaomi MuvRH"
   icon: mdi:lightbulb
-
-sensor.humidity_158d0001700b20:
-  friendly_name: "Umidade Sala"
-  icon: mdi:water-percent
-
-sensor.humidity_158d0001702175:
-  friendly_name: "Umidade Quarto"
-  icon: mdi:water-percent
-
-sensor.humidity_158d00019cec0c:
-  friendly_name: "Umidade Cozinha"
-  icon: mdi:water-percent
-
-sensor.humidity_158d0001dcb597:
-  friendly_name: "Umidade Suíte"
-  icon: mdi:water-percent
 
 sensor.Humidity_158d00015633b4:
   friendly_name: "Umidade sala de operações"
@@ -459,22 +407,6 @@ sensor.illumination_34ce00907e65:
 sensor.Illumination_34ce0090940e:
   friendly_name: "Luz sala 203 - Operações"
   icon: mdi:lightbulb-outline
-
-sensor.temperature_158d0001700b20:
-  friendly_name: "Temperatura Sala"
-  icon: mdi:thermometer
-
-sensor.temperature_158d0001702175:
-  friendly_name: "Temperatura Quarto"
-  icon: mdi:thermometer
-
-sensor.temperature_158d00019cec0c:
-  friendly_name: "Temperatura Cozinha"
-  icon: mdi:thermometer
-
-sensor.temperature_158d0001dcb597:
-  friendly_name: "Temperatura Suíte"
-  icon: mdi:thermometer
 
 sensor.temperature_158d00015633b4:
   friendly_name: "Temperatura sala de operações"
