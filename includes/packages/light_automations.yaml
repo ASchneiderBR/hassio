@@ -41,7 +41,7 @@ automation:
                 light.suite_banheiro_espelho
               {%- endif %}
       - delay: 00:00:02
-      - wait_template: "{{ ((is_state('light.tudo_banheiro_suite' , 'off') and is_state('switch.chuveirosuite' , 'off')) or ((((as_timestamp(strptime(states.sensor.date__time.state, '%Y-%m-%d, %H:%M')) - as_timestamp(states.binary_sensor.movimento_banheiro_suite.last_updated) ) / 60) | int) >= states.input_number.timmer_banheiro_suite.state | int and is_state('binary_sensor.movimento_banheiro_suite' , 'off')) and ((now() - states.switch.chuveirosuite.last_updated).seconds /60) | int >= 5 and is_state('switch.chuveirosuite' , 'off')) }}"
+      - wait_template: "{{ ((is_state('light.tudo_banheiro_suite' , 'off')) or ((((as_timestamp(strptime(states.sensor.date__time.state, '%Y-%m-%d, %H:%M')) - as_timestamp(states.binary_sensor.movimento_banheiro_suite.last_updated) ) / 60) | int) >= states.input_number.timmer_banheiro_suite.state | int and is_state('binary_sensor.movimento_banheiro_suite' , 'off')) and (((as_timestamp(strptime(states.sensor.date__time.state, '%Y-%m-%d, %H:%M')) - as_timestamp(states.switch.chuveirosuite.last_updated) ) / 60) | int) >= 3 and is_state('switch.chuveirosuite' , 'off')) }}"
       - condition: state
         entity_id: light.tudo_banheiro_suite
         state: 'on'
@@ -67,7 +67,7 @@ automation:
                 light.banheiro_social_espelho
               {%- endif %}
       - delay: 00:00:02
-      - wait_template: "{{ ((is_state('light.tudo_banheiro_social' , 'off') and is_state('switch.chuveirosocial' , 'off')) or ((((as_timestamp(strptime(states.sensor.date__time.state, '%Y-%m-%d, %H:%M')) - as_timestamp(states.binary_sensor.movimento_banheiro_social.last_updated) ) / 60) | int) >= states.input_number.timmer_banheiro_social.state | int and is_state('binary_sensor.movimento_banheiro_social' , 'off')) and ((now() - states.switch.chuveirosocial.last_updated).seconds /60) | int >= 5 and is_state('switch.chuveirosocial' , 'off')) }}"
+      - wait_template: "{{ ((is_state('light.tudo_banheiro_social' , 'off')) or ((((as_timestamp(strptime(states.sensor.date__time.state, '%Y-%m-%d, %H:%M')) - as_timestamp(states.binary_sensor.movimento_banheiro_social.last_updated) ) / 60) | int) >= states.input_number.timmer_banheiro_social.state | int and is_state('binary_sensor.movimento_banheiro_social' , 'off')) and (((as_timestamp(strptime(states.sensor.date__time.state, '%Y-%m-%d, %H:%M')) - as_timestamp(states.switch.chuveirosocial.last_updated) ) / 60) | int) >= 3 and is_state('switch.chuveirosocial' , 'off')) }}"
       - condition: state
         entity_id: light.tudo_banheiro_social
         state: 'on'
@@ -325,7 +325,7 @@ automation:
 input_number:
 
   timmer_cozinha:
-    name: Tempo na cozinha
+    name: Cozinha
     initial: 10
     min: 1
     max: 30
@@ -334,7 +334,7 @@ input_number:
     icon: mdi:timer
 
   timmer_sala:
-    name: Tempo na sala
+    name: Sala
     initial: 5
     min: 1
     max: 30
@@ -343,7 +343,7 @@ input_number:
     icon: mdi:timer
 
   timmer_quarto:
-    name: Tempo no quarto
+    name: Quarto
     initial: 3
     min: 1
     max: 30
@@ -352,7 +352,7 @@ input_number:
     icon: mdi:timer
 
   timmer_banheiro_social:
-    name: Tempo no banheiro social
+    name: Banheiro social
     initial: 2
     min: 1
     max: 30
@@ -361,7 +361,7 @@ input_number:
     icon: mdi:timer
 
   timmer_banheiro_suite:
-    name: Tempo no banheiro da suíte
+    name: Banheiro da suíte
     initial: 2
     min: 1
     max: 30
@@ -370,7 +370,7 @@ input_number:
     icon: mdi:timer
 
   timmer_suite:
-    name: Tempo na suíte
+    name: Suíte
     initial: 3
     min: 1
     max: 30
