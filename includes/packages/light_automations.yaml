@@ -14,8 +14,8 @@ automation:
     action:
       - service: light.turn_on
         entity_id: light.todos_os_leds_suite
-      - delay: 00:00:02
-      - wait_template: "{{ ((is_state('light.todos_os_leds_suite' , 'off')) or ((((as_timestamp(strptime(states.sensor.date__time.state, '%Y-%m-%d, %H:%M')) - as_timestamp(states.binary_sensor.movimento_suite.last_updated) ) / 60) | int) >= states.input_number.timmer_suite.state | int and is_state('binary_sensor.movimento_suite' , 'off'))) }}" 
+      - delay: 00:00:03
+      - wait_template: "{{ ((is_state('light.todos_os_leds_suite' , 'off')) or ((((as_timestamp(strptime(states.sensor.date__time.state, '%Y-%m-%d, %H:%M')) - as_timestamp(states.binary_sensor.movimento_suite.last_updated) ) / 60) | int) >= states.input_number.timmer_suite.state | int -1 and is_state('binary_sensor.movimento_suite' , 'off'))) }}" 
       - condition: state
         entity_id: light.todos_os_leds_suite
         state: 'on'
@@ -40,8 +40,8 @@ automation:
               {%- else -%}
                 light.suite_banheiro_espelho
               {%- endif %}
-      - delay: 00:00:02
-      - wait_template: "{{ ((is_state('light.tudo_banheiro_suite' , 'off')) or ((((as_timestamp(strptime(states.sensor.date__time.state, '%Y-%m-%d, %H:%M')) - as_timestamp(states.binary_sensor.movimento_banheiro_suite.last_updated) ) / 60) | int) >= states.input_number.timmer_banheiro_suite.state | int and is_state('binary_sensor.movimento_banheiro_suite' , 'off')) and (((as_timestamp(strptime(states.sensor.date__time.state, '%Y-%m-%d, %H:%M')) - as_timestamp(states.switch.chuveirosuite.last_updated) ) / 60) | int) >= 3 and is_state('switch.chuveirosuite' , 'off')) }}"
+      - delay: 00:00:03
+      - wait_template: "{{ ((is_state('light.tudo_banheiro_suite' , 'off')) or ((((as_timestamp(strptime(states.sensor.date__time.state, '%Y-%m-%d, %H:%M')) - as_timestamp(states.binary_sensor.movimento_banheiro_suite.last_updated) ) / 60) | int) >= states.input_number.timmer_banheiro_suite.state | int -1 and is_state('binary_sensor.movimento_banheiro_suite' , 'off')) and (((as_timestamp(strptime(states.sensor.date__time.state, '%Y-%m-%d, %H:%M')) - as_timestamp(states.switch.chuveirosuite.last_updated) ) / 60) | int) >= 3 and is_state('switch.chuveirosuite' , 'off')) }}"
       - condition: state
         entity_id: light.tudo_banheiro_suite
         state: 'on'
@@ -66,8 +66,8 @@ automation:
               {%- else -%}
                 light.banheiro_social_espelho
               {%- endif %}
-      - delay: 00:00:02
-      - wait_template: "{{ ((is_state('light.tudo_banheiro_social' , 'off')) or ((((as_timestamp(strptime(states.sensor.date__time.state, '%Y-%m-%d, %H:%M')) - as_timestamp(states.binary_sensor.movimento_banheiro_social.last_updated) ) / 60) | int) >= states.input_number.timmer_banheiro_social.state | int and is_state('binary_sensor.movimento_banheiro_social' , 'off')) and (((as_timestamp(strptime(states.sensor.date__time.state, '%Y-%m-%d, %H:%M')) - as_timestamp(states.switch.chuveirosocial.last_updated) ) / 60) | int) >= 3 and is_state('switch.chuveirosocial' , 'off')) }}"
+      - delay: 00:00:03
+      - wait_template: "{{ ((is_state('light.tudo_banheiro_social' , 'off')) or ((((as_timestamp(strptime(states.sensor.date__time.state, '%Y-%m-%d, %H:%M')) - as_timestamp(states.binary_sensor.movimento_banheiro_social.last_updated) ) / 60) | int) >= states.input_number.timmer_banheiro_social.state | int -1 and is_state('binary_sensor.movimento_banheiro_social' , 'off')) and (((as_timestamp(strptime(states.sensor.date__time.state, '%Y-%m-%d, %H:%M')) - as_timestamp(states.switch.chuveirosocial.last_updated) ) / 60) | int) >= 3 and is_state('switch.chuveirosocial' , 'off')) }}"
       - condition: state
         entity_id: light.tudo_banheiro_social
         state: 'on'
@@ -86,8 +86,8 @@ automation:
     action:
       - service: light.turn_on
         entity_id: light.luzes_principais_quarto
-      - delay: 00:00:02
-      - wait_template: "{{ ((is_state('light.luzes_principais_quarto' , 'off')) or ( (((as_timestamp(strptime(states.sensor.date__time.state, '%Y-%m-%d, %H:%M')) - as_timestamp(states.binary_sensor.movimento_quarto.last_updated) ) / 60) | int) >= states.input_number.timmer_quarto.state | int and is_state('binary_sensor.movimento_quarto' , 'off'))) }}"
+      - delay: 00:00:03
+      - wait_template: "{{ ((is_state('light.luzes_principais_quarto' , 'off')) or ((((as_timestamp(strptime(states.sensor.date__time.state, '%Y-%m-%d, %H:%M')) - as_timestamp(states.binary_sensor.movimento_quarto.last_updated) ) / 60) | int) >= states.input_number.timmer_quarto.state | int -1 and is_state('binary_sensor.movimento_quarto' , 'off'))) }}"
       - condition: state
         entity_id: light.luzes_principais_quarto
         state: 'on'
@@ -111,8 +111,8 @@ automation:
     action:
       - service: light.turn_on
         entity_id: light.luzes_principais_sala
-      - delay: 00:00:02
-      - wait_template: "{{ ((is_state('light.luzes_principais_sala' , 'off')) or ((((as_timestamp(strptime(states.sensor.date__time.state, '%Y-%m-%d, %H:%M')) - as_timestamp(states.binary_sensor.movimento_sala.last_updated) ) / 60) | int) >= states.input_number.timmer_sala.state | int and is_state('binary_sensor.movimento_sala' , 'off'))) }}"
+      - delay: 00:00:03
+      - wait_template: "{{ ((is_state('light.luzes_principais_sala' , 'off')) or ((((as_timestamp(strptime(states.sensor.date__time.state, '%Y-%m-%d, %H:%M')) - as_timestamp(states.binary_sensor.movimento_sala.last_updated) ) / 60) | int) >= states.input_number.timmer_sala.state | int -1 and is_state('binary_sensor.movimento_sala' , 'off'))) }}"
       - condition: state
         entity_id: light.luzes_principais_sala
         state: 'on'
@@ -132,8 +132,8 @@ automation:
     action:
       - service: light.turn_on
         entity_id: light.luzes_principais_cozinha
-      - delay: 00:00:02
-      - wait_template: "{{ ((is_state('light.luzes_principais_cozinha' , 'off')) or ((((as_timestamp(strptime(states.sensor.date__time.state, '%Y-%m-%d, %H:%M')) - as_timestamp(states.binary_sensor.movimento_cozinha.last_updated) ) / 60) | int) >= states.input_number.timmer_cozinha.state | int and is_state('binary_sensor.movimento_cozinha' , 'off'))) }}" 
+      - delay: 00:00:03
+      - wait_template: "{{ ((is_state('light.luzes_principais_cozinha' , 'off')) or ((((as_timestamp(strptime(states.sensor.date__time.state, '%Y-%m-%d, %H:%M')) - as_timestamp(states.binary_sensor.movimento_cozinha.last_updated) ) / 60) | int) >= states.input_number.timmer_cozinha.state | int -1 and is_state('binary_sensor.movimento_cozinha' , 'off'))) }}" 
       - condition: state
         entity_id: light.luzes_principais_cozinha
         state: 'on'
@@ -155,13 +155,8 @@ automation:
     action:
       - service: light.turn_on
         entity_id: light.muv203entrada
-      - delay: 00:00:05
-      - wait_template: >
-          {% set light = "light.muv203entrada" -%}
-          {%- set timmer_input = "input_select.tempo_muvrh_203_entrada" -%}
-          {%- set motion_sensor = "binary_sensor.motion_sensor_158d0001ad6b83" -%}
-
-          {%- if is_state(light , 'off') or (state_attr(motion_sensor, 'No motion since') | int >= states(timmer_input) | int and is_state(motion_sensor , 'off')) -%}true{%- else -%}false{%- endif %}
+      - delay: 00:00:03
+      - wait_template: "{{ ((is_state('light.muv203entrada' , 'off')) or ((((as_timestamp(strptime(states.sensor.date__time.state, '%Y-%m-%d, %H:%M')) - as_timestamp(states.binary_sensor.motion_sensor_158d0001ad6b83.last_updated) ) / 60) | int) >= states.input_number.timmer_muvrh_203_entrada.state | int -1 and is_state('binary_sensor.motion_sensor_158d0001ad6b83' , 'off'))) }}"
       - condition: state
         entity_id: light.muv203entrada
         state: 'on'
@@ -180,13 +175,8 @@ automation:
     action:
       - service: light.turn_on
         entity_id: light.muv203banheiro
-      - delay: 00:00:05
-      - wait_template: >
-          {% set light = "light.muv203banheiro" -%}
-          {%- set timmer_input = "input_select.tempo_muvrh_203_banheiro" -%}
-          {%- set motion_sensor = "binary_sensor.motion_sensor_158d0001e43ef1" -%}
-
-          {%- if is_state(light , 'off') or (state_attr(motion_sensor, 'No motion since') | int >= states(timmer_input) | int and is_state(motion_sensor , 'off')) -%}true{%- else -%}false{%- endif %}
+      - delay: 00:00:03
+      - wait_template: "{{ ((is_state('light.muv203banheiro' , 'off')) or ((((as_timestamp(strptime(states.sensor.date__time.state, '%Y-%m-%d, %H:%M')) - as_timestamp(states.binary_sensor.motion_sensor_158d0001e43ef1.last_updated) ) / 60) | int) >= states.input_number.timmer_muvrh_203_banheiro.state | int -1 and is_state('binary_sensor.motion_sensor_158d0001e43ef1' , 'off'))) }}"
       - condition: state
         entity_id: light.muv203banheiro
         state: 'on'
@@ -205,13 +195,8 @@ automation:
     action:
       - service: light.turn_on
         entity_id: light.muv203operacoes
-      - delay: 00:00:05
-      - wait_template: >
-          {% set light = "light.muv203operacoes" -%}
-          {%- set timmer_input = "input_select.tempo_muvrh_203_salaoperacoes" -%}
-          {%- set motion_sensor = "binary_sensor.motion_sensor_158d0001e420d0" -%}
-
-          {%- if is_state(light , 'off') or (state_attr(motion_sensor, 'No motion since') | int >= states(timmer_input) | int and is_state(motion_sensor , 'off')) -%}true{%- else -%}false{%- endif %}
+      - delay: 00:00:03
+      - wait_template: "{{ ((is_state('light.muv203operacoes' , 'off')) or ((((as_timestamp(strptime(states.sensor.date__time.state, '%Y-%m-%d, %H:%M')) - as_timestamp(states.binary_sensor.motion_sensor_158d0001e420d0.last_updated) ) / 60) | int) >= states.input_number.timmer_muvrh_203_salaoperacoes.state | int -1 and is_state('binary_sensor.motion_sensor_158d0001e420d0' , 'off'))) }}"
       - condition: state
         entity_id: light.muv203operacoes
         state: 'on'
@@ -230,13 +215,8 @@ automation:
     action:
       - service: light.turn_on
         entity_id: light.muv203nossasala
-      - delay: 00:00:05
-      - wait_template: >
-          {% set light = "light.muv203nossasala" -%}
-          {%- set timmer_input = "input_select.tempo_muvrh_203_nossasala" -%}
-          {%- set motion_sensor = "binary_sensor.motion_sensor_158d0001e02f9a" -%}
-
-          {%- if is_state(light , 'off') or (state_attr(motion_sensor, 'No motion since') | int >= states(timmer_input) | int and is_state(motion_sensor , 'off')) -%}true{%- else -%}false{%- endif %}
+      - delay: 00:00:03
+      - wait_template: "{{ ((is_state('light.muv203nossasala' , 'off')) or ((((as_timestamp(strptime(states.sensor.date__time.state, '%Y-%m-%d, %H:%M')) - as_timestamp(states.binary_sensor.motion_sensor_158d0001e02f9a.last_updated) ) / 60) | int) >= states.input_number.timmer_muvrh_203_nossasala.state | int -1 and is_state('binary_sensor.motion_sensor_158d0001e02f9a' , 'off'))) }}"
       - condition: state
         entity_id: light.muv203nossasala
         state: 'on'
@@ -255,13 +235,8 @@ automation:
     action:
       - service: light.turn_on
         entity_id: light.muv303entrada
-      - delay: 00:00:05
-      - wait_template: >
-          {% set light = "light.muv303entrada" -%}
-          {%- set timmer_input = "input_select.tempo_muvrh_303_entrada" -%}
-          {%- set motion_sensor = "binary_sensor.motion_sensor_158d0001e44035" -%}
-
-          {%- if is_state(light , 'off') or (state_attr(motion_sensor, 'No motion since') | int >= states(timmer_input) | int and is_state(motion_sensor , 'off')) -%}true{%- else -%}false{%- endif %}
+      - delay: 00:00:03
+      - wait_template: "{{ ((is_state('light.muv303entrada' , 'off')) or ((((as_timestamp(strptime(states.sensor.date__time.state, '%Y-%m-%d, %H:%M')) - as_timestamp(states.binary_sensor.motion_sensor_158d0001e44035.last_updated) ) / 60) | int) >= states.input_number.timmer_muvrh_303_entrada.state | int -1 and is_state('binary_sensor.motion_sensor_158d0001e44035' , 'off'))) }}"
       - condition: state
         entity_id: light.muv303entrada
         state: 'on'
@@ -281,13 +256,8 @@ automation:
     action:
       - service: light.turn_on
         entity_id: light.muv303dinamica
-      - delay: 00:00:05
-      - wait_template: >
-          {% set light = "light.muv303dinamica" -%}
-          {%- set timmer_input = "input_select.tempo_muvrh_303_dinamica" -%}
-          {%- set motion_sensor = "binary_sensor.motion_sensor_158d0001a24bdc" -%}
-
-          {%- if is_state(light , 'off') or (state_attr(motion_sensor, 'No motion since') | int >= states(timmer_input) | int and is_state(motion_sensor , 'off')) -%}true{%- else -%}false{%- endif %}
+      - delay: 00:00:03
+      - wait_template: "{{ ((is_state('light.muv303dinamica' , 'off')) or ((((as_timestamp(strptime(states.sensor.date__time.state, '%Y-%m-%d, %H:%M')) - as_timestamp(states.binary_sensor.motion_sensor_158d0001a24bdc.last_updated) ) / 60) | int) >= states.input_number.timmer_muvrh_303_dinamica.state | int -1 and is_state('binary_sensor.motion_sensor_158d0001a24bdc' , 'off'))) }}"
       - condition: state
         entity_id: light.muv303dinamica
         state: 'on'
@@ -307,13 +277,8 @@ automation:
     action:
       - service: light.turn_on
         entity_id: light.muv303banheiro
-      - delay: 00:00:05
-      - wait_template: >
-          {% set light = "light.muv303banheiro" -%}
-          {%- set timmer_input = "input_select.tempo_muvrh_303_banheiro" -%}
-          {%- set motion_sensor = "binary_sensor.motion_sensor_158d0001ad6c20" -%}
-
-          {%- if is_state(light , 'off') or (state_attr(motion_sensor, 'No motion since') | int >= states(timmer_input) | int and is_state(motion_sensor , 'off')) -%}true{%- else -%}false{%- endif %}
+      - delay: 00:00:03
+      - wait_template: "{{ ((is_state('light.muv303banheiro' , 'off')) or ((((as_timestamp(strptime(states.sensor.date__time.state, '%Y-%m-%d, %H:%M')) - as_timestamp(states.binary_sensor.motion_sensor_158d0001ad6c20.last_updated) ) / 60) | int) >= states.input_number.timmer_muvrh_303_banheiro.state | int -1 and is_state('binary_sensor.motion_sensor_158d0001ad6c20' , 'off'))) }}"
       - condition: state
         entity_id: light.muv303banheiro
         state: 'on'
@@ -324,20 +289,22 @@ automation:
 
 input_number:
 
+#Casa
+
   timmer_cozinha:
     name: Cozinha
-    initial: 10
+    initial: 5
     min: 1
-    max: 30
+    max: 10
     step: 1
     unit_of_measurement: "Minutos"
     icon: mdi:timer
 
   timmer_sala:
     name: Sala
-    initial: 5
+    initial: 3
     min: 1
-    max: 30
+    max: 10
     step: 1
     unit_of_measurement: "Minutos"
     icon: mdi:timer
@@ -346,7 +313,7 @@ input_number:
     name: Quarto
     initial: 3
     min: 1
-    max: 30
+    max: 10
     step: 1
     unit_of_measurement: "Minutos"
     icon: mdi:timer
@@ -355,7 +322,7 @@ input_number:
     name: Banheiro social
     initial: 2
     min: 1
-    max: 30
+    max: 10
     step: 1
     unit_of_measurement: "Minutos"
     icon: mdi:timer
@@ -364,7 +331,7 @@ input_number:
     name: Banheiro da suíte
     initial: 2
     min: 1
-    max: 30
+    max: 10
     step: 1
     unit_of_measurement: "Minutos"
     icon: mdi:timer
@@ -373,7 +340,72 @@ input_number:
     name: Suíte
     initial: 3
     min: 1
-    max: 30
+    max: 10
+    step: 1
+    unit_of_measurement: "Minutos"
+    icon: mdi:timer
+
+#MuvRH
+
+  timmer_muvrh_203_entrada:
+    name: 203 - Entrada
+    initial: 15
+    min: 1
+    max: 20
+    step: 1
+    unit_of_measurement: "Minutos"
+    icon: mdi:timer
+
+  timmer_muvrh_203_banheiro:
+    name: 203 - Banheiro
+    initial: 2
+    min: 1
+    max: 20
+    step: 1
+    unit_of_measurement: "Minutos"
+    icon: mdi:timer
+
+  timmer_muvrh_203_salaoperacoes:
+    name: 203 - Operações
+    initial: 20
+    min: 1
+    max: 20
+    step: 1
+    unit_of_measurement: "Minutos"
+    icon: mdi:timer
+
+  timmer_muvrh_203_nossasala:
+    name: 203 - Nossa sala
+    initial: 20
+    min: 1
+    max: 20
+    step: 1
+    unit_of_measurement: "Minutos"
+    icon: mdi:timer
+
+  timmer_muvrh_303_entrada:
+    name: 303 - Entrada
+    initial: 20
+    min: 1
+    max: 20
+    step: 1
+    unit_of_measurement: "Minutos"
+    icon: mdi:timer
+
+  timmer_muvrh_303_dinamica:
+    name: 303 - Dinâmica
+    initial: 20
+    min: 1
+    max: 20
+    step: 1
+    unit_of_measurement: "Minutos"
+    icon: mdi:timer
+
+  timmer_muvrh_303_banheiro:
+    name: 303 - Banheiro
+    initial: 2
+    min: 1
+    max: 20
     step: 1
     unit_of_measurement: "Minutos"
     icon: mdi:timer
