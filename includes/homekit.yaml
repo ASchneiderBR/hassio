@@ -116,7 +116,7 @@ filter:
     - switch.tv_lg_suite
     - switch.tv_sala_operacoes
     - script.speed_test
-    - script.aspirador_homekit_zona_toda_casa
+    - script.aspirador_homekit_zona_mop
     - script.aspirador_homekit_zona_sala
     - script.aspirador_homekit_zona_mesa_jantar
     - script.aspirador_homekit_zona_tapete

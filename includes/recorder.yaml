@@ -102,6 +102,11 @@ exclude:
     - sensor.botao_suite_02
     - sensor.cubo_sala_01
     - sensor.cubo_suite_01
+    - sensor.date__time
+    - sensor.time
+    - sensor.time__date
+    - sensor.time_utc
+    - sensor.date
 include:
   entities:
     - group.pessoas

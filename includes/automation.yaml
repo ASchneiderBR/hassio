@@ -399,12 +399,13 @@
         message: "Bom dia! Hoje a máxima será de {{ states.sensor.dark_sky_daily_high_temperature.state | int }}ºC com previsão de {{ states.sensor.dark_sky_summary.state | lower }}"
     - service: switch.turn_on
       entity_id: switch.toalheiro
-    - service: cover.open_cover
-      entity_id: cover.persiana_suite
     - service_template: >
         {% if is_state('climate.ar_condicionado_da_suite' , 'off') %}
         {% else %}
-          climate.set_operation_mode
+          {% if is_state('climate.ar_condicionado_da_suite' , 'heat') %}
+          {% else %}
+            climate.set_operation_mode
+          {% endif %}
         {% endif %}
       data:
         entity_id: climate.ar_condicionado_da_suite

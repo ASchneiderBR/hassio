@@ -363,7 +363,7 @@ script:
       data:
         entity_id: vacuum.aspirador
         command: app_zoned_clean
-        params: [[17721,25369,27121,32169,1],[18080,20509,22930,25659,1],[25122,22132,26122,25682,1]]
+        params: [[23917,25338,25367,26288,1],[18186,25332,23886,31732,1],[23572,28738,25772,31338,1],[25152,22176,25802,25326,1],[18187,21038,22587,25338,1]]
     - service: script.aspirador_alerta_iniciando
 
   aspirador_voltar_dock:
@@ -506,6 +506,15 @@ script:
       entity_id: input_select.zonas_de_aspiracao
       data_template:
         option: "Quartos e banheiros"
+    - delay: 00:00:10
+
+  aspirador_homekit_zona_mop:
+    alias: Aspirador casa - Aspirar zona somente piso
+    sequence:
+    - service: input_select.select_option
+      entity_id: input_select.zonas_de_aspiracao
+      data_template:
+        option: "Somente piso"
     - delay: 00:00:10
 
 # Customize
