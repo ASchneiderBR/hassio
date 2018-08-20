@@ -53,6 +53,19 @@ exclude:
     - sensor.illumination_7811dcb7ea3d
     - sensor.interruptores_ligados
     - sensor.luzes_ligadas
+    - input_number.timmer_banheiro_social
+    - input_number.timmer_banheiro_suite
+    - input_number.timmer_cozinha
+    - input_number.timmer_muvrh_203_banheiro
+    - input_number.timmer_muvrh_203_entrada
+    - input_number.timmer_muvrh_203_nossasala
+    - input_number.timmer_muvrh_203_salaoperacoes
+    - input_number.timmer_muvrh_303_banheiro
+    - input_number.timmer_muvrh_303_dinamica
+    - input_number.timmer_muvrh_303_entrada
+    - input_number.timmer_quarto
+    - input_number.timmer_sala
+    - input_number.timmer_suite
     - input_select.tempo_luz_banheiro_social
     - input_select.tempo_luz_banheiro_suite
     - input_select.tempo_luz_cozinha

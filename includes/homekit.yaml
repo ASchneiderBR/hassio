@@ -36,6 +36,7 @@ filter:
     - binary_sensor.antonio
     - binary_sensor.roberta
     - binary_sensor.casa_movimento
+    - binary_sensor.muvrh_movimento
     - binary_sensor.door_window_sensor_158d0001b8671f
     - binary_sensor.door_window_sensor_158d0001bf2a09
     - binary_sensor.entrada_casa

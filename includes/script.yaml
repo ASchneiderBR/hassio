@@ -84,7 +84,7 @@ garagem_casa:
   - service: switch.broadlink_send_packet_192_168_1_32
     data:
       packet:
-      - sgCEAw0ZDRkZDRkNDRkZDBoMDRkNGQ0ZDRkNGQ0ZGQ0ZDQwZDRoMGRoMDRkNGRkNGQ0NGQwaGQwNGgwZGgwNGRkNDRkZDQwaDBoZDA0ZGgwaDBkNGQ0ZDRkNGQ0ZDBoMGgwaDBoMDRkZDRkNGQ0MAAIGDQwNDA0NDA0NDA0MDQ0NDA0MDQ0MDQ1+GQ0ZDQwZDRkNGRoMDRkaDBkNDBoZDRkNDBkNGRoMGgwNGRkNGQ0MGgwZDRkNGQ0ZDRkaDBkNDRkMGgwaGQ0MGQ0ZGgwZDQ0ZDRkZDQwaDBoZDA0ZGgwNGRkNDRkMGhkNDBoZDRkMGgwaDBkNGQ0ZDRkNGQ0ZDRkMGgwNGRoMGQ0ZDQ0AAgUNDQwNDA0NDA0NDA0MDQ0MDQ0MDQwNDX4ZDRkNDRkMGgwaGQwNGRoMGgwNGRkNGQ0MGgwaGQ0ZDA0ZGQ0ZDQ0ZDRkNGQwaDBkNGRoMGgwNGQ0ZDRkZDQwaDBoZDBoMDRkNGRkNDRkNGRkMDRoZDQwZGgwNGQ0ZGQ0NGRkNGQ0ZDRkMGgwaDBkNGQ0ZDRkNGQ0ZDQwZGgwaDBkNDQACBQ0NDA0NDA0NDA0MDQ0MDQ0MDQ0MDQwNfhoMGQ0NGQ0ZDBoZDA0ZGgwaDA0ZGQ0ZDQ0ZDRkZDRkNDBkaDBoMDRkNGQ0ZDRkMGgwZGgwaDA0ZDRkNGRkNDRkMGhkNGQ0MGQ0ZGgwNGQ0ZGQ0MGhkNDBkaDA0ZDRkaDA0ZGQ0ZDRkMGg0ZDBoMGgwaDBkNGQ0ZDRkNDBoZDBoNGQwNAAIGDA0NDA0NDA0MDQ0MDQwNDQwNDQwNDA1/GQwaDA0ZDRkNGRkNDRkZDRkMDRkaDRkMDRkNGRkNGQ0MGhkMGg0MGQ0ZDRkNGQ0ZDRkZDRkMDRkNGQ0ZGgwNGQ0ZGQ0ZDQwaDBkaDA0ZDRkaDA0ZGQ0MGhkNDRkMGRoMDRkZDRkNGQ0ZDBoNGQwaDBoMGgwaDBoMGQ0NGRkNGQ0ZDQwAAgYNDA0MDQ0MDQ0MDQ0MDQ0MDQwNDQwNDH8ZDRkNDBkNGQ0ZGgwNGRkNGQ0MGhkMGgwNGQ0ZGQ0aDA0ZGQ0ZDQwaDBkNGQ0ZDRkNGRkNGQ0NGQ0ZDBkaDA0ZDRkZDRkNDRkMGhkMDRoMGhkMDRkaDA0ZGgwNGQ0ZGQwNGRoMGgwaDBoMGQ0ZDRkMGg0ZDRkMGgwaDA0ZGQ0ZDRkNDAAF3AAAAAA
+      - sgA8AQwNDQwNDQwNDQwNDA0NDA0NDA0MDQ0MfxkMGg0ZDQwZDRkaDBoMDRkZDRkNGQ0ZDQwaGQ0ZDQwZDRkaDA0ZDRkNGQ0ZGQ0NGQ0ZGQ0ZDBoMGgwaDBoMDRkNGRkNGQ0NGQ0ZGQ0MGgwaGQwNGRoMDRkZDQ0ZDRkZDQ0ZGQ0ZDRkNGQwaDBoMGgwaDBkNGQ0ZDRkNDRkZDRkNGQ0MAAIGDQ0MDQwNDQwNDQwNDQwNDA0NDA0NDA1+GgwaDBoMDRkNGRkNGQ0MGhkNGQwaDBoMDRkaDBoMDRkNGRkNDRkMGgwaDBkaDA0ZDRoZDBkNGQ0ZDRkNGQ0NGQ0ZGQ0ZDA0ZDRkaDA0ZDRkZDQ0ZGQ0NGRkNDBkNGhkMDRkaDBoMGgwZDRkNGQ0ZDRkNGQ0ZDRkMGgwNGRoMGQ0ZDQ0ABdwAAAAAAAAAAAAAAAA==
   - delay: 00:00:03
   alias: "Garagem casa"
 
@@ -1078,7 +1078,7 @@ tts_status_casa:
   - service: tts.amazon_polly_say
     entity_id: media_player.sala
     data_template:
-      message: <speak><amazon:auto-breaths frequency='medium'>Olá, {% if((now().hour >= 6) and (now().hour < 12))%}bom dia{% elif((now().hour >= 12) and (now().hour <= 18))%}boa tarde{% else %}boa noite{% endif %}. Agora são <say-as interpret-as='time'>{{ now().strftime('%H:%M') }}</say-as>. Aqui vão algumas informações sobre a casa. O alarme está {% if is_state('alarm_control_panel.alarme', 'disarmed') %}desarmado{% else %}armado{% endif %}, percebo que {% if is_state('device_tracker.antonio', 'home') and is_state('device_tracker.roberta', 'home') %}tanto o Antônio quanto a Roberta estão em casa{% elif is_state('device_tracker.antonio', 'home') %}apenas o Antônio está em casa{% elif is_state('device_tracker.roberta', 'home') %}apenas a roberta está em casa{% else %}nem o Antônio nem a Roberta estão em casa{% endif %}. A temperatura na sala é de {{ states.sensor.temperatura_sala.state | int }} graus, sendo que na rua está {{ states.sensor.dark_sky_summary.state | lower }} com {{ states.sensor.dark_sky_temperature.state | int }} graus. <prosody volume='x-loud'>Ah!</prosody> Não esqueçam que quinta-feira vem a Juçara cuidar das roupas! {% if is_state('binary_sensor.muvrh_movimento_203', 'on') or is_state('binary_sensor.muvrh_movimento_303', 'on')%}Também estou detectando movimento na muv rh!{% endif %} Isto é tudo!</amazon:auto-breaths></speak>
+      message: <speak><amazon:auto-breaths frequency='medium'>Olá, {% if((now().hour >= 6) and (now().hour < 12))%}bom dia{% elif((now().hour >= 12) and (now().hour <= 18))%}boa tarde{% else %}boa noite{% endif %}. Agora são <say-as interpret-as='time'>{{ now().strftime('%H:%M') }}</say-as>. Aqui vão algumas informações sobre a casa. O alarme está {% if is_state('alarm_control_panel.alarme', 'disarmed') %}desarmado{% else %}armado{% endif %}, percebo que {% if is_state('binary_sensor.antonio', 'on') and is_state('binary_sensor.roberta', 'on') %}tanto o Antônio quanto a Roberta estão em casa{% elif is_state('binary_sensor.antonio', 'on') %}apenas o Antônio está em casa{% elif is_state('binary_sensor.roberta', 'home') %}apenas a roberta está em casa{% else %}nem o Antônio nem a Roberta estão em casa{% endif %}. A temperatura na sala é de {{ states.sensor.temperatura_sala.state | int }} graus, sendo que na rua está {{ states.sensor.dark_sky_summary.state | lower }} com {{ states.sensor.dark_sky_temperature.state | int }} graus. <prosody volume='x-loud'>Ah!</prosody> Não esqueçam que quinta-feira vem a Juçara cuidar das roupas! {% if is_state('binary_sensor.muvrh_movimento_203', 'on') or is_state('binary_sensor.muvrh_movimento_303', 'on')%}Também estou detectando movimento na muv rh!{% endif %} Isto é tudo!</amazon:auto-breaths></speak>
 
 # Botões Xiaomi
 
@@ -1523,9 +1523,9 @@ tts_boa_noite:
           {%- endif -%}
         {%- endmacro -%}
         {%- macro boa_noite() -%}
-          {%- if is_state('device_tracker.antonio', 'home') and is_state('device_tracker.roberta', 'home') -%}
+          {%- if is_state('binary_sensor.antonio', 'on') and is_state('binary_sensor.roberta', 'on') -%}
             Antônio e Roberta.
-          {%- elif is_state('device_tracker.antonio', 'home') -%}
+          {%- elif is_state('binary_sensor.antonio', 'on') -%}
             Antônio.
           {%- else -%}
             Roberta.

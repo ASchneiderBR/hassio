@@ -1000,6 +1000,7 @@
         - device_tracker.camera_03
         - device_tracker.camera_04
         - device_tracker.camera_05
+        - device_tracker.camera_muvrh_operacoes
         - device_tracker.xiaomi_hub_muvrh
         - device_tracker.rfbridgemuvrh
         - device_tracker.rmpro_sala203

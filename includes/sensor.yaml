@@ -64,3 +64,14 @@
     - 'date_time'
     - 'time_date'
     - 'time_utc'
+
+- platform: "mqtt"
+  name: "Planta casa"
+  state_topic: "tele/planta-casa/SENSOR"
+  availability_topic: "tele/planta-casa/LWT"
+  payload_available: "Online"
+  payload_not_available: "Offline"
+  unit_of_measurement: "%"
+  device_class: humidity
+  value_template: '{{ ((value_json["ANALOG"]["A0"] |float /10) |int -100) *-1 }}'
+  qos: 1

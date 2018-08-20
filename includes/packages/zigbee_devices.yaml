@@ -14,6 +14,7 @@ sensor:
       - "voltage"
       - "action"
       - "duration"
+      - "linkquality"
 
   - platform: "mqtt"
     name: "Botão sala 02"
@@ -27,6 +28,7 @@ sensor:
       - "voltage"
       - "action"
       - "duration"
+      - "linkquality"
 
   - platform: "mqtt"
     name: "Botão cozinha 01"
@@ -40,6 +42,7 @@ sensor:
       - "voltage"
       - "action"
       - "duration"
+      - "linkquality"
 
   - platform: "mqtt"
     name: "Botão quarto 01"
@@ -53,6 +56,7 @@ sensor:
       - "voltage"
       - "action"
       - "duration"
+      - "linkquality"
 
   - platform: "mqtt"
     name: "Botão banheiro social 01"
@@ -66,6 +70,7 @@ sensor:
       - "voltage"
       - "action"
       - "duration"
+      - "linkquality"
 
   - platform: "mqtt"
     name: "Botão banheiro suíte 01"
@@ -79,6 +84,7 @@ sensor:
       - "voltage"
       - "action"
       - "duration"
+      - "linkquality"
 
   - platform: "mqtt"
     name: "Botão suíte 01"
@@ -92,6 +98,7 @@ sensor:
       - "voltage"
       - "action"
       - "duration"
+      - "linkquality"
 
   - platform: "mqtt"
     name: "Botão suíte 02"
@@ -105,6 +112,7 @@ sensor:
       - "voltage"
       - "action"
       - "duration"
+      - "linkquality"
 
 # Cubos
 
@@ -123,6 +131,7 @@ sensor:
       - "from_side"
       - "to_side"
       - "brightness"
+      - "linkquality"
 
   - platform: "mqtt"
     name: "Cubo suíte 01"
@@ -139,6 +148,7 @@ sensor:
       - "from_side"
       - "to_side"
       - "brightness"
+      - "linkquality"
 
 # Temperatura
 
@@ -154,6 +164,7 @@ sensor:
     json_attributes: 
       - "battery"
       - "voltage"
+      - "linkquality"
 
   - platform: "mqtt"
     name: "Umidade cozinha"
@@ -167,6 +178,7 @@ sensor:
     json_attributes: 
       - "battery"
       - "voltage"
+      - "linkquality"
 
   - platform: "mqtt"
     name: "Temperatura sala"
@@ -180,6 +192,7 @@ sensor:
     json_attributes: 
       - "battery"
       - "voltage"
+      - "linkquality"
 
   - platform: "mqtt"
     name: "Umidade sala"
@@ -193,6 +206,7 @@ sensor:
     json_attributes: 
       - "battery"
       - "voltage"
+      - "linkquality"
 
   - platform: "mqtt"
     name: "Temperatura quarto"
@@ -206,6 +220,7 @@ sensor:
     json_attributes: 
       - "battery"
       - "voltage"
+      - "linkquality"
 
   - platform: "mqtt"
     name: "Umidade quarto"
@@ -219,6 +234,7 @@ sensor:
     json_attributes: 
       - "battery"
       - "voltage"
+      - "linkquality"
 
   - platform: "mqtt"
     name: "Temperatura suite"
@@ -232,6 +248,7 @@ sensor:
     json_attributes: 
       - "battery"
       - "voltage"
+      - "linkquality"
 
   - platform: "mqtt"
     name: "Umidade suite"
@@ -245,6 +262,7 @@ sensor:
     json_attributes: 
       - "battery"
       - "voltage"
+      - "linkquality"
 
 # Movimento
 
@@ -262,6 +280,7 @@ binary_sensor:
     json_attributes: 
       - "battery"
       - "voltage"
+      - "linkquality"
 
   - platform: "mqtt"
     name: "Movimento sala"
@@ -275,6 +294,7 @@ binary_sensor:
     json_attributes: 
       - "battery"
       - "voltage"
+      - "linkquality"
 
   - platform: "mqtt"
     name: "Movimento quarto"
@@ -288,6 +308,7 @@ binary_sensor:
     json_attributes: 
       - "battery"
       - "voltage"
+      - "linkquality"
 
   - platform: "mqtt"
     name: "Movimento banheiro social"
@@ -301,6 +322,7 @@ binary_sensor:
     json_attributes: 
       - "battery"
       - "voltage"
+      - "linkquality"
 
   - platform: "mqtt"
     name: "Movimento banheiro suíte"
@@ -314,6 +336,7 @@ binary_sensor:
     json_attributes: 
       - "battery"
       - "voltage"
+      - "linkquality"
 
   - platform: "mqtt"
     name: "Movimento suíte"
@@ -327,6 +350,7 @@ binary_sensor:
     json_attributes: 
       - "battery"
       - "voltage"
+      - "linkquality"
 
 #Abertura porta
 
@@ -342,6 +366,7 @@ binary_sensor:
     json_attributes: 
       - "battery"
       - "voltage"
+      - "linkquality"
 
   - platform: "mqtt"
     name: "Box banheiro suíte"
@@ -355,6 +380,7 @@ binary_sensor:
     json_attributes: 
       - "battery"
       - "voltage"
+      - "linkquality"
 
   - platform: "mqtt"
     name: "Entrada casa"
@@ -368,3 +394,4 @@ binary_sensor:
     json_attributes: 
       - "battery"
       - "voltage"
+      - "linkquality"

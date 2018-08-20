@@ -349,7 +349,7 @@ input_number:
 
   timmer_muvrh_203_entrada:
     name: 203 - Entrada
-    initial: 15
+    initial: 10
     min: 1
     max: 20
     step: 1
@@ -367,7 +367,7 @@ input_number:
 
   timmer_muvrh_203_salaoperacoes:
     name: 203 - Operações
-    initial: 20
+    initial: 10
     min: 1
     max: 20
     step: 1
@@ -376,7 +376,7 @@ input_number:
 
   timmer_muvrh_203_nossasala:
     name: 203 - Nossa sala
-    initial: 20
+    initial: 10
     min: 1
     max: 20
     step: 1
@@ -385,7 +385,7 @@ input_number:
 
   timmer_muvrh_303_entrada:
     name: 303 - Entrada
-    initial: 20
+    initial: 15
     min: 1
     max: 20
     step: 1
@@ -394,7 +394,7 @@ input_number:
 
   timmer_muvrh_303_dinamica:
     name: 303 - Dinâmica
-    initial: 20
+    initial: 15
     min: 1
     max: 20
     step: 1

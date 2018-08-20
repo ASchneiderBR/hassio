@@ -56,6 +56,7 @@ logger: !include includes/logger.yaml
 media_player: !include includes/media_player.yaml
 mqtt: !include includes/mqtt.yaml
 notify: !include includes/notify.yaml
+panel_iframe: !include includes/panel_iframe.yaml
 recorder: !include includes/recorder.yaml
 scene: !include includes/scene.yaml
 script: !include includes/script.yaml

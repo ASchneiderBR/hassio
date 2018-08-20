@@ -1,0 +1,4 @@
+nodered:
+  title: 'Node-Red'
+  icon: 'mdi:shuffle-variant'
+  url: 'http://192.168.1.12:1880/'

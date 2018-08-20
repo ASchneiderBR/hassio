@@ -31,11 +31,11 @@
       - youtube
       - netflix
 
-- platform: cast
-  host: 192.168.1.71
-
-- platform: cast
-  host: 192.168.1.60
-
-- platform: cast
-  host: 192.168.1.91
+#- platform: cast
+#  host: 192.168.1.71
+#
+#- platform: cast
+#  host: 192.168.1.60
+#
+#- platform: cast
+#  host: 192.168.1.91

@@ -261,7 +261,7 @@ script:
       data:
         entity_id: vacuum.aspirador
         command: app_zoned_clean
-        params: [[23792,23465,24992,25165,2]]
+        params: [[23804,23551,25004,25301,2]]
     - service: script.aspirador_alerta_iniciando
 
   aspirador_zona_mesa_jantar:
@@ -363,7 +363,7 @@ script:
       data:
         entity_id: vacuum.aspirador
         command: app_zoned_clean
-        params: [[23917,25338,25367,26288,1],[18186,25332,23886,31732,1],[23572,28738,25772,31338,1],[25152,22176,25802,25326,1],[18187,21038,22587,25338,1]]
+        params: [[22795,25409,26045,26409,1],[18663,28597,25913,31297,1],[18642,21065,23542,29315,1],[23564,26428,24514,29528,1],[25138,22276,26038,25376,1]]
     - service: script.aspirador_alerta_iniciando
 
   aspirador_voltar_dock:
