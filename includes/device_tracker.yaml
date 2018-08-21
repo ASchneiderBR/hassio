@@ -1,9 +1,14 @@
-- platform: nmap_tracker
-  track_new_devices: false
-  home_interval: 5
+#- platform: nmap_tracker
+#  track_new_devices: false
+#  home_interval: 1
 #  interval_seconds: 30
-#  consider_home: 120
-#  scan_options: " -F --max-scan-delay 5 --min-rate 5 --max-retries 10 --host-timeout 20s "
-  hosts: 192.168.1.10-150
-  exclude:
-    - 192.168.1.12
+#  consider_home: 60
+#  scan_options: " -F -sA --host-timeout 10s "
+#  hosts: 192.168.1.10-150
+#  exclude:
+#    - 192.168.1.12
+
+- platform: asuswrt
+  host: 192.168.1.1
+  username: !secret asus_muvrh_user
+  password: !secret asus_muvrh_password

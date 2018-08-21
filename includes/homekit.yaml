@@ -33,8 +33,8 @@ filter:
     - input_boolean.entrar_muvrh
     - input_boolean.sair_muvrh
     - input_boolean.muvrh_desligar_tudo  
-    - binary_sensor.antonio
-    - binary_sensor.roberta
+    - device_tracker.antonio
+    - device_tracker.roberta
     - binary_sensor.casa_movimento
     - binary_sensor.muvrh_movimento
     - binary_sensor.door_window_sensor_158d0001b8671f
