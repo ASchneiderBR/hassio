@@ -82,7 +82,6 @@ exclude:
     - input_select.rf_bridge_device_select
     - input_select.rf_bridge_mode_select
     - input_select.rf_bridge_key_select
-    - input_boolean.boa_noite
     - input_boolean.bom_dia
     - input_boolean.chegar_casa
     - input_boolean.entrar_muvrh

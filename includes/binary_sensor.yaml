@@ -1,8 +1,3 @@
-- platform: ping
-  host: 192.168.1.40
-  name: "TV Quarto"
-  count: 3
-
 - platform: template
   sensors:
     antonio:
@@ -47,8 +42,8 @@
 
 - platform: mqtt
   name: "Estado TV sala operações"
-  state_topic: "tele/muv203tvoperacoes/LWT"
+  state_topic: "devices/muv203tvoperacoes/LWT"
   value_template: "{{ value }}"
-  payload_on: "Online"
-  payload_off: "Offline"
+  payload_on: "ONLINE"
+  payload_off: "OFFLINE"
   device_class: power

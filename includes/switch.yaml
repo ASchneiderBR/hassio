@@ -92,7 +92,7 @@
 
     tv_lg_quarto:
       friendly_name: "Tv do quarto"
-      value_template: "{% if is_state('binary_sensor.tv_quarto', 'on') %}on{% else %}off{% endif %}"
+      value_template: "{% if is_state('device_tracker.tv_quarto', 'not_home') %}off{% else %}on{% endif %}"
       turn_on:
         service: script.tv_lg_quarto_power_on
         entity_id: script.tv_lg_quarto_power_on
@@ -125,7 +125,7 @@
 
     tv_sala_operacoes:
       friendly_name: "Tv da sala de operações"
-      value_template: "{% if is_state('device_tracker.pi3b_tv_sala_operacoes', 'home') %}on{% else %}off{% endif %}"
+      value_template: "{% if is_state('binary_sensor.estado_tv_sala_operacoes', 'on') %}on{% else %}off{% endif %}"
       turn_on:
         service: script.tv_sala_operacoes_power_on
         entity_id: script.tv_sala_operacoes_power_on

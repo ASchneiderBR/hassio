@@ -507,6 +507,9 @@
   trigger:
     platform: mqtt
     topic: 'zigbee2mqtt/casa_xiaomi_botao_quarto_01'
+  condition:
+    condition: template
+    value_template: "{{ trigger.payload_json.click in ('single','double','triple','quadruple','many','long') }}"
   action:
     - service_template: >
         {% if trigger.payload_json.click == 'single' %}
@@ -521,12 +524,16 @@
           script.botao_xiaomi_quarto_01_many
         {% elif trigger.payload_json.click == 'long' %}
           script.botao_xiaomi_quarto_01_long
+        {% else %}
         {% endif %}
 
 - alias: Botão Xiaomi suite 01
   trigger:
     platform: mqtt
     topic: 'zigbee2mqtt/casa_xiaomi_botao_suite_01'
+  condition:
+    condition: template
+    value_template: "{{ trigger.payload_json.click in ('single','double','triple','quadruple','many','long') }}"
   action:
     - service_template: >
         {% if trigger.payload_json.click == 'single' %}
@@ -541,12 +548,16 @@
           script.botao_xiaomi_suite_01_many
         {% elif trigger.payload_json.click == 'long' %}
           script.botao_xiaomi_suite_01_long
+        {% else %}
         {% endif %}
 
 - alias: Botão Xiaomi suite 02
   trigger:
     platform: mqtt
     topic: 'zigbee2mqtt/casa_xiaomi_botao_suite_02'
+  condition:
+    condition: template
+    value_template: "{{ trigger.payload_json.click in ('single','double','triple','quadruple','many','long') }}"
   action:
     - service_template: >
         {% if trigger.payload_json.click == 'single' %}
@@ -561,12 +572,16 @@
           script.botao_xiaomi_suite_02_many
         {% elif trigger.payload_json.click == 'long' %}
           script.botao_xiaomi_suite_02_long
+        {% else %}
         {% endif %}
 
 - alias: Botão Xiaomi banheiro suite
   trigger:
     platform: mqtt
     topic: 'zigbee2mqtt/casa_xiaomi_botao_banheiro_suite_01'
+  condition:
+    condition: template
+    value_template: "{{ trigger.payload_json.click in ('single','double','triple','quadruple','many','long') }}"
   action:
     - service_template: >
         {% if trigger.payload_json.click == 'single' %}
@@ -585,6 +600,7 @@
           {% else %}
             homeassistant.turn_off
           {% endif %}
+        {% else %}
         {% endif %}
       data_template:
         entity_id: >
@@ -596,6 +612,9 @@
   trigger:
     platform: mqtt
     topic: 'zigbee2mqtt/casa_xiaomi_botao_banheiro_social_01'
+  condition:
+    condition: template
+    value_template: "{{ trigger.payload_json.click in ('single','double','triple','quadruple','many','long') }}"
   action:
     - service_template: >
         {% if trigger.payload_json.click == 'single' %}
@@ -614,6 +633,7 @@
           {% else %}
             homeassistant.turn_off
           {% endif %}
+        {% else %}
         {% endif %}
       data_template:
         entity_id: >
@@ -625,6 +645,9 @@
   trigger:
     platform: mqtt
     topic: 'zigbee2mqtt/casa_xiaomi_botao_sala_01'
+  condition:
+    condition: template
+    value_template: "{{ trigger.payload_json.click in ('single','double','triple','quadruple','many','long') }}"
   action:
     - service_template: >
         {% if trigger.payload_json.click == 'single' %}
@@ -639,12 +662,16 @@
           script.botao_xiaomi_sala_01_many
         {% elif trigger.payload_json.click == 'long' %}
           script.botao_xiaomi_sala_01_long
+        {% else %}
         {% endif %}
 
 - alias: Botão Xiaomi sala 02
   trigger:
     platform: mqtt
     topic: 'zigbee2mqtt/casa_xiaomi_botao_sala_02'
+  condition:
+    condition: template
+    value_template: "{{ trigger.payload_json.click in ('single','double','triple','quadruple','many','long') }}"
   action:
     - service_template: >
         {% if trigger.payload_json.click == 'single' %}
@@ -659,12 +686,16 @@
           script.botao_xiaomi_sala_02_many
         {% elif trigger.payload_json.click == 'long' %}
           script.botao_xiaomi_sala_02_long
+        {% else %}
         {% endif %}
 
 - alias: Botão Xiaomi cozinha
   trigger:
     platform: mqtt
     topic: 'zigbee2mqtt/casa_xiaomi_botao_cozinha_01'
+  condition:
+    condition: template
+    value_template: "{{ trigger.payload_json.click in ('single','double','triple','quadruple','many','long') }}"
   action:
     - service_template: >
         {% if trigger.payload_json.click == 'single' %}
@@ -679,6 +710,7 @@
           script.botao_xiaomi_cozinha_01_many
         {% elif trigger.payload_json.click == 'long' %}
           script.botao_xiaomi_cozinha_01_long
+        {% else %}
         {% endif %}
 
 - alias: Solicitar status celulares
@@ -804,6 +836,9 @@
   trigger:
     platform: mqtt
     topic: 'zigbee2mqtt/casa_xiaomi_cubo_sala_01'
+  condition:
+    condition: template
+    value_template: "{{ trigger.payload_json.action in ('flip90','flip180','tap','shake','fall','rotate_right','rotate_left') }}"
   action:
     - service_template: >
         {% if trigger.payload_json.action == 'flip90' %}
@@ -820,12 +855,16 @@
           script.home_theater_sala_volup_x3
         {% elif trigger.payload_json.action == 'rotate_left' %}
           script.home_theater_sala_voldown_x3
+        {% else %}
         {% endif %}
 
 - alias: Cubo suíte
   trigger:
     platform: mqtt
     topic: 'zigbee2mqtt/casa_xiaomi_cubo_suite_01'
+  condition:
+    condition: template
+    value_template: "{{ trigger.payload_json.action in ('flip90','flip180','tap','shake','fall','rotate_right','rotate_left') }}"
   action:
     - service_template: >
         {% if trigger.payload_json.action == 'flip90' %}
@@ -842,6 +881,7 @@
           script.cubo_suite_tv_volup
         {% elif trigger.payload_json.action == 'rotate_left' %}
           script.cubo_suite_tv_voldown
+        {% else %}
         {% endif %}
 
 - alias: Alerta - Bateria fraca
@@ -1008,9 +1048,20 @@
         - device_tracker.rmminioperacoes
         - device_tracker.rmminisala303
         - device_tracker.chromecast_sala303
+        - device_tracker.orangepi_pihole
       to: 'not_home'
       for:
         minutes: 15
+    - platform: state
+      entity_id:
+        - device_tracker.orangepi_pihole
+      to: 'not_home'
+      for:
+        minutes: 1
+    - platform: state
+      entity_id:
+        - sensor.estado_do_bridge
+      to: 'offline'
   action:
     - service: notify.ios_iphone_de_antonio
       data_template:

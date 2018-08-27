@@ -513,7 +513,7 @@ muvrh:
 
 dispositivos_muvrh:
   entities:
-  - device_tracker.pi3b_tv_sala_operacoes
+  - binary_sensor.estado_tv_sala_operacoes
   - device_tracker.xiaomi_hub_muvrh
   - device_tracker.chromecast_sala303
   - device_tracker.rfbridgemuvrh
