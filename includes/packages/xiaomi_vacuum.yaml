@@ -46,14 +46,14 @@ switch:
     switches:
       aspirador:
         friendly_name: "Aspirador"
-        value_template: "{{ states.vacuum.aspirador.state }}"
+        value_template: "{% if is_state('vacuum.aspirador', 'on') %}on{% else %}off{% endif %}"
         turn_on:
           service: input_select.select_option
           entity_id: input_select.zonas_de_aspiracao
           data_template:
             option: "Casa toda"
         turn_off:
-          service: vacuum.turn_off
+          service: vacuum.return_to_dock
           data:
             entity_id: vacuum.aspirador
         icon_template: mdi:robot-vacuum
@@ -369,7 +369,7 @@ script:
   aspirador_voltar_dock:
     alias: Aspirador casa - Parar e voltar
     sequence:
-    - service: vacuum.turn_off
+    - service: vacuum.return_to_dock
       entity_id: vacuum.aspirador
 
 # Alertas

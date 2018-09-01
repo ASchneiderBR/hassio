@@ -1261,6 +1261,7 @@ botao_xiaomi_banheiro_suite_01_long:
     state: 'off'
   - wait_template: "{{is_state('binary_sensor.box_banheiro_suite', 'off')}}"
     timeout: 00:03:00
+    continue_on_timeout: false
   - service: switch.turn_on
     entity_id: switch.chuveirosuite
   - wait_template: "{{is_state('binary_sensor.box_banheiro_suite', 'on')}}"
@@ -1296,6 +1297,7 @@ botao_xiaomi_banheiro_social_01_long:
     state: 'off'
   - wait_template: "{{is_state('binary_sensor.box_banheiro_social', 'off')}}"
     timeout: 00:03:00
+    continue_on_timeout: false
   - service: switch.turn_on
     entity_id: switch.chuveirosocial
   - wait_template: "{{is_state('binary_sensor.box_banheiro_social', 'on')}}"
@@ -2155,6 +2157,7 @@ speed_test:
   - service: sensor.update_fastdotcom
   - wait_template: "{% if as_timestamp(now()) | int - as_timestamp(states.sensor.fastcom_download.last_updated) | int <= 5 %}True{% else %}False{% endif %}"
     timeout: 00:02:00
+    continue_on_timeout: false
   - service: notify.ios_iphone_de_antonio
     data_template:
       title: "Sistema"

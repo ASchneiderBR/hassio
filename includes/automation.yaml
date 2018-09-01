@@ -275,6 +275,7 @@
       entity_id: input_boolean.chegar_casa
     - wait_template: "{{is_state('binary_sensor.entrada_casa', 'on')}}"
       timeout: 00:09:00
+      continue_on_timeout: false
     - delay: 00:00:20
     - service_template: >
         {% if is_state('switch.tv_lg_sala', 'off') %}
@@ -766,6 +767,7 @@
   action:
     - wait_template: "{{is_state('binary_sensor.motion_sensor_158d0001e420d0', 'on')}}"
       timeout: 00:05:00
+      continue_on_timeout: false
     - service: light.turn_on
       entity_id: light.muv203operacoes
     - delay: 00:00:03
