@@ -17,6 +17,26 @@
       friendly_name: 'Movimento casa'
       device_class: occupancy
 
+    energia_casa:
+      value_template: "{{ is_state('group.energia_casa' , 'on') }}"
+      friendly_name: 'Energia casa'
+      device_class: power
+
+    ar_suite:
+      value_template: "{{ states.climate.ar_condicionado_da_suite.state != 'off' }}"
+      friendly_name: 'Ar condicionado da suíte'
+      device_class: power
+
+    ar_sala:
+      value_template: "{{ states.climate.ar_condicionado_da_sala.state != 'off' }}"
+      friendly_name: 'Ar condicionado da sala'
+      device_class: power
+
+    ar_quarto:
+      value_template: "{{ states.climate.ar_condicionado_do_quarto.state != 'off' }}"
+      friendly_name: 'Ar condicionado da quarto'
+      device_class: power
+
     muvrh_movimento_203:
       value_template: "{{ is_state('group.muvrh_movimento_203' , 'on') }}"
       friendly_name: 'Movimento sala 203'

@@ -706,3 +706,36 @@ temporizadores_muvrh:
   - input_select.tempo_muvrh_303_banheiro
   name: Temporizadores Muvrh
   view: false
+
+energia_casa:
+  control: hidden
+  entities:
+  - binary_sensor.ar_suite
+  - binary_sensor.ar_sala
+  - binary_sensor.ar_quarto
+  - switch.chuveirosuite
+  - switch.toalheiro
+  - switch.tv_lg_sala
+  - switch.tv_lg_suite
+  - light.area_servico
+  - light.suite_banheiro_principal
+  - light.suite_banheiro_espelho
+  - light.corredor
+  - light.cozinha
+  - light.entrada
+  - light.ledchaocozinha
+  - light.ledcozinhabalcao
+  - light.ledquartotv
+  - light.ledsaladesktop
+  - light.ledsalatv
+  - light.ledsuitecama
+  - light.ledsuitetv
+  - light.mesa_jantar
+  - light.quarto
+  - light.ledquartotv
+  - light.banheiro_social_principal
+  - light.banheiro_social_espelho
+  - switch.chuveirosocial
+  - switch.tv_lg_quarto
+  name: Energia casa
+  view: false

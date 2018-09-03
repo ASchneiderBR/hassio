@@ -5,30 +5,34 @@ sensor:
       xiaomi_status:
         entity_id: vacuum.aspirador
         value_template: >
-            {% if states.vacuum.aspirador.attributes.status == "Charging" %}
+            {% if states.vacuum.aspirador.state == "charging" %}
               Carregando
-            {% elif states.vacuum.aspirador.attributes.status == "Cleaning" %}
+            {% elif states.vacuum.aspirador.state == "cleaning" %}
               Limpando
-            {% elif states.vacuum.aspirador.attributes.status == "Returning home" %}
+            {% elif states.vacuum.aspirador.state == "returning home" %}
               Voltando para a base
-            {% elif states.vacuum.aspirador.attributes.status == "Zoned cleaning" %}
+            {% elif states.vacuum.aspirador.state == "returning" %}
+              Voltando para a base
+            {% elif states.vacuum.aspirador.state == "zoned cleaning" %}
               Limpando
-            {% elif states.vacuum.aspirador.attributes.status == "Manual mode" %}
+            {% elif states.vacuum.aspirador.state == "manual mode" %}
               Modo manual
-            {% elif states.vacuum.aspirador.attributes.status == "Going to target" %}
+            {% elif states.vacuum.aspirador.state == "going to target" %}
               Indo até o local
-            {% elif states.vacuum.aspirador.attributes.status == "Charger disconnected" %}
+            {% elif states.vacuum.aspirador.state == "charger disconnected" %}
               Parado
-            {% elif states.vacuum.aspirador.attributes.status == "Error" %}
+            {% elif states.vacuum.aspirador.state == "error" %}
               Erro
-            {% elif states.vacuum.aspirador.attributes.status == "Unknown" %}
+            {% elif states.vacuum.aspirador.state == "unknown" %}
               Desconhecido
-            {% elif states.vacuum.aspirador.attributes.status == "Idle" %}
+            {% elif states.vacuum.aspirador.state == "idle" %}
               Parado
-            {% elif states.vacuum.aspirador.attributes.status == "Paused" %}
+            {% elif states.vacuum.aspirador.state == "paused" %}
               Pausado
+            {% elif states.vacuum.aspirador.state == "docked" %}
+              Na base
             {% else %}
-              {{ states.vacuum.aspirador.attributes.status }}
+              {{ states.vacuum.aspirador.state }}
             {%- endif %}
         friendly_name: 'Estado do aspirador'
         icon_template: mdi:altimeter
@@ -46,7 +50,7 @@ switch:
     switches:
       aspirador:
         friendly_name: "Aspirador"
-        value_template: "{% if is_state('vacuum.aspirador', 'on') %}on{% else %}off{% endif %}"
+        value_template: "{% if is_state('vacuum.aspirador', 'cleaning') %}on{% else %}off{% endif %}"
         turn_on:
           service: input_select.select_option
           entity_id: input_select.zonas_de_aspiracao
@@ -175,16 +179,14 @@ automation:
     trigger:
       - platform: state
         entity_id: sensor.xiaomi_status
-        from: 'Limpando'
         to: 'Parado'
         for:
           hours: 0
           minutes: 0
-          seconds: 10
+          seconds: 15
       - platform: state
         entity_id: sensor.xiaomi_status
-        from: 'Voltando para a base'
-        to: 'Carregando'
+        to: 'Na base'
       - platform: state
         entity_id: sensor.xiaomi_status
         to: 'Erro'
@@ -192,7 +194,7 @@ automation:
       - service_template: >
           {% if trigger.to_state.state == 'Parado' %}
             script.aspirador_alerta_parado
-          {% elif trigger.to_state.state == 'Carregando' %}
+          {% elif trigger.to_state.state == 'Na base' %}
             script.aspirador_alerta_carregando
           {% elif trigger.to_state.state == 'Erro' %}
             script.aspirador_alerta_erro

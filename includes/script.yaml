@@ -1714,7 +1714,7 @@ tts_bom_dia:
           ] -%}
           {{ dia|random }}
         {%- endmacro -%}
-        <speak><amazon:auto-breaths frequency='medium'>Bom dia! Agora são <say-as interpret-as='time'>{{ now().strftime('%H:%M') }}</say-as> de {% if now().strftime('%A') == 'Monday' -%}segunda-feira{%- elif now().strftime('%A') == 'Tuesday' -%}terça-feira{%- elif now().strftime('%A') == 'Wednesday'-%}quarta-feira{%- elif now().strftime('%A') == 'Thursday' -%}quinta-feira{%- elif now().strftime('%A') == 'Friday' -%}sexta-feira{%- elif now().strftime('%A') == 'Saturday' -%}sábado{%- elif now().strftime('%A') == 'Sunday' -%}domingo{%- endif %}, dia {{ now().strftime('%d') }} de {% if now().strftime('%B') == 'January' -%}janeiro{%- elif now().strftime('%B') == 'February' -%}fevereiro{%- elif now().strftime('%B') == 'March'-%}março{%- elif now().strftime('%B') == 'April' -%}abril{%- elif now().strftime('%B') == 'May' -%}maio{%- elif now().strftime('%B') == 'June' -%}junho{%- elif now().strftime('%B') == 'July' -%}julho{%- elif now().strftime('%B') == 'August' -%}agosto{%- elif now().strftime('%B') == 'September' -%}setembro{%- elif now().strftime('%B') == 'October' -%}outubro{%- elif now().strftime('%B') == 'November' -%}novembro{%- elif now().strftime('%B') == 'December' -%}dezembro{%- endif -%}. Neste momento, predomina {{ states.sensor.dark_sky_summary.state | lower }} com {{ states.sensor.dark_sky_temperature.state | int }} graus. A temperatura máxima hoje será de {{ states.sensor.dark_sky_daytime_high_temperature.state | int }} graus. Estou abrindo a persiana e ligando o toalheiro. O ar condicionado foi desligado. Vou deixar a televisão ligada para vocês. <prosody rate="90%">{{ dia() }}</prosody></amazon:auto-breaths></speak>
+        <speak><amazon:auto-breaths frequency='medium'>Bom dia! Agora são <say-as interpret-as='time'>{{ now().strftime('%H:%M') }}</say-as> de {% if now().strftime('%A') == 'Monday' -%}segunda-feira{%- elif now().strftime('%A') == 'Tuesday' -%}terça-feira{%- elif now().strftime('%A') == 'Wednesday'-%}quarta-feira{%- elif now().strftime('%A') == 'Thursday' -%}quinta-feira{%- elif now().strftime('%A') == 'Friday' -%}sexta-feira{%- elif now().strftime('%A') == 'Saturday' -%}sábado{%- elif now().strftime('%A') == 'Sunday' -%}domingo{%- endif %}, dia {{ now().strftime('%d') }} de {% if now().strftime('%B') == 'January' -%}janeiro{%- elif now().strftime('%B') == 'February' -%}fevereiro{%- elif now().strftime('%B') == 'March'-%}março{%- elif now().strftime('%B') == 'April' -%}abril{%- elif now().strftime('%B') == 'May' -%}maio{%- elif now().strftime('%B') == 'June' -%}junho{%- elif now().strftime('%B') == 'July' -%}julho{%- elif now().strftime('%B') == 'August' -%}agosto{%- elif now().strftime('%B') == 'September' -%}setembro{%- elif now().strftime('%B') == 'October' -%}outubro{%- elif now().strftime('%B') == 'November' -%}novembro{%- elif now().strftime('%B') == 'December' -%}dezembro{%- endif -%}. Neste momento, predomina {{ states.sensor.dark_sky_summary.state | lower }} com {{ states.sensor.dark_sky_temperature.state | int }} graus. A temperatura máxima hoje será de {{ states.sensor.dark_sky_daytime_high_temperature.state | int }} graus. Estou ligando o toalheiro e apagando o ar condicionado. Vou deixar a televisão ligada para vocês. <prosody rate="90%">{{ dia() }}</prosody></amazon:auto-breaths></speak>
   - wait_template: "{{is_state('media_player.suite', 'playing')}}"
   - wait_template: "{{is_state('media_player.suite', 'idle')}}"
 
@@ -2080,7 +2080,7 @@ testes_ios:
           category: "TESTES"
 
 casa_desligar_tudo_noite:
-  alias: "Desligar tudo em casa"
+  alias: "Desligar tudo em casa - boa noite"
   sequence:
   - service: cover.close_cover
     entity_id: cover.persiana_suite
@@ -2143,6 +2143,52 @@ casa_desligar_tudo_noite:
     entity_id:
       - switch.chuveirosocial
       - switch.tv_lg_quarto
+
+casa_desligar_tudo:
+  alias: "Desligar tudo em casa"
+  sequence:
+  - service: climate.set_operation_mode
+    data:
+      operation_mode: 'off'
+      entity_id: climate.ar_condicionado_da_suite
+  - service: climate.set_operation_mode
+    data:
+      operation_mode: 'off'
+      entity_id: climate.ar_condicionado_do_quarto
+  - service: climate.set_operation_mode
+    data:
+      operation_mode: 'off'
+      entity_id: climate.ar_condicionado_da_sala
+  - service: switch.turn_off
+    entity_id:
+      - switch.chuveirosuite
+      - switch.toalheiro
+      - switch.tv_lg_sala
+      - switch.tv_lg_suite
+      - switch.chuveirosocial
+      - switch.tv_lg_quarto
+  - service: light.turn_off
+    entity_id:
+      - light.area_servico
+      - light.suite_banheiro_principal
+      - light.suite_banheiro_espelho
+      - light.corredor
+      - light.cozinha
+      - light.entrada
+      - light.ledchaocozinha
+      - light.ledcozinhabalcao
+      - light.ledquartotv
+      - light.ledsaladesktop
+      - light.ledsalatv
+      - light.ledsuitecama
+      - light.ledsuitetv
+      - light.mesa_jantar
+      - light.quarto
+      - light.ledquartotv
+      - light.banheiro_social_principal
+      - light.banheiro_social_espelho
+  - service: alarm_control_panel.disarm
+    entity_id: alarm_control_panel.alarme
 
 speed_test:
   alias: Teste de velocidade da internet

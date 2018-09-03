@@ -499,7 +499,7 @@
         message: "O CPU do Pi3 está muito alto por mais de 5 minutos. No momento está a {{ states.sensor.cpu_used.state | int }}%."
     - service: persistent_notification.create
       data_template:
-        message: "Ficou com o CPU alto por mais de 5 minitos às ({{now().strftime('%H:%M')}})."
+        message: "Ficou com o CPU alto por mais de 5 minitos às {{now().strftime('%H:%M')}}."
         title: "Alerta CPU alto"
 
 # Botões Xiaomi#
@@ -1050,7 +1050,6 @@
         - device_tracker.rmminioperacoes
         - device_tracker.rmminisala303
         - device_tracker.chromecast_sala303
-        - device_tracker.orangepi_pihole
       to: 'not_home'
       for:
         minutes: 15
@@ -1064,6 +1063,8 @@
       entity_id:
         - sensor.estado_do_bridge
       to: 'offline'
+      for:
+        minutes: 1
   action:
     - service: notify.ios_iphone_de_antonio
       data_template:
@@ -1071,7 +1072,7 @@
         message: "O dispositivo {{ trigger.to_state.name }} ficou indisponível."
     - service: persistent_notification.create
       data_template:
-        message: "O dispositivo {{ trigger.to_state.name }} ficou indisponível às ({{now().strftime('%H:%M')}})."
+        message: "O dispositivo {{ trigger.to_state.name }} ficou indisponível às {{now().strftime('%H:%M')}}."
         title: "Dispositivo indisponível"
 
 - alias: MuvRH 303 - Luz do corredor e LED

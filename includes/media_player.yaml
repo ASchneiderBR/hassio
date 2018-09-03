@@ -3,7 +3,7 @@
   mac: 3C:CD:93:19:74:3D
   name: "TV Sala"
   filename: webostv2.conf
-  timeout: 8
+  timeout: 5
   customize:
     sources:
       - hdmi1
@@ -18,7 +18,7 @@
   mac: 3C:CD:93:85:F0:2F
   name: "TV Suíte"
   filename: webostv1.conf
-  timeout: 8
+  timeout: 5
   customize:
     sources:
       - hdmi1
