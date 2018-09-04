@@ -110,8 +110,8 @@
       entity_id: automation.alarme__aviso_alarme_ativado
     - service: persistent_notification.create
       data:
-        message: "Hassio iniciado com sucesso às {{now().strftime('%H:%M')}}"
-        title: "Sistema"
+        title: "Alerta Sistema ({{now().strftime('%H:%M')}})"
+        message: "Hassio iniciado com sucesso."
     - service: media_player.volume_set
       entity_id: media_player.sala
       data:
@@ -499,8 +499,8 @@
         message: "O CPU do Pi3 está muito alto por mais de 5 minutos. No momento está a {{ states.sensor.cpu_used.state | int }}%."
     - service: persistent_notification.create
       data_template:
-        message: "Ficou com o CPU alto por mais de 5 minitos às {{now().strftime('%H:%M')}}."
-        title: "Alerta CPU alto"
+        title: "Alerta Sistema ({{now().strftime('%H:%M')}})"
+        message: "Sistema ficou com o CPU alto por mais de 5 minitos às {{now().strftime('%H:%M')}}."
 
 # Botões Xiaomi#
 
@@ -765,6 +765,10 @@
           minutes: 0
           seconds: 0
   action:
+    - service: persistent_notification.create
+      data:
+        title: "Alerta MuvRH ({{now().strftime('%H:%M')}})"
+        message: "Chegou alguém na sala 203."
     - wait_template: "{{is_state('binary_sensor.motion_sensor_158d0001e420d0', 'on')}}"
       timeout: 00:05:00
       continue_on_timeout: false
@@ -903,8 +907,8 @@
   action:
     - service: persistent_notification.create
       data_template:
+        title: "Alerta Dispositivo({{now().strftime('%H:%M')}})"
         message: "Bateria muito fraca do dispositivo {% for state in states if state.domain in ['switch','binary_sensor','sensor'] and state.attributes.battery_level is defined and state.attributes.battery_level < 10 -%}{%- if loop.first %}{% elif loop.last %} e {% else %}, {% endif -%}{{ state.name }} ({{ state.attributes.battery_level |int }}%){%- else -%}Nenhum{%- endfor %}"
-        title: "Bateria fraca"
         notification_id: "bateria"
     - service: notify.ios_iphone_de_antonio
       data_template:
@@ -1072,8 +1076,8 @@
         message: "O dispositivo {{ trigger.to_state.name }} ficou indisponível."
     - service: persistent_notification.create
       data_template:
+        title: "Alerta Dispositivo ({{now().strftime('%H:%M')}})"
         message: "O dispositivo {{ trigger.to_state.name }} ficou indisponível às {{now().strftime('%H:%M')}}."
-        title: "Dispositivo indisponível"
 
 - alias: MuvRH 303 - Luz do corredor e LED
   trigger:

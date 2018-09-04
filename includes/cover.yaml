@@ -2,7 +2,7 @@
   covers:
     persiana_suite:
       friendly_name: "Persiana da suíte"
-      optimistic: true
+#      optimistic: true
       open_cover:
         service: script.persiana_suite_abrir
       close_cover:
@@ -12,7 +12,7 @@
 
     persiana_quarto:
       friendly_name: "Persiana do quarto"
-      optimistic: true
+#      optimistic: true
       open_cover:
         service: script.persiana_quarto_abrir
       close_cover:
@@ -22,7 +22,7 @@
 
     persiana_sala:
       friendly_name: "Persiana da sala"
-      optimistic: true
+#      optimistic: true
       open_cover:
         service: script.persiana_sala_abrir
       close_cover:

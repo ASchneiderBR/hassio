@@ -732,9 +732,10 @@ energia_casa:
   - light.ledsuitetv
   - light.mesa_jantar
   - light.quarto
-  - light.ledquartotv
+  - light.sala_principal
   - light.banheiro_social_principal
   - light.banheiro_social_espelho
+  - light.suite_principal
   - switch.chuveirosocial
   - switch.tv_lg_quarto
   name: Energia casa

@@ -2,41 +2,6 @@ sensor:
 
   - platform: template
     sensors:
-      xiaomi_status:
-        entity_id: vacuum.aspirador
-        value_template: >
-            {% if states.vacuum.aspirador.state == "charging" %}
-              Carregando
-            {% elif states.vacuum.aspirador.state == "cleaning" %}
-              Limpando
-            {% elif states.vacuum.aspirador.state == "returning home" %}
-              Voltando para a base
-            {% elif states.vacuum.aspirador.state == "returning" %}
-              Voltando para a base
-            {% elif states.vacuum.aspirador.state == "zoned cleaning" %}
-              Limpando
-            {% elif states.vacuum.aspirador.state == "manual mode" %}
-              Modo manual
-            {% elif states.vacuum.aspirador.state == "going to target" %}
-              Indo até o local
-            {% elif states.vacuum.aspirador.state == "charger disconnected" %}
-              Parado
-            {% elif states.vacuum.aspirador.state == "error" %}
-              Erro
-            {% elif states.vacuum.aspirador.state == "unknown" %}
-              Desconhecido
-            {% elif states.vacuum.aspirador.state == "idle" %}
-              Parado
-            {% elif states.vacuum.aspirador.state == "paused" %}
-              Pausado
-            {% elif states.vacuum.aspirador.state == "docked" %}
-              Na base
-            {% else %}
-              {{ states.vacuum.aspirador.state }}
-            {%- endif %}
-        friendly_name: 'Estado do aspirador'
-        icon_template: mdi:altimeter
-
       xiaomi_battery_level:
         entity_id: vacuum.aspirador
         friendly_name: 'Bateria do aspirador'
@@ -61,7 +26,6 @@ switch:
           data:
             entity_id: vacuum.aspirador
         icon_template: mdi:robot-vacuum
-
 
 #input_number:
 #
@@ -163,8 +127,7 @@ automation:
           {% else %}
           {% endif %}
       - delay: 00:01:00
-      - wait_template: "{{is_state('sensor.xiaomi_status', 'Carregando')}}"
-      - delay: 00:00:03
+      - wait_template: "{{is_state('vacuum.aspirador', 'docked')}}"
       - service: input_select.select_option
         entity_id: input_select.zonas_de_aspiracao
         data_template:
@@ -178,25 +141,25 @@ automation:
     initial_state: True
     trigger:
       - platform: state
-        entity_id: sensor.xiaomi_status
-        to: 'Parado'
+        entity_id: vacuum.aspirador
+        to: 'paused'
         for:
           hours: 0
           minutes: 0
-          seconds: 15
+          seconds: 30
       - platform: state
-        entity_id: sensor.xiaomi_status
-        to: 'Na base'
+        entity_id: vacuum.aspirador
+        to: 'docked'
       - platform: state
-        entity_id: sensor.xiaomi_status
-        to: 'Erro'
+        entity_id: vacuum.aspirador
+        to: 'error'
     action:
       - service_template: >
-          {% if trigger.to_state.state == 'Parado' %}
+          {% if trigger.to_state.state == 'paused' %}
             script.aspirador_alerta_parado
-          {% elif trigger.to_state.state == 'Na base' %}
+          {% elif trigger.to_state.state == 'docked' %}
             script.aspirador_alerta_carregando
-          {% elif trigger.to_state.state == 'Erro' %}
+          {% elif trigger.to_state.state == 'error' %}
             script.aspirador_alerta_erro
           {% endif %}
 
@@ -383,6 +346,10 @@ script:
       data_template:
         title: "Alerta Casa"
         message: "O aspirador iniciou a limpeza na zona: {{ states.input_select.zonas_de_aspiracao.state | lower }}."
+    - service: persistent_notification.create
+      data:
+        title: "Alerta ({{now().strftime('%H:%M')}})"
+        message: "O aspirador iniciou a limpeza na zona: {{ states.input_select.zonas_de_aspiracao.state | lower }}"
     - condition: state
       entity_id: input_boolean.boa_noite
       state: 'off'
@@ -399,7 +366,11 @@ script:
     - service: notify.TUDO
       data_template:
         title: "Alerta Casa"
-        message: "O aspirador parou. Estava limpando a zona: {{ states.input_select.zonas_de_aspiracao.state | lower }}. {% if 'Error' in states.vacuum.aspirador.attributes %}Código de erro: {{ states.vacuum.aspirador.attributes.Error }}.{% else %}{% endif %}"
+        message: "O aspirador parou. Estava limpando a zona: {{ states.input_select.zonas_de_aspiracao.state | lower }}. {% if 'error' in states.vacuum.aspirador.state %}Código de erro: {{ states.vacuum.aspirador.attributes.error }}.{% else %}{% endif %}"
+    - service: persistent_notification.create
+      data:
+        title: "Alerta ({{now().strftime('%H:%M')}})"
+        message: "O aspirador parou. Estava limpando a zona: {{ states.input_select.zonas_de_aspiracao.state | lower }}. {% if 'error' in states.vacuum.aspirador.state %}Código de erro: {{ states.vacuum.aspirador.attributes.error }}.{% else %}{% endif %}"
     - condition: state
       entity_id: input_boolean.boa_noite
       state: 'off'
@@ -408,7 +379,7 @@ script:
         - media_player.sala
         - media_player.suite
       data_template:
-        message: <speak><amazon:auto-breaths frequency='medium'>O aspirador parou limpando a zona {{ states.input_select.zonas_de_aspiracao.state | lower }}. {% if 'Error' in states.vacuum.aspirador.attributes %}Código de erro é {{ states.vacuum.aspirador.attributes.Error }}.{% else %}{% endif %}</amazon:auto-breaths></speak>
+        message: <speak><amazon:auto-breaths frequency='medium'>O aspirador parou limpando a zona {{ states.input_select.zonas_de_aspiracao.state | lower }}. {% if 'error' in states.vacuum.aspirador.state %}Código de erro é {{ states.vacuum.aspirador.attributes.error }}.{% else %}{% endif %}</amazon:auto-breaths></speak>
 
   aspirador_alerta_carregando:
     alias: Aspirador casa - Voltou para casa
@@ -418,6 +389,10 @@ script:
     - service: notify.TUDO
       data_template:
         title: "Alerta Casa"
+        message: "O aspirador terminou seu trabalho na zona {{ states.input_select.zonas_de_aspiracao.state | lower }}. Limpou cerca de {{ states.vacuum.aspirador.attributes.cleaned_area }} metros quadrados durante {{ states.vacuum.aspirador.attributes.cleaning_time }} minutos e está carregando no momento."
+    - service: persistent_notification.create
+      data:
+        title: "Alerta ({{now().strftime('%H:%M')}})"
         message: "O aspirador terminou seu trabalho na zona {{ states.input_select.zonas_de_aspiracao.state | lower }}. Limpou cerca de {{ states.vacuum.aspirador.attributes.cleaned_area }} metros quadrados durante {{ states.vacuum.aspirador.attributes.cleaning_time }} minutos e está carregando no momento."
     - condition: state
       entity_id: input_boolean.boa_noite
@@ -435,6 +410,10 @@ script:
     - service: notify.TUDO
       data_template:
         title: "Alerta Casa"
+        message: "O aspirador está parado e acusou erro limpando a zona {{ states.input_select.zonas_de_aspiracao.state | lower }}."
+    - service: persistent_notification.create
+      data:
+        title: "Alerta ({{now().strftime('%H:%M')}})"
         message: "O aspirador está parado e acusou erro limpando a zona {{ states.input_select.zonas_de_aspiracao.state | lower }}."
     - condition: state
       entity_id: input_boolean.boa_noite

@@ -1,4 +1,5 @@
 auto_start: False
+ip_address: 192.168.1.12
 
 entity_config:
   switch.toalheiro:

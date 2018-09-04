@@ -1494,6 +1494,10 @@ tts_fechando_persiana_sala:
 tts_boa_noite:
   alias: 'Texto para automação boa noite'
   sequence:
+  - service: persistent_notification.create
+    data:
+      title: "Alerta Casa ({{now().strftime('%H:%M')}})"
+      message: "Boa noite!"
   - service: media_player.volume_set
     entity_id: media_player.suite
     data:
@@ -1638,6 +1642,10 @@ tts_boa_noite:
 tts_bom_dia:
   alias: "Texto para automação bom dia"
   sequence:
+  - service: persistent_notification.create
+    data:
+      title: "Alerta Casa ({{now().strftime('%H:%M')}})"
+      message: "Bom dia!"
   - service: media_player.volume_set
     entity_id: media_player.suite
     data:
@@ -2184,10 +2192,11 @@ casa_desligar_tudo:
       - light.ledsuitetv
       - light.mesa_jantar
       - light.quarto
-      - light.ledquartotv
+      - light.sala_principal
       - light.banheiro_social_principal
       - light.banheiro_social_espelho
-  - service: alarm_control_panel.disarm
+      - light.suite_principal
+  - service: alarm_control_panel.alarm_disarm
     entity_id: alarm_control_panel.alarme
 
 speed_test:
