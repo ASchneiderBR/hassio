@@ -120,6 +120,13 @@ exclude:
     - sensor.time_utc
     - sensor.date
     - switch.energia_casa
+    - light.tudo_banheiro_social
+    - light.tudo_banheiro_suite
+    - device_tracker.roteador_casa
+    - device_tracker.roteador_muvrh
+    - input_boolean.muvrh_desligar_tudo
+    - light.todas_as_luzes_cozinha
+    - light.todas_as_luzes_suite
 include:
   entities:
     - group.pessoas

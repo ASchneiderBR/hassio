@@ -9,6 +9,10 @@ resources:
     type: js
   - url: /local/lovelace/custom_ui/weather-card.js?3
     type: js
+  - url: /local/lovelace/custom_ui/button-card.js?2
+    type: module
+  - url: /local/lovelace/custom_ui/kiosk.js
+    type: js
 
 title: Casa Antonio e Roberta
 views:
@@ -61,6 +65,13 @@ views:
               - script.speed_test
 
           - type: entities
+            title: Plantas
+            show_header_toggle: no
+            entities:
+              - entity: sensor.planta_casa
+                name: Umidade planta da sala
+
+          - type: entities
             title: ZigBee
             show_header_toggle: no
             entities:
@@ -82,6 +93,34 @@ views:
                   - sensor.dark_sky_precip_probability
               - type: weather-forecast
                 entity: weather.tempo
+
+              - type: entities
+                title: Aspirador
+                show_header_toggle: no
+                entities:
+                  - entity: vacuum.aspirador
+                    secondary_info: last-changed
+                  - sensor.xiaomi_battery_level
+                  - input_select.estados_de_succao
+                  - input_select.zonas_de_aspiracao
+                  - type: custom:entity-attributes-card
+                    entity: vacuum.aspirador
+                    heading_name: Status
+                    heading_state: Valor
+                    filter:
+                      include:
+                        - key: vacuum.aspirador.cleaning_time
+                          name: Tempo limpando (último)
+                        - key: vacuum.aspirador.cleaned_area
+                          name: Área limpa (último)
+                        - key: vacuum.aspirador.main_brush_left
+                          name: Escova principal (horas)
+                        - key: vacuum.aspirador.side_brush_left
+                          name: Escova lateral (horas)
+                        - key: vacuum.aspirador.filter_left
+                          name: Filtro (horas)
+                        - key: vacuum.aspirador.sensor_dirty_left
+                          name: Sensores (horas)
 
               - type: vertical-stack
                 cards:
@@ -151,15 +190,11 @@ views:
             card:
               title: Dispositivos indisponíveis (atenção)
             entities:
-              - entity: light.area_servico
-                secondary_info: last-changed
               - entity: light.banheiro_social_principal
                 secondary_info: last-changed
               - entity: light.banheiro_social_espelho
                 secondary_info: last-changed
               - entity: light.corredor
-                secondary_info: last-changed
-              - entity: light.cozinha
                 secondary_info: last-changed
               - entity: light.entrada
                 secondary_info: last-changed
@@ -167,7 +202,13 @@ views:
                 secondary_info: last-changed
               - entity: light.ledchaocozinha
                 secondary_info: last-changed
+              - entity: light.cozinha
+                secondary_info: last-changed
               - entity: light.ledcozinhabalcao
+                secondary_info: last-changed
+              - entity: light.area_servico
+                secondary_info: last-changed
+              - entity: light.quarto
                 secondary_info: last-changed
               - entity: light.ledquartotv
                 secondary_info: last-changed
@@ -175,21 +216,19 @@ views:
                 secondary_info: last-changed
               - entity: light.ledsalatv
                 secondary_info: last-changed
+              - entity: light.mesa_jantar
+                secondary_info: last-changed
+              - entity: light.sala_principal
+                secondary_info: last-changed
+              - entity: light.suite_principal
+                secondary_info: last-changed
               - entity: light.ledsuitecama
                 secondary_info: last-changed
               - entity: light.ledsuitetv
                 secondary_info: last-changed
-              - entity: light.mesa_jantar
-                secondary_info: last-changed
-              - entity: light.quarto
-                secondary_info: last-changed
-              - entity: light.sala_principal
-                secondary_info: last-changed
               - entity: light.suite_banheiro_principal
                 secondary_info: last-changed
               - entity: light.suite_banheiro_espelho
-                secondary_info: last-changed
-              - entity: light.suite_principal
                 secondary_info: last-changed
               - entity: binary_sensor.entrada_casa
                 secondary_info: last-changed
@@ -235,8 +274,13 @@ views:
                 secondary_info: last-changed
               - entity: switch.toalheiro
                 secondary_info: last-changed
+              - entity: sensor.planta_casa
+                secondary_info: last-changed
+              - entity: sensor.estado_do_bridge
+                secondary_info: last-changed
             state_filter:
               - 'unavailable'
+              - 'offline'
 
           - type: custom:monster-card
             card:
@@ -403,32 +447,6 @@ views:
             show_header_toggle: no
             entities:
               - script.garagem_casa
-
-          - type: entities
-            title: Aspirador
-            show_header_toggle: no
-            entities:
-              - switch.aspirador
-              - sensor.xiaomi_status
-              - sensor.xiaomi_battery_level
-              - input_select.estados_de_succao
-              - input_select.zonas_de_aspiracao
-              - type: custom:entity-attributes-card
-                entity: vacuum.aspirador
-                heading_name: Status
-                heading_state: Valor
-                filter:
-                  include:
-                    - key: vacuum.aspirador.cleaning_time
-                      name: Tempo limpando (último)
-                    - key: vacuum.aspirador.cleaned_area
-                      name: Área limpa (último)
-                    - key: vacuum.aspirador.main_brush_left
-                      name: Escova principal (horas)
-                    - key: vacuum.aspirador.side_brush_left
-                      name: Escova lateral (horas)
-                    - key: vacuum.aspirador.filter_left
-                      name: Filtro (horas)
 
           - type: vertical-stack
             cards:
@@ -650,32 +668,145 @@ views:
             title: Temporizadores Muvrh
             show_header_toggle: no
             entities:
-              - input_select.tempo_muvrh_203_entrada
-              - input_select.tempo_muvrh_203_banheiro
-              - input_select.tempo_muvrh_203_salaoperacoes
-              - input_select.tempo_muvrh_203_nossasala
-              - input_select.tempo_muvrh_303_entrada
-              - input_select.tempo_muvrh_303_dinamica
-              - input_select.tempo_muvrh_303_banheiro
+              - input_number.timmer_muvrh_203_entrada
+              - input_number.timmer_muvrh_203_banheiro
+              - input_number.timmer_muvrh_203_salaoperacoes
+              - input_number.timmer_muvrh_203_nossasala
+              - input_number.timmer_muvrh_303_entrada
+              - input_number.timmer_muvrh_303_dinamica
+              - input_number.timmer_muvrh_303_banheiro
 
   - title: Tablet entrada
     id: tablet
     cards:
 
-      - type: entities
-        title: Tablet entrada
-        show_header_toggle: no
-        entities:
-          - sensor.pws_weather_1h
-          - switch.sistema_alarme_casa
-          - light.entrada
-          - light.cozinha
-          - light.ledcozinhabalcao
-          - light.ledchaocozinha
-          - light.area_servico
-          - light.mesa_jantar
-          - light.ledsaladesktop
-          - light.sala_principal
+      - type: vertical-stack
+        title: Sistema
+        cards:
+
+        - type: markdown
+          content: >
+            # Controles da entrada e sala
+
+        - type: entities
+          show_header_toggle: no
+          entities:
+            - sensor.pws_weather_1h
+
+        - type: horizontal-stack
+          cards:
+            - type: custom:button-card
+              entity: switch.sistema_alarme_casa
+              icon: mdi:security-home
+              action: toggle
+              size: 60%
+              color: rgb(211, 47, 47)
+              name: Alarme
+              style:
+              #  - text-transform: none
+                - font-size: 18px
+                - font-weight: bold
+            - type: custom:button-card
+              entity: switch.energia_casa
+              icon: mdi:home-circle
+              action: toggle
+              size: 60%
+              color: rgb(211, 47, 47)
+              name: Energia casa
+              style:
+              #  - text-transform: none
+                - font-size: 18px
+                - font-weight: bold
+
+        - type: horizontal-stack
+          cards:
+            - type: custom:button-card
+              entity: light.entrada
+              icon: mdi:lightbulb
+              action: toggle
+              size: 60%
+              color: rgb(211, 47, 47)
+              name: Entrada
+              style:
+                - text-transform: none
+            - type: custom:button-card
+              entity: light.luzes_principais_cozinha
+              icon: mdi:lightbulb
+              action: toggle
+              size: 60%
+              color: rgb(211, 47, 47)
+              name: Cozinha
+              style:
+                - text-transform: none
+            - type: custom:button-card
+              entity: light.area_servico
+              icon: mdi:lightbulb
+              action: toggle
+              size: 60%
+              color: rgb(211, 47, 47)
+              name: Area serviço
+              style:
+                - text-transform: none
+
+        - type: horizontal-stack
+          cards:
+            - type: custom:button-card
+              entity: light.mesa_jantar
+              icon: mdi:ceiling-light
+              action: toggle
+              size: 60%
+              color: rgb(211, 47, 47)
+              name: Mesa jantar
+              style:
+                - text-transform: none
+            - type: custom:button-card
+              entity: light.ledsaladesktop
+              icon: mdi:led-strip
+              action: toggle
+              size: 60%
+              color: rgb(211, 47, 47)
+              name: Painel sala
+              style:
+                - text-transform: none
+            - type: custom:button-card
+              entity: light.sala_principal
+              icon: mdi:lightbulb
+              action: toggle
+              size: 60%
+              color: rgb(211, 47, 47)
+              name: Principal sala
+              style:
+                - text-transform: none
+
+        - type: horizontal-stack
+          cards:
+            - type: custom:button-card
+              entity: switch.desktop
+              icon: mdi:desktop-classic
+              action: toggle
+              size: 60%
+              color: rgb(211, 47, 47)
+              name: Desktop
+              style:
+                - text-transform: none
+            - type: custom:button-card
+              entity: switch.tv_lg_sala
+              icon: mdi:television
+              action: toggle
+              size: 60%
+              color: rgb(211, 47, 47)
+              name: TV sala
+              style:
+                - text-transform: none
+            - type: custom:button-card
+              entity: climate.ar_condicionado_da_sala
+              icon: mdi:air-conditioner
+              action: more_info
+              size: 60%
+              color: rgb(211, 47, 47)
+              name: Ar sala
+              style:
+                - text-transform: none
 
 #      - type: vertical-stack
 #        cards:
@@ -887,6 +1018,10 @@ views:
                 secondary_info: last-changed
               - entity: device_tracker.impressora_laser
                 secondary_info: last-changed
+              - entity: device_tracker.camera_muvrh_operacoes
+                secondary_info: last-changed
+              - entity: device_tracker.orangepi_pihole
+                secondary_info: last-changed
             state_filter:
               - 'not_home'
 
@@ -988,6 +1123,8 @@ views:
                 secondary_info: last-changed
               - entity: device_tracker.muvrh_06
                 secondary_info: last-changed
+              - entity: device_tracker.muvrh_lg_303
+                secondary_info: last-changed
             state_filter:
               - 'home'
 
@@ -1066,16 +1203,11 @@ views:
 
   - title: Testes
     id: testes
+    panel: false
     cards:
 
       - type: vertical-stack
         cards:
-          - type: entities
-            title: Casa
-            show_header_toggle: no
-            entities:
-              - sensor.pws_weather_1h
-              - switch.sistema_alarme_casa
 
           - type: picture-elements
             #title: Mapa
@@ -1103,7 +1235,7 @@ views:
                 entity: light.mesa_jantar
                 style:
                   top: 44%
-                  left: 79%
+                  left: 78.6%
 
               - type: state-icon
                 tap_action: toggle
@@ -1440,10 +1572,10 @@ views:
                   top: 88%
                   left: 36%
 
-      - type: map
-        aspect_ratio: 100%
-        entities:
-          - entity: device_tracker.iphone_de_antonio
-          - entity: device_tracker.iphone_de_roberta
-          - zone.home
-          - zone.trabalho
+          - type: map
+            aspect_ratio: 100%
+            entities:
+              - entity: device_tracker.iphone_de_antonio
+              - entity: device_tracker.iphone_de_roberta
+              - zone.home
+              - zone.trabalho

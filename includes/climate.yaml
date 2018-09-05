@@ -96,7 +96,7 @@
   mac: '34:EA:34:E3:B6:31'
   ircodes_ini: 'broadlink_climate_codes/midea.ini'
   min_temp: 18
-  max_temp: 30
+  max_temp: 24
   target_temp: 24
   temp_sensor: sensor.temperature_158d00015633b4
   default_operation: 'off'
@@ -118,7 +118,7 @@
   mac: '34:EA:34:8F:0C:C8'
   ircodes_ini: 'broadlink_climate_codes/midea.ini'
   min_temp: 18
-  max_temp: 30
+  max_temp: 24
   target_temp: 24
   temp_sensor: sensor.temperature_158d0001d7e65d
   default_operation: 'off'
@@ -140,7 +140,7 @@
   mac: '34:EA:34:8F:0B:01'
   ircodes_ini: 'broadlink_climate_codes/midea.ini'
   min_temp: 18
-  max_temp: 30
+  max_temp: 24
   target_temp: 24
   temp_sensor: sensor.temperature_158d0001703b44
   default_operation: 'off'

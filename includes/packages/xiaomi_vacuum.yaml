@@ -128,6 +128,7 @@ automation:
           {% endif %}
       - delay: 00:01:00
       - wait_template: "{{is_state('vacuum.aspirador', 'docked')}}"
+      - delay: 00:00:15
       - service: input_select.select_option
         entity_id: input_select.zonas_de_aspiracao
         data_template:
@@ -348,7 +349,7 @@ script:
         message: "O aspirador iniciou a limpeza na zona: {{ states.input_select.zonas_de_aspiracao.state | lower }}."
     - service: persistent_notification.create
       data:
-        title: "Alerta ({{now().strftime('%H:%M')}})"
+        title: "Alerta Casa ({{now().strftime('%H:%M')}})"
         message: "O aspirador iniciou a limpeza na zona: {{ states.input_select.zonas_de_aspiracao.state | lower }}"
     - condition: state
       entity_id: input_boolean.boa_noite
@@ -369,7 +370,7 @@ script:
         message: "O aspirador parou. Estava limpando a zona: {{ states.input_select.zonas_de_aspiracao.state | lower }}. {% if 'error' in states.vacuum.aspirador.state %}Código de erro: {{ states.vacuum.aspirador.attributes.error }}.{% else %}{% endif %}"
     - service: persistent_notification.create
       data:
-        title: "Alerta ({{now().strftime('%H:%M')}})"
+        title: "Alerta Casa ({{now().strftime('%H:%M')}})"
         message: "O aspirador parou. Estava limpando a zona: {{ states.input_select.zonas_de_aspiracao.state | lower }}. {% if 'error' in states.vacuum.aspirador.state %}Código de erro: {{ states.vacuum.aspirador.attributes.error }}.{% else %}{% endif %}"
     - condition: state
       entity_id: input_boolean.boa_noite
@@ -392,7 +393,7 @@ script:
         message: "O aspirador terminou seu trabalho na zona {{ states.input_select.zonas_de_aspiracao.state | lower }}. Limpou cerca de {{ states.vacuum.aspirador.attributes.cleaned_area }} metros quadrados durante {{ states.vacuum.aspirador.attributes.cleaning_time }} minutos e está carregando no momento."
     - service: persistent_notification.create
       data:
-        title: "Alerta ({{now().strftime('%H:%M')}})"
+        title: "Alerta Casa ({{now().strftime('%H:%M')}})"
         message: "O aspirador terminou seu trabalho na zona {{ states.input_select.zonas_de_aspiracao.state | lower }}. Limpou cerca de {{ states.vacuum.aspirador.attributes.cleaned_area }} metros quadrados durante {{ states.vacuum.aspirador.attributes.cleaning_time }} minutos e está carregando no momento."
     - condition: state
       entity_id: input_boolean.boa_noite
@@ -413,7 +414,7 @@ script:
         message: "O aspirador está parado e acusou erro limpando a zona {{ states.input_select.zonas_de_aspiracao.state | lower }}."
     - service: persistent_notification.create
       data:
-        title: "Alerta ({{now().strftime('%H:%M')}})"
+        title: "Alerta Casa ({{now().strftime('%H:%M')}})"
         message: "O aspirador está parado e acusou erro limpando a zona {{ states.input_select.zonas_de_aspiracao.state | lower }}."
     - condition: state
       entity_id: input_boolean.boa_noite

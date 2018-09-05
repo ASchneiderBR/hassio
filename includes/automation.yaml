@@ -500,7 +500,7 @@
     - service: persistent_notification.create
       data_template:
         title: "Alerta Sistema ({{now().strftime('%H:%M')}})"
-        message: "Sistema ficou com o CPU alto por mais de 5 minitos às {{now().strftime('%H:%M')}}."
+        message: "Sistema ficou com o CPU alto por mais de 5 minitos."
 
 # Botões Xiaomi#
 
@@ -1077,7 +1077,7 @@
     - service: persistent_notification.create
       data_template:
         title: "Alerta Dispositivo ({{now().strftime('%H:%M')}})"
-        message: "O dispositivo {{ trigger.to_state.name }} ficou indisponível às {{now().strftime('%H:%M')}}."
+        message: "O dispositivo {{ trigger.to_state.name }} ficou indisponível."
 
 - alias: MuvRH 303 - Luz do corredor e LED
   trigger:
