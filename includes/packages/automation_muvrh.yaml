@@ -1,0 +1,201 @@
+automation:
+
+  - alias: Garagem MuvRH
+    trigger:
+      - platform: state
+        entity_id: input_boolean.entrar_muvrh
+        from: 'off'
+        to: 'on'
+      - platform: state
+        entity_id: input_boolean.sair_muvrh
+        from: 'off'
+        to: 'on'
+    action:
+      - service_template: >
+          {% if is_state('input_boolean.entrar_muvrh', 'on') %}
+            notify.TUDO
+          {% endif %}
+        data:
+          title: "Garagem MuvRH"
+          message: "Bem vindo! Abrindo garagem do trabalho..."
+      - service_template: >
+          {% if is_state('input_boolean.entrar_muvrh', 'on') %}
+            script.garagem_muvrh_entrar
+          {% endif %}
+      - service_template: >
+          {% if is_state('input_boolean.sair_muvrh', 'on') %}
+            notify.TUDO
+          {% endif %}
+        data:
+          title: "Garagem MuvRH"
+          message: "Até logo! Abrindo garagem do trabalho..."
+      - service_template: >
+          {% if is_state('input_boolean.sair_muvrh', 'on') %}
+            script.garagem_muvrh_sair
+          {% endif %}
+
+  - alias: Sensores - Porta ou janela aberta por muito tempo - MuvRH
+    trigger:
+      platform: state
+      entity_id:
+        - binary_sensor.door_window_sensor_158d0001bf2a09
+        - binary_sensor.door_window_sensor_158d0001b8671f
+      to: 'on'
+      for:
+        minutes: 1
+    action:
+      - service: notify.TUDO
+        data_template:
+          title: 'Alerta MuvRH'
+          message: 'Atenção: {{ trigger.to_state.name }} aberta por muito tempo!'
+
+  - alias: Rotina - Ligar tudo quando primeiro chegar
+    id: muvrh_rotina_ligar_tudo
+    initial_state: True
+    trigger:
+      platform: state
+      entity_id: binary_sensor.door_window_sensor_158d0001bf2a09
+      from: 'off'
+      to: 'on'
+    condition:
+      condition: and
+      conditions:
+        - condition: time
+          after: '06:00:00'
+          before: '16:00:00'
+          weekday:
+            - mon
+            - tue
+            - wed
+            - thu
+            - fri
+        - condition: state
+          entity_id: group.muvrh_movimento_203
+          state: 'off'
+          for:
+            hours: 4
+            minutes: 0
+            seconds: 0
+    action:
+      - service: persistent_notification.create
+        data:
+          title: "Alerta MuvRH ({{now().strftime('%H:%M')}})"
+          message: "Chegou alguém na sala 203."
+      - wait_template: "{{is_state('binary_sensor.motion_sensor_158d0001e420d0', 'on')}}"
+        timeout: 00:05:00
+        continue_on_timeout: false
+      - service: light.turn_on
+        entity_id: light.muv203operacoes
+      - delay: 00:00:03
+      - service: notify.TODOS_CELULARES
+        data_template:
+          title: "Alerta MuvRH"
+          message: "Chegou alguém na sala 203"
+          data:
+            attachment:
+              content-type: jpeg
+            push:
+              category: camera
+            entity_id: camera.muvrh_203__operacoes
+      - service: switch.turn_on
+        entity_id:
+          - switch.tv_sala_operacoes
+          - switch.muv203bebedouro
+      - condition: or
+        conditions:
+          - condition: template
+            value_template: "{% if (states.climate.ar_condicionado_da_sala_de_operacoes.attributes.current_temperature | int  < 20) %}True{% else %}False{% endif %}"
+          - condition: template
+            value_template: "{% if (states.climate.ar_condicionado_da_sala_de_operacoes.attributes.current_temperature | int  > 24) %}True{% else %}False{% endif %}"
+      - service: climate.set_operation_mode
+        data_template:
+          entity_id: climate.ar_condicionado_da_sala_de_operacoes
+          operation_mode: >
+            {% if states.climate.ar_condicionado_da_sala_de_operacoes.attributes.current_temperature | int > 24 %}
+              cool
+            {% elif states.climate.ar_condicionado_da_sala_de_operacoes.attributes.current_temperature | int < 20 %}
+              heat
+            {% endif %}
+
+  - alias: Sensores - Portas - MuvRH
+    trigger:
+      platform: state
+      entity_id:
+        - binary_sensor.door_window_sensor_158d0001bf2a09
+        - binary_sensor.door_window_sensor_158d0001b8671f
+      to: 'on'
+    action:
+      - service: notify.TODAS_TVS
+        data_template:
+          title: "Alerta MuvRH"
+          message: "Porta da {{ trigger.to_state.name | lower }} acabou de ser aberta."
+      - condition: state
+        entity_id: group.muvrh_movimento_203
+        state: 'off'
+        for:
+          hours: 0
+          minutes: 30
+          seconds: 0
+      - condition: state
+        entity_id: group.muvrh_movimento_303
+        state: 'off'
+        for:
+          hours: 0
+          minutes: 30
+          seconds: 0
+      - service: notify.TODOS_CELULARES
+        data_template:
+          title: "Alerta MuvRH"
+          message: "Porta da {{ trigger.to_state.name | lower }} acabou de ser aberta."
+
+  - alias: MuvRH 303 - Luz do corredor e LED
+    trigger:
+      platform: state
+      entity_id: light.muv303entrada
+    action:
+      - service_template: >
+          {% if is_state('light.muv303entrada', 'on') %}
+            light.turn_on
+          {% elif is_state('light.muv303entrada', 'off') %}
+            light.turn_off
+          {% endif %}
+        entity_id:
+          - light.muv303corredor
+          - light.303leddinamica
+
+  - alias: MuvRH - Desligar tudo
+    initial_state: True
+    trigger:
+      platform: state
+      entity_id: input_boolean.muvrh_desligar_tudo
+      to: 'on'
+    action:
+      - service: script.muvrh_desligar_tudo
+      - delay: 00:00:10
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.muvrh_desligar_tudo
+
+  - alias: Rotina - Desligar ar sala operações
+    id: muvrh_rotina_ar_condicionado_operacoes
+    initial_state: True
+    trigger:
+      platform: time
+      at: '17:00:00'
+    condition:
+      condition: and
+      conditions:
+        - condition: time
+          weekday:
+            - mon
+            - tue
+            - wed
+            - thu
+            - fri
+        - condition: template
+          value_template: "{{ states.climate.ar_condicionado_da_sala_de_operacoes.state != 'off' }}"
+    action:
+      - service: climate.set_operation_mode
+        data_template:
+          operation_mode: 'off'
+          entity_id:
+            - climate.ar_condicionado_da_sala_de_operacoes

@@ -1253,6 +1253,12 @@ botao_xiaomi_banheiro_suite_01_double:
   - service: switch.toggle
     entity_id: switch.toalheiro
 
+botao_xiaomi_banheiro_suite_01_many:
+  alias: "Chuveiro"
+  sequence:
+  - service: switch.toggle
+    entity_id: switch.chuveirosuite
+
 botao_xiaomi_banheiro_suite_01_long:
   alias: "Chuveiro banheiro da suíte"
   sequence:
@@ -1288,6 +1294,12 @@ botao_xiaomi_banheiro_social_01_double:
   sequence:
   - service: light.toggle
     entity_id: light.banheiro_social_espelho
+
+botao_xiaomi_banheiro_social_01_many:
+  alias: "Chuveiro"
+  sequence:
+  - service: switch.toggle
+    entity_id: switch.chuveirosuite
 
 botao_xiaomi_banheiro_social_01_long:
   alias: "Chuveiro banheiro social"
