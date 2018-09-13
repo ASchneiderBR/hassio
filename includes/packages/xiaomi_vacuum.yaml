@@ -307,7 +307,7 @@ script:
       data:
         entity_id: vacuum.aspirador
         command: app_zoned_clean
-        params: [[18570,21027,22970,25527,1]]
+        params: [[18680,21198,22530,25348,1]]
     - service: script.aspirador_alerta_iniciando
 
   aspirador_zona_quartos_e_banheiros:
@@ -499,6 +499,20 @@ script:
         option: "Somente piso"
     - delay: 00:00:10
 
+# Outros
+
+  aspirador_recriar_mapa:
+    alias: Aspirador casa - Recriar mapa
+    sequence:
+    - service: vacuum.start
+      entity_id: vacuum.aspirador
+    - delay: 00:00:10
+    - service: vacuum.stop
+      entity_id: vacuum.aspirador
+    - delay: 00:00:02
+    - service: vacuum.return_to_base
+      entity_id: vacuum.aspirador
+
 # Customize
 
 homeassistant:
@@ -515,3 +529,6 @@ homeassistant:
 
     input_number.aspirador_passadas:
       icon: mdi:shuffle-disabled
+
+    script.aspirador_recriar_mapa:
+      icon: mdi:home-map-marker

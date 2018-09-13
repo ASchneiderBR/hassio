@@ -247,7 +247,6 @@ automation:
     trigger:
       platform: state
       entity_id: binary_sensor.motion_sensor_158d0001a24bdc
-      from: 'off'
       to: 'on'
     condition:
       condition: state
@@ -268,7 +267,6 @@ automation:
     trigger:
       platform: state
       entity_id: binary_sensor.motion_sensor_158d0001ad6c20
-      from: 'off'
       to: 'on'
     condition:
       condition: state

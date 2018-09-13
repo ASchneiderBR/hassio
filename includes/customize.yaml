@@ -542,6 +542,10 @@ switch.muv303bebedouro:
   friendly_name: "Bebedouro sala 303"
   icon: mdi:cup-water
 
+switch.controle_garagem_casa:
+  friendly_name: "Controle garagem de casa"
+  icon: mdi:remote
+
 media_player.sala:
   friendly_name: "Google Home Sala"
 

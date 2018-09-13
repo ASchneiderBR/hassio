@@ -862,6 +862,7 @@
         - switch.sirene
         - switch.toalheiro
         - switch.muv303bebedouro
+        - switch.controle_garagem_casa
       to: 'unavailable'
       for:
         minutes: 5
@@ -918,8 +919,8 @@
         minutes: 1
     - platform: state
       entity_id:
-        - sensor.estado_do_bridge
-      to: 'offline'
+        - binary_sensor.estado_do_bridge
+      to: 'off'
       for:
         minutes: 1
   action:
@@ -961,3 +962,4 @@
         {% elif trigger.event.data.actionName == 'TESTE_2' %}
           script.cubo_sala_persiana
         {% endif %}
+

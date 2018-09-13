@@ -13,6 +13,8 @@ resources:
     type: module
   - url: /local/lovelace/custom_ui/kiosk.js
     type: js
+  - url: /local/lovelace/custom_ui/useful-markdown-card.js
+    type: js
 
 title: Casa Antonio e Roberta
 views:
@@ -23,11 +25,22 @@ views:
       - type: vertical-stack
         title: Sistema
         cards:
-          - type: glance
-            title: Pessoas
-            entities:
-              - device_tracker.antonio
-              - device_tracker.roberta
+          - type: custom:monster-card
+            card:
+              type: glance
+              title: Pessoas
+            filter:
+              include:
+                - entity_id: device_tracker.antonio
+                  state: 'home'
+                - entity_id: device_tracker.antonio
+                  state: 'not_home'
+                - entity_id: device_tracker.roberta
+                  state: 'home'
+                - entity_id: device_tracker.roberta
+                  state: 'not_home'
+                - entity_id: device_tracker.alice_celular
+                  state: 'home'
           - type: entities
             title: Sistema
             entities:
@@ -77,7 +90,7 @@ views:
             entities:
               - input_boolean.zigbee_permit_join
               - timer.zigbee_permit_join
-              - sensor.estado_do_bridge
+              - binary_sensor.estado_do_bridge
 
       - type: vertical-stack
         cards:
@@ -95,12 +108,21 @@ views:
                 entity: weather.tempo
 
               - type: entities
+                show_header_toggle: no
+                title: Rotinas casa
+                entities:
+                  - input_boolean.bom_dia
+                  - input_boolean.boa_noite
+
+              - type: entities
                 title: Aspirador
                 show_header_toggle: no
                 entities:
                   - entity: vacuum.aspirador
                     secondary_info: last-changed
                   - sensor.xiaomi_battery_level
+                  - entity: script.aspirador_recriar_mapa
+                    name: Recriar mapa
                   - input_select.estados_de_succao
                   - input_select.zonas_de_aspiracao
                   - type: custom:entity-attributes-card
@@ -153,17 +175,11 @@ views:
             card:
               title: Dispositivos offline (atenção)
             entities:
-              - entity: switch.desktop
-                secondary_info: last-changed
-              - entity: switch.servidor
-                secondary_info: last-changed
               - entity: device_tracker.nas
                 secondary_info: last-changed
               - entity: device_tracker.google_home_mini_sala
                 secondary_info: last-changed
               - entity: device_tracker.google_home_mini_suite
-                secondary_info: last-changed
-              - entity: device_tracker.xiaomi_hub_casa
                 secondary_info: last-changed
               - entity: device_tracker.aspirador_xiaomi
                 secondary_info: last-changed
@@ -183,8 +199,11 @@ views:
                 secondary_info: last-changed
               - entity: device_tracker.camera_cozinha
                 secondary_info: last-changed
+              - entity: binary_sensor.estado_do_bridge
+                secondary_info: last-changed
             state_filter:
               - 'not_home'
+              - 'off'
 
           - type: entity-filter
             card:
@@ -274,9 +293,9 @@ views:
                 secondary_info: last-changed
               - entity: switch.toalheiro
                 secondary_info: last-changed
-              - entity: sensor.planta_casa
+              - entity: switch.controle_garagem_casa
                 secondary_info: last-changed
-              - entity: sensor.estado_do_bridge
+              - entity: sensor.planta_casa
                 secondary_info: last-changed
             state_filter:
               - 'unavailable'
@@ -580,8 +599,10 @@ views:
   - title: Automações
     id: automacoes
     cards:
+
       - type: vertical-stack
         cards:
+
           - type: entities
             title: Rotinas casa
             show_header_toggle: true
@@ -590,6 +611,14 @@ views:
               - automation.rotina__acoes_ao_por_do_sol
               - automation.rotina__boa_noite
               - automation.rotina__bom_dia
+
+          - type: entities
+            title: Rotinas MuvRH
+            show_header_toggle: true
+            entities:
+              - automation.rotina__ligar_tudo_quando_primeiro_chegar
+              - automation.rotina__desligar_ar_sala_operacoes
+
           - type: entities
             title: Luzes casa
             show_header_toggle: true
@@ -601,11 +630,11 @@ views:
               - automation.luzes_da_casa__suite
               - automation.luzes_da_casa__sala
               - automation.luzes_da_casa__entrando_em_casa
+
           - type: entities
             title: Luzes MuvRH
             show_header_toggle: true
             entities:
-              - automation.muvrh_203__ligar_tudo_quando_primeiro_chegar
               - automation.muvrh_203__luz_da_entrada
               - automation.muvrh_203__luz_do_banheiro
               - automation.muvrh_203__luz_da_sala_de_operacoes
@@ -626,6 +655,7 @@ views:
               - automation.alarme__aviso_alarme_ativado
               - automation.sensores__porta_da_entrada_aberta__casa
               - automation.sensores__porta_ou_janela_aberta_por_muito_tempo__casa
+
           - type: entities
             title: Botões Xiaomi casa
             show_header_toggle: true
@@ -638,12 +668,14 @@ views:
               - automation.botao_xiaomi_sala_02
               - automation.botao_xiaomi_suite_01
               - automation.botao_xiaomi_suite_02
+
           - type: entities
             title: Cubos casa
             show_header_toggle: true
             entities:
               - automation.cubo_sala
               - automation.cubo_suite
+
           - type: entities
             title: RF Bridges
             show_header_toggle: true
@@ -664,6 +696,7 @@ views:
               - input_number.timmer_banheiro_social
               - input_number.timmer_banheiro_suite
               - input_number.timmer_suite
+
           - type: entities
             title: Temporizadores Muvrh
             show_header_toggle: no
@@ -923,6 +956,20 @@ views:
     cards:
       - type: vertical-stack
         cards:
+          - type: custom:monster-card
+            card:
+              type: glance
+              title: Pessoas
+            filter:
+              include:
+                - entity_id: device_tracker.antonio
+                  state: 'home'
+                - entity_id: device_tracker.roberta
+                  state: 'home'
+                - entity_id: device_tracker.pedro_muvrh
+                  state: 'home'
+                - entity_id: device_tracker.thaina_muvrh
+                  state: 'home'
           - type: entities
             title: Nossa sala
             show_header_toggle: no
@@ -1206,376 +1253,317 @@ views:
     panel: false
     cards:
 
-      - type: vertical-stack
-        cards:
+      - type: picture-elements
+        #title: Mapa
+        image: /local/lovelace/images/floor_plan_casa5.png
+        elements:
+          # Sala
+          - type: state-icon
+            tap_action: more-info
+            entity: binary_sensor.entrada_casa
+            style:
+              top: 12%
+              left: 74.8%
+          - type: state-icon
+            tap_action: toggle
+            entity: light.entrada
+            style:
+              top: 17%
+              left: 74.8%
+          - type: state-icon
+            tap_action: toggle
+            entity: light.mesa_jantar
+            style:
+              top: 44%
+              left: 78.6%
+          - type: state-icon
+            tap_action: toggle
+            entity: light.ledsaladesktop
+            style:
+              top: 41%
+              left: 56.5%
+          - type: state-icon
+            tap_action: toggle
+            entity: switch.desktop
+            style:
+              top: 37%
+              left: 67.5%
+          - type: state-icon
+            tap_action: toggle
+            entity: switch.servidor
+            style:
+              top: 37%
+              left: 62%
+          - type: state-icon
+            tap_action: more-info
+            entity: binary_sensor.movimento_sala
+            style:
+              top: 52.5%
+              left: 73.5%
+          - type: state-icon
+            entity: climate.ar_condicionado_da_sala
+            style:
+              top: 57.5%
+              left: 73.5%
+          - type: state-label
+            entity: sensor.temperatura_sala
+            style:
+              top: 62%
+              left: 73.5%
+          - type: state-label
+            entity: sensor.umidade_sala
+            style:
+              top: 65%
+              left: 73.5%
+          - type: state-icon
+            tap_action: toggle
+            entity: light.sala_principal
+            style:
+              top: 73%
+              left: 73.5%
+          - type: state-icon
+            tap_action: toggle
+            entity: switch.tv_lg_sala
+            style:
+              top: 70%
+              left: 86.8%
+          - type: state-icon
+            tap_action: toggle
+            entity: switch.home_theater_sala
+            style:
+              top: 74%
+              left: 86.8%
+          - type: state-icon
+            tap_action: toggle
+            entity: light.ledsalatv
+            style:
+              top: 78%
+              left: 86.8%
+          - type: state-icon
+            tap_action: toggle
+            entity: switch.aspirador
+            style:
+              top: 57.5%
+              left: 86.8%
+          - type: state-icon
+            tap_action: toggle
+            entity: cover.persiana_sala
+            style:
+              top: 80%
+              left: 73.5%
+          - type: state-icon
+            tap_action: toggle
+            entity: light.corredor
+            style:
+              top: 51.5%
+              left: 44.5%
+          # Cozinha
+          - type: state-icon
+            tap_action: toggle
+            entity: light.cozinha
+            style:
+              top: 17%
+              left: 50%
+          - type: state-icon
+            tap_action: toggle
+            entity: light.ledcozinhabalcao
+            style:
+              top: 12%
+              left: 55%
+          - type: state-icon
+            tap_action: toggle
+            entity: light.ledchaocozinha
+            style:
+              top: 12%
+              left: 60%
+          - type: state-icon
+            tap_action: toggle
+            entity: light.area_servico
+            style:
+              top: 17%
+              left: 21%
+          - type: state-icon
+            tap_action: more-info
+            entity: binary_sensor.movimento_cozinha
+            style:
+              top: 13%
+              left: 37%
+          - type: state-label
+            entity: sensor.temperatura_cozinha
+            style:
+              top: 17%
+              left: 37%
+          - type: state-label
+            entity: sensor.umidade_cozinha
+            style:
+              top: 20%
+              left: 37%
+          # Quarto
+          - type: state-icon
+            tap_action: toggle
+            entity: light.quarto
+            style:
+              top: 34%
+              left: 33%
+          - type: state-icon
+            tap_action: toggle
+            entity: light.ledquartotv
+            style:
+              top: 36%
+              left: 43%
+          - type: state-icon
+            tap_action: toggle
+            entity: switch.tv_lg_quarto
+            style:
+              top: 32%
+              left: 43%
+          - type: state-icon
+            tap_action: more-info
+            entity: binary_sensor.movimento_quarto
+            style:
+              top: 29%
+              left: 23.2%
+          - type: state-icon
+            entity: climate.ar_condicionado_do_quarto
+            style:
+              top: 33.5%
+              left: 23.2%
+          - type: state-label
+            entity: sensor.temperatura_quarto
+            style:
+              top: 37.5%
+              left: 23.2%
+          - type: state-label
+            entity: sensor.umidade_quarto
+            style:
+              top: 40.3%
+              left: 23.2%
+          - type: state-icon
+            tap_action: toggle
+            entity: cover.persiana_quarto
+            style:
+              top: 34%
+              left: 13%
+          # Banheiro social
+          - type: state-icon
+            tap_action: more-info
+            entity: binary_sensor.movimento_banheiro_social
+            style:
+              top: 48.4%
+              left: 36%
+          - type: state-icon
+            tap_action: more-info
+            entity: binary_sensor.box_banheiro_social
+            style:
+              top: 48.4%
+              left: 22%
+          - type: state-icon
+            tap_action: toggle
+            entity: light.tudo_banheiro_social
+            style:
+              top: 50%
+              left: 29%
+          - type: state-icon
+            tap_action: toggle
+            entity: switch.chuveirosocial
+            style:
+              top: 52.8%
+              left: 22%
+          # Banheiro suite
+          - type: state-icon
+            tap_action: more-info
+            entity: binary_sensor.movimento_banheiro_suite
+            style:
+              top: 64%
+              left: 36%
+          - type: state-icon
+            tap_action: more-info
+            entity: binary_sensor.box_banheiro_suite
+            style:
+              top: 64%
+              left: 22%
+          - type: state-icon
+            tap_action: toggle
+            entity: light.tudo_banheiro_suite
+            style:
+              top: 59.5%
+              left: 29%
+          - type: state-icon
+            tap_action: toggle
+            entity: switch.chuveirosuite
+            style:
+              top: 59.5%
+              left: 22%
+          - type: state-icon
+            tap_action: toggle
+            entity: switch.toalheiro
+            style:
+              top: 64%
+              left: 29%
+          # Suite
+          - type: state-icon
+            tap_action: toggle
+            entity: light.suite_principal
+            style:
+              top: 61%
+              left: 45%
+          - type: state-icon
+            tap_action: toggle
+            entity: light.suite_principal
+            style:
+              top: 80%
+              left: 24.5%
+          - type: state-icon
+            tap_action: toggle
+            entity: light.ledsuitetv
+            style:
+              top: 82%
+              left: 50%
+          - type: state-icon
+            tap_action: toggle
+            entity: light.ledsuitecama
+            style:
+              top: 80%
+              left: 16%
+          - type: state-icon
+            tap_action: toggle
+            entity: switch.tv_lg_suite
+            style:
+              top: 78%
+              left: 50%
+          - type: state-icon
+            tap_action: more-info
+            entity: binary_sensor.movimento_suite
+            style:
+              top: 72.1%
+              left: 36%
+          - type: state-icon
+            entity: climate.ar_condicionado_da_suite
+            style:
+              top: 76.7%
+              left: 36%
+          - type: state-label
+            entity: sensor.temperatura_suite
+            style:
+              top: 80.5%
+              left: 36%
+          - type: state-label
+            entity: sensor.umidade_suite
+            style:
+              top: 83.2%
+              left: 36%
+          - type: state-icon
+            tap_action: toggle
+            entity: cover.persiana_suite
+            style:
+              top: 88%
+              left: 36%
+          
+      - type: map
+        aspect_ratio: 100%
+        entities:
+          - entity: device_tracker.iphone_de_antonio
+          - entity: device_tracker.iphone_de_roberta
+          - zone.home
+          - zone.trabalho
 
-          - type: picture-elements
-            #title: Mapa
-            image: /local/lovelace/images/floor_plan_casa5.png
-            elements:
-
-              # Sala
-
-              - type: state-icon
-                tap_action: more-info
-                entity: binary_sensor.entrada_casa
-                style:
-                  top: 12%
-                  left: 74.8%
-
-              - type: state-icon
-                tap_action: toggle
-                entity: light.entrada
-                style:
-                  top: 17%
-                  left: 74.8%
-
-              - type: state-icon
-                tap_action: toggle
-                entity: light.mesa_jantar
-                style:
-                  top: 44%
-                  left: 78.6%
-
-              - type: state-icon
-                tap_action: toggle
-                entity: light.ledsaladesktop
-                style:
-                  top: 41%
-                  left: 56.5%
-
-              - type: state-icon
-                tap_action: toggle
-                entity: switch.desktop
-                style:
-                  top: 37%
-                  left: 67.5%
-
-              - type: state-icon
-                tap_action: toggle
-                entity: switch.servidor
-                style:
-                  top: 37%
-                  left: 62%
-
-              - type: state-icon
-                tap_action: more-info
-                entity: binary_sensor.movimento_sala
-                style:
-                  top: 52.5%
-                  left: 73.5%
-
-              - type: state-icon
-                entity: climate.ar_condicionado_da_sala
-                style:
-                  top: 57.5%
-                  left: 73.5%
-
-              - type: state-label
-                entity: sensor.temperatura_sala
-                style:
-                  top: 62%
-                  left: 73.5%
-
-              - type: state-label
-                entity: sensor.umidade_sala
-                style:
-                  top: 65%
-                  left: 73.5%
-
-              - type: state-icon
-                tap_action: toggle
-                entity: light.sala_principal
-                style:
-                  top: 73%
-                  left: 73.5%
-
-              - type: state-icon
-                tap_action: toggle
-                entity: switch.tv_lg_sala
-                style:
-                  top: 70%
-                  left: 86.8%
-
-              - type: state-icon
-                tap_action: toggle
-                entity: switch.home_theater_sala
-                style:
-                  top: 74%
-                  left: 86.8%
-
-              - type: state-icon
-                tap_action: toggle
-                entity: light.ledsalatv
-                style:
-                  top: 78%
-                  left: 86.8%
-
-              - type: state-icon
-                tap_action: toggle
-                entity: switch.aspirador
-                style:
-                  top: 57.5%
-                  left: 86.8%
-
-              - type: state-icon
-                tap_action: toggle
-                entity: cover.persiana_sala
-                style:
-                  top: 80%
-                  left: 73.5%
-
-              - type: state-icon
-                tap_action: toggle
-                entity: light.corredor
-                style:
-                  top: 51.5%
-                  left: 44.5%
-
-              # Cozinha
-
-              - type: state-icon
-                tap_action: toggle
-                entity: light.cozinha
-                style:
-                  top: 17%
-                  left: 50%
-
-              - type: state-icon
-                tap_action: toggle
-                entity: light.ledcozinhabalcao
-                style:
-                  top: 12%
-                  left: 55%
-
-              - type: state-icon
-                tap_action: toggle
-                entity: light.ledchaocozinha
-                style:
-                  top: 12%
-                  left: 60%
-
-              - type: state-icon
-                tap_action: toggle
-                entity: light.area_servico
-                style:
-                  top: 17%
-                  left: 21%
-
-              - type: state-icon
-                tap_action: more-info
-                entity: binary_sensor.movimento_cozinha
-                style:
-                  top: 13%
-                  left: 37%
-
-              - type: state-label
-                entity: sensor.temperatura_cozinha
-                style:
-                  top: 17%
-                  left: 37%
-
-              - type: state-label
-                entity: sensor.umidade_cozinha
-                style:
-                  top: 20%
-                  left: 37%
-
-              # Quarto
-
-              - type: state-icon
-                tap_action: toggle
-                entity: light.quarto
-                style:
-                  top: 34%
-                  left: 33%
-
-              - type: state-icon
-                tap_action: toggle
-                entity: light.ledquartotv
-                style:
-                  top: 36%
-                  left: 43%
-
-              - type: state-icon
-                tap_action: toggle
-                entity: switch.tv_lg_quarto
-                style:
-                  top: 32%
-                  left: 43%
-
-              - type: state-icon
-                tap_action: more-info
-                entity: binary_sensor.movimento_quarto
-                style:
-                  top: 29%
-                  left: 23.2%
-
-              - type: state-icon
-                entity: climate.ar_condicionado_do_quarto
-                style:
-                  top: 33.5%
-                  left: 23.2%
-
-              - type: state-label
-                entity: sensor.temperatura_quarto
-                style:
-                  top: 37.5%
-                  left: 23.2%
-
-              - type: state-label
-                entity: sensor.umidade_quarto
-                style:
-                  top: 40.3%
-                  left: 23.2%
-
-              - type: state-icon
-                tap_action: toggle
-                entity: cover.persiana_quarto
-                style:
-                  top: 34%
-                  left: 13%
-
-              # Banheiro social
-
-              - type: state-icon
-                tap_action: more-info
-                entity: binary_sensor.movimento_banheiro_social
-                style:
-                  top: 48.4%
-                  left: 36%
-
-              - type: state-icon
-                tap_action: more-info
-                entity: binary_sensor.box_banheiro_social
-                style:
-                  top: 48.4%
-                  left: 22%
-
-              - type: state-icon
-                tap_action: toggle
-                entity: light.tudo_banheiro_social
-                style:
-                  top: 50%
-                  left: 29%
-
-              - type: state-icon
-                tap_action: toggle
-                entity: switch.chuveirosocial
-                style:
-                  top: 52.8%
-                  left: 22%
-
-              # Banheiro suite
-
-              - type: state-icon
-                tap_action: more-info
-                entity: binary_sensor.movimento_banheiro_suite
-                style:
-                  top: 64%
-                  left: 36%
-
-              - type: state-icon
-                tap_action: more-info
-                entity: binary_sensor.box_banheiro_suite
-                style:
-                  top: 64%
-                  left: 22%
-
-              - type: state-icon
-                tap_action: toggle
-                entity: light.tudo_banheiro_suite
-                style:
-                  top: 59.5%
-                  left: 29%
-
-              - type: state-icon
-                tap_action: toggle
-                entity: switch.chuveirosuite
-                style:
-                  top: 59.5%
-                  left: 22%
-
-              - type: state-icon
-                tap_action: toggle
-                entity: switch.toalheiro
-                style:
-                  top: 64%
-                  left: 29%
-
-              # Suite
-
-              - type: state-icon
-                tap_action: toggle
-                entity: light.suite_principal
-                style:
-                  top: 61%
-                  left: 45%
-
-              - type: state-icon
-                tap_action: toggle
-                entity: light.suite_principal
-                style:
-                  top: 80%
-                  left: 24.5%
-
-              - type: state-icon
-                tap_action: toggle
-                entity: light.ledsuitetv
-                style:
-                  top: 82%
-                  left: 50%
-
-              - type: state-icon
-                tap_action: toggle
-                entity: light.ledsuitecama
-                style:
-                  top: 80%
-                  left: 16%
-
-              - type: state-icon
-                tap_action: toggle
-                entity: switch.tv_lg_suite
-                style:
-                  top: 78%
-                  left: 50%
-
-              - type: state-icon
-                tap_action: more-info
-                entity: binary_sensor.movimento_suite
-                style:
-                  top: 72.1%
-                  left: 36%
-
-              - type: state-icon
-                entity: climate.ar_condicionado_da_suite
-                style:
-                  top: 76.7%
-                  left: 36%
-
-              - type: state-label
-                entity: sensor.temperatura_suite
-                style:
-                  top: 80.5%
-                  left: 36%
-
-              - type: state-label
-                entity: sensor.umidade_suite
-                style:
-                  top: 83.2%
-                  left: 36%
-
-              - type: state-icon
-                tap_action: toggle
-                entity: cover.persiana_suite
-                style:
-                  top: 88%
-                  left: 36%
-
-          - type: map
-            aspect_ratio: 100%
-            entities:
-              - entity: device_tracker.iphone_de_antonio
-              - entity: device_tracker.iphone_de_roberta
-              - zone.home
-              - zone.trabalho

@@ -11,12 +11,15 @@ timer:
     name: Tempo restante
     duration: 180
 
-sensor:
+binary_sensor:
 
   - platform: mqtt
     name: Estado do bridge
     state_topic: "zigbee2mqtt/bridge/state"
+    payload_on: "online"
+    payload_off: "offline"
     icon: mdi:router-wireless
+    device_class: connectivity
 
 group:
 

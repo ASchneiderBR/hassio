@@ -21,6 +21,7 @@ zone 2:
   icon: mdi:home-modern
   radius: 18
 
+api:
 config:
 conversation:
 discovery:

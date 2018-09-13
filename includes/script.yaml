@@ -81,10 +81,8 @@ persiana_sala_parar:
 
 garagem_casa:
   sequence:
-  - service: switch.broadlink_send_packet_192_168_1_32
-    data:
-      packet:
-      - sgA8AQwNDQwNDQwNDQwNDA0NDA0NDA0MDQ0MfxkMGg0ZDQwZDRkaDBoMDRkZDRkNGQ0ZDQwaGQ0ZDQwZDRkaDA0ZDRkNGQ0ZGQ0NGQ0ZGQ0ZDBoMGgwaDBoMDRkNGRkNGQ0NGQ0ZGQ0MGgwaGQwNGRoMDRkZDQ0ZDRkZDQ0ZGQ0ZDRkNGQwaDBoMGgwaDBkNGQ0ZDRkNDRkZDRkNGQ0MAAIGDQ0MDQwNDQwNDQwNDQwNDA0NDA0NDA1+GgwaDBoMDRkNGRkNGQ0MGhkNGQwaDBoMDRkaDBoMDRkNGRkNDRkMGgwaDBkaDA0ZDRoZDBkNGQ0ZDRkNGQ0NGQ0ZGQ0ZDA0ZDRkaDA0ZDRkZDQ0ZGQ0NGRkNDBkNGhkMDRkaDBoMGgwZDRkNGQ0ZDRkNGQ0ZDRkMGgwNGRoMGQ0ZDQ0ABdwAAAAAAAAAAAAAAAA==
+  - service: switch.turn_on
+    entity_id: switch.controle_garagem_casa
   - delay: 00:00:03
   alias: "Garagem casa"
 
@@ -1078,7 +1076,7 @@ tts_status_casa:
   - service: tts.amazon_polly_say
     entity_id: media_player.sala
     data_template:
-      message: <speak><amazon:auto-breaths frequency='medium'>Olá, {% if((now().hour >= 6) and (now().hour < 12))%}bom dia{% elif((now().hour >= 12) and (now().hour <= 18))%}boa tarde{% else %}boa noite{% endif %}. Agora são <say-as interpret-as='time'>{{ now().strftime('%H:%M') }}</say-as>. Aqui vão algumas informações sobre a casa. O alarme está {% if is_state('alarm_control_panel.alarme', 'disarmed') %}desarmado{% else %}armado{% endif %}, percebo que {% if is_state('device_tracker.antonio', 'home') and is_state('device_tracker.roberta', 'home') %}tanto o Antônio quanto a Roberta estão em casa{% elif is_state('device_tracker.antonio', 'home') %}apenas o Antônio está em casa{% elif is_state('device_tracker.roberta', 'home') %}apenas a roberta está em casa{% else %}nem o Antônio nem a Roberta estão em casa{% endif %}. A temperatura na sala é de {{ states.sensor.temperatura_sala.state | int }} graus, sendo que na rua está {{ states.sensor.dark_sky_summary.state | lower }} com {{ states.sensor.dark_sky_temperature.state | int }} graus. <prosody volume='x-loud'>Ah!</prosody> Não esqueçam que quinta-feira vem a Juçara cuidar das roupas! {% if is_state('binary_sensor.muvrh_movimento_203', 'on') or is_state('binary_sensor.muvrh_movimento_303', 'on')%}Também estou detectando movimento na muv rh!{% endif %} Isto é tudo!</amazon:auto-breaths></speak>
+      message: <speak><amazon:auto-breaths frequency='medium'>Olá, {% if((now().hour >= 6) and (now().hour < 12))%}bom dia{% elif((now().hour >= 12) and (now().hour <= 18))%}boa tarde{% else %}boa noite{% endif %}. Agora são <say-as interpret-as='time'>{{ now().strftime('%H:%M') }}</say-as>. Aqui vão algumas informações sobre a casa. O alarme está {% if is_state('alarm_control_panel.alarme', 'disarmed') %}desarmado{% else %}armado{% endif %}, percebo que {% if is_state('device_tracker.antonio', 'home') and is_state('device_tracker.roberta', 'home') %}tanto o Antônio quanto a Roberta estão em casa{% elif is_state('device_tracker.antonio', 'home') %}apenas o Antônio está em casa{% elif is_state('device_tracker.roberta', 'home') %}apenas a roberta está em casa{% else %}nem o Antônio nem a Roberta estão em casa{% endif %}. A temperatura na sala é de {{ states.sensor.temperatura_sala.state | int }} graus, sendo que na rua está {{ states.sensor.dark_sky_summary.state | lower }} com {{ states.sensor.dark_sky_temperature.state | int }} graus. <prosody volume='x-loud'>Ah!</prosody> Não esqueçam que quinta-feira vem a Alice limpar a casa! {% if is_state('binary_sensor.muvrh_movimento_203', 'on') or is_state('binary_sensor.muvrh_movimento_303', 'on')%}Também estou detectando movimento na muv rh!{% endif %} Isto é tudo!</amazon:auto-breaths></speak>
 
 # Botões Xiaomi
 
