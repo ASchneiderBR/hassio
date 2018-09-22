@@ -4,3 +4,8 @@
   username: !secret camera_203_operacoes_user
   password: !secret camera_203_operacoes_pass
   extra_arguments: -rtsp_transport udp
+
+- platform: mjpeg
+  name: "Ender 3"
+  mjpeg_url: http://192.168.1.69/webcam/?action=stream
+  still_image_url: http://192.168.1.69:8080/?action=snapshot

@@ -135,7 +135,7 @@
 
     tv_sala_operacoes:
       friendly_name: "Tv da sala de operações"
-      value_template: "{% if is_state('binary_sensor.estado_tv_sala_operacoes', 'on') %}on{% else %}off{% endif %}"
+      value_template: "{% if is_state('device_tracker.pi3b_tv_sala_operacoes', 'home') %}on{% else %}off{% endif %}"
       turn_on:
         service: script.tv_sala_operacoes_power_on
         entity_id: script.tv_sala_operacoes_power_on
@@ -163,7 +163,7 @@
   payload_available: "Online"
   payload_not_available: "Offline"
   qos: 1
-  retain: true
+  retain: false
 
 - platform: mqtt
   name: "chuveirosuite"
@@ -173,7 +173,7 @@
   payload_available: "Online"
   payload_not_available: "Offline"
   qos: 1
-  retain: true
+  retain: false
 
 - platform: mqtt
   name: "chuveirosocial"
@@ -183,7 +183,7 @@
   payload_available: "Online"
   payload_not_available: "Offline"
   qos: 1
-  retain: true
+  retain: false
 
 - platform: mqtt
   name: "sirene"
@@ -193,7 +193,7 @@
   payload_available: "Online"
   payload_not_available: "Offline"
   qos: 1
-  retain: true
+  retain: false
 
 - platform: mqtt
   name: "muv203bebedouro"
@@ -203,7 +203,7 @@
   payload_available: "Online"
   payload_not_available: "Offline"
   qos: 1
-  retain: true
+  retain: false
 
 - platform: mqtt
   name: "muv303bebedouro"
@@ -213,4 +213,14 @@
   payload_available: "Online"
   payload_not_available: "Offline"
   qos: 1
-  retain: true
+  retain: false
+
+- platform: mqtt
+  name: "controle_garagem_casa"
+  command_topic: "cmnd/controle_garagem_casa/POWER"
+  state_topic: "stat/controle_garagem_casa/POWER"
+  availability_topic: "tele/controle_garagem_casa/LWT"
+  payload_available: "Online"
+  payload_not_available: "Offline"
+  qos: 1
+  retain: false  

@@ -870,6 +870,7 @@
       entity_id:
         - media_player.suite
         - media_player.sala
+        - media_player.empresa
       to: 'unavailable'
       for:
         minutes: 15
@@ -890,6 +891,7 @@
         - device_tracker.google_home_mini_suite
         - device_tracker.rfbridgecasa
         - device_tracker.aspirador_xiaomi
+        - device_tracker.pi_zero_octoprint_ender3
       to: 'not_home'
       for:
         minutes: 15

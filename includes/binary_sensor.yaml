@@ -60,10 +60,23 @@
   payload_off: "Offline"
   device_class: power
 
+#- platform: mqtt
+#  name: "Estado TV sala operações"
+#  state_topic: "devices/muv203tvoperacoes/LWT"
+#  value_template: "{{ value }}"
+#  payload_on: "ONLINE"
+#  payload_off: "OFFLINE"
+#  device_class: power
+
+- platform: octoprint
+  monitored_conditions:
+    - Printing
+    - Printing Error
+
 - platform: mqtt
-  name: "Estado TV sala operações"
-  state_topic: "devices/muv203tvoperacoes/LWT"
+  name: "OctoPrint"
+  state_topic: "octoprint/LWT"
   value_template: "{{ value }}"
-  payload_on: "ONLINE"
-  payload_off: "OFFLINE"
-  device_class: power
+  payload_on: "connected"
+  payload_off: "disconnected"
+  device_class: connectivity

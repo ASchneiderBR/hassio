@@ -22,7 +22,7 @@ switch:
           data_template:
             option: "Casa toda"
         turn_off:
-          service: vacuum.return_to_dock
+          service: vacuum.return_to_base
           data:
             entity_id: vacuum.aspirador
         icon_template: mdi:robot-vacuum
@@ -136,7 +136,7 @@ automation:
       - service: input_select.select_option
         entity_id: input_select.estados_de_succao
         data_template:
-          option: "Balanceado"
+          option: "Turbo"
 
   - alias: Aspirador - Avisar quando terminar
     initial_state: True
@@ -218,7 +218,7 @@ script:
       data:
         entity_id: vacuum.aspirador
         command: app_zoned_clean
-        params: [[22907,22144,26257,31194,1]]
+        params: [[23745,21949,25745,31299,1],[22491,25343,23741,27643,1]]
     - service: script.aspirador_alerta_iniciando
 
   aspirador_zona_tapete:
@@ -236,7 +236,7 @@ script:
       data:
         entity_id: vacuum.aspirador
         command: app_zoned_clean
-        params: [[23844,26228,26044,28778,1]]
+        params: [[23573,26400,25823,28850,1]]
     - service: script.aspirador_alerta_iniciando
 
   aspirador_zona_entrada:
@@ -245,7 +245,7 @@ script:
       data:
         entity_id: vacuum.aspirador
         command: app_zoned_clean
-        params: [[23952,28985,25302,31185,1]]
+        params: [[23620,28957,24920,31307,1]]
     - service: script.aspirador_alerta_iniciando
 
   aspirador_zona_cozinha:
@@ -254,7 +254,7 @@ script:
       data:
         entity_id: vacuum.aspirador
         command: app_zoned_clean
-        params: [[19214,29554,23864,31404,1]]
+        params: [[18839,29577,23689,31177,1]]
     - service: script.aspirador_alerta_iniciando
 
   aspirador_zona_banheiro_social:
@@ -267,7 +267,7 @@ script:
       data:
         entity_id: vacuum.aspirador
         command: app_zoned_clean
-        params: [[19595,25649,21395,26849,2]]
+        params: [[18885,25636,21185,26786,1]]
     - service: script.aspirador_alerta_iniciando
 
   aspirador_zona_banheiro_suite:
@@ -280,7 +280,7 @@ script:
       data:
         entity_id: vacuum.aspirador
         command: app_zoned_clean
-        params: [[19660,24247,21460,25447,2]]
+        params: [[18815,24240,21115,25390,1]]
     - service: script.aspirador_alerta_iniciando
 
   aspirador_zona_quarto:
@@ -298,7 +298,7 @@ script:
       data:
         entity_id: vacuum.aspirador
         command: app_zoned_clean
-        params: [[18645,21070,22995,24070,1]]
+        params: [[18931,21286,22581,23936,1],[21250,23964,22100,25464,1]]
     - service: script.aspirador_alerta_iniciando
 
   aspirador_zona_suite_e_banheiro:
@@ -307,7 +307,7 @@ script:
       data:
         entity_id: vacuum.aspirador
         command: app_zoned_clean
-        params: [[18680,21198,22530,25348,1]]
+        params: [[18897,21234,22497,25434,1]]
     - service: script.aspirador_alerta_iniciando
 
   aspirador_zona_quartos_e_banheiros:
@@ -316,7 +316,7 @@ script:
       data:
         entity_id: vacuum.aspirador
         command: app_zoned_clean
-        params: [[17980,21210,22830,29610,1]]
+        params: [[18554,21238,22454,29338,1]]
     - service: script.aspirador_alerta_iniciando
 
   aspirador_zona_mop:
@@ -329,7 +329,7 @@ script:
       data:
         entity_id: vacuum.aspirador
         command: app_zoned_clean
-        params: [[22795,25409,26045,26409,1],[18663,28597,25913,31297,1],[18642,21065,23542,29315,1],[23564,26428,24514,29528,1],[25138,22276,26038,25376,1]]
+        params: [[18554,21238,22454,29338,1],[22528,25448,25878,27598,1],[25164,22181,25814,25431,1],[18854,29557,24854,31407,1],[23607,27587,25857,29537,1]]
     - service: script.aspirador_alerta_iniciando
 
   aspirador_voltar_dock:
@@ -354,10 +354,12 @@ script:
     - condition: state
       entity_id: input_boolean.boa_noite
       state: 'off'
+    - service: media_player.volume_set
+      entity_id: media_player.all_speakers
+      data:
+        volume_level: 0.7
     - service: tts.amazon_polly_say
-      entity_id:
-        - media_player.sala
-        - media_player.suite
+      entity_id: media_player.all_speakers
       data_template:
         message: <speak><amazon:auto-breaths frequency='medium'>E lá vai ele... Iniciando a limpeza na zona {{ states.input_select.zonas_de_aspiracao.state | lower }}.</amazon:auto-breaths></speak>
 
@@ -375,10 +377,12 @@ script:
     - condition: state
       entity_id: input_boolean.boa_noite
       state: 'off'
+    - service: media_player.volume_set
+      entity_id: media_player.all_speakers
+      data:
+        volume_level: 0.7
     - service: tts.amazon_polly_say
-      entity_id:
-        - media_player.sala
-        - media_player.suite
+      entity_id: media_player.all_speakers
       data_template:
         message: <speak><amazon:auto-breaths frequency='medium'>O aspirador parou limpando a zona {{ states.input_select.zonas_de_aspiracao.state | lower }}. {% if 'error' in states.vacuum.aspirador.state %}Código de erro é {{ states.vacuum.aspirador.attributes.error }}.{% else %}{% endif %}</amazon:auto-breaths></speak>
 
@@ -398,10 +402,12 @@ script:
     - condition: state
       entity_id: input_boolean.boa_noite
       state: 'off'
+    - service: media_player.volume_set
+      entity_id: media_player.all_speakers
+      data:
+        volume_level: 0.7
     - service: tts.amazon_polly_say
-      entity_id:
-        - media_player.sala
-        - media_player.suite
+      entity_id: media_player.all_speakers
       data_template:
         message: <speak><amazon:auto-breaths frequency='medium'>Olha quem está de volta! O aspirador terminou seu trabalho na zona {{ states.input_select.zonas_de_aspiracao.state | lower }}. Limpou cerca de {{ states.vacuum.aspirador.attributes.cleaned_area }} metros quadrados durante {{ states.vacuum.aspirador.attributes.cleaning_time }} minutos e está carregando no momento.</amazon:auto-breaths></speak>
 
@@ -419,9 +425,13 @@ script:
     - condition: state
       entity_id: input_boolean.boa_noite
       state: 'off'
+    - service: media_player.volume_set
+      entity_id: media_player.all_speakers
+      data:
+        volume_level: 0.7
     - service: media_player.play_media
       data:
-        entity_id: media_player.sala
+        entity_id: media_player.all_speakers
         media_content_id: 'http://192.168.1.12:8123/local/audio/tts/alerta_aspirador_parado_erro.mp3'
         media_content_type: 'audio/mp3'
 
@@ -506,7 +516,7 @@ script:
     sequence:
     - service: vacuum.start
       entity_id: vacuum.aspirador
-    - delay: 00:00:10
+    - delay: 00:00:12
     - service: vacuum.stop
       entity_id: vacuum.aspirador
     - delay: 00:00:02

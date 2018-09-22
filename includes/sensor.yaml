@@ -75,3 +75,12 @@
   device_class: humidity
   value_template: '{{ ((value_json["ANALOG"]["A0"] |float /10) |int -100) *-1 }}'
   qos: 1
+
+- platform: octoprint
+  name: OctoPrint
+  monitored_conditions:
+    - Current State
+    - Temperatures
+    - Job Percentage
+    - Time Elapsed
+    - Time Remaining

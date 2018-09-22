@@ -1055,14 +1055,12 @@ tts_entrando_casa_alarme:
   alias: "Entrando em casa com alarme disparando"
   sequence:
   - service: media_player.volume_set
-    entity_id: media_player.sala
+    entity_id: media_player.all_speakers
     data:
       volume_level: 1
   - service: media_player.play_media
     data:
-      entity_id:
-        - media_player.sala
-        - media_player.suite
+      entity_id: media_player.all_speakers
       media_content_id: 'http://192.168.1.12:8123/local/audio/tts/alarme_entrada_nao_autorizada.mp3'
       media_content_type: 'audio/mp3'
 
@@ -1297,7 +1295,7 @@ botao_xiaomi_banheiro_social_01_many:
   alias: "Chuveiro"
   sequence:
   - service: switch.toggle
-    entity_id: switch.chuveirosuite
+    entity_id: switch.chuveirosocial
 
 botao_xiaomi_banheiro_social_01_long:
   alias: "Chuveiro banheiro social"
@@ -2212,11 +2210,13 @@ casa_desligar_tudo:
 speed_test:
   alias: Teste de velocidade da internet
   sequence:
+  - service: media_player.volume_set
+    entity_id: media_player.all_speakers
+    data:
+      volume_level: 0.7
   - service: media_player.play_media
     data:
-      entity_id:
-        - media_player.sala
-        - media_player.suite
+      entity_id: media_player.all_speakers
       media_content_id: 'http://192.168.1.12:8123/local/audio/tts/alerta_iniciando_teste_internet.mp3'
       media_content_type: 'audio/mp3'
   - service: sensor.update_fastdotcom
@@ -2228,9 +2228,7 @@ speed_test:
       title: "Sistema"
       message: "A velocidade da internet em casa é de {{ states.sensor.fastcom_download.state | int}} Mbit/s"
   - service: tts.amazon_polly_say
-    entity_id:
-      - media_player.sala
-      - media_player.suite
+    entity_id: media_player.all_speakers
     data_template:
       message: <speak><amazon:auto-breaths frequency='medium'>Pronto, verifiquei aqui. Atualmente estão chegando {{ states.sensor.fastcom_download.state | int}} mégas aqui em casa. {% if states.sensor.fastcom_download.state | int <= 20 %}Está muito lenta, estão baixando algo neste momento ou algo de errado está acontecendo pois deveriam estar chegando 50 mégas. O Antônio já foi avisado!{% endif %}</amazon:auto-breaths></speak>
 
