@@ -1,5 +1,5 @@
-default: info
+default: error
 logs:
-  homeassistant.components.xiaomi_aqara: info
-  homeassistant.components.sensor.xiaomi_aqara: info
-  homeassistant.components.switch.xiaomi_aqara: info
+  homeassistant.components.homekit: warning
+  pyhap: warning
+  homeassistant.components.camera: debug

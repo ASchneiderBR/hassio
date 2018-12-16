@@ -119,40 +119,42 @@ homeassistant:
 
 automation:
 
-- alias: Automação - RF Bridge Casa
-  trigger:
-    platform: mqtt
-    topic: tele/rfbridgecasa/RESULT
-  condition:
-    condition: template
-    value_template: "{% if trigger.payload_json.RfReceived.RfKey == 'None' %}False{% else %}True{% endif %}"
-  action:
-    - service_template: >
-        {% if trigger.payload_json.RfReceived.RfKey == 1 %}
-          script.rf_chegar_em_casa
-        {% elif trigger.payload_json.RfReceived.RfKey == 2 %}
-          script.garagem_casa_abrir
-        {% elif trigger.payload_json.RfReceived.RfKey == 3 %}
-          script.rf_chegar_em_casa
-        {% elif trigger.payload_json.RfReceived.RfKey == 4 %}
-          script.rf_sair_no_trabalho
-        {% elif trigger.payload_json.RfReceived.RfKey == 5 %}
-          script.rf_chuveiro_suite_toggle
-        {% elif trigger.payload_json.RfReceived.RfKey == 6 %}
-          script.rf_chuveiro_social_toggle
-        {% endif %}
+  - alias: Automação - RF Bridge Casa
+    initial_state: true
+    trigger:
+      platform: mqtt
+      topic: tele/rfbridgecasa/RESULT
+    condition:
+      condition: template
+      value_template: "{% if trigger.payload_json.RfReceived.RfKey == 'None' %}False{% else %}True{% endif %}"
+    action:
+      - service_template: >
+          {% if trigger.payload_json.RfReceived.RfKey == 1 %}
+            script.rf_chegar_em_casa
+          {% elif trigger.payload_json.RfReceived.RfKey == 2 %}
+            script.garagem_casa_abrir
+          {% elif trigger.payload_json.RfReceived.RfKey == 3 %}
+            script.rf_chegar_em_casa
+          {% elif trigger.payload_json.RfReceived.RfKey == 4 %}
+            script.rf_sair_no_trabalho
+          {% elif trigger.payload_json.RfReceived.RfKey == 5 %}
+            script.rf_chuveiro_suite_toggle
+          {% elif trigger.payload_json.RfReceived.RfKey == 6 %}
+            script.rf_chuveiro_social_toggle
+          {% endif %}
 
-- alias: Automação - RF Bridge MuvRH
-  trigger:
-    platform: mqtt
-    topic: tele/rfbridgemuvrh/RESULT
-  condition:
-    condition: template
-    value_template: "{% if trigger.payload_json.RfReceived.RfKey == 'None' %}False{% else %}True{% endif %}"
-  action:
-    - service_template: >
-        {% if trigger.payload_json.RfReceived.RfKey == 1 %}
-          script.rf_chegar_no_trabalho
-        {% elif trigger.payload_json.RfReceived.RfKey == 2 %}
-          script.rf_sair_no_trabalho
-        {% endif %}
+  - alias: Automação - RF Bridge MuvRH
+    initial_state: true
+    trigger:
+      platform: mqtt
+      topic: tele/rfbridgemuvrh/RESULT
+    condition:
+      condition: template
+      value_template: "{% if trigger.payload_json.RfReceived.RfKey == 'None' %}False{% else %}True{% endif %}"
+    action:
+      - service_template: >
+          {% if trigger.payload_json.RfReceived.RfKey == 1 %}
+            script.rf_chegar_no_trabalho
+          {% elif trigger.payload_json.RfReceived.RfKey == 2 %}
+            script.rf_sair_no_trabalho
+          {% endif %}

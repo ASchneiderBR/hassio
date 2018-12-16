@@ -1,0 +1,998 @@
+script:
+
+  persiana_quarto_abrir:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_32
+      data:
+        packet: sgGEAwwUDBQXCgwUDBUMFAwVDBQMFAwUDBUWCgwVFgoWChcKDBQMFBcMoVA2CgwVFgoMFAwUFwoWCgwVFgoXCRcKDBQMFQwUDBQMFQwUFgoNFAwUDBQXCgwUDBUMFBYKDBUMFAwUDBUMFAwUDBUMFBYLCxUWChcKFgoMFAwVFgyhUDcKCxUWCgwVDBQWChcKDBQWChcKFgoMFAwVDBQMFAwVDBQXCgwUDBQMFRYKDBUMFAwUFgoMFQwUDBQMFQwUDBUMFAwUFwoMFBcKFgoWCgwVDBQWDKFRNgoMFBcKDBQMFBcJFwoMFBcKFgoWCgwUDBUMFAwVDBQMFBcKDBQMFQwUFgoMFQwUDBQXCgwUDBUMFAwUDBUMFAwUDBUWCgwVFgoWChcJDRQMFBcMoVA2CgwVFgoMFAwVFgoWCgwVFgoWChcKDBQMFAwVDBQMFAwVFgoMFQwUDBQXCQ0UDBQMFRYKDBUMFAwUDBUMFAwVDBQMFBcJDBUWChcJFwoMFAwUFwyhUDcJDBQXCgwUDBUWChcJDBUWChcKFgoMFA0UDBQMFQwUDBQWCgwVDBQMFRYKDBQMFQwUFwkMFQwUDBUMFAwUDBUMFAwUFwoMFBcJFwoWCgwUDRQWDKFRNgoMFBYKDBULFRcKFgoMFBYKFwoWCgwVDBQMFAwUDBUMFBcKDBQMFA0UFgoMFQwUDBQXCgwUDBQMFQwUDBUMFAwUDBUWCgwUFwoWChcJDBUMFBcMoVA2CgwUFwoMFAwUFwoWCgwUFwoWChcKDBQMFAwVDBQMFAwVFgoMFQwUDBQXCgwUDBQMFRYKDBQMFQwUDBQMFQwUDBUMFBYKDBQXChcJFwoMFAwUFwyhUDcJDBQXCgwUDBQXChYKDBUWChcJFwoMFAwVDBQMFAwVDBQWCgwVCxUMFRYKDBQMFQwUFgoMFQwUDBUMFAwUDBUMFAwUFwoMFBYKFwkXCgwVDBMXDKFQNwkMFRYKDBUMFBYKFwoMFBcJFwkXCgwUDBUMFAwVDBQMFBcKDBQMFQwUFgoMFQwUDBQXCgwUDBQMFQwUDBQMFQwUDBQXCgwUFwoWChYKDBUMFBcMoVA2CgwUFgoMFQwUFwoWCgwUFwkXChYKDRQMFAwUDBUMFAwVFgoMFQwUDBQWCgwVDBQMFRYKDBQNFAwUDBQMFQwUDBQMFRYKDBUWChYKFwoMFAwUFwAF3AAAAAA==
+    - delay: '00:00:03'
+    alias: "Persiana abrir"
+  
+  persiana_quarto_fechar:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_32
+      data:
+        packet: sgGEAxYKFwoWCgwVDBQMFAwVDBQMFA0UDBQXCQwVFgoMFQwUDBQXChYMoVE2CQwVFgoMFAwVFwkXCgwUFgoXChYKDBQMFQwUDBULFQwUFwoMFAwUDBULFQwUFwoWChcKCxUMFAwVDBQMFQwUDBQMFBcKDBQXCQwVDBQMFRYKFg2hUDYKDBQXCQwVDBQXChYKDBQWChcKFgoMFQwUDBQMFQwVCxUWCgwUDBUMFAwUDBUWChcJFwoMFAwUDBUMFAwVCxUMFAwVFgoMFBcKDBQMFAwVFwkXDKFQNwkMFRYKDBQMFBcKFwkMFBcKFwkXCgwUDBQNFAwUDBUMFBYKDBQMFQwUDBUMFBYKFwoWCgwUDBUMFAwVDBQMFQsVDBQWCgwUFwoMFQsVDBQXCRcMoVA3CQ0UFgoMFAwVFgoXCQwVFgoWCxYKDBQMFQwUDBQMFQwUFwoMFAwUDBUMFAwUFwoWChcJDRQMFAwVDBQMFAwVDBQMFBcKDBQXCQwVDBQMFRYKFgyhUTYKDBQXCgwUDBQXCRcKDBQXCRcKFgoMFQwUDBQMFQwUDBQXCgwUDBQNFAwUDBUWChYKFwoMFAwUDBUMFAwVCxUMFAwVFgoMFBcKCxUMFQsVFgoWDaFQNgoMFBcKDBQMFBcKFgoMFRYKFgoXCgsVDBQMFQwUDBQMFRYKDBQMFQwUDBQMFRYKFwoWCgwUDBUMFAwUDBUMFAwUDBUWCgwUFwoMFQwUDBQXCRcMoVA2CgwVFgoMFAwVFgoXCgsVFgoXChYKDBQMFQwUDBQMFQsVFgoMFQwUDBUMFAwUFwoWChYKDBULFQwUDBUMFAwVDBQMFBcKDBQWCgwVDBQMFRYKFgyiTzcJDBUWCgwVDBQWChcKDBQWChcKFwoLFQsVDBQMFQwUDBUWCgwUDBULFQwUDBQXChYLFgkNFAwVDBQMFAwUDBUMFAwVFgoMFBcKDBQMFAwVFgoWDaFQNgoMFBYLCxUMFBcJFwoMFBcKFgoWCgwVDBQMFQwUDBQMFRYKDBQMFQwUDBUMFBYKFwkXCgwVCxUMFAwUDRQMFAwUDBUWCgwVFgoMFA0UDBQXCRcMoVA2CgwVFgoMFAwVFgoWCgwVFgoWChcKDBQMFQsVDBQMFAwVFgoMFQwUDBQMFQwUFgoXChcJDBUMFAwVDBQMFAwUDBUMFBYLDBQWCgwVDBQMFRYKFgAF3AAAAAA==
+    - delay: '00:00:03'
+    alias: "Persiana fechar"
+  
+  persiana_quarto_parar:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_32
+      data:
+        packet: sgD+AgEUFwoWCgwUFwoWChcJDRQMFAwVDBQMFAwVFgoMFA0UDBQXCgwUFgsMFBYKDBUMFAwUDBQMFQwUDBUMFBYKDBUWChcJFwoWChcJFwyhUDYKDBUWCgwUDBUWChYKDBUWChcJFwoMFAwVDBQMFAwVDBQWCgwUDBUMFBcKDBQXCgwUFgoMFQwUDBQMFQwUDBUMFAwUFgsLFRYKFgsWChcJFwkXDKFQNwoMFBYKDBUMFBYKFwkNFBYKFwoWCgwUDBUMFAwUDBUMFBcKDBQMFAwVFgoMFBcKDBQWCgwVDBQMFQwUDBQMFQwUDBUWCgwUFwkXChYKFwoWChYMoVE2CgwUFwkMFQwUFwkXCgwUFgoXChcJDBUMFAwUDRQMFAwUFwoMFAwVDBQXCQwVFgoMFBcJDBUMFAwVDBQMFAwVDBQMFRYKDBQXCRcKFwkXChYKFg2hUDYKDBQWCwwUDBQXChYKDBQXChYKFwkMFQwUDBQNFAwUDBUWCgwUDBUMFBcJDBUWCgwUFwoMFAwUDRQMFAwVDBQMFQwUFgoMFRYKFgoXCRcKFgoXDKFQNgoMFBcKDBQMFBcKFwkMFRYKFgoXCgwUDBQMFQwUDBQNFBYKDBULFQwUFwoMFBYKDRQWCgwUDRQMFAwUDRQMFA0UDBQXCQwVFgoXChYKFgoWChcMoVA3CQwUFwoMFAwVFgoXCQwVFgoWChcKDBQMFAwVDBQMFQwUFwkMFQwUDBQXCgwUFwoMFBYKDBUMFAwVDBQMFAwUDBUMFBcKDBQWChcKFgoWChcKFgyiTzcKDBQWCgwVDBQWChcJDBUXCRcKFgoMFA0UDBQMFQwUDBQXCgwUDBQMFRYKDBQXCgwUFwoMFAwUDBUMFAwVDBQMFAwUFwoMFBcJFwoWChcJFwoWDKFQNwkNFBcJDBUMFBcJFwoMFBYKFwoWCgwVDBQMFAwVDBQMFRYKDBQMFQwUFgoMFRYKDBQXCgwUDBQMFQwUDBUMFAwUDBUWCgwUFwoWChcJFwoWChcABdwMFAwVFgoMFBcK==
+    - delay: '00:00:03'
+    alias: "Persiana parar"
+  
+  persiana_suite_abrir:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_32
+      data:
+        packet: sgGEAwwXDBcMFwwXGAwLGAsYDBcMFxgLDBcMGBcMCxgMFxgLDBcYCwwXDBcMGAsYFwwMFxgLDBcMFwwXGAwLGAwXDBcYCwwXDBcMGBcMnTEYDBcMFwwMFwwXDBcMFxgMCxgLFwwYCxgYCwwXDBcYDAsXDBgXDAwXGAsMFwwXDBcMFxgMCxgXDAwXDBcMFxgMCxgLGAwXGAsMFwwXDBcY/Z0xGAsYCxgLDBcMGAsYDBcYCwwXDBcMFwwXGAwLGAsYFwwMFwwXGAsMFxgMCxgMFwwXDBcYCwwXGAsMGAsYCxgXDAwXDBcMFxgLDBgLGAwXGAydMRgLGAsYCwwXDBcMFwwXGAwMFwwXDBcMFxgMCxcMFxgMDBcMFxgLDBcYCwwYCxcMGAwXGAsMFxgLDBcMGAsYFwwMFwwXDBcYCwwYCxcMGBf9nTEYDBcMFwwMFwwXDBcMFxgLDBgLGAsYCxgXDAwXDBcYCwwYCxgXDAwXGAsMFwwXDBcMGBcMCxgXDAwXDBcMFxgMCxgLGAwXGAsMFwwXDBcYDJ0xGAsYCxgMCxgMFwwXDBcYCwwXDBcMFwwXGAwLGAwXGAsMFwwYFwwLGBcMDBcMFwwXDBcYCwwXGAsMGAwXDBcYCwwXDBgLGBcMCxgMFwwXGP2dMRgLGAsYCwwXDBcMFwwXGAwMFwwXDBcMFxgLDBcMFxgMCxgMFxgLDBcYDAsXDBgLGAwXGAsMFxgLDBcMGAsYFwwMFwwXDBcYCwwXDBgLGBcMnTIXDBcMGAsMFwwXDBcMFxgMCxgMFwwXDBcYCwwXDBcYDAsYCxgXDAwXGAsMFwwXDBgLGBcMDBcYCwwXDBcMFxgMCxcNFwwXGAsMFwwXDBcYDZ0xGAsYCxgLDBcMFwwYCxgYCwwXDBcMFwwYFwsMGAsYFwwMFwwXGAsMFxgLDBcMGAwXDBcYCwwYFwwLFwwYDBcXDAwXDBcMFxgMFwsYDBgLDAABB50xGAsYDBcMCxgMFwwXDBcYCwwXDBcMGAsXGAwLGAsYGAsMFwwXGAwLGBcMDBcMFwwXDBcYCwwXGAwLGAsYDBcYCwwXDBgLGBcMFwwYCxgLDAABB50xGAwXDBcMDBcMFwwXDBcYCwwYCxgLGAwXGAsMFwwXGAsMFwwYFwwMFxcMDBcMFwwXDBgXDAwXFwwMFwwXDBcYCwwYCxgLGBcMGAsYCxgLDAAF3AAAAAA==
+    - delay: '00:00:03'
+    alias: "Persiana abrir"
+  
+  persiana_suite_fechar:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_32
+      data:
+        packet: sgGEAwsYDBcMFwwXGAsMFwwYCxgLGBcMDBcMFxgLDBcMFxgMCxgYCwwXDBcMFwwXGAsMGBcMCxgMFwwXGAsMFwwYFwwXDAwXDBcYCxgMnTEYCxgLGAsMGAsYDBcMFxgLDBgLFwwYCxcYDAsYCxgXDAwXDBcYCwwYFwwMFwwXDBcMFxgLDBgXDAsYCxgLGBgLDBcMFxgMFwwLGAwXGAsY/Z0xGAsYDBcLDBcMFwwYCxgXDAwXDBcMFwwXGAwLGAsYFwwMFwwXGAsMFxgLDBgLGAsYDBcYCwwXGAwLGAsYDBcXDAwXDBcYCxgMCxcMGBcMFwyeMRgLGAsYCwwXDBcMFwwXGAwMFwwXDBcMFxgMCxgLGBcMDBcMFxgLDBcYCwwYCxgLGAwXFwwMFxgLDBcMGAsXGAwMFwwXGAsYCwwYCxcYCxj9nTIXDBcMFwwMFwwXDBcMGBcMDBcMFwwXDBcYCwwXDBgXDAsYCxgXDAsYGAsMFwwXDBgLGBcMDBcYCwwXDBcMFxgMCxgMFxcMGAsMFwwXGAwXDJ0xGAsYDBcMCxgLGAwXDBcYCwwXDBgLGAsYFwwMFwwXGAwLFwwYFwwLGBcMDBcMFwwXDBgXDAwXGAsMFwwXDBcYCwwXDBcYDBcMDBcMFxgLGP2dMRgLGAwXDAsYDBcMFwwXGAsMFwwXDBcMGBcMCxgMFxgLDBcMFxgLDBgXDAwXDBcMFwwXGAsMGBcLDBgMFwwXGAsMFwwXGAwXDAsYDBcYCxgMnTEYCxgLGAsMGAsYCxgLGBcMDBcMFwwXDBcYCwwYDBcYCwwXDBcYCwwXGAsMGAsYDBcMFxgLDBcYDAsYCxgMFxgLDBcMFxgMFwwLGAsYFwwYDJ0yFwwXDBgLDBcMFwwXDBcYCwwXDBgLGAwXFwwMFwwXGAwLGAsYFwwMFxgLDBcMFwwXDBgXDAsYFwwMFwwXDBcYDAsYCxgXDBgLGAsYCwwXDAABB50yFwwXDBgLDBcMFwwXDBcYDAwXDBcMFwwXGAsMFwwXGAwMFwwXGAsMFxgLDBcMGAsYDBcYCwwXGAsMFwwXDBcYDAwXDBcYCxgLGAsYDAsYCwABCJ0xGAsYCxgLDBcMGAsYCxgXDAwXDBcMFwwXGAwLFwwYFwwMFwwXGAsMFxgLDBgLGAsYDBcYCwwXGAsMFwwXDBgXDAwXDBcYCxgLGAwXDAsYDAAF3AAAAAA==
+    - delay: '00:00:03'
+    alias: "Persiana fechar"
+  
+  persiana_suite_parar:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_32
+      data:
+        packet: sgH2ABgMFwwXDAwXDBcMFwwYFwsMFwwYCxgLGBcMDBcMFxgLDBcMGBcLDBgXDAwXDBcMFwwXGAsMFxgLDBgLGAwXFwwMFxgLDBcYCwwXGAwLGBcMnTIXDBgLGAsMFwwXDBcMFxgMCxgMFwwXDBcYCwwXDBcYDAsXDBcYDAsYGAsMFwwXDBcMFxgMCxcYDAwXDBcMFxgLDBcYDAsXGAsMGBcMDBcYC54xFwwYCxgLDBcMFwwXDBcYDAsYDBcMFwwXGAsMFwwXGAwLGAsYGAsMFxgLDBcMFwwXDBgXDAsYFwwMFwwXDBcYDAsYFwsMGBcMDBcYCwwXGAAF3AAA==
+    - delay: '00:00:03'
+    alias: "Persiana parar"
+  
+  persiana_sala_abrir:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_32
+      data:
+        packet: sgGEAwwXDBcMFwwXGAsMFwwXDBgMFxgLDBcMFxgLDBcYCxkKGQsMFwwXGAsMFxgLDBcNFhkLDBcMFwwXGAsMFwwXDBgYCwwXDBcMFxgMnTEYCxgLGAsMFwwYDBYNFxgLDBcMFwwXDBcZCwwXDBcYCwwXGAsYCxgLDRYMGBgLDBcYCwwXDBcYDAwWDRcMFxgLDBcMFwwXGAsMFwwXDRcY/J4wGAwYCxgLDBcMFwwXDBcYDAwXDBcMFwwXGAsMFwwXGAsNFhkLGAsYCwwXDBcYCwwYGAsMFwwXGAsMFwwXDBcYCw0XDBcMFxgLDBcMFwwXGQudMRkKGAsYDAwXDBcMFwwXGAsNFwwXDBcMFxgLDBcMFxgLDRcXDBcMGAsMFwwXGAsMFxgMDBcMFxgLDBcMFwwXGAsMGAwXDBcYCwwXDBcMFxj9nTEYCxgLGAsMFw0XDBcMFxgLDBcMFwwXDBcYDAwXDBcYCwwXGAsYCxgLDBcNFxgLDBcYCwwXDBcYDAwXDBcMFxgLDBcMFwwXGAsNFwwXDBcYDJ0xGAsYCxgLDBcMFwwXDBgYCwwXDBcMFwwXGAsNFg0XGAsMFxgLGAsYCw0WDRYYDAwXGAsMFwwXGAsMFw0XDBcYCwwXDBcMFxgMDBYMGAwWGfydMRkLGAsYCwwXDBcMFwwXGAwMFwwXDBcMFxgLDBcMFxgMCxgYCxgLGAsMFwwXGAsNFxgLDBcMFxgLDBcMFwwXGAwMFwwXDBcYCwwXDBcMFxkLnjAYCxkLFwwMFwwXDBcMFxgLDBgMFg0XDBcYCwwXDBcYCwwXGAwXDBgLDBcMFxgLDBcZCwwXDBcYCwwXDBcMFxgLDBgLFw0XGAsMFwwXDBcYDZ0xGAsYCxgLDBcMFwwYDBcYCwwXDBcMFwwXGAsMFwwXGAwMFxgLGAsYCwwYCxgYCwwXGAsMFwwXGAsMFwwXDBcYDAwXDBcMFxgLGAwXDBgLDAABB50xGAsYCxgLDRYMGAwXDBcYCwwXDBcMFwwXGAsMGAwXGAsMFxgLGAsYCwwYDBcYCwwXGAsMFwwXGAsMFw0XDBcYCwwXDBcMFxgMGAsYCxgLDAABB50xGAsZCxgLDBcMFwwXDBcYCwwYCxgMFwwXGAsMFwwXGAsMGBcLGAwYCwwXDBcYCwwXGQoNFwwXGAsMFwwXDBcYDAwWDRcLGBgLGAsYCxgLDAAF3AAAAAA==
+    - delay: '00:00:03'
+    alias: "Persiana abrir"
+  
+  persiana_sala_fechar:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_32
+      data:
+        packet: sgGCAQwXGAwMFxgLGAsYCwwXDBcZCwwXGAsMFwwXGAsMFwwXDRYYDAwXDBcYCxgLDBcNFhkKGQueMBkKGQsYCwwXDBcMFwwXGQsMFwwXDBcMFxgLDBcMFxgLDRcYCxgLGAsMFwwYFwsNFxgLDBcMFxgLDBcMFwwXGQoNFwwXGAsYCwwXDBcYCxn8nTEZChgMGAsMFwwXDBcMFxgLDBcMGAwWDRcYCwwXDBcYCwwXGQsYCxgLDBcMFxgLDBcYCw0WDRYZCwwXDBcMFxgLDBgLFxkLGAsYCxgLDBcMAAEHnjAZCxgLGAsMFwwXDBcMFxgMDBcMFwwXDBcYCwwXDBcYCw0WGQsYCxgLDBcMFxgLDRcYCwwXDBcYCwwXDBcMFxgMDBcMFxgLGAsYCxgLDRYNAAEHnTEYCxgLGAsMFwwXDRcMFhkLDBcMFwwXDBcYCwwXDBcZCwwXGAsYCxgLDBcNFhkLDBcYCwwXDBcYCwwXDRYMGBgLDBcMFxgLGAsYCxkLDBcMAAXcAAAAAAAA==
+    - delay: '00:00:03'
+    alias: "Persiana fechar"
+  
+  persiana_sala_parar:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_32
+      data:
+        packet: sgH4AJ0xGAsYDBgLDBcMFwwXDBcYCwwXDBcMFw0XFwwMFwwXGAsMFxgLGAsYCwwXDRcYCwwXGAsMFwwXGAsNFg0XDBcYCwwXGAsMFxgLDBcYDAsXGAydMRkKGAwYCwwXDBcMFwwXGAsMFw0XDBcMFxgLDBcMFxgLDBcYCxkKGAwMFwwXGAsMFxgLDBcMFxkLDBYNFwwXGAsMFxgLDBcYCwwYGAsMFxgLnjEYCxgLGAsMFwwXDBcMFxgMDBcMFwwXDBcYCwwXDBcYCwwYGAsYCxgLDBcMFxgLDBcZCg0WDRcYCwwXDBcMFxgLDRYZCgwYFwwMFxgLDBcYAAXc==
+    - delay: '00:00:03'
+    alias: "Persiana parar"
+  
+  garagem_casa:
+    sequence:
+    - service: switch.turn_on
+      entity_id: switch.controle_garagem_casa
+    - delay: '00:00:03'
+    alias: "Garagem casa"
+  
+  ar_suite_swing:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_32
+      data:
+        packet: JgDKAJCPEjYRExE2EjYRExETETYSEhISETcRExESEjYRNxQQETYSEhE3ETYSEhI2ERMRNhI2ETYSEhISEjYRExE2EhISEhI2ETYSNhETERMRExQQERMREhISEhIUNBE2EjYUNBE2EquQjxI2ERMRNhI2ERMRExE2ERMRExE2FBASEhI2ETYSEhQ0ERMRNhI2ERMRNhISFDQRNhI2ERMRExE2EhIUNBETERMRNhI2ETYUEBISEhIUEBETERMRExETETYSNhE2EjYRNhIADQUAAAAAAAAAAAAAAAAAAA==
+    alias: "Swing"
+  
+  ar_suite_display:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_32
+      data:
+        packet: JgDKAJCPEjYRExE2EjYRExE2FBASNhETFDMSEhISEjYRExE2EhISNhE2EjYRNhISEjYRExE3ERISEhISEhIRNxETETYSEhI2ERMRNhISFBARNxQQETYSEhE3FBARNhI2ERMRNhQQEquQjxQ0ERMRNhI2FBARNhISEjYRExE3ERISEhI2ERMRNhISEjYRNxQzEjYRExE2EhISNhETFBAUEBETEzQSEhE3ERMRNhISETcRExESEjYRExE3ERIUNBQQETcTNBETETcRExEADQUAAAAAAAAAAAAAAAAAAA==
+    alias: "Display"
+  
+  ar_suite_desligar:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_32
+      data:
+        packet: JgLKAJGOEzUTERM0FDQUEBQQEzQUEBQQFDMUEBQQFDQUMxQQFDQUEBQzFDQUMxQ0FBAUMxQ0FDQUEBMQFBAUEBQ0FBAUEBQzFDQUMxQQFBAUEBQQFBAUEBQQFBATNBQ0FDMUNBQzFKmSjRQ0FBAUMxQ0FBAUEBQzFBAUEBQ0FBAUEBM0FDQUEBQzFBAUNBQzFDQUMxQQFDQUMxQ0FBAUEBQQFA8UNBQQFBAUMxQ0FDMVDxQQFBAUEBQQFBAUEBQQFDMUNBQzFDQUNBQADQUAAAAAAAAAAAAAAAAAAA==
+    alias: "Desligar"
+  
+  tv_lg_suite_power:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_32
+      data:
+        packet: JgBIAAABKpUTExITEzgSExMTEhMTExITEzgTOBITEzgSOBM4EjgTOBMSExMTEhM4ExMSExMTEhMTOBI4EzgTEhM4EzgSOBM4EgANBQ==
+    alias: "Ligar ou desligar"
+  
+  tv_lg_suite_power_on:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_32
+      data:
+        packet: JgRQAAABKJMSEhISEjcSEhISEhISEhISEjcSNxISEjcSNxI3EjcSNxISEhISNxISEhISEhI3EjcSNxI3EhISNxI3EjcSEhISEgAFGgABKEoSAAxWDQUAAAAAAAA==
+    alias: "Ligar TV"
+  
+  tv_lg_suite_power_off:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_32
+      data:
+        packet: JgRQAAABKJMSEhISEjcSEhISEhISEhISEjcSNxISEjcSNxI3EjcSNxI3EhISNxISEhISEhI3EjcSEhI3EhISNxI3EjcSEhISEgAFGgABKEoSAAxWDQUAAAAAAAA==
+    alias: "Desligar TV"
+  
+  tv_lg_suite_volup:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_32
+      data:
+        packet: JgBIAAABLJMUERMTEjgTExQRFREUERUREzgUNhQSEjgVNhI4FTYUNhURFDcSExMTFBETExITFREUNhMTFDYTOBM3FTYUNxQ2FQANBQ==
+    alias: "Volume mais"
+  
+  tv_lg_suite_voldown:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_32
+      data:
+        packet: JgBQAAABKpQTExMSEzgTExITExMSExMTEjgTOBITEzgTNxM4EzgSOBM4EjgTExMSExMTEhMTExITExMTEjgTOBI4EzgTNxM4EwAFKQABKksTAA0FAAAAAAAAAAA==
+    alias: "Volume menos"
+  
+  tv_lg_suite_menu:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_32
+      data:
+        packet: JgBQAAABKpUSExMTFDYTExMSFRETExITFDcSOBUREjgVNhQ2EzgTOBQRFREUNhU2FDYTOBQ3EhMVNhI4ExMSExMTExITExM4FAAFKAABKkoTAA0FAAAAAAAAAAA==
+    alias: "Menu"
+  
+  tv_lg_suite_chup:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_32
+      data:
+        packet: JgBQAAABLJMUERURFDYVERQRExMUERURFDYVNhQSEjgVNhI4FTYUNhURExIVERMTFBETExQRExMUNhU2FDYVNhQ2FTYTOBQ2EwAFKwABK0kTAA0FAAAAAAAAAAA==
+    alias: "Canal mais"
+  
+  tv_lg_suite_chdown:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_32
+      data:
+        packet: JgBQAAABKpUSExMTEjgTExMSExMTEhMTEzgSOBMTEjgTOBI4EzgTOBI4ExMSExMTEhMTExITExMSExM4EjgTOBM3EzgTOBI4EwAFKQABKksTAA0FAAAAAAAAAAA==
+    alias: "Canal menos"
+  
+  tv_lg_suite_config:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_32
+      data:
+        packet: JgBQAAABKpQTExMSEzgTExITExMSExMTFDYTOBITEzgTOBI4EzgSOBM4FDcSExMTEhMVERI4FRESExUREjgTOBM3EzgTExI4EwAFKwABKkoTAA0FAAAAAAAAAAA==
+    alias: "Configurações"
+  
+  tv_lg_suite_up:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_32
+      data:
+        packet: JgBQAAABKpUSExMTEjgTExMSExMTEhMTEzgSOBMTEjgTOBI5EjgTOBITExMSExMTEhMTExI4ExMTOBI4EzgSOBM4EzcTExM4EgAFKwABKksTAA0FAAAAAAAAAAA==
+    alias: "Para cima"
+  
+  tv_lg_suite_down:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_32
+      data:
+        packet: JgBQAAABLJUTExITEzgTEhMTExITExMSEzgTOBITEzgSOBM4EzgSOBM4EhMTExITExMTEhM4ExITExM4EjgTOBI4EzgTEhM4EwAFKQABKksTAA0FAAAAAAAAAAA==
+    alias: "Para baixo"
+  
+  tv_lg_suite_left:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_32
+      data:
+        packet: JgBIAAABKpQTExMSEzgVERITExMSExMTEjgTOBITEzgTOBI4EzgSOBM4EzcTOBMTEhMTExITExMSExMTEhMTOBI4EzgTOBI4EwANBQ==
+    alias: "Para esquerda"
+  
+  tv_lg_suite_right:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_32
+      data:
+        packet: JgBQAAABKpUSExMTEjgTExMSExMTEhMTEzgSOBMTEjgTOBI4EzgTOBITEzgSOBMTEhMTExITExMTNxMTExITOBM4EjgTOBM3EwAFKgABKkoTAA0FAAAAAAAAAAA==
+    alias: "Para direita"
+  
+  tv_lg_suite_ok:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_32
+      data:
+        packet: JgBQAAABKZUTExMSEzgTEhMTExMSExMTEjgTOBITEzgSOBM4EzgSOBMTEhMTOBITExMSExM4ExITOBM4EhMTOBI4EzgTEhM4EwAFKQABKksSAA0FAAAAAAAAAAA==
+    alias: "Selecionar"
+  
+  tv_lg_suite_exit:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_32
+      data:
+        packet: JgBQAAABKpUTExITFDcSExMTEhMTExITEzgUNhMTEzgSOBQ3FDYVNhQ3FDYVERI4FTYUERU2FBETExQSFDYVERQREzgUERM4FAAFKQABKksVAA0FAAAAAAAAAAA==
+    alias: "Sair"
+  
+  tv_lg_suite_mute:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_32
+      data:
+        packet: JgBQAAABK5QUERUREjgVERQRFREUERURFDYVNhMTEjgTOBQ2EzgTOBI4FRESExU2EhMTExMSExMTEhM4EzgSExM4EjgTOBM4EgAFKwABKksTAA0FAAAAAAAAAAA==
+    alias: "Mudo"
+  
+  tv_lg_suite_input:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_32
+      data:
+        packet: JgBIAAABLJMTEhUREzcTExQSEhMTExITEzgSOBMTEjgTOBQ3FDYVNhI4EzgTEhU2ExMSExMTEhMTExQREzgSExM4FDYVNhQ3FAANBQ==
+    alias: "Entrada"
+  
+  tv_lg_suite_play:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_32
+      data:
+        packet: JgBQAAABKpUUERMTFDYVERQSFBEUEhQRFDcUNhURFDYVNhQ3FDYVNhQRExMUERMTFDYVNhQSFDYTOBQ2FTYUNxQRFREUNhURFAAFKAABLEkUAA0FAAAAAAAAAAA==
+    alias: "Tocar"
+  
+  tv_lg_suite_pause:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_32
+      data:
+        packet: JgBQAAABKpUSExMTEjgTExITExMSExMTEjgVNhMTEjgTOBI4EzgSOBMTEzgSExM4EjgTOBITEzgSOBMTEzgSExMTEhMTOBITFQAFKAABKUsTAA0FAAAAAAAAAAA==
+    alias: "Pausar"
+  
+  tv_lg_suite_stop:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_32
+      data:
+        packet: JgBQAAABKZUTExQRFTYUERMTFBETExQSFDYUNxQREzgSOBM4FDcUNhM4FBETExQREzgTOBQREzgSExU2EjgVNhQRExMUNxITFQAFKQABK0kTAA0FAAAAAAAAAAA==
+    alias: "Parar"
+  
+  tv_lg_suite_chtv:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_32
+      data:
+        packet: JgBIAAABKpUTExITEzgSExURFBETExQREzgUNxITEzgSOBU2FDcSOBQ3FDYTOBQ2ExMUEhITExMUERQSEhMTExI4EzgUNhM4FAANBQ==
+    alias: "Assistir TV"
+  
+  tv_lg_suite_hdmi1:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_32
+      data:
+        packet: JgBQAAABKJMSEhISEjcSEhISEhISEhISEjcSNxISEjcSNxI3EjcSNxISEjcSNxI3EhISEhI3EjcSNxISEhISEhI3EjcSEhISEgAFGgABKEoSAAxWDQUAAAAAAAA==
+    alias: "HDMI 1"
+  
+  tv_lg_suite_hdmi2:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_32
+      data:
+        packet: JgBQAAABKJMSEhISEjcSEhISEhISEhISEjcSNxISEjcSNxI3EjcSNxISEhISNxI3EhISEhI3EjcSNxI3EhISEhI3EjcSEhISEgAFGgABKEoSAAxWDQUAAAAAAAA==
+    alias: "HDMI 2"
+  
+  tv_lg_suite_hdmi3:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_32
+      data:
+        packet: JgBQAAABKJMSEhISEjcSEhISEhISEhISEjcSNxISEjcSNxI3EjcSNxI3EhISEhI3EhISNxI3EjcSEhI3EjcSEhI3EhISEhISEgAFGgABKEoSAAxWDQUAAAAAAAA==
+    alias: "HDMI 3"
+  
+  tv_lg_suite_hdmi4:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_32
+      data:
+        packet: JgBQAAABKJMSEhISEjcSEhISEhISEhISEjcSNxISEjcSNxI3EjcSNxISEjcSEhI3EjcSEhI3EjcSNxISEjcSEhISEjcSEhISEgAFGgABKEoSAAxWDQUAAAAAAAA==
+    alias: "HDMI 4"
+  
+  ar_sala_swing:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_34
+      data:
+        packet: JgDKAJCPEjYRExE2EjYRExETETYSEhISETcRExESEjYRNxQQETYSEhE3ETYSEhI2ERMRNhI2ETYSEhISEjYRExE2EhISEhI2ETYSNhETERMRExQQERMREhISEhIUNBE2EjYUNBE2EquQjxI2ERMRNhI2ERMRExE2ERMRExE2FBASEhI2ETYSEhQ0ERMRNhI2ERMRNhISFDQRNhI2ERMRExE2EhIUNBETERMRNhI2ETYUEBISEhIUEBETERMRExETETYSNhE2EjYRNhIADQUAAAAAAAAAAAAAAAAAAA==
+    alias: "Swing"
+  
+  ar_sala_display:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_34
+      data:
+        packet: JgDKAJCPEjYRExE2EjYRExE2FBASNhETFDMSEhISEjYRExE2EhISNhE2EjYRNhISEjYRExE3ERISEhISEhIRNxETETYSEhI2ERMRNhISFBARNxQQETYSEhE3FBARNhI2ERMRNhQQEquQjxQ0ERMRNhI2FBARNhISEjYRExE3ERISEhI2ERMRNhISEjYRNxQzEjYRExE2EhISNhETFBAUEBETEzQSEhE3ERMRNhISETcRExESEjYRExE3ERIUNBQQETcTNBETETcRExEADQUAAAAAAAAAAAAAAAAAAA==
+    alias: "Display"
+  
+  ar_sala_desligar:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_34
+      data:
+        packet: JgLKAJGOEzUTERM0FDQUEBQQEzQUEBQQFDMUEBQQFDQUMxQQFDQUEBQzFDQUMxQ0FBAUMxQ0FDQUEBMQFBAUEBQ0FBAUEBQzFDQUMxQQFBAUEBQQFBAUEBQQFBATNBQ0FDMUNBQzFKmSjRQ0FBAUMxQ0FBAUEBQzFBAUEBQ0FBAUEBM0FDQUEBQzFBAUNBQzFDQUMxQQFDQUMxQ0FBAUEBQQFA8UNBQQFBAUMxQ0FDMVDxQQFBAUEBQQFBAUEBQQFDMUNBQzFDQUNBQADQUAAAAAAAAAAAAAAAAAAA==
+    alias: "Desligar"
+  
+  tv_lg_sala_power:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_34
+      data:
+        packet: JgBIAAABKpUTExITEzgSExMTEhMTExITEzgTOBITEzgSOBM4EjgTOBMSExMTEhM4ExMSExMTEhMTOBI4EzgTEhM4EzgSOBM4EgANBQ==
+    alias: "Ligar ou desligar"
+  
+  tv_lg_sala_power_on:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_34
+      data:
+        packet: JgRQAAABKJMSEhISEjcSEhISEhISEhISEjcSNxISEjcSNxI3EjcSNxISEhISNxISEhISEhI3EjcSNxI3EhISNxI3EjcSEhISEgAFGgABKEoSAAxWDQUAAAAAAAA==
+    alias: "Ligar TV"
+  
+  tv_lg_sala_power_off:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_34
+      data:
+        packet: JgRQAAABKJMSEhISEjcSEhISEhISEhISEjcSNxISEjcSNxI3EjcSNxI3EhISNxISEhISEhI3EjcSEhI3EhISNxI3EjcSEhISEgAFGgABKEoSAAxWDQUAAAAAAAA==
+    alias: "Desligar TV"
+  
+  tv_lg_sala_volup:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_34
+      data:
+        packet: JgBIAAABLJMUERMTEjgTExQRFREUERUREzgUNhQSEjgVNhI4FTYUNhURFDcSExMTFBETExITFREUNhMTFDYTOBM3FTYUNxQ2FQANBQ==
+    alias: "Volume mais"
+  
+  tv_lg_sala_voldown:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_34
+      data:
+        packet: JgBQAAABKpQTExMSEzgTExITExMSExMTEjgTOBITEzgTNxM4EzgSOBM4EjgTExMSExMTEhMTExITExMTEjgTOBI4EzgTNxM4EwAFKQABKksTAA0FAAAAAAAAAAA==
+    alias: "Volume menos"
+  
+  tv_lg_sala_menu:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_34
+      data:
+        packet: JgBQAAABKpUSExMTFDYTExMSFRETExITFDcSOBUREjgVNhQ2EzgTOBQRFREUNhU2FDYTOBQ3EhMVNhI4ExMSExMTExITExM4FAAFKAABKkoTAA0FAAAAAAAAAAA==
+    alias: "Menu"
+  
+  tv_lg_sala_chup:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_34
+      data:
+        packet: JgBQAAABLJMUERURFDYVERQRExMUERURFDYVNhQSEjgVNhI4FTYUNhURExIVERMTFBETExQRExMUNhU2FDYVNhQ2FTYTOBQ2EwAFKwABK0kTAA0FAAAAAAAAAAA==
+    alias: "Canal mais"
+  
+  tv_lg_sala_chdown:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_34
+      data:
+        packet: JgBQAAABKpUSExMTEjgTExMSExMTEhMTEzgSOBMTEjgTOBI4EzgTOBI4ExMSExMTEhMTExITExMSExM4EjgTOBM3EzgTOBI4EwAFKQABKksTAA0FAAAAAAAAAAA==
+    alias: "Canal menos"
+  
+  tv_lg_sala_config:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_34
+      data:
+        packet: JgBQAAABKpQTExMSEzgTExITExMSExMTFDYTOBITEzgTOBI4EzgSOBM4FDcSExMTEhMVERI4FRESExUREjgTOBM3EzgTExI4EwAFKwABKkoTAA0FAAAAAAAAAAA==
+    alias: "Configurações"
+  
+  tv_lg_sala_up:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_34
+      data:
+        packet: JgBQAAABKpUSExMTEjgTExMSExMTEhMTEzgSOBMTEjgTOBI5EjgTOBITExMSExMTEhMTExI4ExMTOBI4EzgSOBM4EzcTExM4EgAFKwABKksTAA0FAAAAAAAAAAA==
+    alias: "Para cima"
+  
+  tv_lg_sala_down:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_34
+      data:
+        packet: JgBQAAABLJUTExITEzgTEhMTExITExMSEzgTOBITEzgSOBM4EzgSOBM4EhMTExITExMTEhM4ExITExM4EjgTOBI4EzgTEhM4EwAFKQABKksTAA0FAAAAAAAAAAA==
+    alias: "Para baixo"
+  
+  tv_lg_sala_left:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_34
+      data:
+        packet: JgBIAAABKpQTExMSEzgVERITExMSExMTEjgTOBITEzgTOBI4EzgSOBM4EzcTOBMTEhMTExITExMSExMTEhMTOBI4EzgTOBI4EwANBQ==
+    alias: "Para esquerda"
+  
+  tv_lg_sala_right:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_34
+      data:
+        packet: JgBQAAABKpUSExMTEjgTExMSExMTEhMTEzgSOBMTEjgTOBI4EzgTOBITEzgSOBMTEhMTExITExMTNxMTExITOBM4EjgTOBM3EwAFKgABKkoTAA0FAAAAAAAAAAA==
+    alias: "Para direita"
+  
+  tv_lg_sala_ok:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_34
+      data:
+        packet: JgBQAAABKZUTExMSEzgTEhMTExMSExMTEjgTOBITEzgSOBM4EzgSOBMTEhMTOBITExMSExM4ExITOBM4EhMTOBI4EzgTEhM4EwAFKQABKksSAA0FAAAAAAAAAAA==
+    alias: "Selecionar"
+  
+  tv_lg_sala_exit:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_34
+      data:
+        packet: JgBQAAABKpUTExITFDcSExMTEhMTExITEzgUNhMTEzgSOBQ3FDYVNhQ3FDYVERI4FTYUERU2FBETExQSFDYVERQREzgUERM4FAAFKQABKksVAA0FAAAAAAAAAAA==
+    alias: "Sair"
+  
+  tv_lg_sala_mute:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_34
+      data:
+        packet: JgBQAAABK5QUERUREjgVERQRFREUERURFDYVNhMTEjgTOBQ2EzgTOBI4FRESExU2EhMTExMSExMTEhM4EzgSExM4EjgTOBM4EgAFKwABKksTAA0FAAAAAAAAAAA==
+    alias: "Mudo"
+  
+  tv_lg_sala_input:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_34
+      data:
+        packet: JgBIAAABLJMTEhUREzcTExQSEhMTExITEzgSOBMTEjgTOBQ3FDYVNhI4EzgTEhU2ExMSExMTEhMTExQREzgSExM4FDYVNhQ3FAANBQ==
+    alias: "Entrada"
+  
+  tv_lg_sala_play:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_34
+      data:
+        packet: JgBQAAABKpUUERMTFDYVERQSFBEUEhQRFDcUNhURFDYVNhQ3FDYVNhQRExMUERMTFDYVNhQSFDYTOBQ2FTYUNxQRFREUNhURFAAFKAABLEkUAA0FAAAAAAAAAAA==
+    alias: "Tocar"
+  
+  tv_lg_sala_pause:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_34
+      data:
+        packet: JgBQAAABKpUSExMTEjgTExITExMSExMTEjgVNhMTEjgTOBI4EzgSOBMTEzgSExM4EjgTOBITEzgSOBMTEzgSExMTEhMTOBITFQAFKAABKUsTAA0FAAAAAAAAAAA==
+    alias: "Pausar"
+  
+  tv_lg_sala_stop:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_34
+      data:
+        packet: JgBQAAABKZUTExQRFTYUERMTFBETExQSFDYUNxQREzgSOBM4FDcUNhM4FBETExQREzgTOBQREzgSExU2EjgVNhQRExMUNxITFQAFKQABK0kTAA0FAAAAAAAAAAA==
+    alias: "Parar"
+  
+  tv_lg_sala_chtv:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_34
+      data:
+        packet: JgBIAAABKpUTExITEzgSExURFBETExQREzgUNxITEzgSOBU2FDcSOBQ3FDYTOBQ2ExMUEhITExMUERQSEhMTExI4EzgUNhM4FAANBQ==
+    alias: "Assistir TV"
+  
+  tv_lg_sala_hdmi1:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_34
+      data:
+        packet: JgBQAAABKJMSEhISEjcSEhISEhISEhISEjcSNxISEjcSNxI3EjcSNxISEjcSNxI3EhISEhI3EjcSNxISEhISEhI3EjcSEhISEgAFGgABKEoSAAxWDQUAAAAAAAA==
+    alias: "HDMI 1"
+  
+  tv_lg_sala_hdmi2:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_34
+      data:
+        packet: JgBQAAABKJMSEhISEjcSEhISEhISEhISEjcSNxISEjcSNxI3EjcSNxISEhISNxI3EhISEhI3EjcSNxI3EhISEhI3EjcSEhISEgAFGgABKEoSAAxWDQUAAAAAAAA==
+    alias: "HDMI 2"
+  
+  tv_lg_sala_hdmi3:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_34
+      data:
+        packet: JgBQAAABKJMSEhISEjcSEhISEhISEhISEjcSNxISEjcSNxI3EjcSNxI3EhISEhI3EhISNxI3EjcSEhI3EjcSEhI3EhISEhISEgAFGgABKEoSAAxWDQUAAAAAAAA==
+    alias: "HDMI 3"
+  
+  tv_lg_sala_hdmi4:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_34
+      data:
+        packet: JgBQAAABKJMSEhISEjcSEhISEhISEhISEjcSNxISEjcSNxI3EjcSNxISEjcSEhI3EjcSEhI3EjcSNxISEjcSEhISEjcSEhISEgAFGgABKEoSAAxWDQUAAAAAAAA==
+    alias: "HDMI 4"
+  
+  home_theater_sala_mute:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_34
+      data:
+        packet: JgBmAE8UEhUVEioSEhQnFBYSFRIVEhUSFRITFSYVKRIWEhMAAtZQExUSFRIoExQTKRIWEhQUEhQTFBMUGBIoEyYVExQTAALYUBMTExMUKhEUFCYUFhIVEhUSFRMTExYSJxQmFRUSFgANBQAA==
+    alias: "Mudo"
+  
+  home_theater_sala_volup:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_34
+      data:
+        packet: JgCIAFASFRMmFRMUExQpEhUSFRMVExMUExQTFCkSKRIXERUAAtVOFBYSKBMTFBMUKRIVEhUTFhITExUSExQpEigTFRMVAALVTxQTFCoRFRIVEigUFBIVExYRFRIVEhUSKRIpEhQUFwAC004VFBMqERUSFRIpEhUSFhIVExMTExQTFCkSKRIUFBYADQU==
+    alias: "Mais volume"
+  
+  home_theater_sala_voldown:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_34
+      data:
+        packet: JgCIAFATKhApEhUSExUqERUTExMVEhcQFRMTFCoRKRIVEhcAAsBOFCoSJhQTFBYSKRMSFBcQFRITFBcRFRInFCoRFRMUAALCUBInFCoSEhYSFCgTFxAVEhUSFxEVEhUSKhEpEhUSEwACxFASKxAnFBUTFRIoExUSFRITFBMVFhEWEiYUKRIVEhcADQU==
+    alias: "Menos volume"
+  
+  home_theater_sala_volup_x6:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_34
+      data:
+        packet: JgaIAFASFRMmFRMUExQpEhUSFRMVExMUExQTFCkSKRIXERUAAtVOFBYSKBMTFBMUKRIVEhUTFhITExUSExQpEigTFRMVAALVTxQTFCoRFRIVEigUFBIVExYRFRIVEhUSKRIpEhQUFwAC004VFBMqERUSFRIpEhUSFhIVExMTExQTFCkSKRIUFBYADQU==
+    alias: "Mais volume"
+  
+  home_theater_sala_voldown_x6:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_34
+      data:
+        packet: JgaIAFATKhApEhUSExUqERUTExMVEhcQFRMTFCoRKRIVEhcAAsBOFCoSJhQTFBYSKRMSFBcQFRITFBcRFRInFCoRFRMUAALCUBInFCoSEhYSFCgTFxAVEhUSFxEVEhUSKhEpEhUSEwACxFASKxAnFBUTFRIoExUSFRITFBMVFhEWEiYUKRIVEhcADQU==
+    alias: "Menos volume"
+  
+  home_theater_sala_volup_x3:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_34
+      data:
+        packet: JgOIAFASFRMmFRMUExQpEhUSFRMVExMUExQTFCkSKRIXERUAAtVOFBYSKBMTFBMUKRIVEhUTFhITExUSExQpEigTFRMVAALVTxQTFCoRFRIVEigUFBIVExYRFRIVEhUSKRIpEhQUFwAC004VFBMqERUSFRIpEhUSFhIVExMTExQTFCkSKRIUFBYADQU==
+    alias: "Mais volume"
+  
+  home_theater_sala_voldown_x3:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_34
+      data:
+        packet: JgOIAFATKhApEhUSExUqERUTExMVEhcQFRMTFCoRKRIVEhcAAsBOFCoSJhQTFBYSKRMSFBcQFRITFBcRFRInFCoRFRMUAALCUBInFCoSEhYSFCgTFxAVEhUSFxEVEhUSKhEpEhUSEwACxFASKxAnFBUTFRIoExUSFRITFBMVFhEWEiYUKRIVEhcADQU==
+    alias: "Menos volume"
+  
+  home_theater_sala_power:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_34
+      data:
+        packet: JgBmAFATKBMVEikSFRIpEhUSFhEWEhUSFRIVEikSKRIWERYAAsFQEikSFhIpEhUSKRIVEhUSFhEWEhUSFRIpEikSFRIWAALBUBIpEhYRKRIWEikSFRIVEhUSFhEWEhUSKRIpEhUSFQANBQAA==
+    alias: "Ligar ou desligar"
+  
+  home_theater_sala_power_on:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_34
+      data:
+        packet: JgwiAE4TExMnEycTJxMTEycTExMTExMTExMTEycTJxMTExMAAq8NBQAAAAA==
+    alias: "Ligar"
+  
+  home_theater_sala_power_off:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_34
+      data:
+        packet: JgwiAE4TJxMnEycTJxMTEycTExMTExMTExMTEycTJxMTExMAAqANBQAAAAA==
+    alias: "Desligar"
+  
+  ar_quarto_swing:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_33
+      data:
+        packet: JgDKAJCPEjYRExE2EjYRExETETYSEhISETcRExESEjYRNxQQETYSEhE3ETYSEhI2ERMRNhI2ETYSEhISEjYRExE2EhISEhI2ETYSNhETERMRExQQERMREhISEhIUNBE2EjYUNBE2EquQjxI2ERMRNhI2ERMRExE2ERMRExE2FBASEhI2ETYSEhQ0ERMRNhI2ERMRNhISFDQRNhI2ERMRExE2EhIUNBETERMRNhI2ETYUEBISEhIUEBETERMRExETETYSNhE2EjYRNhIADQUAAAAAAAAAAAAAAAAAAA==
+    alias: "Swing"
+  
+  ar_quarto_display:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_33
+      data:
+        packet: JgDKAJCPEjYRExE2EjYRExE2FBASNhETFDMSEhISEjYRExE2EhISNhE2EjYRNhISEjYRExE3ERISEhISEhIRNxETETYSEhI2ERMRNhISFBARNxQQETYSEhE3FBARNhI2ERMRNhQQEquQjxQ0ERMRNhI2FBARNhISEjYRExE3ERISEhI2ERMRNhISEjYRNxQzEjYRExE2EhISNhETFBAUEBETEzQSEhE3ERMRNhISETcRExESEjYRExE3ERIUNBQQETcTNBETETcRExEADQUAAAAAAAAAAAAAAAAAAA==
+    alias: "Display"
+  
+  ar_quarto_desligar:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_33
+      data:
+        packet: JgLKAJGOEzUTERM0FDQUEBQQEzQUEBQQFDMUEBQQFDQUMxQQFDQUEBQzFDQUMxQ0FBAUMxQ0FDQUEBMQFBAUEBQ0FBAUEBQzFDQUMxQQFBAUEBQQFBAUEBQQFBATNBQ0FDMUNBQzFKmSjRQ0FBAUMxQ0FBAUEBQzFBAUEBQ0FBAUEBM0FDQUEBQzFBAUNBQzFDQUMxQQFDQUMxQ0FBAUEBQQFA8UNBQQFBAUMxQ0FDMVDxQQFBAUEBQQFBAUEBQQFDMUNBQzFDQUNBQADQUAAAAAAAAAAAAAAAAAAA==
+    alias: "Desligar"
+  
+  tv_lg_quarto_power:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_33
+      data:
+        packet: JgBIAAABKpUTExITEzgSExMTEhMTExITEzgTOBITEzgSOBM4EjgTOBMSExMTEhM4ExMSExMTEhMTOBI4EzgTEhM4EzgSOBM4EgANBQ==
+    alias: "Ligar ou desligar"
+  
+  tv_lg_quarto_power_on:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_33
+      data:
+        packet: JgRQAAABKJMSEhISEjcSEhISEhISEhISEjcSNxISEjcSNxI3EjcSNxISEhISNxISEhISEhI3EjcSNxI3EhISNxI3EjcSEhISEgAFGgABKEoSAAxWDQUAAAAAAAA==
+    alias: "Ligar TV"
+  
+  tv_lg_quarto_power_off:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_33
+      data:
+        packet: JgRQAAABKJMSEhISEjcSEhISEhISEhISEjcSNxISEjcSNxI3EjcSNxI3EhISNxISEhISEhI3EjcSEhI3EhISNxI3EjcSEhISEgAFGgABKEoSAAxWDQUAAAAAAAA==
+    alias: "Desligar TV"
+  
+  tv_lg_quarto_volup:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_33
+      data:
+        packet: JgBIAAABLJMUERMTEjgTExQRFREUERUREzgUNhQSEjgVNhI4FTYUNhURFDcSExMTFBETExITFREUNhMTFDYTOBM3FTYUNxQ2FQANBQ==
+    alias: "Volume mais"
+  
+  tv_lg_quarto_voldown:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_33
+      data:
+        packet: JgBQAAABKpQTExMSEzgTExITExMSExMTEjgTOBITEzgTNxM4EzgSOBM4EjgTExMSExMTEhMTExITExMTEjgTOBI4EzgTNxM4EwAFKQABKksTAA0FAAAAAAAAAAA==
+    alias: "Volume menos"
+  
+  tv_lg_quarto_menu:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_33
+      data:
+        packet: JgBQAAABKpUSExMTFDYTExMSFRETExITFDcSOBUREjgVNhQ2EzgTOBQRFREUNhU2FDYTOBQ3EhMVNhI4ExMSExMTExITExM4FAAFKAABKkoTAA0FAAAAAAAAAAA==
+    alias: "Menu"
+  
+  tv_lg_quarto_chup:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_33
+      data:
+        packet: JgBQAAABLJMUERURFDYVERQRExMUERURFDYVNhQSEjgVNhI4FTYUNhURExIVERMTFBETExQRExMUNhU2FDYVNhQ2FTYTOBQ2EwAFKwABK0kTAA0FAAAAAAAAAAA==
+    alias: "Canal mais"
+  
+  tv_lg_quarto_chdown:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_33
+      data:
+        packet: JgBQAAABKpUSExMTEjgTExMSExMTEhMTEzgSOBMTEjgTOBI4EzgTOBI4ExMSExMTEhMTExITExMSExM4EjgTOBM3EzgTOBI4EwAFKQABKksTAA0FAAAAAAAAAAA==
+    alias: "Canal menos"
+  
+  tv_lg_quarto_config:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_33
+      data:
+        packet: JgBQAAABKpQTExMSEzgTExITExMSExMTFDYTOBITEzgTOBI4EzgSOBM4FDcSExMTEhMVERI4FRESExUREjgTOBM3EzgTExI4EwAFKwABKkoTAA0FAAAAAAAAAAA==
+    alias: "Configurações"
+  
+  tv_lg_quarto_up:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_33
+      data:
+        packet: JgBQAAABKpUSExMTEjgTExMSExMTEhMTEzgSOBMTEjgTOBI5EjgTOBITExMSExMTEhMTExI4ExMTOBI4EzgSOBM4EzcTExM4EgAFKwABKksTAA0FAAAAAAAAAAA==
+    alias: "Para cima"
+  
+  tv_lg_quarto_down:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_33
+      data:
+        packet: JgBQAAABLJUTExITEzgTEhMTExITExMSEzgTOBITEzgSOBM4EzgSOBM4EhMTExITExMTEhM4ExITExM4EjgTOBI4EzgTEhM4EwAFKQABKksTAA0FAAAAAAAAAAA==
+    alias: "Para baixo"
+  
+  tv_lg_quarto_left:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_33
+      data:
+        packet: JgBIAAABKpQTExMSEzgVERITExMSExMTEjgTOBITEzgTOBI4EzgSOBM4EzcTOBMTEhMTExITExMSExMTEhMTOBI4EzgTOBI4EwANBQ==
+    alias: "Para esquerda"
+  
+  tv_lg_quarto_right:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_33
+      data:
+        packet: JgBQAAABKpUSExMTEjgTExMSExMTEhMTEzgSOBMTEjgTOBI4EzgTOBITEzgSOBMTEhMTExITExMTNxMTExITOBM4EjgTOBM3EwAFKgABKkoTAA0FAAAAAAAAAAA==
+    alias: "Para direita"
+  
+  tv_lg_quarto_ok:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_33
+      data:
+        packet: JgBQAAABKZUTExMSEzgTEhMTExMSExMTEjgTOBITEzgSOBM4EzgSOBMTEhMTOBITExMSExM4ExITOBM4EhMTOBI4EzgTEhM4EwAFKQABKksSAA0FAAAAAAAAAAA==
+    alias: "Selecionar"
+  
+  tv_lg_quarto_exit:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_33
+      data:
+        packet: JgBQAAABKpUTExITFDcSExMTEhMTExITEzgUNhMTEzgSOBQ3FDYVNhQ3FDYVERI4FTYUERU2FBETExQSFDYVERQREzgUERM4FAAFKQABKksVAA0FAAAAAAAAAAA==
+    alias: "Sair"
+  
+  tv_lg_quarto_mute:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_33
+      data:
+        packet: JgBQAAABK5QUERUREjgVERQRFREUERURFDYVNhMTEjgTOBQ2EzgTOBI4FRESExU2EhMTExMSExMTEhM4EzgSExM4EjgTOBM4EgAFKwABKksTAA0FAAAAAAAAAAA==
+    alias: "Mudo"
+  
+  tv_lg_quarto_input:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_33
+      data:
+        packet: JgBIAAABLJMTEhUREzcTExQSEhMTExITEzgSOBMTEjgTOBQ3FDYVNhI4EzgTEhU2ExMSExMTEhMTExQREzgSExM4FDYVNhQ3FAANBQ==
+    alias: "Entrada"
+  
+  tv_lg_quarto_play:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_33
+      data:
+        packet: JgBQAAABKpUUERMTFDYVERQSFBEUEhQRFDcUNhURFDYVNhQ3FDYVNhQRExMUERMTFDYVNhQSFDYTOBQ2FTYUNxQRFREUNhURFAAFKAABLEkUAA0FAAAAAAAAAAA==
+    alias: "Tocar"
+  
+  tv_lg_quarto_pause:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_33
+      data:
+        packet: JgBQAAABKpUSExMTEjgTExITExMSExMTEjgVNhMTEjgTOBI4EzgSOBMTEzgSExM4EjgTOBITEzgSOBMTEzgSExMTEhMTOBITFQAFKAABKUsTAA0FAAAAAAAAAAA==
+    alias: "Pausar"
+  
+  tv_lg_quarto_stop:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_33
+      data:
+        packet: JgBQAAABKZUTExQRFTYUERMTFBETExQSFDYUNxQREzgSOBM4FDcUNhM4FBETExQREzgTOBQREzgSExU2EjgVNhQRExMUNxITFQAFKQABK0kTAA0FAAAAAAAAAAA==
+    alias: "Parar"
+  
+  tv_lg_quarto_chtv:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_33
+      data:
+        packet: JgBIAAABKpUTExITEzgSExURFBETExQREzgUNxITEzgSOBU2FDcSOBQ3FDYTOBQ2ExMUEhITExMUERQSEhMTExI4EzgUNhM4FAANBQ==
+    alias: "Assistir TV"
+  
+  tv_lg_quarto_hdmi1:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_33
+      data:
+        packet: JgBQAAABKJMSEhISEjcSEhISEhISEhISEjcSNxISEjcSNxI3EjcSNxISEjcSNxI3EhISEhI3EjcSNxISEhISEhI3EjcSEhISEgAFGgABKEoSAAxWDQUAAAAAAAA==
+    alias: "HDMI 1"
+  
+  tv_lg_quarto_hdmi2:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_33
+      data:
+        packet: JgBQAAABKJMSEhISEjcSEhISEhISEhISEjcSNxISEjcSNxI3EjcSNxISEhISNxI3EhISEhI3EjcSNxI3EhISEhI3EjcSEhISEgAFGgABKEoSAAxWDQUAAAAAAAA==
+    alias: "HDMI 2"
+  
+  tv_lg_quarto_hdmi3:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_33
+      data:
+        packet: JgBQAAABKJMSEhISEjcSEhISEhISEhISEjcSNxISEjcSNxI3EjcSNxI3EhISEhI3EhISNxI3EjcSEhI3EjcSEhI3EhISEhISEgAFGgABKEoSAAxWDQUAAAAAAAA==
+    alias: "HDMI 3"
+  
+  tv_lg_quarto_hdmi4:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_33
+      data:
+        packet: JgBQAAABKJMSEhISEjcSEhISEhISEhISEjcSNxISEjcSNxI3EjcSNxISEjcSEhI3EjcSEhI3EjcSNxISEjcSEhISEjcSEhISEgAFGgABKEoSAAxWDQUAAAAAAAA==
+    alias: "HDMI 4"
+  
+  garagem_muvrh_rua:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_35
+      data:
+        packet: tAByAhEfEQ4iDiEPIQ8hDiIeER4RDyEeEg4hDyEPIR4SDiEPIR4RDyEOIQ8hDyEfER4RDyEOIh4RDyEeEQABaRIeEQ8hDiEPIQ8hDiEfER4RDyEeEg4iDiEPIR4RDyEPIR4RDyEPIQ8hDiEfER4RDyEPIR4RDyEeEQABahEeEQ8hDyEOIg4hDyEeER8RDiIeEQ4iDiIOIR4SDiEPIR4SDiEPIQ8hDiIeER4SDiEPIR4RDyIeEQABaREeEQ8hDyEOIg4iDiEeEh4RDyEeEQ8hDyEPIR4RDyEOIh4RDyEOIg4hDyEeEh4RDyEOIh4RDiIeEQABaREfEQ8hDiEPIQ8hDyEeER8RDiEfEQ8hDiEPIR4RDyEPIR4RDyEPIQ4iDiEfER4RDyEPIR4RDyEfEQABaREeEg4hDyEOIg4hDyEeEh4RDyEeEQ8hDyEOIh4RDyEOIh4RDyEOIg4hDyEfER4RDyEPIR4RDyEeEQABaREfEQ8hDiEPIQ8hDiEfER4SDiEfEQ8hDiEPIR8RDiEPIR8RDiEPIQ8hDiEfER4RDyEPIR4SDiEfEQABaREeEQ8iDiEPIQ4iDiEeEh4RDyEeEQ8hDyEPIR4RDyEPIR4RDyEPIQ4hDyEeEh4RDyEPIR4RDyEeEgABaRAfEg4hDiIOIQ8hDyEeER8RDiIeEQ8hDiEPIR8RDyEOIh4RDyEOIQ8hDyEeER8RDyEOIh4RDiIeEQABaREfEQ4hDyIOIQ8hDiIeER8RDiEfEQ4iDiEPIR4SDiEPIR8RDiEPIQ8hDiIeER4SDiEPIR8RDiEfEQABaREeEg4hDyEPIQ4iDiEfER4RDyEfEQ4YAAXcEQ8hHhEA==
+    - delay: '00:00:03'
+  
+  garagem_muvrh_interno:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_35
+      data:
+        packet: sgBYAhEeEQ8hDyEOIQ8hDyEeER4SDiIeEQ8hDiEPIR4SDiEPIR4SDiEPIQ8hDiIeEQ8hHhEPIR4SDiEfEQABaBIeEQ8hDyEOIg4hDyEeER8RDyEeEQ8hDiIOIh4RDiEPIR4SDyEOIQ8hDyEeEQ8hHhIOIR8RDiEfEQABaREeEQ8hDyEPIQ4hDyEeEh4RDyEeEQ8hDyEOIh4RDyEOIh4RDyEPIQ4hDyEeEQ8hHxEOIh4RDyEeEQABaREfEQ4hDyEPIQ8hDiEfER4RDyEeEg4hDyEPIR4RDyEPIR4RDyEPIQ4iDiIeEQ4iHhEOIh4SDiEeEgABaREeEQ8hDyEOIQ8hDiIeER8RDiIeEQ8hDiEPIR4SDiIOIR8RDiEPIQ8hDyEeEQ8hHhIOIR8RDiIeEQABaREeEg4hDyEPIQ4iDiEfER4RDyEeEg4hDyEOIh4RDyEPIR4SDiEPIQ4iDiEfEQ8hHhEOIh4RDyEeEgABaBIeEQ8hDiIOIQ8hDyEeER4SDiIeEQ4iDiIOIR4SDyEOIR8RDiIOIQ8hDiIeEQ8hHxEOIh4RDyEeEQABaREeEQ8hDyEPIQ4iDiEfER4RDyEeEg4hDyEPIR4RDyEPIR4RDyEPIQ4iDiEfEQ4hHxEOIh4RDyEeEgABaBIeEQ8hDiIOIQ8hDyEeER8RDyEeEQ8hDiEPIR8RDyEOIR8RDiIOIQ8hDyEfEA8hHhIOIR8RDiIeEQABaREfEQ4iDiIOIQ8hDiEfER4SDiEfEQ4iDiEPIR4SDiEPIR4RDyIOIQ8hDiIeEQ8hHhIOIR4SDiEfEQAF3A==
+    - delay: '00:00:03'
+  
+  garagem_muvrh_sub_rua:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_35
+      data:
+        packet: rwCEAxAAAWIRHhEOIQ8gHhEeER4RDiEPIQ4hDiEOIR4RDiIdEQ8gDyEeEQ4hHhEOIQ8hHREPIR0RDyEdEQ8gHxEAAWERHhEOIQ4hHhEeER4RDiEPIA8gDyEOIR4RDiEeEQ4hDyEdEQ8gHxAPIA8hHhEOIR4RDiEeEQ4hHhEAAWIRHREOIQ8hHhEeEB8RDiEOIQ4hDyEOIR0RDyEdEQ8gDyEeEQ4hHhEOIQ4hHhEPIR0RDyAeEQ8gHxAAAWIRHREPIQ4hHhEeER4RDiEOIQ8gDyEOIR4RDiEeEQ4hDiEeEQ4hHhEOIQ8hHREPIR4RDiEeEA8hHhAAAWIRHhEOIQ4hHhEfEB4RDiEPIA8hDiEOIR4RDyAeEQ4hDiEeEQ8gHhEPIA8hHhEOIR4RDiEeEQ4hHhEAAWIQHhEOIQ8hHhEeEB4RDyEOIQ4hDiEOIR4RDyEdEQ8hDiEeEQ4hHhEOIQ8gHhEOIR4RDyEdEQ8hHhAAAWIRHhAPIQ8gHhEeER4RDiEOIQ4hDyEOIR4QDyEeEQ4hDiEeEQ4hHhEOIQ8hHREPIR4RDiEdEQ8gHhEAAWIRHhEOIQ4hHhEeER4RDiEOIQ8gDyEOIR4QDyEeEQ4hDiEeEQ4hHhEPIA8hHhEOIR4QDyEeEA8hHhEAAWERHhEOIQ4hHxAeER4RDiEOIQ8hDiEOIR4RDiEeEQ8gDyEeEQ4gHxAPIQ4hHhEOIR4RDiEeEQ4hHhEAAWIQHhEPIQ4hHhEeEB4RDyEOIQ4hDyAPIR4RDiEeEQ4hDiEeEQ4hHhEPIA8gHhEPIR4QDyEeEQ4hHhAAAWIRHhEOIQ8hHhAeER4RDiEPIA8hDiEOIR4RDyAeEQ8gDyEeEQ4hHhEOIQ4hHhEPIR0RDyAeEQ8hHRIAAWERHhEOIQ8gHhEeER4RDiEOIg4hDiEOIR4RDiEeEQ4hDyEdEQ8hHhEOIQ4hHhEOIR4RDyAeEQ4hHhEAAWIRHhEAAVIRHhEOIQ4hHhEeER4RDiEOIQ8gDyEOIR4RDiEeEQ4hDyEdEQ8hHhAPIQ4hHhEOIR4RDiEeEQ4hHhEAAWIQHxEOIQ4hHhEeER4QDyEOIQ8gDyAPIR4RDiEeEQ4hDiEeEQ4hHxAPIQ4hHhEOIR4RDiEeEA8hHhEAAWIQHhEPIQ4hHhEdER4RDyAPIQ4hDiEOIh0RDiEeEQ8gDyAfEA8hHREPIQ4hHhAPDAAF3AAAAAA==
+    - delay: '00:00:03'
+  
+  garagem_muvrh_sub_interno:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_35
+      data:
+        packet: sACEAyEeER4RDiEOIR4RDyAeEAABYhEeEQ4hDyAeER4RHhEOIQ4hDyAPIA8hHhAPIR4QDyAPIB8RDiEeEA8hDyAeER4QDyAPIR4QDyEeEAABYhEeEQ4hDyAeER4RHhEOIQ4hDiEPIA8hHhAPIB8QDyAPIB4RDyAfEA8gDyEeEB8QDyAPIR4QDyAfEAABYhEeEQ4hDiEeER4QHhEPIA8hDiAPIQ8gHhEPIB4RDiEPIB4RDyAeEQ8gDyEeEB4RDyAPIR0RDyAfEAABYhAeEQ8gDyEeEB8QHhEOIQ8gDyEOIQ8gHhEPIB4RDiEOIR4RDiEeEQ4hDyAeER4RDyAPIB4RDiEeEQABYhAfEA8gDyAfEB4RHhEOIQ8gDyAPIA8gHxAPIB4RDyEPIB4RDiEeEA8hDiEeER4QDyEOIR4RDiEeEQABYREeEQ8gDyAeER4QHxAPIQ8gDyAPIA8hHREPIB8QDyAPIR4QDyEeEA8hDiEeER4QDyEOIR4QDyAfEAABYhEeEA8hDyAeER4QHxAPIQ4hDyAOIQ8gHxAPIB4RDyAPIR0RDyAfEA8gDyAfEB8QDyAPIR4QDyEeEAABYhEeEA8hDiEeER4QHhEPIA8hDiEOIQ8gHhEOIR4RDiEPIR0RDyAfEA8gDyEeEB8QDyAPIB8QDyAfEAABYhEeEA8gDyEeEB4RyAeEQ8gDyAfEB4RDyAPIB4RDiEeEQABYhAeEQ8gDyAfEB8QHhEPIA8gDyAPIQ4hHhEPIB4RDiEOIR4RDyAeEQ4hDyAfEB4RDiEPIB4RDiEeEQABYREeEQ8gDyAfEB4RHhEPIA8gDyAPIQ4hHhEOIR4QDyEOIR4RDiEeEQ4hDyAeER4RDiEOIR4RDiEeEQABYREeEQ8gDyAfEB4RHhAPIQ8gDyAPIQ4hHhAPIB8QDyAPIR4RDiEeEQ4hDyAeER4RDiEOIR4RDyAeEQABYhAeEQ8gDyAfEB4RHhEOIQ8gDyAPIA8gHxEOIB4RDyAPIR4RDiEeEA8hDyAeER4QDyEOIR4RDiEeEAABYhEeEQ8gDyAeER4RHhAPIQ8gDyAPIA8gHhEPIB4RDyEOIR4QDyAfEA8hDiEeEB8QDyEOIR4QDyEeEQABYREeEQ4hDyAeER4RHhAPIQ4hDiEOIQ8gHhEPIB4RDyAPIB8QDyAfEAAF3AAAAAA==
+    - delay: '00:00:03'
+  
+  ar_sala_operacoes_swing:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_36
+      data:
+        packet: JgDKAJCPEjYRExE2EjYRExETETYSEhISETcRExESEjYRNxQQETYSEhE3ETYSEhI2ERMRNhI2ETYSEhISEjYRExE2EhISEhI2ETYSNhETERMRExQQERMREhISEhIUNBE2EjYUNBE2EquQjxI2ERMRNhI2ERMRExE2ERMRExE2FBASEhI2ETYSEhQ0ERMRNhI2ERMRNhISFDQRNhI2ERMRExE2EhIUNBETERMRNhI2ETYUEBISEhIUEBETERMRExETETYSNhE2EjYRNhIADQUAAAAAAAAAAAAAAAAAAA==
+    alias: "Swing"
+  
+  ar_entrada_203_swing:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_37
+      data:
+        packet: JgDKAJCPEjYRExE2EjYRExETETYSEhISETcRExESEjYRNxQQETYSEhE3ETYSEhI2ERMRNhI2ETYSEhISEjYRExE2EhISEhI2ETYSNhETERMRExQQERMREhISEhIUNBE2EjYUNBE2EquQjxI2ERMRNhI2ERMRExE2ERMRExE2FBASEhI2ETYSEhQ0ERMRNhI2ERMRNhISFDQRNhI2ERMRExE2EhIUNBETERMRNhI2ETYUEBISEhIUEBETERMRExETETYSNhE2EjYRNhIADQUAAAAAAAAAAAAAAAAAAA==
+    alias: "Swing"
+  
+  tv_sala_operacoes_power:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_36
+      data:
+        packet: JgJGAJKSETYRNhE2ERERERERERERERE2ETYRNhERERERERERERERERE2ERERERERERERERERETYRERE2ETYRNhE2ETYRNhEABhANBQ==
+    alias: "Ligar ou desligar"
+  
+  tv_sala_operacoes_power_on:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_36
+      data:
+        packet: JgZGAJSUEzcTNxM3ExITEhMSExITEhM3EzcTNxMSExITEhMSExITNxMSExITNxM3ExITEhM3ExITNxM3ExITEhM3EzcTEhMABiMNBQ==
+    alias: "Ligar"
+  
+  tv_sala_operacoes_power_off:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_36
+      data:
+        packet: JgZGAJWVEjgSOBI4EhISEhISEhISEhI4EjgSOBISEhISEhISEhISEhISEhISOBI4EhISEhI4EjgSOBI4EhISEhI4EjgSEhIABi0NBQ==
+    alias: "Desligar"
+  
+  tv_sala_operacoes_hdmi1:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_36
+      data:
+        packet: JgZGAJWVEjgSOBI4EhISEhISEhISEhI4EjgSOBISEhISEhISEhISOBISEhISOBISEjgSOBI4EhISOBI4EhISOBISEhISEhIABi0NBQ==
+    alias: "HDMI 1"
+  
+  tv_sala_operacoes_hdmi2:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_36
+      data:
+        packet: JgZGAJWVEjgSOBI4EhISEhISEhISEhI4EjgSOBISEhISEhISEhISEhI4EjgSOBI4EjgSEhI4EjgSEhISEhISEhISEjgSEhIABi0NBQ==
+    alias: "HDMI 2"
+  
+  tv_sala_operacoes_hdmi3:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_36
+      data:
+        packet: JgZGAJWVEjgSOBI4EhISEhISEhISEhI4EjgSOBISEhISEhISEhISEhI4EhISEhISEhISOBI4EjgSEhI4EjgSOBI4EhISEhIABi0NBQ==
+    alias: "HDMI 3"
+  
+  tv_lg_dinamica_303_power:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_41
+      data:
+        packet: JgBIAAABKpUTExITEzgSExMTEhMTExITEzgTOBITEzgSOBM4EjgTOBMSExMTEhM4ExMSExMTEhMTOBI4EzgTEhM4EzgSOBM4EgANBQ==
+    alias: "Ligar ou desligar"
+  
+  tv_lg_dinamica_303_power_on:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_41
+      data:
+        packet: JgRQAAABKJMSEhISEjcSEhISEhISEhISEjcSNxISEjcSNxI3EjcSNxISEhISNxISEhISEhI3EjcSNxI3EhISNxI3EjcSEhISEgAFGgABKEoSAAxWDQUAAAAAAAA==
+    alias: "Ligar TV"
+  
+  tv_lg_dinamica_303_power_off:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_41
+      data:
+        packet: JgRQAAABKJMSEhISEjcSEhISEhISEhISEjcSNxISEjcSNxI3EjcSNxI3EhISNxISEhISEhI3EjcSEhI3EhISNxI3EjcSEhISEgAFGgABKEoSAAxWDQUAAAAAAAA==
+    alias: "Desligar TV"
+  
+  tv_lg_dinamica_303_volup:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_41
+      data:
+        packet: JgBIAAABLJMUERMTEjgTExQRFREUERUREzgUNhQSEjgVNhI4FTYUNhURFDcSExMTFBETExITFREUNhMTFDYTOBM3FTYUNxQ2FQANBQ==
+    alias: "Volume mais"
+  
+  tv_lg_dinamica_303_voldown:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_41
+      data:
+        packet: JgBQAAABKpQTExMSEzgTExITExMSExMTEjgTOBITEzgTNxM4EzgSOBM4EjgTExMSExMTEhMTExITExMTEjgTOBI4EzgTNxM4EwAFKQABKksTAA0FAAAAAAAAAAA==
+    alias: "Volume menos"
+  
+  tv_lg_dinamica_303_menu:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_41
+      data:
+        packet: JgBQAAABKpUSExMTFDYTExMSFRETExITFDcSOBUREjgVNhQ2EzgTOBQRFREUNhU2FDYTOBQ3EhMVNhI4ExMSExMTExITExM4FAAFKAABKkoTAA0FAAAAAAAAAAA==
+    alias: "Menu"
+  
+  tv_lg_dinamica_303_chup:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_41
+      data:
+        packet: JgBQAAABLJMUERURFDYVERQRExMUERURFDYVNhQSEjgVNhI4FTYUNhURExIVERMTFBETExQRExMUNhU2FDYVNhQ2FTYTOBQ2EwAFKwABK0kTAA0FAAAAAAAAAAA==
+    alias: "Canal mais"
+  
+  tv_lg_dinamica_303_chdown:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_41
+      data:
+        packet: JgBQAAABKpUSExMTEjgTExMSExMTEhMTEzgSOBMTEjgTOBI4EzgTOBI4ExMSExMTEhMTExITExMSExM4EjgTOBM3EzgTOBI4EwAFKQABKksTAA0FAAAAAAAAAAA==
+    alias: "Canal menos"
+  
+  tv_lg_dinamica_303_config:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_41
+      data:
+        packet: JgBQAAABKpQTExMSEzgTExITExMSExMTFDYTOBITEzgTOBI4EzgSOBM4FDcSExMTEhMVERI4FRESExUREjgTOBM3EzgTExI4EwAFKwABKkoTAA0FAAAAAAAAAAA==
+    alias: "Configurações"
+  
+  tv_lg_dinamica_303_up:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_41
+      data:
+        packet: JgBQAAABKpUSExMTEjgTExMSExMTEhMTEzgSOBMTEjgTOBI5EjgTOBITExMSExMTEhMTExI4ExMTOBI4EzgSOBM4EzcTExM4EgAFKwABKksTAA0FAAAAAAAAAAA==
+    alias: "Para cima"
+  
+  tv_lg_dinamica_303_down:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_41
+      data:
+        packet: JgBQAAABLJUTExITEzgTEhMTExITExMSEzgTOBITEzgSOBM4EzgSOBM4EhMTExITExMTEhM4ExITExM4EjgTOBI4EzgTEhM4EwAFKQABKksTAA0FAAAAAAAAAAA==
+    alias: "Para baixo"
+  
+  tv_lg_dinamica_303_left:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_41
+      data:
+        packet: JgBIAAABKpQTExMSEzgVERITExMSExMTEjgTOBITEzgTOBI4EzgSOBM4EzcTOBMTEhMTExITExMSExMTEhMTOBI4EzgTOBI4EwANBQ==
+    alias: "Para esquerda"
+  
+  tv_lg_dinamica_303_right:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_41
+      data:
+        packet: JgBQAAABKpUSExMTEjgTExMSExMTEhMTEzgSOBMTEjgTOBI4EzgTOBITEzgSOBMTEhMTExITExMTNxMTExITOBM4EjgTOBM3EwAFKgABKkoTAA0FAAAAAAAAAAA==
+    alias: "Para direita"
+  
+  tv_lg_dinamica_303_ok:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_41
+      data:
+        packet: JgBQAAABKZUTExMSEzgTEhMTExMSExMTEjgTOBITEzgSOBM4EzgSOBMTEhMTOBITExMSExM4ExITOBM4EhMTOBI4EzgTEhM4EwAFKQABKksSAA0FAAAAAAAAAAA==
+    alias: "Selecionar"
+  
+  tv_lg_dinamica_303_exit:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_41
+      data:
+        packet: JgBQAAABKpUTExITFDcSExMTEhMTExITEzgUNhMTEzgSOBQ3FDYVNhQ3FDYVERI4FTYUERU2FBETExQSFDYVERQREzgUERM4FAAFKQABKksVAA0FAAAAAAAAAAA==
+    alias: "Sair"
+  
+  tv_lg_dinamica_303_mute:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_41
+      data:
+        packet: JgBQAAABK5QUERUREjgVERQRFREUERURFDYVNhMTEjgTOBQ2EzgTOBI4FRESExU2EhMTExMSExMTEhM4EzgSExM4EjgTOBM4EgAFKwABKksTAA0FAAAAAAAAAAA==
+    alias: "Mudo"
+  
+  tv_lg_dinamica_303_input:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_41
+      data:
+        packet: JgBIAAABLJMTEhUREzcTExQSEhMTExITEzgSOBMTEjgTOBQ3FDYVNhI4EzgTEhU2ExMSExMTEhMTExQREzgSExM4FDYVNhQ3FAANBQ==
+    alias: "Entrada"
+  
+  tv_lg_dinamica_303_play:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_41
+      data:
+        packet: JgBQAAABKpUUERMTFDYVERQSFBEUEhQRFDcUNhURFDYVNhQ3FDYVNhQRExMUERMTFDYVNhQSFDYTOBQ2FTYUNxQRFREUNhURFAAFKAABLEkUAA0FAAAAAAAAAAA==
+    alias: "Tocar"
+  
+  tv_lg_dinamica_303_pause:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_41
+      data:
+        packet: JgBQAAABKpUSExMTEjgTExITExMSExMTEjgVNhMTEjgTOBI4EzgSOBMTEzgSExM4EjgTOBITEzgSOBMTEzgSExMTEhMTOBITFQAFKAABKUsTAA0FAAAAAAAAAAA==
+    alias: "Pausar"
+  
+  tv_lg_dinamica_303_stop:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_41
+      data:
+        packet: JgBQAAABKZUTExQRFTYUERMTFBETExQSFDYUNxQREzgSOBM4FDcUNhM4FBETExQREzgTOBQREzgSExU2EjgVNhQRExMUNxITFQAFKQABK0kTAA0FAAAAAAAAAAA==
+    alias: "Parar"
+  
+  tv_lg_dinamica_303_chtv:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_41
+      data:
+        packet: JgBIAAABKpUTExITEzgSExURFBETExQREzgUNxITEzgSOBU2FDcSOBQ3FDYTOBQ2ExMUEhITExMUERQSEhMTExI4EzgUNhM4FAANBQ==
+    alias: "Assistir TV"
+  
+  tv_lg_dinamica_303_hdmi1:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_41
+      data:
+        packet: JgBQAAABKJMSEhISEjcSEhISEhISEhISEjcSNxISEjcSNxI3EjcSNxISEjcSNxI3EhISEhI3EjcSNxISEhISEhI3EjcSEhISEgAFGgABKEoSAAxWDQUAAAAAAAA==
+    alias: "HDMI 1"
+  
+  tv_lg_dinamica_303_hdmi2:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_41
+      data:
+        packet: JgBQAAABKJMSEhISEjcSEhISEhISEhISEjcSNxISEjcSNxI3EjcSNxISEhISNxI3EhISEhI3EjcSNxI3EhISEhI3EjcSEhISEgAFGgABKEoSAAxWDQUAAAAAAAA==
+    alias: "HDMI 2"
+  
+  tv_lg_dinamica_303_hdmi3:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_41
+      data:
+        packet: JgBQAAABKJMSEhISEjcSEhISEhISEhISEjcSNxISEjcSNxI3EjcSNxI3EhISEhI3EhISNxI3EjcSEhI3EjcSEhI3EhISEhISEgAFGgABKEoSAAxWDQUAAAAAAAA==
+    alias: "HDMI 3"
+  
+  tv_lg_dinamica_303_hdmi4:
+    sequence:
+    - service: switch.broadlink_send_packet_192_168_1_41
+      data:
+        packet: JgBQAAABKJMSEhISEjcSEhISEhISEhISEjcSNxISEjcSNxI3EjcSNxISEjcSEhI3EjcSEhI3EjcSNxISEjcSEhISEjcSEhISEgAFGgABKEoSAAxWDQUAAAAAAAA==
+    alias: "HDMI 4"
+  

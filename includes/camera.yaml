@@ -1,11 +1,18 @@
 - platform: onvif
-  name: "MuvRH 203 - Operações"
-  host: 192.168.1.54
-  username: !secret camera_203_operacoes_user
-  password: !secret camera_203_operacoes_pass
-  extra_arguments: -rtsp_transport udp
+  name: "Intebras"
+  host: 192.168.1.104
+  username: "admin"
+  password: "IAXXCV"
+  port: 80
+  profile: 1
+  #extra_arguments: -rtsp_transport udp
 
 - platform: mjpeg
   name: "Ender 3"
   mjpeg_url: http://192.168.1.69/webcam/?action=stream
   still_image_url: http://192.168.1.69:8080/?action=snapshot
+
+- platform: ffmpeg
+  name: "MuvRH 203 - Operações"
+  input: rtsp://192.168.1.54:554/onvif1
+  extra_arguments: -pred 1 -rtsp_transport tcp

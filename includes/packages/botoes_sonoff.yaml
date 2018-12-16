@@ -1,0 +1,23 @@
+script:
+
+## Casa
+
+  interruptor_cafeteira_casa_power1_hold:
+    alias: "Luz principal"
+    sequence:
+      - service: light.toggle
+        entity_id: light.cozinha
+
+  interruptor_chaleira_casa_power1_hold:
+    alias: "Luz balcão"
+    sequence:
+      - service: light.toggle
+        entity_id: light.ledcozinhabalcao
+
+## MuvRH
+
+  interruptor_muv303entrada_power1_hold:
+    alias: "Bebedouro sala 303"
+    sequence:
+      - service: switch.toggle
+        entity_id: switch.muv303bebedouro

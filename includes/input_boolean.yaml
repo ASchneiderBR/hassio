@@ -22,6 +22,14 @@ visita_casa:
   name: Visita em casa
   icon: mdi:account
 
+cafe_manha:
+  name: Preparar café de manhã
+  icon: mdi:timetable
+
+chaleira_manha:
+  name: Ferver água de manhã
+  icon: mdi:timetable
+
 bom_dia:
   name: Bom dia
   icon: mdi:weather-sunny
@@ -34,3 +42,11 @@ muvrh_desligar_tudo:
   name: Desligar tudo na MuvRH
   initial: off
   icon: mdi:flash-off
+
+magno_em_casa:
+  name: Magno em casa
+  icon: mdi:cat
+
+caixa_areia_suja:
+  name: Caixa de areia suja
+  icon: mdi:emoticon-poop

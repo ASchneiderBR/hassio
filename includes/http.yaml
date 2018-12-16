@@ -1,5 +1,13 @@
 base_url: !secret url_padrao
+server_port: 8123
 api_password: !secret http_password
+#ssl_certificate: /ssl/fullchain.pem
+#ssl_key: /ssl/privkey.pem
+#ssl_profile: intermediate
+#use_x_forwarded_for: true
+#trusted_proxies:
+#  - 172.16.0.0/12
+#  - 127.0.0.1
 trusted_networks:
   - 192.168.1.10
   - 192.168.1.11
@@ -8,6 +16,6 @@ trusted_networks:
   - 192.168.1.21
   - 192.168.1.22
   - 127.0.0.1
+  - 172.16.0.0/12
+ip_ban_enabled: true
 login_attempts_threshold: 6
-cors_allowed_origins:
-  - http://192.168.1.12:7080

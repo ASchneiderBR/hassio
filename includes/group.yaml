@@ -115,7 +115,7 @@ dispositivos:
   - device_tracker.google_home_mini_suite
   - device_tracker.xiaomi_hub_casa
   - device_tracker.aspirador_xiaomi
-  - device_tracker.rfbridgecasa
+  - device_tracker.sonoff_bridge_casa
   - device_tracker.tabletaut
   - device_tracker.ipad_casa
   - device_tracker.rmprosuite
@@ -591,8 +591,9 @@ muvrh_sala_operacoes:
   - sensor.illumination_158d0001e420d0
   - sensor.humidity_158d00015633b4
   - switch.tv_sala_operacoes
-  - light.muv203operacoes
+  - switch.muvrh_cafeteira
   - switch.muv203bebedouro
+  - light.muv203operacoes
   name: Sala de operações
   view: false
 
@@ -713,10 +714,6 @@ energia_casa:
   - binary_sensor.ar_suite
   - binary_sensor.ar_sala
   - binary_sensor.ar_quarto
-  - switch.chuveirosuite
-  - switch.toalheiro
-  - switch.tv_lg_sala
-  - switch.tv_lg_suite
   - light.area_servico
   - light.suite_banheiro_principal
   - light.suite_banheiro_espelho
@@ -736,7 +733,15 @@ energia_casa:
   - light.banheiro_social_principal
   - light.banheiro_social_espelho
   - light.suite_principal
+  - switch.home_theater_sala
+  - switch.chuveirosuite
+  - switch.toalheiro
+  - switch.tv_lg_sala
+  - switch.tv_lg_suite
   - switch.chuveirosocial
   - switch.tv_lg_quarto
+  - switch.cafeteira_casa
+  - switch.chaleira_casa
+  - switch.ventilador_casa
   name: Energia casa
   view: false

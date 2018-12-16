@@ -1,14 +1,6 @@
 auto_start: False
-ip_address: 192.168.1.12
-
-entity_config:
-  switch.toalheiro:
-    type: outlet
-  switch.muv203bebedouro:
-    type: outlet
-  switch.muv303bebedouro:
-    type: outlet
-
+#port: 5200
+#ip_address: 192.168.1.12
 filter:
   exclude_domains:
     - automation
@@ -34,6 +26,10 @@ filter:
     - input_boolean.entrar_muvrh
     - input_boolean.sair_muvrh
     - input_boolean.muvrh_desligar_tudo  
+    - input_boolean.cafe_manha
+    - input_boolean.chaleira_manha
+    - input_boolean.magno_em_casa
+    - input_boolean.caixa_areia_suja
     - device_tracker.antonio
     - device_tracker.roberta
     - binary_sensor.casa_movimento
@@ -56,6 +52,8 @@ filter:
     - binary_sensor.motion_sensor_158d0001e420d0
     - binary_sensor.motion_sensor_158d0001e43ef1
     - binary_sensor.motion_sensor_158d0001e44035
+    - binary_sensor.porta_lava_loucas
+    - binary_sensor.movimento_entrada_de_casa
     - sensor.temperatura_cozinha
     - alarm_control_panel.alarme
     - climate.ar_condicionado_da_entrada_203
@@ -117,6 +115,13 @@ filter:
     - switch.tv_lg_sala
     - switch.tv_lg_suite
     - switch.tv_sala_operacoes
+    - switch.muvrh_cafeteira
+    - switch.cafeteira_casa
+    - switch.chaleira_casa
+    - switch.ventilador_casa
+    - switch.lava_loucas_homekit_aquaspray
+    - switch.lava_loucas_homekit_economico
+    - switch.lava_loucas_homekit_diaadia
     - script.speed_test
     - script.aspirador_homekit_zona_mop
     - script.aspirador_homekit_zona_sala
@@ -124,3 +129,233 @@ filter:
     - script.aspirador_homekit_zona_tapete
     - script.aspirador_homekit_zona_cozinha
     - script.aspirador_homekit_zona_quartos
+
+entity_config:
+  switch.toalheiro:
+    name: "Toalheiro"
+    type: outlet
+  switch.muv203bebedouro:
+    name: "Bebedouro 203"
+    type: outlet
+  switch.muv303bebedouro:
+    name: "Bebedouro 303"
+    type: outlet
+  switch.chuveirosocial:
+    name: "Chuveiro"
+    type: shower
+  switch.chuveirosuite:
+    name: "Chuveiro"
+    type: shower
+  switch.muvrh_cafeteira:
+    name: "Cafeteira"
+    type: outlet
+  switch.cafeteira_casa:
+    name: "Cafeteira"
+    type: outlet
+  switch.chaleira_casa:
+    name: "Chaleira"
+    type: outlet
+  input_boolean.boa_noite:
+    name: "Boa noite"
+  input_boolean.bom_dia:
+    name: "Bom dia"
+  input_boolean.chegar_casa:
+    name: "Chegando em casa"
+  input_boolean.visita_casa:
+    name: "Visita em casa"
+  input_boolean.entrar_muvrh:
+    name: "Chegando no trabalho"
+  input_boolean.sair_muvrh:
+    name: "Saindo do trabalho"
+  input_boolean.muvrh_desligar_tudo:
+    name: "Desligar tudo"
+  input_boolean.cafe_manha:
+    name: "Preparar café de manhã"
+  input_boolean.chaleira_manha:
+    name: "Ferver água de manhã"
+  input_boolean.magno_em_casa:
+    name: "Magno em casa"
+  input_boolean.caixa_areia_suja:
+    name: "Caixa areia suja"
+  device_tracker.antonio:
+    name: "Antonio"
+  device_tracker.roberta:
+    name: "Roberta"
+  binary_sensor.casa_movimento:
+    name: "Movimento em casa"
+  binary_sensor.muvrh_movimento:
+    name: "Movimento no trabalho"
+  binary_sensor.door_window_sensor_158d0001b8671f:
+    name: "Entrada sala 303"
+  binary_sensor.door_window_sensor_158d0001bf2a09:
+    name: "Entrada sala 203"
+  binary_sensor.entrada_casa:
+    name: "Entrada de casa"
+  binary_sensor.box_banheiro_suite:
+    name: "Box"
+  binary_sensor.box_banheiro_social:
+    name: "Box"
+  binary_sensor.movimento_suite:
+    name: "Movimento"
+  binary_sensor.movimento_sala:
+    name: "Movimento"
+  binary_sensor.movimento_cozinha:
+    name: "Movimento"
+  binary_sensor.movimento_quarto:
+    name: "Movimento"
+  binary_sensor.movimento_banheiro_suite:
+    name: "Movimento banheiro"
+  binary_sensor.movimento_banheiro_social:
+    name: "Movimento"
+  binary_sensor.motion_sensor_158d0001a24bdc:
+    name: "Sala de dinâmica"
+  binary_sensor.motion_sensor_158d0001ad6b83:
+    name: "Entrada 203"
+  binary_sensor.motion_sensor_158d0001ad6c20:
+    name: "Banheiro 303"
+  binary_sensor.motion_sensor_158d0001e02f9a:
+    name: "Nossa sala"
+  binary_sensor.motion_sensor_158d0001e420d0:
+    name: "Sala de operações"
+  binary_sensor.motion_sensor_158d0001e43ef1:
+    name: "Banheiro 203"
+  binary_sensor.motion_sensor_158d0001e44035:
+    name: "Entrada 303"
+  binary_sensor.porta_lava_loucas:
+    name: "Porta Lava louças"
+  binary_sensor.movimento_entrada_de_casa:
+    name: "Entrada de casa"
+  sensor.temperatura_cozinha:
+    name: "Cozinha"
+  alarm_control_panel.alarme:
+    name: "Alarme"
+  climate.ar_condicionado_da_entrada_203:
+    name: "Entrada 203"
+  climate.ar_condicionado_da_nossa_sala:
+    name: "Nossa sala"
+  climate.ar_condicionado_da_sala:
+    name: "Ar condicionado"
+  climate.ar_condicionado_da_sala_303:
+    name: "Sala 303"
+  climate.ar_condicionado_da_sala_de_operacoes:
+    name: "Sala de operações"
+  climate.ar_condicionado_da_suite:
+    name: "Ar condicionado"
+  climate.ar_condicionado_do_quarto:
+    name: "Ar condicionado"
+  cover.garagem_casa:
+    name: "Casa"
+  cover.garagem_muvrh_interno:
+    name: "Garagem interna"
+  cover.garagem_muvrh_rua:
+    name: "Garagem da rua"
+  cover.persiana_quarto:
+    name: "Persiana"
+  cover.persiana_sala:
+    name: "Persiana"
+  cover.persiana_suite:
+    name: "Persiana"
+  light.303leddinamica:
+    name: "Led dinâmica"
+  light.area_servico:
+    name: "Área de serviço"
+  light.banheiro_social_principal:
+    name: "Principal"
+  light.banheiro_social_espelho:
+    name: "Espelho"
+  light.corredor:
+    name: "Corredor"
+  light.cozinha:
+    name: "Principal"
+  light.entrada:
+    name: "Entrada"
+  light.gateway_light_34ce0090940e:
+    name: "Gateway MuvRH"
+  light.ledcozinhabalcao:
+    name: "Led do balcão"
+  light.ledchaocozinha:
+    name: "Led do chão"
+  light.ledquartotv:
+    name: "TV"
+  light.ledsaladesktop:
+    name: "Painel"
+  light.ledsalatv:
+    name: "TV"
+  light.ledsuitecama:
+    name: "Cama"
+  light.ledsuitetv:
+    name: "TV"
+  light.mesa_jantar:
+    name: "Mesa de jantar"
+  light.muv203banheiro:
+    name: "Banheiro 203"
+  light.muv203entrada:
+    name: "Entrada 203"
+  light.muv203nossasala:
+    name: "Nossa sala"
+  light.muv203operacoes:
+    name: "Sala de operações"
+  light.muv303banheiro:
+    name: "Banheiro 303"
+  light.muv303corredor:
+    name: "Corredor sala 303"
+  light.muv303dinamica:
+    name: "Dinâmica"
+  light.muv303entrada:
+    name: "Entrada 303"
+  light.quarto:
+    name: "Principal"
+  light.sala_principal:
+    name: "Principal"
+  light.suite_banheiro_principal:
+    name: "Principal"
+  light.suite_banheiro_espelho:
+    name: "Espelho"
+  light.suite_principal:
+    name: "Principal"
+  switch.automacoes_luzes:
+    name: "Luzes"
+  switch.aspirador:
+    name: "Aspirador"
+  switch.desktop:
+    name: "Computador"
+  switch.home_theater_sala:
+    name: "Home Theater"
+  switch.servidor:
+    name: "Servidor"
+  switch.sirene:
+    name: "Sirene"
+  switch.sistema_alarme_casa:
+    name: "Sistema de alarme de casa"
+  switch.tv_dinamica_303:
+    name: "TV dinâmica"
+  switch.tv_lg_quarto:
+    name: "TV"
+  switch.tv_lg_sala:
+    name: "TV"
+  switch.tv_lg_suite:
+    name: "TV"
+  switch.tv_sala_operacoes:
+    name: "TV operações"
+  switch.lava_loucas_homekit_aquaspray:
+    name: "Lava-louças aquaspray"
+  switch.lava_loucas_homekit_economico:
+    name: "Lava-louças econômico"
+  switch.lava_loucas_homekit_diaadia:
+    name: "Lava-louças dia a dia"
+  switch.ventilador_casa:
+    name: "Ventilador"
+  script.speed_test:
+    name: "Teste de velocidade"
+  script.aspirador_homekit_zona_mop:
+    name: "Zona pano úmido"
+  script.aspirador_homekit_zona_sala:
+    name: "Zona sala"
+  script.aspirador_homekit_zona_mesa_jantar:
+    name: "Zona mesa de jantar"
+  script.aspirador_homekit_zona_tapete:
+    name: "Zona tapete"
+  script.aspirador_homekit_zona_cozinha:
+    name: "Zona cozinha"
+  script.aspirador_homekit_zona_quartos:
+    name: "Zona quartos"

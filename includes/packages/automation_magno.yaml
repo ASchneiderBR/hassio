@@ -1,0 +1,61 @@
+automation:
+
+  - alias: Magno - Alerta caixa usada
+    initial_state: true
+    trigger:
+      - platform: state
+        entity_id: sensor.sensor_caixa_de_areia_do_gato
+        to: 'tilt'
+      - platform: state
+        entity_id: sensor.sensor_caixa_de_areia_do_gato
+        to: 'vibration'
+    condition:
+      condition: and
+      conditions:
+        - condition: state
+          entity_id: input_boolean.magno_em_casa
+          state: 'on'
+        - condition: state
+          entity_id: input_boolean.caixa_areia_suja
+          state: 'off'
+    action:
+      - service: input_boolean.turn_on
+        entity_id: input_boolean.caixa_areia_suja
+      - service: persistent_notification.create
+        data:
+          title: "Casa - Caixa de areia suja ({{now().strftime('%H:%M')}})"
+          message: "Magno acabou de usar a caixa de areia."
+      - service: notify.TODOS_CELULARES
+        data_template:
+          title: "Casa - Caixa de areia suja"
+          message: "Magno acabou de usar a caixa de areia, favor limpar."
+      - condition: state
+        entity_id: input_boolean.boa_noite
+        state: 'off'
+      - service: media_player.volume_set
+        entity_id: media_player.sala, media_player.suite
+        data:
+          volume_level: 0.7
+      - service: tts.amazon_polly_say
+        entity_id: media_player.sala, media_player.suite
+        data_template:
+          message: <speak>Magno acabou de usar a caixa de areia, limpar o mais breve possível!</speak>
+
+  - alias: Magno - Caixa limpa
+    initial_state: true
+    trigger:
+      platform: state
+      entity_id: input_boolean.caixa_areia_suja
+      to: 'off'
+    action:
+      - condition: state
+        entity_id: input_boolean.boa_noite
+        state: 'off'
+      - service: media_player.volume_set
+        entity_id: media_player.sala, media_player.suite
+        data:
+          volume_level: 0.7
+      - service: tts.amazon_polly_say
+        entity_id: media_player.sala, media_player.suite
+        data_template:
+          message: <speak>Obrigado por limpar a caixa de areia, já estava fedendo. Talvez seja hora do Magno ir embora.</speak>

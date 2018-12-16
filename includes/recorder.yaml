@@ -6,6 +6,7 @@ exclude:
     - group
     - automation
     - persistent_notification
+    - timer
   entities:
     - sensor.pws_alerts
     - sensor.pws_temp_high_1d_c
@@ -66,19 +67,6 @@ exclude:
     - input_number.timmer_quarto
     - input_number.timmer_sala
     - input_number.timmer_suite
-    - input_select.tempo_luz_banheiro_social
-    - input_select.tempo_luz_banheiro_suite
-    - input_select.tempo_luz_cozinha
-    - input_select.tempo_luz_quarto
-    - input_select.tempo_luz_sala
-    - input_select.tempo_luz_suite
-    - input_select.tempo_muvrh_203_banheiro
-    - input_select.tempo_muvrh_203_entrada
-    - input_select.tempo_muvrh_203_nossasala
-    - input_select.tempo_muvrh_203_salaoperacoes
-    - input_select.tempo_muvrh_303_banheiro
-    - input_select.tempo_muvrh_303_dinamica
-    - input_select.tempo_muvrh_303_entrada
     - input_select.rf_bridge_device_select
     - input_select.rf_bridge_mode_select
     - input_select.rf_bridge_key_select
@@ -87,7 +75,6 @@ exclude:
     - input_boolean.entrar_muvrh
     - input_boolean.sair_casa
     - input_boolean.sair_muvrh
-    - input_boolean.visita_casa
     - binary_sensor.cube_158d00010b2e3e
     - binary_sensor.cube_158d00010b2e64
     - input_boolean.spotify_shuffle
@@ -120,6 +107,9 @@ exclude:
     - sensor.time_utc
     - sensor.date
     - switch.energia_casa
+    - switch.lava_loucas_homekit_aquaspray
+    - switch.lava_loucas_homekit_economico
+    - switch.lava_loucas_homekit_diaadia
     - light.tudo_banheiro_social
     - light.tudo_banheiro_suite
     - device_tracker.roteador_casa
@@ -127,6 +117,16 @@ exclude:
     - input_boolean.muvrh_desligar_tudo
     - light.todas_as_luzes_cozinha
     - light.todas_as_luzes_suite
+    - light.ender_3
+    - sensor.octoprint_actual_bed_temp
+    - sensor.octoprint_actual_tool0_temp
+    - sensor.octoprint_job_percentage
+    - sensor.octoprint_target_bed_temp
+    - sensor.octoprint_target_tool0_temp
+    - sensor.octoprint_time_elapsed
+    - sensor.octoprint_time_remaining
+    - sensor.asuswrt_download
+    - sensor.asuswrt_upload
 include:
   entities:
     - group.pessoas

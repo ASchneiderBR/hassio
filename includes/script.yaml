@@ -1,875 +1,3 @@
-persiana_quarto_abrir:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_32
-    data:
-      packet:
-      - sgGEAwwUDBQXCgwUDBUMFAwVDBQMFAwUDBUWCgwVFgoWChcKDBQMFBcMoVA2CgwVFgoMFAwUFwoWCgwVFgoXCRcKDBQMFQwUDBQMFQwUFgoNFAwUDBQXCgwUDBUMFBYKDBUMFAwUDBUMFAwUDBUMFBYLCxUWChcKFgoMFAwVFgyhUDcKCxUWCgwVDBQWChcKDBQWChcKFgoMFAwVDBQMFAwVDBQXCgwUDBQMFRYKDBUMFAwUFgoMFQwUDBQMFQwUDBUMFAwUFwoMFBcKFgoWCgwVDBQWDKFRNgoMFBcKDBQMFBcJFwoMFBcKFgoWCgwUDBUMFAwVDBQMFBcKDBQMFQwUFgoMFQwUDBQXCgwUDBUMFAwUDBUMFAwUDBUWCgwVFgoWChcJDRQMFBcMoVA2CgwVFgoMFAwVFgoWCgwVFgoWChcKDBQMFAwVDBQMFAwVFgoMFQwUDBQXCQ0UDBQMFRYKDBUMFAwUDBUMFAwVDBQMFBcJDBUWChcJFwoMFAwUFwyhUDcJDBQXCgwUDBUWChcJDBUWChcKFgoMFA0UDBQMFQwUDBQWCgwVDBQMFRYKDBQMFQwUFwkMFQwUDBUMFAwUDBUMFAwUFwoMFBcJFwoWCgwUDRQWDKFRNgoMFBYKDBULFRcKFgoMFBYKFwoWCgwVDBQMFAwUDBUMFBcKDBQMFA0UFgoMFQwUDBQXCgwUDBQMFQwUDBUMFAwUDBUWCgwUFwoWChcJDBUMFBcMoVA2CgwUFwoMFAwUFwoWCgwUFwoWChcKDBQMFAwVDBQMFAwVFgoMFQwUDBQXCgwUDBQMFRYKDBQMFQwUDBQMFQwUDBUMFBYKDBQXChcJFwoMFAwUFwyhUDcJDBQXCgwUDBQXChYKDBUWChcJFwoMFAwVDBQMFAwVDBQWCgwVCxUMFRYKDBQMFQwUFgoMFQwUDBUMFAwUDBUMFAwUFwoMFBYKFwkXCgwVDBMXDKFQNwkMFRYKDBUMFBYKFwoMFBcJFwkXCgwUDBUMFAwVDBQMFBcKDBQMFQwUFgoMFQwUDBQXCgwUDBQMFQwUDBQMFQwUDBQXCgwUFwoWChYKDBUMFBcMoVA2CgwUFgoMFQwUFwoWCgwUFwkXChYKDRQMFAwUDBUMFAwVFgoMFQwUDBQWCgwVDBQMFRYKDBQNFAwUDBQMFQwUDBQMFRYKDBUWChYKFwoMFAwUFwAF3AAAAAA==
-  - delay: 00:00:03
-  alias: "Persiana abrir"
-
-persiana_quarto_fechar:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_32
-    data:
-      packet:
-      - sgGEAxYKFwoWCgwVDBQMFAwVDBQMFA0UDBQXCQwVFgoMFQwUDBQXChYMoVE2CQwVFgoMFAwVFwkXCgwUFgoXChYKDBQMFQwUDBULFQwUFwoMFAwUDBULFQwUFwoWChcKCxUMFAwVDBQMFQwUDBQMFBcKDBQXCQwVDBQMFRYKFg2hUDYKDBQXCQwVDBQXChYKDBQWChcKFgoMFQwUDBQMFQwVCxUWCgwUDBUMFAwUDBUWChcJFwoMFAwUDBUMFAwVCxUMFAwVFgoMFBcKDBQMFAwVFwkXDKFQNwkMFRYKDBQMFBcKFwkMFBcKFwkXCgwUDBQNFAwUDBUMFBYKDBQMFQwUDBUMFBYKFwoWCgwUDBUMFAwVDBQMFQsVDBQWCgwUFwoMFQsVDBQXCRcMoVA3CQ0UFgoMFAwVFgoXCQwVFgoWCxYKDBQMFQwUDBQMFQwUFwoMFAwUDBUMFAwUFwoWChcJDRQMFAwVDBQMFAwVDBQMFBcKDBQXCQwVDBQMFRYKFgyhUTYKDBQXCgwUDBQXCRcKDBQXCRcKFgoMFQwUDBQMFQwUDBQXCgwUDBQNFAwUDBUWChYKFwoMFAwUDBUMFAwVCxUMFAwVFgoMFBcKCxUMFQsVFgoWDaFQNgoMFBcKDBQMFBcKFgoMFRYKFgoXCgsVDBQMFQwUDBQMFRYKDBQMFQwUDBQMFRYKFwoWCgwUDBUMFAwUDBUMFAwUDBUWCgwUFwoMFQwUDBQXCRcMoVA2CgwVFgoMFAwVFgoXCgsVFgoXChYKDBQMFQwUDBQMFQsVFgoMFQwUDBUMFAwUFwoWChYKDBULFQwUDBUMFAwVDBQMFBcKDBQWCgwVDBQMFRYKFgyiTzcJDBUWCgwVDBQWChcKDBQWChcKFwoLFQsVDBQMFQwUDBUWCgwUDBULFQwUDBQXChYLFgkNFAwVDBQMFAwUDBUMFAwVFgoMFBcKDBQMFAwVFgoWDaFQNgoMFBYLCxUMFBcJFwoMFBcKFgoWCgwVDBQMFQwUDBQMFRYKDBQMFQwUDBUMFBYKFwkXCgwVCxUMFAwUDRQMFAwUDBUWCgwVFgoMFA0UDBQXCRcMoVA2CgwVFgoMFAwVFgoWCgwVFgoWChcKDBQMFQsVDBQMFAwVFgoMFQwUDBQMFQwUFgoXChcJDBUMFAwVDBQMFAwUDBUMFBYLDBQWCgwVDBQMFRYKFgAF3AAAAAA==
-  - delay: 00:00:03
-  alias: "Persiana fechar"
-
-persiana_quarto_parar:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_32
-    data:
-      packet:
-      - sgD+AgEUFwoWCgwUFwoWChcJDRQMFAwVDBQMFAwVFgoMFA0UDBQXCgwUFgsMFBYKDBUMFAwUDBQMFQwUDBUMFBYKDBUWChcJFwoWChcJFwyhUDYKDBUWCgwUDBUWChYKDBUWChcJFwoMFAwVDBQMFAwVDBQWCgwUDBUMFBcKDBQXCgwUFgoMFQwUDBQMFQwUDBUMFAwUFgsLFRYKFgsWChcJFwkXDKFQNwoMFBYKDBUMFBYKFwkNFBYKFwoWCgwUDBUMFAwUDBUMFBcKDBQMFAwVFgoMFBcKDBQWCgwVDBQMFQwUDBQMFQwUDBUWCgwUFwkXChYKFwoWChYMoVE2CgwUFwkMFQwUFwkXCgwUFgoXChcJDBUMFAwUDRQMFAwUFwoMFAwVDBQXCQwVFgoMFBcJDBUMFAwVDBQMFAwVDBQMFRYKDBQXCRcKFwkXChYKFg2hUDYKDBQWCwwUDBQXChYKDBQXChYKFwkMFQwUDBQNFAwUDBUWCgwUDBUMFBcJDBUWCgwUFwoMFAwUDRQMFAwVDBQMFQwUFgoMFRYKFgoXCRcKFgoXDKFQNgoMFBcKDBQMFBcKFwkMFRYKFgoXCgwUDBQMFQwUDBQNFBYKDBULFQwUFwoMFBYKDRQWCgwUDRQMFAwUDRQMFA0UDBQXCQwVFgoXChYKFgoWChcMoVA3CQwUFwoMFAwVFgoXCQwVFgoWChcKDBQMFAwVDBQMFQwUFwkMFQwUDBQXCgwUFwoMFBYKDBUMFAwVDBQMFAwUDBUMFBcKDBQWChcKFgoWChcKFgyiTzcKDBQWCgwVDBQWChcJDBUXCRcKFgoMFA0UDBQMFQwUDBQXCgwUDBQMFRYKDBQXCgwUFwoMFAwUDBUMFAwVDBQMFAwUFwoMFBcJFwoWChcJFwoWDKFQNwkNFBcJDBUMFBcJFwoMFBYKFwoWCgwVDBQMFAwVDBQMFRYKDBQMFQwUFgoMFRYKDBQXCgwUDBQMFQwUDBUMFAwUDBUWCgwUFwoWChcJFwoWChcABdwMFAwVFgoMFBcK==
-  - delay: 00:00:03
-  alias: "Persiana parar"
-
-persiana_suite_abrir:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_32
-    data:
-      packet:
-      - sgGEAwwXDBcMFwwXGAwLGAsYDBcMFxgLDBcMGBcMCxgMFxgLDBcYCwwXDBcMGAsYFwwMFxgLDBcMFwwXGAwLGAwXDBcYCwwXDBcMGBcMnTEYDBcMFwwMFwwXDBcMFxgMCxgLFwwYCxgYCwwXDBcYDAsXDBgXDAwXGAsMFwwXDBcMFxgMCxgXDAwXDBcMFxgMCxgLGAwXGAsMFwwXDBcY/Z0xGAsYCxgLDBcMGAsYDBcYCwwXDBcMFwwXGAwLGAsYFwwMFwwXGAsMFxgMCxgMFwwXDBcYCwwXGAsMGAsYCxgXDAwXDBcMFxgLDBgLGAwXGAydMRgLGAsYCwwXDBcMFwwXGAwMFwwXDBcMFxgMCxcMFxgMDBcMFxgLDBcYCwwYCxcMGAwXGAsMFxgLDBcMGAsYFwwMFwwXDBcYCwwYCxcMGBf9nTEYDBcMFwwMFwwXDBcMFxgLDBgLGAsYCxgXDAwXDBcYCwwYCxgXDAwXGAsMFwwXDBcMGBcMCxgXDAwXDBcMFxgMCxgLGAwXGAsMFwwXDBcYDJ0xGAsYCxgMCxgMFwwXDBcYCwwXDBcMFwwXGAwLGAwXGAsMFwwYFwwLGBcMDBcMFwwXDBcYCwwXGAsMGAwXDBcYCwwXDBgLGBcMCxgMFwwXGP2dMRgLGAsYCwwXDBcMFwwXGAwMFwwXDBcMFxgLDBcMFxgMCxgMFxgLDBcYDAsXDBgLGAwXGAsMFxgLDBcMGAsYFwwMFwwXDBcYCwwXDBgLGBcMnTIXDBcMGAsMFwwXDBcMFxgMCxgMFwwXDBcYCwwXDBcYDAsYCxgXDAwXGAsMFwwXDBgLGBcMDBcYCwwXDBcMFxgMCxcNFwwXGAsMFwwXDBcYDZ0xGAsYCxgLDBcMFwwYCxgYCwwXDBcMFwwYFwsMGAsYFwwMFwwXGAsMFxgLDBcMGAwXDBcYCwwYFwwLFwwYDBcXDAwXDBcMFxgMFwsYDBgLDAABB50xGAsYDBcMCxgMFwwXDBcYCwwXDBcMGAsXGAwLGAsYGAsMFwwXGAwLGBcMDBcMFwwXDBcYCwwXGAwLGAsYDBcYCwwXDBgLGBcMFwwYCxgLDAABB50xGAwXDBcMDBcMFwwXDBcYCwwYCxgLGAwXGAsMFwwXGAsMFwwYFwwMFxcMDBcMFwwXDBgXDAwXFwwMFwwXDBcYCwwYCxgLGBcMGAsYCxgLDAAF3AAAAAA==
-  - delay: 00:00:03
-  alias: "Persiana abrir"
-
-persiana_suite_fechar:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_32
-    data:
-      packet:
-      - sgGEAwsYDBcMFwwXGAsMFwwYCxgLGBcMDBcMFxgLDBcMFxgMCxgYCwwXDBcMFwwXGAsMGBcMCxgMFwwXGAsMFwwYFwwXDAwXDBcYCxgMnTEYCxgLGAsMGAsYDBcMFxgLDBgLFwwYCxcYDAsYCxgXDAwXDBcYCwwYFwwMFwwXDBcMFxgLDBgXDAsYCxgLGBgLDBcMFxgMFwwLGAwXGAsY/Z0xGAsYDBcLDBcMFwwYCxgXDAwXDBcMFwwXGAwLGAsYFwwMFwwXGAsMFxgLDBgLGAsYDBcYCwwXGAwLGAsYDBcXDAwXDBcYCxgMCxcMGBcMFwyeMRgLGAsYCwwXDBcMFwwXGAwMFwwXDBcMFxgMCxgLGBcMDBcMFxgLDBcYCwwYCxgLGAwXFwwMFxgLDBcMGAsXGAwMFwwXGAsYCwwYCxcYCxj9nTIXDBcMFwwMFwwXDBcMGBcMDBcMFwwXDBcYCwwXDBgXDAsYCxgXDAsYGAsMFwwXDBgLGBcMDBcYCwwXDBcMFxgMCxgMFxcMGAsMFwwXGAwXDJ0xGAsYDBcMCxgLGAwXDBcYCwwXDBgLGAsYFwwMFwwXGAwLFwwYFwwLGBcMDBcMFwwXDBgXDAwXGAsMFwwXDBcYCwwXDBcYDBcMDBcMFxgLGP2dMRgLGAwXDAsYDBcMFwwXGAsMFwwXDBcMGBcMCxgMFxgLDBcMFxgLDBgXDAwXDBcMFwwXGAsMGBcLDBgMFwwXGAsMFwwXGAwXDAsYDBcYCxgMnTEYCxgLGAsMGAsYCxgLGBcMDBcMFwwXDBcYCwwYDBcYCwwXDBcYCwwXGAsMGAsYDBcMFxgLDBcYDAsYCxgMFxgLDBcMFxgMFwwLGAsYFwwYDJ0yFwwXDBgLDBcMFwwXDBcYCwwXDBgLGAwXFwwMFwwXGAwLGAsYFwwMFxgLDBcMFwwXDBgXDAsYFwwMFwwXDBcYDAsYCxgXDBgLGAsYCwwXDAABB50yFwwXDBgLDBcMFwwXDBcYDAwXDBcMFwwXGAsMFwwXGAwMFwwXGAsMFxgLDBcMGAsYDBcYCwwXGAsMFwwXDBcYDAwXDBcYCxgLGAsYDAsYCwABCJ0xGAsYCxgLDBcMGAsYCxgXDAwXDBcMFwwXGAwLFwwYFwwMFwwXGAsMFxgLDBgLGAsYDBcYCwwXGAsMFwwXDBgXDAwXDBcYCxgLGAwXDAsYDAAF3AAAAAA==
-  - delay: 00:00:03
-  alias: "Persiana fechar"
-
-persiana_suite_parar:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_32
-    data:
-      packet:
-      - sgH2ABgMFwwXDAwXDBcMFwwYFwsMFwwYCxgLGBcMDBcMFxgLDBcMGBcLDBgXDAwXDBcMFwwXGAsMFxgLDBgLGAwXFwwMFxgLDBcYCwwXGAwLGBcMnTIXDBgLGAsMFwwXDBcMFxgMCxgMFwwXDBcYCwwXDBcYDAsXDBcYDAsYGAsMFwwXDBcMFxgMCxcYDAwXDBcMFxgLDBcYDAsXGAsMGBcMDBcYC54xFwwYCxgLDBcMFwwXDBcYDAsYDBcMFwwXGAsMFwwXGAwLGAsYGAsMFxgLDBcMFwwXDBgXDAsYFwwMFwwXDBcYDAsYFwsMGBcMDBcYCwwXGAAF3AAA==
-  - delay: 00:00:03
-  alias: "Persiana parar"
-
-persiana_sala_abrir:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_32
-    data:
-      packet:
-      - sgGEAwwXDBcMFwwXGAsMFwwXDBgMFxgLDBcMFxgLDBcYCxkKGQsMFwwXGAsMFxgLDBcNFhkLDBcMFwwXGAsMFwwXDBgYCwwXDBcMFxgMnTEYCxgLGAsMFwwYDBYNFxgLDBcMFwwXDBcZCwwXDBcYCwwXGAsYCxgLDRYMGBgLDBcYCwwXDBcYDAwWDRcMFxgLDBcMFwwXGAsMFwwXDRcY/J4wGAwYCxgLDBcMFwwXDBcYDAwXDBcMFwwXGAsMFwwXGAsNFhkLGAsYCwwXDBcYCwwYGAsMFwwXGAsMFwwXDBcYCw0XDBcMFxgLDBcMFwwXGQudMRkKGAsYDAwXDBcMFwwXGAsNFwwXDBcMFxgLDBcMFxgLDRcXDBcMGAsMFwwXGAsMFxgMDBcMFxgLDBcMFwwXGAsMGAwXDBcYCwwXDBcMFxj9nTEYCxgLGAsMFw0XDBcMFxgLDBcMFwwXDBcYDAwXDBcYCwwXGAsYCxgLDBcNFxgLDBcYCwwXDBcYDAwXDBcMFxgLDBcMFwwXGAsNFwwXDBcYDJ0xGAsYCxgLDBcMFwwXDBgYCwwXDBcMFwwXGAsNFg0XGAsMFxgLGAsYCw0WDRYYDAwXGAsMFwwXGAsMFw0XDBcYCwwXDBcMFxgMDBYMGAwWGfydMRkLGAsYCwwXDBcMFwwXGAwMFwwXDBcMFxgLDBcMFxgMCxgYCxgLGAsMFwwXGAsNFxgLDBcMFxgLDBcMFwwXGAwMFwwXDBcYCwwXDBcMFxkLnjAYCxkLFwwMFwwXDBcMFxgLDBgMFg0XDBcYCwwXDBcYCwwXGAwXDBgLDBcMFxgLDBcZCwwXDBcYCwwXDBcMFxgLDBgLFw0XGAsMFwwXDBcYDZ0xGAsYCxgLDBcMFwwYDBcYCwwXDBcMFwwXGAsMFwwXGAwMFxgLGAsYCwwYCxgYCwwXGAsMFwwXGAsMFwwXDBcYDAwXDBcMFxgLGAwXDBgLDAABB50xGAsYCxgLDRYMGAwXDBcYCwwXDBcMFwwXGAsMGAwXGAsMFxgLGAsYCwwYDBcYCwwXGAsMFwwXGAsMFw0XDBcYCwwXDBcMFxgMGAsYCxgLDAABB50xGAsZCxgLDBcMFwwXDBcYCwwYCxgMFwwXGAsMFwwXGAsMGBcLGAwYCwwXDBcYCwwXGQoNFwwXGAsMFwwXDBcYDAwWDRcLGBgLGAsYCxgLDAAF3AAAAAA==
-  - delay: 00:00:03
-  alias: "Persiana abrir"
-
-persiana_sala_fechar:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_32
-    data:
-      packet:
-      - sgGCAQwXGAwMFxgLGAsYCwwXDBcZCwwXGAsMFwwXGAsMFwwXDRYYDAwXDBcYCxgLDBcNFhkKGQueMBkKGQsYCwwXDBcMFwwXGQsMFwwXDBcMFxgLDBcMFxgLDRcYCxgLGAsMFwwYFwsNFxgLDBcMFxgLDBcMFwwXGQoNFwwXGAsYCwwXDBcYCxn8nTEZChgMGAsMFwwXDBcMFxgLDBcMGAwWDRcYCwwXDBcYCwwXGQsYCxgLDBcMFxgLDBcYCw0WDRYZCwwXDBcMFxgLDBgLFxkLGAsYCxgLDBcMAAEHnjAZCxgLGAsMFwwXDBcMFxgMDBcMFwwXDBcYCwwXDBcYCw0WGQsYCxgLDBcMFxgLDRcYCwwXDBcYCwwXDBcMFxgMDBcMFxgLGAsYCxgLDRYNAAEHnTEYCxgLGAsMFwwXDRcMFhkLDBcMFwwXDBcYCwwXDBcZCwwXGAsYCxgLDBcNFhkLDBcYCwwXDBcYCwwXDRYMGBgLDBcMFxgLGAsYCxkLDBcMAAXcAAAAAAAA==
-  - delay: 00:00:03
-  alias: "Persiana fechar"
-
-persiana_sala_parar:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_32
-    data:
-      packet:
-      - sgH4AJ0xGAsYDBgLDBcMFwwXDBcYCwwXDBcMFw0XFwwMFwwXGAsMFxgLGAsYCwwXDRcYCwwXGAsMFwwXGAsNFg0XDBcYCwwXGAsMFxgLDBcYDAsXGAydMRkKGAwYCwwXDBcMFwwXGAsMFw0XDBcMFxgLDBcMFxgLDBcYCxkKGAwMFwwXGAsMFxgLDBcMFxkLDBYNFwwXGAsMFxgLDBcYCwwYGAsMFxgLnjEYCxgLGAsMFwwXDBcMFxgMDBcMFwwXDBcYCwwXDBcYCwwYGAsYCxgLDBcMFxgLDBcZCg0WDRcYCwwXDBcMFxgLDRYZCgwYFwwMFxgLDBcYAAXc==
-  - delay: 00:00:03
-  alias: "Persiana parar"
-
-garagem_casa:
-  sequence:
-  - service: switch.turn_on
-    entity_id: switch.controle_garagem_casa
-  - delay: 00:00:03
-  alias: "Garagem casa"
-
-ar_suite_swing:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_32
-    data:
-      packet:
-      - JgDKAJCPEjYRExE2EjYRExETETYSEhISETcRExESEjYRNxQQETYSEhE3ETYSEhI2ERMRNhI2ETYSEhISEjYRExE2EhISEhI2ETYSNhETERMRExQQERMREhISEhIUNBE2EjYUNBE2EquQjxI2ERMRNhI2ERMRExE2ERMRExE2FBASEhI2ETYSEhQ0ERMRNhI2ERMRNhISFDQRNhI2ERMRExE2EhIUNBETERMRNhI2ETYUEBISEhIUEBETERMRExETETYSNhE2EjYRNhIADQUAAAAAAAAAAAAAAAAAAA==
-  alias: "Swing"
-
-ar_suite_display:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_32
-    data:
-      packet:
-      - JgDKAJCPEjYRExE2EjYRExE2FBASNhETFDMSEhISEjYRExE2EhISNhE2EjYRNhISEjYRExE3ERISEhISEhIRNxETETYSEhI2ERMRNhISFBARNxQQETYSEhE3FBARNhI2ERMRNhQQEquQjxQ0ERMRNhI2FBARNhISEjYRExE3ERISEhI2ERMRNhISEjYRNxQzEjYRExE2EhISNhETFBAUEBETEzQSEhE3ERMRNhISETcRExESEjYRExE3ERIUNBQQETcTNBETETcRExEADQUAAAAAAAAAAAAAAAAAAA==
-  alias: "Display"
-
-ar_suite_desligar:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_32
-    data:
-      packet:
-      - JgLKAJGOEzUTERM0FDQUEBQQEzQUEBQQFDMUEBQQFDQUMxQQFDQUEBQzFDQUMxQ0FBAUMxQ0FDQUEBMQFBAUEBQ0FBAUEBQzFDQUMxQQFBAUEBQQFBAUEBQQFBATNBQ0FDMUNBQzFKmSjRQ0FBAUMxQ0FBAUEBQzFBAUEBQ0FBAUEBM0FDQUEBQzFBAUNBQzFDQUMxQQFDQUMxQ0FBAUEBQQFA8UNBQQFBAUMxQ0FDMVDxQQFBAUEBQQFBAUEBQQFDMUNBQzFDQUNBQADQUAAAAAAAAAAAAAAAAAAA==
-  alias: "Desligar"
-
-tv_lg_suite_power:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_32
-    data:
-      packet:
-      - JgBIAAABKpUTExITEzgSExMTEhMTExITEzgTOBITEzgSOBM4EjgTOBMSExMTEhM4ExMSExMTEhMTOBI4EzgTEhM4EzgSOBM4EgANBQ==
-  alias: "Ligar ou desligar"
-
-tv_lg_suite_power_on:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_32
-    data:
-      packet:
-      - JgRQAAABKJMSEhISEjcSEhISEhISEhISEjcSNxISEjcSNxI3EjcSNxISEhISNxISEhISEhI3EjcSNxI3EhISNxI3EjcSEhISEgAFGgABKEoSAAxWDQUAAAAAAAA==
-  alias: "Ligar TV"
-
-tv_lg_suite_power_off:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_32
-    data:
-      packet:
-      - JgRQAAABKJMSEhISEjcSEhISEhISEhISEjcSNxISEjcSNxI3EjcSNxI3EhISNxISEhISEhI3EjcSEhI3EhISNxI3EjcSEhISEgAFGgABKEoSAAxWDQUAAAAAAAA==
-  alias: "Desligar TV"
-
-tv_lg_suite_volup:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_32
-    data:
-      packet:
-      - JgBIAAABLJMUERMTEjgTExQRFREUERUREzgUNhQSEjgVNhI4FTYUNhURFDcSExMTFBETExITFREUNhMTFDYTOBM3FTYUNxQ2FQANBQ==
-  alias: "Volume mais"
-
-tv_lg_suite_voldown:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_32
-    data:
-      packet:
-      - JgBQAAABKpQTExMSEzgTExITExMSExMTEjgTOBITEzgTNxM4EzgSOBM4EjgTExMSExMTEhMTExITExMTEjgTOBI4EzgTNxM4EwAFKQABKksTAA0FAAAAAAAAAAA==
-  alias: "Volume menos"
-
-tv_lg_suite_menu:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_32
-    data:
-      packet:
-      - JgBQAAABKpUSExMTFDYTExMSFRETExITFDcSOBUREjgVNhQ2EzgTOBQRFREUNhU2FDYTOBQ3EhMVNhI4ExMSExMTExITExM4FAAFKAABKkoTAA0FAAAAAAAAAAA==
-  alias: "Menu"
-
-tv_lg_suite_chup:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_32
-    data:
-      packet:
-      - JgBQAAABLJMUERURFDYVERQRExMUERURFDYVNhQSEjgVNhI4FTYUNhURExIVERMTFBETExQRExMUNhU2FDYVNhQ2FTYTOBQ2EwAFKwABK0kTAA0FAAAAAAAAAAA==
-  alias: "Canal mais"
-
-tv_lg_suite_chdown:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_32
-    data:
-      packet:
-      - JgBQAAABKpUSExMTEjgTExMSExMTEhMTEzgSOBMTEjgTOBI4EzgTOBI4ExMSExMTEhMTExITExMSExM4EjgTOBM3EzgTOBI4EwAFKQABKksTAA0FAAAAAAAAAAA==
-  alias: "Canal menos"
-
-tv_lg_suite_config:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_32
-    data:
-      packet:
-      - JgBQAAABKpQTExMSEzgTExITExMSExMTFDYTOBITEzgTOBI4EzgSOBM4FDcSExMTEhMVERI4FRESExUREjgTOBM3EzgTExI4EwAFKwABKkoTAA0FAAAAAAAAAAA==
-  alias: "Configurações"
-
-tv_lg_suite_up:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_32
-    data:
-      packet:
-      - JgBQAAABKpUSExMTEjgTExMSExMTEhMTEzgSOBMTEjgTOBI5EjgTOBITExMSExMTEhMTExI4ExMTOBI4EzgSOBM4EzcTExM4EgAFKwABKksTAA0FAAAAAAAAAAA==
-  alias: "Para cima"
-
-tv_lg_suite_down:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_32
-    data:
-      packet:
-      - JgBQAAABLJUTExITEzgTEhMTExITExMSEzgTOBITEzgSOBM4EzgSOBM4EhMTExITExMTEhM4ExITExM4EjgTOBI4EzgTEhM4EwAFKQABKksTAA0FAAAAAAAAAAA==
-  alias: "Para baixo"
-
-tv_lg_suite_left:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_32
-    data:
-      packet:
-      - JgBIAAABKpQTExMSEzgVERITExMSExMTEjgTOBITEzgTOBI4EzgSOBM4EzcTOBMTEhMTExITExMSExMTEhMTOBI4EzgTOBI4EwANBQ==
-  alias: "Para esquerda"
-
-tv_lg_suite_right:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_32
-    data:
-      packet:
-      - JgBQAAABKpUSExMTEjgTExMSExMTEhMTEzgSOBMTEjgTOBI4EzgTOBITEzgSOBMTEhMTExITExMTNxMTExITOBM4EjgTOBM3EwAFKgABKkoTAA0FAAAAAAAAAAA==
-  alias: "Para direita"
-
-tv_lg_suite_ok:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_32
-    data:
-      packet:
-      - JgBQAAABKZUTExMSEzgTEhMTExMSExMTEjgTOBITEzgSOBM4EzgSOBMTEhMTOBITExMSExM4ExITOBM4EhMTOBI4EzgTEhM4EwAFKQABKksSAA0FAAAAAAAAAAA==
-  alias: "Selecionar"
-
-tv_lg_suite_exit:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_32
-    data:
-      packet:
-      - JgBQAAABKpUTExITFDcSExMTEhMTExITEzgUNhMTEzgSOBQ3FDYVNhQ3FDYVERI4FTYUERU2FBETExQSFDYVERQREzgUERM4FAAFKQABKksVAA0FAAAAAAAAAAA==
-  alias: "Sair"
-
-tv_lg_suite_mute:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_32
-    data:
-      packet:
-      - JgBQAAABK5QUERUREjgVERQRFREUERURFDYVNhMTEjgTOBQ2EzgTOBI4FRESExU2EhMTExMSExMTEhM4EzgSExM4EjgTOBM4EgAFKwABKksTAA0FAAAAAAAAAAA==
-  alias: "Mudo"
-
-tv_lg_suite_input:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_32
-    data:
-      packet:
-      - JgBIAAABLJMTEhUREzcTExQSEhMTExITEzgSOBMTEjgTOBQ3FDYVNhI4EzgTEhU2ExMSExMTEhMTExQREzgSExM4FDYVNhQ3FAANBQ==
-  alias: "Entrada"
-
-tv_lg_suite_play:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_32
-    data:
-      packet:
-      - JgBQAAABKpUUERMTFDYVERQSFBEUEhQRFDcUNhURFDYVNhQ3FDYVNhQRExMUERMTFDYVNhQSFDYTOBQ2FTYUNxQRFREUNhURFAAFKAABLEkUAA0FAAAAAAAAAAA==
-  alias: "Tocar"
-
-tv_lg_suite_pause:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_32
-    data:
-      packet:
-      - JgBQAAABKpUSExMTEjgTExITExMSExMTEjgVNhMTEjgTOBI4EzgSOBMTEzgSExM4EjgTOBITEzgSOBMTEzgSExMTEhMTOBITFQAFKAABKUsTAA0FAAAAAAAAAAA==
-  alias: "Pausar"
-
-tv_lg_suite_stop:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_32
-    data:
-      packet:
-      - JgBQAAABKZUTExQRFTYUERMTFBETExQSFDYUNxQREzgSOBM4FDcUNhM4FBETExQREzgTOBQREzgSExU2EjgVNhQRExMUNxITFQAFKQABK0kTAA0FAAAAAAAAAAA==
-  alias: "Parar"
-
-tv_lg_suite_chtv:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_32
-    data:
-      packet:
-      - JgBIAAABKpUTExITEzgSExURFBETExQREzgUNxITEzgSOBU2FDcSOBQ3FDYTOBQ2ExMUEhITExMUERQSEhMTExI4EzgUNhM4FAANBQ==
-  alias: "Assistir TV"
-
-tv_lg_suite_hdmi1:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_32
-    data:
-      packet:
-      - JgBQAAABKJMSEhISEjcSEhISEhISEhISEjcSNxISEjcSNxI3EjcSNxISEjcSNxI3EhISEhI3EjcSNxISEhISEhI3EjcSEhISEgAFGgABKEoSAAxWDQUAAAAAAAA==
-  alias: "HDMI 1"
-
-tv_lg_suite_hdmi2:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_32
-    data:
-      packet:
-      - JgBQAAABKJMSEhISEjcSEhISEhISEhISEjcSNxISEjcSNxI3EjcSNxISEhISNxI3EhISEhI3EjcSNxI3EhISEhI3EjcSEhISEgAFGgABKEoSAAxWDQUAAAAAAAA==
-  alias: "HDMI 2"
-
-tv_lg_suite_hdmi3:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_32
-    data:
-      packet:
-      - JgBQAAABKJMSEhISEjcSEhISEhISEhISEjcSNxISEjcSNxI3EjcSNxI3EhISEhI3EhISNxI3EjcSEhI3EjcSEhI3EhISEhISEgAFGgABKEoSAAxWDQUAAAAAAAA==
-  alias: "HDMI 3"
-
-tv_lg_suite_hdmi4:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_32
-    data:
-      packet:
-      - JgBQAAABKJMSEhISEjcSEhISEhISEhISEjcSNxISEjcSNxI3EjcSNxISEjcSEhI3EjcSEhI3EjcSNxISEjcSEhISEjcSEhISEgAFGgABKEoSAAxWDQUAAAAAAAA==
-  alias: "HDMI 4"
-
-ar_sala_swing:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_34
-    data:
-      packet:
-      - JgDKAJCPEjYRExE2EjYRExETETYSEhISETcRExESEjYRNxQQETYSEhE3ETYSEhI2ERMRNhI2ETYSEhISEjYRExE2EhISEhI2ETYSNhETERMRExQQERMREhISEhIUNBE2EjYUNBE2EquQjxI2ERMRNhI2ERMRExE2ERMRExE2FBASEhI2ETYSEhQ0ERMRNhI2ERMRNhISFDQRNhI2ERMRExE2EhIUNBETERMRNhI2ETYUEBISEhIUEBETERMRExETETYSNhE2EjYRNhIADQUAAAAAAAAAAAAAAAAAAA==
-  alias: "Swing"
-
-ar_sala_display:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_34
-    data:
-      packet:
-      - JgDKAJCPEjYRExE2EjYRExE2FBASNhETFDMSEhISEjYRExE2EhISNhE2EjYRNhISEjYRExE3ERISEhISEhIRNxETETYSEhI2ERMRNhISFBARNxQQETYSEhE3FBARNhI2ERMRNhQQEquQjxQ0ERMRNhI2FBARNhISEjYRExE3ERISEhI2ERMRNhISEjYRNxQzEjYRExE2EhISNhETFBAUEBETEzQSEhE3ERMRNhISETcRExESEjYRExE3ERIUNBQQETcTNBETETcRExEADQUAAAAAAAAAAAAAAAAAAA==
-  alias: "Display"
-
-ar_sala_desligar:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_34
-    data:
-      packet:
-      - JgLKAJGOEzUTERM0FDQUEBQQEzQUEBQQFDMUEBQQFDQUMxQQFDQUEBQzFDQUMxQ0FBAUMxQ0FDQUEBMQFBAUEBQ0FBAUEBQzFDQUMxQQFBAUEBQQFBAUEBQQFBATNBQ0FDMUNBQzFKmSjRQ0FBAUMxQ0FBAUEBQzFBAUEBQ0FBAUEBM0FDQUEBQzFBAUNBQzFDQUMxQQFDQUMxQ0FBAUEBQQFA8UNBQQFBAUMxQ0FDMVDxQQFBAUEBQQFBAUEBQQFDMUNBQzFDQUNBQADQUAAAAAAAAAAAAAAAAAAA==
-  alias: "Desligar"
-
-tv_lg_sala_power:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_34
-    data:
-      packet:
-      - JgBIAAABKpUTExITEzgSExMTEhMTExITEzgTOBITEzgSOBM4EjgTOBMSExMTEhM4ExMSExMTEhMTOBI4EzgTEhM4EzgSOBM4EgANBQ==
-  alias: "Ligar ou desligar"
-
-tv_lg_sala_power_on:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_34
-    data:
-      packet:
-      - JgRQAAABKJMSEhISEjcSEhISEhISEhISEjcSNxISEjcSNxI3EjcSNxISEhISNxISEhISEhI3EjcSNxI3EhISNxI3EjcSEhISEgAFGgABKEoSAAxWDQUAAAAAAAA==
-  alias: "Ligar TV"
-
-tv_lg_sala_power_off:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_34
-    data:
-      packet:
-      - JgRQAAABKJMSEhISEjcSEhISEhISEhISEjcSNxISEjcSNxI3EjcSNxI3EhISNxISEhISEhI3EjcSEhI3EhISNxI3EjcSEhISEgAFGgABKEoSAAxWDQUAAAAAAAA==
-  alias: "Desligar TV"
-
-tv_lg_sala_volup:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_34
-    data:
-      packet:
-      - JgBIAAABLJMUERMTEjgTExQRFREUERUREzgUNhQSEjgVNhI4FTYUNhURFDcSExMTFBETExITFREUNhMTFDYTOBM3FTYUNxQ2FQANBQ==
-  alias: "Volume mais"
-
-tv_lg_sala_voldown:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_34
-    data:
-      packet:
-      - JgBQAAABKpQTExMSEzgTExITExMSExMTEjgTOBITEzgTNxM4EzgSOBM4EjgTExMSExMTEhMTExITExMTEjgTOBI4EzgTNxM4EwAFKQABKksTAA0FAAAAAAAAAAA==
-  alias: "Volume menos"
-
-tv_lg_sala_menu:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_34
-    data:
-      packet:
-      - JgBQAAABKpUSExMTFDYTExMSFRETExITFDcSOBUREjgVNhQ2EzgTOBQRFREUNhU2FDYTOBQ3EhMVNhI4ExMSExMTExITExM4FAAFKAABKkoTAA0FAAAAAAAAAAA==
-  alias: "Menu"
-
-tv_lg_sala_chup:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_34
-    data:
-      packet:
-      - JgBQAAABLJMUERURFDYVERQRExMUERURFDYVNhQSEjgVNhI4FTYUNhURExIVERMTFBETExQRExMUNhU2FDYVNhQ2FTYTOBQ2EwAFKwABK0kTAA0FAAAAAAAAAAA==
-  alias: "Canal mais"
-
-tv_lg_sala_chdown:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_34
-    data:
-      packet:
-      - JgBQAAABKpUSExMTEjgTExMSExMTEhMTEzgSOBMTEjgTOBI4EzgTOBI4ExMSExMTEhMTExITExMSExM4EjgTOBM3EzgTOBI4EwAFKQABKksTAA0FAAAAAAAAAAA==
-  alias: "Canal menos"
-
-tv_lg_sala_config:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_34
-    data:
-      packet:
-      - JgBQAAABKpQTExMSEzgTExITExMSExMTFDYTOBITEzgTOBI4EzgSOBM4FDcSExMTEhMVERI4FRESExUREjgTOBM3EzgTExI4EwAFKwABKkoTAA0FAAAAAAAAAAA==
-  alias: "Configurações"
-
-tv_lg_sala_up:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_34
-    data:
-      packet:
-      - JgBQAAABKpUSExMTEjgTExMSExMTEhMTEzgSOBMTEjgTOBI5EjgTOBITExMSExMTEhMTExI4ExMTOBI4EzgSOBM4EzcTExM4EgAFKwABKksTAA0FAAAAAAAAAAA==
-  alias: "Para cima"
-
-tv_lg_sala_down:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_34
-    data:
-      packet:
-      - JgBQAAABLJUTExITEzgTEhMTExITExMSEzgTOBITEzgSOBM4EzgSOBM4EhMTExITExMTEhM4ExITExM4EjgTOBI4EzgTEhM4EwAFKQABKksTAA0FAAAAAAAAAAA==
-  alias: "Para baixo"
-
-tv_lg_sala_left:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_34
-    data:
-      packet:
-      - JgBIAAABKpQTExMSEzgVERITExMSExMTEjgTOBITEzgTOBI4EzgSOBM4EzcTOBMTEhMTExITExMSExMTEhMTOBI4EzgTOBI4EwANBQ==
-  alias: "Para esquerda"
-
-tv_lg_sala_right:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_34
-    data:
-      packet:
-      - JgBQAAABKpUSExMTEjgTExMSExMTEhMTEzgSOBMTEjgTOBI4EzgTOBITEzgSOBMTEhMTExITExMTNxMTExITOBM4EjgTOBM3EwAFKgABKkoTAA0FAAAAAAAAAAA==
-  alias: "Para direita"
-
-tv_lg_sala_ok:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_34
-    data:
-      packet:
-      - JgBQAAABKZUTExMSEzgTEhMTExMSExMTEjgTOBITEzgSOBM4EzgSOBMTEhMTOBITExMSExM4ExITOBM4EhMTOBI4EzgTEhM4EwAFKQABKksSAA0FAAAAAAAAAAA==
-  alias: "Selecionar"
-
-tv_lg_sala_exit:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_34
-    data:
-      packet:
-      - JgBQAAABKpUTExITFDcSExMTEhMTExITEzgUNhMTEzgSOBQ3FDYVNhQ3FDYVERI4FTYUERU2FBETExQSFDYVERQREzgUERM4FAAFKQABKksVAA0FAAAAAAAAAAA==
-  alias: "Sair"
-
-tv_lg_sala_mute:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_34
-    data:
-      packet:
-      - JgBQAAABK5QUERUREjgVERQRFREUERURFDYVNhMTEjgTOBQ2EzgTOBI4FRESExU2EhMTExMSExMTEhM4EzgSExM4EjgTOBM4EgAFKwABKksTAA0FAAAAAAAAAAA==
-  alias: "Mudo"
-
-tv_lg_sala_input:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_34
-    data:
-      packet:
-      - JgBIAAABLJMTEhUREzcTExQSEhMTExITEzgSOBMTEjgTOBQ3FDYVNhI4EzgTEhU2ExMSExMTEhMTExQREzgSExM4FDYVNhQ3FAANBQ==
-  alias: "Entrada"
-
-tv_lg_sala_play:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_34
-    data:
-      packet:
-      - JgBQAAABKpUUERMTFDYVERQSFBEUEhQRFDcUNhURFDYVNhQ3FDYVNhQRExMUERMTFDYVNhQSFDYTOBQ2FTYUNxQRFREUNhURFAAFKAABLEkUAA0FAAAAAAAAAAA==
-  alias: "Tocar"
-
-tv_lg_sala_pause:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_34
-    data:
-      packet:
-      - JgBQAAABKpUSExMTEjgTExITExMSExMTEjgVNhMTEjgTOBI4EzgSOBMTEzgSExM4EjgTOBITEzgSOBMTEzgSExMTEhMTOBITFQAFKAABKUsTAA0FAAAAAAAAAAA==
-  alias: "Pausar"
-
-tv_lg_sala_stop:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_34
-    data:
-      packet:
-      - JgBQAAABKZUTExQRFTYUERMTFBETExQSFDYUNxQREzgSOBM4FDcUNhM4FBETExQREzgTOBQREzgSExU2EjgVNhQRExMUNxITFQAFKQABK0kTAA0FAAAAAAAAAAA==
-  alias: "Parar"
-
-tv_lg_sala_chtv:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_34
-    data:
-      packet:
-      - JgBIAAABKpUTExITEzgSExURFBETExQREzgUNxITEzgSOBU2FDcSOBQ3FDYTOBQ2ExMUEhITExMUERQSEhMTExI4EzgUNhM4FAANBQ==
-  alias: "Assistir TV"
-
-tv_lg_sala_hdmi1:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_34
-    data:
-      packet:
-      - JgBQAAABKJMSEhISEjcSEhISEhISEhISEjcSNxISEjcSNxI3EjcSNxISEjcSNxI3EhISEhI3EjcSNxISEhISEhI3EjcSEhISEgAFGgABKEoSAAxWDQUAAAAAAAA==
-  alias: "HDMI 1"
-
-tv_lg_sala_hdmi2:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_34
-    data:
-      packet:
-      - JgBQAAABKJMSEhISEjcSEhISEhISEhISEjcSNxISEjcSNxI3EjcSNxISEhISNxI3EhISEhI3EjcSNxI3EhISEhI3EjcSEhISEgAFGgABKEoSAAxWDQUAAAAAAAA==
-  alias: "HDMI 2"
-
-tv_lg_sala_hdmi3:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_34
-    data:
-      packet:
-      - JgBQAAABKJMSEhISEjcSEhISEhISEhISEjcSNxISEjcSNxI3EjcSNxI3EhISEhI3EhISNxI3EjcSEhI3EjcSEhI3EhISEhISEgAFGgABKEoSAAxWDQUAAAAAAAA==
-  alias: "HDMI 3"
-
-tv_lg_sala_hdmi4:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_34
-    data:
-      packet:
-      - JgBQAAABKJMSEhISEjcSEhISEhISEhISEjcSNxISEjcSNxI3EjcSNxISEjcSEhI3EjcSEhI3EjcSNxISEjcSEhISEjcSEhISEgAFGgABKEoSAAxWDQUAAAAAAAA==
-  alias: "HDMI 4"
-
-home_theater_sala_mute:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_34
-    data:
-      packet:
-      - JgBmAE8UEhUVEioSEhQnFBYSFRIVEhUSFRITFSYVKRIWEhMAAtZQExUSFRIoExQTKRIWEhQUEhQTFBMUGBIoEyYVExQTAALYUBMTExMUKhEUFCYUFhIVEhUSFRMTExYSJxQmFRUSFgANBQAA==
-  alias: "Mudo"
-
-home_theater_sala_volup:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_34
-    data:
-      packet:
-      - JgCIAFASFRMmFRMUExQpEhUSFRMVExMUExQTFCkSKRIXERUAAtVOFBYSKBMTFBMUKRIVEhUTFhITExUSExQpEigTFRMVAALVTxQTFCoRFRIVEigUFBIVExYRFRIVEhUSKRIpEhQUFwAC004VFBMqERUSFRIpEhUSFhIVExMTExQTFCkSKRIUFBYADQU==
-  alias: "Mais volume"
-
-home_theater_sala_voldown:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_34
-    data:
-      packet:
-      - JgCIAFATKhApEhUSExUqERUTExMVEhcQFRMTFCoRKRIVEhcAAsBOFCoSJhQTFBYSKRMSFBcQFRITFBcRFRInFCoRFRMUAALCUBInFCoSEhYSFCgTFxAVEhUSFxEVEhUSKhEpEhUSEwACxFASKxAnFBUTFRIoExUSFRITFBMVFhEWEiYUKRIVEhcADQU==
-  alias: "Menos volume"
-
-home_theater_sala_volup_x6:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_34
-    data:
-      packet:
-      - JgaIAFASFRMmFRMUExQpEhUSFRMVExMUExQTFCkSKRIXERUAAtVOFBYSKBMTFBMUKRIVEhUTFhITExUSExQpEigTFRMVAALVTxQTFCoRFRIVEigUFBIVExYRFRIVEhUSKRIpEhQUFwAC004VFBMqERUSFRIpEhUSFhIVExMTExQTFCkSKRIUFBYADQU==
-  alias: "Mais volume"
-
-home_theater_sala_voldown_x6:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_34
-    data:
-      packet:
-      - JgaIAFATKhApEhUSExUqERUTExMVEhcQFRMTFCoRKRIVEhcAAsBOFCoSJhQTFBYSKRMSFBcQFRITFBcRFRInFCoRFRMUAALCUBInFCoSEhYSFCgTFxAVEhUSFxEVEhUSKhEpEhUSEwACxFASKxAnFBUTFRIoExUSFRITFBMVFhEWEiYUKRIVEhcADQU==
-  alias: "Menos volume"
-
-home_theater_sala_volup_x3:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_34
-    data:
-      packet:
-      - JgOIAFASFRMmFRMUExQpEhUSFRMVExMUExQTFCkSKRIXERUAAtVOFBYSKBMTFBMUKRIVEhUTFhITExUSExQpEigTFRMVAALVTxQTFCoRFRIVEigUFBIVExYRFRIVEhUSKRIpEhQUFwAC004VFBMqERUSFRIpEhUSFhIVExMTExQTFCkSKRIUFBYADQU==
-  alias: "Mais volume"
-
-home_theater_sala_voldown_x3:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_34
-    data:
-      packet:
-      - JgOIAFATKhApEhUSExUqERUTExMVEhcQFRMTFCoRKRIVEhcAAsBOFCoSJhQTFBYSKRMSFBcQFRITFBcRFRInFCoRFRMUAALCUBInFCoSEhYSFCgTFxAVEhUSFxEVEhUSKhEpEhUSEwACxFASKxAnFBUTFRIoExUSFRITFBMVFhEWEiYUKRIVEhcADQU==
-  alias: "Menos volume"
-
-home_theater_sala_power:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_34
-    data:
-      packet:
-      - JgBmAFATKBMVEikSFRIpEhUSFhEWEhUSFRIVEikSKRIWERYAAsFQEikSFhIpEhUSKRIVEhUSFhEWEhUSFRIpEikSFRIWAALBUBIpEhYRKRIWEikSFRIVEhUSFhEWEhUSKRIpEhUSFQANBQAA==
-  alias: "Ligar ou desligar"
-
-home_theater_sala_power_on:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_34
-    data:
-      packet:
-      - JgwiAE4TExMnEycTJxMTEycTExMTExMTExMTEycTJxMTExMAAq8NBQAAAAA==
-  alias: "Ligar"
-
-home_theater_sala_power_off:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_34
-    data:
-      packet:
-      - JgwiAE4TJxMnEycTJxMTEycTExMTExMTExMTEycTJxMTExMAAqANBQAAAAA==
-  alias: "Desligar"
-
-ar_quarto_swing:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_33
-    data:
-      packet:
-      - JgDKAJCPEjYRExE2EjYRExETETYSEhISETcRExESEjYRNxQQETYSEhE3ETYSEhI2ERMRNhI2ETYSEhISEjYRExE2EhISEhI2ETYSNhETERMRExQQERMREhISEhIUNBE2EjYUNBE2EquQjxI2ERMRNhI2ERMRExE2ERMRExE2FBASEhI2ETYSEhQ0ERMRNhI2ERMRNhISFDQRNhI2ERMRExE2EhIUNBETERMRNhI2ETYUEBISEhIUEBETERMRExETETYSNhE2EjYRNhIADQUAAAAAAAAAAAAAAAAAAA==
-  alias: "Swing"
-
-ar_quarto_display:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_33
-    data:
-      packet:
-      - JgDKAJCPEjYRExE2EjYRExE2FBASNhETFDMSEhISEjYRExE2EhISNhE2EjYRNhISEjYRExE3ERISEhISEhIRNxETETYSEhI2ERMRNhISFBARNxQQETYSEhE3FBARNhI2ERMRNhQQEquQjxQ0ERMRNhI2FBARNhISEjYRExE3ERISEhI2ERMRNhISEjYRNxQzEjYRExE2EhISNhETFBAUEBETEzQSEhE3ERMRNhISETcRExESEjYRExE3ERIUNBQQETcTNBETETcRExEADQUAAAAAAAAAAAAAAAAAAA==
-  alias: "Display"
-
-ar_quarto_desligar:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_33
-    data:
-      packet:
-      - JgLKAJGOEzUTERM0FDQUEBQQEzQUEBQQFDMUEBQQFDQUMxQQFDQUEBQzFDQUMxQ0FBAUMxQ0FDQUEBMQFBAUEBQ0FBAUEBQzFDQUMxQQFBAUEBQQFBAUEBQQFBATNBQ0FDMUNBQzFKmSjRQ0FBAUMxQ0FBAUEBQzFBAUEBQ0FBAUEBM0FDQUEBQzFBAUNBQzFDQUMxQQFDQUMxQ0FBAUEBQQFA8UNBQQFBAUMxQ0FDMVDxQQFBAUEBQQFBAUEBQQFDMUNBQzFDQUNBQADQUAAAAAAAAAAAAAAAAAAA==
-  alias: "Desligar"
-
-tv_lg_quarto_power:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_33
-    data:
-      packet:
-      - JgBIAAABKpUTExITEzgSExMTEhMTExITEzgTOBITEzgSOBM4EjgTOBMSExMTEhM4ExMSExMTEhMTOBI4EzgTEhM4EzgSOBM4EgANBQ==
-  alias: "Ligar ou desligar"
-
-tv_lg_quarto_power_on:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_33
-    data:
-      packet:
-      - JgRQAAABKJMSEhISEjcSEhISEhISEhISEjcSNxISEjcSNxI3EjcSNxISEhISNxISEhISEhI3EjcSNxI3EhISNxI3EjcSEhISEgAFGgABKEoSAAxWDQUAAAAAAAA==
-  alias: "Ligar TV"
-
-tv_lg_quarto_power_off:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_33
-    data:
-      packet:
-      - JgRQAAABKJMSEhISEjcSEhISEhISEhISEjcSNxISEjcSNxI3EjcSNxI3EhISNxISEhISEhI3EjcSEhI3EhISNxI3EjcSEhISEgAFGgABKEoSAAxWDQUAAAAAAAA==
-  alias: "Desligar TV"
-
-tv_lg_quarto_volup:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_33
-    data:
-      packet:
-      - JgBIAAABLJMUERMTEjgTExQRFREUERUREzgUNhQSEjgVNhI4FTYUNhURFDcSExMTFBETExITFREUNhMTFDYTOBM3FTYUNxQ2FQANBQ==
-  alias: "Volume mais"
-
-tv_lg_quarto_voldown:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_33
-    data:
-      packet:
-      - JgBQAAABKpQTExMSEzgTExITExMSExMTEjgTOBITEzgTNxM4EzgSOBM4EjgTExMSExMTEhMTExITExMTEjgTOBI4EzgTNxM4EwAFKQABKksTAA0FAAAAAAAAAAA==
-  alias: "Volume menos"
-
-tv_lg_quarto_menu:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_33
-    data:
-      packet:
-      - JgBQAAABKpUSExMTFDYTExMSFRETExITFDcSOBUREjgVNhQ2EzgTOBQRFREUNhU2FDYTOBQ3EhMVNhI4ExMSExMTExITExM4FAAFKAABKkoTAA0FAAAAAAAAAAA==
-  alias: "Menu"
-
-tv_lg_quarto_chup:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_33
-    data:
-      packet:
-      - JgBQAAABLJMUERURFDYVERQRExMUERURFDYVNhQSEjgVNhI4FTYUNhURExIVERMTFBETExQRExMUNhU2FDYVNhQ2FTYTOBQ2EwAFKwABK0kTAA0FAAAAAAAAAAA==
-  alias: "Canal mais"
-
-tv_lg_quarto_chdown:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_33
-    data:
-      packet:
-      - JgBQAAABKpUSExMTEjgTExMSExMTEhMTEzgSOBMTEjgTOBI4EzgTOBI4ExMSExMTEhMTExITExMSExM4EjgTOBM3EzgTOBI4EwAFKQABKksTAA0FAAAAAAAAAAA==
-  alias: "Canal menos"
-
-tv_lg_quarto_config:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_33
-    data:
-      packet:
-      - JgBQAAABKpQTExMSEzgTExITExMSExMTFDYTOBITEzgTOBI4EzgSOBM4FDcSExMTEhMVERI4FRESExUREjgTOBM3EzgTExI4EwAFKwABKkoTAA0FAAAAAAAAAAA==
-  alias: "Configurações"
-
-tv_lg_quarto_up:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_33
-    data:
-      packet:
-      - JgBQAAABKpUSExMTEjgTExMSExMTEhMTEzgSOBMTEjgTOBI5EjgTOBITExMSExMTEhMTExI4ExMTOBI4EzgSOBM4EzcTExM4EgAFKwABKksTAA0FAAAAAAAAAAA==
-  alias: "Para cima"
-
-tv_lg_quarto_down:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_33
-    data:
-      packet:
-      - JgBQAAABLJUTExITEzgTEhMTExITExMSEzgTOBITEzgSOBM4EzgSOBM4EhMTExITExMTEhM4ExITExM4EjgTOBI4EzgTEhM4EwAFKQABKksTAA0FAAAAAAAAAAA==
-  alias: "Para baixo"
-
-tv_lg_quarto_left:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_33
-    data:
-      packet:
-      - JgBIAAABKpQTExMSEzgVERITExMSExMTEjgTOBITEzgTOBI4EzgSOBM4EzcTOBMTEhMTExITExMSExMTEhMTOBI4EzgTOBI4EwANBQ==
-  alias: "Para esquerda"
-
-tv_lg_quarto_right:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_33
-    data:
-      packet:
-      - JgBQAAABKpUSExMTEjgTExMSExMTEhMTEzgSOBMTEjgTOBI4EzgTOBITEzgSOBMTEhMTExITExMTNxMTExITOBM4EjgTOBM3EwAFKgABKkoTAA0FAAAAAAAAAAA==
-  alias: "Para direita"
-
-tv_lg_quarto_ok:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_33
-    data:
-      packet:
-      - JgBQAAABKZUTExMSEzgTEhMTExMSExMTEjgTOBITEzgSOBM4EzgSOBMTEhMTOBITExMSExM4ExITOBM4EhMTOBI4EzgTEhM4EwAFKQABKksSAA0FAAAAAAAAAAA==
-  alias: "Selecionar"
-
-tv_lg_quarto_exit:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_33
-    data:
-      packet:
-      - JgBQAAABKpUTExITFDcSExMTEhMTExITEzgUNhMTEzgSOBQ3FDYVNhQ3FDYVERI4FTYUERU2FBETExQSFDYVERQREzgUERM4FAAFKQABKksVAA0FAAAAAAAAAAA==
-  alias: "Sair"
-
-tv_lg_quarto_mute:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_33
-    data:
-      packet:
-      - JgBQAAABK5QUERUREjgVERQRFREUERURFDYVNhMTEjgTOBQ2EzgTOBI4FRESExU2EhMTExMSExMTEhM4EzgSExM4EjgTOBM4EgAFKwABKksTAA0FAAAAAAAAAAA==
-  alias: "Mudo"
-
-tv_lg_quarto_input:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_33
-    data:
-      packet:
-      - JgBIAAABLJMTEhUREzcTExQSEhMTExITEzgSOBMTEjgTOBQ3FDYVNhI4EzgTEhU2ExMSExMTEhMTExQREzgSExM4FDYVNhQ3FAANBQ==
-  alias: "Entrada"
-
-tv_lg_quarto_play:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_33
-    data:
-      packet:
-      - JgBQAAABKpUUERMTFDYVERQSFBEUEhQRFDcUNhURFDYVNhQ3FDYVNhQRExMUERMTFDYVNhQSFDYTOBQ2FTYUNxQRFREUNhURFAAFKAABLEkUAA0FAAAAAAAAAAA==
-  alias: "Tocar"
-
-tv_lg_quarto_pause:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_33
-    data:
-      packet:
-      - JgBQAAABKpUSExMTEjgTExITExMSExMTEjgVNhMTEjgTOBI4EzgSOBMTEzgSExM4EjgTOBITEzgSOBMTEzgSExMTEhMTOBITFQAFKAABKUsTAA0FAAAAAAAAAAA==
-  alias: "Pausar"
-
-tv_lg_quarto_stop:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_33
-    data:
-      packet:
-      - JgBQAAABKZUTExQRFTYUERMTFBETExQSFDYUNxQREzgSOBM4FDcUNhM4FBETExQREzgTOBQREzgSExU2EjgVNhQRExMUNxITFQAFKQABK0kTAA0FAAAAAAAAAAA==
-  alias: "Parar"
-
-tv_lg_quarto_chtv:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_33
-    data:
-      packet:
-      - JgBIAAABKpUTExITEzgSExURFBETExQREzgUNxITEzgSOBU2FDcSOBQ3FDYTOBQ2ExMUEhITExMUERQSEhMTExI4EzgUNhM4FAANBQ==
-  alias: "Assistir TV"
-
-tv_lg_quarto_hdmi1:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_33
-    data:
-      packet:
-      - JgBQAAABKJMSEhISEjcSEhISEhISEhISEjcSNxISEjcSNxI3EjcSNxISEjcSNxI3EhISEhI3EjcSNxISEhISEhI3EjcSEhISEgAFGgABKEoSAAxWDQUAAAAAAAA==
-  alias: "HDMI 1"
-
-tv_lg_quarto_hdmi2:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_33
-    data:
-      packet:
-      - JgBQAAABKJMSEhISEjcSEhISEhISEhISEjcSNxISEjcSNxI3EjcSNxISEhISNxI3EhISEhI3EjcSNxI3EhISEhI3EjcSEhISEgAFGgABKEoSAAxWDQUAAAAAAAA==
-  alias: "HDMI 2"
-
-tv_lg_quarto_hdmi3:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_33
-    data:
-      packet:
-      - JgBQAAABKJMSEhISEjcSEhISEhISEhISEjcSNxISEjcSNxI3EjcSNxI3EhISEhI3EhISNxI3EjcSEhI3EjcSEhI3EhISEhISEgAFGgABKEoSAAxWDQUAAAAAAAA==
-  alias: "HDMI 3"
-
-tv_lg_quarto_hdmi4:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_33
-    data:
-      packet:
-      - JgBQAAABKJMSEhISEjcSEhISEhISEhISEjcSNxISEjcSNxI3EjcSNxISEjcSEhI3EjcSEhI3EjcSNxISEjcSEhISEjcSEhISEgAFGgABKEoSAAxWDQUAAAAAAAA==
-  alias: "HDMI 4"
-
-garagem_muvrh_rua:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_35
-    data:
-      packet:
-      - sgAmAhENHw0fDR8NHxwRDR8NHxwQDR8cEQ0fDR8NHxwQHBAcEA4fDR8cEA0gGxAOHxwQDR8cEA0fHBEAAU8QHBAOHw0fDR8NHxwRDR8NHxwQDSAbEA4fDR8NHxwQHBAcEQ0fDR8cEA0fHBENHxwQDR8cEA0gGxEAAU8QHBAOHw0fDR8NIBsRDR8NHxwQDR8cEA4fDR8NHxwRGxAcEQ0fDR8cEA4eHBENHxwQDR8cEA0fHBEAAU8QHBENHw0fDR8OHxwQDR8NHxwRDB8cEQ0fDR8NIBsRGxEbEQ0fDR8cEA0gGxENHxwQDR8cEA4fGxEAAU8RGxENHw0fDR8OHxwQDR8NHxwQDh8cEA0fDR8NIBsRGxEcEA0fDR8cEQ0fHBANHxwQDSAbEQ0fHBAAAU8RGxENHw0fDSANHxwQDR8NIBsRDR8cEA0fDR8OHxsRHBAcEA0fDSAcEA0fHBANHxwQDh8cEA0fHBAAAVAQHBANHw0fDh8NHxwQDR8OHxwQDR8cEA0fDh8NHxwQHBAcEA0fDh8bEQ0fHBANIBsRDR8cEA0fHBAAAVAQHBANIA0fDR8NHxwQDh8NHxwQDR8cEA0gDR8NHxwQHBEbEA4fDR8cEA0gGxAOHxsRDR8cEA0fHBEAAU8QHBAOHw0fDR8NHxwRDR8NHxwQDR8cEQ0fDR8NHxwQHBEbEQ0fDR8cEA0gGxENHxwQDR8cEA4fGxEAAU8RGxENHw0fDR8ABdwRDQ==
-  - delay: 00:00:03
-
-garagem_muvrh_interno:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_35
-    data:
-      packet:
-      - sgCEAxAcEA4eDh8NHw4eHQ8OHg4fHA8OHxwQDh4OHg4fHBAcEBwQDh4OHh0PDh8cEBwQDh4OHh0PDh4dEAABUBAcEA0fDh4OHg4eHRANHw0fHBAOHh0QDR8NHw0fHQ8cEB0PDh8NHxwQDh4dDx0PDh4OHxwQDR8cEAABUBAcEA4eDh4OHg4fHBAOHg4eHQ8OHxwQDh4OHg4eHRAcEBwQDh4OHh0PDh4dEBwQDR8OHh0PDh4dDwABUQ8dDw4eDh8OHg4eHQ8OHw0fHBANHxwQDh4OHg8eHBAcEBwQDh4OHxwQDh4dDxwQDh4OHxwQDh4cEAABUBAcEA4eDh4OHw0fHBAOHg4eHQ8OHxwQDh4OHg4eHRAcDx0QDR8OHh0PDh8cEBwQDR8OHh0PDh4dEAABUA8dDw4fDR8NHw4eHQ8OHw0fHBAOHhwQDh4OHg4fHBAcEB0PDh8NHxwQDR8cEB0PDh4OHxwQDh4cEAABUBAcEA4eDh4OHg8eHBAOHg4eHQ8OHxwQDR8OHg4eHQ8dEBwQDh4OHhwQDh4dEBwQDR8OHh0PDh4dEAABUA8dDw4fDh4OHg4eHQ8OHw4eHQ8OHh0PDh4OHw4eHBAcEB0PDh4OHxwQDh4cEBwQDh4OHxwQDh4cEAABUBAcEA4eDh4OHg4fHBAOHg4eHRAOHhwQDh4OHg4eHRAcEBwQDh4OHh0PDh8cEBwQDh4OHh0PDh4dEAABUA8dDw4fDR8OHg4eHRANHw4eHQ8OHh0PDh4OHw0fHBAdDx0PDh4PHhwQDh4dDx0PDh4PHhwQDh4dDwABUBAcEA4eDh8NHw4eHQ8OHg4eHRANHxwQDh4OHg4eHRAcEBwQDh4OHh0PDh8cEBwQDh4OHh0QDR4dEAABUBAcEA4eDh4OHg4fHBANHw4eHQ8OHxwPDh8NHw4eHQ8dDx0QDR8NHxwQDh4dDx0QDR8OHhwQDh4dEAABTxAdDw4eDh8OHg4eHQ8OHw0fHBAOHh0PDh4OHw0fHBAcEB0PDh4OHxwQDR8cEB0PDh4OHh0QDh4cEAABUBAcEA4eDh4OHg4fHBAOHg4eHQ8OHh0QDh4OHg4eHQ8dEBwQDR8OHh0PDh4dEBwQDh4OHh0PDh4dEAABUA8dDw4fDR8OHg4eHRANHw0fHQ8OHh0PDh8NHw4eHQ8cEB0PDh8NHxwQDh4dDx0PDh8NHxwQDh4dDwAF3AAAAAA==
-  - delay: 00:00:03
-
-garagem_muvrh_sub_rua:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_35
-    data:
-      packet:
-      - rwCEAxAAAWIRHhEOIQ8gHhEeER4RDiEPIQ4hDiEOIR4RDiIdEQ8gDyEeEQ4hHhEOIQ8hHREPIR0RDyEdEQ8gHxEAAWERHhEOIQ4hHhEeER4RDiEPIA8gDyEOIR4RDiEeEQ4hDyEdEQ8gHxAPIA8hHhEOIR4RDiEeEQ4hHhEAAWIRHREOIQ8hHhEeEB8RDiEOIQ4hDyEOIR0RDyEdEQ8gDyEeEQ4hHhEOIQ4hHhEPIR0RDyAeEQ8gHxAAAWIRHREPIQ4hHhEeER4RDiEOIQ8gDyEOIR4RDiEeEQ4hDiEeEQ4hHhEOIQ8hHREPIR4RDiEeEA8hHhAAAWIRHhEOIQ4hHhEfEB4RDiEPIA8hDiEOIR4RDyAeEQ4hDiEeEQ8gHhEPIA8hHhEOIR4RDiEeEQ4hHhEAAWIQHhEOIQ8hHhEeEB4RDyEOIQ4hDiEOIR4RDyEdEQ8hDiEeEQ4hHhEOIQ8gHhEOIR4RDyEdEQ8hHhAAAWIRHhAPIQ8gHhEeER4RDiEOIQ4hDyEOIR4QDyEeEQ4hDiEeEQ4hHhEOIQ8hHREPIR4RDiEdEQ8gHhEAAWIRHhEOIQ4hHhEeER4RDiEOIQ8gDyEOIR4QDyEeEQ4hDiEeEQ4hHhEPIA8hHhEOIR4QDyEeEA8hHhEAAWERHhEOIQ4hHxAeER4RDiEOIQ8hDiEOIR4RDiEeEQ8gDyEeEQ4gHxAPIQ4hHhEOIR4RDiEeEQ4hHhEAAWIQHhEPIQ4hHhEeEB4RDyEOIQ4hDyAPIR4RDiEeEQ4hDiEeEQ4hHhEPIA8gHhEPIR4QDyEeEQ4hHhAAAWIRHhEOIQ8hHhAeER4RDiEPIA8hDiEOIR4RDyAeEQ8gDyEeEQ4hHhEOIQ4hHhEPIR0RDyAeEQ8hHRIAAWERHhEOIQ8gHhEeER4RDiEOIg4hDiEOIR4RDiEeEQ4hDyEdEQ8hHhEOIQ4hHhEOIR4RDyAeEQ4hHhEAAWIRHhEAAVIRHhEOIQ4hHhEeER4RDiEOIQ8gDyEOIR4RDiEeEQ4hDyEdEQ8hHhAPIQ4hHhEOIR4RDiEeEQ4hHhEAAWIQHxEOIQ4hHhEeER4QDyEOIQ8gDyAPIR4RDiEeEQ4hDiEeEQ4hHxAPIQ4hHhEOIR4RDiEeEA8hHhEAAWIQHhEPIQ4hHhEdER4RDyAPIQ4hDiEOIh0RDiEeEQ8gDyAfEA8hHREPIQ4hHhAPDAAF3AAAAAA==
-  - delay: 00:00:03
-
-garagem_muvrh_sub_interno:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_35
-    data:
-      packet:
-      - sACEAyEeER4RDiEOIR4RDyAeEAABYhEeEQ4hDyAeER4RHhEOIQ4hDyAPIA8hHhAPIR4QDyAPIB8RDiEeEA8hDyAeER4QDyAPIR4QDyEeEAABYhEeEQ4hDyAeER4RHhEOIQ4hDiEPIA8hHhAPIB8QDyAPIB4RDyAfEA8gDyEeEB8QDyAPIR4QDyAfEAABYhEeEQ4hDiEeER4QHhEPIA8hDiAPIQ8gHhEPIB4RDiEPIB4RDyAeEQ8gDyEeEB4RDyAPIR0RDyAfEAABYhAeEQ8gDyEeEB8QHhEOIQ8gDyEOIQ8gHhEPIB4RDiEOIR4RDiEeEQ4hDyAeER4RDyAPIB4RDiEeEQABYhAfEA8gDyAfEB4RHhEOIQ8gDyAPIA8gHxAPIB4RDyEPIB4RDiEeEA8hDiEeER4QDyEOIR4RDiEeEQABYREeEQ8gDyAeER4QHxAPIQ8gDyAPIA8hHREPIB8QDyAPIR4QDyEeEA8hDiEeER4QDyEOIR4QDyAfEAABYhEeEA8hDyAeER4QHxAPIQ4hDyAOIQ8gHxAPIB4RDyAPIR0RDyAfEA8gDyAfEB8QDyAPIR4QDyEeEAABYhEeEA8hDiEeER4QHhEPIA8hDiEOIQ8gHhEOIR4RDiEPIR0RDyAfEA8gDyEeEB8QDyAPIB8QDyAfEAABYhEeEA8gDyEeEB4RyAeEQ8gDyAfEB4RDyAPIB4RDiEeEQABYhAeEQ8gDyAfEB8QHhEPIA8gDyAPIQ4hHhEPIB4RDiEOIR4RDyAeEQ4hDyAfEB4RDiEPIB4RDiEeEQABYREeEQ8gDyAfEB4RHhEPIA8gDyAPIQ4hHhEOIR4QDyEOIR4RDiEeEQ4hDyAeER4RDiEOIR4RDiEeEQABYREeEQ8gDyAfEB4RHhAPIQ8gDyAPIQ4hHhAPIB8QDyAPIR4RDiEeEQ4hDyAeER4RDiEOIR4RDyAeEQABYhAeEQ8gDyAfEB4RHhEOIQ8gDyAPIA8gHxEOIB4RDyAPIR4RDiEeEA8hDyAeER4QDyEOIR4RDiEeEAABYhEeEQ8gDyAeER4RHhAPIQ8gDyAPIA8gHhEPIB4RDyEOIR4QDyAfEA8hDiEeEB8QDyEOIR4QDyEeEQABYREeEQ4hDyAeER4RHhAPIQ4hDiEOIQ8gHhEPIB4RDyAPIB8QDyAfEAAF3AAAAAA==
-  - delay: 00:00:03
-
 desktop_reiniciar:
   sequence:
   - service: shell_command.desktop_reiniciar
@@ -883,11 +11,11 @@ desktop_abrir_chrome:
 garagem_muvrh_entrar:
   sequence:
   - service: script.garagem_muvrh_rua
-  - delay: 00:00:01
+  - delay: '00:00:01'
   - service: script.garagem_muvrh_interno
-  - delay: 00:00:12
+  - delay: '00:00:15'
   - service: script.garagem_muvrh_rua
-  - delay: 00:00:05
+  - delay: '00:00:08'
   - service: script.garagem_muvrh_interno
   - service: input_boolean.turn_off
     entity_id: input_boolean.entrar_muvrh
@@ -895,11 +23,11 @@ garagem_muvrh_entrar:
 garagem_muvrh_sair:
   sequence:
   - service: script.garagem_muvrh_interno
-  - delay: 00:00:01
+  - delay: '00:00:01'
   - service: script.garagem_muvrh_rua
-  - delay: 00:00:12
+  - delay: '00:00:15'
   - service: script.garagem_muvrh_interno
-  - delay: 00:00:05
+  - delay: '00:00:08'
   - service: script.garagem_muvrh_rua
   - service: input_boolean.turn_off
     entity_id: input_boolean.sair_muvrh
@@ -908,7 +36,7 @@ garagem_casa_abrir:
   alias: "Abrir garagem de casa"
   sequence:
   - service: script.garagem_casa
-  - delay: 00:00:35
+  - delay: '00:00:35'
   - service: cover.close_cover
     entity_id: cover.garagem_casa
 
@@ -923,7 +51,7 @@ garagem_muvrh_rua_abrir:
   sequence:
   - service: script.garagem_muvrh_rua
     entity_id: cover.garagem_muvrh_rua
-  - delay: 00:00:25
+  - delay: '00:00:25'
   - service: cover.close_cover
     entity_id: cover.garagem_muvrh_rua
 
@@ -938,7 +66,7 @@ garagem_muvrh_interno_abrir:
   sequence:
   - service: script.garagem_muvrh_interno
     entity_id: cover.garagem_muvrh_interno
-  - delay: 00:00:25
+  - delay: '00:00:25'
   - service: cover.close_cover
     entity_id: cover.garagem_muvrh_interno
 
@@ -991,91 +119,6 @@ ledsalatv_ligar_colorloop:
       entity_id: light.ledsalatv
       effect: colorloop
 
-tts_porta_entrada:
-  alias: "Entrando em casa"
-  sequence:
-  - service: media_player.volume_set
-    entity_id: media_player.sala
-    data:
-      volume_level: 0.7
-  - service: tts.amazon_polly_say
-    entity_id: media_player.sala
-    data_template:
-      message: >
-        {% macro cumprimento() -%}
-          {% set cumprimento = [
-            "Olá!",
-            "Oi!",
-            "E aí!",
-            "Oie!",
-            "Oba!",
-          ] %}
-          {{ cumprimento|random }}
-        {%- endmacro -%}
-        {%- macro turno() -%}
-          {%- if((now().hour >= 6) and (now().hour < 12)) -%}
-            Bom dia!
-          {%- elif((now().hour >= 12) and (now().hour <= 18)) -%}
-            Boa tarde!
-          {%- else -%}
-            Boa noite!
-          {%- endif -%}
-        {%- endmacro -%}
-        {%- macro desejos() -%}
-          {%- if((now().hour >= 10) and (now().hour < 14)) -%}
-            Bom almoço!
-          {%- elif((now().hour >= 18) and (now().hour <= 23)) -%}
-            Bom descanço!
-          {%- endif -%}
-        {%- endmacro -%}
-        {%- macro porta_entrada() -%}
-          {% set porta_entrada = [
-            "Ainda bem, o Magno deu muito trabalho aqui em casa.",
-            "Rápido! O Magno vai fugir... Quem dera!",
-            "Até mais! Ou seria olá? Não sou muito bom nisso, desculpe.",
-            "Quem está aí? Ah! É você!",
-            "Detesto despedidas...",
-            "Seja muito bem vindo! Ou seria até logo?",
-            "É o Antonio ou a Roberta? Espero que não seja o Magno.",
-            "Magno, é você?",
-            "Finalmente, estava tão sozinho!",
-            "Lar doce lar!",
-          ] -%}
-          {{ porta_entrada|random }}
-        {%- endmacro -%}
-        <speak><amazon:auto-breaths frequency='medium'>
-        {%- if((as_timestamp(now()) - as_timestamp(states.group.pessoas.last_updated)) | int < 180 and is_state('group.pessoas', 'home')) or ((as_timestamp(now()) - as_timestamp(states.group.pessoas.last_updated)) | int > 360 and is_state('group.pessoas', 'not_home')) -%}
-          {{ cumprimento() }} {{ turno() }} Seja bem vindo! Agora são <say-as interpret-as='time'>{{ now().strftime('%H:%M') }}</say-as>. Já preparei tudo para sua chegada. Aqui vão algumas informações sobre a casa. A temperatura na sala é de {{ states.sensor.temperatura_sala.state | int }} graus, sendo que na rua está {{ states.sensor.dark_sky_summary.state | lower }} com {{ states.sensor.dark_sky_temperature.state | int }} graus. Logo mais vou armar o alarme pra você, deixa comigo. {{ desejos() }}
-        {%- else -%}
-          {{ porta_entrada() }}
-        {%- endif -%}
-        </amazon:auto-breaths></speak>
-
-tts_entrando_casa_alarme:
-  alias: "Entrando em casa com alarme disparando"
-  sequence:
-  - service: media_player.volume_set
-    entity_id: media_player.all_speakers
-    data:
-      volume_level: 1
-  - service: media_player.play_media
-    data:
-      entity_id: media_player.all_speakers
-      media_content_id: 'http://192.168.1.12:8123/local/audio/tts/alarme_entrada_nao_autorizada.mp3'
-      media_content_type: 'audio/mp3'
-
-tts_status_casa:
-  alias: "Falar status da casa"
-  sequence:
-  - service: media_player.volume_set
-    entity_id: media_player.sala
-    data:
-      volume_level: 0.7
-  - service: tts.amazon_polly_say
-    entity_id: media_player.sala
-    data_template:
-      message: <speak><amazon:auto-breaths frequency='medium'>Olá, {% if((now().hour >= 6) and (now().hour < 12))%}bom dia{% elif((now().hour >= 12) and (now().hour <= 18))%}boa tarde{% else %}boa noite{% endif %}. Agora são <say-as interpret-as='time'>{{ now().strftime('%H:%M') }}</say-as>. Aqui vão algumas informações sobre a casa. O alarme está {% if is_state('alarm_control_panel.alarme', 'disarmed') %}desarmado{% else %}armado{% endif %}, percebo que {% if is_state('device_tracker.antonio', 'home') and is_state('device_tracker.roberta', 'home') %}tanto o Antônio quanto a Roberta estão em casa{% elif is_state('device_tracker.antonio', 'home') %}apenas o Antônio está em casa{% elif is_state('device_tracker.roberta', 'home') %}apenas a roberta está em casa{% else %}nem o Antônio nem a Roberta estão em casa{% endif %}. A temperatura na sala é de {{ states.sensor.temperatura_sala.state | int }} graus, sendo que na rua está {{ states.sensor.dark_sky_summary.state | lower }} com {{ states.sensor.dark_sky_temperature.state | int }} graus. <prosody volume='x-loud'>Ah!</prosody> Não esqueçam que quinta-feira vem a Alice limpar a casa! {% if is_state('binary_sensor.muvrh_movimento_203', 'on') or is_state('binary_sensor.muvrh_movimento_303', 'on')%}Também estou detectando movimento na muv rh!{% endif %} Isto é tudo!</amazon:auto-breaths></speak>
-
 # Botões Xiaomi
 
 botao_xiaomi_quarto_01_single:
@@ -1124,7 +167,7 @@ botao_xiaomi_quarto_01_triple:
         {% endif %}
   - condition: template
     value_template: "{% if (is_state('climate.ar_condicionado_do_quarto' , 'auto') or is_state('climate.ar_condicionado_do_quarto' , 'cool') or is_state('climate.ar_condicionado_do_quarto' , 'heat')) and is_state('input_boolean.boa_noite' , 'on') %}True{% else %}False{% endif %}"
-  - delay: 00:00:02
+  - delay: '00:00:02'
   - service: script.ar_quarto_display
 
 botao_xiaomi_quarto_01_long:
@@ -1184,7 +227,7 @@ botao_xiaomi_suite_01_triple:
         {% endif %}
   - condition: template
     value_template: "{% if (is_state('climate.ar_condicionado_da_suite' , 'auto') or is_state('climate.ar_condicionado_da_suite' , 'cool') or is_state('climate.ar_condicionado_da_suite' , 'heat')) and is_state('input_boolean.boa_noite' , 'on') %}True{% else %}False{% endif %}"
-  - delay: 00:00:02
+  - delay: '00:00:02'
   - service: script.ar_suite_display
 
 botao_xiaomi_suite_01_long:
@@ -1199,10 +242,26 @@ botao_xiaomi_suite_01_long:
     entity_id: cover.persiana_suite
 
 botao_xiaomi_suite_02_single:
-  alias: "Luz painel TV"
+  alias: "Luz da cama"
   sequence:
-  - service: light.toggle
-    entity_id: light.ledsuitecama
+  - service_template: >
+      {% if is_state('light.ledsuitecama' , 'off') %}
+        light.turn_on
+      {% endif %}
+    data_template:
+      entity_id: light.ledsuitecama
+      brightness_pct: >
+          {%- if is_state('input_boolean.boa_noite' , 'on') and is_state('light.ledsuitecama' , 'off') %}
+            20
+          {%- elif is_state('input_boolean.boa_noite' , 'off') and is_state('light.ledsuitecama' , 'off') %}
+            100
+          {% endif %}
+  - service_template: >
+      {% if is_state('light.ledsuitecama' , 'on') %}
+        light.turn_off
+      {% endif %}
+    data_template:
+      entity_id: light.ledsuitecama
 
 botao_xiaomi_suite_02_double:
   alias: "Liga ou desliga ar condicionado"
@@ -1220,7 +279,7 @@ botao_xiaomi_suite_02_double:
         {% endif %}
   - condition: template
     value_template: "{% if (is_state('climate.ar_condicionado_da_suite' , 'auto') or is_state('climate.ar_condicionado_da_suite' , 'cool') or is_state('climate.ar_condicionado_da_suite' , 'heat')) and is_state('input_boolean.boa_noite' , 'on') %}True{% else %}False{% endif %}"
-  - delay: 00:00:02
+  - delay: '00:00:02'
   - service: script.ar_suite_display
 
 botao_xiaomi_suite_02_long:
@@ -1254,6 +313,8 @@ botao_xiaomi_banheiro_suite_01_many:
   sequence:
   - service: switch.toggle
     entity_id: switch.chuveirosuite
+  - service: script.turn_off
+    entity_id: script.botao_xiaomi_banheiro_suite_01_long
 
 botao_xiaomi_banheiro_suite_01_long:
   alias: "Chuveiro banheiro da suíte"
@@ -1271,7 +332,7 @@ botao_xiaomi_banheiro_suite_01_long:
   - condition: state
     entity_id: switch.chuveirosuite
     state: 'on'
-  - delay: 00:01:30
+  - delay: '00:01:30'
   - condition: state
     entity_id: switch.chuveirosuite
     state: 'on'
@@ -1296,6 +357,8 @@ botao_xiaomi_banheiro_social_01_many:
   sequence:
   - service: switch.toggle
     entity_id: switch.chuveirosocial
+  - service: script.turn_off
+    entity_id: script.botao_xiaomi_banheiro_social_01_long
 
 botao_xiaomi_banheiro_social_01_long:
   alias: "Chuveiro banheiro social"
@@ -1313,7 +376,7 @@ botao_xiaomi_banheiro_social_01_long:
   - condition: state
     entity_id: switch.chuveirosocial
     state: 'on'
-  - delay: 00:01:30
+  - delay: '00:01:30'
   - condition: state
     entity_id: switch.chuveirosocial
     state: 'on'
@@ -1349,7 +412,7 @@ botao_xiaomi_sala_01_triple:
         {% endif %}
   - condition: template
     value_template: "{% if (is_state('climate.ar_condicionado_da_sala' , 'auto') or is_state('climate.ar_condicionado_da_sala' , 'cool') or is_state('climate.ar_condicionado_da_sala' , 'heat')) and is_state('input_boolean.boa_noite' , 'on') %}True{% else %}False{% endif %}"
-  - delay: 00:00:02
+  - delay: '00:00:02'
   - service: script.ar_sala_display
 
 botao_xiaomi_sala_01_quadruple:
@@ -1404,11 +467,67 @@ botao_xiaomi_cozinha_01_double:
   - service: light.toggle
     entity_id: light.area_servico
 
+botao_xiaomi_cozinha_01_triple:
+  alias: "Lava-louças aquaspray"
+  sequence:
+  - service: input_select.select_option
+    entity_id: input_select.lava_loucas_casa_modo_lavagem
+    data:
+      option: "Aquaspray"
+
+botao_xiaomi_cozinha_01_quadruple:
+  alias: "Lava-louças econômico"
+  sequence:
+  - service: input_select.select_option
+    entity_id: input_select.lava_loucas_casa_modo_lavagem
+    data:
+      option: "Econômico"
+
+botao_xiaomi_cozinha_01_many:
+  alias: "Lava-louças parar"
+  sequence:
+  - condition: template
+    value_template: "{{ not is_state('input_select.lava_loucas_casa_modo_lavagem', 'Selecionar') }}"
+  - service: mqtt.publish
+    data:
+      topic: 'cmnd/lava_loucas_casa/POWER1'
+      payload: 'ON'
+  - service: timer.cancel
+    data:
+      entity_id: timer.lava_loucas
+
 botao_xiaomi_cozinha_01_long:
   alias: "Ligar ou desligar tudo"
   sequence:
   - service: light.toggle
     entity_id: light.todas_as_luzes_cozinha
+
+botao_xiaomi_muvrh_entrada203_single:
+  alias: "Ligar ou desligar luz da entrada"
+  sequence:
+  - service: light.toggle
+    entity_id: light.muv203entrada
+
+botao_xiaomi_muvrh_entrada203_double:
+  alias: "Liga ou desliga ar condicionado da entrada"
+  sequence:
+  - service: climate.set_operation_mode
+    data_template:
+      entity_id: climate.ar_condicionado_da_entrada_203
+      operation_mode: >
+        {% if states.climate.ar_condicionado_da_entrada_203.attributes.current_temperature | int >= 25 and (states.climate.ar_condicionado_da_entrada_203.state == 'off' or states.climate.ar_condicionado_da_entrada_203.state == 'off') %}
+          cool
+        {% elif states.climate.ar_condicionado_da_entrada_203.attributes.current_temperature | int <= 24 and (states.climate.ar_condicionado_da_entrada_203.state == 'off' or states.climate.ar_condicionado_da_entrada_203.state == 'off') %}
+          heat
+        {% else %}
+          off
+        {% endif %}
+
+botao_xiaomi_muvrh_entrada203_long:
+  alias: "Ligar ou desligar luz da entrada"
+  sequence:
+  - service: light.toggle
+    entity_id: light.muv203entrada
 
 entrada_luz_temporizador:
   alias: "Liga a luz de entrada por 1 minuto"
@@ -1419,320 +538,11 @@ entrada_luz_temporizador:
     value_template: "{% if states.light.entrada.state == 'off' %}True{% else %}False{% endif %}"
   - service: light.turn_on
     entity_id: light.entrada
-  - delay: 00:01:00
+  - delay: '00:01:00'
   - condition: template
     value_template: "{% if states.light.entrada.state == 'on' %}True{% else %}False{% endif %}"
   - service: light.turn_off
     entity_id: light.entrada
-
-tv_sala_operacoes_power:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_36
-    data:
-      packet:
-      - JgJGAJKSETYRNhE2ERERERERERERERE2ETYRNhERERERERERERERERE2ERERERERERERERERETYRERE2ETYRNhE2ETYRNhEABhANBQ==
-  alias: "Ligar ou desligar"
-
-tv_sala_operacoes_power_on:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_36
-    data:
-      packet:
-      - JgZGAJSUEzcTNxM3ExITEhMSExITEhM3EzcTNxMSExITEhMSExITNxMSExITNxM3ExITEhM3ExITNxM3ExITEhM3EzcTEhMABiMNBQ==
-  alias: "Ligar"
-
-tv_sala_operacoes_power_off:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_36
-    data:
-      packet:
-      - JgZGAJWVEjgSOBI4EhISEhISEhISEhI4EjgSOBISEhISEhISEhISEhISEhISOBI4EhISEhI4EjgSOBI4EhISEhI4EjgSEhIABi0NBQ==
-  alias: "Desligar"
-
-tv_sala_operacoes_hdmi1:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_36
-    data:
-      packet:
-      - JgZGAJWVEjgSOBI4EhISEhISEhISEhI4EjgSOBISEhISEhISEhISOBISEhISOBISEjgSOBI4EhISOBI4EhISOBISEhISEhIABi0NBQ==
-  alias: "HDMI 1"
-
-tv_sala_operacoes_hdmi2:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_36
-    data:
-      packet:
-      - JgZGAJWVEjgSOBI4EhISEhISEhISEhI4EjgSOBISEhISEhISEhISEhI4EjgSOBI4EjgSEhI4EjgSEhISEhISEhISEjgSEhIABi0NBQ==
-  alias: "HDMI 2"
-
-tv_sala_operacoes_hdmi3:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_36
-    data:
-      packet:
-      - JgZGAJWVEjgSOBI4EhISEhISEhISEhI4EjgSOBISEhISEhISEhISEhI4EhISEhISEhISOBI4EjgSEhI4EjgSOBI4EhISEhIABi0NBQ==
-  alias: "HDMI 3"
-
-tts_abrindo_persiana_sala:
-  alias: "Abrindo persiana da sala"
-  sequence:
-  - service: media_player.volume_set
-    entity_id: media_player.sala
-    data:
-      volume_level: 0.7
-  - service: media_player.play_media
-    data:
-      entity_id: media_player.sala
-      media_content_id: 'http://192.168.1.12:8123/local/audio/tts/alerta_abrindo_persiana_sala.mp3'
-      media_content_type: 'audio/mp3'
-
-tts_fechando_persiana_sala:
-  alias: 'Fechando persiana da sala'
-  sequence:
-  - service: media_player.volume_set
-    entity_id: media_player.sala
-    data:
-      volume_level: 0.7
-  - service: media_player.play_media
-    data:
-      entity_id: media_player.sala
-      media_content_id: 'http://192.168.1.12:8123/local/audio/tts/alerta_fechando_persiana_sala.mp3'
-      media_content_type: 'audio/mp3'
-
-tts_boa_noite:
-  alias: 'Texto para automação boa noite'
-  sequence:
-  - service: persistent_notification.create
-    data:
-      title: "Alerta Casa ({{now().strftime('%H:%M')}})"
-      message: "Boa noite!"
-  - service: media_player.volume_set
-    entity_id: media_player.suite
-    data:
-      volume_level: 0.7
-  - service: tts.amazon_polly_say
-    entity_id: media_player.suite
-    data_template:
-      message: >
-        {% macro inicio() -%}
-          Automação boa noite iniciada. A temperatura do quarto, atualmente é de {{ states.sensor.temperatura_suite.state | int }} graus.
-        {%- endmacro -%}
-        {%- macro ar_condicionado() -%}
-            {%- if is_state('climate.ar_condicionado_da_suite', 'off') -%}
-              desligado.
-            {%- else -%}
-                {%- if is_state('climate.ar_condicionado_da_suite', 'cool') -%}
-                  ligado no modo resfriar para {{ states.climate.ar_condicionado_da_suite.attributes.temperature | int }} graus. Também desliguei o visor luminoso para não incomodar durante a noite.
-                {%- else -%}
-                  ligado no modo aquecer para {{ states.climate.ar_condicionado_da_suite.attributes.temperature | int }} graus. Também desliguei o visor luminoso para não incomodar durante a noite.
-                {%- endif -%}
-            {%- endif -%}
-        {%- endmacro -%}
-        {%- macro temp_amanha() -%}
-          A temperatura máxima amanhã será de {{ states.sensor.dark_sky_daytime_high_temperature_1.state | int }} graus.
-        {%- endmacro -%}
-        {%- macro carregar_celular() -%}
-          {%- if is_state('sensor.iphone_de_antonio_battery_state', 'Unplugged') or is_state('sensor.iphone_de_roberta_battery_state', 'Unplugged') -%}
-            Não esqueçam de colocar os telefones para carregar durante a noite!
-          {%- endif -%}
-        {%- endmacro -%}
-        {%- macro boa_noite() -%}
-          {%- if is_state('device_tracker.antonio', 'home') and is_state('device_tracker.roberta', 'home') -%}
-            Antônio e Roberta.
-          {%- elif is_state('device_tracker.antonio', 'home') -%}
-            Antônio.
-          {%- else -%}
-            Roberta.
-          {%- endif -%}
-        {%- endmacro -%}
-        {%- macro mensagem() -%}
-          {%- set mensagem = [
-            "A beleza do amanhecer vai depender da importância que você der à sua noite!",
-            "A experiência traz sabedoria. Que as lições aprendidas com mais esse dia de vida embalem seu sono.",
-            "A noite acendeu as estrelas porque tinha medo da própria escuridão.",
-            "A noite chegou e está convidando você para que se entregue ao descanso. Aceite o convite e tenha bons sonhos.",
-            "A noite chegou, a cama está chamando por você e o corpo pedindo descanso. Então durma bem e tenha bons sonhos!",
-            "A noite é escura e silenciosa, mas a luz da lua ou das estrelas estará sempre ligada para iluminar seus sonhos. Bom descanso!",
-            "A noite é uma boa oportunidade para descansar, perdoar, esquecer, sonhar e se preparar para as lutas do dia seguinte. Pense nisso!",
-            "A paz é a gente que faz!",
-            "A todos vocês, amigos do facebook, desejo lindos sonhos e uma noite cheia de tranquilidade e paz.",
-            "Adormeça com a crença que amanhã será um dia melhor!",
-            "Agora que a noite caiu deixe os problemas de lado e entregue-se apenas aos sonhos. Durmam bem.",
-            "Agora que a noite chegou é tempo de descansar para amanhã despertar com renovada energia!",
-            "Antes de dormir sempre peço o mesmo desejo: sonhar com você.",
-            "Apague as luzes, esqueça os problemas, descanse o corpo e deixe a alma livre para sonhar!",
-            "Após um dia cheio é tempo de reunir os amigos para descontrair um pouco!",
-            "Após um dia intenso, nada melhor que descansar sem hora para acordar!",
-            "As estrelas brilham, a lua já surgiu e o sucesso de amanhã começa com o descanso de agora!",
-            "Boa noite a todos os guerreiros que amanhã continuarão suas batalhas!",
-            "Boa noite e bons sonhos! Que a paz seja uma constante e o descanso o resultado das próximas horas.",
-            "Boa noite! Deixe que as estrelas iluminem o seu caminho até aos sonhos mais doces.",
-            "Boa noite! Durma com os anjos.",
-            "Boa noite! É hora de fechar os olhos e deixar que os anjos embalem seus sonhos.",
-            "Boa noite! Lembre-se que apesar de já não poder mudar o que fez hoje, amanhã a vida lhe dá uma nova chance.",
-            "Boa noite. Durmam em paz. Amanhã tem mais!",
-            "Boa noite. Que estas horas sejam de paz, descanso e de muitos sonhos gostosos.",
-            "Bons sonhos e bom descanso. Que a sua noite seja de paz e tranquilidade.",
-            "Cai a noite e o descanso ganha força para começar de novo a luta pela manhã!",
-            "Chegou a hora de apagar a luz e acender as estrelas. Para dar vida aos sonhos!",
-            "Começa a noite e com ela mil sonhos podem inspirar o dia de amanhã.",
-            "Como é bom ir dormir pensando em quem se ama. Durmam com os anjos!",
-            "Como todas as coisas no mundo até a escuridão da noite tem a sua beleza!",
-            "Deixe as estrelas brilhar, pois são elas que vão cobrir seus sonhos de luz!",
-            "Deixe os sonhos tomarem conta de você. Os sonhos são necessários à vida. Que os anjos embalem seu sono ! E jogue fora tudo de ruim do dia que passou.",
-            "Descanse, porque a noite vai cuidar de você!",
-            "Desejo que tenha sonhos lindos e que quando acordar eles se tornem realidade.",
-            "Despeço-me deste dia com gratidão pelo que a vida me deu e desejando a todas as pessoas uma ótima boa noite!",
-            "Durma com ideias, acorde com atitudes!",
-            "Durma em paz que amanhã tem mais!",
-            "É hora de esquecer os problemas que ficaram por resolver e de se entregar ao descanso e ao sono.",
-            "Enquanto as luzes se apagam e as estrelas se acendem eu digo boa noite e desejo bons sonhos.",
-            "Espero que você tenha uma ótima noite! Aproveite e sonhe com os anjos.",
-            "Esqueça os problemas e entregue-se aos doces braços do sono.",
-            "Esta é a hora das estrelas e não da escuridão!",
-            "Esta noite vai trazer sonhos lindos e a luz das estrelas vai levar você até eles. Durmam bem.",
-            "Este é o momento de descansar e recuperar forças para o dia que vai nascer em breve!",
-            "Eu posso até dispensar o brilho das estrelas, pois sua luz ilumina toda minha vida.",
-            "Já viu como a lua está sorrindo para você essa noite?",
-            "Mude o modo que você olha para as coisas, e as coisas que você olha mudarão!",
-            "Na hora do descanso só quero sentir que fiz tudo do meu jeito!",
-            "Na velocidade dos dias esquecemos de observar a beleza das estrelas!",
-            "Nada como uma boa noite de sono para repor as energias. Tenha uma boa noite!",
-            "Não perca a esperança. Você nunca sabe o que o amanhã irá trazer. Boa noite e bons sonhos!",
-            "Não tema o escuro da noite, ele faz o colorido do seu coração sobressair!",
-            "O meu maior desejo é que a noite renove as tuas energias e sonhos, para que amanhã você alcance tudo aquilo que merece.",
-            "O mundo cobre-se de trevas, mas eu desejo que seus sonhos sejam coloridos e iluminados.",
-            "Para tudo na vida há um novo dia, um novo sol, um novo luar.",
-            "Porque amanhã o dia vai ser maravilhoso eu desejo que o descanso desta noite seja recuperador. Bons sonhos",
-            "Porque o dia foi esgotante, vou me vingar na noite!",
-            "Preciso do brilho dos teus olhos para iluminar a escuridão da minha noite.",
-            "Quando a noite cai e eu fecho os olhos, quase consigo sentir seu corpo me abraçando.",
-            "Quando os olhos pesarem, que os sonhos sejam leves. Uma ótima noite para você!",
-            "Que a escuridão da noite substitua o medo de errar pela coragem de tentar coisas novas e triunfar!",
-            "Que a escuridão leve suas preocupações e as estrelas recarreguem seu coração de esperança.",
-            "Que a esperança permaneça no seu coração até as estrelas deixarem de brilhar.",
-            "Que a noite apague os erros do passado e renove energias para as conquistas do futuro.",
-            "Que a noite seja de paz, os sonhos belos e o descanso reconfortante.",
-            "Que a sua noite seja doce e feliz.",
-            "Que a sua noite seja composta por uma bela melodia de sono e descanso. Até amanhã.",
-            "Que a sua noite traga tranquilidade, muito descanso e sonhos felizes. Durmam bem.",
-            "Que as estrelas iluminem os sonhos de todos vocês.",
-            "Que as estrelas iluminem sempre o seu céu, assim como você traz luz à minha vida.",
-            "Que as estrelas lhe tragam paz para um descanso doce e tranquilo.",
-            "Que esta noite traga lindos sonhos e amanhã tenha força para os realizar. Bom descanso!",
-            "Que esta noite você adormeça à luz sedutora do luar e tenha bons sonhos!",
-            "Que hoje as estrelas estejam em harmonia com o nosso sorriso.",
-            "Que nunca falte um sonho para lutar, um projeto para realizar, algo para aprender, um lugar para ir e alguém para amar.",
-            "Que o silêncio desta noite leve as amarguras que mancharam meu dia!",
-            "Que os anjos te tragam tranquilidade e sonhos lindos esta noite.",
-            "Que os carneirinhos não durmam antes de você.",
-            "Que pensamentos maravilhosos encaminhem você até aos sonhos mais belos.",
-            "Quem de manhã compreendeu os ensinamentos da sabedoria à noite pode dormir o sono dos justos.",
-            "Quem respeita a vida merece uma ótima noite de sono. Durmam bem!",
-            "Respire. Tome uma dose de paz. Escute o bater manso do coração. Silencie a mente. Relaxe o corpo. Descanse. Amanhã tem mais!",
-            "Se hoje ainda não deu certo tente de novo amanhã, mas só depois de umas boas horas de sono e descanso.",
-            "Talvez seja você. A vida vai dizer. De qualquer forma, obrigado por me fazer dormir sorrindo.",
-            "Tenha uma boa noite de descanso e lindos sonhos para amanhã enfrentar mais um dia com renovada energia!",
-            "Tenha uma boa noite e lembre-se: a alegria vem pela manhã.",
-            "Tenha uma boa noite e um monte de sonhos inspiradores para que amanhã todos se realizem.",
-            "Tenha uma noite linda onde o descanso seja rei para que a energia seja a rainha do seu dia!",
-            "Todos os dias começam com uma boa noite de sono, por isso durma bem e descanse muito.",
-            "Tudo é belo e especial, até a noite com sua luz e silêncio espiritual!",
-            "Um ótimo descanso é o primeiro passo para um amanhecer glorioso!",
-            "Uma boa noite de descanso para todos os que acreditam que o amanhã será um dia melhor!",
-          ] -%}
-          {{ mensagem|random }}
-        {%- endmacro -%}
-        <speak><amazon:auto-breaths frequency='medium'>{{ inicio() }} O ar condicionado está {{ ar_condicionado() }} {{ temp_amanha()}} {{ carregar_celular() }} <prosody rate="90%">{{ mensagem() }}</prosody> Boa noite {{ boa_noite() }}</amazon:auto-breaths></speak>
-  - wait_template: "{{is_state('media_player.suite', 'playing')}}"
-  - wait_template: "{{is_state('media_player.suite', 'idle')}}"
-
-tts_bom_dia:
-  alias: "Texto para automação bom dia"
-  sequence:
-  - service: persistent_notification.create
-    data:
-      title: "Alerta Casa ({{now().strftime('%H:%M')}})"
-      message: "Bom dia!"
-  - service: media_player.volume_set
-    entity_id: media_player.suite
-    data:
-      volume_level: 0.7
-  - service: tts.amazon_polly_say
-    entity_id: media_player.suite
-    data_template:
-      message: >
-        {% macro dia() -%}
-          {%- set dia = [
-            "A angústia de ter perdido não supera a alegria de se ter um novo dia para tentar de novo. Um bom dia pra você!",
-            "A cada nova manhã, nasce junto uma nova chance. Bom dia!",
-            "A vida é o nosso maior presente, tenha consciência disso.  Bom Dia!",
-            "A vida tem 4 sentidos: amar, sofrer, lutar e vencer. Portanto ame muito, sofra pouco, lute bastante e vença sempre. Bom dia!",
-            "Acorda! O melhor ainda está por vir. Bom dia!",
-            "Bom dia pra você que, assim como eu, transforma o bem em um bem ainda maior e, como se não bastasse, sorri quando o mundo quer te fazer chorar! ",
-            "Bom dia! A vida é um milhão de novos começos movidos pelo desafio sempre novo de viver . Aproveite esse dia para desfrutar das coisas boas que fazem você feliz.",
-            "Bom dia! A vida sempre nos oferece uma segunda chance e ela se chama amanhecer!",
-            "Bom dia! Amenidades, leveza e calma na alma... É o que quero para hoje.",
-            "Bom dia! Comece o dia sorrindo. Afinal, coisa boa atrai coisa boa.",
-            "Bom dia! Hoje é o dia da conquista, da superação, de dar a volta por cima. Tenha fé!",
-            "Bom dia! Hoje é um novo dia para que você se permita ser feliz.",
-            "Bom dia! Hoje eu desejo pra você aquilo que eu tenho certeza que você deseja pra mim: Um dia abençoado.",
-            "Bom dia! Lembre-se que hoje você tem a chance de fazer diferente. O seu sucesso e a sua felicidade dependem das suas escolhas.",
-            "Bom dia! Não demore muito para perceber que é preciso pouco para ser feliz.",
-            "Bom Dia. Que a cada manhã, você sinta em seu coração a certeza de que a vida lhe espera de braços abertos, para receber suas expectativas e realizá-las uma a uma.",
-            "Cada novo amanhecer é uma nova chance que a vida te dá!",
-            "Comece cada dia sendo grato por ele. Bom dia!",
-            "Comece o dia com foco em coisas boas. Você é quem faz do seu dia um dia feliz. Seja como um fotógrafo, capture as melhores imagens e delete o que não preste.",
-            "Comece o dia com um sorriso e termine com um champagne.",
-            "Como é bom começar o dia pensando em você. Tenha um excelente dia!",
-            "Cuide, cultive, queira o bem. O resto vem. Bom dia!",
-            "Desacelere. A vida merece atenção. Se tiver pressa, que seja de ser feliz. Bom dia!",
-            "Desejo a você um bom dia, com um bom sorriso, bom humor, um bom café e boa fé! ",
-            "Espero que a sua manhã seja tão contagiante quanto o seu sorriso. Tenha um bom dia!",
-            "Faça do bom humor seu aliado e você sempre acordará com o pé direito. Bom dia!",
-            "Hoje acordei e a primeira coisa que me veio a cabeça foi você. Isso só pode ser um bom sinal. Te desejo um ótimo dia.",
-            "Hoje certamente tudo dará certo. O seu caminho será suavizado pela brisa do ar que chegará até você de mansinho, trazendo com ela o aroma das flores que darão colorido ao seu dia.",
-            "Hoje é dia de semear coisas boas.",
-            "Hoje é um dia que nunca mais irá se repetir. Aproveite. Tenha um bom dia!",
-            "Hoje o dia vai ser lindão! ",
-            "Hoje seu dia será especial. Muito melhor que ontem e um aprendizado para amanhã. Hoje você tem a oportunidade de fazer as coisas diferentes. Tenha um ótimo dia!",
-            "Hoje vai ser um bom dia!",
-            "Hoje você tem duas opções: ser feliz ou ser mais feliz ainda. Bom dia!",
-            "Independente do que estiver sentindo, levante-se, vista-se e saia para brilhar.",
-            "Lembre-se sempre: Cada dia nasce de um novo amanhecer. Tenha um ótimo dia.",
-            "Mesmo caminhando entre espinhos e com muitas pedras nos caminhos continue caminhando com coragem e confie no poder Daquele que é maior. Tenha um maravilhoso dia!",
-            "Não importa a cor do céu. Quem faz o dia bonito é você.",
-            "Ninguém pode voltar no tempo e fazer um novo começo, mas podemos começar agora a fazer um novo fim. Um dia iluminado pra você!",
-            "Novo dia, nova emoção!",
-            "O bom dia que você deseja só depende de você!",
-            "O mundo é de quem acorda feliz!",
-            "O ontem já passou, o amanhã é um mistério, o hoje é uma benção. Tenha um bom dia!",
-            "O seu sorriso pode mudar o dia de alguém.",
-            "Pra hoje: sorrisos bobos, uma mente tranquila e um coração cheio de paz.",
-            "Que esse dia seja cheio de energia positiva, amém.",
-            "Que hoje nada e nem ninguém estrague seu dia. Bom dia!",
-            "Que o dia comece bem e termine ainda melhor.",
-            "Que o dia nos abrace com sorrisos, esperança e pitadas de aconchego.",
-            "Que o dia nos apronte boas surpresas e nos faça sorrir.",
-            "Que o dia seja leve, que a tristeza seja breve e que o dia seja feliz. Bom dia!",
-            "Se queremos progredir, não devemos repetir a história, mas fazer uma história nova.",
-            "Seja o bom dia que você deseja!",
-            "Sempre que o sol nasce, você tem uma nova oportunidade de ser feliz. Bom dia!",
-            "Sorria, desejo à você um excelente dia. Muita paz, muita alegria e um dia super feliz!",
-            "Tenha um bom dia, uma semana fantástica e uma vida maravilhosa.",
-            "Tenha um dia feliz, repleto de alegria e felicidade!",
-            "Todo dia é sempre um recomeço!",
-            "Três passos para ter um bom dia: sorria, agradeça e ame-se.",
-            "Um dia feliz começa com um sorriso no rosto. Bom dia!",
-            "Um novo dia vem nascendo, um novo sol já vai raiar. Parece a vida, rompendo em luz e que nos convida a amar.",
-            "Um pequeno pensamento positivo pela manhã pode mudar todo o seu dia.",
-            "Viva cada momento, ria todos os dias, ame além das palavras... Tenha um bom dia!",
-          ] -%}
-          {{ dia|random }}
-        {%- endmacro -%}
-        <speak><amazon:auto-breaths frequency='medium'>Bom dia! Agora são <say-as interpret-as='time'>{{ now().strftime('%H:%M') }}</say-as> de {% if now().strftime('%A') == 'Monday' -%}segunda-feira{%- elif now().strftime('%A') == 'Tuesday' -%}terça-feira{%- elif now().strftime('%A') == 'Wednesday'-%}quarta-feira{%- elif now().strftime('%A') == 'Thursday' -%}quinta-feira{%- elif now().strftime('%A') == 'Friday' -%}sexta-feira{%- elif now().strftime('%A') == 'Saturday' -%}sábado{%- elif now().strftime('%A') == 'Sunday' -%}domingo{%- endif %}, dia {{ now().strftime('%d') }} de {% if now().strftime('%B') == 'January' -%}janeiro{%- elif now().strftime('%B') == 'February' -%}fevereiro{%- elif now().strftime('%B') == 'March'-%}março{%- elif now().strftime('%B') == 'April' -%}abril{%- elif now().strftime('%B') == 'May' -%}maio{%- elif now().strftime('%B') == 'June' -%}junho{%- elif now().strftime('%B') == 'July' -%}julho{%- elif now().strftime('%B') == 'August' -%}agosto{%- elif now().strftime('%B') == 'September' -%}setembro{%- elif now().strftime('%B') == 'October' -%}outubro{%- elif now().strftime('%B') == 'November' -%}novembro{%- elif now().strftime('%B') == 'December' -%}dezembro{%- endif -%}. Neste momento, predomina {{ states.sensor.dark_sky_summary.state | lower }} com {{ states.sensor.dark_sky_temperature.state | int }} graus. A temperatura máxima hoje será de {{ states.sensor.dark_sky_daytime_high_temperature.state | int }} graus. Estou ligando o toalheiro e apagando o ar condicionado. Vou deixar a televisão ligada para vocês. <prosody rate="90%">{{ dia() }}</prosody></amazon:auto-breaths></speak>
-  - wait_template: "{{is_state('media_player.suite', 'playing')}}"
-  - wait_template: "{{is_state('media_player.suite', 'idle')}}"
 
 # Cubos
 
@@ -1826,213 +636,13 @@ cubo_suite_tv_voldown:
   - service: media_player.volume_down
     entity_id: media_player.tv_suite
 
-tv_lg_dinamica_303_power:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_41
-    data:
-      packet:
-      - JgBIAAABKpUTExITEzgSExMTEhMTExITEzgTOBITEzgSOBM4EjgTOBMSExMTEhM4ExMSExMTEhMTOBI4EzgTEhM4EzgSOBM4EgANBQ==
-  alias: "Ligar ou desligar"
-
-tv_lg_dinamica_303_power_on:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_41
-    data:
-      packet:
-      - JgRQAAABKJMSEhISEjcSEhISEhISEhISEjcSNxISEjcSNxI3EjcSNxISEhISNxISEhISEhI3EjcSNxI3EhISNxI3EjcSEhISEgAFGgABKEoSAAxWDQUAAAAAAAA==
-  alias: "Ligar TV"
-
-tv_lg_dinamica_303_power_off:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_41
-    data:
-      packet:
-      - JgRQAAABKJMSEhISEjcSEhISEhISEhISEjcSNxISEjcSNxI3EjcSNxI3EhISNxISEhISEhI3EjcSEhI3EhISNxI3EjcSEhISEgAFGgABKEoSAAxWDQUAAAAAAAA==
-  alias: "Desligar TV"
-
-tv_lg_dinamica_303_volup:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_41
-    data:
-      packet:
-      - JgBIAAABLJMUERMTEjgTExQRFREUERUREzgUNhQSEjgVNhI4FTYUNhURFDcSExMTFBETExITFREUNhMTFDYTOBM3FTYUNxQ2FQANBQ==
-  alias: "Volume mais"
-
-tv_lg_dinamica_303_voldown:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_41
-    data:
-      packet:
-      - JgBQAAABKpQTExMSEzgTExITExMSExMTEjgTOBITEzgTNxM4EzgSOBM4EjgTExMSExMTEhMTExITExMTEjgTOBI4EzgTNxM4EwAFKQABKksTAA0FAAAAAAAAAAA==
-  alias: "Volume menos"
-
-tv_lg_dinamica_303_menu:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_41
-    data:
-      packet:
-      - JgBQAAABKpUSExMTFDYTExMSFRETExITFDcSOBUREjgVNhQ2EzgTOBQRFREUNhU2FDYTOBQ3EhMVNhI4ExMSExMTExITExM4FAAFKAABKkoTAA0FAAAAAAAAAAA==
-  alias: "Menu"
-
-tv_lg_dinamica_303_chup:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_41
-    data:
-      packet:
-      - JgBQAAABLJMUERURFDYVERQRExMUERURFDYVNhQSEjgVNhI4FTYUNhURExIVERMTFBETExQRExMUNhU2FDYVNhQ2FTYTOBQ2EwAFKwABK0kTAA0FAAAAAAAAAAA==
-  alias: "Canal mais"
-
-tv_lg_dinamica_303_chdown:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_41
-    data:
-      packet:
-      - JgBQAAABKpUSExMTEjgTExMSExMTEhMTEzgSOBMTEjgTOBI4EzgTOBI4ExMSExMTEhMTExITExMSExM4EjgTOBM3EzgTOBI4EwAFKQABKksTAA0FAAAAAAAAAAA==
-  alias: "Canal menos"
-
-tv_lg_dinamica_303_config:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_41
-    data:
-      packet:
-      - JgBQAAABKpQTExMSEzgTExITExMSExMTFDYTOBITEzgTOBI4EzgSOBM4FDcSExMTEhMVERI4FRESExUREjgTOBM3EzgTExI4EwAFKwABKkoTAA0FAAAAAAAAAAA==
-  alias: "Configurações"
-
-tv_lg_dinamica_303_up:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_41
-    data:
-      packet:
-      - JgBQAAABKpUSExMTEjgTExMSExMTEhMTEzgSOBMTEjgTOBI5EjgTOBITExMSExMTEhMTExI4ExMTOBI4EzgSOBM4EzcTExM4EgAFKwABKksTAA0FAAAAAAAAAAA==
-  alias: "Para cima"
-
-tv_lg_dinamica_303_down:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_41
-    data:
-      packet:
-      - JgBQAAABLJUTExITEzgTEhMTExITExMSEzgTOBITEzgSOBM4EzgSOBM4EhMTExITExMTEhM4ExITExM4EjgTOBI4EzgTEhM4EwAFKQABKksTAA0FAAAAAAAAAAA==
-  alias: "Para baixo"
-
-tv_lg_dinamica_303_left:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_41
-    data:
-      packet:
-      - JgBIAAABKpQTExMSEzgVERITExMSExMTEjgTOBITEzgTOBI4EzgSOBM4EzcTOBMTEhMTExITExMSExMTEhMTOBI4EzgTOBI4EwANBQ==
-  alias: "Para esquerda"
-
-tv_lg_dinamica_303_right:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_41
-    data:
-      packet:
-      - JgBQAAABKpUSExMTEjgTExMSExMTEhMTEzgSOBMTEjgTOBI4EzgTOBITEzgSOBMTEhMTExITExMTNxMTExITOBM4EjgTOBM3EwAFKgABKkoTAA0FAAAAAAAAAAA==
-  alias: "Para direita"
-
-tv_lg_dinamica_303_ok:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_41
-    data:
-      packet:
-      - JgBQAAABKZUTExMSEzgTEhMTExMSExMTEjgTOBITEzgSOBM4EzgSOBMTEhMTOBITExMSExM4ExITOBM4EhMTOBI4EzgTEhM4EwAFKQABKksSAA0FAAAAAAAAAAA==
-  alias: "Selecionar"
-
-tv_lg_dinamica_303_exit:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_41
-    data:
-      packet:
-      - JgBQAAABKpUTExITFDcSExMTEhMTExITEzgUNhMTEzgSOBQ3FDYVNhQ3FDYVERI4FTYUERU2FBETExQSFDYVERQREzgUERM4FAAFKQABKksVAA0FAAAAAAAAAAA==
-  alias: "Sair"
-
-tv_lg_dinamica_303_mute:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_41
-    data:
-      packet:
-      - JgBQAAABK5QUERUREjgVERQRFREUERURFDYVNhMTEjgTOBQ2EzgTOBI4FRESExU2EhMTExMSExMTEhM4EzgSExM4EjgTOBM4EgAFKwABKksTAA0FAAAAAAAAAAA==
-  alias: "Mudo"
-
-tv_lg_dinamica_303_input:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_41
-    data:
-      packet:
-      - JgBIAAABLJMTEhUREzcTExQSEhMTExITEzgSOBMTEjgTOBQ3FDYVNhI4EzgTEhU2ExMSExMTEhMTExQREzgSExM4FDYVNhQ3FAANBQ==
-  alias: "Entrada"
-
-tv_lg_dinamica_303_play:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_41
-    data:
-      packet:
-      - JgBQAAABKpUUERMTFDYVERQSFBEUEhQRFDcUNhURFDYVNhQ3FDYVNhQRExMUERMTFDYVNhQSFDYTOBQ2FTYUNxQRFREUNhURFAAFKAABLEkUAA0FAAAAAAAAAAA==
-  alias: "Tocar"
-
-tv_lg_dinamica_303_pause:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_41
-    data:
-      packet:
-      - JgBQAAABKpUSExMTEjgTExITExMSExMTEjgVNhMTEjgTOBI4EzgSOBMTEzgSExM4EjgTOBITEzgSOBMTEzgSExMTEhMTOBITFQAFKAABKUsTAA0FAAAAAAAAAAA==
-  alias: "Pausar"
-
-tv_lg_dinamica_303_stop:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_41
-    data:
-      packet:
-      - JgBQAAABKZUTExQRFTYUERMTFBETExQSFDYUNxQREzgSOBM4FDcUNhM4FBETExQREzgTOBQREzgSExU2EjgVNhQRExMUNxITFQAFKQABK0kTAA0FAAAAAAAAAAA==
-  alias: "Parar"
-
-tv_lg_dinamica_303_chtv:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_41
-    data:
-      packet:
-      - JgBIAAABKpUTExITEzgSExURFBETExQREzgUNxITEzgSOBU2FDcSOBQ3FDYTOBQ2ExMUEhITExMUERQSEhMTExI4EzgUNhM4FAANBQ==
-  alias: "Assistir TV"
-
-tv_lg_dinamica_303_hdmi1:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_41
-    data:
-      packet:
-      - JgBQAAABKJMSEhISEjcSEhISEhISEhISEjcSNxISEjcSNxI3EjcSNxISEjcSNxI3EhISEhI3EjcSNxISEhISEhI3EjcSEhISEgAFGgABKEoSAAxWDQUAAAAAAAA==
-  alias: "HDMI 1"
-
-tv_lg_dinamica_303_hdmi2:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_41
-    data:
-      packet:
-      - JgBQAAABKJMSEhISEjcSEhISEhISEhISEjcSNxISEjcSNxI3EjcSNxISEhISNxI3EhISEhI3EjcSNxI3EhISEhI3EjcSEhISEgAFGgABKEoSAAxWDQUAAAAAAAA==
-  alias: "HDMI 2"
-
-tv_lg_dinamica_303_hdmi3:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_41
-    data:
-      packet:
-      - JgBQAAABKJMSEhISEjcSEhISEhISEhISEjcSNxISEjcSNxI3EjcSNxI3EhISEhI3EhISNxI3EjcSEhI3EjcSEhI3EhISEhISEgAFGgABKEoSAAxWDQUAAAAAAAA==
-  alias: "HDMI 3"
-
-tv_lg_dinamica_303_hdmi4:
-  sequence:
-  - service: switch.broadlink_send_packet_192_168_1_41
-    data:
-      packet:
-      - JgBQAAABKJMSEhISEjcSEhISEhISEhISEjcSNxISEjcSNxI3EjcSNxISEjcSEhI3EjcSEhI3EjcSNxISEjcSEhISEjcSEhISEgAFGgABKEoSAAxWDQUAAAAAAAA==
-  alias: "HDMI 4"
-
 # MuvRH
 
 muvrh_desligar_sala_203:
   alias: "Desligar tudo na sala 203"
   sequence:
   - service: climate.set_operation_mode
-    data_template:
+    data:
       operation_mode: 'off'
       entity_id:
         - climate.ar_condicionado_da_entrada_203
@@ -2049,6 +659,7 @@ muvrh_desligar_sala_203:
     entity_id:
       - switch.tv_sala_operacoes
       - switch.muv203bebedouro
+      - switch.muvrh_cafeteira
   - service: notify.TUDO
     data:
       title: "Alerta MuvRH"
@@ -2058,10 +669,9 @@ muvrh_desligar_sala_303:
   alias: "Desligar tudo na sala 303"
   sequence:
   - service: climate.set_operation_mode
-    data_template:
+    data:
       operation_mode: 'off'
-      entity_id:
-        - climate.ar_condicionado_da_sala_303
+      entity_id: climate.ar_condicionado_da_sala_303
   - service: light.turn_off
     entity_id:
       - light.muv303entrada
@@ -2100,110 +710,111 @@ casa_desligar_tudo_noite:
   sequence:
   - service: cover.close_cover
     entity_id: cover.persiana_suite
-  - delay: 00:00:02
+  - delay: '00:00:01'
   - service_template: >
-      {% if is_state('climate.ar_condicionado_da_suite' , 'off') %}
-      {% else %}
+      {%- if is_state('climate.ar_condicionado_da_suite' , 'off') %}
+      {%- else %}
         script.ar_suite_display
-      {% endif %}
+      {%- endif %}
   - service_template: >
-      {% if is_state('climate.ar_condicionado_da_sala' , 'off') %}
-      {% else %}
+      {%- if is_state('climate.ar_condicionado_da_sala' , 'off') %}
+      {%- else %}
         climate.set_operation_mode
-      {% endif %}
+      {%- endif %}
     data:
       operation_mode: 'off'
       entity_id: climate.ar_condicionado_da_sala
-  - delay: 00:00:02
-  - service: switch.turn_off
-    entity_id:
-      - switch.chuveirosuite
-#      - switch.desktop
-      - switch.toalheiro
-      - switch.tv_lg_sala
-      - switch.tv_lg_suite
-  - service: light.turn_off
-    entity_id:
-      - light.area_servico
-      - light.suite_banheiro_principal
-      - light.suite_banheiro_espelho
-      - light.corredor
-      - light.cozinha
-      - light.entrada
-      - light.ledchaocozinha
-      - light.ledcozinhabalcao
-      - light.ledquartotv
-      - light.ledsaladesktop
-      - light.ledsalatv
-      - light.ledsuitecama
-      - light.ledsuitetv
-      - light.mesa_jantar
+  - service_template: >
+      {% set lights = ['light.area_servico','light.suite_banheiro_principal','light.suite_banheiro_espelho','light.corredor','light.cozinha','light.entrada','light.ledchaocozinha','light.ledcozinhabalcao','light.ledsaladesktop','light.ledsalatv','light.ledsuitecama','light.ledsuitetv','light.mesa_jantar','light.sala_principal','light.suite_principal'] -%}
+      {%- for item in lights if states(item) == 'on' -%}
+      {%- if loop.first -%}
+        light.turn_off
+      {%- endif -%}
+      {%- endfor %}
+    data_template:
+      entity_id: >
+        {%- set entities = ['light.area_servico','light.suite_banheiro_principal','light.suite_banheiro_espelho','light.corredor','light.cozinha','light.entrada','light.ledchaocozinha','light.ledcozinhabalcao','light.ledsaladesktop','light.ledsalatv','light.ledsuitecama','light.ledsuitetv','light.mesa_jantar','light.sala_principal','light.suite_principal'] -%}
+        {{ states.light | selectattr('entity_id', 'in', entities) | selectattr('state','eq','on') | map(attribute='entity_id') | join(', ') }}
+  - service_template: >
+      {% set switches = ['switch.chuveirosuite','switch.toalheiro','switch.tv_lg_sala','switch.tv_lg_suite','switch.muvrh_cafeteira','switch.cafeteira_casa','switch.chaleira_casa','switch.ventilador_casa','switch.home_theater_sala'] -%}
+      {%- for item in switches if states(item) == 'on' -%}
+      {%- if loop.first -%}
+        switch.turn_off
+      {%- endif -%}
+      {%- endfor %}
+    data_template:
+      entity_id: >
+        {% set entities = ['switch.chuveirosuite','switch.toalheiro','switch.tv_lg_sala','switch.tv_lg_suite','switch.muvrh_cafeteira','switch.cafeteira_casa','switch.chaleira_casa','switch.ventilador_casa','switch.home_theater_sala'] -%}
+        {{ states.switch| selectattr('entity_id', 'in', entities) | selectattr('state','eq','on') | map(attribute='entity_id') | join(', ') }}
   - condition: state
     entity_id: input_boolean.visita_casa
     state: 'off'
   - service_template: >
-      {% if is_state('climate.ar_condicionado_do_quarto' , 'off') %}
-      {% else %}
+      {%- if is_state('climate.ar_condicionado_do_quarto' , 'off') %}
+      {%- else %}
         climate.set_operation_mode
-      {% endif %}
+      {%- endif %}
     data:
       operation_mode: 'off'
       entity_id: climate.ar_condicionado_do_quarto
-  - service: light.turn_off
-    entity_id:
-      - light.quarto
-      - light.ledquartotv
-      - light.banheiro_social_principal
-      - light.banheiro_social_espelho
-  - service: switch.turn_off
-    entity_id:
-      - switch.chuveirosocial
-      - switch.tv_lg_quarto
+  - service_template: >
+      {% set lights = ['light.quarto','light.ledquartotv','light.banheiro_social_principal','light.banheiro_social_espelho'] -%}
+      {%- for item in lights if states(item) == 'on' -%}
+      {%- if loop.first -%}
+        light.turn_off
+      {%- endif -%}
+      {%- endfor %}
+    data_template:
+      entity_id: >
+        {%- set entities = ['light.quarto','light.ledquartotv','light.banheiro_social_principal','light.banheiro_social_espelho'] -%}
+        {{ states.light | selectattr('entity_id', 'in', entities) | selectattr('state','eq','on') | map(attribute='entity_id') | join(', ') }}
+  - service_template: >
+      {% set switches = ['switch.chuveirosocial','switch.tv_lg_quarto'] -%}
+      {%- for item in switches if states(item) == 'on' -%}
+      {%- if loop.first -%}
+        switch.turn_off
+      {%- endif -%}
+      {%- endfor %}
+    data_template:
+      entity_id: >
+        {% set entities = ['switch.chuveirosocial','switch.tv_lg_quarto'] -%}
+        {{ states.switch| selectattr('entity_id', 'in', entities) | selectattr('state','eq','on') | map(attribute='entity_id') | join(', ') }}
 
 casa_desligar_tudo:
   alias: "Desligar tudo em casa"
   sequence:
-  - service: climate.set_operation_mode
-    data:
+  - service_template: >
+      {% if is_state('climate.ar_condicionado_da_suite' , 'off') or is_state('climate.ar_condicionado_do_quarto' , 'off') or is_state('climate.ar_condicionado_da_sala' , 'off') %}
+      {%- else %}
+        climate.set_operation_mode
+      {%- endif %}
+    data_template:
       operation_mode: 'off'
-      entity_id: climate.ar_condicionado_da_suite
-  - service: climate.set_operation_mode
-    data:
-      operation_mode: 'off'
-      entity_id: climate.ar_condicionado_do_quarto
-  - service: climate.set_operation_mode
-    data:
-      operation_mode: 'off'
-      entity_id: climate.ar_condicionado_da_sala
-  - service: switch.turn_off
-    entity_id:
-      - switch.chuveirosuite
-      - switch.toalheiro
-      - switch.tv_lg_sala
-      - switch.tv_lg_suite
-      - switch.chuveirosocial
-      - switch.tv_lg_quarto
-  - service: light.turn_off
-    entity_id:
-      - light.area_servico
-      - light.suite_banheiro_principal
-      - light.suite_banheiro_espelho
-      - light.corredor
-      - light.cozinha
-      - light.entrada
-      - light.ledchaocozinha
-      - light.ledcozinhabalcao
-      - light.ledquartotv
-      - light.ledsaladesktop
-      - light.ledsalatv
-      - light.ledsuitecama
-      - light.ledsuitetv
-      - light.mesa_jantar
-      - light.quarto
-      - light.sala_principal
-      - light.banheiro_social_principal
-      - light.banheiro_social_espelho
-      - light.suite_principal
+      entity_id: >
+        {% set entities = ['climate.ar_condicionado_da_suite','climate.ar_condicionado_do_quarto','climate.ar_condicionado_da_sala'] -%}
+        {{ states.climate | selectattr('entity_id', 'in', entities) | selectattr('state','!=','off') | map(attribute='entity_id') | join(', ') }}
+  - service_template: >
+      {% set lights = ['light.area_servico','light.suite_banheiro_principal','light.suite_banheiro_espelho','light.corredor','light.cozinha','light.entrada','light.ledchaocozinha','light.ledcozinhabalcao','light.ledquartotv','light.ledsaladesktop','light.ledsalatv','light.ledsuitecama','light.ledsuitetv','light.mesa_jantar','light.quarto','light.sala_principal','light.banheiro_social_principal','light.banheiro_social_espelho','light.suite_principal'] -%}
+      {%- for item in lights if states(item) == 'on' -%}
+      {%- if loop.first -%}
+        light.turn_off
+      {%- endif -%}
+      {%- endfor %}
+    data_template:
+      entity_id: >
+        {%- set entities = ['light.area_servico','light.suite_banheiro_principal','light.suite_banheiro_espelho','light.corredor','light.cozinha','light.entrada','light.ledchaocozinha','light.ledcozinhabalcao','light.ledquartotv','light.ledsaladesktop','light.ledsalatv','light.ledsuitecama','light.ledsuitetv','light.mesa_jantar','light.quarto','light.sala_principal','light.banheiro_social_principal','light.banheiro_social_espelho','light.suite_principal'] -%}
+        {{ states.light | selectattr('entity_id', 'in', entities) | selectattr('state','eq','on') | map(attribute='entity_id') | join(', ') }}
+  - service_template: >
+      {% set switches = ['switch.chuveirosuite','switch.toalheiro','switch.tv_lg_sala','switch.tv_lg_suite','switch.chuveirosocial','switch.tv_lg_quarto','switch.cafeteira_casa','switch.chaleira_casa','switch.ventilador_casa','switch.home_theater_sala'] -%}
+      {%- for item in switches if states(item) == 'on' -%}
+      {%- if loop.first -%}
+        switch.turn_off
+      {%- endif -%}
+      {%- endfor %}
+    data_template:
+      entity_id: >
+        {% set entities = ['switch.chuveirosuite','switch.toalheiro','switch.tv_lg_sala','switch.tv_lg_suite','switch.chuveirosocial','switch.tv_lg_quarto','switch.cafeteira_casa','switch.chaleira_casa','switch.ventilador_casa','switch.home_theater_sala'] -%}
+        {{ states.switch| selectattr('entity_id', 'in', entities) | selectattr('state','eq','on') | map(attribute='entity_id') | join(', ') }}
   - service: alarm_control_panel.alarm_disarm
     entity_id: alarm_control_panel.alarme
 
@@ -2211,12 +822,12 @@ speed_test:
   alias: Teste de velocidade da internet
   sequence:
   - service: media_player.volume_set
-    entity_id: media_player.all_speakers
+    entity_id: media_player.sala, media_player.suite
     data:
       volume_level: 0.7
   - service: media_player.play_media
     data:
-      entity_id: media_player.all_speakers
+      entity_id: media_player.sala, media_player.suite
       media_content_id: 'http://192.168.1.12:8123/local/audio/tts/alerta_iniciando_teste_internet.mp3'
       media_content_type: 'audio/mp3'
   - service: sensor.update_fastdotcom
@@ -2228,7 +839,7 @@ speed_test:
       title: "Sistema"
       message: "A velocidade da internet em casa é de {{ states.sensor.fastcom_download.state | int}} Mbit/s"
   - service: tts.amazon_polly_say
-    entity_id: media_player.all_speakers
+    entity_id: media_player.sala, media_player.suite
     data_template:
       message: <speak><amazon:auto-breaths frequency='medium'>Pronto, verifiquei aqui. Atualmente estão chegando {{ states.sensor.fastcom_download.state | int}} mégas aqui em casa. {% if states.sensor.fastcom_download.state | int <= 20 %}Está muito lenta, estão baixando algo neste momento ou algo de errado está acontecendo pois deveriam estar chegando 50 mégas. O Antônio já foi avisado!{% endif %}</amazon:auto-breaths></speak>
 
@@ -2251,3 +862,30 @@ alarme_armar_fora:
   sequence:
   - service: alarm_control_panel.alarm_arm_away
     entity_id: alarm_control_panel.alarme
+
+## OctoPrint
+
+octoprint_cancelar:
+  sequence:
+  - service: shell_command.octoprint_cancel
+  alias: "Cancelar impressão"
+
+octoprint_preheat_bed:
+  sequence:
+  - service: shell_command.octoprint_preheat_bed
+  alias: "Preaquecer cama"
+
+octoprint_preheat_tool:
+  sequence:
+  - service: shell_command.octoprint_preheat_tool
+  alias: "Preaquecer bico"
+
+octoprint_auto_home:
+  sequence:
+  - service: shell_command.octoprint_auto_home
+  alias: "Centralizar"
+
+octoprint_disable_motors:
+  sequence:
+  - service: shell_command.octoprint_disable_motors
+  alias: "Desligar motores"

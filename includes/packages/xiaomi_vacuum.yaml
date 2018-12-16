@@ -71,6 +71,7 @@ automation:
 #Coloca o aspirador em modo silencioso
 
   - alias: Aspirador - Modo de aspiração
+    initial_state: true
     trigger:
       platform: state
       entity_id: input_select.estados_de_succao
@@ -91,6 +92,7 @@ automation:
 #Escolher a zona a aspirar
 
   - alias: Aspirador - Escolher a zona para aspirar
+    initial_state: true
     hide_entity: True
     trigger:
       platform: state
@@ -126,9 +128,9 @@ automation:
             script.aspirador_zona_mop
           {% else %}
           {% endif %}
-      - delay: 00:01:00
+      - delay: '00:01:00'
       - wait_template: "{{is_state('vacuum.aspirador', 'docked')}}"
-      - delay: 00:00:15
+      - delay: '00:00:15'
       - service: input_select.select_option
         entity_id: input_select.zonas_de_aspiracao
         data_template:
@@ -355,11 +357,11 @@ script:
       entity_id: input_boolean.boa_noite
       state: 'off'
     - service: media_player.volume_set
-      entity_id: media_player.all_speakers
+      entity_id: media_player.sala, media_player.suite
       data:
         volume_level: 0.7
     - service: tts.amazon_polly_say
-      entity_id: media_player.all_speakers
+      entity_id: media_player.sala, media_player.suite
       data_template:
         message: <speak><amazon:auto-breaths frequency='medium'>E lá vai ele... Iniciando a limpeza na zona {{ states.input_select.zonas_de_aspiracao.state | lower }}.</amazon:auto-breaths></speak>
 
@@ -378,11 +380,11 @@ script:
       entity_id: input_boolean.boa_noite
       state: 'off'
     - service: media_player.volume_set
-      entity_id: media_player.all_speakers
+      entity_id: media_player.sala, media_player.suite
       data:
         volume_level: 0.7
     - service: tts.amazon_polly_say
-      entity_id: media_player.all_speakers
+      entity_id: media_player.sala, media_player.suite
       data_template:
         message: <speak><amazon:auto-breaths frequency='medium'>O aspirador parou limpando a zona {{ states.input_select.zonas_de_aspiracao.state | lower }}. {% if 'error' in states.vacuum.aspirador.state %}Código de erro é {{ states.vacuum.aspirador.attributes.error }}.{% else %}{% endif %}</amazon:auto-breaths></speak>
 
@@ -403,11 +405,11 @@ script:
       entity_id: input_boolean.boa_noite
       state: 'off'
     - service: media_player.volume_set
-      entity_id: media_player.all_speakers
+      entity_id: media_player.sala, media_player.suite
       data:
         volume_level: 0.7
     - service: tts.amazon_polly_say
-      entity_id: media_player.all_speakers
+      entity_id: media_player.sala, media_player.suite
       data_template:
         message: <speak><amazon:auto-breaths frequency='medium'>Olha quem está de volta! O aspirador terminou seu trabalho na zona {{ states.input_select.zonas_de_aspiracao.state | lower }}. Limpou cerca de {{ states.vacuum.aspirador.attributes.cleaned_area }} metros quadrados durante {{ states.vacuum.aspirador.attributes.cleaning_time }} minutos e está carregando no momento.</amazon:auto-breaths></speak>
 
@@ -426,12 +428,12 @@ script:
       entity_id: input_boolean.boa_noite
       state: 'off'
     - service: media_player.volume_set
-      entity_id: media_player.all_speakers
+      entity_id: media_player.sala, media_player.suite
       data:
         volume_level: 0.7
     - service: media_player.play_media
       data:
-        entity_id: media_player.all_speakers
+        entity_id: media_player.sala, media_player.suite
         media_content_id: 'http://192.168.1.12:8123/local/audio/tts/alerta_aspirador_parado_erro.mp3'
         media_content_type: 'audio/mp3'
 
@@ -444,7 +446,7 @@ script:
       entity_id: input_select.zonas_de_aspiracao
       data_template:
         option: "Casa toda"
-    - delay: 00:00:10
+    - delay: '00:00:10'
 
   aspirador_homekit_zona_sala:
     alias: Aspirador casa - Aspirar zona sala inteira
@@ -453,7 +455,7 @@ script:
       entity_id: input_select.zonas_de_aspiracao
       data_template:
         option: "Sala inteira"
-    - delay: 00:00:10
+    - delay: '00:00:10'
 
   aspirador_homekit_zona_mesa_jantar:
     alias: Aspirador casa - Aspirar zona mesa de jantar
@@ -462,7 +464,7 @@ script:
       entity_id: input_select.zonas_de_aspiracao
       data_template:
         option: "Mesa de jantar"
-    - delay: 00:00:10
+    - delay: '00:00:10'
 
   aspirador_homekit_zona_tapete:
     alias: Aspirador casa - Aspirar zona tapete
@@ -471,7 +473,7 @@ script:
       entity_id: input_select.zonas_de_aspiracao
       data_template:
         option: "Tapete"
-    - delay: 00:00:10
+    - delay: '00:00:10'
 
   aspirador_homekit_zona_entrada:
     alias: Aspirador casa - Aspirar zona entrada
@@ -480,7 +482,7 @@ script:
       entity_id: input_select.zonas_de_aspiracao
       data_template:
         option: "Entrada"
-    - delay: 00:00:10
+    - delay: '00:00:10'
 
   aspirador_homekit_zona_cozinha:
     alias: Aspirador casa - Aspirar zona cozinha
@@ -489,7 +491,7 @@ script:
       entity_id: input_select.zonas_de_aspiracao
       data_template:
         option: "Cozinha"
-    - delay: 00:00:10
+    - delay: '00:00:10'
 
   aspirador_homekit_zona_quartos:
     alias: Aspirador casa - Aspirar zona quartos e banheiros
@@ -498,7 +500,7 @@ script:
       entity_id: input_select.zonas_de_aspiracao
       data_template:
         option: "Quartos e banheiros"
-    - delay: 00:00:10
+    - delay: '00:00:10'
 
   aspirador_homekit_zona_mop:
     alias: Aspirador casa - Aspirar zona somente piso
@@ -507,7 +509,7 @@ script:
       entity_id: input_select.zonas_de_aspiracao
       data_template:
         option: "Somente piso"
-    - delay: 00:00:10
+    - delay: '00:00:10'
 
 # Outros
 
@@ -516,10 +518,10 @@ script:
     sequence:
     - service: vacuum.start
       entity_id: vacuum.aspirador
-    - delay: 00:00:12
+    - delay: '00:00:10'
     - service: vacuum.stop
       entity_id: vacuum.aspirador
-    - delay: 00:00:02
+    - delay: '00:00:02'
     - service: vacuum.return_to_base
       entity_id: vacuum.aspirador
 

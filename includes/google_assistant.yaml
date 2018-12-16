@@ -1,7 +1,273 @@
-project_id: !secret Google_project_id
-client_id: !secret Google_client_id
-access_token: !secret Google_access_token
-agent_user_id: !secret Google_agent_user_id
-api_key: !secret Google_api_key
-exposed_domains:
-  - light
+project_id: !secret google_project_id
+api_key: !secret google_api_key
+expose_by_default: false
+entity_config:
+
+  alarm_control_panel.alarme:
+    expose: true
+    room: Sala
+
+  climate.ar_condicionado_da_entrada_203:
+    expose: true
+    room: Sala
+
+  climate.ar_condicionado_da_nossa_sala:
+    expose: true
+    room: Sala
+
+  climate.ar_condicionado_da_sala:
+    expose: true
+    room: Sala
+
+  climate.ar_condicionado_da_sala_303:
+    expose: true
+    room: Sala
+
+  climate.ar_condicionado_da_sala_de_operacoes:
+    expose: true
+    room: Sala
+
+  climate.ar_condicionado_da_suite:
+    expose: true
+    room: Sala
+
+  climate.ar_condicionado_do_quarto:
+    expose: true
+    room: Sala
+
+  cover.garagem_casa:
+    expose: true
+    room: Sala
+
+  cover.garagem_muvrh_interno:
+    expose: true
+    room: Sala
+
+  cover.garagem_muvrh_rua:
+    expose: true
+    room: Sala
+
+  cover.persiana_quarto:
+    expose: true
+    room: Sala
+
+  cover.persiana_sala:
+    expose: true
+    room: Sala
+
+  cover.persiana_suite:
+    expose: true
+    room: Sala
+
+  light.303leddinamica:
+    expose: true
+    room: Sala
+
+  light.area_servico:
+    expose: true
+    room: Sala
+
+  light.banheiro_social_principal:
+    expose: true
+    room: Sala
+
+  light.banheiro_social_espelho:
+    expose: true
+    room: Sala
+
+  light.corredor:
+    expose: true
+    room: Sala
+
+  light.cozinha:
+    expose: true
+    room: Sala
+
+  light.entrada:
+    expose: true
+    room: Sala
+
+  light.gateway_light_34ce0090940e:
+    expose: true
+    room: Sala
+
+  light.ledcozinhabalcao:
+    expose: true
+    room: Sala
+
+  light.ledchaocozinha:
+    expose: true
+    room: Sala
+
+  light.ledquartotv:
+    expose: true
+    room: Sala
+
+  light.ledsaladesktop:
+    expose: true
+    room: Sala
+
+  light.ledsalatv:
+    expose: true
+    room: Sala
+
+  light.ledsuitecama:
+    expose: true
+    room: Sala
+
+  light.ledsuitetv:
+    expose: true
+    room: Sala
+
+  light.mesa_jantar:
+    expose: true
+    room: Sala
+
+  light.muv203banheiro:
+    expose: true
+    room: Sala
+
+  light.muv203entrada:
+    expose: true
+    room: Sala
+
+  light.muv203nossasala:
+    expose: true
+    room: Sala
+
+  light.muv203operacoes:
+    expose: true
+    room: Sala
+
+  light.muv303banheiro:
+    expose: true
+    room: Sala
+
+  light.muv303corredor:
+    expose: true
+    room: Sala
+
+  light.muv303dinamica:
+    expose: true
+    room: Sala
+
+  light.muv303entrada:
+    expose: true
+    room: Sala
+
+  light.quarto:
+    expose: true
+    room: Sala
+
+  light.sala_principal:
+    expose: true
+    room: Sala
+
+  light.suite_banheiro_principal:
+    expose: true
+    room: Sala
+
+  light.suite_banheiro_espelho:
+    expose: true
+    room: Sala
+
+  light.suite_principal:
+    expose: true
+    room: Sala
+
+  switch.automacoes_luzes:
+    expose: true
+    room: Sala
+
+  switch.aspirador:
+    expose: true
+    room: Sala
+
+  switch.chuveirosocial:
+    expose: true
+    room: Sala
+
+  switch.chuveirosuite:
+    expose: true
+    room: Sala
+
+  switch.desktop:
+    expose: true
+    room: Sala
+
+  switch.home_theater_sala:
+    expose: true
+    room: Sala
+
+  switch.muv203bebedouro:
+    expose: true
+    room: Sala
+
+  switch.muv303bebedouro:
+    expose: true
+    room: Sala
+
+  switch.servidor:
+    expose: true
+    room: Sala
+
+  switch.sirene:
+    expose: true
+    room: Sala
+
+  switch.sistema_alarme_casa:
+    expose: true
+    room: Sala
+
+  switch.toalheiro:
+    expose: true
+    room: Sala
+
+  switch.tv_dinamica_303:
+    expose: true
+    room: Sala
+
+  switch.tv_lg_quarto:
+    expose: true
+    room: Sala
+
+  switch.tv_lg_sala:
+    expose: true
+    room: Sala
+
+  switch.tv_lg_suite:
+    expose: true
+    room: Sala
+
+  switch.tv_sala_operacoes:
+    expose: true
+    room: Sala
+
+  switch.muvrh_cafeteira:
+    expose: true
+    room: Sala
+
+  switch.cafeteira_casa:
+    expose: true
+    room: Sala
+
+  switch.chaleira_casa:
+    expose: true
+    room: Sala
+
+  switch.ventilador_casa:
+    expose: true
+    room: Sala
+
+  switch.lava_loucas_homekit_aquaspray:
+    expose: true
+    room: Sala
+
+  switch.lava_loucas_homekit_economico:
+    expose: true
+    room: Sala
+
+  switch.lava_loucas_homekit_diaadia:
+    expose: true
+    room: Sala
+

@@ -210,6 +210,10 @@ light.ledchaocozinha:
   friendly_name: "LED do chão da cozinha"
   icon: mdi:led-strip
 
+light.ender_3:
+  friendly_name: "Ender 3"
+  icon: mdi:track-light
+
 switch.tv_lg_sala:
   friendly_name: "Tv LG sala"
 
@@ -224,11 +228,11 @@ switch.toalheiro:
 
 switch.chuveirosuite:
   friendly_name: "Chuveiro da suíte"
-  icon: mdi:water-pump
+  icon: mdi:shower-head
 
 switch.chuveirosocial:
   friendly_name: "Chuveiro do banheiro social"
-  icon: mdi:water-pump
+  icon: mdi:shower-head
 
 alarm_control_panel.alarme:
   friendly_name: "Alarme da casa"
@@ -360,36 +364,8 @@ binary_sensor.movimento_banheiro_social:
   friendly_name: "Movimento Banheiro Social"
   icon: mdi:walk
 
-binary_sensor.switch_158d000120ea75:
-  friendly_name: "Botão quarto"
-  icon: mdi:cursor-pointer
-
-binary_sensor.switch_158d0001d8e9f8:
-  friendly_name: "Botão suíte 01"
-  icon: mdi:cursor-pointer
-
-binary_sensor.switch_158d000121090f:
-  friendly_name: "Botão sala 01"
-  icon: mdi:cursor-pointer
-
-binary_sensor.switch_158d0001d8e9cf:
-  friendly_name: "Botão sala 02"
-  icon: mdi:cursor-pointer
-
-binary_sensor.switch_158d0001d9073f:
-  friendly_name: "Botão cozinha"
-  icon: mdi:cursor-pointer
-
-binary_sensor.switch_158d0001d8eabc:
-  friendly_name: "Botão banheiro da suíte"
-  icon: mdi:cursor-pointer
-
-binary_sensor.switch_158d0001d8eb3d:
-  friendly_name: "Botão banheiro social"
-  icon: mdi:cursor-pointer
-
-binary_sensor.switch_158d0001d8ea74:
-  friendly_name: "Botão suíte 02"
+binary_sensor.switch_158d0001bc5253:
+  friendly_name: "Botão entrada sala 203"
   icon: mdi:cursor-pointer
 
 light.gateway_Light_34ce0090940e:
@@ -546,6 +522,11 @@ switch.controle_garagem_casa:
   friendly_name: "Controle garagem de casa"
   icon: mdi:remote
 
+switch.conectar_octoprint:
+  friendly_name: "Conectar Octoprint"
+  entity_picture: /local/image/devices/octoprint.png
+  assumed_state: false
+
 media_player.sala:
   friendly_name: "Google Home Sala"
 
@@ -644,3 +625,34 @@ sensor.dark_sky_overnight_low_temperature:
 
 sensor.dark_sky_overnight_low_temperature_1:
   friendly_name: "Temperatura mínima amanhã"
+
+switch.ender3:
+  friendly_name: "Energia Ender 3"
+
+switch.muvrh_cafeteira:
+  friendly_name: "Cafeteira"
+
+switch.cafeteira_casa:
+  friendly_name: "Cafeteira"
+
+switch.chaleira_casa:
+  friendly_name: "Chaleira"
+
+switch.ventilador_casa:
+  friendly_name: "Ventilador"
+  icon: mdi:fan
+
+script.octoprint_cancelar:
+  icon: mdi:alert-circle
+
+script.octoprint_preheat_bed:
+  icon: mdi:radiator
+
+script.octoprint_preheat_tool:
+  icon: mdi:fire
+
+script.octoprint_auto_home:
+  icon: mdi:image-filter-center-focus
+
+script.octoprint_disable_motors:
+  icon: mdi:close-circle-outline

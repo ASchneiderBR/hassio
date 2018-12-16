@@ -42,7 +42,6 @@
     - type: disk_use_percent
       arg: /home
     - type: memory_use_percent
-    - type: since_last_boot
 
 - platform: command_line
   name: CPU Temperature
@@ -56,6 +55,25 @@
       friendly_name: 'Temperatura real da nossa sala'
       unit_of_measurement: '°C'
       value_template: "{{ (states.sensor.muvrh_temperature.state  | float) - 2 }}"
+
+#    ha_uptime:
+#      friendly_name: Tempo desde reiniciado
+#      value_template: >
+#        {% if states('sensor.uptime') == '0.0' %} 
+#          Acabou de reiniciar
+#        {% else %}
+#          {% macro phrase(value, name) %}
+#          {%- set value = value | int %}
+#          {%- set end = 's' if value > 1 else '' %}
+#          {{- '{} {}{}'.format(value, name, end) if value | int > 0 else '' }}
+#          {%- endmacro %}
+#          
+#          {% set weeks = (states('sensor.uptime') | int / 7) | int %}
+#          {% set days = (states('sensor.uptime') | int) - (weeks * 7) %}
+#          {% set hours = (states('sensor.uptime') | float - states('sensor.uptime') | int) * 24 %}
+#          {% set minutes = (hours - hours | int) * 60 %}
+#          {{ [ phrase(weeks, 'semana'), phrase(days, 'dias'), phrase(hours, 'horas'), phrase(minutes, 'minutos') ] | select('!=','') | list | join(', ') }}
+#        {% endif %}
 
 - platform: time_date
   display_options:
@@ -76,11 +94,24 @@
   value_template: '{{ ((value_json["ANALOG"]["A0"] |float /10) |int -100) *-1 }}'
   qos: 1
 
-- platform: octoprint
-  name: OctoPrint
-  monitored_conditions:
-    - Current State
-    - Temperatures
-    - Job Percentage
-    - Time Elapsed
-    - Time Remaining
+- platform: "mqtt"
+  name: "Temperatura lava louças"
+  state_topic: "tele/lava_loucas_casa/SENSOR"
+  availability_topic: "tele/lava_loucas_casa/LWT"
+  payload_available: "Online"
+  payload_not_available: "Offline"
+  unit_of_measurement: "°C"
+  device_class: temperature
+  value_template: "{{ value_json.DHT11.Temperature }}"
+  qos: 1
+
+- platform: "mqtt"
+  name: "Umidade lava louças"
+  state_topic: "tele/lava_loucas_casa/SENSOR"
+  availability_topic: "tele/lava_loucas_casa/LWT"
+  payload_available: "Online"
+  payload_not_available: "Offline"
+  unit_of_measurement: "%"
+  device_class: humidity
+  value_template: "{{ value_json.DHT11.Humidity }}"
+  qos: 1

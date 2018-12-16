@@ -1,5 +1,12 @@
-  desktop_hibernar : 'curl -k http://192.168.1.21:8000/?action=System.Hibernate'
-  desktop_reiniciar : 'curl -k http://192.168.1.21:8000/?action=System.Restart'
-  desktop_abrir_chrome: 'curl -k http://192.168.1.21:8000/?action=Shell.ExecutePredefined&command=Abrir%20Chrome'
-  servidor_hibernar : 'curl -k http://192.168.1.10:8000/?action=System.Hibernate'
-  servidor_reiniciar : 'curl -k http://192.168.1.10:8000/?action=System.Restart'
+desktop_hibernar : 'curl -k http://192.168.1.21:8000/?action=System.Hibernate'
+desktop_reiniciar : 'curl -k http://192.168.1.21:8000/?action=System.Restart'
+desktop_abrir_chrome: 'curl -k http://192.168.1.21:8000/?action=Shell.ExecutePredefined&command=Abrir%20Chrome'
+servidor_hibernar : 'curl -k http://192.168.1.10:8000/?action=System.Hibernate'
+servidor_reiniciar : 'curl -k http://192.168.1.10:8000/?action=System.Restart'
+octoprint_connect: "curl -s http://192.168.1.69/api/connection -d '{\"command\":\"connect\"}' -H 'Content-Type: application/json' -H 'X-Api-Key: 2BF5F30FDB884F528964F137A56544FD'"
+octoprint_disconnect: "curl -s http://192.168.1.69/api/connection -d '{\"command\":\"disconnect\"}' -H 'Content-Type: application/json' -H 'X-Api-Key: 2BF5F30FDB884F528964F137A56544FD'"
+octoprint_cancel: "curl -s http://192.168.1.69/api/job -d '{\"command\":\"cancel\"}' -H 'Content-Type: application/json' -H 'X-Api-Key: 2BF5F30FDB884F528964F137A56544FD'"
+octoprint_preheat_bed: "curl -s http://192.168.1.69/api/printer/bed -d '{\"command\":\"target\",\"target\":60}' -H 'Content-Type: application/json' -H 'X-Api-Key: 2BF5F30FDB884F528964F137A56544FD'"
+octoprint_preheat_tool: "curl -s http://192.168.1.69/api/printer/tool -d '{\"command\":\"target\",\"targets\":{\"tool0\":100}}' -H 'Content-Type: application/json' -H 'X-Api-Key: 2BF5F30FDB884F528964F137A56544FD'"
+octoprint_auto_home: "curl -s http://192.168.1.69/api/printer/printhead  -d '{\"command\":\"home\",\"axes\":[\"x\", \"y\", \"z\"]}' -H 'Content-Type: application/json' -H 'X-Api-Key: 2BF5F30FDB884F528964F137A56544FD'"
+octoprint_disable_motors: "curl -s http://192.168.1.69/api/printer/command -d '{\"command\":\"M84\"}' -H 'Content-Type: application/json' -H 'X-Api-Key: 2BF5F30FDB884F528964F137A56544FD'"

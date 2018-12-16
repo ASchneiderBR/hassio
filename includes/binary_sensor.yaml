@@ -52,13 +52,26 @@
       friendly_name: 'Movimento MuvRH'
       device_class: occupancy
 
+    casa_alerta_box_areia_magno:
+      value_template: "{{ is_state('group.muvrh_movimento_203' , 'on') or is_state('group.muvrh_movimento_303' , 'on') }}"
+      friendly_name: 'Box da areia fechado'
+      device_class: problem
+
 - platform: mqtt
   name: "Estado TV sala dinâmica"
+  friendly_name: "Luz do deck"
   state_topic: "tele/muv303tvdinamica/LWT"
   value_template: "{{ value }}"
   payload_on: "Online"
   payload_off: "Offline"
   device_class: power
+
+- platform: mqtt
+  name: "Movimento entrada de casa"
+  state_topic: "wallpanel/tablet_entrada_casa/sensor/motion"
+  payload_on: '{"value":true}'
+  payload_off: '{"value":false}'
+  device_class: motion 
 
 #- platform: mqtt
 #  name: "Estado TV sala operações"
@@ -72,11 +85,3 @@
   monitored_conditions:
     - Printing
     - Printing Error
-
-- platform: mqtt
-  name: "OctoPrint"
-  state_topic: "octoprint/LWT"
-  value_template: "{{ value }}"
-  payload_on: "connected"
-  payload_off: "disconnected"
-  device_class: connectivity

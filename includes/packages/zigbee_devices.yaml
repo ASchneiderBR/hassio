@@ -8,6 +8,7 @@ sensor:
     availability_topic: "zigbee2mqtt/bridge/state"
     icon: "mdi:toggle-switch"
     value_template: "{{ value_json.click }}"
+    force_update: true
     qos: 1
     json_attributes: 
       - "battery"
@@ -22,6 +23,7 @@ sensor:
     availability_topic: "zigbee2mqtt/bridge/state"
     icon: "mdi:toggle-switch"
     value_template: "{{ value_json.click }}"
+    force_update: true
     qos: 1
     json_attributes: 
       - "battery"
@@ -36,6 +38,7 @@ sensor:
     availability_topic: "zigbee2mqtt/bridge/state"
     icon: "mdi:toggle-switch"
     value_template: "{{ value_json.click }}"
+    force_update: true
     qos: 1
     json_attributes: 
       - "battery"
@@ -50,6 +53,7 @@ sensor:
     availability_topic: "zigbee2mqtt/bridge/state"
     icon: "mdi:toggle-switch"
     value_template: "{{ value_json.click }}"
+    force_update: true
     qos: 1
     json_attributes: 
       - "battery"
@@ -64,6 +68,7 @@ sensor:
     availability_topic: "zigbee2mqtt/bridge/state"
     icon: "mdi:toggle-switch"
     value_template: "{{ value_json.click }}"
+    force_update: true
     qos: 1
     json_attributes: 
       - "battery"
@@ -78,6 +83,7 @@ sensor:
     availability_topic: "zigbee2mqtt/bridge/state"
     icon: "mdi:toggle-switch"
     value_template: "{{ value_json.click }}"
+    force_update: true
     qos: 1
     json_attributes: 
       - "battery"
@@ -92,6 +98,7 @@ sensor:
     availability_topic: "zigbee2mqtt/bridge/state"
     icon: "mdi:toggle-switch"
     value_template: "{{ value_json.click }}"
+    force_update: true
     qos: 1
     json_attributes: 
       - "battery"
@@ -106,6 +113,7 @@ sensor:
     availability_topic: "zigbee2mqtt/bridge/state"
     icon: "mdi:toggle-switch"
     value_template: "{{ value_json.click }}"
+    force_update: true
     qos: 1
     json_attributes: 
       - "battery"
@@ -122,6 +130,7 @@ sensor:
     availability_topic: "zigbee2mqtt/bridge/state"
     icon: "mdi:gesture-double-tap"
     value_template: "{{ value_json.action }}"
+    force_update: true
     qos: 1
     json_attributes: 
       - "battery"
@@ -139,6 +148,7 @@ sensor:
     availability_topic: "zigbee2mqtt/bridge/state"
     icon: "mdi:gesture-double-tap"
     value_template: "{{ value_json.action }}"
+    force_update: true
     qos: 1
     json_attributes: 
       - "battery"
@@ -264,6 +274,54 @@ sensor:
       - "voltage"
       - "linkquality"
 
+## Vibração
+
+  - platform: "mqtt"
+    name: "Sensor máquia de lavar roupas"
+    state_topic: "zigbee2mqtt/casa_xiaomi_vibracao_maquina_lavar_roupa"
+    availability_topic: "zigbee2mqtt/bridge/state"
+    icon: "mdi:gesture-double-tap"
+    value_template: "{{ value_json.action }}"
+    json_attributes: 
+      - "linkquality"
+      - "battery"
+      - "voltage"
+      - "angle"
+      - "side"
+      - "from_side"
+      - "to_side"
+      - "brightness"
+      - "angle_x_absolute"
+      - "angle_y_absolute"
+      - "angle_z"
+      - "angle_y"
+      - "angle_x"
+      - "unknown_data"
+    force_update: true
+  
+  - platform: "mqtt"
+    name: "Sensor caixa de areia do gato"
+    state_topic: "zigbee2mqtt/casa_xiaomi_vibracao_areia_gato"
+    availability_topic: "zigbee2mqtt/bridge/state"
+    icon: "mdi:gesture-double-tap"
+    value_template: "{{ value_json.action }}"
+    json_attributes: 
+      - "linkquality"
+      - "battery"
+      - "voltage"
+      - "angle"
+      - "side"
+      - "from_side"
+      - "to_side"
+      - "brightness"
+      - "angle_x_absolute"
+      - "angle_y_absolute"
+      - "angle_z"
+      - "angle_y"
+      - "angle_x"
+      - "unknown_data"
+    force_update: true
+
 # Movimento
 
 binary_sensor:
@@ -277,10 +335,10 @@ binary_sensor:
     value_template: "{{ value_json.occupancy }}"
     qos: 1
     device_class: "motion"
-    json_attributes: 
-      - "battery"
-      - "voltage"
-      - "linkquality"
+#    json_attributes: 
+#      - "battery"
+#      - "voltage"
+#      - "linkquality"
 
   - platform: "mqtt"
     name: "Movimento sala"
@@ -291,10 +349,10 @@ binary_sensor:
     value_template: "{{ value_json.occupancy }}"
     qos: 1
     device_class: "motion"
-    json_attributes: 
-      - "battery"
-      - "voltage"
-      - "linkquality"
+#    json_attributes: 
+#      - "battery"
+#      - "voltage"
+#      - "linkquality"
 
   - platform: "mqtt"
     name: "Movimento quarto"
@@ -305,10 +363,10 @@ binary_sensor:
     value_template: "{{ value_json.occupancy }}"
     qos: 1
     device_class: "motion"
-    json_attributes: 
-      - "battery"
-      - "voltage"
-      - "linkquality"
+#    json_attributes: 
+#      - "battery"
+#      - "voltage"
+#      - "linkquality"
 
   - platform: "mqtt"
     name: "Movimento banheiro social"
@@ -319,10 +377,10 @@ binary_sensor:
     value_template: "{{ value_json.occupancy }}"
     qos: 1
     device_class: "motion"
-    json_attributes: 
-      - "battery"
-      - "voltage"
-      - "linkquality"
+#    json_attributes: 
+#      - "battery"
+#      - "voltage"
+#      - "linkquality"
 
   - platform: "mqtt"
     name: "Movimento banheiro suíte"
@@ -333,10 +391,10 @@ binary_sensor:
     value_template: "{{ value_json.occupancy }}"
     qos: 1
     device_class: "motion"
-    json_attributes: 
-      - "battery"
-      - "voltage"
-      - "linkquality"
+#    json_attributes: 
+#      - "battery"
+#      - "voltage"
+#      - "linkquality"
 
   - platform: "mqtt"
     name: "Movimento suíte"
@@ -347,10 +405,10 @@ binary_sensor:
     value_template: "{{ value_json.occupancy }}"
     qos: 1
     device_class: "motion"
-    json_attributes: 
-      - "battery"
-      - "voltage"
-      - "linkquality"
+#    json_attributes: 
+#      - "battery"
+#      - "voltage"
+#      - "linkquality"
 
 #Abertura porta
 
@@ -363,10 +421,10 @@ binary_sensor:
     value_template: "{{ value_json.contact }}"
     qos: 1
     device_class: "door"
-    json_attributes: 
-      - "battery"
-      - "voltage"
-      - "linkquality"
+#    json_attributes: 
+#      - "battery"
+#      - "voltage"
+#      - "linkquality"
 
   - platform: "mqtt"
     name: "Box banheiro suíte"
@@ -377,10 +435,10 @@ binary_sensor:
     value_template: "{{ value_json.contact }}"
     qos: 1
     device_class: "door"
-    json_attributes: 
-      - "battery"
-      - "voltage"
-      - "linkquality"
+#    json_attributes: 
+#      - "battery"
+#      - "voltage"
+#      - "linkquality"
 
   - platform: "mqtt"
     name: "Entrada casa"
@@ -391,7 +449,7 @@ binary_sensor:
     value_template: "{{ value_json.contact }}"
     qos: 1
     device_class: "door"
-    json_attributes: 
-      - "battery"
-      - "voltage"
-      - "linkquality"
+#    json_attributes: 
+#      - "battery"
+#      - "voltage"
+#      - "linkquality"

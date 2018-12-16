@@ -1,0 +1,264 @@
+timer:
+
+  lava_loucas:
+    name: "Tempo restante"
+    icon: mdi:camera-timer
+
+input_select:
+
+  lava_loucas_casa_modo_lavagem:
+    name: "Modo de lavagem"
+    options:
+      - "Selecionar"
+      - "Aquaspray"
+      - "Econômico"
+      - "Dia a dia"
+    initial: "Selecionar"
+    icon: mdi:format-list-checks
+
+binary_sensor:
+
+  - platform: template
+    sensors:
+      lava_loucas_casa:
+        friendly_name: "Lava-louças"
+        device_class: "power"
+        value_template: "{{ not is_state('input_select.lava_loucas_casa_modo_lavagem', 'Selecionar') }}"
+
+  - platform: mqtt
+    name: "Porta lava louças"
+    state_topic: "stat/lava_loucas_casa/POWER4"
+    payload_on: "ON"
+    payload_off: "OFF"
+    availability_topic: "tele/lava_loucas_casa/LWT"
+    payload_available: "Online"
+    payload_not_available: "Offline"
+    qos: 1
+    device_class: "door"
+
+switch:
+
+  - platform: template
+    switches:
+      lava_loucas_homekit_aquaspray:
+        friendly_name: "Lava-louças aquaspray"
+        value_template: "{{ is_state('input_select.lava_loucas_casa_modo_lavagem', 'Aquaspray') }}"
+        turn_on:
+          service: input_select.select_option
+          entity_id: input_select.lava_loucas_casa_modo_lavagem
+          data_template:
+            option: "Aquaspray"
+        turn_off:
+          service: script.lava_loucas_casa_iniciar_parar
+        icon_template: mdi:dishwasher
+
+      lava_loucas_homekit_economico:
+        friendly_name: "Lava-louças econômico"
+        value_template: "{{ is_state('input_select.lava_loucas_casa_modo_lavagem', 'Econômico') }}"
+        turn_on:
+          service: input_select.select_option
+          entity_id: input_select.lava_loucas_casa_modo_lavagem
+          data_template:
+            option: "Econômico"
+        turn_off:
+          service: script.lava_loucas_casa_iniciar_parar
+        icon_template: mdi:dishwasher
+
+      lava_loucas_homekit_diaadia:
+        friendly_name: "Lava-louças dia a dia"
+        value_template: "{{ is_state('input_select.lava_loucas_casa_modo_lavagem', 'Dia a dia') }}"
+        turn_on:
+          service: input_select.select_option
+          entity_id: input_select.lava_loucas_casa_modo_lavagem
+          data_template:
+            option: "Dia a dia"
+        turn_off:
+          service: script.lava_loucas_casa_iniciar_parar
+        icon_template: mdi:dishwasher
+
+automation:
+
+  - alias: Lava-louças - Iniciar lavagem
+    initial_state: true
+    trigger:
+      platform: state
+      entity_id: input_select.lava_loucas_casa_modo_lavagem
+    action:
+      - service_template: >
+          {% if states.input_select.lava_loucas_casa_modo_lavagem.state == 'Aquaspray' %}
+              script.lava_loucas_casa_aquaspray
+          {% elif states.input_select.lava_loucas_casa_modo_lavagem.state == 'Econômico' %}
+              script.lava_loucas_casa_iniciar_modo_economico
+          {% elif states.input_select.lava_loucas_casa_modo_lavagem.state == 'Dia a dia' %}
+              script.lava_loucas_casa_modo_diaadia
+          {% endif %}
+
+script:
+
+  lava_loucas_casa_aquaspray:
+    alias: "Aquaspray"
+    sequence:
+    - wait_template: "{{ is_state('binary_sensor.porta_lava_loucas', 'off') }}"
+    - service: mqtt.publish
+      data:
+        qos: 1
+        topic: 'cmnd/lava_loucas_casa/POWER1'
+        payload: 'ON'
+    - delay:
+        milliseconds: 200
+    - service: mqtt.publish
+      data:
+        qos: 1
+        topic: 'cmnd/lava_loucas_casa/POWER3'
+        payload: 'ON'
+    - service: timer.start
+      data:
+        entity_id: timer.lava_loucas
+        duration: 00:06:25
+    - wait_template: "{{ is_state('timer.lava_loucas', 'idle') }}"
+    - service: input_select.select_option
+      entity_id: input_select.lava_loucas_casa_modo_lavagem
+      data:
+        option: "Selecionar"
+
+  lava_loucas_casa_iniciar_modo_economico:
+    alias: "Modo econômico"
+    sequence:
+    - wait_template: "{{ is_state('binary_sensor.porta_lava_loucas', 'off') }}"
+    - service: mqtt.publish
+      data:
+        qos: 1
+        topic: 'cmnd/lava_loucas_casa/POWER1'
+        payload: 'ON'
+    - delay:
+        milliseconds: 200
+    - service: mqtt.publish
+      data:
+        qos: 1
+        topic: 'cmnd/lava_loucas_casa/POWER2'
+        payload: 'ON'
+    - delay:
+        milliseconds: 200
+    - service: mqtt.publish
+      data:
+        qos: 1
+        topic: 'cmnd/lava_loucas_casa/POWER2'
+        payload: 'ON'
+    - delay:
+        milliseconds: 200
+    - service: mqtt.publish
+      data:
+        qos: 1
+        topic: 'cmnd/lava_loucas_casa/POWER2'
+        payload: 'ON'
+    - delay:
+        milliseconds: 200
+    - service: mqtt.publish
+      data:
+        qos: 1
+        topic: 'cmnd/lava_loucas_casa/POWER2'
+        payload: 'ON'
+    - delay:
+        milliseconds: 200
+    - service: mqtt.publish
+      data:
+        qos: 1
+        topic: 'cmnd/lava_loucas_casa/POWER2'
+        payload: 'ON'
+    - delay:
+        milliseconds: 200
+    - service: mqtt.publish
+      data:
+        qos: 1
+        topic: 'cmnd/lava_loucas_casa/POWER3'
+        payload: 'ON'
+    - service: timer.start
+      data:
+        entity_id: timer.lava_loucas
+        duration: 01:25:00
+    - wait_template: "{{ is_state('timer.lava_loucas', 'idle') }}"
+    - service: script.lava_loucas_casa_alerta_final
+
+  lava_loucas_casa_modo_diaadia:
+    alias: "Modo dia a dia"
+    sequence:
+    - wait_template: "{{ is_state('binary_sensor.porta_lava_loucas', 'off') }}"
+    - service: mqtt.publish
+      data:
+        qos: 1
+        topic: 'cmnd/lava_loucas_casa/POWER1'
+        payload: 'ON'
+    - delay:
+        milliseconds: 200
+    - service: mqtt.publish
+      data:
+        qos: 1
+        topic: 'cmnd/lava_loucas_casa/POWER2'
+        payload: 'ON'
+    - delay:
+        milliseconds: 200
+    - service: mqtt.publish
+      data:
+        qos: 1
+        topic: 'cmnd/lava_loucas_casa/POWER3'
+        payload: 'ON'
+    - service: timer.start
+      data:
+        entity_id: timer.lava_loucas
+        duration: 02:30:00
+    - wait_template: "{{ is_state('timer.lava_loucas', 'idle') }}"
+    - service: script.lava_loucas_casa_alerta_final
+
+  lava_loucas_casa_iniciar_parar:
+    alias: "Iniciar/parar lavagem"
+    sequence:
+    - service: mqtt.publish
+      data:
+        qos: 1
+        topic: 'cmnd/lava_loucas_casa/POWER3'
+        payload: 'ON'
+    - service: timer.cancel
+      data:
+        entity_id: timer.lava_loucas
+
+  lava_loucas_casa_alterar_modo:
+    alias: "Alterar modo de lavagem"
+    sequence:
+    - service: mqtt.publish
+      data:
+        qos: 1
+        topic: 'cmnd/lava_loucas_casa/POWER2'
+        payload: 'ON'
+
+  lava_loucas_casa_alerta_final:
+    alias: "Alerta final"
+    sequence:
+    - service: input_select.select_option
+      entity_id: input_select.lava_loucas_casa_modo_lavagem
+      data:
+        option: "Selecionar"
+    - service: notify.TUDO
+      data_template:
+        title: "Alerta Casa"
+        message: "A lava-louças finalizou a lavagem."
+    - service: persistent_notification.create
+      data:
+        title: "Alerta Casa ({{now().strftime('%H:%M')}})"
+        message: "A lava-louças finalizou a lavagem."
+    - condition: state
+      entity_id: input_boolean.boa_noite
+      state: 'off'
+    - service: media_player.volume_set
+      entity_id: media_player.sala, media_player.suite
+      data:
+        volume_level: 0.7
+    - service: tts.amazon_polly_say
+      entity_id: media_player.sala, media_player.suite
+      data_template:
+        message: <speak><amazon:auto-breaths frequency='medium'>A lava-louças finalizou a lavagem, sugiro deixar a porta aberta para evitar odores indesejados.</amazon:auto-breaths></speak>
+
+homeassistant:
+  customize:
+
+    script.lava_loucas_casa_alterar_modo:
+      icon: mdi:dishwasher

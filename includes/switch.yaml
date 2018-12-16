@@ -155,6 +155,14 @@
         entity_id: script.tv_lg_dinamica_303_power_off
       icon_template: mdi:television
 
+    conectar_octoprint:
+      friendly_name: "Conectar Octoprint"
+      value_template: "{{ not is_state('sensor.octoprint_current_state', 'unknown') }}"
+      turn_on:
+        service: shell_command.octoprint_connect
+      turn_off:
+        service: shell_command.octoprint_disconnect
+
 - platform: mqtt
   name: "Toalheiro"
   command_topic: "cmnd/banheirosuite/POWER1"
@@ -223,4 +231,59 @@
   payload_available: "Online"
   payload_not_available: "Offline"
   qos: 1
-  retain: false  
+  retain: false
+
+- platform: mqtt
+  name: "ender3"
+  icon: mdi:printer-3d
+  command_topic: "cmnd/ender3/POWER"
+  state_topic: "stat/ender3/POWER"
+  availability_topic: "tele/ender3/LWT"
+  payload_available: "Online"
+  payload_not_available: "Offline"
+  qos: 1
+  retain: false
+
+- platform: mqtt
+  name: "cafeteira_casa"
+  icon: mdi:coffee
+  command_topic: "cmnd/cafeteira_casa/POWER"
+  state_topic: "stat/cafeteira_casa/POWER"
+  availability_topic: "tele/cafeteira_casa/LWT"
+  payload_available: "Online"
+  payload_not_available: "Offline"
+  qos: 1
+  retain: false
+
+- platform: mqtt
+  name: "chaleira_casa"
+  icon: mdi:radiator
+  command_topic: "cmnd/chaleira_casa/POWER"
+  state_topic: "stat/chaleira_casa/POWER"
+  availability_topic: "tele/chaleira_casa/LWT"
+  payload_available: "Online"
+  payload_not_available: "Offline"
+  qos: 1
+  retain: false
+
+- platform: mqtt
+  name: "ventilador_casa"
+  icon: mdi:radiator
+  command_topic: "cmnd/ventilador_casa/POWER"
+  state_topic: "stat/ventilador_casa/POWER"
+  availability_topic: "tele/ventilador_casa/LWT"
+  payload_available: "Online"
+  payload_not_available: "Offline"
+  qos: 1
+  retain: false
+
+- platform: mqtt
+  name: "muvrh_cafeteira"
+  icon: mdi:coffee
+  command_topic: "cmnd/muvrh_cafeteira/POWER"
+  state_topic: "stat/muvrh_cafeteira/POWER"
+  availability_topic: "tele/muvrh_cafeteira/LWT"
+  payload_available: "Online"
+  payload_not_available: "Offline"
+  qos: 1
+  retain: false

@@ -1,11 +1,10 @@
 - platform: webostv
   host: 192.168.1.39
-  mac: 3C:CD:93:19:74:3D
   name: "TV Sala"
   filename: webostv2.conf
   turn_on_action:
     service: script.tv_lg_sala_power_on
-  timeout: 12
+  timeout: 60
   customize:
     sources:
       - hdmi1
@@ -17,12 +16,11 @@
 
 - platform: webostv
   host: 192.168.1.38
-  mac: 3C:CD:93:85:F0:2F
   name: "TV Suíte"
   filename: webostv1.conf
   turn_on_action:
     service: script.tv_lg_suite_power_on
-  timeout: 12
+  timeout: 60
   customize:
     sources:
       - hdmi1

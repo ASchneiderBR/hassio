@@ -9,7 +9,7 @@ timer:
 
   zigbee_permit_join:
     name: Tempo restante
-    duration: 180
+    duration: 360
 
 binary_sensor:
 
@@ -33,6 +33,7 @@ group:
 automation:
 
   - id: enable_zigbee_join
+    initial_state: true
     alias: Enable Zigbee joining
     hide_entity: true
     trigger:
@@ -49,6 +50,7 @@ automation:
         entity_id: timer.zigbee_permit_join
 
   - id: disable_zigbee_join
+    initial_state: true
     alias: Disable Zigbee joining
     trigger:
     - entity_id: input_boolean.zigbee_permit_join
@@ -65,6 +67,7 @@ automation:
     hide_entity: true
 
   - id: disable_zigbee_join_timer
+    initial_state: true
     alias: Disable Zigbee joining by timer
     hide_entity: true
     trigger:

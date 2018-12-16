@@ -8,8 +8,12 @@
 #  exclude:
 #    - 192.168.1.12
 
+#- platform: asuswrt
+#  host: 192.168.1.1
+#  username: !secret asus_account
+#  password: !secret asus_password
+
 - platform: asuswrt
-  host: 192.168.1.1
-  username: !secret asus_muvrh_user
-  password: !secret asus_muvrh_password
-  track_new_devices: false
+  new_device_defaults:
+    track_new_devices: False
+    hide_if_away: False

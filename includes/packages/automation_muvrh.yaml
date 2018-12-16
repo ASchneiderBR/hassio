@@ -1,6 +1,7 @@
 automation:
 
   - alias: Garagem MuvRH
+    initial_state: true
     trigger:
       - platform: state
         entity_id: input_boolean.entrar_muvrh
@@ -35,6 +36,7 @@ automation:
           {% endif %}
 
   - alias: Sensores - Porta ou janela aberta por muito tempo - MuvRH
+    initial_state: true
     trigger:
       platform: state
       entity_id:
@@ -86,7 +88,7 @@ automation:
         continue_on_timeout: false
       - service: light.turn_on
         entity_id: light.muv203operacoes
-      - delay: 00:00:03
+      - delay: '00:00:03'
       - service: notify.TODOS_CELULARES
         data_template:
           title: "Alerta MuvRH"
@@ -118,6 +120,7 @@ automation:
             {% endif %}
 
   - alias: Sensores - Portas - MuvRH
+    initial_state: true
     trigger:
       platform: state
       entity_id:
@@ -149,6 +152,7 @@ automation:
           message: "Porta da {{ trigger.to_state.name | lower }} acabou de ser aberta."
 
   - alias: MuvRH 303 - Luz do corredor e LED
+    initial_state: true
     trigger:
       platform: state
       entity_id: light.muv303entrada
@@ -171,7 +175,7 @@ automation:
       to: 'on'
     action:
       - service: script.muvrh_desligar_tudo
-      - delay: 00:00:10
+      - delay: '00:00:10'
       - service: input_boolean.turn_off
         entity_id: input_boolean.muvrh_desligar_tudo
 
@@ -199,3 +203,37 @@ automation:
           operation_mode: 'off'
           entity_id:
             - climate.ar_condicionado_da_sala_de_operacoes
+
+  - alias: Desligar cafeteira automaticamente
+    initial_state: true
+    trigger:
+      platform: state
+      entity_id: switch.muvrh_cafeteira
+      to: 'on'
+      for:
+        minutes: 30
+    action:
+      - service: switch.turn_off
+        entity_id: switch.muvrh_cafeteira
+      - service: notify.TUDO
+        data_template:
+          title: "MuvRH"
+          message: "Café está pronto, desligando a cafeteira."
+
+  - alias: MuvRH - Botão Xiaomi entrada sala 203
+    initial_state: true
+    trigger:
+      platform: event
+      event_type: xiaomi_aqara.click
+      event_data:
+        entity_id: binary_sensor.switch_158d0001bc5253
+    action:
+      - service_template: >
+          {% if trigger.event.data.click_type == 'single' %}
+            script.botao_xiaomi_muvrh_entrada203_single
+          {% elif trigger.event.data.click_type == 'double' %}
+            script.botao_xiaomi_muvrh_entrada203_double
+          {% elif trigger.event.data.click_type == 'long_click_press' %}
+            script.botao_xiaomi_muvrh_entrada203_long
+          {% else %}
+          {% endif %}

@@ -1,4 +1,114 @@
+- alias: Ações de reinicialização
+  initial_state: true
+  trigger:
+    platform: homeassistant
+    event: start
+  action:
+    - service: frontend.set_theme
+      data_template:
+        name: "darkred"
+    - service: mqtt.publish
+      data:
+        payload: ""
+        topic: "cmnd/sonoffs/power"
+        qos: 0
+        retain: 0
+    - service: mqtt.publish
+      data:
+        payload: ""
+        topic: "cmnd/sonoffs/power2"
+        qos: 0
+        retain: 0
+    - service: mqtt.publish
+      data:
+        payload: ""
+        topic: "cmnd/sonoffs/power3"
+        qos: 0
+        retain: 0
+    - service: mqtt.publish
+      data:
+        payload: ""
+        topic: "cmnd/sonoffs/power4"
+        qos: 0
+        retain: 0
+    - service: mqtt.publish
+      data:
+        payload: '{\"relaunch\": \"true\"}'
+        topic: "wallpanel/tablet_entrada_casa/command"
+        qos: 0
+        retain: 0
+    - service: input_select.select_option
+      entity_id: input_select.estados_de_succao
+      data_template:
+        option: Balanceado
+    - service: cover.close_cover
+      entity_id:
+        - cover.garagem_muvrh_interno
+        - cover.garagem_muvrh_rua
+        - cover.garagem_casa
+    - service_template: >
+        {%- if states.sun.sun.attributes.elevation > 3 %}
+          automation.turn_off
+        {%- else %}
+          automation.turn_on
+        {% endif %}
+      data_template:
+        entity_id: >
+            {%- if is_state('input_boolean.boa_noite' , 'off') and states.sun.sun.attributes.elevation < 3 %}
+              automation.luzes_da_casa__banheiro_social, automation.luzes_da_casa__banheiro_suite, automation.luzes_da_casa__cozinha, automation.luzes_da_casa__quarto, automation.luzes_da_casa__suite, automation.luzes_da_casa__sala, automation.luzes_da_casa__entrando_em_casa, automation.muvrh_203__luz_do_banheiro, automation.muvrh_203__luz_da_sala_de_operacoes, automation.muvrh_203__luz_da_nossa_sala, automation.muvrh_303__luz_do_banheiro, automation.muvrh_303__luz_da_dinamica, automation.muvrh_303__luz_da_entrada
+            {%- elif is_state('input_boolean.boa_noite' , 'on') and states.sun.sun.attributes.elevation < 3 %}
+              automation.luzes_da_casa__banheiro_social, automation.luzes_da_casa__banheiro_suite, automation.luzes_da_casa__cozinha, automation.luzes_da_casa__sala, automation.luzes_da_casa__entrando_em_casa, automation.muvrh_203__luz_do_banheiro, automation.muvrh_203__luz_da_sala_de_operacoes, automation.muvrh_203__luz_da_nossa_sala, automation.muvrh_303__luz_do_banheiro, automation.muvrh_303__luz_da_dinamica, automation.muvrh_303__luz_da_entrada
+            {%- else %}
+              automation.luzes_da_casa__banheiro_social, automation.luzes_da_casa__banheiro_suite, automation.luzes_da_casa__cozinha, automation.luzes_da_casa__quarto, automation.luzes_da_casa__suite, automation.luzes_da_casa__sala, automation.luzes_da_casa__entrando_em_casa, automation.muvrh_203__luz_do_banheiro, automation.muvrh_203__luz_da_sala_de_operacoes, automation.muvrh_203__luz_da_nossa_sala, automation.muvrh_303__luz_do_banheiro, automation.muvrh_303__luz_da_dinamica, automation.muvrh_303__luz_da_entrada
+            {% endif %}
+    - service: input_select.select_option
+      entity_id: input_select.estados_de_succao
+      data_template:
+        option: >
+          {% if states.vacuum.aspirador.attributes.fan_speed == 'Quiet' %}
+            Silencioso
+          {% elif states.vacuum.aspirador.attributes.fan_speed == 'Balanced' %}
+            Balanceado
+          {% elif states.vacuum.aspirador.attributes.fan_speed == 'Turbo' %}
+            Turbo
+          {% elif states.vacuum.aspirador.attributes.fan_speed == 'Max' %}
+            Turbo máximo
+          {% elif states.vacuum.aspirador.attributes.fan_speed == '105' %}
+            Pano úmido
+          {% endif %}
+    - service_template: >
+        {% if is_state('alarm_control_panel.alarme', 'disarmed') %}
+          {% if is_state('group.pessoas', 'home') %}script.alarme_armar_casa{% else %}script.alarme_armar_fora{% endif %}
+        {% endif %}
+    - service: automation.turn_on
+      entity_id: automation.alarme__aviso_alarme_ativado
+    - service: persistent_notification.create
+      data:
+        title: "Alerta Sistema ({{now().strftime('%H:%M')}})"
+        message: "Hassio iniciado com sucesso."
+    - service: media_player.volume_set
+      entity_id: media_player.sala
+      data:
+        volume_level: 0.7
+    - service: media_player.play_media
+      data:
+        entity_id: media_player.sala
+        media_content_id: 'http://192.168.1.12:8123/local/audio/tts/sistema_reiniciado.mp3'
+        media_content_type: 'audio/mp3'
+    - service: notify.ios_iphone_de_antonio
+      data:
+        title: "Sistema"
+        message: "Home Assistant foi reinicializado"
+    - delay: '00:00:15'
+    - service_template: >
+        {% if (is_state('light.gateway_light_34ce0090940e', 'on' ) or is_state('light.gateway_light_34ce0090940e', 'off' )) %}
+          homekit.start
+        {% else %}
+          script.homekit_no_start
+        {% endif %}
+
 - alias: TV sala
+  initial_state: true
   trigger:
     - platform: state
       entity_id: media_player.tv_sala
@@ -8,7 +118,7 @@
       entity_id: media_player.tv_sala
       to: 'off'
       for:
-        seconds: 10
+        seconds: 30
   action:
     - service_template: >
         {% if is_state('media_player.tv_sala' , 'playing') and is_state('switch.home_theater_sala', 'off') %}
@@ -33,100 +143,13 @@
     - condition: state
       entity_id: media_player.tv_sala
       state: 'playing'
-    - delay: 00:00:06
+    - delay: '00:00:06'
     - service: notify.tv_sala
       data_template:
         message: "Olá! A temperatura da sala é de {{ states.sensor.temperatura_sala.state | int }}ºC. Lá fora está {{ states.sensor.dark_sky_summary.state | lower }} com {{ states.sensor.dark_sky_temperature.state | int }}ºC."
 
-- alias: Ações de reinicialização
-  trigger:
-    platform: homeassistant
-    event: start
-  action:
-    - service: frontend.set_theme
-      data_template:
-        name: "darkred"
-    - service: mqtt.publish
-      data:
-        payload: ""
-        topic: "cmnd/sonoffs/power"
-        qos: 0
-        retain: 0
-    - service: input_select.select_option
-      entity_id: input_select.estados_de_succao
-      data_template:
-        option: Balanceado
-    - service: cover.close_cover
-      entity_id:
-        - cover.garagem_muvrh_interno
-        - cover.garagem_muvrh_rua
-        - cover.garagem_casa
-    - service_template: >
-        {% if states.sun.sun.attributes.elevation > 3 %}
-          homeassistant.turn_off
-        {% else %}
-          homeassistant.turn_on
-        {% endif %}
-      entity_id:
-        - automation.luzes_da_casa__banheiro_social
-        - automation.luzes_da_casa__banheiro_suite
-        - automation.luzes_da_casa__cozinha
-        - automation.luzes_da_casa__quarto
-        - automation.luzes_da_casa__suite
-        - automation.luzes_da_casa__sala
-        - automation.luzes_da_casa__entrando_em_casa
-        - automation.muvrh_203__luz_do_banheiro
-        - automation.muvrh_203__luz_da_sala_de_operacoes
-        - automation.muvrh_203__luz_da_nossa_sala
-        - automation.muvrh_303__luz_do_banheiro
-        - automation.muvrh_303__luz_da_dinamica
-        - automation.muvrh_303__luz_da_entrada
-    - service: input_select.select_option
-      entity_id: input_select.estados_de_succao
-      data_template:
-        option: >
-          {% if states.vacuum.aspirador.attributes.fan_speed == 'Quiet' %}
-            Silencioso
-          {% elif states.vacuum.aspirador.attributes.fan_speed == 'Balanced' %}
-            Balanceado
-          {% elif states.vacuum.aspirador.attributes.fan_speed == 'Turbo' %}
-            Turbo
-          {% elif states.vacuum.aspirador.attributes.fan_speed == 'Max' %}
-            Turbo máximo
-          {% elif states.vacuum.aspirador.attributes.fan_speed == '105' %}
-            Pano úmido
-          {% endif %}
-    - service_template: >
-        {% if is_state('alarm_control_panel.alarme', 'disarmed') %}
-          {% if is_state('group.pessoas', 'home') %}script.alarme_armar_casa{% else %}script.alarme_armar_fora{% endif %}
-        {% endif %}
-    - service_template: >
-        {% if (is_state('light.gateway_light_34ce0090940e', 'on' ) or is_state('light.gateway_light_34ce0090940e', 'off' )) %}
-          homekit.start
-        {% else %}
-          script.homekit_no_start
-        {% endif %}
-    - service: homeassistant.turn_on
-      entity_id: automation.alarme__aviso_alarme_ativado
-    - service: persistent_notification.create
-      data:
-        title: "Alerta Sistema ({{now().strftime('%H:%M')}})"
-        message: "Hassio iniciado com sucesso."
-    - service: media_player.volume_set
-      entity_id: media_player.sala
-      data:
-        volume_level: 0.7
-    - service: media_player.play_media
-      data:
-        entity_id: media_player.sala
-        media_content_id: 'http://192.168.1.12:8123/local/audio/tts/sistema_reiniciado.mp3'
-        media_content_type: 'audio/mp3'
-    - service: notify.ios_iphone_de_antonio
-      data:
-        title: "Sistema"
-        message: "Home Assistant foi reinicializado"
-
 - alias: Alarme - Rearmar automaticamente
+  initial_state: true
   trigger:
     platform: state
     entity_id: alarm_control_panel.alarme
@@ -148,7 +171,7 @@
     - condition: state
       entity_id: alarm_control_panel.alarme
       state: 'disarmed'
-    - delay: 00:10:00
+    - delay: '00:10:00'
     - service_template: >
         {% if is_state('group.pessoas', 'home') %}
         alarm_control_panel.alarm_arm_home
@@ -179,12 +202,16 @@
         message: "O alarme da casa foi armado."
 
 - alias: Sensores - Porta da entrada aberta - Casa
+  initial_state: true
   trigger:
     platform: state
     entity_id: binary_sensor.entrada_casa
     to: 'on'
   action:
-    - service: script.entrada_luz_temporizador
+    - service_template: >
+        {% if is_state('binary_sensor.movimento_entrada_de_casa', 'off') %}
+          script.entrada_luz_temporizador
+        {% endif %}
     - service: notify.TUDO
       data:
         title: "Alerta casa"
@@ -202,6 +229,7 @@
         {% endif %}
 
 - alias: Alarme - Disparar
+  initial_state: true
   trigger:
     platform: state
     entity_id: alarm_control_panel.alarme
@@ -215,6 +243,7 @@
         message: "ATENÇÂO! Alarme foi acionado! Sirene está tocando!"
 
 - alias: Chegar em casa
+  initial_state: true
   trigger:
     platform: state
     entity_id: input_boolean.chegar_casa
@@ -234,7 +263,7 @@
         entity_id: media_player.sala
         media_content_id: 'http://192.168.1.12:8123/local/audio/tts/automacao_chegando_em_casa.mp3'
         media_content_type: 'audio/mp3'
-    - delay: 00:01:00
+    - delay: '00:01:00'
     - service: alarm_control_panel.alarm_disarm
       entity_id: alarm_control_panel.alarme
     - service: input_boolean.turn_off
@@ -242,7 +271,7 @@
     - wait_template: "{{is_state('binary_sensor.entrada_casa', 'on')}}"
       timeout: 00:09:00
       continue_on_timeout: false
-    - delay: 00:00:20
+    - delay: '00:00:20'
     - service_template: >
         {% if is_state('switch.tv_lg_sala', 'off') %}
           switch.turn_on
@@ -250,6 +279,7 @@
       entity_id: switch.tv_lg_sala
 
 - alias: Desligar toalheiro após 2 horas
+  initial_state: true
   trigger:
     platform: state
     entity_id: switch.toalheiro
@@ -265,6 +295,7 @@
         message: "Toalheiro desligado após duas horas de uso."
 
 - alias: Desligar chuveiro após 20 minutos
+  initial_state: true
   trigger:
     platform: state
     entity_id:
@@ -283,7 +314,61 @@
         title: "Automação"
         message: "{{ trigger.to_state.name }} desligado após 20 minutos de uso."
 
+- alias: Desligar cafeteira e chaleira automaticamente
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id:
+      - switch.cafeteira_casa
+      - switch.chaleira_casa
+    to: 'on'
+    for:
+      minutes: 30
+  action:
+    - service: switch.turn_off
+      entity_id:
+        - switch.cafeteira_casa
+        - switch.chaleira_casa
+    - service: notify.TUDO
+      data_template:
+        title: "Automação"
+        message: "{{ trigger.to_state.name }} foi desligada."
+
+- alias: Alerta - Café pronto em casa
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id: switch.cafeteira_casa
+    to: 'on'
+    for:
+      minutes: 5
+  action:
+    - service: notify.TUDO
+      data_template:
+        title: "Automação"
+        message: "O café está pronto!"
+    - service: media_player.volume_set
+      entity_id: media_player.sala
+      data:
+        volume_level: 0.7
+    - service: tts.amazon_polly_say
+      entity_id: media_player.sala
+      data_template:
+        message: <speak>O café está pronto na cozinha!</speak>
+    - condition: state
+      entity_id: input_boolean.boa_noite
+      state: 'off'
+    - service: media_player.volume_set
+      entity_id: media_player.suite
+      data:
+        volume_level: 0.7
+    - service: tts.amazon_polly_say
+      entity_id: media_player.suite
+      data_template:
+        message: <speak>O café está pronto na cozinha!</speak>
+
 - alias: Alerta - Chuveiro ligado sem ninguém em casa
+  initial_state: true
   trigger:
     platform: state
     entity_id:
@@ -302,19 +387,26 @@
 
 
 - alias: Luzes da casa - Entrando em casa
+  initial_state: true
   trigger:
     platform: state
     entity_id: binary_sensor.entrada_casa
     to: 'on'
   condition:
-    condition: state
-    entity_id: light.mesa_jantar
-    state: 'off'
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: light.mesa_jantar
+        state: 'off'
+      - condition: state
+        entity_id: binary_sensor.movimento_entrada_de_casa
+        state: 'off'
   action:
     - service: light.turn_on
       entity_id: light.mesa_jantar
 
 - alias: Sensores - Porta ou janela aberta por muito tempo - Casa
+  initial_state: true
   trigger:
     platform: state
     entity_id:
@@ -337,6 +429,7 @@
         message: 'Atenção: {{ trigger.to_state.name }} aberta por muito tempo!'
 
 - alias: Rotina - Bom dia
+  initial_state: true
   trigger:
     platform: state
     entity_id: input_boolean.bom_dia
@@ -352,6 +445,15 @@
     - service: switch.turn_on
       entity_id: switch.toalheiro
     - service_template: >
+        {% if is_state('input_boolean.cafe_manha', 'on') %}
+          switch.turn_on
+        {% endif %}
+      data_template:
+        entity_id: >
+            {% if is_state('input_boolean.cafe_manha', 'on') %}
+              switch.cafeteira_casa
+            {% endif %}
+    - service_template: >
         {% if is_state('climate.ar_condicionado_da_suite' , 'off') %}
         {% else %}
           {% if is_state('climate.ar_condicionado_da_suite' , 'heat') %}
@@ -365,11 +467,12 @@
     - wait_template: "{{is_state('script.tts_bom_dia', 'off')}}"
     - service: switch.turn_on
       entity_id: switch.tv_lg_suite
-    - delay: 00:05:00
+    - delay: '00:05:00'
     - service: input_boolean.turn_off
       entity_id: input_boolean.bom_dia
 
 - alias: Rotina - Boa noite
+  initial_state: true
   trigger:
     platform: state
     entity_id: input_boolean.boa_noite
@@ -379,7 +482,7 @@
       data:
         title: "Automação"
         message: "Aprontando a casa. Boa noite!"
-    - service: automation.turn_off
+    - service: homeassistant.turn_off
       entity_id:
         - automation.luzes_da_casa__suite
         - automation.luzes_da_casa__quarto
@@ -388,10 +491,17 @@
     - service: script.tts_boa_noite
 
 - alias: Rotina - Ações ao por do sol
+  initial_state: true
   trigger:
-    platform: sun
-    event: sunset
-    offset: '-00:15:00'
+    - platform: sun
+      event: sunset
+      offset: '-00:15:00'
+    - platform: sun
+      event: sunset
+      offset: '-00:50:00'
+  condition:
+    condition: template
+    value_template: "{{ trigger.offset.total_seconds() == -15*60 or states('sensor.dark_sky_cloud_coverage')|int(0) > 80 }}"
   action:
     - service: homeassistant.turn_on
       entity_id:
@@ -411,10 +521,17 @@
         - automation.muvrh_303__luz_do_banheiro
 
 - alias: Rotina - Ações ao nascer do sol
+  initial_state: true
   trigger:
-    platform: sun
-    event: sunrise
-    offset: '-00:15:00'
+    - platform: sun
+      event: sunrise
+      offset: '00:15:00'
+    - platform: sun
+      event: sunrise
+      offset: '00:50:00'
+  condition:
+    condition: template
+    value_template: "{{ trigger.offset.total_seconds() == 15*60 or states('sensor.dark_sky_cloud_coverage')|int(0) > 80 }}"
   action:
     - service: homeassistant.turn_off
       entity_id:
@@ -436,10 +553,11 @@
       entity_id: cover.persiana_sala
 
 - alias: Alerta - Uso CPU em alta por muito tempo
+  initial_state: true
   trigger:
     platform: numeric_state
     entity_id: sensor.cpu_used
-    value_template: '{{ states.sensor.cpu_used.state | int }}'
+    value_template: '{{ states.sensor.processor_use.state | int }}'
     above: 20
     for:
       minutes: 5
@@ -456,6 +574,7 @@
 # Botões Xiaomi#
 
 - alias: Botão Xiaomi quarto
+  initial_state: true
   trigger:
     platform: mqtt
     topic: 'zigbee2mqtt/casa_xiaomi_botao_quarto_01'
@@ -463,23 +582,10 @@
     condition: template
     value_template: "{{ trigger.payload_json.click in ('single','double','triple','quadruple','many','long') }}"
   action:
-    - service_template: >
-        {% if trigger.payload_json.click == 'single' %}
-          script.botao_xiaomi_quarto_01_single
-        {% elif trigger.payload_json.click == 'double' %}
-          script.botao_xiaomi_quarto_01_double
-        {% elif trigger.payload_json.click == 'triple' %}
-          script.botao_xiaomi_quarto_01_triple
-        {% elif trigger.payload_json.click == 'quadruple' %}
-          script.botao_xiaomi_quarto_01_quadruple
-        {% elif trigger.payload_json.click == 'many' %}
-          script.botao_xiaomi_quarto_01_many
-        {% elif trigger.payload_json.click == 'long' %}
-          script.botao_xiaomi_quarto_01_long
-        {% else %}
-        {% endif %}
+    - service_template: "script.botao_xiaomi_quarto_01_{{ trigger.payload_json.click }}"
 
 - alias: Botão Xiaomi suite 01
+  initial_state: true
   trigger:
     platform: mqtt
     topic: 'zigbee2mqtt/casa_xiaomi_botao_suite_01'
@@ -487,23 +593,10 @@
     condition: template
     value_template: "{{ trigger.payload_json.click in ('single','double','triple','quadruple','many','long') }}"
   action:
-    - service_template: >
-        {% if trigger.payload_json.click == 'single' %}
-          script.botao_xiaomi_suite_01_single
-        {% elif trigger.payload_json.click == 'double' %}
-          script.botao_xiaomi_suite_01_double
-        {% elif trigger.payload_json.click == 'triple' %}
-          script.botao_xiaomi_suite_01_triple
-        {% elif trigger.payload_json.click == 'quadruple' %}
-          script.botao_xiaomi_suite_01_quadruple
-        {% elif trigger.payload_json.click == 'many' %}
-          script.botao_xiaomi_suite_01_many
-        {% elif trigger.payload_json.click == 'long' %}
-          script.botao_xiaomi_suite_01_long
-        {% else %}
-        {% endif %}
+    - service_template: "script.botao_xiaomi_suite_01_{{ trigger.payload_json.click }}"
 
 - alias: Botão Xiaomi suite 02
+  initial_state: true
   trigger:
     platform: mqtt
     topic: 'zigbee2mqtt/casa_xiaomi_botao_suite_02'
@@ -511,23 +604,10 @@
     condition: template
     value_template: "{{ trigger.payload_json.click in ('single','double','triple','quadruple','many','long') }}"
   action:
-    - service_template: >
-        {% if trigger.payload_json.click == 'single' %}
-          script.botao_xiaomi_suite_02_single
-        {% elif trigger.payload_json.click == 'double' %}
-          script.botao_xiaomi_suite_02_double
-        {% elif trigger.payload_json.click == 'triple' %}
-          script.botao_xiaomi_suite_02_triple
-        {% elif trigger.payload_json.click == 'quadruple' %}
-          script.botao_xiaomi_suite_02_quadruple
-        {% elif trigger.payload_json.click == 'many' %}
-          script.botao_xiaomi_suite_02_many
-        {% elif trigger.payload_json.click == 'long' %}
-          script.botao_xiaomi_suite_02_long
-        {% else %}
-        {% endif %}
+    - service_template: "script.botao_xiaomi_suite_02_{{ trigger.payload_json.click }}"
 
 - alias: Botão Xiaomi banheiro suite
+  initial_state: true
   trigger:
     platform: mqtt
     topic: 'zigbee2mqtt/casa_xiaomi_botao_banheiro_suite_01'
@@ -561,6 +641,7 @@
           {% endif %}
 
 - alias: Botão Xiaomi banheiro social
+  initial_state: true
   trigger:
     platform: mqtt
     topic: 'zigbee2mqtt/casa_xiaomi_botao_banheiro_social_01'
@@ -594,6 +675,7 @@
           {% endif %}
 
 - alias: Botão Xiaomi sala 01
+  initial_state: true
   trigger:
     platform: mqtt
     topic: 'zigbee2mqtt/casa_xiaomi_botao_sala_01'
@@ -601,23 +683,10 @@
     condition: template
     value_template: "{{ trigger.payload_json.click in ('single','double','triple','quadruple','many','long') }}"
   action:
-    - service_template: >
-        {% if trigger.payload_json.click == 'single' %}
-          script.botao_xiaomi_sala_01_single
-        {% elif trigger.payload_json.click == 'double' %}
-          script.botao_xiaomi_sala_01_double
-        {% elif trigger.payload_json.click == 'triple' %}
-          script.botao_xiaomi_sala_01_triple
-        {% elif trigger.payload_json.click == 'quadruple' %}
-          script.botao_xiaomi_sala_01_quadruple
-        {% elif trigger.payload_json.click == 'many' %}
-          script.botao_xiaomi_sala_01_many
-        {% elif trigger.payload_json.click == 'long' %}
-          script.botao_xiaomi_sala_01_long
-        {% else %}
-        {% endif %}
+    - service_template: "script.botao_xiaomi_sala_01_{{ trigger.payload_json.click }}"
 
 - alias: Botão Xiaomi sala 02
+  initial_state: true
   trigger:
     platform: mqtt
     topic: 'zigbee2mqtt/casa_xiaomi_botao_sala_02'
@@ -625,23 +694,10 @@
     condition: template
     value_template: "{{ trigger.payload_json.click in ('single','double','triple','quadruple','many','long') }}"
   action:
-    - service_template: >
-        {% if trigger.payload_json.click == 'single' %}
-          script.botao_xiaomi_sala_02_single
-        {% elif trigger.payload_json.click == 'double' %}
-          script.botao_xiaomi_sala_02_double
-        {% elif trigger.payload_json.click == 'triple' %}
-          script.botao_xiaomi_sala_02_triple
-        {% elif trigger.payload_json.click == 'quadruple' %}
-          script.botao_xiaomi_sala_02_quadruple
-        {% elif trigger.payload_json.click == 'many' %}
-          script.botao_xiaomi_sala_02_many
-        {% elif trigger.payload_json.click == 'long' %}
-          script.botao_xiaomi_sala_02_long
-        {% else %}
-        {% endif %}
+    - service_template: "script.botao_xiaomi_sala_02_{{ trigger.payload_json.click }}"
 
 - alias: Botão Xiaomi cozinha
+  initial_state: true
   trigger:
     platform: mqtt
     topic: 'zigbee2mqtt/casa_xiaomi_botao_cozinha_01'
@@ -649,23 +705,10 @@
     condition: template
     value_template: "{{ trigger.payload_json.click in ('single','double','triple','quadruple','many','long') }}"
   action:
-    - service_template: >
-        {% if trigger.payload_json.click == 'single' %}
-          script.botao_xiaomi_cozinha_01_single
-        {% elif trigger.payload_json.click == 'double' %}
-          script.botao_xiaomi_cozinha_01_double
-        {% elif trigger.payload_json.click == 'triple' %}
-          script.botao_xiaomi_cozinha_01_triple
-        {% elif trigger.payload_json.click == 'quadruple' %}
-          script.botao_xiaomi_cozinha_01_quadruple
-        {% elif trigger.payload_json.click == 'many' %}
-          script.botao_xiaomi_cozinha_01_many
-        {% elif trigger.payload_json.click == 'long' %}
-          script.botao_xiaomi_cozinha_01_long
-        {% else %}
-        {% endif %}
+    - service_template: "script.botao_xiaomi_cozinha_01_{{ trigger.payload_json.click }}"
 
 - alias: Solicitar status celulares
+  initial_state: true
   trigger:
     platform: time
     minutes: '/60'
@@ -676,6 +719,7 @@
         message: "request_location_update"
 
 - alias: Luzes da casa - LED Desktop sala
+  initial_state: true
   trigger:
     - platform: state
       entity_id: switch.desktop
@@ -692,6 +736,7 @@
 # Cubos
 
 - alias: Cubo sala
+  initial_state: true
   trigger:
     platform: mqtt
     topic: 'zigbee2mqtt/casa_xiaomi_cubo_sala_01'
@@ -718,6 +763,7 @@
         {% endif %}
 
 - alias: Cubo suíte
+  initial_state: true
   trigger:
     platform: mqtt
     topic: 'zigbee2mqtt/casa_xiaomi_cubo_suite_01'
@@ -744,6 +790,7 @@
         {% endif %}
 
 - alias: Alerta - Bateria fraca
+  initial_state: true
   trigger:
     - platform: time
       minutes: '/60'
@@ -769,6 +816,7 @@
         message: "Bateria muito fraca do dispositivo {% for state in states if state.domain in ['switch','binary_sensor','sensor'] and state.attributes.battery_level is defined and state.attributes.battery_level < 10 -%}{%- if loop.first %}{% elif loop.last %} e {% else %}, {% endif -%}{{ state.name }} ({{ state.attributes.battery_level |int }}%){%- else -%}Nenhum{%- endfor %}"
 
 - alias: Alerta - Dispositivo indisponível
+  initial_state: true
   trigger:
     - platform: state
       entity_id:
@@ -792,6 +840,8 @@
         - binary_sensor.motion_sensor_158d0001e43ef1
         - binary_sensor.motion_sensor_158d0001e44035
         - binary_sensor.motion_sensor_158d0001a24bdc
+        - binary_sensor.porta_lava_loucas
+        - binary_sensor.movimento_entrada_de_casa
       to: 'unavailable'
       for:
         minutes: 15
@@ -863,6 +913,9 @@
         - switch.toalheiro
         - switch.muv303bebedouro
         - switch.controle_garagem_casa
+        - switch.muvrh_cafeteira
+        - switch.cafeteira_casa
+        - switch.chaleira_casa
       to: 'unavailable'
       for:
         minutes: 5
@@ -889,7 +942,6 @@
         - device_tracker.camera_cozinha
         - device_tracker.google_home_mini_sala
         - device_tracker.google_home_mini_suite
-        - device_tracker.rfbridgecasa
         - device_tracker.aspirador_xiaomi
         - device_tracker.pi_zero_octoprint_ender3
       to: 'not_home'
@@ -910,6 +962,8 @@
         - device_tracker.rmminioperacoes
         - device_tracker.rmminisala303
         - device_tracker.chromecast_sala303
+        - device_tracker.celular_motog2_muvrh
+        - device_tracker.celular_branco
       to: 'not_home'
       for:
         minutes: 15
@@ -936,6 +990,7 @@
         message: "O dispositivo {{ trigger.to_state.name }} ficou indisponível."
 
 - alias: Push - Iniciar componente HomeKit
+  initial_state: true
   trigger:
     platform: event
     event_type: ios.notification_action_fired
@@ -945,6 +1000,7 @@
     - service: homekit.start
 
 - alias: Push - Reiniciar Home Assistant
+  initial_state: true
   trigger:
     platform: event
     event_type: ios.notification_action_fired
@@ -954,6 +1010,7 @@
     - service: homeassistant.restart
 
 - alias: Push - Testes
+  initial_state: true
   trigger:
     platform: event
     event_type: ios.notification_action_fired
@@ -965,3 +1022,118 @@
           script.cubo_sala_persiana
         {% endif %}
 
+## Impressora 3D
+
+- alias: Impressora - Conectar Octoprint automaticamente
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id: switch.ender3
+    to: 'on'
+  action:
+    - delay: '00:00:05'
+    - service: switch.turn_on
+      entity_id: switch.conectar_octoprint
+
+- alias: Impressora - Desligar após conclusão
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id: 'binary_sensor.octoprint_printing'
+    from: 'on'
+    to: 'off'
+    for:
+      minutes: 1
+  action:
+    - service: notify.ios_iphone_de_antonio
+      data_template:
+        title: "Impressora"
+        message: "Finalizada a impressão, desligando em 5 minutos."
+        data:
+          attachment:
+            content-type: jpeg
+          push:
+            category: camera
+          entity_id: camera.ender_3
+    - service: notify.TODAS_TVS
+      data_template:
+        title: "Impressora"
+        message: "Finalizada a impressão, desligando em 5 minutos."
+    - service: persistent_notification.create
+      data:
+        title: "Impressora ({{now().strftime('%H:%M')}})"
+        message: "Finalizada a impressão."
+    - delay: '00:05:00'
+    - condition: state
+      entity_id: 'binary_sensor.octoprint_printing'
+      state: 'off'
+    - service: switch.turn_off
+      entity_id:
+        - switch.ender3
+
+- alias: Impressora - Desligar temperaturas altas
+  initial_state: true
+  trigger:
+    platform: template
+    value_template: "{{ (states('sensor.octoprint_actual_bed_temp')|int >= (states('sensor.octoprint_target_bed_temp')|int * 1.2) and states('sensor.octoprint_target_bed_temp')|int > 0) or (states('sensor.octoprint_actual_tool0_temp')|int >= (states('sensor.octoprint_target_tool0_temp')|int * 1.2) and states('sensor.octoprint_target_tool0_temp')|int > 0) }}"
+  condition:
+    condition: state
+    entity_id: binary_sensor.octoprint_printing
+    state: 'on'
+  action:
+    - service: notify.ios_iphone_de_antonio
+      data_template:
+        title: "Impressora"
+        message: "ATENÇÃO! Temperaturas passaram dos limites, impressora foi desligada da energia!"
+    - service: notify.TODAS_TVS
+      data_template:
+        title: "Impressora"
+        message: "ATENÇÃO! Temperaturas passaram dos limites, impressora foi desligada da energia!"
+    - service: persistent_notification.create
+      data:
+        title: "Impressora ({{now().strftime('%H:%M')}})"
+        message: "ATENÇÃO! Temperaturas passaram dos limites, impressora foi desligada da energia!"
+    - service: switch.turn_off
+      entity_id: switch.ender3
+
+- alias: Volume TV da sala
+  initial_state: true
+  trigger:
+    platform: mqtt
+    topic: tele/planta-casa/RESULT
+  action:
+    - service_template: >
+        {% if trigger.payload_json.IrReceived.Data == "C10040BF" %}
+          script.home_theater_sala_volup_x6
+        {% elif trigger.payload_json.IrReceived.Data == "C100C03F" %}
+          script.home_theater_sala_voldown_x6
+        {% endif %}
+
+## Botões Sonoff
+
+- alias: Botão Sonoff - Hold
+  initial_state: true
+  trigger:
+    - platform: mqtt
+      topic: cmnd/#
+      payload: 'HOLD'  
+  action:
+    - service_template: script.interruptor_{{ trigger.topic.split('/')[1] | lower }}_{{ trigger.topic.split('/')[2] | lower }}_hold
+
+- alias: Botão Sonoff - Power 2 toggle
+  initial_state: true
+  trigger:
+    - platform: mqtt
+      topic: cmnd/+/POWER2
+      payload: 'TOGGLE'
+  action:
+    - service_template: script.interruptor_{{ trigger.topic.split('/')[1] | lower }}_{{ trigger.topic.split('/')[2] | lower }}_power2
+
+- alias: Botão Sonoff - Power 3 toggle
+  initial_state: true
+  trigger:
+    - platform: mqtt
+      topic: cmnd/+/POWER3
+      payload: 'TOGGLE'
+  action:
+    - service_template: script.interruptor_{{ trigger.topic.split('/')[1] | lower }}_{{ trigger.topic.split('/')[2] | lower }}_power3
