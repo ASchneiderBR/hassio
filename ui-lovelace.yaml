@@ -1,11 +1,11 @@
 resources:
   - url: /local/lovelace/custom_ui/gauge-card.js?3
     type: js
-  - url: /local/lovelace/custom_ui/monster-card.js?3
+  - url: /local/lovelace/custom_ui/monster-card.js?4
     type: js
   - url: /local/lovelace/custom_ui/bignumber-card.js?3
     type: js
-  - url: /local/lovelace/custom_ui/entity-attributes-card.js?3
+  - url: /local/lovelace/custom_ui/entity-attributes-card.js?4
     type: js
   - url: /local/lovelace/custom_ui/weather-card.js?3
     type: js
@@ -15,6 +15,12 @@ resources:
     type: js
   - url: /local/lovelace/custom_ui/useful-markdown-card.js
     type: js
+  - url: /local/lovelace/custom_ui/thermostat-card.js
+    type: module
+  - url: /local/lovelace/custom_ui/vertical-stack-in-card.js
+    type: module
+  - url: /local/lovelace/custom_ui/canvas-gauge-card.js?2
+    type: module
 
 title: Casa Antonio e Roberta
 views:
@@ -22,7 +28,8 @@ views:
     id: casa
     cards:
 
-      - type: vertical-stack
+      - id: 9ea1faa96c584b469ef35067e9c31f75  # Automatically created id
+        type: vertical-stack
         title: Sistema
         cards:
           - type: custom:monster-card
@@ -32,24 +39,25 @@ views:
             filter:
               include:
                 - entity_id: device_tracker.antonio
-                  state: 'home'
+                  state: home
                 - entity_id: device_tracker.antonio
-                  state: 'not_home'
+                  state: not_home
                 - entity_id: device_tracker.roberta
-                  state: 'home'
+                  state: home
                 - entity_id: device_tracker.roberta
-                  state: 'not_home'
-                - entity_id: device_tracker.alice_celular
-                  state: 'home'
+                  state: not_home
+                - entity_id: device_tracker.andreia_celular
+                  state: home
           - type: entities
             title: Sistema
+            show_header_toggle: false
             entities:
               - entity: sensor.disk_use_percent_home
                 name: Disco
               - entity: sensor.memory_use_percent
                 name: RAM
-              - entity: sensor.since_last_boot
-                name: Tempo
+#              - entity: sensor.ha_uptime
+#                name: Tempo
           - type: horizontal-stack
             cards:
               - type: custom:gauge-card
@@ -71,33 +79,120 @@ views:
 
           - type: entities
             title: Internet
-            show_header_toggle: no
+            show_header_toggle: false
             entities:
               - entity: sensor.fastcom_download
                 secondary_info: last-changed
               - script.speed_test
 
+#          - type: horizontal-stack
+#            cards:
+#
+#              - type: custom:canvas-gauge-card
+#                entity: sensor.asuswrt_download_speed
+#                card_height: 140
+#                shadow_height: 12%
+#                font_size: 1em
+#                gauge:
+#                  title: "Download (Mbps)"
+#                  type: "radial-gauge"
+#                  width: 250
+#                  height: 250
+#                  minValue: 0
+#                  maxValue: 50
+#                  startAngle: 90
+#                  ticksAngle: 180
+#                  valueBox: false
+#                  units: "Download (Mbps)"
+#                  majorTicks: ["0", "10", "20", "30", "40", "50"]
+#                  minorTicks: 2
+#                  strokeTicks: true
+#                  highlights: [{"from": 40, "to": 50,"color": "rgba(200, 50, 50, .75)"}]
+#                  borders: true
+#
+#              - type: custom:canvas-gauge-card
+#                entity: sensor.asuswrt_upload_speed
+#                card_height: 140
+#                shadow_height: 12%
+#                font_size: 1em
+#                gauge:
+#                  title: "Upload (Mbps)"
+#                  type: "radial-gauge"
+#                  width: 250
+#                  height: 250
+#                  minValue: 0
+#                  maxValue: 5
+#                  startAngle: 90
+#                  ticksAngle: 180
+#                  valueBox: false
+#                  units: "Upload (Mbps)"
+#                  majorTicks: ["0", "1", "2", "3", "4", "5"]
+#                  minorTicks: 2
+#                  strokeTicks: true
+#                  highlights: [{"from": 4, "to": 5,"color": "rgba(200, 50, 50, .75)"}]
+#                  borders: true
+
+          - type: horizontal-stack
+            cards:
+              - type: custom:gauge-card
+                title: Download
+                entity: sensor.asuswrt_download_speed
+                min: 0
+                max: 50
+                severity:
+                  red: 45
+                  amber: 30
+                  green: 15
+              - type: custom:gauge-card
+                title: Upload
+                entity: sensor.asuswrt_upload_speed
+                min: 0
+                max: 5
+                severity:
+                  red: 1
+                  amber: 3
+                  green: 1
+
+          - type: entities
+            title: Magno
+            show_header_toggle: false
+            entities:
+              - input_boolean.magno_em_casa
+              - input_boolean.caixa_areia_suja
+
           - type: entities
             title: Plantas
-            show_header_toggle: no
+            show_header_toggle: false
             entities:
               - entity: sensor.planta_casa
                 name: Umidade planta da sala
 
           - type: entities
             title: ZigBee
-            show_header_toggle: no
+            show_header_toggle: false
             entities:
-              - input_boolean.zigbee_permit_join
-              - timer.zigbee_permit_join
               - binary_sensor.estado_do_bridge
+              - input_boolean.zigbee_permit_join
+              - type: custom:monster-card
+                card:
+                  type: entities
+                filter:
+                  include:
+                    - entity_id: timer.zigbee_permit_join
+                when:
+                  entity: input_boolean.zigbee_permit_join
+                  state: "on"
 
-      - type: vertical-stack
+
+
+      - id: bd067adc676d4422a81e6d2a75bff84d  # Automatically created id
+        type: vertical-stack
         cards:
           - type: vertical-stack
             cards:
               - type: entities
                 title: Tempo agora
+                show_header_toggle: false
                 entities:
                   - sun.sun
                   - sensor.dark_sky_summary
@@ -108,15 +203,18 @@ views:
                 entity: weather.tempo
 
               - type: entities
-                show_header_toggle: no
+                show_header_toggle: false
                 title: Rotinas casa
                 entities:
                   - input_boolean.bom_dia
                   - input_boolean.boa_noite
+                  - input_boolean.visita_casa
+                  - input_boolean.cafe_manha
+                  - input_boolean.chaleira_manha
 
               - type: entities
                 title: Aspirador
-                show_header_toggle: no
+                show_header_toggle: false
                 entities:
                   - entity: vacuum.aspirador
                     secondary_info: last-changed
@@ -133,21 +231,78 @@ views:
                       include:
                         - key: vacuum.aspirador.cleaning_time
                           name: Tempo limpando (último)
+                          unit: minutos
                         - key: vacuum.aspirador.cleaned_area
                           name: Área limpa (último)
+                          unit: metros
                         - key: vacuum.aspirador.main_brush_left
-                          name: Escova principal (horas)
+                          name: Escova principal
+                          unit: horas
                         - key: vacuum.aspirador.side_brush_left
-                          name: Escova lateral (horas)
+                          name: Escova lateral
+                          unit: horas
                         - key: vacuum.aspirador.filter_left
-                          name: Filtro (horas)
+                          name: Filtro
+                          unit: horas
                         - key: vacuum.aspirador.sensor_dirty_left
-                          name: Sensores (horas)
+                          name: Sensores
+                          unit: horas
+
+              - type: vertical-stack
+                cards:
+
+                  - type: custom:monster-card
+                    card:
+                      type: entities
+                      title: Lava louças
+                      show_header_toggle: false
+                    filter:
+                      include:
+                        - entity_id: binary_sensor.lava_loucas_casa
+                          options:
+                            name: Estado
+                            secondary_info: last-changed
+                        - entity_id: binary_sensor.porta_lava_loucas
+                        - entity_id: input_select.lava_loucas_casa_modo_lavagem
+                          options:
+                            icon: mdi:dishwasher
+                    when:
+                      entity: binary_sensor.lava_loucas_casa
+                      state: 'off'
+
+                  - type: custom:monster-card
+                    card:
+                      type: entities
+                      title: Lava louças (lavando)
+                      show_header_toggle: false
+                    filter:
+                      include:
+                        - entity_id: binary_sensor.lava_loucas_casa
+                          options:
+                            name: Estado
+                            secondary_info: last-changed
+                        - entity_id: timer.lava_loucas
+                          options:
+                            name: Tempo restante
+                        - entity_id: sensor.temperatura_lava_loucas
+                          options:
+                            name: Temperatura
+                        - entity_id: sensor.umidade_lava_loucas
+                          options:
+                            name: Umidade
+                        - entity_id: script.lava_loucas_casa_iniciar_parar
+                          options:
+                            name: Parar lavagem
+                            icon: mdi:stop-circle-outline
+                    when:
+                      entity: binary_sensor.lava_loucas_casa
+                      state: 'on'
 
               - type: vertical-stack
                 cards:
                   - type: entities
                     title: Celular Antonio
+                    show_header_toggle: false
                     entities:
                       - entity: device_tracker.iphone_de_antonio
                         secondary_info: last-changed
@@ -155,6 +310,7 @@ views:
                       - sensor.iphone_de_antonio_battery_state
                   - type: entities
                     title: Celular Roberta
+                    show_header_toggle: false
                     entities:
                       - entity: device_tracker.iphone_de_roberta
                         secondary_info: last-changed
@@ -162,18 +318,21 @@ views:
                       - sensor.iphone_de_roberta_battery_state
                   - type: entities
                     title: iPad Casa
+                    show_header_toggle: false
                     entities:
                       - entity: device_tracker.ipad_de_antonio
                         secondary_info: last-changed
                       - sensor.ipad_casa_antonio_e_roberta_battery_level
                       - sensor.ipad_casa_antonio_e_roberta_battery_state
 
-      - type: vertical-stack
+      - id: 4fa02e5cd9ab456e9895953a076702d6  # Automatically created id
+        type: vertical-stack
         cards:
 
           - type: entity-filter
             card:
               title: Dispositivos offline (atenção)
+              show_header_toggle: false
             entities:
               - entity: device_tracker.nas
                 secondary_info: last-changed
@@ -182,8 +341,6 @@ views:
               - entity: device_tracker.google_home_mini_suite
                 secondary_info: last-changed
               - entity: device_tracker.aspirador_xiaomi
-                secondary_info: last-changed
-              - entity: device_tracker.rfbridgecasa
                 secondary_info: last-changed
               - entity: device_tracker.tabletaut
                 secondary_info: last-changed
@@ -201,13 +358,16 @@ views:
                 secondary_info: last-changed
               - entity: binary_sensor.estado_do_bridge
                 secondary_info: last-changed
+              - entity: device_tracker.pi_zero_octoprint_ender3
+                secondary_info: last-changed
             state_filter:
-              - 'not_home'
-              - 'off'
+              - not_home
+              - "off"
 
           - type: entity-filter
             card:
               title: Dispositivos indisponíveis (atenção)
+              show_header_toggle: false
             entities:
               - entity: light.banheiro_social_principal
                 secondary_info: last-changed
@@ -267,6 +427,10 @@ views:
                 secondary_info: last-changed
               - entity: binary_sensor.movimento_banheiro_social
                 secondary_info: last-changed
+              - entity: binary_sensor.porta_lava_loucas
+                name: Lava-louças
+                icon: mdi:dishwasher
+                secondary_info: last-changed
               - entity: sensor.umidade_sala
                 secondary_info: last-changed
               - entity: sensor.umidade_quarto
@@ -274,8 +438,6 @@ views:
               - entity: sensor.umidade_cozinha
                 secondary_info: last-changed
               - entity: sensor.umidade_suite
-                secondary_info: last-changed
-              - entity: sensor.illumination_34ce00907e65
                 secondary_info: last-changed
               - entity: sensor.temperatura_sala
                 secondary_info: last-changed
@@ -297,36 +459,47 @@ views:
                 secondary_info: last-changed
               - entity: sensor.planta_casa
                 secondary_info: last-changed
+              - entity: switch.cafeteira_casa
+                secondary_info: last-changed
+              - entity: switch.chaleira_casa
+                secondary_info: last-changed
+              - entity: switch.ventilador_casa
+                secondary_info: last-changed
             state_filter:
-              - 'unavailable'
-              - 'offline'
+              - unavailable
+              - offline
 
           - type: custom:monster-card
             card:
               type: entities
               title: Baterias fracas (atenção)
+              show_header_toggle: false
             filter:
               include:
                 - domain: binary_sensor
                   attributes:
-                    battery_level: '< 10'
+                    battery_level: < 10
                 - domain: sensor
                   attributes:
-                    battery_level: '< 10'
+                    battery_level: < 10
                 - domain: binary_sensor
                   attributes:
-                    battery: '< 10'
+                    battery: < 10
                 - domain: sensor
                   attributes:
-                    battery: '< 10'
+                    battery: < 10
 
           - type: entity-filter
             card:
               title: Sensores ativos
+              show_header_toggle: false
             entities:
               - entity: sensor.interruptores_ligados
                 secondary_info: last-changed
               - entity: binary_sensor.entrada_casa
+                secondary_info: last-changed
+              - entity: binary_sensor.movimento_entrada_de_casa
+                name: Movimento entrada
                 secondary_info: last-changed
               - entity: binary_sensor.box_banheiro_suite
                 secondary_info: last-changed
@@ -344,13 +517,17 @@ views:
                 secondary_info: last-changed
               - entity: binary_sensor.movimento_banheiro_social
                 secondary_info: last-changed
+              - entity: binary_sensor.porta_lava_loucas
+                name: Porta lava-louças
+                icon: mdi:dishwasher
+                secondary_info: last-changed
             state_filter:
-              - 'on'
+              - "on"
 
           - type: entity-filter
             card:
               title: Luzes ligadas
-            show_header_toggle: yes
+              show_header_toggle: true
             entities:
               - entity: light.area_servico
                 secondary_info: last-changed
@@ -391,12 +568,14 @@ views:
               - entity: light.banheiro_social_espelho
                 secondary_info: last-changed
             state_filter:
-              - 'on'
+              - "on"
           - type: entity-filter
             card:
               title: Dispositivos ligados
-            show_header_toggle: yes
+              show_header_toggle: true
             entities:
+              - entity: device_tracker.retropie
+                secondary_info: last-changed
               - entity: switch.aspirador
                 secondary_info: last-changed
               - entity: switch.chuveirosocial
@@ -419,13 +598,24 @@ views:
                 secondary_info: last-changed
               - entity: switch.tv_lg_suite
                 secondary_info: last-changed
+              - entity: switch.cafeteira_casa
+                secondary_info: last-changed
+              - entity: switch.chaleira_casa
+                secondary_info: last-changed
+              - entity: switch.ventilador_casa
+                secondary_info: last-changed
+              - entity: binary_sensor.lava_loucas_casa
+                name: Lava-louças
+                secondary_info: last-changed
+                icon: mdi:dishwasher
             state_filter:
-              - 'on'
+              - "on"
+              - home
 
           - type: entity-filter
             card:
               title: Persianas abertas
-            show_header_toggle: yes
+              show_header_toggle: false
             entities:
               - entity: cover.persiana_suite
                 name: Suíte
@@ -434,36 +624,154 @@ views:
               - entity: cover.persiana_sala
                 name: Sala
             state_filter:
-              - 'open'
+              - open
 
           - type: entity-filter
             card:
               title: Ares condicionados ligados
+              show_header_toggle: false
             entities:
               - entity: climate.ar_condicionado_da_suite
                 secondary_info: last-changed
               - entity: climate.ar_condicionado_da_sala
                 secondary_info: last-changed
-              - entity: climate.ar_condicionado_da_quarto
+              - entity: climate.ar_condicionado_do_quarto
                 secondary_info: last-changed
             state_filter:
-              - 'cool'
-              - 'heat'
-              - 'auto'
+              - cool
+              - heat
+              - auto
 
-      - type: vertical-stack
+          - type: vertical-stack
+            title: Ender 3
+            cards:
+
+              - type: custom:monster-card
+                card:
+                  type: entities
+                  title: Ender 3 (Desligada)
+                  show_header_toggle: false
+                filter:
+                  include:
+                    - entity_id: switch.ender3
+                      options:
+                        name: Energia Ender 3
+                        secondary_info: last-changed
+                    - entity_id: light.ender_3
+                      options:
+                        name: Luzes para a câmera
+                when:
+                  entity: switch.ender3
+                  state: 'off'
+
+              - type: custom:monster-card
+                card:
+                  type: entities
+                  title: Ender 3 (Ligada)
+                  show_header_toggle: false
+                filter:
+                  include:
+                    - entity_id: switch.ender3
+                      options:
+                        name: Energia Ender 3
+                        secondary_info: last-changed
+                    - entity_id: switch.conectar_octoprint
+                      options:
+                        name: Conexão OctoPrint
+                        secondary_info: last-changed
+#                    - type: weblink
+#                      name: Abrir OctoPrint
+#                      url: http://192.168.1.69/
+#                      icon: mdi:open-in-new
+                    - entity_id: light.ender_3
+                      options:
+                        name: Luzes para a câmera
+                    - entity_id: script.octoprint_preheat_tool
+                      options:
+                        name: Preaquecer bico
+                    - entity_id: sensor.octoprint_actual_tool0_temp
+                      options:
+                        name: Temperatura atual do bico
+                    - entity_id: script.octoprint_preheat_bed
+                      options:
+                        name: Preaquecer cama
+                    - entity_id: sensor.octoprint_actual_bed_temp
+                      options:
+                        name: Temperatura atual da cama
+                    - entity_id: script.octoprint_auto_home
+                      options:
+                        name: Centralizar
+                    - entity_id: script.octoprint_disable_motors
+                      options:
+                        name: Desligar motores
+                when:
+                  entity: switch.ender3
+                  state: 'on'
+
+              - type: custom:monster-card
+                card:
+                  type: entities
+                  title: Ender 3 (Imprimindo)
+                  show_header_toggle: false
+                filter:
+                  include:
+                    - entity_id: binary_sensor.octoprint_printing
+                      options:
+                        name: Imprimindo
+                        secondary_info: last-changed
+                    - entity_id: script.octoprint_cancelar
+                      options:
+                        name: Parar impressão
+                    - entity_id: sensor.octoprint_time_elapsed
+                      options:
+                        name: Tempo percorrido
+                    - entity_id: sensor.octoprint_time_remaining
+                      options:
+                        name: Tempo faltando
+                    - entity_id: sensor.octoprint_job_percentage
+                      options:
+                        name: Percentíl impressão atual
+                    - entity_id: sensor.octoprint_target_tool0_temp
+                      options:
+                        name: Temperatura programada do bico
+                    - entity_id: sensor.octoprint_target_bed_temp
+                      options:
+                        name: Temperatura programada da cama
+                    - entity_id: binary_sensor.octoprint_printing_error
+                      options:
+                        name: Erro
+                when:
+                  entity: binary_sensor.octoprint_printing
+                  state: 'on'
+
+          - type: picture-glance
+            title: Ender 3
+            entities:
+              - switch.ender3
+              - light.ender_3
+            camera_image: camera.ender_3
+
+      - id: 68af791c1ddb4774933f9dee243509ab  # Automatically created id
+        type: vertical-stack
         cards:
 
           - type: entities
             title: Alarme
-            show_header_toggle: no
+            show_header_toggle: false
             entities:
               - alarm_control_panel.alarme
               - switch.sirene
 
           - type: entities
+            title: Eletrodomésticos
+            show_header_toggle: false
+            entities:
+              - entity: switch.ventilador_casa
+                secondary_info: last-changed
+
+          - type: entities
             title: Garagem
-            show_header_toggle: no
+            show_header_toggle: false
             entities:
               - script.garagem_casa
 
@@ -472,7 +780,7 @@ views:
 
               - type: entities
                 title: Controles RF Bridge
-                show_header_toggle: no
+                show_header_toggle: false
                 entities:
                   - input_select.rf_bridge_device_select
                   - input_select.rf_bridge_mode_select
@@ -483,7 +791,7 @@ views:
             cards:
               - type: entities
                 title: Tvs
-                show_header_toggle: no
+                show_header_toggle: false
                 entities:
                   - entity: media_player.tv_suite
                     name: Suíte
@@ -492,7 +800,7 @@ views:
 
               - type: entities
                 title: Google Home
-                show_header_toggle: no
+                show_header_toggle: false
                 entities:
                   - entity: media_player.suite
                     name: Suíte
@@ -501,7 +809,7 @@ views:
 
 #              - type: entities
 #                title: Spotify
-#                show_header_toggle: no
+#                show_header_toggle: false
 #                entities:
 #                  - media_player.spotify
 #                  - input_select.spotify_playlist
@@ -513,18 +821,47 @@ views:
   - title: Cômodos
     id: comodos
     cards:
-      - type: entities
+      - id: 90929cf09a024ea8ba514b125d18f31c  # Automatically created id
+        type: entities
         title: Suíte
-        show_header_toggle: no
+        show_header_toggle: false
         entities:
           - binary_sensor.movimento_suite
           - sensor.umidade_suite
           - climate.ar_condicionado_da_suite
-          - script.ar_suite_display
-          - script.ar_suite_swing
+          - type: custom:monster-card
+            card:
+              type: entities
+            filter:
+              include:
+                - entity_id: script.ar_suite_display
+                - entity_id: script.ar_suite_swing
+            when:
+              entity: climate.ar_condicionado_da_suite
+              state: "cool"
+          - type: custom:monster-card
+            card:
+              type: entities
+            filter:
+              include:
+                - entity_id: script.ar_suite_display
+                - entity_id: script.ar_suite_swing
+            when:
+              entity: climate.ar_condicionado_da_suite
+              state: "heat"
           - cover.persiana_suite
           - switch.tv_lg_suite
-          - media_player.tv_suite
+          - type: custom:monster-card
+            card:
+              type: entities
+            filter:
+              include:
+                - entity_id: media_player.tv_suite
+                  options:
+                    name: Estado
+            when:
+              entity: switch.tv_lg_suite
+              state: "on"
           - light.ledsuitecama
           - light.ledsuitetv
           - light.suite_principal
@@ -535,23 +872,43 @@ views:
           - switch.chuveirosuite
           - switch.toalheiro
 
-      - type: entities
+      - id: 910bfa46e9ba46a89cd1757075b2d095  # Automatically created id
+        type: entities
         title: Quarto
-        show_header_toggle: no
+        show_header_toggle: false
         entities:
           - binary_sensor.movimento_quarto
           - sensor.umidade_quarto
           - climate.ar_condicionado_do_quarto
-          - script.ar_quarto_display
-          - script.ar_quarto_swing
+          - type: custom:monster-card
+            card:
+              type: entities
+            filter:
+              include:
+                - entity_id: script.ar_quarto_display
+                - entity_id: script.ar_quarto_swing
+            when:
+              entity: climate.ar_condicionado_do_quarto
+              state: "cool"
+          - type: custom:monster-card
+            card:
+              type: entities
+            filter:
+              include:
+                - entity_id: script.ar_quarto_display
+                - entity_id: script.ar_quarto_swing
+            when:
+              entity: climate.ar_condicionado_do_quarto
+              state: "heat"
           - cover.persiana_quarto
           - switch.tv_lg_quarto
           - light.ledquartotv
           - light.quarto
 
-      - type: entities
+      - id: 07e44491eec34636b920e2e7ce027d91  # Automatically created id
+        type: entities
         title: Banheiro social
-        show_header_toggle: no
+        show_header_toggle: false
         entities:
           - binary_sensor.movimento_banheiro_social
           - binary_sensor.box_banheiro_social
@@ -559,24 +916,67 @@ views:
           - light.banheiro_social_espelho
           - switch.chuveirosocial
 
-      - type: entities
+      - id: da3774b224774fe49123f345b5c96adc  # Automatically created id
+        type: entities
         title: Sala
-        show_header_toggle: no
+        show_header_toggle: false
         entities:
           - binary_sensor.entrada_casa
+          - entity: binary_sensor.movimento_entrada_de_casa
+            name: Movimento entrada
           - binary_sensor.movimento_sala
           - sensor.umidade_sala
           - climate.ar_condicionado_da_sala
-          - script.ar_sala_display
-          - script.ar_sala_swing
+          - type: custom:monster-card
+            card:
+              type: entities
+            filter:
+              include:
+                - entity_id: script.ar_sala_display
+                - entity_id: script.ar_sala_swing
+            when:
+              entity: climate.ar_condicionado_da_sala
+              state: "cool"
+          - type: custom:monster-card
+            card:
+              type: entities
+            filter:
+              include:
+                - entity_id: script.ar_sala_display
+                - entity_id: script.ar_sala_swing
+            when:
+              entity: climate.ar_condicionado_da_sala
+              state: "heat"
           - cover.persiana_sala
           - switch.desktop
           - switch.servidor
           - switch.tv_lg_sala
-          - media_player.tv_sala
+          - type: custom:monster-card
+            card:
+              type: entities
+            filter:
+              include:
+                - entity_id: media_player.tv_sala
+                  options:
+                    name: Estado
+            when:
+              entity: switch.tv_lg_sala
+              state: "on"
           - switch.home_theater_sala
-          - script.home_theater_sala_volup_x6
-          - script.home_theater_sala_voldown_x6
+          - type: custom:monster-card
+            card:
+              type: entities
+            filter:
+              include:
+                - entity_id: script.home_theater_sala_volup_x6
+                  options:
+                    name: Aumentar volume
+                - entity_id: script.home_theater_sala_voldown_x6
+                  options:
+                    name: Diminuir volume
+            when:
+              entity: switch.home_theater_sala
+              state: "on"
           - light.corredor
           - light.ledsaladesktop
           - light.sala_principal
@@ -584,13 +984,16 @@ views:
           - light.mesa_jantar
           - light.entrada
 
-      - type: entities
+      - id: 97174e8382664be99b8fb1d93055b636  # Automatically created id
+        type: entities
         title: Cozinha
-        show_header_toggle: no
+        show_header_toggle: false
         entities:
           - binary_sensor.movimento_cozinha
           - sensor.umidade_cozinha
           - sensor.temperatura_cozinha
+          - switch.cafeteira_casa
+          - switch.chaleira_casa
           - light.cozinha
           - light.ledcozinhabalcao
           - light.ledchaocozinha
@@ -600,17 +1003,20 @@ views:
     id: automacoes
     cards:
 
-      - type: vertical-stack
+      - id: 53ee926bb8ca407ebd4d90c0369c34c6  # Automatically created id
+        type: vertical-stack
         cards:
 
           - type: entities
-            title: Rotinas casa
             show_header_toggle: true
+            title: Rotinas casa
             entities:
               - automation.rotina__acoes_ao_nascer_do_sol
               - automation.rotina__acoes_ao_por_do_sol
               - automation.rotina__boa_noite
               - automation.rotina__bom_dia
+              - entity: automation.desligar_cafeteira_e_chaleira_automaticamente
+                name: Rotina - Desligar cafeteira e chaleira após 15 minutos
 
           - type: entities
             title: Rotinas MuvRH
@@ -618,6 +1024,8 @@ views:
             entities:
               - automation.rotina__ligar_tudo_quando_primeiro_chegar
               - automation.rotina__desligar_ar_sala_operacoes
+              - entity: automation.desligar_cafeteira_automaticamente
+                name: Rotina - Desligar cafeteira em 30 minutos
 
           - type: entities
             title: Luzes casa
@@ -643,7 +1051,16 @@ views:
               - automation.muvrh_303__luz_da_dinamica
               - automation.muvrh_303__luz_do_banheiro
 
-      - type: vertical-stack
+          - type: entities
+            title: Ender 3
+            show_header_toggle: true
+            entities:
+              - automation.impressora__conectar_octoprint_automaticamente
+              - automation.impressora__desligar_apos_conclusao
+              - automation.impressora__desligar_temperaturas_altas
+
+      - id: 78cdbbc67a79477dbdce5ba0599b071f  # Automatically created id
+        type: vertical-stack
         cards:
           - type: entities
             title: Alertas
@@ -684,11 +1101,12 @@ views:
               - automation.automacao__rf_bridge_muvrh
 
 
-      - type: vertical-stack
+      - id: 56a2caacc2f64884b2e776667c4c3305  # Automatically created id
+        type: vertical-stack
         cards:
           - type: entities
             title: Temporizadores casa
-            show_header_toggle: no
+            show_header_toggle: false
             entities:
               - input_number.timmer_cozinha
               - input_number.timmer_sala
@@ -699,7 +1117,7 @@ views:
 
           - type: entities
             title: Temporizadores Muvrh
-            show_header_toggle: no
+            show_header_toggle: false
             entities:
               - input_number.timmer_muvrh_203_entrada
               - input_number.timmer_muvrh_203_banheiro
@@ -713,140 +1131,142 @@ views:
     id: tablet
     cards:
 
-      - type: vertical-stack
+      - id: eb7ee28b9c7540259c9538efa3e45f5d  # Automatically created id
+        type: vertical-stack
         title: Sistema
         cards:
 
-        - type: markdown
-          content: >
-            # Controles da entrada e sala
+          - type: markdown
+            content: >
+              # Tablet entrada de casa
 
-        - type: entities
-          show_header_toggle: no
-          entities:
-            - sensor.pws_weather_1h
+          - type: entities
+            show_header_toggle: false
+            entities:
+              - entity: sensor.pws_weather_1h
+                name: "Em 1 hora:"
 
-        - type: horizontal-stack
-          cards:
-            - type: custom:button-card
-              entity: switch.sistema_alarme_casa
-              icon: mdi:security-home
-              action: toggle
-              size: 60%
-              color: rgb(211, 47, 47)
-              name: Alarme
-              style:
+          - type: horizontal-stack
+            cards:
+              - type: custom:button-card
+                entity: switch.sistema_alarme_casa
+                icon: mdi:security-home
+                action: toggle
+                size: 60%
+                color: rgb(211, 47, 47)
+                name: Alarme
+                style:
               #  - text-transform: none
-                - font-size: 18px
-                - font-weight: bold
-            - type: custom:button-card
-              entity: switch.energia_casa
-              icon: mdi:home-circle
-              action: toggle
-              size: 60%
-              color: rgb(211, 47, 47)
-              name: Energia casa
-              style:
+                  - font-size: 18px
+                  - font-weight: bold
+              - type: custom:button-card
+                entity: switch.energia_casa
+                icon: mdi:home-circle
+                action: toggle
+                size: 60%
+                color: rgb(211, 47, 47)
+                name: Energia casa
+                style:
               #  - text-transform: none
-                - font-size: 18px
-                - font-weight: bold
+                  - font-size: 18px
+                  - font-weight: bold
 
-        - type: horizontal-stack
-          cards:
-            - type: custom:button-card
-              entity: light.entrada
-              icon: mdi:lightbulb
-              action: toggle
-              size: 60%
-              color: rgb(211, 47, 47)
-              name: Entrada
-              style:
-                - text-transform: none
-            - type: custom:button-card
-              entity: light.luzes_principais_cozinha
-              icon: mdi:lightbulb
-              action: toggle
-              size: 60%
-              color: rgb(211, 47, 47)
-              name: Cozinha
-              style:
-                - text-transform: none
-            - type: custom:button-card
-              entity: light.area_servico
-              icon: mdi:lightbulb
-              action: toggle
-              size: 60%
-              color: rgb(211, 47, 47)
-              name: Area serviço
-              style:
-                - text-transform: none
+          - type: horizontal-stack
+            cards:
+              - type: custom:button-card
+                entity: light.entrada
+                icon: mdi:lightbulb
+                action: toggle
+                size: 60%
+                color: rgb(211, 47, 47)
+                name: Entrada
+                style:
+                  - text-transform: none
+              - type: custom:button-card
+                entity: light.luzes_principais_cozinha
+                icon: mdi:lightbulb
+                action: toggle
+                size: 60%
+                color: rgb(211, 47, 47)
+                name: Cozinha
+                style:
+                  - text-transform: none
+              - type: custom:button-card
+                entity: light.area_servico
+                icon: mdi:lightbulb
+                action: toggle
+                size: 60%
+                color: rgb(211, 47, 47)
+                name: Area serviço
+                style:
+                  - text-transform: none
 
-        - type: horizontal-stack
-          cards:
-            - type: custom:button-card
-              entity: light.mesa_jantar
-              icon: mdi:ceiling-light
-              action: toggle
-              size: 60%
-              color: rgb(211, 47, 47)
-              name: Mesa jantar
-              style:
-                - text-transform: none
-            - type: custom:button-card
-              entity: light.ledsaladesktop
-              icon: mdi:led-strip
-              action: toggle
-              size: 60%
-              color: rgb(211, 47, 47)
-              name: Painel sala
-              style:
-                - text-transform: none
-            - type: custom:button-card
-              entity: light.sala_principal
-              icon: mdi:lightbulb
-              action: toggle
-              size: 60%
-              color: rgb(211, 47, 47)
-              name: Principal sala
-              style:
-                - text-transform: none
+          - type: horizontal-stack
+            cards:
+              - type: custom:button-card
+                entity: light.mesa_jantar
+                icon: mdi:ceiling-light
+                action: toggle
+                size: 60%
+                color: rgb(211, 47, 47)
+                name: Mesa jantar
+                style:
+                  - text-transform: none
+              - type: custom:button-card
+                entity: light.ledsaladesktop
+                icon: mdi:led-strip
+                action: toggle
+                size: 60%
+                color: rgb(211, 47, 47)
+                name: Painel sala
+                style:
+                  - text-transform: none
+              - type: custom:button-card
+                entity: light.sala_principal
+                icon: mdi:lightbulb
+                action: toggle
+                size: 60%
+                color: rgb(211, 47, 47)
+                name: Principal sala
+                style:
+                  - text-transform: none
 
-        - type: horizontal-stack
-          cards:
-            - type: custom:button-card
-              entity: switch.desktop
-              icon: mdi:desktop-classic
-              action: toggle
-              size: 60%
-              color: rgb(211, 47, 47)
-              name: Desktop
-              style:
-                - text-transform: none
-            - type: custom:button-card
-              entity: switch.tv_lg_sala
-              icon: mdi:television
-              action: toggle
-              size: 60%
-              color: rgb(211, 47, 47)
-              name: TV sala
-              style:
-                - text-transform: none
-            - type: custom:button-card
-              entity: climate.ar_condicionado_da_sala
-              icon: mdi:air-conditioner
-              action: more_info
-              size: 60%
-              color: rgb(211, 47, 47)
-              name: Ar sala
-              style:
-                - text-transform: none
+          - type: horizontal-stack
+            cards:
+              - type: custom:button-card
+                entity: switch.desktop
+                icon: mdi:desktop-classic
+                action: toggle
+                size: 60%
+                color: rgb(211, 47, 47)
+                name: Desktop
+                style:
+                  - text-transform: none
+              - type: custom:button-card
+                entity: switch.tv_lg_sala
+                icon: mdi:television
+                action: toggle
+                size: 60%
+                color: rgb(211, 47, 47)
+                name: TV sala
+                style:
+                  - text-transform: none
+              - type: custom:button-card
+                entity: climate.ar_condicionado_da_sala
+                icon: mdi:air-conditioner
+                action: more_info
+                size: 60%
+                color: rgb(211, 47, 47)
+                name: Ar sala
+                style:
+                  - text-transform: none
 
 #      - type: vertical-stack
 #        cards:
 #
 #          - type: entities
 #            title: Tempo
-#            show_header_toggle: no
+#            show_header_toggle: false
 #            entities:
 #              - sensor.pws_weather_1h
 #
@@ -954,7 +1374,8 @@ views:
   - title: MuvRH
     id: muvrh
     cards:
-      - type: vertical-stack
+      - id: 7844d48e9d1f4270a09327db6448bb1b  # Automatically created id
+        type: vertical-stack
         cards:
           - type: custom:monster-card
             card:
@@ -963,68 +1384,115 @@ views:
             filter:
               include:
                 - entity_id: device_tracker.antonio
-                  state: 'home'
+                  state: home
                 - entity_id: device_tracker.roberta
-                  state: 'home'
+                  state: home
+                - entity_id: device_tracker.raphaela_muvrh
+                  state: home
                 - entity_id: device_tracker.pedro_muvrh
-                  state: 'home'
-                - entity_id: device_tracker.thaina_muvrh
-                  state: 'home'
+                  state: home
+                - entity_id: device_tracker.juliane_muvrh
+                  state: home
+                - entity_id: device_tracker.amanda_muvrh
+                  state: home
           - type: entities
             title: Nossa sala
-            show_header_toggle: no
+            show_header_toggle: false
             entities:
               - binary_sensor.motion_sensor_158d0001e02f9a
               - climate.ar_condicionado_da_nossa_sala
-              - sensor.illumination_158d0001e02f9a
               - light.gateway_light_34ce0090940e
               - light.muv203nossasala
 
           - type: entities
             title: Sala de operações
-            show_header_toggle: no
+            show_header_toggle: false
             entities:
               - binary_sensor.motion_sensor_158d0001e420d0
               - climate.ar_condicionado_da_sala_de_operacoes
-              - sensor.illumination_158d0001e420d0
+              - type: custom:monster-card
+                card:
+                  type: entities
+                filter:
+                  include:
+                    - entity_id: script.ar_sala_operacoes_swing
+                when:
+                  entity: climate.ar_condicionado_da_sala_de_operacoes
+                  state: "cool"
+              - type: custom:monster-card
+                card:
+                  type: entities
+                filter:
+                  include:
+                    - entity_id: script.ar_sala_operacoes_swing
+                when:
+                  entity: climate.ar_condicionado_da_sala_de_operacoes
+                  state: "heat"
               - sensor.humidity_158d00015633b4
               - switch.tv_sala_operacoes
               - light.muv203operacoes
+              - switch.muvrh_cafeteira
               - switch.muv203bebedouro
 
           - type: entities
             title: Banheiro 203
-            show_header_toggle: no
+            show_header_toggle: false
             entities:
               - binary_sensor.motion_sensor_158d0001e43ef1
               - light.muv203banheiro
 
           - type: entities
             title: Entrada 203
-            show_header_toggle: no
+            show_header_toggle: false
             entities:
               - binary_sensor.door_window_sensor_158d0001bf2a09
               - binary_sensor.motion_sensor_158d0001ad6b83
               - climate.ar_condicionado_da_entrada_203
-              - sensor.illumination_158d0001ad6b83
+              - type: custom:monster-card
+                card:
+                  type: entities
+                filter:
+                  include:
+                    - entity_id: script.ar_entrada_203_swing
+                when:
+                  entity: climate.ar_condicionado_da_entrada_203
+                  state: "cool"
+              - type: custom:monster-card
+                card:
+                  type: entities
+                filter:
+                  include:
+                    - entity_id: script.ar_entrada_203_swing
+                when:
+                  entity: climate.ar_condicionado_da_entrada_203
+                  state: "heat"
               - sensor.humidity_158d0001d7e65d
               - light.muv203entrada
 
-      - type: vertical-stack
+      - id: 91bc2bbc9b84483faf1e3058b85d1101  # Automatically created id
+        type: vertical-stack
         cards:
           - type: entities
             title: Sala 303
-            show_header_toggle: no
+            show_header_toggle: false
             entities:
               - binary_sensor.door_window_sensor_158d0001b8671f
               - binary_sensor.motion_sensor_158d0001e44035
-              - sensor.illumination_158d0001e44035
               - binary_sensor.motion_sensor_158d0001a24bdc
-              - sensor.illumination_158d0001a24bdc
               - sensor.humidity_158d0001703b44
               - climate.ar_condicionado_da_sala_303
               - switch.tv_dinamica_303
-              - media_player.empresa
+              - type: custom:monster-card
+                card:
+                  type: entities
+                filter:
+                  include:
+                    - entity_id: media_player.empresa
+                      options:
+                        name: Chromecast
+                when:
+                  entity: switch.tv_dinamica_303
+                  state: "on"
               - light.muv303entrada
               - light.muv303dinamica
               - light.muv303corredor
@@ -1032,16 +1500,18 @@ views:
               - switch.muv303bebedouro
           - type: entities
             title: Banheiro 303
-            show_header_toggle: no
+            show_header_toggle: false
             entities:
               - binary_sensor.motion_sensor_158d0001ad6c20
               - light.muv303banheiro
 
-      - type: vertical-stack
+      - id: c2293eaaf99c42fa890f715cfe70cb54  # Automatically created id
+        type: vertical-stack
         cards:
           - type: entity-filter
             card:
               title: Dispositivos offline (atenção)
+              show_header_toggle: false
             entities:
               - entity: device_tracker.xiaomi_hub_muvrh
                 secondary_info: last-changed
@@ -1059,6 +1529,8 @@ views:
                 secondary_info: last-changed
               - entity: device_tracker.celular_branco
                 secondary_info: last-changed
+              - entity: device_tracker.celular_motog2_muvrh
+                secondary_info: last-changed
               - entity: device_tracker.celular_motog5s_muvrh
                 secondary_info: last-changed
               - entity: device_tracker.impressora_canon
@@ -1070,11 +1542,12 @@ views:
               - entity: device_tracker.orangepi_pihole
                 secondary_info: last-changed
             state_filter:
-              - 'not_home'
+              - not_home
 
           - type: entity-filter
             card:
               title: Dispositivos indisponíveis (atenção)
+              show_header_toggle: false
             entities:
               - entity: light.gateway_light_34ce0090940e
                 secondary_info: last-changed
@@ -1123,11 +1596,12 @@ views:
               - entity: binary_sensor.motion_sensor_158d0001a24bdc
                 secondary_info: last-changed
             state_filter:
-              - 'unavailable'
-    
+              - unavailable
+
           - type: entity-filter
             card:
               title: Sensores ligados
+              show_header_toggle: false
             entities:
               - entity: binary_sensor.door_window_sensor_158d0001bf2a09
                 secondary_info: last-changed
@@ -1148,11 +1622,12 @@ views:
               - entity: binary_sensor.motion_sensor_158d0001a24bdc
                 secondary_info: last-changed
             state_filter:
-              - 'on'
+              - "on"
 
           - type: entity-filter
             card:
               title: Computadores ligados
+              show_header_toggle: false
             entities:
               - entity: device_tracker.notebook_antonio
                 secondary_info: last-changed
@@ -1173,11 +1648,12 @@ views:
               - entity: device_tracker.muvrh_lg_303
                 secondary_info: last-changed
             state_filter:
-              - 'home'
+              - home
 
           - type: entity-filter
             card:
               title: Luzes ligadas
+              show_header_toggle: true
             entities:
               - entity: light.gateway_light_34ce0090940e
                 secondary_info: last-changed
@@ -1200,11 +1676,12 @@ views:
               - entity: light.muv303banheiro
                 secondary_info: last-changed
             state_filter:
-              - 'on'
+              - "on"
 
           - type: entity-filter
             card:
               title: Dispositivos ligados
+              show_header_toggle: true
             entities:
               - entity: switch.tv_sala_operacoes
                 secondary_info: last-changed
@@ -1215,7 +1692,7 @@ views:
               - entity: switch.muv303bebedouro
                 secondary_info: last-changed
             state_filter:
-              - 'on'
+              - "on"
 
           - type: entity-filter
             card:
@@ -1230,13 +1707,13 @@ views:
               - entity: climate.ar_condicionado_da_sala_303
                 secondary_info: last-changed
             state_filter:
-              - 'cool'
-              - 'heat'
-              - 'auto'
+              - cool
+              - heat
+              - auto
 
           - type: entities
             title: Garagem MuvRH
-            show_header_toggle: no
+            show_header_toggle: false
             entities:
               - script.garagem_muvrh_rua
               - script.garagem_muvrh_interno
@@ -1253,7 +1730,8 @@ views:
     panel: false
     cards:
 
-      - type: picture-elements
+      - id: c2e574c1e82f43bca346345307786d92  # Automatically created id
+        type: picture-elements
         #title: Mapa
         image: /local/lovelace/images/floor_plan_casa5.png
         elements:
@@ -1558,12 +2036,35 @@ views:
             style:
               top: 88%
               left: 36%
-          
-      - type: map
-        aspect_ratio: 100%
-        entities:
-          - entity: device_tracker.iphone_de_antonio
-          - entity: device_tracker.iphone_de_roberta
-          - zone.home
-          - zone.trabalho
 
+#      - id: 4d17bc9ee87f432384a2741872053f0f  # Automatically created id
+#        type: map
+#        aspect_ratio: 100%
+#        entities:
+#          - entity: device_tracker.iphone_de_antonio
+#          - entity: device_tracker.iphone_de_roberta
+#          - zone.home
+#          - zone.trabalho
+
+      - id: bef840a2f87246d7a3245e827ad283e0  # Automatically created id
+        type: horizontal-stack
+        cards:
+          - type: custom:thermostat-card
+            title: Suite
+            entity: climate.ar_condicionado_da_suite
+
+      - id: 55b1b9a5802b4aa7ae6d89086ca820ce  # Automatically created id
+        type: horizontal-stack
+        cards:
+          - type: custom:thermostat-card
+            title: Quarto
+            entity: climate.ar_condicionado_do_quarto
+          - type: custom:thermostat-card
+            title: Sala
+            entity: climate.ar_condicionado_da_sala
+    #        hvac:
+    #          states:
+    #            'off': 'off'
+    #            'cool': 'cool'
+    #            'heat': 'heat'
+    #          attribute: operation_mode

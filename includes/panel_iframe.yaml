@@ -8,7 +8,7 @@ tasmoadmin:
   icon: 'mdi:access-point'
   url: 'http://192.168.1.12:9541/devices'
 
-#octoprint:
-#  title: 'OctoPrint'
-#  icon: 'mdi:printer-3d'
-#  url: 'https://192.168.1.69:80/'
+octoprint:
+  title: 'OctoPrint'
+  icon: 'mdi:printer-3d'
+  url: 'http://192.168.1.69'

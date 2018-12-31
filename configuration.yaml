@@ -24,27 +24,29 @@ zone 2:
 api:
 config:
 conversation:
-discovery:
 ffmpeg:
 hassio:
 history:
 logbook:
 map:
+shopping_list:
 sun:
 updater:
 zeroconf:
 
 alarm_control_panel: !include includes/alarm.yaml
+asuswrt: !include includes/asuswrt.yaml
 automation: !include includes/automation.yaml
 binary_sensor: !include includes/binary_sensor.yaml
 camera: !include includes/camera.yaml
-#cast: !include includes/cast.yaml
+cast: !include includes/cast.yaml
 cloud: !include includes/cloud.yaml
 climate: !include includes/climate.yaml
 cover: !include includes/cover.yaml
 device_tracker: !include includes/device_tracker.yaml
+discovery: !include includes/discovery.yaml
 frontend: !include includes/frontend.yaml
-#google_assistant: includes/google_assistant.yaml
+google_assistant: !include includes/google_assistant.yaml
 group: !include includes/group.yaml
 homekit: !include includes/homekit.yaml
 http: !include includes/http.yaml
@@ -54,6 +56,7 @@ input_select: !include includes/input_select.yaml
 ios: !include includes/ios.yaml
 light: !include includes/light.yaml
 logger: !include includes/logger.yaml
+lovelace: !include includes/lovelace.yaml
 media_player: !include includes/media_player.yaml
 mqtt: !include includes/mqtt.yaml
 notify: !include includes/notify.yaml
@@ -65,6 +68,7 @@ script: !include includes/script.yaml
 sensor: !include includes/sensor.yaml
 shell_command: !include includes/shell_command.yaml
 switch: !include includes/switch.yaml
+timer: !include includes/timer.yaml
 tts: !include includes/tts.yaml
 #upnp: !include includes/upnp.yaml
 vacuum: !include includes/vacuum.yaml

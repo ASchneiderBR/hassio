@@ -115,3 +115,9 @@
   device_class: humidity
   value_template: "{{ value_json.DHT11.Humidity }}"
   qos: 1
+
+#- platform: qbittorrent
+#  name: "qBittorrent Servidor"
+#  url: 'http://192.168.1.10:7894'
+#  username: !secret qbtitorrent_user
+#  password: !secret qbtitorrent_password

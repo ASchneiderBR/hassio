@@ -792,6 +792,7 @@
         - switch.muvrh_cafeteira
         - switch.cafeteira_casa
         - switch.chaleira_casa
+        - switch.ventilador_casa
       to: 'unavailable'
       for:
         minutes: 5
@@ -905,9 +906,10 @@
   trigger:
     platform: state
     entity_id: switch.ender3
+    from: 'off'
     to: 'on'
   action:
-    - delay: '00:00:05'
+    - delay: '00:00:03'
     - service: switch.turn_on
       entity_id: switch.conectar_octoprint
 

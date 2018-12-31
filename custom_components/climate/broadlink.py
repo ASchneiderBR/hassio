@@ -57,10 +57,10 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend({
     vol.Required(CONF_MAC): cv.string,
     vol.Required(CONF_IRCODES_INI): cv.string,
     vol.Optional(CONF_TIMEOUT, default=DEFAULT_TIMEOUT): cv.positive_int, 
-    vol.Optional(CONF_MIN_TEMP, default=DEFAULT_MIN_TEMP): cv.positive_int,
-    vol.Optional(CONF_MAX_TEMP, default=DEFAULT_MAX_TEMP): cv.positive_int,
-    vol.Optional(CONF_TARGET_TEMP, default=DEFAULT_TARGET_TEMP): cv.positive_int,
-    vol.Optional(CONF_TARGET_TEMP_STEP, default=DEFAULT_TARGET_TEMP_STEP): cv.positive_int,
+    vol.Optional(CONF_MIN_TEMP, default=DEFAULT_MIN_TEMP): vol.Coerce(float),
+    vol.Optional(CONF_MAX_TEMP, default=DEFAULT_MAX_TEMP): vol.Coerce(float),
+    vol.Optional(CONF_TARGET_TEMP, default=DEFAULT_TARGET_TEMP): vol.Coerce(float),
+    vol.Optional(CONF_TARGET_TEMP_STEP, default=DEFAULT_TARGET_TEMP_STEP): vol.Coerce(float),
     vol.Optional(CONF_TEMP_SENSOR): cv.entity_id,
     vol.Optional(CONF_CUSTOMIZE, default={}): CUSTOMIZE_SCHEMA,
     vol.Optional(CONF_DEFAULT_OPERATION, default=DEFAULT_OPERATION): cv.string,
@@ -161,13 +161,15 @@ class BroadlinkIRClimate(ClimateDevice, RestoreEntity):
         elif section == 'idle':
             value = 'idle_command'
         else: 
-            value = self._current_fan_mode.lower() + "_" + str(int(self._target_temperature)) if not section == 'off' else 'off_command'
+            value = self._current_fan_mode.lower() + "_" + '{0:g}'.format(float(self._target_temperature)) if not section == 'off' else 'off_command'
         
         command = self._commands_ini.get(section, value)
         
         for retry in range(DEFAULT_RETRY):
             try:
                 payload = b64decode(command)
+                _LOGGER.debug("Sending command [%s %s] to %s", section, value, self._name)
+                _LOGGER.debug("IR Code: %s", command)
                 self._broadlink_device.send_data(payload)
                 break
             except (socket.timeout, ValueError):

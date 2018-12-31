@@ -130,6 +130,7 @@ script:
         entity_id: input_boolean.boa_noite
         state: 'off'
 
+## Desligar tudo boa noite
 
   casa_desligar_tudo_noite:
     alias: "Desligar tudo em casa - boa noite"
@@ -206,40 +207,59 @@ script:
             {% set entities = ['switch.chuveirosocial','switch.tv_lg_quarto'] -%}
             {{ states.switch| selectattr('entity_id', 'in', entities) | selectattr('state','eq','on') | map(attribute='entity_id') | join(', ') }}
 
+## Desligar tudo em casa
+
   casa_desligar_tudo:
     alias: "Desligar tudo em casa"
     sequence:
-      - service_template: >
-          {% if is_state('climate.ar_condicionado_da_suite' , 'off') or is_state('climate.ar_condicionado_do_quarto' , 'off') or is_state('climate.ar_condicionado_da_sala' , 'off') %}
-          {%- else %}
-            climate.set_operation_mode
-          {%- endif %}
+      - service: script.casa_desligar_tudo_climates
+      - service: script.casa_desligar_tudo_lights
+      - service: script.casa_desligar_tudo_switches
+      - service: alarm_control_panel.alarm_disarm
+        entity_id: alarm_control_panel.alarme
+
+  casa_desligar_tudo_climates:
+    alias: "Desligar todas os ares condicionados"
+    sequence:
+      - condition: template
+        value_template: "{{ not is_state('climate.ar_condicionado_da_suite' , 'off') or not is_state('climate.ar_condicionado_do_quarto' , 'off') or not is_state('climate.ar_condicionado_da_sala' , 'off') }}"
+      - service: climate.set_operation_mode
         data_template:
           operation_mode: 'off'
           entity_id: >
             {% set entities = ['climate.ar_condicionado_da_suite','climate.ar_condicionado_do_quarto','climate.ar_condicionado_da_sala'] -%}
             {{ states.climate | selectattr('entity_id', 'in', entities) | selectattr('state','!=','off') | map(attribute='entity_id') | join(', ') }}
-      - service_template: >
+
+  casa_desligar_tudo_lights:
+    alias: "Desligar todas as luzes"
+    sequence:
+      - condition: template
+        value_template: >
           {% set lights = ['light.area_servico','light.suite_banheiro_principal','light.suite_banheiro_espelho','light.corredor','light.cozinha','light.entrada','light.ledchaocozinha','light.ledcozinhabalcao','light.ledquartotv','light.ledsaladesktop','light.ledsalatv','light.ledsuitecama','light.ledsuitetv','light.mesa_jantar','light.quarto','light.sala_principal','light.banheiro_social_principal','light.banheiro_social_espelho','light.suite_principal'] -%}
           {%- for item in lights if states(item) == 'on' -%}
           {%- if loop.first -%}
-            light.turn_off
+            {{ true }}
           {%- endif -%}
           {%- endfor %}
+      - service: light.turn_off
         data_template:
           entity_id: >
-            {%- set entities = ['light.area_servico','light.suite_banheiro_principal','light.suite_banheiro_espelho','light.corredor','light.cozinha','light.entrada','light.ledchaocozinha','light.ledcozinhabalcao','light.ledquartotv','light.ledsaladesktop','light.ledsalatv','light.ledsuitecama','light.ledsuitetv','light.mesa_jantar','light.quarto','light.sala_principal','light.banheiro_social_principal','light.banheiro_social_espelho','light.suite_principal'] -%}
-            {{ states.light | selectattr('entity_id', 'in', entities) | selectattr('state','eq','on') | map(attribute='entity_id') | join(', ') }}
-      - service_template: >
+            {%- set lights = ['light.area_servico','light.suite_banheiro_principal','light.suite_banheiro_espelho','light.corredor','light.cozinha','light.entrada','light.ledchaocozinha','light.ledcozinhabalcao','light.ledquartotv','light.ledsaladesktop','light.ledsalatv','light.ledsuitecama','light.ledsuitetv','light.mesa_jantar','light.quarto','light.sala_principal','light.banheiro_social_principal','light.banheiro_social_espelho','light.suite_principal'] -%}
+            {{ states.light | selectattr('entity_id', 'in', lights) | selectattr('state','eq','on') | map(attribute='entity_id') | join(', ') }}
+
+  casa_desligar_tudo_switches:
+    alias: "Desligar todas os dispositivos"
+    sequence:
+      - condition: template
+        value_template: >
           {% set switches = ['switch.chuveirosuite','switch.toalheiro','switch.tv_lg_sala','switch.tv_lg_suite','switch.chuveirosocial','switch.tv_lg_quarto','switch.cafeteira_casa','switch.chaleira_casa','switch.ventilador_casa','switch.home_theater_sala'] -%}
           {%- for item in switches if states(item) == 'on' -%}
           {%- if loop.first -%}
-            switch.turn_off
+            {{ true }}
           {%- endif -%}
           {%- endfor %}
+      - service: switch.turn_off
         data_template:
           entity_id: >
-            {% set entities = ['switch.chuveirosuite','switch.toalheiro','switch.tv_lg_sala','switch.tv_lg_suite','switch.chuveirosocial','switch.tv_lg_quarto','switch.cafeteira_casa','switch.chaleira_casa','switch.ventilador_casa','switch.home_theater_sala'] -%}
-            {{ states.switch| selectattr('entity_id', 'in', entities) | selectattr('state','eq','on') | map(attribute='entity_id') | join(', ') }}
-      - service: alarm_control_panel.alarm_disarm
-        entity_id: alarm_control_panel.alarme
+            {% set switches = ['switch.chuveirosuite','switch.toalheiro','switch.tv_lg_sala','switch.tv_lg_suite','switch.chuveirosocial','switch.tv_lg_quarto','switch.cafeteira_casa','switch.chaleira_casa','switch.ventilador_casa','switch.home_theater_sala'] -%}
+            {{ states.switch| selectattr('entity_id', 'in', switches) | selectattr('state','eq','on') | map(attribute='entity_id') | join(', ') }}

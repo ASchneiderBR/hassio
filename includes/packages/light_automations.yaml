@@ -115,8 +115,6 @@ automation:
     action:
       - service: light.turn_on
         entity_id: light.luzes_principais_sala
-        data:
-          brightness_pct: 100
       - delay: '00:00:03'
       - wait_template: "{{ ((is_state('light.luzes_principais_sala' , 'off')) or ((((as_timestamp(strptime(states.sensor.date__time.state, '%Y-%m-%d, %H:%M')) - as_timestamp(states.binary_sensor.movimento_sala.last_updated) ) / 60) | int) >= states.input_number.timmer_sala.state | int -1 and is_state('binary_sensor.movimento_sala' , 'off'))) }}"
       - condition: state

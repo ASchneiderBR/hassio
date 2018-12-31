@@ -127,6 +127,8 @@ exclude:
     - sensor.octoprint_time_remaining
     - sensor.asuswrt_download
     - sensor.asuswrt_upload
+    - sensor.qbittorrent_servidor_down_speed
+    - sensor.qbittorrent_servidor_up_speed
 include:
   entities:
     - group.pessoas
