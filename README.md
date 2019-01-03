@@ -54,6 +54,8 @@ Minhas configurações pessoais utilizadas no Home Assistant em casa e no trabal
 - Cheap Android Tablet x1
 - Split System Air Conditioner (IR) x5
 - Window Air Conditioner (IR) x2
+- CC2531 (coordinator) x1
+- CC2531 (router) x1
 
 # DIY projects:
 
