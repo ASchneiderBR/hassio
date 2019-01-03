@@ -17,6 +17,7 @@ Minhas configurações pessoais utilizadas no Home Assistant em casa e no trabal
 - AirCast
 - HomeKit (Siri)
 - Plex Media Server
+- Pi-Hole (OrangePi)
 
 # Hardware:
 
@@ -31,7 +32,7 @@ Minhas configurações pessoais utilizadas no Home Assistant em casa e no trabal
 - Xiaomi temperure sensor x7
 - Xiaomi door sensor x5
 - Xiaomi vibration sensor x2
-- RF tubular curtain motor x3
+- Tubular curtain motor (RF) x3
 - Solenoid valve x2
 - Xiaomi Roborock S50 vacuum x1
 - Raspberry Pi 3B (Hassio)
@@ -47,6 +48,12 @@ Minhas configurações pessoais utilizadas no Home Assistant em casa e no trabal
 - Desktop PC x1
 - Intel NUC PC x1
 - D-Link DNS-320L NAS (6tb) x1
+- Orange Pi Zero (Pi-Hole) x1
+- iPhone x2
+- iPad Mini x1
+- Cheap Android Tablet x1
+- Split System Air Conditioner (IR) x5
+- Window Air Conditioner (IR) x2
 
 # DIY projects:
 
