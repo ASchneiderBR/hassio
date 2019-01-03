@@ -35,13 +35,13 @@ Minhas configurações pessoais utilizadas no Home Assistant em casa e no trabal
 - Tubular curtain motor (RF) x3
 - Solenoid valve x2
 - Xiaomi Roborock S50 vacuum x1
-- Raspberry Pi 3B (Hassio)
-- Raspberry Pi Zero W (OctoPrint)
-- Ender 3 3D printer
+- Raspberry Pi 3B (Hassio) x1
+- Raspberry Pi Zero W (OctoPrint) x1
+- Ender 3 3D printer x1
 - Wemos D1 Mini x3
 - LG TV WebOS v1 (2014) x2
 - LG TV Netcast (2012) x1
-- Home Theater Sony Ht-ddw1500
+- Home Theater Sony Ht-ddw1500 x1
 - Google Home Mini x2
 - Asus RT-AC68u x2
 - TP-Link CPE510 x2
