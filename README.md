@@ -16,6 +16,7 @@ Minhas configurações pessoais utilizadas no Home Assistant em casa e no trabal
 - Configurator
 - AirCast
 - HomeKit (Siri)
+- Plex Media Server
 
 # Hardware:
 
@@ -43,6 +44,9 @@ Minhas configurações pessoais utilizadas no Home Assistant em casa e no trabal
 - Google Home Mini x2
 - Asus RT-AC68u x2
 - TP-Link CPE510 x2
+- Desktop PC x1
+- Intel NUC PC x1
+- D-Link DNS-320L NAS (6tb) x1
 
 # DIY projects:
 
