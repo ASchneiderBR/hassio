@@ -56,6 +56,8 @@ Minhas configurações pessoais utilizadas no Home Assistant em casa e no trabal
 - Window Air Conditioner (IR) x2
 - CC2531 (coordinator) x1
 - CC2531 (router) x1
+- Sricam SP09 x1
+- PiCAM x1
 
 # DIY projects:
 
