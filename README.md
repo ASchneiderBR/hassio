@@ -51,18 +51,18 @@ Minhas configurações pessoais utilizadas no Home Assistant em casa e no trabal
 - Sensor umidade de solo (D1 Mini)
 - Acionador controle remoto (D1 Mini)
 
-Tela inicial:
+# Tela inicial:
 
 ![Screenshot](https://github.com/tatunts/hassio/blob/master/Screens/default.PNG)
 
-Casa:
+# Casa:
 
 ![Screenshot](https://github.com/tatunts/hassio/blob/master/Screens/home.PNG)
 
-Automações:
+# Automações:
 
 ![Screenshot](https://github.com/tatunts/hassio/blob/master/Screens/automations.PNG)
 
-Trabalho:
+# Trabalho:
 
 ![Screenshot](https://github.com/tatunts/hassio/blob/master/Screens/work.PNG)
