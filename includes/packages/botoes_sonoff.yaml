@@ -17,7 +17,21 @@ script:
 ## MuvRH
 
   interruptor_muv303entrada_power1_hold:
-    alias: "Bebedouro sala 303"
+    alias: "Desligar/ligar tudo na sala 303"
     sequence:
-      - service: switch.toggle
-        entity_id: switch.muv303bebedouro
+      - service_template: >
+          {% if is_state('group.muvrh_tudo_sala_303', 'off') %}
+            homeassistant.turn_on
+          {% endif %}
+        entity_id: group.muvrh_tudo_sala_303
+      - service_template: >
+          {% if is_state('group.muvrh_tudo_sala_303', 'on') %}
+            homeassistant.turn_off
+          {% endif %}
+        data_template:
+          entity_id: >
+            {% if is_state('group.muvrh_tudo_sala_303', 'off') %}
+              group.muvrh_tudo_sala_303
+            {% else %}
+              group.muvrh_tudo_sala_303, switch.tv_dinamica_303
+            {% endif %}

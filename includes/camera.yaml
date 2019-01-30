@@ -1,11 +1,11 @@
-- platform: onvif
-  name: "Intebras"
-  host: 192.168.1.104
-  username: "admin"
-  password: "IAXXCV"
-  port: 80
-  profile: 1
-  #extra_arguments: -rtsp_transport udp
+#- platform: onvif
+#  name: "Intebras"
+#  host: 192.168.1.104
+#  username: "admin"
+#  password: "IAXXCV"
+#  port: 80
+#  profile: 1
+#  #extra_arguments: -rtsp_transport udp
 
 - platform: mjpeg
   name: "Ender 3"

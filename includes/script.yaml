@@ -515,9 +515,9 @@ botao_xiaomi_muvrh_entrada203_double:
     data_template:
       entity_id: climate.ar_condicionado_da_entrada_203
       operation_mode: >
-        {% if states.climate.ar_condicionado_da_entrada_203.attributes.current_temperature | int >= 25 and (states.climate.ar_condicionado_da_entrada_203.state == 'off' or states.climate.ar_condicionado_da_entrada_203.state == 'off') %}
+        {% if states.climate.ar_condicionado_da_entrada_203.attributes.current_temperature | int >= 24 and (states.climate.ar_condicionado_da_entrada_203.state == 'off' or states.climate.ar_condicionado_da_entrada_203.state == 'off') %}
           cool
-        {% elif states.climate.ar_condicionado_da_entrada_203.attributes.current_temperature | int <= 24 and (states.climate.ar_condicionado_da_entrada_203.state == 'off' or states.climate.ar_condicionado_da_entrada_203.state == 'off') %}
+        {% elif states.climate.ar_condicionado_da_entrada_203.attributes.current_temperature | int <= 20 and (states.climate.ar_condicionado_da_entrada_203.state == 'off' or states.climate.ar_condicionado_da_entrada_203.state == 'off') %}
           heat
         {% else %}
           off

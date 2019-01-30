@@ -9,7 +9,7 @@ resources:
     type: js
   - url: /local/lovelace/custom_ui/weather-card.js?3
     type: js
-  - url: /local/lovelace/custom_ui/button-card.js?2
+  - url: /local/lovelace/custom_ui/button-card.js?1
     type: module
   - url: /local/lovelace/custom_ui/kiosk.js
     type: js
@@ -200,7 +200,7 @@ views:
                   - sensor.dark_sky_cloud_coverage
                   - sensor.dark_sky_precip_probability
               - type: weather-forecast
-                entity: weather.tempo
+                entity: weather.dark_sky
 
               - type: entities
                 show_header_toggle: false
@@ -1016,7 +1016,7 @@ views:
               - automation.rotina__boa_noite
               - automation.rotina__bom_dia
               - entity: automation.desligar_cafeteira_e_chaleira_automaticamente
-                name: Rotina - Desligar cafeteira e chaleira após 15 minutos
+                name: Rotina - Desligar cafeteira e chaleira após 30 minutos
 
           - type: entities
             title: Rotinas MuvRH
@@ -1258,118 +1258,15 @@ views:
                 size: 60%
                 color: rgb(211, 47, 47)
                 name: Ar sala
+                state:
+                  - value: 'cool'
+                    color: rgb(211, 47, 47)
+                  - value: 'heat'
+                    color: rgb(211, 47, 47)
+                  - value: 'auto'
+                    color: rgb(211, 47, 47)
                 style:
                   - text-transform: none
-
-#      - type: vertical-stack
-#        cards:
-#
-#          - type: entities
-#            title: Tempo
-#            show_header_toggle: false
-#            entities:
-#              - sensor.pws_weather_1h
-#
-#          - type: picture-entity
-#            name: Alarme
-#            show_info: false
-#            tap_action: toggle
-#            image: /local/lovelace/images/alarm_off.png
-#            state_image: 
-#              "on": /local/lovelace/images/alarm_on.png
-#              "off": /local/lovelace/images/alarm_off.png
-#            entity: switch.sistema_alarme_casa
-#
-#
-#          - type: vertical-stack
-#            cards:
-#
-#              - type: horizontal-stack
-#                cards:
-#                  - type: picture-entity
-#                    name: Entrada
-#                    tap_action: toggle
-#                    image: /local/lovelace/images/switch_off.png
-#                    state_image: 
-#                      "on": /local/lovelace/images/switch_on.png
-#                      "off": /local/lovelace/images/switch_off.png
-#                    entity: light.entrada
-#
-#                  - type: picture-entity
-#                    name: Cozinha
-#                    tap_action: toggle
-#                    image: /local/lovelace/images/switch_off.png
-#                    state_image: 
-#                      "on": /local/lovelace/images/switch_on.png
-#                      "off": /local/lovelace/images/switch_off.png
-#                    entity: light.cozinha
-#
-#          - type: vertical-stack
-#            cards:
-#                - type: horizontal-stack
-#                  cards:
-#                    - type: picture-entity
-#                      name: Balcão
-#                      tap_action: toggle
-#                      image: /local/lovelace/images/switch_off.png
-#                      state_image: 
-#                        "on": /local/lovelace/images/switch_on.png
-#                        "off": /local/lovelace/images/switch_off.png
-#                      entity: light.ledcozinhabalcao
-#
-#                    - type: picture-entity
-#                      name: Chão
-#                      tap_action: toggle
-#                      image: /local/lovelace/images/switch_off.png
-#                      state_image: 
-#                        "on": /local/lovelace/images/switch_on.png
-#                        "off": /local/lovelace/images/switch_off.png
-#                      entity: light.ledchaocozinha
-#
-#          - type: vertical-stack
-#            cards:
-#                - type: horizontal-stack
-#                  cards:
-#                    - type: picture-entity
-#                      name: Área serviço
-#                      tap_action: toggle
-#                      image: /local/lovelace/images/switch_off.png
-#                      state_image: 
-#                        "on": /local/lovelace/images/switch_on.png
-#                        "off": /local/lovelace/images/switch_off.png
-#                      entity: light.area_servico
-#
-#                    - type: picture-entity
-#                      name: Mesa jantar
-#                      tap_action: toggle
-#                      image: /local/lovelace/images/switch_off.png
-#                      state_image: 
-#                        "on": /local/lovelace/images/switch_on.png
-#                        "off": /local/lovelace/images/switch_off.png
-#                      entity: light.mesa_jantar
-#
-#
-#          - type: vertical-stack
-#            cards:
-#                - type: horizontal-stack
-#                  cards:
-#                    - type: picture-entity
-#                      name: Painel
-#                      tap_action: toggle
-#                      image: /local/lovelace/images/switch_off.png
-#                      state_image: 
-#                        "on": /local/lovelace/images/switch_on.png
-#                        "off": /local/lovelace/images/switch_off.png
-#                      entity: light.ledsaladesktop
-#
-#                    - type: picture-entity
-#                      name: Sala
-#                      tap_action: toggle
-#                      image: /local/lovelace/images/switch_off.png
-#                      state_image: 
-#                        "on": /local/lovelace/images/switch_on.png
-#                        "off": /local/lovelace/images/switch_off.png
-#                      entity: light.sala_principal
 
   - title: MuvRH
     id: muvrh
@@ -1531,15 +1428,13 @@ views:
                 secondary_info: last-changed
               - entity: device_tracker.celular_motog2_muvrh
                 secondary_info: last-changed
-              - entity: device_tracker.celular_motog5s_muvrh
-                secondary_info: last-changed
               - entity: device_tracker.impressora_canon
                 secondary_info: last-changed
               - entity: device_tracker.impressora_laser
                 secondary_info: last-changed
               - entity: device_tracker.camera_muvrh_operacoes
                 secondary_info: last-changed
-              - entity: device_tracker.orangepi_pihole
+              - entity: device_tracker.muvrh_celular_xiaomi
                 secondary_info: last-changed
             state_filter:
               - not_home
@@ -1594,6 +1489,8 @@ views:
               - entity: binary_sensor.motion_sensor_158d0001ad6c20
                 secondary_info: last-changed
               - entity: binary_sensor.motion_sensor_158d0001a24bdc
+                secondary_info: last-changed
+              - entity: switch.muvrh_cafeteira
                 secondary_info: last-changed
             state_filter:
               - unavailable
@@ -1743,31 +1640,36 @@ views:
               top: 12%
               left: 74.8%
           - type: state-icon
-            tap_action: toggle
+            tap_action:
+              action: toggle
             entity: light.entrada
             style:
               top: 17%
               left: 74.8%
           - type: state-icon
-            tap_action: toggle
+            tap_action:
+              action: toggle
             entity: light.mesa_jantar
             style:
               top: 44%
               left: 78.6%
           - type: state-icon
-            tap_action: toggle
+            tap_action:
+              action: toggle
             entity: light.ledsaladesktop
             style:
               top: 41%
               left: 56.5%
           - type: state-icon
-            tap_action: toggle
+            tap_action:
+              action: toggle
             entity: switch.desktop
             style:
               top: 37%
               left: 67.5%
           - type: state-icon
-            tap_action: toggle
+            tap_action:
+              action: toggle
             entity: switch.servidor
             style:
               top: 37%
@@ -1794,68 +1696,79 @@ views:
               top: 65%
               left: 73.5%
           - type: state-icon
-            tap_action: toggle
+            tap_action:
+              action: toggle
             entity: light.sala_principal
             style:
               top: 73%
               left: 73.5%
           - type: state-icon
-            tap_action: toggle
+            tap_action:
+              action: toggle
             entity: switch.tv_lg_sala
             style:
               top: 70%
               left: 86.8%
           - type: state-icon
-            tap_action: toggle
+            tap_action:
+              action: toggle
             entity: switch.home_theater_sala
             style:
               top: 74%
               left: 86.8%
           - type: state-icon
-            tap_action: toggle
+            tap_action:
+              action: toggle
             entity: light.ledsalatv
             style:
               top: 78%
               left: 86.8%
           - type: state-icon
-            tap_action: toggle
+            tap_action:
+              action: toggle
             entity: switch.aspirador
             style:
               top: 57.5%
               left: 86.8%
           - type: state-icon
-            tap_action: toggle
+            tap_action:
+              action: toggle
             entity: cover.persiana_sala
             style:
               top: 80%
               left: 73.5%
           - type: state-icon
-            tap_action: toggle
+            tap_action:
+              action: toggle
             entity: light.corredor
             style:
               top: 51.5%
               left: 44.5%
           # Cozinha
           - type: state-icon
-            tap_action: toggle
+            tap_action:
+              action: toggle
             entity: light.cozinha
             style:
               top: 17%
               left: 50%
           - type: state-icon
-            tap_action: toggle
+            tap_action:
+              action: toggle
             entity: light.ledcozinhabalcao
             style:
               top: 12%
               left: 55%
           - type: state-icon
-            tap_action: toggle
+            tap_action:
+              action: toggle
             entity: light.ledchaocozinha
             style:
               top: 12%
               left: 60%
           - type: state-icon
-            tap_action: toggle
+            tap_action:
+              action: toggle
             entity: light.area_servico
             style:
               top: 17%
@@ -1878,19 +1791,22 @@ views:
               left: 37%
           # Quarto
           - type: state-icon
-            tap_action: toggle
+            tap_action:
+              action: toggle
             entity: light.quarto
             style:
               top: 34%
               left: 33%
           - type: state-icon
-            tap_action: toggle
+            tap_action:
+              action: toggle
             entity: light.ledquartotv
             style:
               top: 36%
               left: 43%
           - type: state-icon
-            tap_action: toggle
+            tap_action:
+              action: toggle
             entity: switch.tv_lg_quarto
             style:
               top: 32%
@@ -1917,7 +1833,8 @@ views:
               top: 40.3%
               left: 23.2%
           - type: state-icon
-            tap_action: toggle
+            tap_action:
+              action: toggle
             entity: cover.persiana_quarto
             style:
               top: 34%
@@ -1936,13 +1853,15 @@ views:
               top: 48.4%
               left: 22%
           - type: state-icon
-            tap_action: toggle
+            tap_action:
+              action: toggle
             entity: light.tudo_banheiro_social
             style:
               top: 50%
               left: 29%
           - type: state-icon
-            tap_action: toggle
+            tap_action:
+              action: toggle
             entity: switch.chuveirosocial
             style:
               top: 52.8%
@@ -1961,50 +1880,58 @@ views:
               top: 64%
               left: 22%
           - type: state-icon
-            tap_action: toggle
+            tap_action:
+              action: toggle
             entity: light.tudo_banheiro_suite
             style:
               top: 59.5%
               left: 29%
           - type: state-icon
-            tap_action: toggle
+            tap_action:
+              action: toggle
             entity: switch.chuveirosuite
             style:
               top: 59.5%
               left: 22%
           - type: state-icon
-            tap_action: toggle
+            tap_action:
+              action: toggle
             entity: switch.toalheiro
             style:
               top: 64%
               left: 29%
           # Suite
           - type: state-icon
-            tap_action: toggle
+            tap_action:
+              action: toggle
             entity: light.suite_principal
             style:
               top: 61%
               left: 45%
           - type: state-icon
-            tap_action: toggle
+            tap_action:
+              action: toggle
             entity: light.suite_principal
             style:
               top: 80%
               left: 24.5%
           - type: state-icon
-            tap_action: toggle
+            tap_action:
+              action: toggle
             entity: light.ledsuitetv
             style:
               top: 82%
               left: 50%
           - type: state-icon
-            tap_action: toggle
+            tap_action:
+              action: toggle
             entity: light.ledsuitecama
             style:
               top: 80%
               left: 16%
           - type: state-icon
-            tap_action: toggle
+            tap_action:
+              action: toggle
             entity: switch.tv_lg_suite
             style:
               top: 78%
@@ -2031,7 +1958,8 @@ views:
               top: 83.2%
               left: 36%
           - type: state-icon
-            tap_action: toggle
+            tap_action:
+              action: toggle
             entity: cover.persiana_suite
             style:
               top: 88%

@@ -1,3 +1,7 @@
-- platform: yweather
-  woeid: 455823
-  name: Tempo
+#- platform: yweather
+#  woeid: 455823
+#  name: Tempo
+
+- platform: darksky
+  api_key: !secret darksky_api_key
+  mode: daily

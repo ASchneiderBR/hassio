@@ -1,5 +1,5 @@
 purge_interval: 1
-purge_keep_days: 3
+purge_keep_days: 1
 exclude:
   domains:
     - script
@@ -128,6 +128,7 @@ exclude:
     - sensor.asuswrt_download
     - sensor.asuswrt_upload
     - sensor.qbittorrent_servidor_down_speed
+    - sensor.dias_funcionando
     - sensor.qbittorrent_servidor_up_speed
 include:
   entities:

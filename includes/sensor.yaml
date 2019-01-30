@@ -9,7 +9,7 @@
   language: pt
   forecast:
     - 1
-  update_interval: 600
+  update_interval: '00:30'
   monitored_conditions:
     - summary
     - temperature
@@ -20,6 +20,10 @@
     - daily_summary
     - minutely_summary
     - cloud_cover
+
+- platform: uptime
+  name: Dias funcionando
+  unit_of_measurement: days
 
 - platform: broadlink
   update_interval: 300

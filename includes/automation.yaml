@@ -31,15 +31,15 @@
         topic: "cmnd/sonoffs/power4"
         qos: 0
         retain: 0
-    - service: mqtt.publish
-      data:
-        payload: '{\"relaunch\": \"true\"}'
-        topic: "wallpanel/tablet_entrada_casa/command"
-        qos: 0
-        retain: 0
+#    - service: mqtt.publish
+#      data:
+#        payload: '{\"relaunch\": \"true\"}'
+#        topic: "wallpanel/tablet_entrada_casa/command"
+#        qos: 0
+#        retain: 0
     - service: input_select.select_option
-      entity_id: input_select.estados_de_succao
-      data_template:
+      data:
+        entity_id: input_select.estados_de_succao
         option: Balanceado
     - service: cover.close_cover
       entity_id:
@@ -99,7 +99,7 @@
       data:
         title: "Sistema"
         message: "Home Assistant foi reinicializado"
-    - delay: '00:00:15'
+    - delay: '00:00:30'
     - service_template: >
         {% if (is_state('light.gateway_light_34ce0090940e', 'on' ) or is_state('light.gateway_light_34ce0090940e', 'off' )) %}
           homekit.start

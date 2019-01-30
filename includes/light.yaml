@@ -252,7 +252,6 @@
   payload_not_available: "Offline"
 
 - platform: flux_led
-  scan_interval: 120
   devices:
     192.168.1.30:
       name: ledsalatv

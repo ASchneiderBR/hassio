@@ -201,3 +201,13 @@ muvrh_players:
   - media_player.empresa
   name: Media Players MuvRH
   view: false
+
+muvrh_tudo_sala_303:
+  entities:
+  - light.muv303entrada
+  - light.muv303dinamica
+  - light.muv303corredor
+  - light.303leddinamica
+  - switch.muv303bebedouro
+  name: Tudo sala 303
+  view: false
