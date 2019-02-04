@@ -12,19 +12,19 @@
   icon: "favicon-1024x1024.png"
   filename: webostv2.conf
 
-- name: TODOS_CELULARES
+- name: todos_celulares
   platform: group
   services:
     - service: ios_iphone_de_antonio
     - service: ios_iphone_de_roberta
 
-- name: TODAS_TVS
+- name: todas_tvs
   platform: group
   services:
     - service: tv_sala
     - service: tv_suite
 
-- name: TUDO
+- name: tudo
   platform: group
   services:
     - service: tv_sala
@@ -32,7 +32,7 @@
     - service: ios_iphone_de_antonio
     - service: ios_iphone_de_roberta
 
-- name: HTML5
+- name: html5
   platform: html5
   gcm_api_key: !secret gcm-server-key
   gcm_sender_id: !secret gcm-sender-id

@@ -83,6 +83,8 @@ tv_lg_sala_ligar_tudo:
   - service_template: >
       {% if is_state('switch.home_theater_sala', 'off') %}
         switch.turn_on
+      {% else %}
+        script.nada
       {% endif %}
     entity_id: switch.home_theater_sala
   - condition: template
@@ -105,6 +107,8 @@ tv_lg_sala_desligar_tudo:
   - service_template: >
       {% if is_state('light.ledsalatv', 'on') %}
         light.turn_off
+      {% else %}
+        script.nada
       {% endif %}
     entity_id:
       - light.ledsalatv
@@ -133,6 +137,8 @@ botao_xiaomi_quarto_01_single:
         light.turn_off
       {% elif is_state('light.quarto' , 'on') and is_state('light.ledquartotv' , 'off') %}
         light.turn_on
+      {% else %}
+        script.nada
       {% endif %}
     data_template:
       entity_id: >
@@ -178,6 +184,8 @@ botao_xiaomi_quarto_01_long:
         cover.close_cover
       {% elif is_state('cover.persiana_quarto' , 'closed') %}
         cover.open_cover
+      {% else %}
+        script.nada
       {% endif %}
     entity_id: cover.persiana_quarto
 
@@ -193,6 +201,8 @@ botao_xiaomi_suite_01_single:
         light.turn_off
       {% elif is_state('light.suite_principal' , 'on') and is_state('light.todos_os_leds_suite' , 'off') %}
         light.turn_on
+      {% else %}
+        script.nada
       {% endif %}
     data_template:
       entity_id: >
@@ -238,6 +248,8 @@ botao_xiaomi_suite_01_long:
         cover.close_cover
       {% elif is_state('cover.persiana_suite' , 'closed') %}
         cover.open_cover
+      {% else %}
+        script.nada
       {% endif %}
     entity_id: cover.persiana_suite
 
@@ -247,6 +259,8 @@ botao_xiaomi_suite_02_single:
   - service_template: >
       {% if is_state('light.ledsuitecama' , 'off') %}
         light.turn_on
+      {% else %}
+        script.nada
       {% endif %}
     data_template:
       entity_id: light.ledsuitecama
@@ -259,6 +273,8 @@ botao_xiaomi_suite_02_single:
   - service_template: >
       {% if is_state('light.ledsuitecama' , 'on') %}
         light.turn_off
+      {% else %}
+        script.nada
       {% endif %}
     data_template:
       entity_id: light.ledsuitecama
@@ -288,11 +304,15 @@ botao_xiaomi_suite_02_long:
   - service_template: >
       {% if((now().hour >= 5) and (now().hour <= 16))%}
         input_boolean.turn_on
+      {% else %}
+        script.nada
       {% endif %}
     entity_id: input_boolean.bom_dia
   - service_template: >
       {% if((now().hour >= 17) or (now().hour <= 4))%}
         input_boolean.turn_on
+      {% else %}
+        script.nada
       {% endif %}
     entity_id: input_boolean.boa_noite
 
@@ -429,12 +449,16 @@ botao_xiaomi_sala_01_long:
         script.tts_fechando_persiana_sala
       {% elif is_state('cover.persiana_sala' , 'closed') %}
         script.tts_abrindo_persiana_sala
+      {% else %}
+        script.nada
       {% endif %}
   - service_template: >
       {% if is_state('cover.persiana_sala' , 'open') %}
         cover.close_cover
       {% elif is_state('cover.persiana_sala' , 'closed') %}
         cover.open_cover
+      {% else %}
+        script.nada
       {% endif %}
     entity_id: cover.persiana_sala
 
@@ -660,7 +684,7 @@ muvrh_desligar_sala_203:
       - switch.tv_sala_operacoes
       - switch.muv203bebedouro
       - switch.muvrh_cafeteira
-  - service: notify.TUDO
+  - service: notify.tudo
     data:
       title: "Alerta MuvRH"
       message: "Todos os dispositivos e luzes da sala 203 foram desligados"
@@ -683,7 +707,7 @@ muvrh_desligar_sala_303:
     entity_id:
       - switch.tv_dinamica_303
       - switch.muv303bebedouro
-  - service: notify.TUDO
+  - service: notify.tudo
     data:
       title: "Alerta MuvRH"
       message: "Todos os dispositivos e luzes da sala 303 foram desligados"
@@ -718,17 +742,17 @@ speed_test:
       media_content_id: 'http://192.168.1.12:8123/local/audio/tts/alerta_iniciando_teste_internet.mp3'
       media_content_type: 'audio/mp3'
   - service: sensor.update_fastdotcom
-  - wait_template: "{% if as_timestamp(now()) | int - as_timestamp(states.sensor.fastcom_download.last_updated) | int <= 5 %}True{% else %}False{% endif %}"
+  - wait_template: "{% if as_timestamp(now()) | int - as_timestamp(states.sensor.fast_com_download.last_updated) | int <= 5 %}True{% else %}False{% endif %}"
     timeout: 00:02:00
     continue_on_timeout: false
   - service: notify.ios_iphone_de_antonio
     data_template:
       title: "Sistema"
-      message: "A velocidade da internet em casa é de {{ states.sensor.fastcom_download.state | int}} Mbit/s"
+      message: "A velocidade da internet em casa é de {{ states.sensor.fast_com_download.state | int}} Mbit/s"
   - service: tts.amazon_polly_say
     entity_id: media_player.sala, media_player.suite
     data_template:
-      message: <speak><amazon:auto-breaths frequency='medium'>Pronto, verifiquei aqui. Atualmente estão chegando {{ states.sensor.fastcom_download.state | int}} mégas aqui em casa. {% if states.sensor.fastcom_download.state | int <= 20 %}Está muito lenta, estão baixando algo neste momento ou algo de errado está acontecendo pois deveriam estar chegando 50 mégas. O Antônio já foi avisado!{% endif %}</amazon:auto-breaths></speak>
+      message: <speak><amazon:auto-breaths frequency='medium'>Pronto, verifiquei aqui. Atualmente estão chegando {{ states.sensor.fast_com_download.state | int}} mégas aqui em casa. {% if states.sensor.fast_com_download.state | int <= 20 %}Está muito lenta, estão baixando algo neste momento ou algo de errado está acontecendo pois deveriam estar chegando 50 mégas. O Antônio já foi avisado!{% endif %}</amazon:auto-breaths></speak>
 
 homekit_no_start:
   alias: Iniciar HomeKit
@@ -749,6 +773,14 @@ alarme_armar_fora:
   sequence:
   - service: alarm_control_panel.alarm_arm_away
     entity_id: alarm_control_panel.alarme
+
+nada:
+  alias: Não fazer nada
+  sequence:
+  - service: mqtt.publish
+    data:
+      topic: 'nada'
+      payload: 'nada'  
 
 ## OctoPrint
 

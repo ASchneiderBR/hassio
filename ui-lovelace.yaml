@@ -81,7 +81,7 @@ views:
             title: Internet
             show_header_toggle: false
             entities:
-              - entity: sensor.fastcom_download
+              - entity: sensor.fast_com_download
                 secondary_info: last-changed
               - script.speed_test
 
@@ -132,26 +132,26 @@ views:
 #                  highlights: [{"from": 4, "to": 5,"color": "rgba(200, 50, 50, .75)"}]
 #                  borders: true
 
-          - type: horizontal-stack
-            cards:
-              - type: custom:gauge-card
-                title: Download
-                entity: sensor.asuswrt_download_speed
-                min: 0
-                max: 50
-                severity:
-                  red: 45
-                  amber: 30
-                  green: 15
-              - type: custom:gauge-card
-                title: Upload
-                entity: sensor.asuswrt_upload_speed
-                min: 0
-                max: 5
-                severity:
-                  red: 1
-                  amber: 3
-                  green: 1
+#          - type: horizontal-stack
+#            cards:
+#              - type: custom:gauge-card
+#                title: Download
+#                entity: sensor.asuswrt_download_speed
+#                min: 0
+#                max: 50
+#                severity:
+#                  red: 45
+#                  amber: 30
+#                  green: 15
+#              - type: custom:gauge-card
+#                title: Upload
+#                entity: sensor.asuswrt_upload_speed
+#                min: 0
+#                max: 5
+#                severity:
+#                  red: 1
+#                  amber: 3
+#                  green: 1
 
           - type: entities
             title: Magno
@@ -1011,10 +1011,10 @@ views:
             show_header_toggle: true
             title: Rotinas casa
             entities:
-              - automation.rotina__acoes_ao_nascer_do_sol
-              - automation.rotina__acoes_ao_por_do_sol
-              - automation.rotina__boa_noite
-              - automation.rotina__bom_dia
+              - automation.rotina_acoes_ao_nascer_do_sol
+              - automation.rotina_acoes_ao_por_do_sol
+              - automation.rotina_boa_noite
+              - automation.rotina_bom_dia
               - entity: automation.desligar_cafeteira_e_chaleira_automaticamente
                 name: Rotina - Desligar cafeteira e chaleira após 30 minutos
 
@@ -1022,8 +1022,8 @@ views:
             title: Rotinas MuvRH
             show_header_toggle: true
             entities:
-              - automation.rotina__ligar_tudo_quando_primeiro_chegar
-              - automation.rotina__desligar_ar_sala_operacoes
+              - automation.rotina_ligar_tudo_quando_primeiro_chegar
+              - automation.rotina_desligar_ar_sala_operacoes
               - entity: automation.desligar_cafeteira_automaticamente
                 name: Rotina - Desligar cafeteira em 30 minutos
 
@@ -1031,33 +1031,33 @@ views:
             title: Luzes casa
             show_header_toggle: true
             entities:
-              - automation.luzes_da_casa__banheiro_social
-              - automation.luzes_da_casa__banheiro_suite
-              - automation.luzes_da_casa__cozinha
-              - automation.luzes_da_casa__quarto
-              - automation.luzes_da_casa__suite
-              - automation.luzes_da_casa__sala
-              - automation.luzes_da_casa__entrando_em_casa
+              - automation.luzes_da_casa_banheiro_social
+              - automation.luzes_da_casa_banheiro_suite
+              - automation.luzes_da_casa_cozinha
+              - automation.luzes_da_casa_quarto
+              - automation.luzes_da_casa_suite
+              - automation.luzes_da_casa_sala
+              - automation.luzes_da_casa_entrando_em_casa
 
           - type: entities
             title: Luzes MuvRH
             show_header_toggle: true
             entities:
-              - automation.muvrh_203__luz_da_entrada
-              - automation.muvrh_203__luz_do_banheiro
-              - automation.muvrh_203__luz_da_sala_de_operacoes
-              - automation.muvrh_203__luz_da_nossa_sala
-              - automation.muvrh_303__luz_da_entrada
-              - automation.muvrh_303__luz_da_dinamica
-              - automation.muvrh_303__luz_do_banheiro
+              - automation.muvrh_203_luz_da_entrada
+              - automation.muvrh_203_luz_do_banheiro
+              - automation.muvrh_203_luz_da_sala_de_operacoes
+              - automation.muvrh_203_luz_da_nossa_sala
+              - automation.muvrh_303_luz_da_entrada
+              - automation.muvrh_303_luz_da_dinamica
+              - automation.muvrh_303_luz_do_banheiro
 
           - type: entities
             title: Ender 3
             show_header_toggle: true
             entities:
-              - automation.impressora__conectar_octoprint_automaticamente
-              - automation.impressora__desligar_apos_conclusao
-              - automation.impressora__desligar_temperaturas_altas
+              - automation.impressora_conectar_octoprint_automaticamente
+              - automation.impressora_desligar_apos_conclusao
+              - automation.impressora_desligar_temperaturas_altas
 
       - id: 78cdbbc67a79477dbdce5ba0599b071f  # Automatically created id
         type: vertical-stack
@@ -1066,12 +1066,12 @@ views:
             title: Alertas
             show_header_toggle: true
             entities:
-              - automation.alerta__uso_cpu_em_alta_por_muito_tempo
-              - automation.alerta__dispositivo_indisponivel
-              - automation.alerta__bateria_fraca
-              - automation.alarme__aviso_alarme_ativado
-              - automation.sensores__porta_da_entrada_aberta__casa
-              - automation.sensores__porta_ou_janela_aberta_por_muito_tempo__casa
+              - automation.alerta_uso_cpu_em_alta_por_muito_tempo
+              - automation.alerta_dispositivo_indisponivel
+              - automation.alerta_bateria_fraca
+              - automation.alarme_aviso_alarme_ativado
+              - automation.sensores_porta_da_entrada_aberta_casa
+              - automation.sensores_porta_ou_janela_aberta_por_muito_tempo_casa
 
           - type: entities
             title: Botões Xiaomi casa
@@ -1097,8 +1097,8 @@ views:
             title: RF Bridges
             show_header_toggle: true
             entities:
-              - automation.automacao__rf_bridge_casa
-              - automation.automacao__rf_bridge_muvrh
+              - automation.automacao_rf_bridge_casa
+              - automation.automacao_rf_bridge_muvrh
 
 
       - id: 56a2caacc2f64884b2e776667c4c3305  # Automatically created id
@@ -1620,7 +1620,7 @@ views:
               - script.garagem_muvrh_sair
 
           - type: picture-entity
-            entity: camera.muvrh_203__operacoes
+            entity: camera.muvrh_203_operacoes
 
   - title: Testes
     id: testes

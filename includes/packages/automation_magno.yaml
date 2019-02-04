@@ -25,7 +25,7 @@ automation:
         data:
           title: "Casa - Caixa de areia suja ({{now().strftime('%H:%M')}})"
           message: "Magno acabou de usar a caixa de areia."
-      - service: notify.TODOS_CELULARES
+      - service: notify.todos_celulares
         data_template:
           title: "Casa - Caixa de areia suja"
           message: "Magno acabou de usar a caixa de areia, favor limpar."

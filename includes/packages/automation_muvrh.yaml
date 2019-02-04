@@ -14,7 +14,9 @@ automation:
     action:
       - service_template: >
           {% if is_state('input_boolean.entrar_muvrh', 'on') %}
-            notify.TUDO
+            notify.tudo
+          {% else %}
+            script.nada
           {% endif %}
         data:
           title: "Garagem MuvRH"
@@ -22,10 +24,14 @@ automation:
       - service_template: >
           {% if is_state('input_boolean.entrar_muvrh', 'on') %}
             script.garagem_muvrh_entrar
+          {% else %}
+            script.nada
           {% endif %}
       - service_template: >
           {% if is_state('input_boolean.sair_muvrh', 'on') %}
-            notify.TUDO
+            notify.tudo
+          {% else %}
+            script.nada
           {% endif %}
         data:
           title: "Garagem MuvRH"
@@ -33,6 +39,8 @@ automation:
       - service_template: >
           {% if is_state('input_boolean.sair_muvrh', 'on') %}
             script.garagem_muvrh_sair
+          {% else %}
+            script.nada
           {% endif %}
 
   - alias: Sensores - Porta ou janela aberta por muito tempo - MuvRH
@@ -46,7 +54,7 @@ automation:
       for:
         minutes: 1
     action:
-      - service: notify.TUDO
+      - service: notify.tudo
         data_template:
           title: 'Alerta MuvRH'
           message: 'Atenção: {{ trigger.to_state.name }} aberta por muito tempo!'
@@ -76,8 +84,6 @@ automation:
           state: 'off'
           for:
             hours: 4
-            minutes: 0
-            seconds: 0
     action:
       - service: persistent_notification.create
         data:
@@ -89,7 +95,7 @@ automation:
       - service: light.turn_on
         entity_id: light.muv203operacoes
       - delay: '00:00:03'
-      - service: notify.TODOS_CELULARES
+      - service: notify.todos_celulares
         data_template:
           title: "Alerta MuvRH"
           message: "Chegou alguém na sala 203"
@@ -98,7 +104,7 @@ automation:
               content-type: jpeg
             push:
               category: camera
-            entity_id: camera.muvrh_203__operacoes
+            entity_id: camera.muvrh_203_operacoes
       - service: switch.turn_on
         entity_id:
           - switch.tv_sala_operacoes
@@ -128,7 +134,7 @@ automation:
         - binary_sensor.door_window_sensor_158d0001b8671f
       to: 'on'
     action:
-      - service: notify.TODAS_TVS
+      - service: notify.todas_tvs
         data_template:
           title: "Alerta MuvRH"
           message: "Porta da {{ trigger.to_state.name | lower }} acabou de ser aberta."
@@ -146,7 +152,7 @@ automation:
           hours: 0
           minutes: 30
           seconds: 0
-      - service: notify.TODOS_CELULARES
+      - service: notify.todos_celulares
         data_template:
           title: "Alerta MuvRH"
           message: "Porta da {{ trigger.to_state.name | lower }} acabou de ser aberta."
@@ -162,6 +168,8 @@ automation:
             light.turn_on
           {% elif is_state('light.muv303entrada', 'off') %}
             light.turn_off
+          {% else %}
+            script.nada
           {% endif %}
         entity_id:
           - light.muv303corredor
@@ -215,7 +223,7 @@ automation:
     action:
       - service: switch.turn_off
         entity_id: switch.muvrh_cafeteira
-      - service: notify.TUDO
+      - service: notify.tudo
         data_template:
           title: "MuvRH"
           message: "Café está pronto, desligando a cafeteira."
@@ -236,4 +244,5 @@ automation:
           {% elif trigger.event.data.click_type == 'long_click_press' %}
             script.botao_xiaomi_muvrh_entrada203_long
           {% else %}
+            script.nada
           {% endif %}

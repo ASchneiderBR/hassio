@@ -91,6 +91,8 @@ automation:
               script.lava_loucas_casa_iniciar_modo_economico
           {% elif states.input_select.lava_loucas_casa_modo_lavagem.state == 'Dia a dia' %}
               script.lava_loucas_casa_modo_diaadia
+          {% else %}
+              script.nada
           {% endif %}
 
 script:
@@ -114,7 +116,7 @@ script:
     - service: timer.start
       data:
         entity_id: timer.lava_loucas
-        duration: 00:06:25
+        duration: 00:06:20
     - wait_template: "{{ is_state('timer.lava_loucas', 'idle') }}"
     - service: input_select.select_option
       entity_id: input_select.lava_loucas_casa_modo_lavagem
@@ -205,7 +207,7 @@ script:
     - service: timer.start
       data:
         entity_id: timer.lava_loucas
-        duration: 02:30:00
+        duration: 02:26:00
     - wait_template: "{{ is_state('timer.lava_loucas', 'idle') }}"
     - service: script.lava_loucas_casa_alerta_final
 
@@ -237,7 +239,7 @@ script:
       entity_id: input_select.lava_loucas_casa_modo_lavagem
       data:
         option: "Selecionar"
-    - service: notify.TUDO
+    - service: notify.tudo
       data_template:
         title: "Alerta Casa"
         message: "A lava-louças finalizou a lavagem."

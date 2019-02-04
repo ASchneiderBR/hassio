@@ -32,13 +32,13 @@ casa_movimento:
 
 automacoes_luzes_casa:
   entities:
-  - automation.luzes_da_casa__banheiro_social
-  - automation.luzes_da_casa__banheiro_suite
-  - automation.luzes_da_casa__cozinha
-  - automation.luzes_da_casa__quarto
-  - automation.luzes_da_casa__suite
-  - automation.luzes_da_casa__sala
-  - automation.luzes_da_casa__entrando_em_casa
+  - automation.luzes_da_casa_banheiro_social
+  - automation.luzes_da_casa_banheiro_suite
+  - automation.luzes_da_casa_cozinha
+  - automation.luzes_da_casa_quarto
+  - automation.luzes_da_casa_suite
+  - automation.luzes_da_casa_sala
+  - automation.luzes_da_casa_entrando_em_casa
   name: Luzes casa
   view: false
 

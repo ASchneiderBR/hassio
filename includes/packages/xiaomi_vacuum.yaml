@@ -87,6 +87,8 @@ automation:
             script.aspirador_set_max
           {% elif trigger.to_state.state == 'Pano úmido' %}
             script.aspirador_set_mop
+          {% else %}
+            script.nada
           {% endif %}
   
 #Escolher a zona a aspirar
@@ -127,6 +129,7 @@ automation:
           {% elif states.input_select.zonas_de_aspiracao.state == "Somente piso" %}
             script.aspirador_zona_mop
           {% else %}
+            script.nada
           {% endif %}
       - delay: '00:01:00'
       - wait_template: "{{is_state('vacuum.aspirador', 'docked')}}"
@@ -147,8 +150,6 @@ automation:
         entity_id: vacuum.aspirador
         to: 'paused'
         for:
-          hours: 0
-          minutes: 0
           seconds: 30
       - platform: state
         entity_id: vacuum.aspirador
@@ -164,6 +165,8 @@ automation:
             script.aspirador_alerta_carregando
           {% elif trigger.to_state.state == 'error' %}
             script.aspirador_alerta_erro
+          {% else %}
+            script.nada
           {% endif %}
 
 script:
@@ -345,7 +348,7 @@ script:
   aspirador_alerta_iniciando:
     alias: Aspirador casa - Iniciando
     sequence:
-    - service: notify.TUDO
+    - service: notify.tudo
       data_template:
         title: "Alerta Casa"
         message: "O aspirador iniciou a limpeza na zona: {{ states.input_select.zonas_de_aspiracao.state | lower }}."
@@ -368,7 +371,7 @@ script:
   aspirador_alerta_parado:
     alias: Aspirador casa - Parado
     sequence:
-    - service: notify.TUDO
+    - service: notify.tudo
       data_template:
         title: "Alerta Casa"
         message: "O aspirador parou. Estava limpando a zona: {{ states.input_select.zonas_de_aspiracao.state | lower }}. {% if 'error' in states.vacuum.aspirador.state %}Código de erro: {{ states.vacuum.aspirador.attributes.error }}.{% else %}{% endif %}"
@@ -393,7 +396,7 @@ script:
     sequence:
     - condition: template
       value_template: "{% if is_state('input_select.zonas_de_aspiracao', 'Escolher zona') %}False{% else %}True{% endif %}"
-    - service: notify.TUDO
+    - service: notify.tudo
       data_template:
         title: "Alerta Casa"
         message: "O aspirador terminou seu trabalho na zona {{ states.input_select.zonas_de_aspiracao.state | lower }}. Limpou cerca de {{ states.vacuum.aspirador.attributes.cleaned_area }} metros quadrados durante {{ states.vacuum.aspirador.attributes.cleaning_time }} minutos e está carregando no momento."
@@ -416,7 +419,7 @@ script:
   aspirador_alerta_erro:
     alias: Aspirador casa - Erro
     sequence:
-    - service: notify.TUDO
+    - service: notify.tudo
       data_template:
         title: "Alerta Casa"
         message: "O aspirador está parado e acusou erro limpando a zona {{ states.input_select.zonas_de_aspiracao.state | lower }}."

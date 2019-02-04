@@ -141,6 +141,8 @@ automation:
             script.rf_chuveiro_suite_toggle
           {% elif trigger.payload_json.RfReceived.RfKey == 6 %}
             script.rf_chuveiro_social_toggle
+          {% else %}
+            script.nada
           {% endif %}
 
   - alias: Automação - RF Bridge MuvRH
@@ -157,4 +159,6 @@ automation:
             script.rf_chegar_no_trabalho
           {% elif trigger.payload_json.RfReceived.RfKey == 2 %}
             script.rf_sair_no_trabalho
+          {% else %}
+            script.nada
           {% endif %}

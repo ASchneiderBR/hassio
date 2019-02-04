@@ -22,10 +22,7 @@ script:
       - service_template: >
           {% if is_state('group.muvrh_tudo_sala_303', 'off') %}
             homeassistant.turn_on
-          {% endif %}
-        entity_id: group.muvrh_tudo_sala_303
-      - service_template: >
-          {% if is_state('group.muvrh_tudo_sala_303', 'on') %}
+          {% else %}
             homeassistant.turn_off
           {% endif %}
         data_template:

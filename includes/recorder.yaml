@@ -28,11 +28,11 @@ exclude:
     - sensor.pws_relative_humidity
     - sensor.dark_sky_cloud_coverage
     - sensor.dark_sky_cloud_coverage_1
-    - sensor.dark_sky_daily_high_temperature
-    - sensor.dark_sky_daily_high_temperature_1
+    - sensor.dark_sky_daytime_high_temperature_0
+    - sensor.dark_sky_daytime_high_temperature_1
     - sensor.dark_sky_daily_low_temperature
     - sensor.dark_sky_daily_low_temperature_1
-    - sensor.dark_sky_daytime_high_temperature
+    - sensor.dark_sky_daytime_high_temperature_0
     - sensor.dark_sky_overnight_low_temperature
     - sensor.dark_sky_daytime_high_temperature_1
     - sensor.dark_sky_overnight_low_temperature_1
@@ -101,9 +101,9 @@ exclude:
     - sensor.botao_suite_02
     - sensor.cubo_sala_01
     - sensor.cubo_suite_01
-    - sensor.date__time
+    - sensor.date_time
     - sensor.time
-    - sensor.time__date
+    - sensor.time_date
     - sensor.time_utc
     - sensor.date
     - switch.energia_casa

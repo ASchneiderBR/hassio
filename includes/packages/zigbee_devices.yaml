@@ -10,12 +10,7 @@ sensor:
     value_template: "{{ value_json.click }}"
     force_update: true
     qos: 1
-    json_attributes: 
-      - "battery"
-      - "voltage"
-      - "action"
-      - "duration"
-      - "linkquality"
+    json_attributes_topic: "zigbee2mqtt/casa_xiaomi_botao_sala_01"
 
   - platform: "mqtt"
     name: "Botão sala 02"
@@ -25,12 +20,7 @@ sensor:
     value_template: "{{ value_json.click }}"
     force_update: true
     qos: 1
-    json_attributes: 
-      - "battery"
-      - "voltage"
-      - "action"
-      - "duration"
-      - "linkquality"
+    json_attributes_topic: "zigbee2mqtt/casa_xiaomi_botao_sala_02"
 
   - platform: "mqtt"
     name: "Botão cozinha 01"
@@ -40,12 +30,7 @@ sensor:
     value_template: "{{ value_json.click }}"
     force_update: true
     qos: 1
-    json_attributes: 
-      - "battery"
-      - "voltage"
-      - "action"
-      - "duration"
-      - "linkquality"
+    json_attributes_topic: "zigbee2mqtt/casa_xiaomi_botao_cozinha_01"
 
   - platform: "mqtt"
     name: "Botão quarto 01"
@@ -55,12 +40,7 @@ sensor:
     value_template: "{{ value_json.click }}"
     force_update: true
     qos: 1
-    json_attributes: 
-      - "battery"
-      - "voltage"
-      - "action"
-      - "duration"
-      - "linkquality"
+    json_attributes_topic: "zigbee2mqtt/casa_xiaomi_botao_quarto_01"
 
   - platform: "mqtt"
     name: "Botão banheiro social 01"
@@ -70,12 +50,7 @@ sensor:
     value_template: "{{ value_json.click }}"
     force_update: true
     qos: 1
-    json_attributes: 
-      - "battery"
-      - "voltage"
-      - "action"
-      - "duration"
-      - "linkquality"
+    json_attributes_topic: "zigbee2mqtt/casa_xiaomi_botao_banheiro_social_01"
 
   - platform: "mqtt"
     name: "Botão banheiro suíte 01"
@@ -85,12 +60,7 @@ sensor:
     value_template: "{{ value_json.click }}"
     force_update: true
     qos: 1
-    json_attributes: 
-      - "battery"
-      - "voltage"
-      - "action"
-      - "duration"
-      - "linkquality"
+    json_attributes_topic: "zigbee2mqtt/casa_xiaomi_botao_banheiro_suite_01"
 
   - platform: "mqtt"
     name: "Botão suíte 01"
@@ -100,12 +70,7 @@ sensor:
     value_template: "{{ value_json.click }}"
     force_update: true
     qos: 1
-    json_attributes: 
-      - "battery"
-      - "voltage"
-      - "action"
-      - "duration"
-      - "linkquality"
+    json_attributes_topic: "zigbee2mqtt/casa_xiaomi_botao_suite_01"
 
   - platform: "mqtt"
     name: "Botão suíte 02"
@@ -115,12 +80,7 @@ sensor:
     value_template: "{{ value_json.click }}"
     force_update: true
     qos: 1
-    json_attributes: 
-      - "battery"
-      - "voltage"
-      - "action"
-      - "duration"
-      - "linkquality"
+    json_attributes_topic: "zigbee2mqtt/casa_xiaomi_botao_suite_02"
 
 # Cubos
 
@@ -132,15 +92,7 @@ sensor:
     value_template: "{{ value_json.action }}"
     force_update: true
     qos: 1
-    json_attributes: 
-      - "battery"
-      - "voltage"
-      - "angle"
-      - "side"
-      - "from_side"
-      - "to_side"
-      - "brightness"
-      - "linkquality"
+    json_attributes_topic: "zigbee2mqtt/casa_xiaomi_cubo_sala_01"
 
   - platform: "mqtt"
     name: "Cubo suíte 01"
@@ -150,15 +102,7 @@ sensor:
     value_template: "{{ value_json.action }}"
     force_update: true
     qos: 1
-    json_attributes: 
-      - "battery"
-      - "voltage"
-      - "angle"
-      - "side"
-      - "from_side"
-      - "to_side"
-      - "brightness"
-      - "linkquality"
+    json_attributes_topic: "zigbee2mqtt/casa_xiaomi_cubo_suite_01"
 
 # Temperatura
 
@@ -171,10 +115,7 @@ sensor:
     icon: "mdi:temperature-celsius"
     value_template: "{{ value_json.temperature }}"
     qos: 1
-    json_attributes: 
-      - "battery"
-      - "voltage"
-      - "linkquality"
+    json_attributes_topic: "zigbee2mqtt/casa_xiaomi_temperatura_cozinha"
 
   - platform: "mqtt"
     name: "Umidade cozinha"
@@ -185,10 +126,7 @@ sensor:
     icon: "mdi:water-percent"
     value_template: "{{ value_json.humidity }}"
     qos: 1
-    json_attributes: 
-      - "battery"
-      - "voltage"
-      - "linkquality"
+    json_attributes_topic: "zigbee2mqtt/casa_xiaomi_temperatura_cozinha"
 
   - platform: "mqtt"
     name: "Temperatura sala"
@@ -199,10 +137,7 @@ sensor:
     icon: "mdi:temperature-celsius"
     value_template: "{{ value_json.temperature }}"
     qos: 1
-    json_attributes: 
-      - "battery"
-      - "voltage"
-      - "linkquality"
+    json_attributes_topic: "zigbee2mqtt/casa_xiaomi_temperatura_sala"
 
   - platform: "mqtt"
     name: "Umidade sala"
@@ -213,10 +148,7 @@ sensor:
     icon: "mdi:water-percent"
     value_template: "{{ value_json.humidity }}"
     qos: 1
-    json_attributes: 
-      - "battery"
-      - "voltage"
-      - "linkquality"
+    json_attributes_topic: "zigbee2mqtt/casa_xiaomi_temperatura_sala"
 
   - platform: "mqtt"
     name: "Temperatura quarto"
@@ -227,10 +159,7 @@ sensor:
     icon: "mdi:temperature-celsius"
     value_template: "{{ value_json.temperature }}"
     qos: 1
-    json_attributes: 
-      - "battery"
-      - "voltage"
-      - "linkquality"
+    json_attributes_topic: "zigbee2mqtt/casa_xiaomi_temperatura_quarto"
 
   - platform: "mqtt"
     name: "Umidade quarto"
@@ -241,10 +170,7 @@ sensor:
     icon: "mdi:water-percent"
     value_template: "{{ value_json.humidity }}"
     qos: 1
-    json_attributes: 
-      - "battery"
-      - "voltage"
-      - "linkquality"
+    json_attributes_topic: "zigbee2mqtt/casa_xiaomi_temperatura_quarto"
 
   - platform: "mqtt"
     name: "Temperatura suite"
@@ -255,10 +181,7 @@ sensor:
     icon: "mdi:temperature-celsius"
     value_template: "{{ value_json.temperature }}"
     qos: 1
-    json_attributes: 
-      - "battery"
-      - "voltage"
-      - "linkquality"
+    json_attributes_topic: "zigbee2mqtt/casa_xiaomi_temperatura_suite"
 
   - platform: "mqtt"
     name: "Umidade suite"
@@ -269,10 +192,7 @@ sensor:
     icon: "mdi:water-percent"
     value_template: "{{ value_json.humidity }}"
     qos: 1
-    json_attributes: 
-      - "battery"
-      - "voltage"
-      - "linkquality"
+    json_attributes_topic: "zigbee2mqtt/casa_xiaomi_temperatura_suite"
 
 ## Vibração
 
@@ -282,22 +202,7 @@ sensor:
     availability_topic: "zigbee2mqtt/bridge/state"
     icon: "mdi:gesture-double-tap"
     value_template: "{{ value_json.action }}"
-    json_attributes: 
-      - "linkquality"
-      - "battery"
-      - "voltage"
-      - "angle"
-      - "side"
-      - "from_side"
-      - "to_side"
-      - "brightness"
-      - "angle_x_absolute"
-      - "angle_y_absolute"
-      - "angle_z"
-      - "angle_y"
-      - "angle_x"
-      - "unknown_data"
-    force_update: true
+    json_attributes_topic: "zigbee2mqtt/casa_xiaomi_vibracao_maquina_lavar_roupa"
   
   - platform: "mqtt"
     name: "Sensor caixa de areia do gato"
@@ -305,22 +210,7 @@ sensor:
     availability_topic: "zigbee2mqtt/bridge/state"
     icon: "mdi:gesture-double-tap"
     value_template: "{{ value_json.action }}"
-    json_attributes: 
-      - "linkquality"
-      - "battery"
-      - "voltage"
-      - "angle"
-      - "side"
-      - "from_side"
-      - "to_side"
-      - "brightness"
-      - "angle_x_absolute"
-      - "angle_y_absolute"
-      - "angle_z"
-      - "angle_y"
-      - "angle_x"
-      - "unknown_data"
-    force_update: true
+    json_attributes_topic: "zigbee2mqtt/casa_xiaomi_vibracao_areia_gato"
 
 # Movimento
 
@@ -335,10 +225,7 @@ binary_sensor:
     value_template: "{{ value_json.occupancy }}"
     qos: 1
     device_class: "motion"
-#    json_attributes: 
-#      - "battery"
-#      - "voltage"
-#      - "linkquality"
+    json_attributes_topic: "zigbee2mqtt/casa_xiaomi_movimento_cozinha"
 
   - platform: "mqtt"
     name: "Movimento sala"
@@ -349,10 +236,7 @@ binary_sensor:
     value_template: "{{ value_json.occupancy }}"
     qos: 1
     device_class: "motion"
-#    json_attributes: 
-#      - "battery"
-#      - "voltage"
-#      - "linkquality"
+    json_attributes_topic: "zigbee2mqtt/casa_xiaomi_movimento_sala"
 
   - platform: "mqtt"
     name: "Movimento quarto"
@@ -363,10 +247,7 @@ binary_sensor:
     value_template: "{{ value_json.occupancy }}"
     qos: 1
     device_class: "motion"
-#    json_attributes: 
-#      - "battery"
-#      - "voltage"
-#      - "linkquality"
+    json_attributes_topic: "zigbee2mqtt/casa_xiaomi_movimento_quarto"
 
   - platform: "mqtt"
     name: "Movimento banheiro social"
@@ -377,10 +258,7 @@ binary_sensor:
     value_template: "{{ value_json.occupancy }}"
     qos: 1
     device_class: "motion"
-#    json_attributes: 
-#      - "battery"
-#      - "voltage"
-#      - "linkquality"
+    json_attributes_topic: "zigbee2mqtt/casa_xiaomi_movimento_banheiro_social"
 
   - platform: "mqtt"
     name: "Movimento banheiro suíte"
@@ -391,10 +269,7 @@ binary_sensor:
     value_template: "{{ value_json.occupancy }}"
     qos: 1
     device_class: "motion"
-#    json_attributes: 
-#      - "battery"
-#      - "voltage"
-#      - "linkquality"
+    json_attributes_topic: "zigbee2mqtt/casa_xiaomi_movimento_banheiro_suite"
 
   - platform: "mqtt"
     name: "Movimento suíte"
@@ -405,10 +280,7 @@ binary_sensor:
     value_template: "{{ value_json.occupancy }}"
     qos: 1
     device_class: "motion"
-#    json_attributes: 
-#      - "battery"
-#      - "voltage"
-#      - "linkquality"
+    json_attributes_topic: "zigbee2mqtt/casa_xiaomi_movimento_suite"
 
 #Abertura porta
 
@@ -421,10 +293,7 @@ binary_sensor:
     value_template: "{{ value_json.contact }}"
     qos: 1
     device_class: "door"
-#    json_attributes: 
-#      - "battery"
-#      - "voltage"
-#      - "linkquality"
+    json_attributes_topic: "zigbee2mqtt/casa_xiaomi_abertura_banheiro_social"
 
   - platform: "mqtt"
     name: "Box banheiro suíte"
@@ -435,10 +304,7 @@ binary_sensor:
     value_template: "{{ value_json.contact }}"
     qos: 1
     device_class: "door"
-#    json_attributes: 
-#      - "battery"
-#      - "voltage"
-#      - "linkquality"
+    json_attributes_topic: "zigbee2mqtt/casa_xiaomi_abertura_banheiro_suite"
 
   - platform: "mqtt"
     name: "Entrada casa"
@@ -449,7 +315,4 @@ binary_sensor:
     value_template: "{{ value_json.contact }}"
     qos: 1
     device_class: "door"
-#    json_attributes: 
-#      - "battery"
-#      - "voltage"
-#      - "linkquality"
+    json_attributes_topic: "zigbee2mqtt/casa_xiaomi_abertura_entrada_casa"

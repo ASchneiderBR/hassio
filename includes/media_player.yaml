@@ -4,7 +4,7 @@
   filename: webostv2.conf
   turn_on_action:
     service: script.tv_lg_sala_power_on
-  timeout: 60
+  timeout: 30
   customize:
     sources:
       - hdmi1
@@ -20,7 +20,7 @@
   filename: webostv1.conf
   turn_on_action:
     service: script.tv_lg_suite_power_on
-  timeout: 60
+  timeout: 30
   customize:
     sources:
       - hdmi1

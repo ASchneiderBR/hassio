@@ -55,11 +55,11 @@
       data_template:
         entity_id: >
             {%- if is_state('input_boolean.boa_noite' , 'off') and states.sun.sun.attributes.elevation < 3 %}
-              automation.luzes_da_casa__banheiro_social, automation.luzes_da_casa__banheiro_suite, automation.luzes_da_casa__cozinha, automation.luzes_da_casa__quarto, automation.luzes_da_casa__suite, automation.luzes_da_casa__sala, automation.luzes_da_casa__entrando_em_casa, automation.muvrh_203__luz_do_banheiro, automation.muvrh_203__luz_da_sala_de_operacoes, automation.muvrh_203__luz_da_nossa_sala, automation.muvrh_303__luz_do_banheiro, automation.muvrh_303__luz_da_dinamica, automation.muvrh_303__luz_da_entrada
+              automation.luzes_da_casa_banheiro_social, automation.luzes_da_casa_banheiro_suite, automation.luzes_da_casa_cozinha, automation.luzes_da_casa_quarto, automation.luzes_da_casa_suite, automation.luzes_da_casa_sala, automation.luzes_da_casa_entrando_em_casa, automation.muvrh_203_luz_do_banheiro, automation.muvrh_203_luz_da_sala_de_operacoes, automation.muvrh_203_luz_da_nossa_sala, automation.muvrh_303_luz_do_banheiro, automation.muvrh_303_luz_da_dinamica, automation.muvrh_303_luz_da_entrada
             {%- elif is_state('input_boolean.boa_noite' , 'on') and states.sun.sun.attributes.elevation < 3 %}
-              automation.luzes_da_casa__banheiro_social, automation.luzes_da_casa__banheiro_suite, automation.luzes_da_casa__cozinha, automation.luzes_da_casa__sala, automation.luzes_da_casa__entrando_em_casa, automation.muvrh_203__luz_do_banheiro, automation.muvrh_203__luz_da_sala_de_operacoes, automation.muvrh_203__luz_da_nossa_sala, automation.muvrh_303__luz_do_banheiro, automation.muvrh_303__luz_da_dinamica, automation.muvrh_303__luz_da_entrada
+              automation.luzes_da_casa_banheiro_social, automation.luzes_da_casa_banheiro_suite, automation.luzes_da_casa_cozinha, automation.luzes_da_casa_sala, automation.luzes_da_casa_entrando_em_casa, automation.muvrh_203_luz_do_banheiro, automation.muvrh_203_luz_da_sala_de_operacoes, automation.muvrh_203_luz_da_nossa_sala, automation.muvrh_303_luz_do_banheiro, automation.muvrh_303_luz_da_dinamica, automation.muvrh_303_luz_da_entrada
             {%- else %}
-              automation.luzes_da_casa__banheiro_social, automation.luzes_da_casa__banheiro_suite, automation.luzes_da_casa__cozinha, automation.luzes_da_casa__quarto, automation.luzes_da_casa__suite, automation.luzes_da_casa__sala, automation.luzes_da_casa__entrando_em_casa, automation.muvrh_203__luz_do_banheiro, automation.muvrh_203__luz_da_sala_de_operacoes, automation.muvrh_203__luz_da_nossa_sala, automation.muvrh_303__luz_do_banheiro, automation.muvrh_303__luz_da_dinamica, automation.muvrh_303__luz_da_entrada
+              automation.luzes_da_casa_banheiro_social, automation.luzes_da_casa_banheiro_suite, automation.luzes_da_casa_cozinha, automation.luzes_da_casa_quarto, automation.luzes_da_casa_suite, automation.luzes_da_casa_sala, automation.luzes_da_casa_entrando_em_casa, automation.muvrh_203_luz_do_banheiro, automation.muvrh_203_luz_da_sala_de_operacoes, automation.muvrh_203_luz_da_nossa_sala, automation.muvrh_303_luz_do_banheiro, automation.muvrh_303_luz_da_dinamica, automation.muvrh_303_luz_da_entrada
             {% endif %}
     - service: input_select.select_option
       entity_id: input_select.estados_de_succao
@@ -79,9 +79,11 @@
     - service_template: >
         {% if is_state('alarm_control_panel.alarme', 'disarmed') %}
           {% if is_state('group.pessoas', 'home') %}script.alarme_armar_casa{% else %}script.alarme_armar_fora{% endif %}
+        {% else %}
+          script.nada
         {% endif %}
     - service: automation.turn_on
-      entity_id: automation.alarme__aviso_alarme_ativado
+      entity_id: automation.alarme_aviso_alarme_ativado
     - service: persistent_notification.create
       data:
         title: "Alerta Sistema ({{now().strftime('%H:%M')}})"
@@ -125,11 +127,15 @@
           switch.turn_on
         {% elif is_state('media_player.tv_sala' , 'off') and is_state('switch.home_theater_sala', 'on') %}
           switch.turn_off
+        {% else %}
+          script.nada
         {% endif %}
       entity_id: switch.home_theater_sala
     - service_template: >
         {% if is_state('media_player.tv_sala' , 'playing') and is_state('light.ledsalatv', 'off') %}
           light.turn_on
+        {% else %}
+          script.nada
         {% endif %}
       data:
         entity_id: light.ledsalatv
@@ -137,6 +143,8 @@
     - service_template: >
         {% if is_state('media_player.tv_sala' , 'off') and is_state('light.ledsalatv', 'on') %}
           light.turn_off
+        {% else %}
+          script.nada
         {% endif %}
       data:
         entity_id: light.ledsalatv
@@ -164,7 +172,7 @@
         entity_id: media_player.sala
         media_content_id: 'http://192.168.1.12:8123/local/audio/tts/alarme_desarmado.mp3'
         media_content_type: 'audio/mp3'
-    - service: notify.TUDO
+    - service: notify.tudo
       data:
         title: "Alarme da casa"
         message: "O alarme da casa foi desarmado. Rearmando em 10 minutos..."
@@ -174,9 +182,9 @@
     - delay: '00:10:00'
     - service_template: >
         {% if is_state('group.pessoas', 'home') %}
-        alarm_control_panel.alarm_arm_home
+          alarm_control_panel.alarm_arm_home
         {% else %}
-        alarm_control_panel.alarm_arm_away
+          alarm_control_panel.alarm_arm_away
         {% endif %}
       entity_id: alarm_control_panel.alarme
 
@@ -196,7 +204,7 @@
         entity_id: media_player.sala
         media_content_id: 'http://192.168.1.12:8123/local/audio/tts/alarme_armado.mp3'
         media_content_type: 'audio/mp3'
-    - service: notify.TUDO
+    - service: notify.tudo
       data:
         title: "Alarme da casa"
         message: "O alarme da casa foi armado."
@@ -211,14 +219,18 @@
     - service_template: >
         {% if is_state('binary_sensor.movimento_entrada_de_casa', 'off') %}
           script.entrada_luz_temporizador
+        {% else %}
+          script.nada
         {% endif %}
-    - service: notify.TUDO
+    - service: notify.tudo
       data:
         title: "Alerta casa"
         message: "Porta da entrada de casa acabou de ser aberta."
     - service_template: >
         {% if is_state('switch.sistema_alarme_casa', 'on') %}
           alarm_control_panel.alarm_trigger
+        {% else %}
+          script.nada
         {% endif %}
       entity_id: alarm_control_panel.alarme
     - service_template: >
@@ -237,7 +249,7 @@
   action:
     - service: switch.turn_on
       entity_id: switch.sirene
-    - service: notify.TUDO
+    - service: notify.tudo
       data:
         title: "Alarme da casa"
         message: "ATENÇÂO! Alarme foi acionado! Sirene está tocando!"
@@ -250,7 +262,7 @@
     to: 'on'
   action:
     - service: script.garagem_casa_abrir
-    - service: notify.TUDO
+    - service: notify.tudo
       data_template:
         title: "Automação"
         message: "Bem vindo! Preparando a casa para sua chegada..."
@@ -275,6 +287,8 @@
     - service_template: >
         {% if is_state('switch.tv_lg_sala', 'off') %}
           switch.turn_on
+        {% else %}
+          script.nada
         {% endif %}
       entity_id: switch.tv_lg_sala
 
@@ -289,7 +303,7 @@
   action:
     - service: switch.turn_off
       entity_id: switch.toalheiro
-    - service: notify.TUDO
+    - service: notify.tudo
       data_template:
         title: "Automação"
         message: "Toalheiro desligado após duas horas de uso."
@@ -309,7 +323,7 @@
       entity_id:
         - switch.chuveirosuite
         - switch.chuveirosocial
-    - service: notify.TUDO
+    - service: notify.tudo
       data_template:
         title: "Automação"
         message: "{{ trigger.to_state.name }} desligado após 20 minutos de uso."
@@ -329,7 +343,7 @@
       entity_id:
         - switch.cafeteira_casa
         - switch.chaleira_casa
-    - service: notify.TUDO
+    - service: notify.tudo
       data_template:
         title: "Automação"
         message: "{{ trigger.to_state.name }} foi desligada."
@@ -343,7 +357,7 @@
     for:
       minutes: 5
   action:
-    - service: notify.TUDO
+    - service: notify.tudo
       data_template:
         title: "Automação"
         message: "O café está pronto!"
@@ -380,7 +394,7 @@
     entity_id: group.pessoas
     state: 'not_home'
   action:
-    - service: notify.TUDO
+    - service: notify.tudo
       data_template:
         title: "Alerta importante"
         message: "{{ trigger.to_state.name }} foi ligado sem ninguém em casa! ATENÇÂO!"
@@ -423,7 +437,7 @@
       entity_id: media_player.sala
       data_template:
         message: <speak>Atenção! {{ trigger.to_state.name }} aberta por muito tempo!</speak>
-    - service: notify.TUDO
+    - service: notify.tudo
       data_template:
         title: 'Alerta Casa'
         message: 'Atenção: {{ trigger.to_state.name }} aberta por muito tempo!'
@@ -509,6 +523,7 @@
             homeassistant.turn_off
           {% endif %}
         {% else %}
+          script.nada
         {% endif %}
       data_template:
         entity_id: >
@@ -543,6 +558,7 @@
             homeassistant.turn_off
           {% endif %}
         {% else %}
+          script.nada
         {% endif %}
       data_template:
         entity_id: >
@@ -586,11 +602,11 @@
 - alias: Solicitar status celulares
   initial_state: true
   trigger:
-    platform: time
+    platform: time_pattern
     minutes: '/60'
     seconds: 00
   action:
-    - service: notify.TODOS_CELULARES
+    - service: notify.todos_celulares
       data:
         message: "request_location_update"
 
@@ -605,6 +621,8 @@
           light.turn_on
         {% elif is_state('switch.desktop' , 'off') %}
           light.turn_off
+        {% else %}
+          script.nada
         {% endif %}
       data:
         entity_id: light.ledsaladesktop
@@ -636,6 +654,7 @@
         {% elif trigger.payload_json.action == 'rotate_left' %}
           script.home_theater_sala_voldown_x3
         {% else %}
+          script.nada
         {% endif %}
 
 - alias: Cubo suíte
@@ -663,12 +682,13 @@
         {% elif trigger.payload_json.action == 'rotate_left' %}
           script.cubo_suite_tv_voldown
         {% else %}
+          script.nada
         {% endif %}
 
 - alias: Alerta - Bateria fraca
   initial_state: true
   trigger:
-    - platform: time
+    - platform: time_pattern
       minutes: '/60'
       seconds: 00
   condition:
@@ -897,6 +917,8 @@
           script.cubo_sala_luz
         {% elif trigger.event.data.actionName == 'TESTE_2' %}
           script.cubo_sala_persiana
+        {% else %}
+          script.nada
         {% endif %}
 
 ## Impressora 3D
@@ -933,7 +955,7 @@
           push:
             category: camera
           entity_id: camera.ender_3
-    - service: notify.TODAS_TVS
+    - service: notify.todas_tvs
       data_template:
         title: "Impressora"
         message: "Finalizada a impressão, desligando em 5 minutos."
@@ -963,7 +985,7 @@
       data_template:
         title: "Impressora"
         message: "ATENÇÃO! Temperaturas passaram dos limites, impressora foi desligada da energia!"
-    - service: notify.TODAS_TVS
+    - service: notify.todas_tvs
       data_template:
         title: "Impressora"
         message: "ATENÇÃO! Temperaturas passaram dos limites, impressora foi desligada da energia!"
@@ -985,6 +1007,8 @@
           script.home_theater_sala_volup_x6
         {% elif trigger.payload_json.IrReceived.Data == "C100C03F" %}
           script.home_theater_sala_voldown_x6
+        {% else %}
+          script.nada
         {% endif %}
 
 ## Botões Sonoff

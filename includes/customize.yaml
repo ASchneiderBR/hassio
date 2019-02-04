@@ -91,7 +91,7 @@ sensor.since_last_boot:
 group.script:
   hidden: true
 
-sensor.fastcom_download:
+sensor.fast_com_download:
   friendly_name: Velocidade internet
   icon: mdi:traffic-light
 
@@ -570,12 +570,6 @@ sensor.dark_sky_cloud_coverage:
 sensor.dark_sky_cloud_coverage_1:
   friendly_name: "Núvens amanhã"
 
-sensor.dark_sky_daily_high_temperature:
-  friendly_name: "Temperatura máxima"
-
-sensor.dark_sky_daily_high_temperature_1:
-  friendly_name: "Temperatura máxima amanhã"
-
 sensor.dark_sky_daily_low_temperature:
   friendly_name: "Temperatura mínima"
 
@@ -614,7 +608,7 @@ sensor.dark_sky_summary:
 sensor.dark_sky_temperature:
   friendly_name: "Temperatura externa"
 
-sensor.dark_sky_daytime_high_temperature:
+sensor.dark_sky_daytime_high_temperature_0:
   friendly_name: "Temperatura maxima hoje"
 
 sensor.dark_sky_daytime_high_temperature_1:

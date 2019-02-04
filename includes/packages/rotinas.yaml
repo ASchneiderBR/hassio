@@ -15,19 +15,19 @@ automation:
     action:
       - service: homeassistant.turn_on
         entity_id:
-          - automation.luzes_da_casa__banheiro_social
-          - automation.luzes_da_casa__banheiro_suite
-          - automation.luzes_da_casa__cozinha
-          - automation.luzes_da_casa__quarto
-          - automation.luzes_da_casa__suite
-          - automation.luzes_da_casa__sala
-          - automation.luzes_da_casa__entrando_em_casa
-          - automation.muvrh_203__luz_do_banheiro
-          - automation.muvrh_203__luz_da_sala_de_operacoes
-          - automation.muvrh_203__luz_da_nossa_sala
-          - automation.muvrh_303__luz_da_entrada
-          - automation.muvrh_303__luz_da_dinamica
-          - automation.muvrh_303__luz_do_banheiro
+          - automation.luzes_da_casa_banheiro_social
+          - automation.luzes_da_casa_banheiro_suite
+          - automation.luzes_da_casa_cozinha
+          - automation.luzes_da_casa_quarto
+          - automation.luzes_da_casa_suite
+          - automation.luzes_da_casa_sala
+          - automation.luzes_da_casa_entrando_em_casa
+          - automation.muvrh_203_luz_do_banheiro
+          - automation.muvrh_203_luz_da_sala_de_operacoes
+          - automation.muvrh_203_luz_da_nossa_sala
+          - automation.muvrh_303_luz_da_entrada
+          - automation.muvrh_303_luz_da_dinamica
+          - automation.muvrh_303_luz_do_banheiro
 
   - alias: Rotina - Ações ao nascer do sol
     initial_state: true
@@ -44,19 +44,19 @@ automation:
     action:
       - service: homeassistant.turn_off
         entity_id:
-          - automation.luzes_da_casa__banheiro_social
-          - automation.luzes_da_casa__banheiro_suite
-          - automation.luzes_da_casa__cozinha
-          - automation.luzes_da_casa__quarto
-          - automation.luzes_da_casa__suite
-          - automation.luzes_da_casa__sala
-          - automation.luzes_da_casa__entrando_em_casa
-          - automation.muvrh_203__luz_do_banheiro
-          - automation.muvrh_203__luz_da_sala_de_operacoes
-          - automation.muvrh_203__luz_da_nossa_sala
-          - automation.muvrh_303__luz_da_entrada
-          - automation.muvrh_303__luz_da_dinamica
-          - automation.muvrh_303__luz_do_banheiro
+          - automation.luzes_da_casa_banheiro_social
+          - automation.luzes_da_casa_banheiro_suite
+          - automation.luzes_da_casa_cozinha
+          - automation.luzes_da_casa_quarto
+          - automation.luzes_da_casa_suite
+          - automation.luzes_da_casa_sala
+          - automation.luzes_da_casa_entrando_em_casa
+          - automation.muvrh_203_luz_do_banheiro
+          - automation.muvrh_203_luz_da_sala_de_operacoes
+          - automation.muvrh_203_luz_da_nossa_sala
+          - automation.muvrh_303_luz_da_entrada
+          - automation.muvrh_303_luz_da_dinamica
+          - automation.muvrh_303_luz_do_banheiro
       - service: cover.close_cover
         entity_id: cover.persiana_sala
 
@@ -70,15 +70,17 @@ automation:
       - service: input_boolean.turn_off
         entity_id: input_boolean.boa_noite
       - service: script.tts_bom_dia
-      - service: notify.TODOS_CELULARES
+      - service: notify.todos_celulares
         data_template:
           title: "Automação"
-          message: "Bom dia! Hoje a máxima será de {{ states.sensor.dark_sky_daily_high_temperature.state | int }}ºC com previsão de {{ states.sensor.dark_sky_summary.state | lower }}"
+          message: "Bom dia! Hoje a máxima será de {{ states.sensor.dark_sky_daytime_high_temperature_0.state | int }}ºC com previsão de {{ states.sensor.dark_sky_summary.state | lower }}"
       - service: switch.turn_on
         entity_id: switch.toalheiro
       - service_template: >
           {% if is_state('input_boolean.cafe_manha', 'on') %}
             switch.turn_on
+          {% else %}
+            script.nada
           {% endif %}
         data_template:
           entity_id: >
@@ -87,6 +89,7 @@ automation:
               {% endif %}
       - service_template: >
           {% if is_state('climate.ar_condicionado_da_suite' , 'off') %}
+            script.nada
           {% else %}
             {% if is_state('climate.ar_condicionado_da_suite' , 'heat') %}
             {% else %}
@@ -110,14 +113,14 @@ automation:
       entity_id: input_boolean.boa_noite
       to: 'on'
     action:
-      - service: notify.TODOS_CELULARES
+      - service: notify.todos_celulares
         data:
           title: "Automação"
           message: "Aprontando a casa. Boa noite!"
       - service: homeassistant.turn_off
         entity_id:
-          - automation.luzes_da_casa__suite
-          - automation.luzes_da_casa__quarto
+          - automation.luzes_da_casa_suite
+          - automation.luzes_da_casa_quarto
       - service: script.casa_desligar_tudo_noite
       - wait_template: "{{is_state('script.casa_desligar_tudo_noite', 'off')}}"
       - service: script.tts_boa_noite
@@ -140,11 +143,13 @@ script:
       - delay: '00:00:01'
       - service_template: >
           {%- if is_state('climate.ar_condicionado_da_suite' , 'off') %}
+            script.nada
           {%- else %}
             script.ar_suite_display
           {%- endif %}
       - service_template: >
           {%- if is_state('climate.ar_condicionado_da_sala' , 'off') %}
+            script.nada
           {%- else %}
             climate.set_operation_mode
           {%- endif %}
@@ -178,6 +183,7 @@ script:
         state: 'off'
       - service_template: >
           {%- if is_state('climate.ar_condicionado_do_quarto' , 'off') %}
+            script.nada
           {%- else %}
             climate.set_operation_mode
           {%- endif %}
