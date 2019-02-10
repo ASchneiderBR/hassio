@@ -123,6 +123,8 @@ automation:
               cool
             {% elif states.climate.ar_condicionado_da_sala_de_operacoes.attributes.current_temperature | int < 20 %}
               heat
+            {% else %}
+              off
             {% endif %}
 
   - alias: Sensores - Portas - MuvRH

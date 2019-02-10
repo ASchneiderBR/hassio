@@ -340,9 +340,8 @@
       minutes: 30
   action:
     - service: switch.turn_off
-      entity_id:
-        - switch.cafeteira_casa
-        - switch.chaleira_casa
+      data_template: 
+        entity_id: "{{ trigger.to_state.entity_id }}"
     - service: notify.tudo
       data_template:
         title: "Automação"

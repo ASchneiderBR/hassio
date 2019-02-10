@@ -18,7 +18,6 @@ binary_sensor:
     state_topic: "zigbee2mqtt/bridge/state"
     payload_on: "online"
     payload_off: "offline"
-    icon: mdi:router-wireless
     device_class: connectivity
 
 group:

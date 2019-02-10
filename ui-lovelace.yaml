@@ -263,6 +263,8 @@ views:
                             name: Estado
                             secondary_info: last-changed
                         - entity_id: binary_sensor.porta_lava_loucas
+                          options:
+                            secondary_info: last-changed
                         - entity_id: input_select.lava_loucas_casa_modo_lavagem
                           options:
                             icon: mdi:dishwasher
@@ -1150,7 +1152,7 @@ views:
             cards:
               - type: custom:button-card
                 entity: switch.sistema_alarme_casa
-                icon: mdi:security-home
+                icon: mdi:shield-home
                 action: toggle
                 size: 60%
                 color: rgb(211, 47, 47)

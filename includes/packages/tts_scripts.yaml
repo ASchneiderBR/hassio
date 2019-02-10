@@ -272,7 +272,7 @@ script:
             ] -%}
             {{ mensagem|random }}
           {%- endmacro -%}
-            <speak><amazon:auto-breaths frequency='medium'>{{ inicio() }} O ar condicionado está {{ ar_condicionado() }} {{ temp_amanha()}} {{ carregar_celular() }} {% if is_state('binary_sensor.casa_alerta_box_areia_magno', 'on') %}Atenção: abrir o box do banheiro pois o Magno não consegue usar a caixa de areia.{% endif %} {{ cafe() }}<prosody rate="90%">{{ mensagem() }}</prosody> Boa noite {{ boa_noite() }}</amazon:auto-breaths></speak>
+            "<speak><amazon:auto-breaths frequency='medium'>{{ inicio() }} O ar condicionado está {{ ar_condicionado() }} {{ temp_amanha()}} {{ carregar_celular() }} {% if is_state('binary_sensor.casa_alerta_box_areia_magno', 'on') %}Atenção: abrir o box do banheiro pois o Magno não consegue usar a caixa de areia.{% endif %} {{ cafe() }}<prosody rate="90%">{{ mensagem() }}</prosody> Boa noite {{ boa_noite() }}</amazon:auto-breaths></speak>"
     - wait_template: "{{is_state('media_player.suite', 'playing')}}"
     - wait_template: "{{is_state('media_player.suite', 'idle')}}"
 

@@ -2,4 +2,3 @@ default: error
 logs:
   homeassistant.components.homekit: warning
   pyhap: warning
-  homeassistant.components.camera: debug

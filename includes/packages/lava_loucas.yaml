@@ -107,7 +107,7 @@ script:
         topic: 'cmnd/lava_loucas_casa/POWER1'
         payload: 'ON'
     - delay:
-        milliseconds: 200
+        seconds: 1
     - service: mqtt.publish
       data:
         qos: 1
@@ -133,42 +133,42 @@ script:
         topic: 'cmnd/lava_loucas_casa/POWER1'
         payload: 'ON'
     - delay:
-        milliseconds: 200
+        seconds: 1
     - service: mqtt.publish
       data:
         qos: 1
         topic: 'cmnd/lava_loucas_casa/POWER2'
         payload: 'ON'
     - delay:
-        milliseconds: 200
+        seconds: 1
     - service: mqtt.publish
       data:
         qos: 1
         topic: 'cmnd/lava_loucas_casa/POWER2'
         payload: 'ON'
     - delay:
-        milliseconds: 200
+        seconds: 1
     - service: mqtt.publish
       data:
         qos: 1
         topic: 'cmnd/lava_loucas_casa/POWER2'
         payload: 'ON'
     - delay:
-        milliseconds: 200
+        seconds: 1
     - service: mqtt.publish
       data:
         qos: 1
         topic: 'cmnd/lava_loucas_casa/POWER2'
         payload: 'ON'
     - delay:
-        milliseconds: 200
+        seconds: 1
     - service: mqtt.publish
       data:
         qos: 1
         topic: 'cmnd/lava_loucas_casa/POWER2'
         payload: 'ON'
     - delay:
-        milliseconds: 200
+        seconds: 1
     - service: mqtt.publish
       data:
         qos: 1
@@ -191,14 +191,14 @@ script:
         topic: 'cmnd/lava_loucas_casa/POWER1'
         payload: 'ON'
     - delay:
-        milliseconds: 200
+        seconds: 1
     - service: mqtt.publish
       data:
         qos: 1
         topic: 'cmnd/lava_loucas_casa/POWER2'
         payload: 'ON'
     - delay:
-        milliseconds: 200
+        seconds: 1
     - service: mqtt.publish
       data:
         qos: 1

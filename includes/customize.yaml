@@ -236,7 +236,7 @@ switch.chuveirosocial:
 
 alarm_control_panel.alarme:
   friendly_name: "Alarme da casa"
-  icon: mdi:security-home
+  icon: mdi:shield-home
 
 switch.sirene:
   friendly_name: "Sirene do alarme"
@@ -445,6 +445,9 @@ binary_sensor.motion_sensor_158d0001e44035:
 binary_sensor.motion_sensor_158d0001ad6c20:
   friendly_name: "Movimento banheiro 303"
   icon: mdi:walk
+
+binary_sensor.estado_do_bridge:
+  icon: mdi:router-wireless
 
 sensor.illumination_158d0001e02f9a:
   friendly_name: "Luz nossa sala"

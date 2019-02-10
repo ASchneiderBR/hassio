@@ -1,7 +1,6 @@
 #Casa
 
 - platform: mqtt
-  friendly_name: "Luz do deck"
   name: "mesa_jantar"
   command_topic: "cmnd/mesajantar/POWER"
   state_topic: "stat/mesajantar/POWER"

@@ -59,7 +59,6 @@
 
 - platform: mqtt
   name: "Estado TV sala dinâmica"
-  friendly_name: "Luz do deck"
   state_topic: "tele/muv303tvdinamica/LWT"
   value_template: "{{ value }}"
   payload_on: "Online"
