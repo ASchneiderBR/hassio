@@ -1,34 +1,62 @@
+#RULES:
+
+#Rule1 on button1#state=1 do power1 2 endon on button1#state=3 do publish stat/[topic]/BUTTON {"BUTTON":"1","ACTION":"HOLD"} endon
+#Rule2 on button2#state=1 do publish stat/[topic]/BUTTON {"BUTTON":"2","ACTION":"TOGGLE"} endon on button2#state=3 do publish stat/[topic]/BUTTON {"BUTTON":"2","ACTION":"HOLD"} endon
+#Rule3 on button3#state=1 do publish stat/[topic]/BUTTON {"BUTTON":"3","ACTION":"TOGGLE"} endon on button3#state=3 do publish stat/[topic]/BUTTON {"BUTTON":"3","ACTION":"HOLD"} endon
+
+#CONFIG:
+
+#Backlog Module 18; GPIO12 21; GPIO13 56; GPIO14 17; GPIO01 18; GPIO03 19; SetOption13 0; ButtonTopic 0; SetOption32 10; SetOption1 1; SetOption11 0; rule1 4; rule2 4; rule3 4; rule1 1; rule2 1; rule3 1; ButtonDebounce 50
+
+automation:
+
+  - alias: Botões Sonoff
+    initial_state: true
+    trigger:
+      - platform: mqtt
+        topic: stat/+/BUTTON
+#    condition:
+#      condition: template
+#      value_template: "{{ states.script.sonoff_botao_{{ trigger.topic.split('/')[1] | lower }}_{{ trigger.payload_json.BUTTON | lower }}_{{ trigger.payload_json.ACTION | lower }}.entity_id is defined }}"
+    action:
+      - service_template: script.sonoff_botao_{{ trigger.topic.split('/')[1] | lower }}_{{ trigger.payload_json.BUTTON | lower }}_{{ trigger.payload_json.ACTION | lower }}
+
 script:
 
 ## Casa
 
-  interruptor_cafeteira_casa_power1_hold:
-    alias: "Luz principal"
+  sonoff_botao_cafeteira_casa_1_hold:
+    alias: "Botão Sonoff - Luz principal"
     sequence:
       - service: light.toggle
         entity_id: light.cozinha
 
-  interruptor_chaleira_casa_power1_hold:
-    alias: "Luz balcão"
+  sonoff_botao_chaleira_casa_1_hold:
+    alias: "Botão Sonoff - Luz balcão"
     sequence:
       - service: light.toggle
         entity_id: light.ledcozinhabalcao
 
+  sonoff_botao_ender3_1_hold:
+    alias: "Botão Sonoff - Preaquecer cama"
+    sequence:
+      - service: script.octoprint_preheat_bed
+
 ## MuvRH
 
-  interruptor_muv303entrada_power1_hold:
-    alias: "Desligar/ligar tudo na sala 303"
+  sonoff_botao_muv303entrada_1_hold:
+    alias: "Botão Sonoff - Desligar/ligar tudo na sala 303"
     sequence:
-      - service_template: >
+      - service_template: >-
           {% if is_state('group.muvrh_tudo_sala_303', 'off') %}
-            homeassistant.turn_on
+              homeassistant.turn_on
           {% else %}
-            homeassistant.turn_off
+              homeassistant.turn_off
           {% endif %}
         data_template:
-          entity_id: >
+          entity_id: >-
             {% if is_state('group.muvrh_tudo_sala_303', 'off') %}
-              group.muvrh_tudo_sala_303
+                group.muvrh_tudo_sala_303
             {% else %}
-              group.muvrh_tudo_sala_303, switch.tv_dinamica_303
+                group.muvrh_tudo_sala_303
             {% endif %}

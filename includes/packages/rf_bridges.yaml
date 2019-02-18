@@ -112,7 +112,7 @@ homeassistant:
       icon: mdi:swap-vertical
     
     input_select.rf_bridge_key_select:
-      icon: mdi:format-list-numbers
+      icon: mdi:format-list-numbered
     
     script.rf_bridge_send_command:
       icon: mdi:send

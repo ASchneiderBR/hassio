@@ -70,6 +70,10 @@ automation:
       - service: input_boolean.turn_off
         entity_id: input_boolean.boa_noite
       - service: script.tts_bom_dia
+      - service: persistent_notification.create
+        data:
+          title: "Alerta Casa ({{now().strftime('%H:%M')}})"
+          message: "Bom dia!"
       - service: notify.todos_celulares
         data_template:
           title: "Automação"
@@ -117,21 +121,18 @@ automation:
         data:
           title: "Automação"
           message: "Aprontando a casa. Boa noite!"
+      - service: persistent_notification.create
+        data:
+          title: "Alerta Casa ({{now().strftime('%H:%M')}})"
+          message: "Boa noite!"
       - service: homeassistant.turn_off
         entity_id:
           - automation.luzes_da_casa_suite
           - automation.luzes_da_casa_quarto
       - service: script.casa_desligar_tudo_noite
-      - wait_template: "{{is_state('script.casa_desligar_tudo_noite', 'off')}}"
       - service: script.tts_boa_noite
 
 script:
-
-  aspirador_set_quiet:
-    sequence:
-      - condition: state
-        entity_id: input_boolean.boa_noite
-        state: 'off'
 
 ## Desligar tudo boa noite
 

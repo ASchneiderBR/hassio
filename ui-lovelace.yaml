@@ -332,6 +332,7 @@ views:
         cards:
 
           - type: entity-filter
+            show_empty: false
             card:
               title: Dispositivos offline (atenção)
               show_header_toggle: false
@@ -367,6 +368,7 @@ views:
               - "off"
 
           - type: entity-filter
+            show_empty: false
             card:
               title: Dispositivos indisponíveis (atenção)
               show_header_toggle: false
@@ -472,6 +474,7 @@ views:
               - offline
 
           - type: custom:monster-card
+            show_empty: false
             card:
               type: entities
               title: Baterias fracas (atenção)
@@ -492,6 +495,7 @@ views:
                     battery: < 10
 
           - type: entity-filter
+            show_empty: false
             card:
               title: Sensores ativos
               show_header_toggle: false
@@ -527,6 +531,7 @@ views:
               - "on"
 
           - type: entity-filter
+            show_empty: false
             card:
               title: Luzes ligadas
               show_header_toggle: true
@@ -571,7 +576,9 @@ views:
                 secondary_info: last-changed
             state_filter:
               - "on"
+
           - type: entity-filter
+            show_empty: false
             card:
               title: Dispositivos ligados
               show_header_toggle: true
@@ -615,6 +622,7 @@ views:
               - home
 
           - type: entity-filter
+            show_empty: false
             card:
               title: Persianas abertas
               show_header_toggle: false
@@ -629,6 +637,7 @@ views:
               - open
 
           - type: entity-filter
+            show_empty: false
             card:
               title: Ares condicionados ligados
               show_header_toggle: false
@@ -720,7 +729,6 @@ views:
                     - entity_id: binary_sensor.octoprint_printing
                       options:
                         name: Imprimindo
-                        secondary_info: last-changed
                     - entity_id: script.octoprint_cancelar
                       options:
                         name: Parar impressão
@@ -1408,6 +1416,7 @@ views:
         type: vertical-stack
         cards:
           - type: entity-filter
+            show_empty: false
             card:
               title: Dispositivos offline (atenção)
               show_header_toggle: false
@@ -1442,6 +1451,7 @@ views:
               - not_home
 
           - type: entity-filter
+            show_empty: false
             card:
               title: Dispositivos indisponíveis (atenção)
               show_header_toggle: false
@@ -1498,6 +1508,7 @@ views:
               - unavailable
 
           - type: entity-filter
+            show_empty: false
             card:
               title: Sensores ligados
               show_header_toggle: false
@@ -1524,6 +1535,7 @@ views:
               - "on"
 
           - type: entity-filter
+            show_empty: false
             card:
               title: Computadores ligados
               show_header_toggle: false
@@ -1550,6 +1562,7 @@ views:
               - home
 
           - type: entity-filter
+            show_empty: false
             card:
               title: Luzes ligadas
               show_header_toggle: true
@@ -1578,6 +1591,7 @@ views:
               - "on"
 
           - type: entity-filter
+            show_empty: false
             card:
               title: Dispositivos ligados
               show_header_toggle: true
@@ -1594,6 +1608,7 @@ views:
               - "on"
 
           - type: entity-filter
+            show_empty: false
             card:
               title: Ares condicionados ligados
             entities:

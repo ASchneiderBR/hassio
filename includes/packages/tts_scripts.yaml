@@ -10,7 +10,7 @@ script:
     - service: tts.amazon_polly_say
       entity_id: media_player.sala
       data_template:
-        message: >
+        message: >-
           {% macro cumprimento() -%}
             {% set cumprimento = [
               "Olá!",
@@ -61,13 +61,13 @@ script:
             ] -%}
             {{ porta_entrada_saindo|random }}
           {%- endmacro -%}
-          <speak><amazon:auto-breaths frequency='medium'>
+              <speak><amazon:auto-breaths frequency='medium'>
           {%- if((as_timestamp(now()) - as_timestamp(states.group.pessoas.last_updated)) | int < 180 and is_state('group.pessoas', 'home')) or ((as_timestamp(now()) - as_timestamp(states.group.pessoas.last_updated)) | int > 360 and is_state('group.pessoas', 'not_home')) -%}
             {{ cumprimento() }} {{ turno() }} Seja bem vindo! Agora são <say-as interpret-as='time'>{{ now().strftime('%H:%M') }}</say-as>. Já preparei tudo para sua chegada. Aqui vão algumas informações sobre a casa. A temperatura na sala é de {{ states.sensor.temperatura_sala.state | int }} graus, sendo que na rua está {{ states.sensor.dark_sky_summary.state | lower }} com {{ states.sensor.dark_sky_temperature.state | int }} graus. Logo mais vou armar o alarme pra você, deixa comigo. {{ desejos() }}
           {%- else -%}
             {% if is_state('binary_sensor.movimento_entrada_de_casa', 'off') %}{{ porta_entrada_chegando() }}{% else %}{{ porta_entrada_saindo() }}{% endif %}
           {%- endif -%}
-          </amazon:auto-breaths></speak>
+              </amazon:auto-breaths></speak>
 
   tts_entrando_casa_alarme:
     alias: "Entrando em casa com alarme disparando"
@@ -123,18 +123,14 @@ script:
   tts_boa_noite:
     alias: 'Texto para automação boa noite'
     sequence:
-    - service: persistent_notification.create
-      data:
-        title: "Alerta Casa ({{now().strftime('%H:%M')}})"
-        message: "Boa noite!"
     - service: media_player.volume_set
       entity_id: media_player.suite
       data:
-        volume_level: 0.7
+        volume_level: 0.5
     - service: tts.amazon_polly_say
-      entity_id: media_player.suite
       data_template:
-        message: >
+        entity_id: media_player.suite
+        message: >-
           {% macro inicio() -%}
             Automação boa noite iniciada. A temperatura do quarto, atualmente é de {{ states.sensor.temperatura_suite.state | int }} graus.
           {%- endmacro -%}
@@ -272,25 +268,21 @@ script:
             ] -%}
             {{ mensagem|random }}
           {%- endmacro -%}
-            "<speak><amazon:auto-breaths frequency='medium'>{{ inicio() }} O ar condicionado está {{ ar_condicionado() }} {{ temp_amanha()}} {{ carregar_celular() }} {% if is_state('binary_sensor.casa_alerta_box_areia_magno', 'on') %}Atenção: abrir o box do banheiro pois o Magno não consegue usar a caixa de areia.{% endif %} {{ cafe() }}<prosody rate="90%">{{ mensagem() }}</prosody> Boa noite {{ boa_noite() }}</amazon:auto-breaths></speak>"
+              <speak><amazon:auto-breaths frequency='medium'>{{ inicio() }} O ar condicionado está {{ ar_condicionado() }} {{ temp_amanha()}} {{ carregar_celular() }} {% if is_state('binary_sensor.casa_alerta_box_areia_magno', 'on') %}Atenção: abrir o box do banheiro pois o Magno não consegue usar a caixa de areia.{% endif %} {{ cafe() }}<prosody rate="90%">{{ mensagem() }}</prosody> Boa noite {{ boa_noite() }}</amazon:auto-breaths></speak>
     - wait_template: "{{is_state('media_player.suite', 'playing')}}"
     - wait_template: "{{is_state('media_player.suite', 'idle')}}"
 
   tts_bom_dia:
     alias: "Texto para automação bom dia"
     sequence:
-    - service: persistent_notification.create
-      data:
-        title: "Alerta Casa ({{now().strftime('%H:%M')}})"
-        message: "Bom dia!"
     - service: media_player.volume_set
       entity_id: media_player.suite
       data:
-        volume_level: 0.7
+        volume_level: 0.5
     - service: tts.amazon_polly_say
-      entity_id: media_player.suite
       data_template:
-        message: >
+        entity_id: media_player.suite
+        message: >-
           {% macro inicio() -%}
             Bom dia! Agora são <say-as interpret-as='time'>{{ now().strftime('%H:%M') }}</say-as> de {% if now().strftime('%A') == 'Monday' -%}segunda-feira{%- elif now().strftime('%A') == 'Tuesday' -%}terça-feira{%- elif now().strftime('%A') == 'Wednesday'-%}quarta-feira{%- elif now().strftime('%A') == 'Thursday' -%}quinta-feira{%- elif now().strftime('%A') == 'Friday' -%}sexta-feira{%- elif now().strftime('%A') == 'Saturday' -%}sábado{%- elif now().strftime('%A') == 'Sunday' -%}domingo{%- endif %}, dia {{ now().strftime('%d') }} de {% if now().strftime('%B') == 'January' -%}janeiro{%- elif now().strftime('%B') == 'February' -%}fevereiro{%- elif now().strftime('%B') == 'March'-%}março{%- elif now().strftime('%B') == 'April' -%}abril{%- elif now().strftime('%B') == 'May' -%}maio{%- elif now().strftime('%B') == 'June' -%}junho{%- elif now().strftime('%B') == 'July' -%}julho{%- elif now().strftime('%B') == 'August' -%}agosto{%- elif now().strftime('%B') == 'September' -%}setembro{%- elif now().strftime('%B') == 'October' -%}outubro{%- elif now().strftime('%B') == 'November' -%}novembro{%- elif now().strftime('%B') == 'December' -%}dezembro{%- endif -%}.
           {%- endmacro -%}
@@ -377,6 +369,6 @@ script:
             ] -%}
             {{ dia|random }}
           {%- endmacro -%}
-            <speak><amazon:auto-breaths frequency='medium'>{{ inicio() }} {{ temperaturas() }} {{ avisos() }} {{ cafe() }} {% if is_state('binary_sensor.casa_alerta_box_areia_magno', 'on') %}Atenção: abrir o box do banheiro pois o Magno não consegue usar a caixa de areia.{% endif %} <prosody rate="90%">{{ dia() }}</prosody></amazon:auto-breaths></speak>
+              <speak><amazon:auto-breaths frequency='medium'>{{ inicio() }} {{ temperaturas() }} {{ avisos() }} {{ cafe() }} {% if is_state('binary_sensor.casa_alerta_box_areia_magno', 'on') %}Atenção: abrir o box do banheiro pois o Magno não consegue usar a caixa de areia.{% endif %} <prosody rate="90%">{{ dia() }}</prosody></amazon:auto-breaths></speak>
     - wait_template: "{{is_state('media_player.suite', 'playing')}}"
     - wait_template: "{{is_state('media_player.suite', 'idle')}}"

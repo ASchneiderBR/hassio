@@ -1009,32 +1009,3 @@
         {% else %}
           script.nada
         {% endif %}
-
-## Botões Sonoff
-
-- alias: Botão Sonoff - Hold
-  initial_state: true
-  trigger:
-    - platform: mqtt
-      topic: cmnd/#
-      payload: 'HOLD'  
-  action:
-    - service_template: script.interruptor_{{ trigger.topic.split('/')[1] | lower }}_{{ trigger.topic.split('/')[2] | lower }}_hold
-
-- alias: Botão Sonoff - Power 2 toggle
-  initial_state: true
-  trigger:
-    - platform: mqtt
-      topic: cmnd/+/POWER2
-      payload: 'TOGGLE'
-  action:
-    - service_template: script.interruptor_{{ trigger.topic.split('/')[1] | lower }}_{{ trigger.topic.split('/')[2] | lower }}_power2
-
-- alias: Botão Sonoff - Power 3 toggle
-  initial_state: true
-  trigger:
-    - platform: mqtt
-      topic: cmnd/+/POWER3
-      payload: 'TOGGLE'
-  action:
-    - service_template: script.interruptor_{{ trigger.topic.split('/')[1] | lower }}_{{ trigger.topic.split('/')[2] | lower }}_power3
