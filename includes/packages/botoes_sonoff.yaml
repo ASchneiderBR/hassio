@@ -13,11 +13,16 @@ automation:
   - alias: Botões Sonoff
     initial_state: true
     trigger:
-      - platform: mqtt
-        topic: stat/+/BUTTON
-#    condition:
-#      condition: template
-#      value_template: "{{ states.script.sonoff_botao_{{ trigger.topic.split('/')[1] | lower }}_{{ trigger.payload_json.BUTTON | lower }}_{{ trigger.payload_json.ACTION | lower }}.entity_id is defined }}"
+      platform: mqtt
+      topic: stat/+/BUTTON
+    condition:
+      condition: template
+      value_template: >
+        {% set topic = trigger.topic.split('/')[1] | lower %}
+        {% set button = trigger.payload_json.BUTTON | lower %}
+        {% set action = trigger.payload_json.ACTION | lower %}
+        {% set object_id = 'sonoff_botao_{}_{}_{}'.format(topic, button, action) %}
+        {{ states.script[object_id] != None }}
     action:
       - service_template: script.sonoff_botao_{{ trigger.topic.split('/')[1] | lower }}_{{ trigger.payload_json.BUTTON | lower }}_{{ trigger.payload_json.ACTION | lower }}
 
@@ -49,14 +54,14 @@ script:
     sequence:
       - service_template: >-
           {% if is_state('group.muvrh_tudo_sala_303', 'off') %}
-              homeassistant.turn_on
+            homeassistant.turn_on
           {% else %}
-              homeassistant.turn_off
+            homeassistant.turn_off
           {% endif %}
         data_template:
           entity_id: >-
             {% if is_state('group.muvrh_tudo_sala_303', 'off') %}
-                group.muvrh_tudo_sala_303
+              group.muvrh_tudo_sala_303
             {% else %}
-                group.muvrh_tudo_sala_303
+              group.muvrh_tudo_sala_303
             {% endif %}

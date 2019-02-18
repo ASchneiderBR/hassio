@@ -1296,11 +1296,11 @@ views:
                   state: home
                 - entity_id: device_tracker.raphaela_muvrh
                   state: home
-                - entity_id: device_tracker.pedro_muvrh
-                  state: home
                 - entity_id: device_tracker.juliane_muvrh
                   state: home
                 - entity_id: device_tracker.amanda_muvrh
+                  state: home
+                - entity_id: device_tracker.greice_muvrh
                   state: home
           - type: entities
             title: Nossa sala
