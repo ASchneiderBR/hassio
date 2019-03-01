@@ -125,6 +125,32 @@ ledsalatv_ligar_colorloop:
       entity_id: light.ledsalatv
       effect: colorloop
 
+energia_casa:
+  alias: "Desligar tudo em casa ao sair"
+  sequence:
+  - service: script.casa_desligar_tudo
+  - wait_template: "{{is_state('script.casa_desligar_tudo', 'off')}}"
+  - condition: state
+    entity_id: switch.automacoes_luzes
+    state: 'on'
+  - service: light.turn_on
+    entity_id: light.entrada
+  - wait_template: "{{is_state('binary_sensor.entrada_casa', 'on')}}"
+  - wait_template: "{{is_state('binary_sensor.entrada_casa', 'off')}}"
+  - service: light.turn_off
+    entity_id: light.entrada
+
+# Sonoffs
+
+tasmota_restart_all:
+  alias: "Reiniciar todos dispositivos com Tasmota"
+  sequence:
+  - service: mqtt.publish
+    data:
+      topic: "cmnd/sonoffs/"
+      payload: 'restart 1'
+      qos: 1
+
 # Botões Xiaomi
 
 botao_xiaomi_quarto_01_single:
@@ -377,6 +403,9 @@ botao_xiaomi_banheiro_social_01_double:
 botao_xiaomi_banheiro_social_01_many:
   alias: "Chuveiro"
   sequence:
+  - condition: state
+    entity_id: input_boolean.visita_casa
+    state: 'on'
   - service: switch.toggle
     entity_id: switch.chuveirosocial
   - service: script.turn_off
@@ -743,7 +772,7 @@ speed_test:
       entity_id: media_player.sala, media_player.suite
       media_content_id: 'http://192.168.1.12:8123/local/audio/tts/alerta_iniciando_teste_internet.mp3'
       media_content_type: 'audio/mp3'
-  - service: sensor.update_fastdotcom
+  - service: fastdotcom.speedtest
   - wait_template: "{% if as_timestamp(now()) | int - as_timestamp(states.sensor.fast_com_download.last_updated) | int <= 5 %}True{% else %}False{% endif %}"
     timeout: 00:02:00
     continue_on_timeout: false

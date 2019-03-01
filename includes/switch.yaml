@@ -119,7 +119,7 @@
         service: light.turn_on
         entity_id: light.entrada
       turn_off:
-        service: script.casa_desligar_tudo
+        service: script.energia_casa
       icon_template: mdi:home-circle
 
     automacoes_luzes:

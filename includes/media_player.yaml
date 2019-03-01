@@ -30,12 +30,12 @@
       - youtube
       - netflix
 
-- platform: lg_netcast
-  host: 192.168.1.40
-  access_token: 459689
-  name: 'TV Quarto'
-  turn_on_action:
-    service: script.tv_lg_quarto_power_on
+#- platform: lg_netcast
+#  host: 192.168.1.40
+#  access_token: 459689
+#  name: 'TV Quarto'
+#  turn_on_action:
+#    service: script.tv_lg_quarto_power_on
 
 #- platform: cast
 #  host: 192.168.1.71

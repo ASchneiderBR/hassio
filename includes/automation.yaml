@@ -10,7 +10,7 @@
     - service: mqtt.publish
       data:
         payload: ""
-        topic: "cmnd/sonoffs/power"
+        topic: "cmnd/sonoffs/POWER"
         qos: 0
         retain: 0
     - service: mqtt.publish

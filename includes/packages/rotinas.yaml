@@ -11,7 +11,7 @@ automation:
         offset: '-00:50:00'
     condition:
       condition: template
-      value_template: "{{ trigger.offset.total_seconds() == -15*60 or states('sensor.dark_sky_cloud_coverage')|int(0) >- 80 }}"
+      value_template: "{{ trigger.offset.total_seconds() == -15*60 or states('sensor.dark_sky_cloud_coverage')|int(0) > 80 }}"
     action:
       - service: homeassistant.turn_on
         entity_id:
@@ -40,7 +40,7 @@ automation:
         offset: '00:50:00'
     condition:
       condition: template
-      value_template: "{{ trigger.offset.total_seconds() == 15*60 or states('sensor.dark_sky_cloud_coverage')|int(0) >- 80 }}"
+      value_template: "{{ trigger.offset.total_seconds() == 15*60 or states('sensor.dark_sky_cloud_coverage')|int(0) > 80 }}"
     action:
       - service: homeassistant.turn_off
         entity_id:

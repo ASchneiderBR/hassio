@@ -1,0 +1,11 @@
+#- name: Antonio
+#  id: 2b6dc0ffe2f545149788b81c8721e407
+#  device_trackers:
+#    - device_tracker.antonio
+#    - device_tracker.iphone_de_antonio
+#
+#- name: Roberta
+#  id: 2a5397440eed437a9c7d156b10996cd2
+#  device_trackers:
+#    - device_tracker.roberta
+#    - device_tracker.iphone_de_roberta
