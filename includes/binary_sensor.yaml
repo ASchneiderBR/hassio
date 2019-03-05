@@ -53,7 +53,7 @@
       device_class: occupancy
 
     casa_alerta_box_areia_magno:
-      value_template: "{{ is_state('binary_sensor.box_banheiro_social' , 'on') and is_state('input_boolean.magno_em_casa' , 'on') }}"
+      value_template: "{{ is_state('binary_sensor.box_banheiro_social' , 'off') and is_state('input_boolean.magno_em_casa' , 'on') }}"
       friendly_name: 'Box da areia fechado'
       device_class: problem
 

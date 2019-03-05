@@ -45,6 +45,11 @@ script:
   sonoff_botao_ender3_1_hold:
     alias: "Botão Sonoff - Preaquecer cama"
     sequence:
+      - service: switch.turn_on
+        entity_id: switch.ender3
+      - wait_template: "{{is_state('switch.conectar_octoprint', 'on')}}"
+        timeout: 00:01:00
+        continue_on_timeout: false
       - service: script.octoprint_preheat_bed
 
 ## MuvRH
