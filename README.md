@@ -12,22 +12,21 @@ Minhas configurações pessoais utilizadas no Home Assistant em casa e no trabal
 - Duck DNS
 - SSH & Web Terminal
 - NGINX
-- TasmoAdmin
 - Configurator
 - AirCast
 - HomeKit (Siri)
 - Plex Media Server
 - Pi-Hole (OrangePi)
+- ESPHome
 
 # Hardware:
 
 - Broadlink RM Mini x5
 - Broadlink RM Pro x2
-- Sonoff Basic Tasmota x 33
-- Sonoff Dual Tasmota x1
-- Sonoff 4CH Tasmota x1
-- MagicLed stock x2
-- MagicLed Tasmota x3
+- Sonoff Basic ESPHome x 33
+- Sonoff Dual ESPHome x1
+- Sonoff 4CH ESPHome x1
+- MagicLed ESPHome x5
 - Xiaomi motion sensor x12
 - Xiaomi temperure sensor x7
 - Xiaomi door sensor x5
