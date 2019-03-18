@@ -37,7 +37,7 @@ Minhas configurações pessoais utilizadas no Home Assistant em casa e no trabal
 - Raspberry Pi 3B (Hassio) x1
 - Raspberry Pi Zero W (OctoPrint) x1
 - Ender 3 3D printer x1
-- Wemos D1 Mini x3
+- Wemos D1 Mini running ESPHome x4
 - LG TV WebOS v1 (2014) x2
 - LG TV Netcast (2012) x1
 - Home Theater Sony Ht-ddw1500 x1
