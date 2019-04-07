@@ -25,17 +25,6 @@ binary_sensor:
         device_class: "power"
         value_template: "{{ not is_state('input_select.lava_loucas_casa_modo_lavagem', 'Selecionar') }}"
 
-  - platform: mqtt
-    name: "Porta lava louças"
-    state_topic: "stat/lava_loucas_casa/POWER4"
-    payload_on: "ON"
-    payload_off: "OFF"
-    availability_topic: "tele/lava_loucas_casa/LWT"
-    payload_available: "Online"
-    payload_not_available: "Offline"
-    qos: 1
-    device_class: "door"
-
 switch:
 
   - platform: template
@@ -101,18 +90,8 @@ script:
     alias: "Aquaspray"
     sequence:
     - wait_template: "{{ is_state('binary_sensor.porta_lava_loucas', 'off') }}"
-    - service: mqtt.publish
-      data:
-        qos: 1
-        topic: 'cmnd/lava_loucas_casa/POWER1'
-        payload: 'ON'
-    - delay:
-        milliseconds: 250
-    - service: mqtt.publish
-      data:
-        qos: 1
-        topic: 'cmnd/lava_loucas_casa/POWER3'
-        payload: 'ON'
+    - service: switch.turn_on
+      entity_id: switch.lava_loucas_modo_aquaspray
     - service: timer.start
       data:
         entity_id: timer.lava_loucas
@@ -127,53 +106,8 @@ script:
     alias: "Modo econômico"
     sequence:
     - wait_template: "{{ is_state('binary_sensor.porta_lava_loucas', 'off') }}"
-    - service: mqtt.publish
-      data:
-        qos: 1
-        topic: 'cmnd/lava_loucas_casa/POWER1'
-        payload: 'ON'
-    - delay:
-        milliseconds: 250
-    - service: mqtt.publish
-      data:
-        qos: 1
-        topic: 'cmnd/lava_loucas_casa/POWER2'
-        payload: 'ON'
-    - delay:
-        milliseconds: 250
-    - service: mqtt.publish
-      data:
-        qos: 1
-        topic: 'cmnd/lava_loucas_casa/POWER2'
-        payload: 'ON'
-    - delay:
-        milliseconds: 250
-    - service: mqtt.publish
-      data:
-        qos: 1
-        topic: 'cmnd/lava_loucas_casa/POWER2'
-        payload: 'ON'
-    - delay:
-        milliseconds: 250
-    - service: mqtt.publish
-      data:
-        qos: 1
-        topic: 'cmnd/lava_loucas_casa/POWER2'
-        payload: 'ON'
-    - delay:
-        milliseconds: 250
-    - service: mqtt.publish
-      data:
-        qos: 1
-        topic: 'cmnd/lava_loucas_casa/POWER2'
-        payload: 'ON'
-    - delay:
-        milliseconds: 250
-    - service: mqtt.publish
-      data:
-        qos: 1
-        topic: 'cmnd/lava_loucas_casa/POWER3'
-        payload: 'ON'
+    - service: switch.turn_on
+      entity_id: switch.lava_loucas_modo_economico
     - service: timer.start
       data:
         entity_id: timer.lava_loucas
@@ -185,25 +119,8 @@ script:
     alias: "Modo dia a dia"
     sequence:
     - wait_template: "{{ is_state('binary_sensor.porta_lava_loucas', 'off') }}"
-    - service: mqtt.publish
-      data:
-        qos: 1
-        topic: 'cmnd/lava_loucas_casa/POWER1'
-        payload: 'ON'
-    - delay:
-        milliseconds: 250
-    - service: mqtt.publish
-      data:
-        qos: 1
-        topic: 'cmnd/lava_loucas_casa/POWER2'
-        payload: 'ON'
-    - delay:
-        milliseconds: 250
-    - service: mqtt.publish
-      data:
-        qos: 1
-        topic: 'cmnd/lava_loucas_casa/POWER3'
-        payload: 'ON'
+    - service: switch.turn_on
+      entity_id: switch.lava_loucas_modo_dia_a_dia
     - service: timer.start
       data:
         entity_id: timer.lava_loucas
@@ -214,11 +131,8 @@ script:
   lava_loucas_casa_iniciar_parar:
     alias: "Iniciar/parar lavagem"
     sequence:
-    - service: mqtt.publish
-      data:
-        qos: 1
-        topic: 'cmnd/lava_loucas_casa/POWER3'
-        payload: 'ON'
+    - service: switch.turn_on
+      entity_id: switch.lava_loucas_power
     - service: timer.cancel
       data:
         entity_id: timer.lava_loucas
@@ -226,11 +140,8 @@ script:
   lava_loucas_casa_alterar_modo:
     alias: "Alterar modo de lavagem"
     sequence:
-    - service: mqtt.publish
-      data:
-        qos: 1
-        topic: 'cmnd/lava_loucas_casa/POWER2'
-        payload: 'ON'
+    - service: switch.turn_on
+      entity_id: switch.lava_loucas_modo
 
   lava_loucas_casa_alerta_final:
     alias: "Alerta final"

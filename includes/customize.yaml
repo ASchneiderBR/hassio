@@ -149,7 +149,7 @@ light.quarto:
 light.sala_principal:
   friendly_name: "Luz principal da sala"
 
-light.mesa_jantar:
+light.mesa_de_jantar:
   friendly_name: "Luz da mesa de jantar"
   icon: mdi:ceiling-light
 
@@ -614,7 +614,7 @@ sensor.dark_sky_temperature:
 sensor.dark_sky_daytime_high_temperature_0:
   friendly_name: "Temperatura maxima hoje"
 
-sensor.dark_sky_daytime_high_temperature_1:
+sensor.dark_sky_daytime_high_temperature_1d:
   friendly_name: "Temperatura maxima amanhã"
 
 sensor.dark_sky_overnight_low_temperature:
@@ -623,8 +623,8 @@ sensor.dark_sky_overnight_low_temperature:
 sensor.dark_sky_overnight_low_temperature_1:
   friendly_name: "Temperatura mínima amanhã"
 
-switch.ender3:
-  friendly_name: "Energia Ender 3"
+#switch.ender3:
+#  friendly_name: "Energia Ender 3"
 
 switch.muvrh_cafeteira:
   friendly_name: "Cafeteira"

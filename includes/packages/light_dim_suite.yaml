@@ -1,0 +1,72 @@
+automation:     
+  - alias: Led suíte
+    initial_state: 'on'
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.ir_tv_suite_volume_mais
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.ir_tv_suite_volume_menos
+        to: 'on'
+    condition:
+      condition: state
+      entity_id: switch.tv_lg_suite
+      state: 'off'
+    action:
+      - service_template: >
+          {% if trigger.to_state.entity_id == "binary_sensor.ir_tv_suite_volume_mais" %}
+              {% if states.light.todos_os_leds_suite.state == "on" %}
+                  script.dim_led_suite_mais
+              {% else %}
+                  script.led_suite_on
+              {% endif %}
+          {% else %}
+              script.dim_led_suite_menos
+          {% endif %}
+
+script:
+  dim_led_suite_mais:
+    sequence:
+      - service: light.turn_on
+        entity_id: light.todos_os_leds_suite
+        data_template:
+          brightness: '{{ states.light.todos_os_leds_suite.attributes.brightness + 51 }}'
+      - delay: '00:00:01'
+      - service: script.turn_off
+        entity_id: script.dim_led_suite_mais
+      - condition: state
+        entity_id: binary_sensor.ir_tv_suite_volume_mais
+        state: 'on'
+      - service: script.turn_on
+        entity_id: script.dim_led_suite_mais
+
+  dim_led_suite_menos:
+    sequence:
+      - service: light.turn_on
+        entity_id: light.todos_os_leds_suite
+        data_template:
+          brightness: '{{ states.light.todos_os_leds_suite.attributes.brightness - 51 }}'
+      - delay: '00:00:01'
+      - service: script.turn_off
+        entity_id: script.dim_led_suite_menos
+      - condition: state
+        entity_id: light.todos_os_leds_suite
+        state: 'on'
+      - condition: state
+        entity_id: binary_sensor.ir_tv_suite_volume_mais
+        state: 'on'
+      - service: script.turn_on
+        entity_id: script.dim_led_suite_menos
+
+  led_suite_on:
+    sequence:
+      - service: light.turn_on
+        data:
+          entity_id: light.todos_os_leds_suite
+          brightness: 65
+      - delay: '00:00:01'
+      - condition: state
+        entity_id: binary_sensor.ir_tv_suite_volume_mais
+        state: 'on'
+      - service: script.turn_on
+        entity_id: script.dim_led_suite_mais

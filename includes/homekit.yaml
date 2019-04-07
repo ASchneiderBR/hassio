@@ -84,7 +84,7 @@ filter:
     - light.ledsalatv
     - light.ledsuitecama
     - light.ledsuitetv
-    - light.mesa_jantar
+    - light.mesa_de_jantar
     - light.muv203banheiro
     - light.muv203entrada
     - light.muv203nossasala
@@ -285,7 +285,7 @@ entity_config:
     name: "Cama"
   light.ledsuitetv:
     name: "TV"
-  light.mesa_jantar:
+  light.mesa_de_jantar:
     name: "Mesa de jantar"
   light.muv203banheiro:
     name: "Banheiro 203"

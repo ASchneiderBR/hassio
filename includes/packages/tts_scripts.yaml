@@ -172,7 +172,7 @@ script:
               {%- endif -%}
           {%- endmacro -%}
           {%- macro temp_amanha() -%}
-            A temperatura máxima amanhã será de {{ states.sensor.dark_sky_daytime_high_temperature_1.state | int }} graus.
+            A temperatura máxima amanhã será de {{ states.sensor.dark_sky_daytime_high_temperature_1d.state | int }} graus.
           {%- endmacro -%}
           {%- macro carregar_celular() -%}
             {%- if is_state('sensor.iphone_de_antonio_battery_state', 'Unplugged') or is_state('sensor.iphone_de_roberta_battery_state', 'Unplugged') -%}
@@ -313,7 +313,7 @@ script:
             Bom dia! Agora são <say-as interpret-as='time'>{{ now().strftime('%H:%M') }}</say-as> de {% if now().strftime('%A') == 'Monday' -%}segunda-feira{%- elif now().strftime('%A') == 'Tuesday' -%}terça-feira{%- elif now().strftime('%A') == 'Wednesday'-%}quarta-feira{%- elif now().strftime('%A') == 'Thursday' -%}quinta-feira{%- elif now().strftime('%A') == 'Friday' -%}sexta-feira{%- elif now().strftime('%A') == 'Saturday' -%}sábado{%- elif now().strftime('%A') == 'Sunday' -%}domingo{%- endif %}, dia {{ now().strftime('%d') }} de {% if now().strftime('%B') == 'January' -%}janeiro{%- elif now().strftime('%B') == 'February' -%}fevereiro{%- elif now().strftime('%B') == 'March'-%}março{%- elif now().strftime('%B') == 'April' -%}abril{%- elif now().strftime('%B') == 'May' -%}maio{%- elif now().strftime('%B') == 'June' -%}junho{%- elif now().strftime('%B') == 'July' -%}julho{%- elif now().strftime('%B') == 'August' -%}agosto{%- elif now().strftime('%B') == 'September' -%}setembro{%- elif now().strftime('%B') == 'October' -%}outubro{%- elif now().strftime('%B') == 'November' -%}novembro{%- elif now().strftime('%B') == 'December' -%}dezembro{%- endif -%}.
           {%- endmacro -%}
           {% macro temperaturas() -%}
-            Neste momento, predomina {{ states.sensor.dark_sky_summary.state | lower }} com {{ states.sensor.dark_sky_temperature.state | int }} graus. A temperatura máxima hoje será de {{ states.sensor.dark_sky_daytime_high_temperature_1.state | int }} graus.
+            Neste momento, predomina {{ states.sensor.dark_sky_summary.state | lower }} com {{ states.sensor.dark_sky_temperature.state | int }} graus. A temperatura máxima hoje será de {{ states.sensor.dark_sky_daytime_high_temperature_1d.state | int }} graus.
           {%- endmacro -%}
           {% macro avisos() -%}
             Estou preparando a casa agora, ligando o toalheiro e desligando o ar condicionado.

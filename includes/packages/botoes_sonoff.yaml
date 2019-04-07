@@ -1,16 +1,6 @@
-#RULES:
-
-#Rule1 on button1#state=1 do power1 2 endon on button1#state=3 do publish stat/[topic]/BUTTON {"BUTTON":"1","ACTION":"HOLD"} endon
-#Rule2 on button2#state=1 do publish stat/[topic]/BUTTON {"BUTTON":"2","ACTION":"TOGGLE"} endon on button2#state=3 do publish stat/[topic]/BUTTON {"BUTTON":"2","ACTION":"HOLD"} endon
-#Rule3 on button3#state=1 do publish stat/[topic]/BUTTON {"BUTTON":"3","ACTION":"TOGGLE"} endon on button3#state=3 do publish stat/[topic]/BUTTON {"BUTTON":"3","ACTION":"HOLD"} endon
-
-#CONFIG:
-
-#Backlog Module 18; GPIO12 21; GPIO13 56; GPIO14 17; GPIO01 18; GPIO03 19; SetOption13 0; ButtonTopic 0; SetOption32 10; SetOption1 1; SetOption11 0; rule1 4; rule2 4; rule3 4; rule1 1; rule2 1; rule3 1; ButtonDebounce 50
-
 automation:
 
-  - alias: Botões Sonoff
+  - alias: Botões Sonoff MQTT
     initial_state: true
     trigger:
       platform: mqtt
@@ -26,23 +16,54 @@ automation:
     action:
       - service_template: script.sonoff_botao_{{ trigger.topic.split('/')[1] | lower }}_{{ trigger.payload_json.BUTTON | lower }}_{{ trigger.payload_json.ACTION | lower }}
 
+  - alias: Botões Sonoff EspHome
+    initial_state: true
+    trigger:
+      - platform: state
+        from: 'button_pressed'
+        entity_id:
+          - sensor.banheiro_203_interruptores
+          - sensor.cafeteira_interruptores
+          - sensor.cafeteira_muvrh_interruptores
+          - sensor.casa_sonoff_testes_interruptores
+          - sensor.chaleira_interruptores
+          - sensor.ender3_interruptores
+          - sensor.entrada_203_interruptores
+          - sensor.entrada_303_interruptores
+          - sensor.mesa_de_jantar_interruptores
+    condition:
+      condition: template
+      value_template: >
+        {% set entity = trigger.to_state.entity_id.split('.')[1] | lower %}
+        {% set topic = entity.replace('_interruptores','') | lower %}
+        {% set dump, number, action = trigger.to_state.state.split('_') %}
+        {% set object_id = 'sonoff_botao_{}_{}_{}'.format(topic, number, action) %}
+        {{ states.script[object_id] != None }}
+    action:
+      - service_template: >
+          {% set entity = trigger.to_state.entity_id.split('.')[1] | lower %}
+          {% set topic = entity.replace('_interruptores','') | lower %}
+          {% set dump, number, action = trigger.to_state.state.split('_') %}
+          {% set object_id = 'sonoff_botao_{}_{}_{}'.format(topic, number, action) %}
+          script.sonoff_botao_{{ topic }}_{{ number }}_{{ action }}
+
 script:
 
 ## Casa
 
-  sonoff_botao_cafeteira_casa_1_hold:
+  sonoff_botao_cafeteira_01_long:
     alias: "Botão Sonoff - Luz principal"
     sequence:
       - service: light.toggle
         entity_id: light.cozinha
 
-  sonoff_botao_chaleira_casa_1_hold:
+  sonoff_botao_chaleira_01_long:
     alias: "Botão Sonoff - Luz balcão"
     sequence:
       - service: light.toggle
         entity_id: light.ledcozinhabalcao
 
-  sonoff_botao_ender3_1_hold:
+  sonoff_botao_ender3_00_long:
     alias: "Botão Sonoff - Preaquecer cama"
     sequence:
       - service: switch.turn_on
@@ -52,9 +73,21 @@ script:
         continue_on_timeout: false
       - service: script.octoprint_preheat_bed
 
+  sonoff_botao_ender3_00_double:
+    alias: "Botão Sonoff - teste 01"
+    sequence:
+      - service: light.toggle
+        entity_id: light.mesa_de_jantar
+
+  sonoff_botao_ender3_00_triple:
+    alias: "Botão Sonoff - teste 02"
+    sequence:
+      - service: light.toggle
+        entity_id: light.luz_principal_da_sala
+
 ## MuvRH
 
-  sonoff_botao_muv303entrada_1_hold:
+  sonoff_botao_entrada_303_01_long:
     alias: "Botão Sonoff - Desligar/ligar tudo na sala 303"
     sequence:
       - service_template: >-
@@ -70,3 +103,9 @@ script:
             {% else %}
               group.muvrh_tudo_sala_303
             {% endif %}
+
+  sonoff_botao_cafeteira_muvrh_00_long:
+    alias: "Botão Sonoff - Cafeteira liga luz nossa sala"
+    sequence:
+      - service: light.toggle
+        entity_id: light.muv203nossasala

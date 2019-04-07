@@ -7,36 +7,6 @@
     - service: frontend.set_theme
       data_template:
         name: "darkred"
-    - service: mqtt.publish
-      data:
-        payload: ""
-        topic: "cmnd/sonoffs/POWER"
-        qos: 0
-        retain: 0
-    - service: mqtt.publish
-      data:
-        payload: ""
-        topic: "cmnd/sonoffs/power2"
-        qos: 0
-        retain: 0
-    - service: mqtt.publish
-      data:
-        payload: ""
-        topic: "cmnd/sonoffs/power3"
-        qos: 0
-        retain: 0
-    - service: mqtt.publish
-      data:
-        payload: ""
-        topic: "cmnd/sonoffs/power4"
-        qos: 0
-        retain: 0
-#    - service: mqtt.publish
-#      data:
-#        payload: '{\"relaunch\": \"true\"}'
-#        topic: "wallpanel/tablet_entrada_casa/command"
-#        qos: 0
-#        retain: 0
     - service: input_select.select_option
       data:
         entity_id: input_select.estados_de_succao
@@ -122,32 +92,33 @@
       for:
         seconds: 30
   action:
-    - service_template: >
-        {% if is_state('media_player.tv_sala' , 'playing') and is_state('switch.home_theater_sala', 'off') %}
+    - service_template: >-
+        {%- if is_state('media_player.tv_sala' , 'playing') and is_state('switch.home_theater_sala', 'off') %}
           switch.turn_on
         {% elif is_state('media_player.tv_sala' , 'off') and is_state('switch.home_theater_sala', 'on') %}
           switch.turn_off
         {% else %}
           script.nada
-        {% endif %}
+        {%- endif %}
       entity_id: switch.home_theater_sala
-    - service_template: >
-        {% if is_state('media_player.tv_sala' , 'playing') and is_state('light.ledsalatv', 'off') %}
+    - service_template: >-
+        {%- if is_state('media_player.tv_sala' , 'playing') and is_state('light.ledsalatv', 'off') %}
           light.turn_on
         {% else %}
           script.nada
-        {% endif %}
+        {%- endif %}
       data:
         entity_id: light.ledsalatv
-        effect: colorloop
-    - service_template: >
-        {% if is_state('media_player.tv_sala' , 'off') and is_state('light.ledsalatv', 'on') %}
+        transition: 3
+        brightness_pct: 100
+        effect: 'RGB transition slow'
+    - service_template: >-
+        {%- if is_state('media_player.tv_sala' , 'off') and is_state('light.ledsalatv', 'on') %}
           light.turn_off
         {% else %}
           script.nada
-        {% endif %}
-      data:
-        entity_id: light.ledsalatv
+        {%- endif %}
+      entity_id: light.ledsalatv
     - condition: state
       entity_id: media_player.tv_sala
       state: 'playing'
@@ -398,7 +369,6 @@
         title: "Alerta importante"
         message: "{{ trigger.to_state.name }} foi ligado sem ninguém em casa! ATENÇÂO!"
 
-
 - alias: Luzes da casa - Entrando em casa
   initial_state: true
   trigger:
@@ -409,14 +379,14 @@
     condition: and
     conditions:
       - condition: state
-        entity_id: light.mesa_jantar
+        entity_id: light.mesa_de_jantar
         state: 'off'
       - condition: state
         entity_id: binary_sensor.movimento_entrada_de_casa
         state: 'off'
   action:
     - service: light.turn_on
-      entity_id: light.mesa_jantar
+      entity_id: light.mesa_de_jantar
 
 - alias: Sensores - Porta ou janela aberta por muito tempo - Casa
   initial_state: true
@@ -615,16 +585,24 @@
     - platform: state
       entity_id: switch.desktop
   action:
-    - service_template: >
-        {% if is_state('switch.desktop' , 'on') %}
+    - service_template: >-
+        {% if is_state('switch.desktop' , 'on') -%}
           light.turn_on
-        {% elif is_state('switch.desktop' , 'off') %}
+        {% else %}
+          script.nada
+        {% endif -%}
+      data:
+        entity_id: light.ledsaladesktop
+        brightness_pct: 100
+        transition: 3
+        rgb_color: [255,255,200]
+    - service_template: >-
+        {% if is_state('switch.desktop' , 'off') -%}
           light.turn_off
         {% else %}
           script.nada
-        {% endif %}
-      data:
-        entity_id: light.ledsaladesktop
+        {% endif -%} 
+      entity_id: light.ledsaladesktop
 
 # Cubos
 
@@ -756,7 +734,7 @@
         - light.ledsalatv
         - light.ledsuitecama
         - light.ledsuitetv
-        - light.mesa_jantar
+        - light.mesa_de_jantar
         - light.muv203banheiro
         - light.muv203entrada
         - light.muv203nossasala
@@ -995,17 +973,28 @@
     - service: switch.turn_off
       entity_id: switch.ender3
 
-- alias: Volume TV da sala
+## Controle remoto IR ESPHome
+
+- alias: IR TV da sala
   initial_state: true
   trigger:
-    platform: mqtt
-    topic: tele/planta-casa/RESULT
+    platform: state
+    entity_id:
+      - binary_sensor.ir_tv_sala_volume_mais
+      - binary_sensor.ir_tv_sala_volume_menos
+      - binary_sensor.ir_tv_sala_energia
+    to: 'on'
   action:
     - service_template: >
-        {% if trigger.payload_json.IrReceived.Data == "C10040BF" %}
+        {% if trigger.to_state.entity_id == "binary_sensor.ir_tv_sala_volume_mais" %}
           script.home_theater_sala_volup_x6
-        {% elif trigger.payload_json.IrReceived.Data == "C100C03F" %}
+        {% elif trigger.to_state.entity_id == "binary_sensor.ir_tv_sala_volume_menos" %}
           script.home_theater_sala_voldown_x6
-        {% else %}
-          script.nada
+        {% elif trigger.to_state.entity_id == "binary_sensor.ir_tv_sala_energia" %}
+          {% if states.switch.tv_lg_sala.state == "on" %}
+              script.tv_lg_sala_desligar_tudo
+          {% else %}
+              script.tv_lg_sala_ligar_tudo
+          {% endif %}
         {% endif %}
+

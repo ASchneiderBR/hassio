@@ -150,7 +150,7 @@ script:
           {% endif %}
       - service_template: script.casa_desligar_ar_sala
       - service_template: >-
-          {% set lights = ['light.area_servico','light.suite_banheiro_principal','light.suite_banheiro_espelho','light.corredor','light.cozinha','light.entrada','light.ledchaocozinha','light.ledcozinhabalcao','light.ledsaladesktop','light.ledsalatv','light.ledsuitecama','light.ledsuitetv','light.mesa_jantar','light.sala_principal','light.suite_principal'] %}
+          {% set lights = ['light.area_servico','light.suite_banheiro_principal','light.suite_banheiro_espelho','light.corredor','light.cozinha','light.entrada','light.ledchaocozinha','light.ledcozinhabalcao','light.ledsaladesktop','light.ledsalatv','light.ledsuitecama','light.ledsuitetv','light.mesa_de_jantar','light.sala_principal','light.suite_principal'] %}
           {% for item in lights if states(item) == 'on' %}
           {% if loop.first %}
             light.turn_off
@@ -160,7 +160,7 @@ script:
           {% endfor %}
         data_template:
           entity_id: >-
-            {% set entities = ['light.area_servico','light.suite_banheiro_principal','light.suite_banheiro_espelho','light.corredor','light.cozinha','light.entrada','light.ledchaocozinha','light.ledcozinhabalcao','light.ledsaladesktop','light.ledsalatv','light.ledsuitecama','light.ledsuitetv','light.mesa_jantar','light.sala_principal','light.suite_principal'] %}
+            {% set entities = ['light.area_servico','light.suite_banheiro_principal','light.suite_banheiro_espelho','light.corredor','light.cozinha','light.entrada','light.ledchaocozinha','light.ledcozinhabalcao','light.ledsaladesktop','light.ledsalatv','light.ledsuitecama','light.ledsuitetv','light.mesa_de_jantar','light.sala_principal','light.suite_principal'] %}
             {{ states.light | selectattr('entity_id', 'in', entities) | selectattr('state','eq','on') | map(attribute='entity_id') | join(', ') }}
       - service_template: >-
           {% set switches = ['switch.chuveirosuite','switch.toalheiro','switch.tv_lg_sala','switch.tv_lg_suite','switch.muvrh_cafeteira','switch.cafeteira_casa','switch.chaleira_casa','switch.ventilador_casa','switch.home_theater_sala'] %}
@@ -234,7 +234,7 @@ script:
     sequence:
       - condition: template
         value_template: >-
-          {% set lights = ['light.area_servico','light.suite_banheiro_principal','light.suite_banheiro_espelho','light.corredor','light.cozinha','light.entrada','light.ledchaocozinha','light.ledcozinhabalcao','light.ledquartotv','light.ledsaladesktop','light.ledsalatv','light.ledsuitecama','light.ledsuitetv','light.mesa_jantar','light.quarto','light.sala_principal','light.banheiro_social_principal','light.banheiro_social_espelho','light.suite_principal'] %}
+          {% set lights = ['light.area_servico','light.suite_banheiro_principal','light.suite_banheiro_espelho','light.corredor','light.cozinha','light.entrada','light.ledchaocozinha','light.ledcozinhabalcao','light.ledquartotv','light.ledsaladesktop','light.ledsalatv','light.ledsuitecama','light.ledsuitetv','light.mesa_de_jantar','light.quarto','light.sala_principal','light.banheiro_social_principal','light.banheiro_social_espelho','light.suite_principal'] %}
           {% for item in lights if states(item) == 'on' %}
           {% if loop.first %}
             {{ true }}
@@ -245,7 +245,7 @@ script:
       - service: light.turn_off
         data_template:
           entity_id: >-
-              {% set lights = ['light.area_servico','light.suite_banheiro_principal','light.suite_banheiro_espelho','light.corredor','light.cozinha','light.entrada','light.ledchaocozinha','light.ledcozinhabalcao','light.ledquartotv','light.ledsaladesktop','light.ledsalatv','light.ledsuitecama','light.ledsuitetv','light.mesa_jantar','light.quarto','light.sala_principal','light.banheiro_social_principal','light.banheiro_social_espelho','light.suite_principal'] %}
+              {% set lights = ['light.area_servico','light.suite_banheiro_principal','light.suite_banheiro_espelho','light.corredor','light.cozinha','light.entrada','light.ledchaocozinha','light.ledcozinhabalcao','light.ledquartotv','light.ledsaladesktop','light.ledsalatv','light.ledsuitecama','light.ledsuitetv','light.mesa_de_jantar','light.quarto','light.sala_principal','light.banheiro_social_principal','light.banheiro_social_espelho','light.suite_principal'] %}
               {{ states.light | selectattr('entity_id', 'in', lights) | selectattr('state','eq','on') | map(attribute='entity_id') | join(', ') }}
 
   casa_desligar_tudo_switches:
@@ -296,3 +296,62 @@ script:
         data:
           operation_mode: 'off'
           entity_id: climate.ar_condicionado_do_quarto
+
+  bom_dia_sem_tts:
+    alias: "Boa noite sem TTS"
+    sequence:
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.boa_noite
+      - service: persistent_notification.create
+        data:
+          title: "Alerta Casa ({{now().strftime('%H:%M')}})"
+          message: "Bom dia!"
+      - service: notify.todos_celulares
+        data_template:
+          title: "Automação"
+          message: "Bom dia! Hoje a máxima será de {{ states.sensor.dark_sky_daytime_high_temperature_0.state | int }}ºC com previsão de {{ states.sensor.dark_sky_summary.state | lower }}"
+      - service: switch.turn_on
+        entity_id: switch.toalheiro
+      - service_template: >-
+          {% if is_state('input_boolean.cafe_manha', 'on') %}
+            switch.turn_on
+          {% else %}
+            script.nada
+          {% endif %}
+        data_template:
+          entity_id: >-
+              {% if is_state('input_boolean.cafe_manha', 'on') %}
+                switch.cafeteira_casa
+              {% endif %}
+      - service_template: >-
+          {% if is_state('climate.ar_condicionado_da_suite' , 'off') %}
+            script.nada
+          {% else %}
+            {% if is_state('climate.ar_condicionado_da_suite' , 'heat') %}
+            {% else %}
+              climate.set_operation_mode
+            {% endif %}
+          {% endif %}
+        data:
+          entity_id: climate.ar_condicionado_da_suite
+          operation_mode: 'off'
+      - delay: '00:05:00'
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.bom_dia
+
+  boa_noite_sem_tts:
+    alias: "Bm dia sem TTS"
+    sequence:
+      - service: notify.todos_celulares
+        data:
+          title: "Automação"
+          message: "Aprontando a casa. Boa noite!"
+      - service: persistent_notification.create
+        data:
+          title: "Alerta Casa ({{now().strftime('%H:%M')}})"
+          message: "Boa noite!"
+      - service: homeassistant.turn_off
+        entity_id:
+          - automation.luzes_da_casa_suite
+          - automation.luzes_da_casa_quarto
+      - service: script.casa_desligar_tudo_noite

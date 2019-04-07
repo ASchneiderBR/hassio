@@ -15,7 +15,9 @@ automation:
       - service: light.turn_on
         entity_id: light.todos_os_leds_suite
         data:
+          transition: 1
           brightness_pct: 100
+          rgb_color: [255,60,0]
       - delay: '00:00:03'
       - wait_template: "{{ ((is_state('light.todos_os_leds_suite' , 'off')) or ((((as_timestamp(strptime(states.sensor.date_time.state, '%Y-%m-%d, %H:%M')) - as_timestamp(states.binary_sensor.movimento_suite.last_updated) ) / 60) | int) >= states.input_number.timmer_suite.state | int -1 and is_state('binary_sensor.movimento_suite' , 'off'))) }}" 
       - condition: state
@@ -89,7 +91,9 @@ automation:
       - service: light.turn_on
         entity_id: light.luzes_principais_quarto
         data:
+          transition: 1
           brightness_pct: 100
+          effect: 'RGB transition slow'
       - delay: '00:00:03'
       - wait_template: "{{ ((is_state('light.luzes_principais_quarto' , 'off')) or ((((as_timestamp(strptime(states.sensor.date_time.state, '%Y-%m-%d, %H:%M')) - as_timestamp(states.binary_sensor.movimento_quarto.last_updated) ) / 60) | int) >= states.input_number.timmer_quarto.state | int -1 and is_state('binary_sensor.movimento_quarto' , 'off'))) }}"
       - condition: state
@@ -110,7 +114,7 @@ automation:
           entity_id: light.luzes_principais_sala
           state: 'off'
         - condition: state
-          entity_id: light.mesa_jantar
+          entity_id: light.mesa_de_jantar
           state: 'off'
     action:
       - service: light.turn_on
@@ -144,6 +148,30 @@ automation:
       - service: light.turn_off
         entity_id: light.luzes_principais_cozinha
 
+### Leds e efeitos
+#
+#  - alias: Luzes da casa - ajustes efeitos LED
+#    initial_state: True
+#    trigger:
+#      platform: state
+#      entity_id:
+#        - light.ledquartotv
+#        - light.ledsalatv
+#      from: 'off'
+#      to: 'on'
+#    action:
+#      - service: light.turn_on
+#        data_template:
+#          entity_id: '{{ trigger.to_state.entity_id }}'
+#          transition: 1
+#          brightness_pct: 100
+#          effect: >-
+#              {% if trigger.to_state.entity_id == "light.ledsalatv" %}
+#                'RGB transition slow'
+#              {% else %}
+#                'RGB transition fast'
+#              {% endif %}
+          
 # MuvRH
 
   - alias: MuvRH 203 - Luz da entrada

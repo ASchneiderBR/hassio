@@ -61,7 +61,7 @@ energia_casa:
   - light.ledsalatv
   - light.ledsuitecama
   - light.ledsuitetv
-  - light.mesa_jantar
+  - light.mesa_de_jantar
   - light.quarto
   - light.sala_principal
   - light.banheiro_social_principal
@@ -97,7 +97,7 @@ casa_todas_luzes:
     - light.ledsalatv
     - light.ledsuitecama
     - light.ledsuitetv
-    - light.mesa_jantar
+    - light.mesa_de_jantar
     - light.quarto
     - light.sala_principal
     - light.banheiro_social_principal

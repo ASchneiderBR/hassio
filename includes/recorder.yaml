@@ -29,12 +29,12 @@ exclude:
     - sensor.dark_sky_cloud_coverage
     - sensor.dark_sky_cloud_coverage_1
     - sensor.dark_sky_daytime_high_temperature_0
-    - sensor.dark_sky_daytime_high_temperature_1
+    - sensor.dark_sky_daytime_high_temperature_1d
     - sensor.dark_sky_daily_low_temperature
     - sensor.dark_sky_daily_low_temperature_1
     - sensor.dark_sky_daytime_high_temperature_0
     - sensor.dark_sky_overnight_low_temperature
-    - sensor.dark_sky_daytime_high_temperature_1
+    - sensor.dark_sky_daytime_high_temperature_1d
     - sensor.dark_sky_overnight_low_temperature_1
     - sensor.dark_sky_daily_summary
     - sensor.dark_sky_humidity_1

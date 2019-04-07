@@ -5,15 +5,15 @@ entity_config:
 
   alarm_control_panel.alarme:
     expose: true
-    room: Sala
+    room: Apartamento
 
   climate.ar_condicionado_da_entrada_203:
     expose: true
-    room: Sala
+    room: 203 - Entrada
 
   climate.ar_condicionado_da_nossa_sala:
     expose: true
-    room: Sala
+    room: 203 - Nossa sala
 
   climate.ar_condicionado_da_sala:
     expose: true
@@ -21,35 +21,35 @@ entity_config:
 
   climate.ar_condicionado_da_sala_303:
     expose: true
-    room: Sala
+    room: 303 - Dinâmica
 
   climate.ar_condicionado_da_sala_de_operacoes:
     expose: true
-    room: Sala
+    room: 203 - Operações
 
   climate.ar_condicionado_da_suite:
     expose: true
-    room: Sala
+    room: Suíte
 
   climate.ar_condicionado_do_quarto:
     expose: true
-    room: Sala
+    room: Quarto
 
   cover.garagem_casa:
     expose: true
-    room: Sala
+    room: Apartamento
 
   cover.garagem_muvrh_interno:
     expose: true
-    room: Sala
+    room: MuvRH
 
   cover.garagem_muvrh_rua:
     expose: true
-    room: Sala
+    room: MuvRH
 
   cover.persiana_quarto:
     expose: true
-    room: Sala
+    room: Quarto
 
   cover.persiana_sala:
     expose: true
@@ -57,23 +57,23 @@ entity_config:
 
   cover.persiana_suite:
     expose: true
-    room: Sala
+    room: Suíte
 
   light.303leddinamica:
     expose: true
-    room: Sala
+    room: 303 - Dinâmica
 
   light.area_servico:
     expose: true
-    room: Sala
+    room: Cozinha
 
   light.banheiro_social_principal:
     expose: true
-    room: Sala
+    room: Banheiro social
 
   light.banheiro_social_espelho:
     expose: true
-    room: Sala
+    room: Banheiro social
 
   light.corredor:
     expose: true
@@ -81,27 +81,27 @@ entity_config:
 
   light.cozinha:
     expose: true
-    room: Sala
+    room: Cozinha
 
   light.entrada:
     expose: true
     room: Sala
 
   light.gateway_light_34ce0090940e:
-    expose: true
+    expose: false
     room: Sala
 
   light.ledcozinhabalcao:
     expose: true
-    room: Sala
+    room: Cozinha
 
   light.ledchaocozinha:
     expose: true
-    room: Sala
+    room: Cozinha
 
   light.ledquartotv:
     expose: true
-    room: Sala
+    room: Quarto
 
   light.ledsaladesktop:
     expose: true
@@ -113,51 +113,51 @@ entity_config:
 
   light.ledsuitecama:
     expose: true
-    room: Sala
+    room: Suíte
 
   light.ledsuitetv:
     expose: true
-    room: Sala
+    room: Suíte
 
-  light.mesa_jantar:
+  light.mesa_de_jantar:
     expose: true
     room: Sala
 
   light.muv203banheiro:
     expose: true
-    room: Sala
+    room: 203 - Banheiro
 
   light.muv203entrada:
     expose: true
-    room: Sala
+    room: 203 - Entrada
 
   light.muv203nossasala:
     expose: true
-    room: Sala
+    room: 203 - Nossa sala
 
   light.muv203operacoes:
     expose: true
-    room: Sala
+    room: 203 - Oprações
 
   light.muv303banheiro:
     expose: true
-    room: Sala
+    room: 303 - Banheiro
 
   light.muv303corredor:
     expose: true
-    room: Sala
+    room: 303 - Dinâmica
 
   light.muv303dinamica:
     expose: true
-    room: Sala
+    room: 303 - Dinâmica
 
   light.muv303entrada:
     expose: true
-    room: Sala
+    room: 303 - Dinâmica
 
   light.quarto:
     expose: true
-    room: Sala
+    room: Quarto
 
   light.sala_principal:
     expose: true
@@ -165,31 +165,27 @@ entity_config:
 
   light.suite_banheiro_principal:
     expose: true
-    room: Sala
+    room: Banheiro da suíte
 
   light.suite_banheiro_espelho:
     expose: true
-    room: Sala
+    room: Banheiro da suíte
 
   light.suite_principal:
     expose: true
-    room: Sala
+    room: Suíte
 
   switch.automacoes_luzes:
     expose: true
-    room: Sala
-
-  switch.aspirador:
-    expose: true
-    room: Sala
+    room: Automações
 
   switch.chuveirosocial:
     expose: true
-    room: Sala
+    room: Banheiro social
 
   switch.chuveirosuite:
     expose: true
-    room: Sala
+    room: Banheiro da suíte
 
   switch.desktop:
     expose: true
@@ -201,11 +197,11 @@ entity_config:
 
   switch.muv203bebedouro:
     expose: true
-    room: Sala
+    room: 203 - Operações
 
   switch.muv303bebedouro:
     expose: true
-    room: Sala
+    room: 303 - Bebedouro
 
   switch.servidor:
     expose: true
@@ -213,23 +209,23 @@ entity_config:
 
   switch.sirene:
     expose: true
-    room: Sala
+    room: Aparatamento
 
   switch.sistema_alarme_casa:
     expose: true
-    room: Sala
+    room: Aparatamento
 
   switch.toalheiro:
     expose: true
-    room: Sala
+    room: Banheiro da suíte
 
   switch.tv_dinamica_303:
     expose: true
-    room: Sala
+    room: 303 - Dinâmica
 
   switch.tv_lg_quarto:
     expose: true
-    room: Sala
+    room: Quarto
 
   switch.tv_lg_sala:
     expose: true
@@ -237,37 +233,152 @@ entity_config:
 
   switch.tv_lg_suite:
     expose: true
-    room: Sala
-
-  switch.tv_sala_operacoes:
-    expose: true
-    room: Sala
+    room: Suíte
 
   switch.muvrh_cafeteira:
     expose: true
-    room: Sala
+    room: 203 - Operações
 
   switch.cafeteira_casa:
     expose: true
-    room: Sala
+    room: Cozinha
 
   switch.chaleira_casa:
     expose: true
-    room: Sala
+    room: Cozinha
 
   switch.ventilador_casa:
     expose: true
-    room: Sala
+    room: Apartamento
 
   switch.lava_loucas_homekit_aquaspray:
     expose: true
-    room: Sala
+    room: Cozinha
 
   switch.lava_loucas_homekit_economico:
     expose: true
-    room: Sala
+    room: Cozinha
 
   switch.lava_loucas_homekit_diaadia:
     expose: true
-    room: Sala
+    room: Cozinha
 
+  input_boolean.chegar_casa:
+    expose: true
+    room: Apartamento
+    name: Chegar em casa
+
+  input_boolean.entrar_muvrh:
+    expose: true
+    room: MuvRH
+    name: Chegar no trabalho
+
+  input_boolean.sair_muvrh:
+    expose: true
+    room: MuvRH
+    name: Sair do trabalho
+
+  switch.energia_casa:
+    expose: true
+    room: Apartamento
+    name: Energia casa
+
+  input_boolean.muvrh_desligar_tudo:
+    expose: true
+    room: MuvRH
+    name: Desligar trabalho
+
+  input_boolean.cafe_manha:
+    expose: true
+    room: Automações
+    name: Café de manhã
+
+  input_boolean.chaleira_manha:
+    expose: true
+    room: Automações
+    name: Chaleira de manhã
+
+  vacuum.aspirador:
+    expose: true
+    room: Apartamento
+    name: Aspirador
+
+  script.aspirador_homekit_zona_mop:
+    expose: true
+    room: Apartamento 
+    name: Passar pano molhado
+
+  script.aspirador_homekit_zona_sala:
+    expose: true
+    room: Apartamento 
+    name: Aspirar sala 
+
+  script.aspirador_homekit_zona_mesa_jantar:
+    expose: true
+    room: Apartamento 
+    name: Aspirar mesa de jantar
+
+  script.aspirador_homekit_zona_tapete:
+    expose: true
+    room: Apartamento 
+    name: Aspirar tapete
+
+  script.aspirador_homekit_zona_cozinha:
+    expose: true
+    room: Apartamento 
+    name: Aspirar cozinha
+
+  script.aspirador_homekit_zona_quartos:
+    expose: true
+    room: Apartamento 
+    name: Aspirar quartos
+
+  script.botao_xiaomi_banheiro_suite_01_long:
+    expose: true
+    room: Banehiro da suíte 
+    name: Banho na suíte
+
+  script.botao_xiaomi_banheiro_social_01_long:
+    expose: true
+    room: Banheiro social 
+    name: Banho no social
+
+  script.sonoff_botao_ender3_00_long:
+    expose: true
+    room: Sala
+    name: Preparar a impressora
+
+  script.speed_test:
+    expose: true
+    room: Apartamento
+    name: Testar a internet
+
+  script.assistir_youtube:
+    expose: true
+    room: Sala
+    name: Assistir YouTube
+
+  script.home_theater_sala_volup_x6:
+    expose: true
+    room: Sala
+    name: Aumentar volume sala
+
+  script.home_theater_sala_voldown_x6:
+    expose: true
+    room: Sala
+    name: Diminuir volume sala
+
+  script.home_theater_sala_mute:
+    expose: true
+    room: Sala
+    name: Home theater sem som
+
+  script.boa_noite_sem_tts:
+    expose: true
+    room: Suíte
+    name: Rotina boa noite
+
+  script.bom_dia_sem_tts:
+    expose: true
+    room: Suíte
+    name: Rotina bom dia

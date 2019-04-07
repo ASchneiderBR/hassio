@@ -1,3 +1,6 @@
 host: 192.168.1.1
 username: !secret asus_muvrh_user
 password: !secret asus_muvrh_password
+sensors:
+  - download_speed
+  - upload_speed

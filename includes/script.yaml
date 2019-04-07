@@ -80,19 +80,17 @@ tv_lg_sala_ligar_tudo:
   alias: "Ligar TV, home e luz da sala"
   sequence:
   - service: script.tv_lg_sala_power_on
-  - service_template: >
-      {% if is_state('switch.home_theater_sala', 'off') %}
-        switch.turn_on
-      {% else %}
-        script.nada
-      {% endif %}
+  - service: switch.turn_on
     entity_id: switch.home_theater_sala
-  - condition: template
-    value_template: "{% if is_state('light.ledsalatv' , 'off') %}True{% else %}False{% endif %}"
+  - condition: state
+    entity_id: light.ledsalatv
+    state: 'off'
   - service: light.turn_on
+    entity_id: light.ledsalatv
     data:
-      entity_id: light.ledsalatv
-      effect: colorloop
+      transition: 3
+      brightness_pct: 100
+      effect: 'RGB transition slow'
 
 tv_lg_sala_desligar_tudo:
   alias: "Desligar TV, home e luz da sala"
@@ -120,10 +118,20 @@ ledsalatv_ligar_colorloop:
   sequence:
   - service: light.turn_on
     entity_id: light.ledsalatv
-  - service: light.turn_on
     data:
-      entity_id: light.ledsalatv
-      effect: colorloop
+      transition: 1
+      brightness_pct: 100
+      effect: 'RGB transition slow'
+
+ledquartotv_ligar_colorloop:
+  alias: "Ligar Led da TV do quarto com efeito"
+  sequence:
+  - service: light.turn_on
+    entity_id: light.ledquartotv
+    data:
+      transition: 1
+      brightness_pct: 100
+      effect: 'RGB transition fast'
 
 energia_casa:
   alias: "Desligar tudo em casa ao sair"
@@ -139,6 +147,36 @@ energia_casa:
   - wait_template: "{{is_state('binary_sensor.entrada_casa', 'off')}}"
   - service: light.turn_off
     entity_id: light.entrada
+
+assistir_youtube:
+  alias: "Assistir youtube"
+  sequence:
+  - service_template: "{% if not is_state('media_player.tv_sala' , 'off')%}script.nada{% else %}script.tv_lg_sala_ligar_tudo{% endif %}"
+  - wait_template: "{{not is_state('media_player.tv_sala', 'off')}}"
+  - service: media_player.select_source
+    data:
+      entity_id: media_player.tv_sala
+      source: "YouTube"
+  - wait_template: >-
+      {% if states.media_player.tv_sala.attributes.source == "YouTube" %}
+        True
+      {% else %}
+        False
+      {% endif %}
+  - delay: '00:00:12'
+  - service: script.tv_lg_sala_left
+  - delay: '00:00:02'
+  - service: script.tv_lg_sala_down
+  - delay: '00:00:02'
+  - service: script.tv_lg_sala_down
+  - delay: '00:00:02'
+  - service: script.tv_lg_sala_right
+  - delay: '00:00:02'
+  - service: script.tv_lg_sala_down
+  - delay: '00:00:02'
+  - service: script.tv_lg_sala_down
+  - delay: '00:00:02'
+  - service: script.tv_lg_sala_right
 
 # Sonoffs
 
@@ -284,28 +322,16 @@ botao_xiaomi_suite_01_long:
 botao_xiaomi_suite_02_single:
   alias: "Luz da cama"
   sequence:
-  - service_template: >
-      {% if is_state('light.ledsuitecama' , 'off') %}
-        light.turn_on
-      {% else %}
-        script.nada
-      {% endif %}
+  - service: light.toggle
+    entity_id: light.ledsuitecama
     data_template:
-      entity_id: light.ledsuitecama
+      transition: 6
       brightness_pct: >
-          {%- if is_state('input_boolean.boa_noite' , 'on') and is_state('light.ledsuitecama' , 'off') %}
-            20
-          {%- elif is_state('input_boolean.boa_noite' , 'off') and is_state('light.ledsuitecama' , 'off') %}
+          {%- if is_state('input_boolean.boa_noite' , 'on') %}
+            25
+          {%- elif is_state('input_boolean.boa_noite' , 'off') %}
             100
           {% endif %}
-  - service_template: >
-      {% if is_state('light.ledsuitecama' , 'on') %}
-        light.turn_off
-      {% else %}
-        script.nada
-      {% endif %}
-    data_template:
-      entity_id: light.ledsuitecama
 
 botao_xiaomi_suite_02_double:
   alias: "Liga ou desliga ar condicionado"
@@ -470,7 +496,7 @@ botao_xiaomi_sala_01_quadruple:
   alias: "Luz mesa jantar"
   sequence:
   - service: light.toggle
-    entity_id: light.mesa_jantar
+    entity_id: light.mesa_de_jantar
 
 botao_xiaomi_sala_01_long:
   alias: "Persiana da sala"
@@ -497,7 +523,7 @@ botao_xiaomi_sala_02_single:
   alias: "Luz mesa jantar"
   sequence:
   - service: light.toggle
-    entity_id: light.mesa_jantar
+    entity_id: light.mesa_de_jantar
 
 botao_xiaomi_sala_02_double:
   alias: "Status da casa"
