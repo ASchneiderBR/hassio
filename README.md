@@ -41,7 +41,7 @@ Minhas configurações pessoais utilizadas no Home Assistant em casa e no trabal
 - LG TV WebOS v1 (2014) x2
 - LG TV Netcast (2012) x1
 - Home Theater Sony Ht-ddw1500 x1
-- Google Home Mini x2
+- Google Home Mini x6
 - Asus RT-AC68u x2
 - TP-Link CPE510 x2
 - Desktop PC x1
