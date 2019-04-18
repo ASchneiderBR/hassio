@@ -122,6 +122,9 @@ sensor.suite_temperature:
 sensor.muvrh_temperature:
   friendly_name: Temperatura da nossa sala
 
+sensor.lava_loucas_percentil_timer:
+  icon: mdi:progress-clock
+
 sun.sun:
   friendly_name: Posição solar
 

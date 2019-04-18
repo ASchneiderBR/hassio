@@ -32,7 +32,7 @@
     - service: ios_iphone_de_antonio
     - service: ios_iphone_de_roberta
 
-- name: html5
-  platform: html5
-  gcm_api_key: !secret gcm-server-key
-  gcm_sender_id: !secret gcm-sender-id
+#- name: html5
+#  platform: html5
+#  gcm_api_key: !secret gcm-server-key
+#  gcm_sender_id: !secret gcm-sender-id

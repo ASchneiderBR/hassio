@@ -1,5 +1,5 @@
 purge_interval: 1
-purge_keep_days: 1
+purge_keep_days: 2
 exclude:
   domains:
     - script
@@ -52,8 +52,9 @@ exclude:
     - sensor.illumination_34ce00907e65
     - sensor.illumination_34ce0090940e
     - sensor.illumination_7811dcb7ea3d
-    - sensor.interruptores_ligados
+    - sensor.interruptores
     - sensor.luzes_ligadas
+    - sensor.lava_loucas_percentil_timer
     - input_number.timmer_banheiro_social
     - input_number.timmer_banheiro_suite
     - input_number.timmer_cozinha
@@ -130,6 +131,55 @@ exclude:
     - sensor.qbittorrent_servidor_down_speed
     - sensor.dias_funcionando
     - sensor.qbittorrent_servidor_up_speed
+    - sensor.asuswrt_download_speed
+    - sensor.asuswrt_upload_speed
+    - sensor.area_de_servico_sinal_wifi
+    - sensor.banheiro_203_sinal_wifi
+    - sensor.banheiro_303_sinal_wifi
+    - sensor.banheiro_da_suite_sinal_wifi
+    - sensor.banheiro_social_sinal_wifi
+    - sensor.bebedouro_203_sinal_wifi
+    - sensor.bebedouro_303_sinal_wifi
+    - sensor.cafeteira_muvrh_sinal_wifi
+    - sensor.cafeteira_sinal_wifi
+    - sensor.chaleira_sinal_wifi
+    - sensor.chuveiro_social_sinal_wifi
+    - sensor.controle_garagem_casa_sinal_wifi
+    - sensor.corredor_303_sinal_wifi
+    - sensor.corredor_sinal_wifi
+    - sensor.cozinha_sinal_wifi
+    - sensor.dinamica_303_sinal_wifi
+    - sensor.ender3_sinal_wifi
+    - sensor.entrada_203_sinal_wifi
+    - sensor.entrada_303_sinal_wifi
+    - sensor.entrada_sinal_wifi
+    - sensor.led_da_cama_da_suite_sinal_wifi
+    - sensor.led_da_tv_da_suite_sinal_wifi
+    - sensor.led_da_tv_do_quarto_sinal_wifi
+    - sensor.led_da_tv_do_sala_sinal_wifi
+    - sensor.led_do_balcao_da_cozinha_sinal_wifi
+    - sensor.led_do_chao_da_cozinha_sinal_wifi
+    - sensor.led_do_painel_da_sala_303_sinal_wifi
+    - sensor.led_do_painel_da_sala_sinal_wifi
+    - sensor.maquina_de_lavar_loucas_sinal_wifi
+    - sensor.mesa_de_jantar_sinal_wifi
+    - sensor.neopixel_tests_sinal_wifi
+    - sensor.nossa_sala_203_sinal_wifi
+    - sensor.operacoes_203_sinal_wifi
+    - sensor.principal_da_suite_sinal_wifi
+    - sensor.principal_do_quarto_sinal_wifi
+    - sensor.principal_do_sala_sinal_wifi
+    - sensor.sensor_planta_sinal_wifi
+    - sensor.sirene_sinal_wifi
+    - sensor.tv_dinamica_sinal_wifi
+    - sensor.ventilador_sinal_wifi
+    - sensor.banheiro_203_interruptores
+    - sensor.cafeteira_interruptores
+    - sensor.cafeteira_muvrh_interruptores
+    - sensor.chaleira_interruptores
+    - sensor.ender3_interruptores
+    - sensor.entrada_303_interruptores
+    - sensor.mesa_de_jantar_interruptores
 include:
   entities:
     - group.pessoas

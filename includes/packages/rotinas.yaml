@@ -298,10 +298,16 @@ script:
           entity_id: climate.ar_condicionado_do_quarto
 
   bom_dia_sem_tts:
-    alias: "Boa noite sem TTS"
+    alias: "Bom dia sem TTS"
     sequence:
       - service: input_boolean.turn_off
         entity_id: input_boolean.boa_noite
+      - service: automation.turn_off
+        entity_id: automation.rotina_bom_dia
+      - service: input_boolean.turn_on
+        entity_id: input_boolean.bom_dia
+      - service: automation.turn_on
+        entity_id: automation.rotina_bom_dia
       - service: persistent_notification.create
         data:
           title: "Alerta Casa ({{now().strftime('%H:%M')}})"
@@ -324,10 +330,22 @@ script:
                 switch.cafeteira_casa
               {% endif %}
       - service_template: >-
+          {% if is_state('input_boolean.chaleira_manha', 'on') %}
+            switch.turn_on
+          {% else %}
+            script.nada
+          {% endif %}
+        data_template:
+          entity_id: >-
+              {% if is_state('input_boolean.chaleira_manha', 'on') %}
+                switch.chaleira_casa
+              {% endif %}
+      - service_template: >-
           {% if is_state('climate.ar_condicionado_da_suite' , 'off') %}
             script.nada
           {% else %}
             {% if is_state('climate.ar_condicionado_da_suite' , 'heat') %}
+              script.nada
             {% else %}
               climate.set_operation_mode
             {% endif %}
@@ -342,6 +360,12 @@ script:
   boa_noite_sem_tts:
     alias: "Bm dia sem TTS"
     sequence:
+      - service: automation.turn_off
+        entity_id: automation.rotina_boa_noite
+      - service: input_boolean.turn_on
+        entity_id: input_boolean.boa_noite
+      - service: automation.turn_on
+        entity_id: automation.rotina_boa_noite
       - service: notify.todos_celulares
         data:
           title: "Automação"

@@ -166,8 +166,13 @@ script:
       data:
         volume_level: 0.7
     - service: tts.amazon_polly_say
-      entity_id: media_player.sala, media_player.suite
       data_template:
+        entity_id: >
+          {% if is_state('input_boolean.boa_noite', 'on') %}
+             media_player.sala
+          {% else %}
+             media_player.casa_inteira
+          {% endif %}
         message: <speak><amazon:auto-breaths frequency='medium'>A lava-louças finalizou a lavagem, sugiro deixar a porta aberta para evitar odores indesejados.</amazon:auto-breaths></speak>
 
 homeassistant:
@@ -175,3 +180,23 @@ homeassistant:
 
     script.lava_loucas_casa_alterar_modo:
       icon: mdi:dishwasher
+
+sensor:
+
+  - platform: template
+    sensors:
+      lava_loucas_percentil_timer:
+        unit_of_measurement: '%'
+        friendly_name: 'Progresso da lavagem'
+        entity_id: sensor.time
+        value_template: >
+          {% set timer = 'lava_loucas' %}
+          {% if is_state('timer.'~timer,'active') %}
+            {% set state = states.timer[timer] %}
+            {% set dur = state.attributes.duration.split(':') %}
+            {% set dur = ((dur[0]|int)*60+dur[1]|int)*60+dur[2]|int %}
+            {{ ((now() - state.last_changed).total_seconds()/dur*100)|int }}
+          {% else %}
+            0
+          {% endif %}
+

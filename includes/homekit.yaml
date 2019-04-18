@@ -1,6 +1,6 @@
 auto_start: False
-#port: 5200
-#ip_address: 192.168.1.12
+port: 51827
+ip_address: 192.168.1.12
 filter:
   exclude_domains:
     - automation

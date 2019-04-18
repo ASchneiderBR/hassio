@@ -364,8 +364,13 @@ script:
       data:
         volume_level: 0.7
     - service: tts.amazon_polly_say
-      entity_id: media_player.sala, media_player.suite
       data_template:
+        entity_id: >
+          {% if is_state('input_boolean.boa_noite', 'on') %}
+             media_player.sala
+          {% else %}
+             media_player.casa_inteira
+          {% endif %}
         message: <speak><amazon:auto-breaths frequency='medium'>E lá vai ele... Iniciando a limpeza na zona {{ states.input_select.zonas_de_aspiracao.state | lower }}.</amazon:auto-breaths></speak>
 
   aspirador_alerta_parado:
@@ -387,8 +392,13 @@ script:
       data:
         volume_level: 0.7
     - service: tts.amazon_polly_say
-      entity_id: media_player.sala, media_player.suite
       data_template:
+        entity_id: >
+          {% if is_state('input_boolean.boa_noite', 'on') %}
+             media_player.sala
+          {% else %}
+             media_player.casa_inteira
+          {% endif %}
         message: <speak><amazon:auto-breaths frequency='medium'>O aspirador parou limpando a zona {{ states.input_select.zonas_de_aspiracao.state | lower }}. {% if 'error' in states.vacuum.aspirador.state %}Código de erro é {{ states.vacuum.aspirador.attributes.error }}.{% else %}{% endif %}</amazon:auto-breaths></speak>
 
   aspirador_alerta_carregando:
@@ -412,8 +422,13 @@ script:
       data:
         volume_level: 0.7
     - service: tts.amazon_polly_say
-      entity_id: media_player.sala, media_player.suite
       data_template:
+        entity_id: >
+          {% if is_state('input_boolean.boa_noite', 'on') %}
+             media_player.sala
+          {% else %}
+             media_player.casa_inteira
+          {% endif %}
         message: <speak><amazon:auto-breaths frequency='medium'>Olha quem está de volta! O aspirador terminou seu trabalho na zona {{ states.input_select.zonas_de_aspiracao.state | lower }}. Limpou cerca de {{ states.vacuum.aspirador.attributes.cleaned_area }} metros quadrados durante {{ states.vacuum.aspirador.attributes.cleaning_time }} minutos e está carregando no momento.</amazon:auto-breaths></speak>
 
   aspirador_alerta_erro:
@@ -434,9 +449,14 @@ script:
       entity_id: media_player.sala, media_player.suite
       data:
         volume_level: 0.7
-    - service: media_player.play_media
-      data:
-        entity_id: media_player.sala, media_player.suite
+    - service_template: media_player.play_media
+      data_template:
+        entity_id: >
+          {% if is_state('input_boolean.boa_noite', 'on') %}
+             media_player.sala
+          {% else %}
+             media_player.casa_inteira
+          {% endif %}
         media_content_id: 'http://192.168.1.12:8123/local/audio/tts/alerta_aspirador_parado_erro.mp3'
         media_content_type: 'audio/mp3'
 

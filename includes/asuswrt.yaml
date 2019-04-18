@@ -1,6 +1,10 @@
 host: 192.168.1.1
 username: !secret asus_muvrh_user
 password: !secret asus_muvrh_password
+protocol: ssh
+port: 22
+mode: router
+require_ip: false
 sensors:
   - download_speed
   - upload_speed

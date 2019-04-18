@@ -37,8 +37,13 @@ automation:
         data:
           volume_level: 0.7
       - service: tts.amazon_polly_say
-        entity_id: media_player.sala, media_player.suite
         data_template:
+          entity_id: >
+            {% if is_state('input_boolean.boa_noite', 'on') %}
+               media_player.sala
+            {% else %}
+               media_player.casa_inteira
+            {% endif %}
           message: <speak>Magno acabou de usar a caixa de areia, limpar o mais breve possível!</speak>
 
   - alias: Magno - Caixa limpa
@@ -56,6 +61,11 @@ automation:
         data:
           volume_level: 0.7
       - service: tts.amazon_polly_say
-        entity_id: media_player.sala, media_player.suite
         data_template:
+          entity_id: >
+            {% if is_state('input_boolean.boa_noite', 'on') %}
+               media_player.sala
+            {% else %}
+               media_player.casa_inteira
+            {% endif %}
           message: <speak>Obrigado por limpar a caixa de areia, já estava fedendo. Talvez seja hora do Magno ir embora.</speak>

@@ -62,9 +62,14 @@
       entity_id: media_player.sala
       data:
         volume_level: 0.7
-    - service: media_player.play_media
-      data:
-        entity_id: media_player.sala
+    - service_template: media_player.play_media
+      data_template:
+        entity_id: >
+          {% if is_state('input_boolean.boa_noite', 'on') %}
+             media_player.sala
+          {% else %}
+             media_player.casa_inteira
+          {% endif %}
         media_content_id: 'http://192.168.1.12:8123/local/audio/tts/sistema_reiniciado.mp3'
         media_content_type: 'audio/mp3'
     - service: notify.ios_iphone_de_antonio
@@ -138,9 +143,14 @@
       entity_id: media_player.sala
       data:
         volume_level: 0.7
-    - service: media_player.play_media
-      data:
-        entity_id: media_player.sala
+    - service_template: media_player.play_media
+      data_template:
+        entity_id: >
+          {% if is_state('input_boolean.boa_noite', 'on') %}
+             media_player.sala
+          {% else %}
+             media_player.casa_inteira
+          {% endif %}
         media_content_id: 'http://192.168.1.12:8123/local/audio/tts/alarme_desarmado.mp3'
         media_content_type: 'audio/mp3'
     - service: notify.tudo
@@ -170,9 +180,14 @@
       entity_id: media_player.sala
       data:
         volume_level: 0.7
-    - service: media_player.play_media
-      data:
-        entity_id: media_player.sala
+    - service_template: media_player.play_media
+      data_template:
+        entity_id: >
+          {% if is_state('input_boolean.boa_noite', 'on') %}
+             media_player.sala
+          {% else %}
+             media_player.casa_inteira
+          {% endif %}
         media_content_id: 'http://192.168.1.12:8123/local/audio/tts/alarme_armado.mp3'
         media_content_type: 'audio/mp3'
     - service: notify.tudo
@@ -241,9 +256,14 @@
       entity_id: media_player.sala
       data:
         volume_level: 0.7
-    - service: media_player.play_media
-      data:
-        entity_id: media_player.sala
+    - service_template: media_player.play_media
+      data_template:
+        entity_id: >
+          {% if is_state('input_boolean.boa_noite', 'on') %}
+             media_player.sala
+          {% else %}
+             media_player.casa_inteira
+          {% endif %}
         media_content_id: 'http://192.168.1.12:8123/local/audio/tts/automacao_chegando_em_casa.mp3'
         media_content_type: 'audio/mp3'
     - delay: '00:01:00'
@@ -336,8 +356,13 @@
       data:
         volume_level: 0.7
     - service: tts.amazon_polly_say
-      entity_id: media_player.sala
       data_template:
+        entity_id: >
+          {% if is_state('input_boolean.boa_noite', 'on') %}
+             media_player.sala
+          {% else %}
+             media_player.casa_inteira
+          {% endif %}
         message: <speak>O café está pronto na cozinha!</speak>
     - condition: state
       entity_id: input_boolean.boa_noite
@@ -347,8 +372,13 @@
       data:
         volume_level: 0.7
     - service: tts.amazon_polly_say
-      entity_id: media_player.suite
       data_template:
+        entity_id: >
+          {% if is_state('input_boolean.boa_noite', 'on') %}
+             media_player.sala
+          {% else %}
+             media_player.casa_inteira
+          {% endif %}
         message: <speak>O café está pronto na cozinha!</speak>
 
 - alias: Alerta - Chuveiro ligado sem ninguém em casa
@@ -402,9 +432,14 @@
       entity_id: media_player.sala
       data:
         volume_level: 0.7
-    - service: tts.amazon_polly_say
-      entity_id: media_player.sala
+    - service_template: tts.amazon_polly_say
       data_template:
+        entity_id: >
+          {% if is_state('input_boolean.boa_noite', 'on') %}
+             media_player.sala
+          {% else %}
+             media_player.casa_inteira
+          {% endif %}
         message: <speak>Atenção! {{ trigger.to_state.name }} aberta por muito tempo!</speak>
     - service: notify.tudo
       data_template:

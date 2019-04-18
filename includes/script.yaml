@@ -793,9 +793,14 @@ speed_test:
     entity_id: media_player.sala, media_player.suite
     data:
       volume_level: 0.7
-  - service: media_player.play_media
-    data:
-      entity_id: media_player.sala, media_player.suite
+  - service_template: media_player.play_media
+    data_template:
+      entity_id: >
+        {% if is_state('input_boolean.boa_noite', 'on') %}
+           media_player.sala
+        {% else %}
+           media_player.casa_inteira
+        {% endif %}
       media_content_id: 'http://192.168.1.12:8123/local/audio/tts/alerta_iniciando_teste_internet.mp3'
       media_content_type: 'audio/mp3'
   - service: fastdotcom.speedtest
@@ -807,8 +812,13 @@ speed_test:
       title: "Sistema"
       message: "A velocidade da internet em casa é de {{ states.sensor.fast_com_download.state | int}} Mbit/s"
   - service: tts.amazon_polly_say
-    entity_id: media_player.sala, media_player.suite
     data_template:
+      entity_id: >
+        {% if is_state('input_boolean.boa_noite', 'on') %}
+           media_player.sala
+        {% else %}
+           media_player.casa_inteira
+        {% endif %}
       message: <speak><amazon:auto-breaths frequency='medium'>Pronto, verifiquei aqui. Atualmente estão chegando {{ states.sensor.fast_com_download.state | int}} mégas aqui em casa. {% if states.sensor.fast_com_download.state | int <= 20 %}Está muito lenta, estão baixando algo neste momento ou algo de errado está acontecendo pois deveriam estar chegando 50 mégas. O Antônio já foi avisado!{% endif %}</amazon:auto-breaths></speak>
 
 homekit_no_start:
