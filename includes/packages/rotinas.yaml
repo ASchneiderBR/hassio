@@ -150,7 +150,7 @@ script:
           {% endif %}
       - service_template: script.casa_desligar_ar_sala
       - service_template: >-
-          {% set lights = ['light.area_servico','light.suite_banheiro_principal','light.suite_banheiro_espelho','light.corredor','light.cozinha','light.entrada','light.ledchaocozinha','light.ledcozinhabalcao','light.ledsaladesktop','light.ledsalatv','light.ledsuitecama','light.ledsuitetv','light.mesa_de_jantar','light.sala_principal','light.suite_principal'] %}
+          {% set lights = ['light.area_servico','light.suite_banheiro_principal','light.suite_banheiro_espelho','light.corredor','light.cozinha','light.entrada','light.ledchaocozinha','light.ledcozinhabalcao','light.ledsaladesktop','light.ledsalatv','light.ledsuitecama','light.ledsuitetv','light.mesa_de_jantar','light.sala_principal','light.suite_principal','light.status_maquina_de_lavar_loucas'] %}
           {% for item in lights if states(item) == 'on' %}
           {% if loop.first %}
             light.turn_off
@@ -234,7 +234,7 @@ script:
     sequence:
       - condition: template
         value_template: >-
-          {% set lights = ['light.area_servico','light.suite_banheiro_principal','light.suite_banheiro_espelho','light.corredor','light.cozinha','light.entrada','light.ledchaocozinha','light.ledcozinhabalcao','light.ledquartotv','light.ledsaladesktop','light.ledsalatv','light.ledsuitecama','light.ledsuitetv','light.mesa_de_jantar','light.quarto','light.sala_principal','light.banheiro_social_principal','light.banheiro_social_espelho','light.suite_principal'] %}
+          {% set lights = ['light.area_servico','light.suite_banheiro_principal','light.suite_banheiro_espelho','light.corredor','light.cozinha','light.entrada','light.ledchaocozinha','light.ledcozinhabalcao','light.ledquartotv','light.ledsaladesktop','light.ledsalatv','light.ledsuitecama','light.ledsuitetv','light.mesa_de_jantar','light.quarto','light.sala_principal','light.banheiro_social_principal','light.banheiro_social_espelho','light.suite_principal','light.status_maquina_de_lavar_loucas'] %}
           {% for item in lights if states(item) == 'on' %}
           {% if loop.first %}
             {{ true }}

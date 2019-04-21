@@ -539,14 +539,24 @@ botao_xiaomi_sala_02_long:
 botao_xiaomi_cozinha_01_single:
   alias: "Luzes principais da cozinha"
   sequence:
-  - service: light.toggle
-    entity_id: light.luzes_principais_cozinha
+  - service_template: >-
+      {%- if is_state('light.todas_as_luzes_cozinha', 'off') %}
+        light.turn_on
+      {%- else %}
+        light.turn_off
+      {%- endif %}
+    entity_id: light.todas_as_luzes_cozinha
 
 botao_xiaomi_cozinha_01_double:
   alias: "Luz área serviço"
   sequence:
-  - service: light.toggle
-    entity_id: light.area_servico
+  - service_template: >-
+      {%- if is_state('light.todas_os_leds_cozinha', 'off') %}
+        light.turn_on
+      {%- else %}
+        light.turn_off
+      {%- endif %}
+    entity_id: light.todas_os_leds_cozinha
 
 botao_xiaomi_cozinha_01_triple:
   alias: "Lava-louças aquaspray"
@@ -569,19 +579,17 @@ botao_xiaomi_cozinha_01_many:
   sequence:
   - condition: template
     value_template: "{{ not is_state('input_select.lava_loucas_casa_modo_lavagem', 'Selecionar') }}"
-  - service: mqtt.publish
-    data:
-      topic: 'cmnd/lava_loucas_casa/POWER1'
-      payload: 'ON'
+  - service: switch.turn_on
+    entity_id: switch.lava_loucas_power
   - service: timer.cancel
     data:
       entity_id: timer.lava_loucas
 
 botao_xiaomi_cozinha_01_long:
-  alias: "Ligar ou desligar tudo"
+  alias: "Louça limpa"
   sequence:
-  - service: light.toggle
-    entity_id: light.todas_as_luzes_cozinha
+  - service: input_boolean.turn_on
+    entity_id: input_boolean.lava_loucas_sujo
 
 botao_xiaomi_muvrh_entrada203_single:
   alias: "Ligar ou desligar luz da entrada"

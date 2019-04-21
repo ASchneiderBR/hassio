@@ -73,38 +73,189 @@ automation:
       platform: state
       entity_id: input_select.lava_loucas_casa_modo_lavagem
     action:
-      - service_template: >
-          {% if states.input_select.lava_loucas_casa_modo_lavagem.state == 'Aquaspray' %}
+      - service_template: >-
+          {%- if states.input_select.lava_loucas_casa_modo_lavagem.state == 'Aquaspray' and is_state('input_boolean.lava_loucas_sujo' , 'on')%}
               script.lava_loucas_casa_aquaspray
-          {% elif states.input_select.lava_loucas_casa_modo_lavagem.state == 'Econômico' %}
+          {%- elif states.input_select.lava_loucas_casa_modo_lavagem.state == 'Econômico' %}
               script.lava_loucas_casa_iniciar_modo_economico
-          {% elif states.input_select.lava_loucas_casa_modo_lavagem.state == 'Dia a dia' %}
+          {%- elif states.input_select.lava_loucas_casa_modo_lavagem.state == 'Dia a dia' %}
               script.lava_loucas_casa_modo_diaadia
-          {% else %}
-              script.nada
-          {% endif %}
+          {%- else %}
+              script.lava_loucas_casa_aquaspray_louca_limpa
+          {%- endif %}
+
+  - alias: Lava-louças - Ligar luz status máquina lava-louças
+    initial_state: true
+    hide_entity: True
+    trigger:
+      platform: state
+      entity_id: group.movimento_luz_status_lava_loucas
+      to: 'on'
+    condition:
+      condition: state
+      entity_id: light.status_maquina_de_lavar_loucas
+      state: 'off'
+    action:
+      - service: light.turn_on
+        entity_id: light.status_maquina_de_lavar_loucas
+        data_template:
+          transition: 3
+          brightness_pct: 100
+          effect: >-
+            {%- if is_state('input_boolean.lava_loucas_sujo' , 'on') %}
+              Piscar vermelho
+            {%- else %}
+              Piscar verde
+            {%- endif %}
+
+  - alias: Lava-louças - Desligar luz status máquina lava-louças
+    initial_state: true
+    hide_entity: True
+    trigger:
+      platform: state
+      entity_id: light.status_maquina_de_lavar_loucas
+      to: 'on'
+    action:
+      - wait_template: "{{ ((is_state('light.status_maquina_de_lavar_loucas' , 'off')) or ((as_timestamp(strptime(states.sensor.date_time.state, '%Y-%m-%d, %H:%M')) - ((as_timestamp(states.light.status_maquina_de_lavar_loucas.last_updated) ) / 60) | int) >= 5)) and is_state('group.movimento_luz_status_lava_loucas' , 'off') and is_state('binary_sensor.lava_loucas_casa' , 'off') }}"
+      - condition: state
+        entity_id: light.status_maquina_de_lavar_loucas
+        state: 'on'
+      - service: light.turn_off
+        entity_id: light.status_maquina_de_lavar_loucas
+
+  - alias: Lava-louças - Alerta louça suja
+    initial_state: true
+    hide_entity: True
+    trigger:
+      platform: state
+      entity_id: input_boolean.lava_loucas_sujo
+      from: "off"
+      to: "on"
+    action:
+      - service: tts.amazon_polly_say
+        data_template:
+          entity_id: >
+            {% if is_state('input_boolean.boa_noite', 'on') %}
+              media_player.cozinha
+            {% else %}
+              media_player.casa_inteira
+            {% endif %}
+          message: <speak><amazon:auto-breaths frequency='medium'>Ok, vou programar as limpezas automáticas.</amazon:auto-breaths></speak>
+      - service: light.turn_on
+        data:
+          entity_id: light.status_maquina_de_lavar_loucas
+          transition: 3
+          rgb_color: [255,0,0]
+          brightness_pct: 100
+          effect: 'Scan'
+      - delay: '00:00:05'
+      - wait_template: "{{ is_state('binary_sensor.porta_lava_loucas', 'off') }}"
+      - service: light.turn_on
+        entity_id: light.status_maquina_de_lavar_loucas
+        data:
+          transition: 3
+          brightness_pct: 100
+          effect: Piscar vermelho
+
+  - alias: Lava-louças - Desligar luz ao reiniciar
+    initial_state: true
+    hide_entity: True
+    trigger:
+      platform: homeassistant
+      event: start
+    action:
+      - service: light.turn_off
+        entity_id: light.status_maquina_de_lavar_loucas
+
+  - alias: Lava-louças - Aquaspray automático
+    initial_state: true
+    trigger:
+      - platform: time
+        at: '02:00:00'
+      - platform: time
+        at: '10:00:00'
+      - platform: time
+        at: '18:00:00'
+    condition:
+      condition: state
+      entity_id: input_boolean.lava_loucas_sujo
+      state: 'on'
+    action:
+      - wait_template: "{{ is_state('binary_sensor.lava_loucas_casa' , 'off') }}"
+      - delay: '00:00:10'
+      - condition: state
+        entity_id: input_boolean.lava_loucas_sujo
+        state: 'on'
+      - condition: state
+        entity_id: binary_sensor.porta_lava_loucas
+        state: 'off'
+      - service: input_select.select_option
+        entity_id: input_select.lava_loucas_casa_modo_lavagem
+        data:
+          option: "Aquaspray"
+      - service: persistent_notification.create
+        data:
+          title: " Lava-louças ({{now().strftime('%H:%M')}})"
+          message: "Aquaspray iniciado."
 
 script:
+
+  lava_loucas_casa_aquaspray_louca_limpa:
+    alias: "Aquaspray com louça limpa"
+    sequence:
+    - service: input_select.select_option
+      entity_id: input_select.lava_loucas_casa_modo_lavagem
+      data:
+        option: "Selecionar"
+    - service: tts.amazon_polly_say
+      data_template:
+        entity_id: >
+          {% if is_state('input_boolean.boa_noite', 'on') %}
+             media_player.cozinha
+          {% else %}
+             media_player.casa_inteira
+          {% endif %}
+        message: <speak><amazon:auto-breaths frequency='medium'>A louça já está limpa, por favor descarregar antes de iniciar outra lavagem.</amazon:auto-breaths></speak>
 
   lava_loucas_casa_aquaspray:
     alias: "Aquaspray"
     sequence:
+    - service: light.turn_on
+      data:
+        entity_id: light.status_maquina_de_lavar_loucas
+        transition: 3
+        brightness_pct: 100
+        effect: 'ProgressBar'
     - wait_template: "{{ is_state('binary_sensor.porta_lava_loucas', 'off') }}"
     - service: switch.turn_on
       entity_id: switch.lava_loucas_modo_aquaspray
     - service: timer.start
       data:
         entity_id: timer.lava_loucas
-        duration: 00:06:20
+        duration: 00:06:05
     - wait_template: "{{ is_state('timer.lava_loucas', 'idle') }}"
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.lava_loucas_sujo
     - service: input_select.select_option
       entity_id: input_select.lava_loucas_casa_modo_lavagem
       data:
         option: "Selecionar"
+    - service: light.turn_on
+      data:
+        entity_id: light.status_maquina_de_lavar_loucas
+        transition: 3
+        brightness_pct: 100
+        effect: 'Piscar vermelho'
 
   lava_loucas_casa_iniciar_modo_economico:
     alias: "Modo econômico"
     sequence:
+    - service: light.turn_on
+      data:
+        entity_id: light.status_maquina_de_lavar_loucas
+        transition: 3
+        brightness_pct: 100
+        effect: 'ProgressBar'
     - wait_template: "{{ is_state('binary_sensor.porta_lava_loucas', 'off') }}"
     - service: switch.turn_on
       entity_id: switch.lava_loucas_modo_economico
@@ -113,11 +264,25 @@ script:
         entity_id: timer.lava_loucas
         duration: 01:25:00
     - wait_template: "{{ is_state('timer.lava_loucas', 'idle') }}"
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.lava_loucas_sujo
     - service: script.lava_loucas_casa_alerta_final
+    - service: light.turn_on
+      data:
+        entity_id: light.status_maquina_de_lavar_loucas
+        transition: 3
+        brightness_pct: 100
+        effect: 'Piscar verde'
 
   lava_loucas_casa_modo_diaadia:
     alias: "Modo dia a dia"
     sequence:
+    - service: light.turn_on
+      data:
+        entity_id: light.status_maquina_de_lavar_loucas
+        transition: 3
+        brightness_pct: 100
+        effect: 'ProgressBar'
     - wait_template: "{{ is_state('binary_sensor.porta_lava_loucas', 'off') }}"
     - service: switch.turn_on
       entity_id: switch.lava_loucas_modo_dia_a_dia
@@ -126,7 +291,15 @@ script:
         entity_id: timer.lava_loucas
         duration: 02:26:00
     - wait_template: "{{ is_state('timer.lava_loucas', 'idle') }}"
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.lava_loucas_sujo
     - service: script.lava_loucas_casa_alerta_final
+    - service: light.turn_on
+      data:
+        entity_id: light.status_maquina_de_lavar_loucas
+        transition: 3
+        brightness_pct: 100
+        effect: 'Piscar verde'
 
   lava_loucas_casa_iniciar_parar:
     alias: "Iniciar/parar lavagem"
@@ -161,15 +334,11 @@ script:
     - condition: state
       entity_id: input_boolean.boa_noite
       state: 'off'
-    - service: media_player.volume_set
-      entity_id: media_player.sala, media_player.suite
-      data:
-        volume_level: 0.7
     - service: tts.amazon_polly_say
       data_template:
         entity_id: >
           {% if is_state('input_boolean.boa_noite', 'on') %}
-             media_player.sala
+             media_player.cozinha
           {% else %}
              media_player.casa_inteira
           {% endif %}
@@ -200,3 +369,19 @@ sensor:
             0
           {% endif %}
 
+input_boolean:
+
+  lava_loucas_sujo:
+    name: "Louça suja"
+    icon: mdi:alert-box
+
+group:
+
+  movimento_luz_status_lava_loucas:
+    control: hidden
+    view: false
+    entities:
+    - binary_sensor.movimento_sala
+    - binary_sensor.movimento_cozinha
+    - binary_sensor.movimento_entrada_de_casa
+    name: Movimento status lava-louças

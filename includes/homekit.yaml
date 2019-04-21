@@ -30,6 +30,7 @@ filter:
     - input_boolean.chaleira_manha
     - input_boolean.magno_em_casa
     - input_boolean.caixa_areia_suja
+    - input_boolean.lava_loucas_sujo
     - device_tracker.antonio
     - device_tracker.roberta
     - binary_sensor.casa_movimento
@@ -177,6 +178,8 @@ entity_config:
     name: "Magno em casa"
   input_boolean.caixa_areia_suja:
     name: "Caixa areia suja"
+  input_boolean.lava_loucas_sujo:
+    name: "Louça suja"
   device_tracker.antonio:
     name: "Antonio"
   device_tracker.roberta:

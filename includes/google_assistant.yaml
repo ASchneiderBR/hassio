@@ -298,6 +298,11 @@ entity_config:
     room: Automações
     name: Chaleira de manhã
 
+  input_boolean.lava_loucas_sujo:
+    expose: true
+    room: Cozinha
+    name: Louça suja
+
   vacuum.aspirador:
     expose: true
     room: Apartamento

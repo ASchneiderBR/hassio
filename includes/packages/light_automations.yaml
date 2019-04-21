@@ -135,18 +135,18 @@ automation:
       to: 'on'
     condition:
       condition: state
-      entity_id: light.luzes_principais_cozinha
+      entity_id: light.todas_as_luzes_cozinha
       state: 'off'
     action:
       - service: light.turn_on
-        entity_id: light.luzes_principais_cozinha
+        entity_id: light.todas_as_luzes_cozinha
       - delay: '00:00:03'
-      - wait_template: "{{ ((is_state('light.luzes_principais_cozinha' , 'off')) or ((((as_timestamp(strptime(states.sensor.date_time.state, '%Y-%m-%d, %H:%M')) - as_timestamp(states.binary_sensor.movimento_cozinha.last_updated) ) / 60) | int) >= states.input_number.timmer_cozinha.state | int -1 and is_state('binary_sensor.movimento_cozinha' , 'off'))) }}" 
+      - wait_template: "{{ ((is_state('light.todas_as_luzes_cozinha' , 'off')) or ((((as_timestamp(strptime(states.sensor.date_time.state, '%Y-%m-%d, %H:%M')) - as_timestamp(states.binary_sensor.movimento_cozinha.last_updated) ) / 60) | int) >= states.input_number.timmer_cozinha.state | int -1 and is_state('binary_sensor.movimento_cozinha' , 'off'))) }}" 
       - condition: state
-        entity_id: light.luzes_principais_cozinha
+        entity_id: light.todas_as_luzes_cozinha
         state: 'on'
       - service: light.turn_off
-        entity_id: light.luzes_principais_cozinha
+        entity_id: light.todas_as_luzes_cozinha
 
 ### Leds e efeitos
 #

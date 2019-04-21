@@ -16,6 +16,12 @@
     - light.ledchaocozinha
 
 - platform: group
+  name: "Todos os leds cozinha"
+  entities:
+    - light.ledcozinhabalcao
+    - light.ledchaocozinha
+
+- platform: group
   name: "Todas as luzes cozinha"
   entities:
     - light.cozinha
