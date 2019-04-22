@@ -76,12 +76,14 @@ automation:
       - service_template: >-
           {%- if states.input_select.lava_loucas_casa_modo_lavagem.state == 'Aquaspray' and is_state('input_boolean.lava_loucas_sujo' , 'on')%}
               script.lava_loucas_casa_aquaspray
+          {%- elif states.input_select.lava_loucas_casa_modo_lavagem.state == 'Aquaspray' and is_state('input_boolean.lava_loucas_sujo' , 'off')%}
+              script.lava_loucas_casa_aquaspray_louca_limpa
           {%- elif states.input_select.lava_loucas_casa_modo_lavagem.state == 'Econômico' %}
               script.lava_loucas_casa_iniciar_modo_economico
           {%- elif states.input_select.lava_loucas_casa_modo_lavagem.state == 'Dia a dia' %}
               script.lava_loucas_casa_modo_diaadia
           {%- else %}
-              script.lava_loucas_casa_aquaspray_louca_limpa
+              script.nada
           {%- endif %}
 
   - alias: Lava-louças - Ligar luz status máquina lava-louças
@@ -102,7 +104,9 @@ automation:
           transition: 3
           brightness_pct: 100
           effect: >-
-            {%- if is_state('input_boolean.lava_loucas_sujo' , 'on') %}
+            {%- if is_state('binary_sensor.lava_loucas_casa' , 'on') %}
+              ProgressBar
+            {%- elif is_state('input_boolean.lava_loucas_sujo' , 'on') %}
               Piscar vermelho
             {%- else %}
               Piscar verde
@@ -175,7 +179,7 @@ automation:
       - platform: time
         at: '10:00:00'
       - platform: time
-        at: '18:00:00'
+        at: '14:00:00'
     condition:
       condition: state
       entity_id: input_boolean.lava_loucas_sujo

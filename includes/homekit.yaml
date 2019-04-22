@@ -99,6 +99,7 @@ filter:
     - light.suite_banheiro_principal
     - light.suite_banheiro_espelho
     - light.suite_principal
+    - light.neopixel_movel_sala
     - switch.automacoes_luzes
     - switch.aspirador
     - switch.chuveirosocial

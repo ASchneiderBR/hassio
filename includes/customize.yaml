@@ -213,6 +213,12 @@ light.ledchaocozinha:
   friendly_name: "LED do chão da cozinha"
   icon: mdi:led-strip
 
+light.status_maquina_de_lavar_loucas:
+  icon: mdi:led-strip
+
+light.neopixel_movel_sala:
+  icon: mdi:led-strip
+  
 light.ender_3:
   friendly_name: "Ender 3"
   icon: mdi:track-light

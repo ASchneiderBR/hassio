@@ -67,3 +67,21 @@
     - light.mesa_de_jantar
     - light.entrada
     - light.sala_principal
+
+- platform: template
+  lights:
+    neopixel_movel_sala:
+      friendly_name: "Neopixel móvel da sala"
+      value_template: "{{ states.light.movel_da_sala.state }}"
+      turn_on:
+        service: light.turn_on
+        data:
+          entity_id: light.movel_da_sala
+          transition: 3
+          rgb_color: [255,0,0]
+          brightness_pct: 100
+          effect: 'Rainbow'
+      turn_off:
+        service: light.turn_off
+        data:
+          entity_id: light.movel_da_sala

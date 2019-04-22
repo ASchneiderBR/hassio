@@ -15,4 +15,4 @@
 - platform: ffmpeg
   name: "MuvRH 203 - Operações"
   input: rtsp://192.168.1.54:554/onvif1
-  extra_arguments: -rtsp_transport tcp -i
+  extra_arguments: -pred 1 -rtsp_transport tcp

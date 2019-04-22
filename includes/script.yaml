@@ -551,12 +551,12 @@ botao_xiaomi_cozinha_01_double:
   alias: "Luz área serviço"
   sequence:
   - service_template: >-
-      {%- if is_state('light.todas_os_leds_cozinha', 'off') %}
+      {%- if is_state('light.todos_os_leds_cozinha', 'off') %}
         light.turn_on
       {%- else %}
         light.turn_off
       {%- endif %}
-    entity_id: light.todas_os_leds_cozinha
+    entity_id: light.todos_os_leds_cozinha
 
 botao_xiaomi_cozinha_01_triple:
   alias: "Lava-louças aquaspray"

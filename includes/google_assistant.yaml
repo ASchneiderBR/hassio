@@ -175,6 +175,10 @@ entity_config:
     expose: true
     room: Suíte
 
+  light.neopixel_movel_sala:
+    expose: true
+    room: Sala
+
   switch.automacoes_luzes:
     expose: true
     room: Automações

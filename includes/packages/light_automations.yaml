@@ -148,29 +148,21 @@ automation:
       - service: light.turn_off
         entity_id: light.todas_as_luzes_cozinha
 
-### Leds e efeitos
-#
-#  - alias: Luzes da casa - ajustes efeitos LED
-#    initial_state: True
-#    trigger:
-#      platform: state
-#      entity_id:
-#        - light.ledquartotv
-#        - light.ledsalatv
-#      from: 'off'
-#      to: 'on'
-#    action:
-#      - service: light.turn_on
-#        data_template:
-#          entity_id: '{{ trigger.to_state.entity_id }}'
-#          transition: 1
-#          brightness_pct: 100
-#          effect: >-
-#              {% if trigger.to_state.entity_id == "light.ledsalatv" %}
-#                'RGB transition slow'
-#              {% else %}
-#                'RGB transition fast'
-#              {% endif %}
+## Leds e efeitos
+
+  - alias: Luzes da casa - Ligar neopixel com led da TV
+    initial_state: True
+    trigger:
+      platform: state
+      entity_id: light.ledsalatv
+    action:
+      - service_template: >-
+          {%- if is_state('light.ledsalatv' , 'on')  %}
+            light.turn_on
+          {% else %}
+            light.turn_off
+          {%- endif %}
+        entity_id: light.neopixel_movel_sala
           
 # MuvRH
 
