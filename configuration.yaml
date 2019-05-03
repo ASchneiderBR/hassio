@@ -29,7 +29,6 @@ hassio:
 history:
 logbook:
 map:
-shopping_list:
 sun:
 system_health:
 updater:
@@ -41,7 +40,7 @@ automation: !include includes/automation.yaml
 binary_sensor: !include includes/binary_sensor.yaml
 camera: !include includes/camera.yaml
 #cast: !include includes/cast.yaml
-cloud: !include includes/cloud.yaml
+#cloud: !include includes/cloud.yaml
 climate: !include includes/climate.yaml
 cover: !include includes/cover.yaml
 device_tracker: !include includes/device_tracker.yaml

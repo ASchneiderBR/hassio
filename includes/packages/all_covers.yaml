@@ -1,0 +1,237 @@
+input_boolean:
+
+  persiana_suite:
+    name: "Estado persiana da suíte"
+
+  persiana_quarto:
+    name: "Estado persiana do quarto"
+
+  persiana_sala:
+    name: "Estado persiana da sala"
+
+  garagem_casa:
+    name: "Estado garagem de casa"
+
+  garagem_muv_rua:
+    name: "Estado garagem MuvRH da rua"
+
+  garagem_muv_interno:
+    name: "Estado garagem MuvRH de dentro"
+
+script:
+
+# Broadlink
+
+  persiana_quarto_abrir:
+    sequence:
+    - service: broadlink.send
+      data:
+        host: 192.168.1.32
+        packet: sgGEAwwUDBQXCgwUDBUMFAwVDBQMFAwUDBUWCgwVFgoWChcKDBQMFBcMoVA2CgwVFgoMFAwUFwoWCgwVFgoXCRcKDBQMFQwUDBQMFQwUFgoNFAwUDBQXCgwUDBUMFBYKDBUMFAwUDBUMFAwUDBUMFBYLCxUWChcKFgoMFAwVFgyhUDcKCxUWCgwVDBQWChcKDBQWChcKFgoMFAwVDBQMFAwVDBQXCgwUDBQMFRYKDBUMFAwUFgoMFQwUDBQMFQwUDBUMFAwUFwoMFBcKFgoWCgwVDBQWDKFRNgoMFBcKDBQMFBcJFwoMFBcKFgoWCgwUDBUMFAwVDBQMFBcKDBQMFQwUFgoMFQwUDBQXCgwUDBUMFAwUDBUMFAwUDBUWCgwVFgoWChcJDRQMFBcMoVA2CgwVFgoMFAwVFgoWCgwVFgoWChcKDBQMFAwVDBQMFAwVFgoMFQwUDBQXCQ0UDBQMFRYKDBUMFAwUDBUMFAwVDBQMFBcJDBUWChcJFwoMFAwUFwyhUDcJDBQXCgwUDBUWChcJDBUWChcKFgoMFA0UDBQMFQwUDBQWCgwVDBQMFRYKDBQMFQwUFwkMFQwUDBUMFAwUDBUMFAwUFwoMFBcJFwoWCgwUDRQWDKFRNgoMFBYKDBULFRcKFgoMFBYKFwoWCgwVDBQMFAwUDBUMFBcKDBQMFA0UFgoMFQwUDBQXCgwUDBQMFQwUDBUMFAwUDBUWCgwUFwoWChcJDBUMFBcMoVA2CgwUFwoMFAwUFwoWCgwUFwoWChcKDBQMFAwVDBQMFAwVFgoMFQwUDBQXCgwUDBQMFRYKDBQMFQwUDBQMFQwUDBUMFBYKDBQXChcJFwoMFAwUFwyhUDcJDBQXCgwUDBQXChYKDBUWChcJFwoMFAwVDBQMFAwVDBQWCgwVCxUMFRYKDBQMFQwUFgoMFQwUDBUMFAwUDBUMFAwUFwoMFBYKFwkXCgwVDBMXDKFQNwkMFRYKDBUMFBYKFwoMFBcJFwkXCgwUDBUMFAwVDBQMFBcKDBQMFQwUFgoMFQwUDBQXCgwUDBQMFQwUDBQMFQwUDBQXCgwUFwoWChYKDBUMFBcMoVA2CgwUFgoMFQwUFwoWCgwUFwkXChYKDRQMFAwUDBUMFAwVFgoMFQwUDBQWCgwVDBQMFRYKDBQNFAwUDBQMFQwUDBQMFRYKDBUWChYKFwoMFAwUFwAF3AAAAAA==
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.persiana_quarto
+    - delay: '00:00:03'
+    alias: "Persiana abrir"
+  
+  persiana_quarto_fechar:
+    sequence:
+    - service: broadlink.send
+      data:
+        host: 192.168.1.32
+        packet: sgGEAxYKFwoWCgwVDBQMFAwVDBQMFA0UDBQXCQwVFgoMFQwUDBQXChYMoVE2CQwVFgoMFAwVFwkXCgwUFgoXChYKDBQMFQwUDBULFQwUFwoMFAwUDBULFQwUFwoWChcKCxUMFAwVDBQMFQwUDBQMFBcKDBQXCQwVDBQMFRYKFg2hUDYKDBQXCQwVDBQXChYKDBQWChcKFgoMFQwUDBQMFQwVCxUWCgwUDBUMFAwUDBUWChcJFwoMFAwUDBUMFAwVCxUMFAwVFgoMFBcKDBQMFAwVFwkXDKFQNwkMFRYKDBQMFBcKFwkMFBcKFwkXCgwUDBQNFAwUDBUMFBYKDBQMFQwUDBUMFBYKFwoWCgwUDBUMFAwVDBQMFQsVDBQWCgwUFwoMFQsVDBQXCRcMoVA3CQ0UFgoMFAwVFgoXCQwVFgoWCxYKDBQMFQwUDBQMFQwUFwoMFAwUDBUMFAwUFwoWChcJDRQMFAwVDBQMFAwVDBQMFBcKDBQXCQwVDBQMFRYKFgyhUTYKDBQXCgwUDBQXCRcKDBQXCRcKFgoMFQwUDBQMFQwUDBQXCgwUDBQNFAwUDBUWChYKFwoMFAwUDBUMFAwVCxUMFAwVFgoMFBcKCxUMFQsVFgoWDaFQNgoMFBcKDBQMFBcKFgoMFRYKFgoXCgsVDBQMFQwUDBQMFRYKDBQMFQwUDBQMFRYKFwoWCgwUDBUMFAwUDBUMFAwUDBUWCgwUFwoMFQwUDBQXCRcMoVA2CgwVFgoMFAwVFgoXCgsVFgoXChYKDBQMFQwUDBQMFQsVFgoMFQwUDBUMFAwUFwoWChYKDBULFQwUDBUMFAwVDBQMFBcKDBQWCgwVDBQMFRYKFgyiTzcJDBUWCgwVDBQWChcKDBQWChcKFwoLFQsVDBQMFQwUDBUWCgwUDBULFQwUDBQXChYLFgkNFAwVDBQMFAwUDBUMFAwVFgoMFBcKDBQMFAwVFgoWDaFQNgoMFBYLCxUMFBcJFwoMFBcKFgoWCgwVDBQMFQwUDBQMFRYKDBQMFQwUDBUMFBYKFwkXCgwVCxUMFAwUDRQMFAwUDBUWCgwVFgoMFA0UDBQXCRcMoVA2CgwVFgoMFAwVFgoWCgwVFgoWChcKDBQMFQsVDBQMFAwVFgoMFQwUDBQMFQwUFgoXChcJDBUMFAwVDBQMFAwUDBUMFBYLDBQWCgwVDBQMFRYKFgAF3AAAAAA==
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.persiana_quarto
+    - delay: '00:00:03'
+    alias: "Persiana fechar"
+  
+  persiana_quarto_parar:
+    sequence:
+    - service: broadlink.send
+      data:
+        host: 192.168.1.32
+        packet: sgD+AgEUFwoWCgwUFwoWChcJDRQMFAwVDBQMFAwVFgoMFA0UDBQXCgwUFgsMFBYKDBUMFAwUDBQMFQwUDBUMFBYKDBUWChcJFwoWChcJFwyhUDYKDBUWCgwUDBUWChYKDBUWChcJFwoMFAwVDBQMFAwVDBQWCgwUDBUMFBcKDBQXCgwUFgoMFQwUDBQMFQwUDBUMFAwUFgsLFRYKFgsWChcJFwkXDKFQNwoMFBYKDBUMFBYKFwkNFBYKFwoWCgwUDBUMFAwUDBUMFBcKDBQMFAwVFgoMFBcKDBQWCgwVDBQMFQwUDBQMFQwUDBUWCgwUFwkXChYKFwoWChYMoVE2CgwUFwkMFQwUFwkXCgwUFgoXChcJDBUMFAwUDRQMFAwUFwoMFAwVDBQXCQwVFgoMFBcJDBUMFAwVDBQMFAwVDBQMFRYKDBQXCRcKFwkXChYKFg2hUDYKDBQWCwwUDBQXChYKDBQXChYKFwkMFQwUDBQNFAwUDBUWCgwUDBUMFBcJDBUWCgwUFwoMFAwUDRQMFAwVDBQMFQwUFgoMFRYKFgoXCRcKFgoXDKFQNgoMFBcKDBQMFBcKFwkMFRYKFgoXCgwUDBQMFQwUDBQNFBYKDBULFQwUFwoMFBYKDRQWCgwUDRQMFAwUDRQMFA0UDBQXCQwVFgoXChYKFgoWChcMoVA3CQwUFwoMFAwVFgoXCQwVFgoWChcKDBQMFAwVDBQMFQwUFwkMFQwUDBQXCgwUFwoMFBYKDBUMFAwVDBQMFAwUDBUMFBcKDBQWChcKFgoWChcKFgyiTzcKDBQWCgwVDBQWChcJDBUXCRcKFgoMFA0UDBQMFQwUDBQXCgwUDBQMFRYKDBQXCgwUFwoMFAwUDBUMFAwVDBQMFAwUFwoMFBcJFwoWChcJFwoWDKFQNwkNFBcJDBUMFBcJFwoMFBYKFwoWCgwVDBQMFAwVDBQMFRYKDBQMFQwUFgoMFRYKDBQXCgwUDBQMFQwUDBUMFAwUDBUWCgwUFwoWChcJFwoWChcABdwMFAwVFgoMFBcK==
+    - delay: '00:00:03'
+    alias: "Persiana parar"
+  
+  persiana_suite_abrir:
+    sequence:
+    - service: broadlink.send
+      data:
+        host: 192.168.1.32
+        packet: sgGEAwwXDBcMFwwXGAwLGAsYDBcMFxgLDBcMGBcMCxgMFxgLDBcYCwwXDBcMGAsYFwwMFxgLDBcMFwwXGAwLGAwXDBcYCwwXDBcMGBcMnTEYDBcMFwwMFwwXDBcMFxgMCxgLFwwYCxgYCwwXDBcYDAsXDBgXDAwXGAsMFwwXDBcMFxgMCxgXDAwXDBcMFxgMCxgLGAwXGAsMFwwXDBcY/Z0xGAsYCxgLDBcMGAsYDBcYCwwXDBcMFwwXGAwLGAsYFwwMFwwXGAsMFxgMCxgMFwwXDBcYCwwXGAsMGAsYCxgXDAwXDBcMFxgLDBgLGAwXGAydMRgLGAsYCwwXDBcMFwwXGAwMFwwXDBcMFxgMCxcMFxgMDBcMFxgLDBcYCwwYCxcMGAwXGAsMFxgLDBcMGAsYFwwMFwwXDBcYCwwYCxcMGBf9nTEYDBcMFwwMFwwXDBcMFxgLDBgLGAsYCxgXDAwXDBcYCwwYCxgXDAwXGAsMFwwXDBcMGBcMCxgXDAwXDBcMFxgMCxgLGAwXGAsMFwwXDBcYDJ0xGAsYCxgMCxgMFwwXDBcYCwwXDBcMFwwXGAwLGAwXGAsMFwwYFwwLGBcMDBcMFwwXDBcYCwwXGAsMGAwXDBcYCwwXDBgLGBcMCxgMFwwXGP2dMRgLGAsYCwwXDBcMFwwXGAwMFwwXDBcMFxgLDBcMFxgMCxgMFxgLDBcYDAsXDBgLGAwXGAsMFxgLDBcMGAsYFwwMFwwXDBcYCwwXDBgLGBcMnTIXDBcMGAsMFwwXDBcMFxgMCxgMFwwXDBcYCwwXDBcYDAsYCxgXDAwXGAsMFwwXDBgLGBcMDBcYCwwXDBcMFxgMCxcNFwwXGAsMFwwXDBcYDZ0xGAsYCxgLDBcMFwwYCxgYCwwXDBcMFwwYFwsMGAsYFwwMFwwXGAsMFxgLDBcMGAwXDBcYCwwYFwwLFwwYDBcXDAwXDBcMFxgMFwsYDBgLDAABB50xGAsYDBcMCxgMFwwXDBcYCwwXDBcMGAsXGAwLGAsYGAsMFwwXGAwLGBcMDBcMFwwXDBcYCwwXGAwLGAsYDBcYCwwXDBgLGBcMFwwYCxgLDAABB50xGAwXDBcMDBcMFwwXDBcYCwwYCxgLGAwXGAsMFwwXGAsMFwwYFwwMFxcMDBcMFwwXDBgXDAwXFwwMFwwXDBcYCwwYCxgLGBcMGAsYCxgLDAAF3AAAAAA==
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.persiana_suite
+    - delay: '00:00:03'
+    alias: "Persiana abrir"
+  
+  persiana_suite_fechar:
+    sequence:
+    - service: broadlink.send
+      data:
+        host: 192.168.1.32
+        packet: sgGEAwsYDBcMFwwXGAsMFwwYCxgLGBcMDBcMFxgLDBcMFxgMCxgYCwwXDBcMFwwXGAsMGBcMCxgMFwwXGAsMFwwYFwwXDAwXDBcYCxgMnTEYCxgLGAsMGAsYDBcMFxgLDBgLFwwYCxcYDAsYCxgXDAwXDBcYCwwYFwwMFwwXDBcMFxgLDBgXDAsYCxgLGBgLDBcMFxgMFwwLGAwXGAsY/Z0xGAsYDBcLDBcMFwwYCxgXDAwXDBcMFwwXGAwLGAsYFwwMFwwXGAsMFxgLDBgLGAsYDBcYCwwXGAwLGAsYDBcXDAwXDBcYCxgMCxcMGBcMFwyeMRgLGAsYCwwXDBcMFwwXGAwMFwwXDBcMFxgMCxgLGBcMDBcMFxgLDBcYCwwYCxgLGAwXFwwMFxgLDBcMGAsXGAwMFwwXGAsYCwwYCxcYCxj9nTIXDBcMFwwMFwwXDBcMGBcMDBcMFwwXDBcYCwwXDBgXDAsYCxgXDAsYGAsMFwwXDBgLGBcMDBcYCwwXDBcMFxgMCxgMFxcMGAsMFwwXGAwXDJ0xGAsYDBcMCxgLGAwXDBcYCwwXDBgLGAsYFwwMFwwXGAwLFwwYFwwLGBcMDBcMFwwXDBgXDAwXGAsMFwwXDBcYCwwXDBcYDBcMDBcMFxgLGP2dMRgLGAwXDAsYDBcMFwwXGAsMFwwXDBcMGBcMCxgMFxgLDBcMFxgLDBgXDAwXDBcMFwwXGAsMGBcLDBgMFwwXGAsMFwwXGAwXDAsYDBcYCxgMnTEYCxgLGAsMGAsYCxgLGBcMDBcMFwwXDBcYCwwYDBcYCwwXDBcYCwwXGAsMGAsYDBcMFxgLDBcYDAsYCxgMFxgLDBcMFxgMFwwLGAsYFwwYDJ0yFwwXDBgLDBcMFwwXDBcYCwwXDBgLGAwXFwwMFwwXGAwLGAsYFwwMFxgLDBcMFwwXDBgXDAsYFwwMFwwXDBcYDAsYCxgXDBgLGAsYCwwXDAABB50yFwwXDBgLDBcMFwwXDBcYDAwXDBcMFwwXGAsMFwwXGAwMFwwXGAsMFxgLDBcMGAsYDBcYCwwXGAsMFwwXDBcYDAwXDBcYCxgLGAsYDAsYCwABCJ0xGAsYCxgLDBcMGAsYCxgXDAwXDBcMFwwXGAwLFwwYFwwMFwwXGAsMFxgLDBgLGAsYDBcYCwwXGAsMFwwXDBgXDAwXDBcYCxgLGAwXDAsYDAAF3AAAAAA==
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.persiana_suite
+    - delay: '00:00:03'
+    alias: "Persiana fechar"
+  
+  persiana_suite_parar:
+    sequence:
+    - service: broadlink.send
+      data:
+        host: 192.168.1.32
+        packet: sgH2ABgMFwwXDAwXDBcMFwwYFwsMFwwYCxgLGBcMDBcMFxgLDBcMGBcLDBgXDAwXDBcMFwwXGAsMFxgLDBgLGAwXFwwMFxgLDBcYCwwXGAwLGBcMnTIXDBgLGAsMFwwXDBcMFxgMCxgMFwwXDBcYCwwXDBcYDAsXDBcYDAsYGAsMFwwXDBcMFxgMCxcYDAwXDBcMFxgLDBcYDAsXGAsMGBcMDBcYC54xFwwYCxgLDBcMFwwXDBcYDAsYDBcMFwwXGAsMFwwXGAwLGAsYGAsMFxgLDBcMFwwXDBgXDAsYFwwMFwwXDBcYDAsYFwsMGBcMDBcYCwwXGAAF3AAA==
+    - delay: '00:00:03'
+    alias: "Persiana parar"
+  
+  persiana_sala_abrir:
+    sequence:
+    - service: broadlink.send
+      data:
+        host: 192.168.1.32
+        packet: sgGEAwwXDBcMFwwXGAsMFwwXDBgMFxgLDBcMFxgLDBcYCxkKGQsMFwwXGAsMFxgLDBcNFhkLDBcMFwwXGAsMFwwXDBgYCwwXDBcMFxgMnTEYCxgLGAsMFwwYDBYNFxgLDBcMFwwXDBcZCwwXDBcYCwwXGAsYCxgLDRYMGBgLDBcYCwwXDBcYDAwWDRcMFxgLDBcMFwwXGAsMFwwXDRcY/J4wGAwYCxgLDBcMFwwXDBcYDAwXDBcMFwwXGAsMFwwXGAsNFhkLGAsYCwwXDBcYCwwYGAsMFwwXGAsMFwwXDBcYCw0XDBcMFxgLDBcMFwwXGQudMRkKGAsYDAwXDBcMFwwXGAsNFwwXDBcMFxgLDBcMFxgLDRcXDBcMGAsMFwwXGAsMFxgMDBcMFxgLDBcMFwwXGAsMGAwXDBcYCwwXDBcMFxj9nTEYCxgLGAsMFw0XDBcMFxgLDBcMFwwXDBcYDAwXDBcYCwwXGAsYCxgLDBcNFxgLDBcYCwwXDBcYDAwXDBcMFxgLDBcMFwwXGAsNFwwXDBcYDJ0xGAsYCxgLDBcMFwwXDBgYCwwXDBcMFwwXGAsNFg0XGAsMFxgLGAsYCw0WDRYYDAwXGAsMFwwXGAsMFw0XDBcYCwwXDBcMFxgMDBYMGAwWGfydMRkLGAsYCwwXDBcMFwwXGAwMFwwXDBcMFxgLDBcMFxgMCxgYCxgLGAsMFwwXGAsNFxgLDBcMFxgLDBcMFwwXGAwMFwwXDBcYCwwXDBcMFxkLnjAYCxkLFwwMFwwXDBcMFxgLDBgMFg0XDBcYCwwXDBcYCwwXGAwXDBgLDBcMFxgLDBcZCwwXDBcYCwwXDBcMFxgLDBgLFw0XGAsMFwwXDBcYDZ0xGAsYCxgLDBcMFwwYDBcYCwwXDBcMFwwXGAsMFwwXGAwMFxgLGAsYCwwYCxgYCwwXGAsMFwwXGAsMFwwXDBcYDAwXDBcMFxgLGAwXDBgLDAABB50xGAsYCxgLDRYMGAwXDBcYCwwXDBcMFwwXGAsMGAwXGAsMFxgLGAsYCwwYDBcYCwwXGAsMFwwXGAsMFw0XDBcYCwwXDBcMFxgMGAsYCxgLDAABB50xGAsZCxgLDBcMFwwXDBcYCwwYCxgMFwwXGAsMFwwXGAsMGBcLGAwYCwwXDBcYCwwXGQoNFwwXGAsMFwwXDBcYDAwWDRcLGBgLGAsYCxgLDAAF3AAAAAA==
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.persiana_sala
+    - delay: '00:00:03'
+    alias: "Persiana abrir"
+  
+  persiana_sala_fechar:
+    sequence:
+    - service: broadlink.send
+      data:
+        host: 192.168.1.32
+        packet: sgGCAQwXGAwMFxgLGAsYCwwXDBcZCwwXGAsMFwwXGAsMFwwXDRYYDAwXDBcYCxgLDBcNFhkKGQueMBkKGQsYCwwXDBcMFwwXGQsMFwwXDBcMFxgLDBcMFxgLDRcYCxgLGAsMFwwYFwsNFxgLDBcMFxgLDBcMFwwXGQoNFwwXGAsYCwwXDBcYCxn8nTEZChgMGAsMFwwXDBcMFxgLDBcMGAwWDRcYCwwXDBcYCwwXGQsYCxgLDBcMFxgLDBcYCw0WDRYZCwwXDBcMFxgLDBgLFxkLGAsYCxgLDBcMAAEHnjAZCxgLGAsMFwwXDBcMFxgMDBcMFwwXDBcYCwwXDBcYCw0WGQsYCxgLDBcMFxgLDRcYCwwXDBcYCwwXDBcMFxgMDBcMFxgLGAsYCxgLDRYNAAEHnTEYCxgLGAsMFwwXDRcMFhkLDBcMFwwXDBcYCwwXDBcZCwwXGAsYCxgLDBcNFhkLDBcYCwwXDBcYCwwXDRYMGBgLDBcMFxgLGAsYCxkLDBcMAAXcAAAAAAAA==
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.persiana_sala
+    - delay: '00:00:03'
+    alias: "Persiana fechar"
+  
+  persiana_sala_parar:
+    sequence:
+    - service: broadlink.send
+      data:
+        host: 192.168.1.32
+        packet: sgH4AJ0xGAsYDBgLDBcMFwwXDBcYCwwXDBcMFw0XFwwMFwwXGAsMFxgLGAsYCwwXDRcYCwwXGAsMFwwXGAsNFg0XDBcYCwwXGAsMFxgLDBcYDAsXGAydMRkKGAwYCwwXDBcMFwwXGAsMFw0XDBcMFxgLDBcMFxgLDBcYCxkKGAwMFwwXGAsMFxgLDBcMFxkLDBYNFwwXGAsMFxgLDBcYCwwYGAsMFxgLnjEYCxgLGAsMFwwXDBcMFxgMDBcMFwwXDBcYCwwXDBcYCwwYGAsYCxgLDBcMFxgLDBcZCg0WDRcYCwwXDBcMFxgLDRYZCgwYFwwMFxgLDBcYAAXc==
+    - delay: '00:00:03'
+    alias: "Persiana parar"
+  
+  garagem_casa:
+    sequence:
+    - service: switch.turn_on
+      entity_id: switch.controle_garagem_casa
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.garagem_casa
+    - delay: '00:00:03'
+    alias: "Garagem casa"
+
+  garagem_muvrh_rua:
+    sequence:
+    - service: broadlink.send
+      data:
+        host: 192.168.1.35
+        packet: tAByAhEfEQ4iDiEPIQ8hDiIeER4RDyEeEg4hDyEPIR4SDiEPIR4RDyEOIQ8hDyEfER4RDyEOIh4RDyEeEQABaRIeEQ8hDiEPIQ8hDiEfER4RDyEeEg4iDiEPIR4RDyEPIR4RDyEPIQ8hDiEfER4RDyEPIR4RDyEeEQABahEeEQ8hDyEOIg4hDyEeER8RDiIeEQ4iDiIOIR4SDiEPIR4SDiEPIQ8hDiIeER4SDiEPIR4RDyIeEQABaREeEQ8hDyEOIg4iDiEeEh4RDyEeEQ8hDyEPIR4RDyEOIh4RDyEOIg4hDyEeEh4RDyEOIh4RDiIeEQABaREfEQ8hDiEPIQ8hDyEeER8RDiEfEQ8hDiEPIR4RDyEPIR4RDyEPIQ4iDiEfER4RDyEPIR4RDyEfEQABaREeEg4hDyEOIg4hDyEeEh4RDyEeEQ8hDyEOIh4RDyEOIh4RDyEOIg4hDyEfER4RDyEPIR4RDyEeEQABaREfEQ8hDiEPIQ8hDiEfER4SDiEfEQ8hDiEPIR8RDiEPIR8RDiEPIQ8hDiEfER4RDyEPIR4SDiEfEQABaREeEQ8iDiEPIQ4iDiEeEh4RDyEeEQ8hDyEPIR4RDyEPIR4RDyEPIQ4hDyEeEh4RDyEPIR4RDyEeEgABaRAfEg4hDiIOIQ8hDyEeER8RDiIeEQ8hDiEPIR8RDyEOIh4RDyEOIQ8hDyEeER8RDyEOIh4RDiIeEQABaREfEQ4hDyIOIQ8hDiIeER8RDiEfEQ4iDiEPIR4SDiEPIR8RDiEPIQ8hDiIeER4SDiEPIR8RDiEfEQABaREeEg4hDyEPIQ4iDiEfER4RDyEfEQ4YAAXcEQ8hHhEA==
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.garagem_muv_rua
+    - delay: '00:00:03'
+  
+  garagem_muvrh_interno:
+    sequence:
+    - service: broadlink.send
+      data:
+        host: 192.168.1.35
+        packet: sgBYAhEeEQ8hDyEOIQ8hDyEeER4SDiIeEQ8hDiEPIR4SDiEPIR4SDiEPIQ8hDiIeEQ8hHhEPIR4SDiEfEQABaBIeEQ8hDyEOIg4hDyEeER8RDyEeEQ8hDiIOIh4RDiEPIR4SDyEOIQ8hDyEeEQ8hHhIOIR8RDiEfEQABaREeEQ8hDyEPIQ4hDyEeEh4RDyEeEQ8hDyEOIh4RDyEOIh4RDyEPIQ4hDyEeEQ8hHxEOIh4RDyEeEQABaREfEQ4hDyEPIQ8hDiEfER4RDyEeEg4hDyEPIR4RDyEPIR4RDyEPIQ4iDiIeEQ4iHhEOIh4SDiEeEgABaREeEQ8hDyEOIQ8hDiIeER8RDiIeEQ8hDiEPIR4SDiIOIR8RDiEPIQ8hDyEeEQ8hHhIOIR8RDiIeEQABaREeEg4hDyEPIQ4iDiEfER4RDyEeEg4hDyEOIh4RDyEPIR4SDiEPIQ4iDiEfEQ8hHhEOIh4RDyEeEgABaBIeEQ8hDiIOIQ8hDyEeER4SDiIeEQ4iDiIOIR4SDyEOIR8RDiIOIQ8hDiIeEQ8hHxEOIh4RDyEeEQABaREeEQ8hDyEPIQ4iDiEfER4RDyEeEg4hDyEPIR4RDyEPIR4RDyEPIQ4iDiEfEQ4hHxEOIh4RDyEeEgABaBIeEQ8hDiIOIQ8hDyEeER8RDyEeEQ8hDiEPIR8RDyEOIR8RDiIOIQ8hDyEfEA8hHhIOIR8RDiIeEQABaREfEQ4iDiIOIQ8hDiEfER4SDiEfEQ4iDiEPIR4SDiEPIR4RDyIOIQ8hDiIeEQ8hHhIOIR4SDiEfEQAF3A==
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.garagem_muv_interno
+    - delay: '00:00:03'
+  
+  garagem_muvrh_sub_rua:
+    sequence:
+    - service: broadlink.send
+      data:
+        host: 192.168.1.35
+        packet: rwCEAxAAAWIRHhEOIQ8gHhEeER4RDiEPIQ4hDiEOIR4RDiIdEQ8gDyEeEQ4hHhEOIQ8hHREPIR0RDyEdEQ8gHxEAAWERHhEOIQ4hHhEeER4RDiEPIA8gDyEOIR4RDiEeEQ4hDyEdEQ8gHxAPIA8hHhEOIR4RDiEeEQ4hHhEAAWIRHREOIQ8hHhEeEB8RDiEOIQ4hDyEOIR0RDyEdEQ8gDyEeEQ4hHhEOIQ4hHhEPIR0RDyAeEQ8gHxAAAWIRHREPIQ4hHhEeER4RDiEOIQ8gDyEOIR4RDiEeEQ4hDiEeEQ4hHhEOIQ8hHREPIR4RDiEeEA8hHhAAAWIRHhEOIQ4hHhEfEB4RDiEPIA8hDiEOIR4RDyAeEQ4hDiEeEQ8gHhEPIA8hHhEOIR4RDiEeEQ4hHhEAAWIQHhEOIQ8hHhEeEB4RDyEOIQ4hDiEOIR4RDyEdEQ8hDiEeEQ4hHhEOIQ8gHhEOIR4RDyEdEQ8hHhAAAWIRHhAPIQ8gHhEeER4RDiEOIQ4hDyEOIR4QDyEeEQ4hDiEeEQ4hHhEOIQ8hHREPIR4RDiEdEQ8gHhEAAWIRHhEOIQ4hHhEeER4RDiEOIQ8gDyEOIR4QDyEeEQ4hDiEeEQ4hHhEPIA8hHhEOIR4QDyEeEA8hHhEAAWERHhEOIQ4hHxAeER4RDiEOIQ8hDiEOIR4RDiEeEQ8gDyEeEQ4gHxAPIQ4hHhEOIR4RDiEeEQ4hHhEAAWIQHhEPIQ4hHhEeEB4RDyEOIQ4hDyAPIR4RDiEeEQ4hDiEeEQ4hHhEPIA8gHhEPIR4QDyEeEQ4hHhAAAWIRHhEOIQ8hHhAeER4RDiEPIA8hDiEOIR4RDyAeEQ8gDyEeEQ4hHhEOIQ4hHhEPIR0RDyAeEQ8hHRIAAWERHhEOIQ8gHhEeER4RDiEOIg4hDiEOIR4RDiEeEQ4hDyEdEQ8hHhEOIQ4hHhEOIR4RDyAeEQ4hHhEAAWIRHhEAAVIRHhEOIQ4hHhEeER4RDiEOIQ8gDyEOIR4RDiEeEQ4hDyEdEQ8hHhAPIQ4hHhEOIR4RDiEeEQ4hHhEAAWIQHxEOIQ4hHhEeER4QDyEOIQ8gDyAPIR4RDiEeEQ4hDiEeEQ4hHxAPIQ4hHhEOIR4RDiEeEA8hHhEAAWIQHhEPIQ4hHhEdER4RDyAPIQ4hDiEOIh0RDiEeEQ8gDyAfEA8hHREPIQ4hHhAPDAAF3AAAAAA==
+    - delay: '00:00:03'
+  
+  garagem_muvrh_sub_interno:
+    sequence:
+    - service: broadlink.send
+      data:
+        host: 192.168.1.35
+        packet: sACEAyEeER4RDiEOIR4RDyAeEAABYhEeEQ4hDyAeER4RHhEOIQ4hDyAPIA8hHhAPIR4QDyAPIB8RDiEeEA8hDyAeER4QDyAPIR4QDyEeEAABYhEeEQ4hDyAeER4RHhEOIQ4hDiEPIA8hHhAPIB8QDyAPIB4RDyAfEA8gDyEeEB8QDyAPIR4QDyAfEAABYhEeEQ4hDiEeER4QHhEPIA8hDiAPIQ8gHhEPIB4RDiEPIB4RDyAeEQ8gDyEeEB4RDyAPIR0RDyAfEAABYhAeEQ8gDyEeEB8QHhEOIQ8gDyEOIQ8gHhEPIB4RDiEOIR4RDiEeEQ4hDyAeER4RDyAPIB4RDiEeEQABYhAfEA8gDyAfEB4RHhEOIQ8gDyAPIA8gHxAPIB4RDyEPIB4RDiEeEA8hDiEeER4QDyEOIR4RDiEeEQABYREeEQ8gDyAeER4QHxAPIQ8gDyAPIA8hHREPIB8QDyAPIR4QDyEeEA8hDiEeER4QDyEOIR4QDyAfEAABYhEeEA8hDyAeER4QHxAPIQ4hDyAOIQ8gHxAPIB4RDyAPIR0RDyAfEA8gDyAfEB8QDyAPIR4QDyEeEAABYhEeEA8hDiEeER4QHhEPIA8hDiEOIQ8gHhEOIR4RDiEPIR0RDyAfEA8gDyEeEB8QDyAPIB8QDyAfEAABYhEeEA8gDyEeEB4RyAeEQ8gDyAfEB4RDyAPIB4RDiEeEQABYhAeEQ8gDyAfEB8QHhEPIA8gDyAPIQ4hHhEPIB4RDiEOIR4RDyAeEQ4hDyAfEB4RDiEPIB4RDiEeEQABYREeEQ8gDyAfEB4RHhEPIA8gDyAPIQ4hHhEOIR4QDyEOIR4RDiEeEQ4hDyAeER4RDiEOIR4RDiEeEQABYREeEQ8gDyAfEB4RHhAPIQ8gDyAPIQ4hHhAPIB8QDyAPIR4RDiEeEQ4hDyAeER4RDiEOIR4RDyAeEQABYhAeEQ8gDyAfEB4RHhEOIQ8gDyAPIA8gHxEOIB4RDyAPIR4RDiEeEA8hDyAeER4QDyEOIR4RDiEeEAABYhEeEQ8gDyAeER4RHhAPIQ8gDyAPIA8gHhEPIB4RDyEOIR4QDyAfEA8hDiEeEB8QDyEOIR4QDyEeEQABYREeEQ4hDyAeER4RHhAPIQ4hDiEOIQ8gHhEPIB4RDyAPIB8QDyAfEAAF3AAAAAA==
+    - delay: '00:00:03'
+
+# Comandos
+
+  garagem_muvrh_entrar:
+    sequence:
+    - service: script.garagem_muvrh_rua
+    - delay: '00:00:01'
+    - service: script.garagem_muvrh_interno
+    - delay: '00:00:15'
+    - service: script.garagem_muvrh_rua
+    - delay: '00:00:08'
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.garagem_muv_rua
+    - service: script.garagem_muvrh_interno
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.garagem_muv_interno
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.entrar_muvrh
+
+  garagem_muvrh_sair:
+    sequence:
+    - service: script.garagem_muvrh_interno
+    - delay: '00:00:01'
+    - service: script.garagem_muvrh_rua
+    - delay: '00:00:15'
+    - service: script.garagem_muvrh_interno
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.garagem_muv_interno
+    - delay: '00:00:08'
+    - service: script.garagem_muvrh_rua
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.garagem_muv_rua
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.sair_muvrh
+
+  garagem_casa_abrir:
+    alias: "Abrir garagem de casa"
+    sequence:
+    - service: script.garagem_casa
+    - delay: '00:00:35'
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.garagem_casa
+
+  garagem_casa_fechar:
+    alias: "Fechar garagem de casa"
+    sequence:
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.garagem_casa
+
+  garagem_muvrh_rua_abrir:
+    alias: "Abrir garagem da rua do trabalho"
+    sequence:
+    - service: script.garagem_muvrh_rua
+    - delay: '00:00:25'
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.garagem_muv_rua
+
+  garagem_muvrh_rua_fechar:
+    alias: "Fechar garagem da rua do trabalho"
+    sequence:
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.garagem_muv_rua
+
+  garagem_muvrh_interno_abrir:
+    alias: "Abrir garagem interna do trabalho"
+    sequence:
+    - service: script.garagem_muvrh_interno
+    - delay: '00:00:25'
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.garagem_muv_interno
+
+  garagem_muvrh_interno_fechar:
+    alias: "Fechar garagem interna do trabalho"
+    sequence:
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.garagem_muv_interno

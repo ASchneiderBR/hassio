@@ -1,4 +1,4 @@
-discovery_retry: 3
+discovery_retry: 10
 gateways:
 #  - mac: 78:11:DC:B7:EA:3D
 #    key: !secret xiaomi_hub_casa_key

@@ -20,15 +20,10 @@ script:
     alias: "Entrando em casa"
     sequence:
     - delay: '00:00:03'
-    - service: tts.amazon_polly_say
+    - service: script.ghm_tts
       data_template:
-        entity_id: >
-          {% if is_state('input_boolean.boa_noite', 'on') %}
-             media_player.sala
-          {% else %}
-             media_player.casa_inteira
-          {% endif %}
-        message: >-
+        volume: 0.6
+        tts: >-
           {% macro cumprimento() -%}
             {% set cumprimento = [
               "Olá!",
@@ -55,21 +50,16 @@ script:
               Bom descanço!
             {%- endif -%}
           {%- endmacro -%}
-              <speak><amazon:auto-breaths frequency='medium'> {{ cumprimento() }} {{ turno() }} Seja bem vindo! Agora são <say-as interpret-as='time'>{{ now().strftime('%H:%M') }}</say-as>. Já preparei tudo para sua chegada. Aqui vão algumas informações sobre a casa. A temperatura na sala é de {{ states.sensor.temperatura_sala.state | int }} graus, sendo que na rua está {{ states.sensor.dark_sky_summary.state | lower }} com {{ states.sensor.dark_sky_temperature.state | int }} graus. Logo mais vou armar o alarme pra você, deixa comigo. {{ desejos() }}</amazon:auto-breaths></speak>
+              "<speak><amazon:auto-breaths frequency='medium'> {{ cumprimento() }} {{ turno() }} Seja bem vindo! Agora são <say-as interpret-as='time'>{{ now().strftime('%H:%M') }}</say-as>. Já preparei tudo para sua chegada. Aqui vão algumas informações sobre a casa. A temperatura na sala é de {{ states.sensor.temperatura_sala.state | int }} graus, sendo que na rua está {{ states.sensor.dark_sky_summary.state | lower }} com {{ states.sensor.dark_sky_temperature.state | int }} graus. Logo mais vou armar o alarme pra você, deixa comigo. {{ desejos() }}</amazon:auto-breaths></speak>"
 
   tts_porta_entrada_chegando:
     alias: "Chegando em casa"
     sequence:
     - delay: '00:00:03'
-    - service: tts.amazon_polly_say
+    - service: script.ghm_tts
       data_template:
-        entity_id: >
-          {% if is_state('input_boolean.boa_noite', 'on') %}
-             media_player.sala
-          {% else %}
-             media_player.casa_inteira
-          {% endif %}
-        message: >-
+        volume: 0.6
+        tts: >-
           {%- macro porta_entrada_chegando() -%}
             {% set porta_entrada_chegando = [
               "Ainda bem, o Magno deu muito trabalho aqui em casa.",
@@ -82,20 +72,15 @@ script:
             ] -%}
             {{ porta_entrada_chegando|random }}
           {%- endmacro -%}
-              <speak><amazon:auto-breaths frequency='medium'>{{ porta_entrada_chegando() }}</amazon:auto-breaths></speak>
+              "<speak><amazon:auto-breaths frequency='medium'>{{ porta_entrada_chegando() }}</amazon:auto-breaths></speak>"
 
   tts_porta_entrada_saindo:
     alias: "Saindo de casa"
     sequence:
-    - service: tts.amazon_polly_say
+    - service: script.ghm_tts
       data_template:
-        entity_id: >
-          {% if is_state('input_boolean.boa_noite', 'on') %}
-             media_player.sala
-          {% else %}
-             media_player.casa_inteira
-          {% endif %}
-        message: >-
+        volume: 0.6
+        tts: >-
           {%- macro porta_entrada_saindo() -%}
             {% set porta_entrada_saindo = [
               "Rápido! O Magno vai fugir... Quem dera!",
@@ -108,7 +93,7 @@ script:
             ] -%}
             {{ porta_entrada_saindo|random }}
           {%- endmacro -%}
-              <speak><amazon:auto-breaths frequency='medium'>{{ porta_entrada_saindo() }}</amazon:auto-breaths></speak>
+              "<speak><amazon:auto-breaths frequency='medium'>{{ porta_entrada_saindo() }}</amazon:auto-breaths></speak>"
 
   tts_entrando_casa_alarme:
     alias: "Entrando em casa com alarme disparando"
@@ -126,19 +111,10 @@ script:
   tts_status_casa:
     alias: "Falar status da casa"
     sequence:
-    - service: media_player.volume_set
-      entity_id: media_player.sala
-      data:
-        volume_level: 0.7
-    - service: tts.amazon_polly_say
+    - service: script.ghm_tts
       data_template:
-        entity_id: >
-          {% if is_state('input_boolean.boa_noite', 'on') %}
-             media_player.sala
-          {% else %}
-             media_player.casa_inteira
-          {% endif %}
-        message: <speak><amazon:auto-breaths frequency='medium'>Olá, {% if((now().hour >= 6) and (now().hour < 12))%}bom dia{% elif((now().hour >= 12) and (now().hour <= 18))%}boa tarde{% else %}boa noite{% endif %}. Agora são <say-as interpret-as='time'>{{ now().strftime('%H:%M') }}</say-as>. Aqui vão algumas informações sobre a casa. O alarme está {% if is_state('alarm_control_panel.alarme', 'disarmed') %}desarmado{% else %}armado{% endif %}, percebo que {% if is_state('device_tracker.antonio', 'home') and is_state('device_tracker.roberta', 'home') %}tanto o Antônio quanto a Roberta estão em casa{% elif is_state('device_tracker.antonio', 'home') %}apenas o Antônio está em casa{% elif is_state('device_tracker.roberta', 'home') %}apenas a roberta está em casa{% else %}nem o Antônio nem a Roberta estão em casa{% endif %}. A temperatura na sala é de {{ states.sensor.temperatura_sala.state | int }} graus, sendo que na rua está {{ states.sensor.dark_sky_summary.state | lower }} com {{ states.sensor.dark_sky_temperature.state | int }} graus. <prosody volume='x-loud'>Ah!</prosody> Não esqueçam que terça-feira vem a Andréia limpar a casa! {% if is_state('binary_sensor.muvrh_movimento_203', 'on') or is_state('binary_sensor.muvrh_movimento_303', 'on')%}Também estou detectando movimento na muv rh!{% endif %} Isto é tudo!</amazon:auto-breaths></speak>
+        volume: 0.7
+        message: "<speak><amazon:auto-breaths frequency='medium'>Olá, {% if((now().hour >= 6) and (now().hour < 12))%}bom dia{% elif((now().hour >= 12) and (now().hour <= 18))%}boa tarde{% else %}boa noite{% endif %}. Agora são <say-as interpret-as='time'>{{ now().strftime('%H:%M') }}</say-as>. Aqui vão algumas informações sobre a casa. O alarme está {% if is_state('alarm_control_panel.alarme', 'disarmed') %}desarmado{% else %}armado{% endif %}, percebo que {% if is_state('device_tracker.antonio', 'home') and is_state('device_tracker.roberta', 'home') %}tanto o Antônio quanto a Roberta estão em casa{% elif is_state('device_tracker.antonio', 'home') %}apenas o Antônio está em casa{% elif is_state('device_tracker.roberta', 'home') %}apenas a roberta está em casa{% else %}nem o Antônio nem a Roberta estão em casa{% endif %}. A temperatura na sala é de {{ states.sensor.temperatura_sala.state | int }} graus, sendo que na rua está {{ states.sensor.dark_sky_summary.state | lower }} com {{ states.sensor.dark_sky_temperature.state | int }} graus. <prosody volume='x-loud'>Ah!</prosody> Não esqueçam que terça-feira vem a Andréia limpar a casa! {% if is_state('binary_sensor.muvrh_movimento_203', 'on') or is_state('binary_sensor.muvrh_movimento_303', 'on')%}Também estou detectando movimento na muv rh!{% endif %} Isto é tudo!</amazon:auto-breaths></speak>"
 
   tts_abrindo_persiana_sala:
     alias: "Abrindo persiana da sala"
@@ -146,15 +122,10 @@ script:
     - service: media_player.volume_set
       entity_id: media_player.sala
       data:
-        volume_level: 0.7
-    - service_template: media_player.play_media
-      data_template:
-        entity_id: >
-          {% if is_state('input_boolean.boa_noite', 'on') %}
-             media_player.sala
-          {% else %}
-             media_player.casa_inteira
-          {% endif %}
+        volume_level: 0.6
+    - service: media_player.play_media
+      data:
+        entity_id: media_player.sala
         media_content_id: 'http://192.168.1.12:8123/local/audio/tts/alerta_abrindo_persiana_sala.mp3'
         media_content_type: 'audio/mp3'
 
@@ -164,15 +135,10 @@ script:
     - service: media_player.volume_set
       entity_id: media_player.sala
       data:
-        volume_level: 0.7
-    - service_template: media_player.play_media
-      data_template:
-        entity_id: >
-          {% if is_state('input_boolean.boa_noite', 'on') %}
-             media_player.sala
-          {% else %}
-             media_player.casa_inteira
-          {% endif %}
+        volume_level: 0.6
+    - service: media_player.play_media
+      data:
+        entity_id: media_player.sala
         media_content_id: 'http://192.168.1.12:8123/local/audio/tts/alerta_fechando_persiana_sala.mp3'
         media_content_type: 'audio/mp3'
 

@@ -136,15 +136,10 @@ automation:
       from: "off"
       to: "on"
     action:
-      - service: tts.amazon_polly_say
+      - service: script.ghm_tts
         data_template:
-          entity_id: >
-            {% if is_state('input_boolean.boa_noite', 'on') %}
-              media_player.cozinha
-            {% else %}
-              media_player.casa_inteira
-            {% endif %}
-          message: <speak><amazon:auto-breaths frequency='medium'>Ok, vou programar as limpezas automáticas.</amazon:auto-breaths></speak>
+          tts: "<speak><amazon:auto-breaths frequency='medium'>Ok, vou programar as limpezas automáticas.</amazon:auto-breaths></speak>"
+          volume: 0.5
       - service: light.turn_on
         data:
           entity_id: light.status_maquina_de_lavar_loucas
@@ -211,15 +206,10 @@ script:
       entity_id: input_select.lava_loucas_casa_modo_lavagem
       data:
         option: "Selecionar"
-    - service: tts.amazon_polly_say
+    - service: script.ghm_tts
       data_template:
-        entity_id: >
-          {% if is_state('input_boolean.boa_noite', 'on') %}
-             media_player.cozinha
-          {% else %}
-             media_player.casa_inteira
-          {% endif %}
-        message: <speak><amazon:auto-breaths frequency='medium'>A louça já está limpa, por favor descarregar antes de iniciar outra lavagem.</amazon:auto-breaths></speak>
+        tts: "<speak><amazon:auto-breaths frequency='medium'>A louça já está limpa, por favor descarregar antes de iniciar outra lavagem.</amazon:auto-breaths></speak>"
+        volume: 0.5
 
   lava_loucas_casa_aquaspray:
     alias: "Aquaspray"
@@ -335,18 +325,10 @@ script:
       data:
         title: "Alerta Casa ({{now().strftime('%H:%M')}})"
         message: "A lava-louças finalizou a lavagem."
-    - condition: state
-      entity_id: input_boolean.boa_noite
-      state: 'off'
-    - service: tts.amazon_polly_say
+    - service: script.ghm_tts
       data_template:
-        entity_id: >
-          {% if is_state('input_boolean.boa_noite', 'on') %}
-             media_player.cozinha
-          {% else %}
-             media_player.casa_inteira
-          {% endif %}
-        message: <speak><amazon:auto-breaths frequency='medium'>A lava-louças finalizou a lavagem, sugiro deixar a porta aberta para evitar odores indesejados.</amazon:auto-breaths></speak>
+        tts: "<speak><amazon:auto-breaths frequency='medium'>A lava-louças finalizou a lavagem, sugiro deixar a porta aberta para evitar odores indesejados.</amazon:auto-breaths></speak>"
+        volume: 0.5
 
 homeassistant:
   customize:

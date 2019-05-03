@@ -8,74 +8,6 @@ desktop_abrir_chrome:
   - service: shell_command.desktop_abrir_chrome
   alias: "Abrir Chrome no desktop"
 
-garagem_muvrh_entrar:
-  sequence:
-  - service: script.garagem_muvrh_rua
-  - delay: '00:00:01'
-  - service: script.garagem_muvrh_interno
-  - delay: '00:00:15'
-  - service: script.garagem_muvrh_rua
-  - delay: '00:00:08'
-  - service: script.garagem_muvrh_interno
-  - service: input_boolean.turn_off
-    entity_id: input_boolean.entrar_muvrh
-
-garagem_muvrh_sair:
-  sequence:
-  - service: script.garagem_muvrh_interno
-  - delay: '00:00:01'
-  - service: script.garagem_muvrh_rua
-  - delay: '00:00:15'
-  - service: script.garagem_muvrh_interno
-  - delay: '00:00:08'
-  - service: script.garagem_muvrh_rua
-  - service: input_boolean.turn_off
-    entity_id: input_boolean.sair_muvrh
-
-garagem_casa_abrir:
-  alias: "Abrir garagem de casa"
-  sequence:
-  - service: script.garagem_casa
-  - delay: '00:00:35'
-  - service: cover.close_cover
-    entity_id: cover.garagem_casa
-
-garagem_casa_fechar:
-  alias: "Fechar garagem de casa"
-  sequence:
-  - service: cover.close_cover
-    entity_id: cover.garagem_casa
-
-garagem_muvrh_rua_abrir:
-  alias: "Abrir garagem da rua do trabalho"
-  sequence:
-  - service: script.garagem_muvrh_rua
-    entity_id: cover.garagem_muvrh_rua
-  - delay: '00:00:25'
-  - service: cover.close_cover
-    entity_id: cover.garagem_muvrh_rua
-
-garagem_muvrh_rua_fechar:
-  alias: "Fechar garagem da rua do trabalho"
-  sequence:
-  - service: cover.close_cover
-    entity_id: cover.garagem_muvrh_rua
-
-garagem_muvrh_interno_abrir:
-  alias: "Abrir garagem interna do trabalho"
-  sequence:
-  - service: script.garagem_muvrh_interno
-    entity_id: cover.garagem_muvrh_interno
-  - delay: '00:00:25'
-  - service: cover.close_cover
-    entity_id: cover.garagem_muvrh_interno
-
-garagem_muvrh_interno_fechar:
-  alias: "Fechar garagem interna do trabalho"
-  sequence:
-  - service: cover.close_cover
-    entity_id: cover.garagem_muvrh_interno
-
 tv_lg_sala_ligar_tudo:
   alias: "Ligar TV, home e luz da sala"
   sequence:
@@ -123,11 +55,11 @@ ledsalatv_ligar_colorloop:
       brightness_pct: 100
       effect: 'RGB transition slow'
 
-ledquartotv_ligar_colorloop:
+ledquartotv_effects_ligar_colorloop:
   alias: "Ligar Led da TV do quarto com efeito"
   sequence:
   - service: light.turn_on
-    entity_id: light.ledquartotv
+    entity_id: light.ledquartotv_effects
     data:
       transition: 1
       brightness_pct: 100
@@ -178,6 +110,129 @@ assistir_youtube:
   - delay: '00:00:02'
   - service: script.tv_lg_sala_right
 
+modo_festa:
+  alias: "Modo festa"
+  sequence:
+  - service: media_player.volume_set
+    entity_id: media_player.casa_inteira
+    data:
+      volume_level: 1
+  - service_template: tts.amazon_polly_say
+    data_template:
+      entity_id: media_player.casa_inteira
+      message: <speak>Modo festa? Foi isso que eu escutei? Aqui vai!</speak>
+  - service: media_player.play_media
+    data:
+      entity_id: media_player.casa_inteira
+      media_content_id: http://89.39.189.2:8002/stream
+      media_content_type: audio/mp4
+  - service: light.turn_on
+    data:
+      entity_id: light.ledquartotv_effects, light.ledsalatv, light.ledsuitetv, light.ledsuitecama, light.ledchaocozinha, light.ledsaladesktop, light.status_maquina_de_lavar_loucas
+      transition: 3
+      rgb_color: [255,0,0]
+      brightness_pct: 100
+      effect: 'RGB transition fast'
+  - service: light.turn_on
+    data:
+      entity_id: light.movel_da_sala
+      transition: 3
+      rgb_color: [255,0,0]
+      brightness_pct: 100
+      effect: 'Rainbow'
+  - service: light.turn_off
+    data_template:
+      entity_id: >-
+          {% set lights = ['light.area_servico','light.suite_banheiro_principal','light.suite_banheiro_espelho','light.corredor','light.cozinha','light.entrada','light.mesa_de_jantar','light.quarto','light.sala_principal','light.banheiro_social_principal','light.banheiro_social_espelho','light.suite_principal','light.ledcozinhabalcao'] %}
+          {{ states.light | selectattr('entity_id', 'in', lights) | selectattr('state','eq','on') | map(attribute='entity_id') | join(', ') }}
+  - service: cover.close_cover
+    entity_id: cover.persiana_quarto, cover.persiana_sala, cover.persiana_suite
+
+# Google Home Minis play media
+
+ghm_play_media:
+  sequence:
+    - condition: template
+      value_template: "{{ not is_state('media_player.casa_inteira' , 'playing')}}"
+    - service: media_player.volume_set
+      data_template:
+        entity_id: >-
+            {%- set players = ['media_player.banheiro_social', 'media_player.banheiro_da_suite', 'media_player.cozinha', 'media_player.quarto', 'media_player.sala', 'media_player.suite'] %}
+            {{ states.media_player | selectattr('state','!=','playing') | selectattr('entity_id', 'in', players) | map(attribute='entity_id') | join(', ') }}
+        volume_level: '{{volume}}'
+    - service: media_player.play_media
+      data_template:
+        entity_id: >-
+          {%- if is_state('input_boolean.boa_noite', 'on') and is_state('input_boolean.visita_casa', 'on') %}
+              {%- set players = ['media_player.banheiro_social', 'media_player.cozinha', 'media_player.sala'] %}
+              {{ states.media_player | selectattr('state','!=','playing') | selectattr('entity_id', 'in', players) | map(attribute='entity_id') | join(', ') }}
+          {%- elif is_state('input_boolean.boa_noite', 'on') %}
+              {%- set players = ['media_player.banheiro_social', 'media_player.cozinha', 'media_player.quarto', 'media_player.sala'] %}
+              {{ states.media_player | selectattr('state','!=','playing') | selectattr('entity_id', 'in', players) | map(attribute='entity_id') | join(', ') }}
+          {%- else %}
+              {%- if states.media_player.banheiro_social.state != 'playing' and
+                  states.media_player.banheiro_suite.state != 'playing' and
+                  states.media_player.cozinha.state != 'playing' and
+                  states.media_player.quarto.state != 'playing' and
+                  states.media_player.sala.state != 'playing' and
+                  states.media_player.suite.state != 'playing' %}
+                    media_player.casa_inteira
+              {%- else %}
+                  {%- set players = ['media_player.banheiro_social', 'media_player.banheiro_da_suite', 'media_player.cozinha', 'media_player.quarto', 'media_player.sala', 'media_player.suite'] %}
+                  {{ states.media_player | selectattr('state','!=','playing') | selectattr('entity_id', 'in', players) | map(attribute='entity_id') | join(', ') }}
+              {%- endif %}
+          {%- endif %}
+        media_content_type: 'audio/mp3'
+        media_content_id: '{{media}}'
+
+ghm_tts:
+  sequence:
+    - condition: template
+      value_template: "{{ not is_state('media_player.casa_inteira' , 'playing')}}"
+    - service: media_player.volume_set
+      data_template:
+        entity_id: >-
+            {%- set players = ['media_player.banheiro_social', 'media_player.banheiro_da_suite', 'media_player.cozinha', 'media_player.quarto', 'media_player.sala', 'media_player.suite'] %}
+            {{ states.media_player | selectattr('state','!=','playing') | selectattr('entity_id', 'in', players) | map(attribute='entity_id') | join(', ') }}
+        volume_level: '{{volume}}'
+    - service: tts.amazon_polly_say
+      data_template:
+        entity_id: >-
+          {%- if is_state('input_boolean.boa_noite', 'on') and is_state('input_boolean.visita_casa', 'on') %}
+              {%- set players = ['media_player.banheiro_social', 'media_player.cozinha', 'media_player.sala'] %}
+              {{ states.media_player | selectattr('state','!=','playing') | selectattr('entity_id', 'in', players) | map(attribute='entity_id') | join(', ') }}
+          {%- elif is_state('input_boolean.boa_noite', 'on') %}
+              {%- set players = ['media_player.banheiro_social', 'media_player.cozinha', 'media_player.quarto', 'media_player.sala'] %}
+              {{ states.media_player | selectattr('state','!=','playing') | selectattr('entity_id', 'in', players) | map(attribute='entity_id') | join(', ') }}
+          {%- else %}
+              {%- if states.media_player.banheiro_social.state != 'playing' and
+                  states.media_player.banheiro_suite.state != 'playing' and
+                  states.media_player.cozinha.state != 'playing' and
+                  states.media_player.quarto.state != 'playing' and
+                  states.media_player.sala.state != 'playing' and
+                  states.media_player.suite.state != 'playing' %}
+                    media_player.casa_inteira
+              {%- else %}
+                  {%- set players = ['media_player.banheiro_social', 'media_player.banheiro_da_suite', 'media_player.cozinha', 'media_player.quarto', 'media_player.sala', 'media_player.suite'] %}
+                  {{ states.media_player | selectattr('state','!=','playing') | selectattr('entity_id', 'in', players) | map(attribute='entity_id') | join(', ') }}
+              {%- endif %}
+          {%- endif %}
+        message: '{{tts}}'
+
+ghm_play_media_test:
+  sequence:
+    - service: script.ghm_play_media
+      data_template:
+        media: 'http://192.168.1.12:8123/local/audio/tts/automacao_chegando_em_casa.mp3'
+        volume: 0.5
+
+ghm_tts_test:
+  sequence:
+    - service: script.ghm_tts
+      data_template:
+        tts: '<speak>Testando variável passada por outro lado!</speak>'
+        volume: 0.5
+
 # Sonoffs
 
 tasmota_restart_all:
@@ -195,27 +250,27 @@ botao_xiaomi_quarto_01_single:
   alias: "Luzes do quarto"
   sequence:
   - service_template: >
-      {% if is_state('light.quarto' , 'off') and is_state('light.ledquartotv' , 'off') %}
+      {% if is_state('light.quarto' , 'off') and is_state('light.ledquartotv_effects' , 'off') %}
         light.turn_on
-      {% elif is_state('light.quarto' , 'on') and is_state('light.ledquartotv' , 'on') %}
+      {% elif is_state('light.quarto' , 'on') and is_state('light.ledquartotv_effects' , 'on') %}
         light.turn_off
-      {% elif is_state('light.quarto' , 'off') and is_state('light.ledquartotv' , 'on') %}
+      {% elif is_state('light.quarto' , 'off') and is_state('light.ledquartotv_effects' , 'on') %}
         light.turn_off
-      {% elif is_state('light.quarto' , 'on') and is_state('light.ledquartotv' , 'off') %}
+      {% elif is_state('light.quarto' , 'on') and is_state('light.ledquartotv_effects' , 'off') %}
         light.turn_on
       {% else %}
         script.nada
       {% endif %}
     data_template:
       entity_id: >
-        {% if is_state('light.quarto' , 'off') and is_state('light.ledquartotv' , 'off') %}
-          light.quarto, light.ledquartotv
-        {% elif is_state('light.quarto' , 'on') and is_state('light.ledquartotv' , 'on') %}
+        {% if is_state('light.quarto' , 'off') and is_state('light.ledquartotv_effects' , 'off') %}
+          light.quarto, light.ledquartotv_effects
+        {% elif is_state('light.quarto' , 'on') and is_state('light.ledquartotv_effects' , 'on') %}
           light.quarto
-        {% elif is_state('light.quarto' , 'off') and is_state('light.ledquartotv' , 'on') %}
-          light.ledquartotv
-        {% elif is_state('light.quarto' , 'on') and is_state('light.ledquartotv' , 'off') %}
-          light.ledquartotv
+        {% elif is_state('light.quarto' , 'off') and is_state('light.ledquartotv_effects' , 'on') %}
+          light.ledquartotv_effects
+        {% elif is_state('light.quarto' , 'on') and is_state('light.ledquartotv_effects' , 'off') %}
+          light.ledquartotv_effects
         {% endif %}
 
 botao_xiaomi_quarto_01_double:
@@ -561,6 +616,8 @@ botao_xiaomi_cozinha_01_double:
 botao_xiaomi_cozinha_01_triple:
   alias: "Lava-louças aquaspray"
   sequence:
+  - service: input_boolean.turn_on
+    entity_id: input_boolean.lava_loucas_sujo
   - service: input_select.select_option
     entity_id: input_select.lava_loucas_casa_modo_lavagem
     data:
@@ -569,6 +626,8 @@ botao_xiaomi_cozinha_01_triple:
 botao_xiaomi_cozinha_01_quadruple:
   alias: "Lava-louças econômico"
   sequence:
+  - service: input_boolean.turn_on
+    entity_id: input_boolean.lava_loucas_sujo
   - service: input_select.select_option
     entity_id: input_select.lava_loucas_casa_modo_lavagem
     data:
@@ -797,20 +856,10 @@ testes_ios:
 speed_test:
   alias: Teste de velocidade da internet
   sequence:
-  - service: media_player.volume_set
-    entity_id: media_player.sala, media_player.suite
-    data:
-      volume_level: 0.7
-  - service_template: media_player.play_media
+  - service_template: script.ghm_play_media
     data_template:
-      entity_id: >
-        {% if is_state('input_boolean.boa_noite', 'on') %}
-           media_player.sala
-        {% else %}
-           media_player.casa_inteira
-        {% endif %}
-      media_content_id: 'http://192.168.1.12:8123/local/audio/tts/alerta_iniciando_teste_internet.mp3'
-      media_content_type: 'audio/mp3'
+      media: 'http://192.168.1.12:8123/local/audio/tts/alerta_iniciando_teste_internet.mp3'
+      volume: 0.7
   - service: fastdotcom.speedtest
   - wait_template: "{% if as_timestamp(now()) | int - as_timestamp(states.sensor.fast_com_download.last_updated) | int <= 5 %}True{% else %}False{% endif %}"
     timeout: 00:02:00

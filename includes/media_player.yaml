@@ -30,18 +30,12 @@
       - youtube
       - netflix
 
-#- platform: lg_netcast
-#  host: 192.168.1.40
-#  access_token: 459689
-#  name: 'TV Quarto'
-#  turn_on_action:
-#    service: script.tv_lg_quarto_power_on
+- platform: spotify
+  client_id: !secret spotify_client_id
+  client_secret: !secret spotify_client_secret
+  name: "Spotify Casa"
 
-#- platform: cast
-#  host: 192.168.1.71
-#
-#- platform: cast
-#  host: 192.168.1.60
-#
-#- platform: cast
-#  host: 192.168.1.91
+- platform: lg_netcast
+  host: 192.168.1.40
+  access_token: 459689
+  name: 'TV Quarto'

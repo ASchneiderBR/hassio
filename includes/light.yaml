@@ -32,7 +32,7 @@
 - platform: group
   name: "Luzes principais quarto"
   entities:
-    - light.ledquartotv
+    - light.ledquartotv_effects
     - light.quarto
 
 - platform: group
@@ -71,7 +71,7 @@
 - platform: template
   lights:
     neopixel_movel_sala:
-      friendly_name: "Neopixel móvel da sala"
+      friendly_name: "Arco-íris"
       value_template: "{{ states.light.movel_da_sala.state }}"
       turn_on:
         service: light.turn_on
@@ -85,3 +85,35 @@
         service: light.turn_off
         data:
           entity_id: light.movel_da_sala
+
+    ledsalatv_effects:
+      friendly_name: "LED da TV da sala com efeitos"
+      value_template: "{{ states.light.ledsalatv.state }}"
+      turn_on:
+        service: light.turn_on
+        data:
+          entity_id: light.ledsalatv
+          transition: 3
+          rgb_color: [255,0,0]
+          brightness_pct: 100
+          effect: 'RGB transition slow'
+      turn_off:
+        service: light.turn_off
+        data:
+          entity_id: light.ledsalatv
+
+    ledquartotv_effects:
+      friendly_name: "LED da TV do quarto com efeitos"
+      value_template: "{{ states.light.ledquartotv.state }}"
+      turn_on:
+        service: light.turn_on
+        data:
+          entity_id: light.ledquartotv
+          transition: 3
+          rgb_color: [255,0,0]
+          brightness_pct: 100
+          effect: 'RGB transition fast'
+      turn_off:
+        service: light.turn_off
+        data:
+          entity_id: light.ledquartotv

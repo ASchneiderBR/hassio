@@ -90,10 +90,6 @@ automation:
     action:
       - service: light.turn_on
         entity_id: light.luzes_principais_quarto
-        data:
-          transition: 1
-          brightness_pct: 100
-          effect: 'RGB transition slow'
       - delay: '00:00:03'
       - wait_template: "{{ ((is_state('light.luzes_principais_quarto' , 'off')) or ((((as_timestamp(strptime(states.sensor.date_time.state, '%Y-%m-%d, %H:%M')) - as_timestamp(states.binary_sensor.movimento_quarto.last_updated) ) / 60) | int) >= states.input_number.timmer_quarto.state | int -1 and is_state('binary_sensor.movimento_quarto' , 'off'))) }}"
       - condition: state
@@ -119,6 +115,10 @@ automation:
     action:
       - service: light.turn_on
         entity_id: light.luzes_principais_sala
+        data:
+          brightness_pct: 100
+          transition: 3
+          rgb_color: [255,255,200]
       - delay: '00:00:03'
       - wait_template: "{{ ((is_state('light.luzes_principais_sala' , 'off')) or ((((as_timestamp(strptime(states.sensor.date_time.state, '%Y-%m-%d, %H:%M')) - as_timestamp(states.binary_sensor.movimento_sala.last_updated) ) / 60) | int) >= states.input_number.timmer_sala.state | int -1 and is_state('binary_sensor.movimento_sala' , 'off'))) }}"
       - condition: state
@@ -153,8 +153,14 @@ automation:
   - alias: Luzes da casa - Ligar neopixel com led da TV
     initial_state: True
     trigger:
-      platform: state
-      entity_id: light.ledsalatv
+      - platform: state
+        entity_id: light.ledsalatv
+        from: 'off'
+        to: 'on'
+      - platform: state
+        entity_id: light.ledsalatv
+        from: 'on'
+        to: 'off'
     action:
       - service_template: >-
           {%- if is_state('light.ledsalatv' , 'on')  %}

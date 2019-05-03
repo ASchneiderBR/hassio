@@ -131,6 +131,7 @@ filter:
     - script.aspirador_homekit_zona_tapete
     - script.aspirador_homekit_zona_cozinha
     - script.aspirador_homekit_zona_quartos
+    - script.modo_festa
 
 entity_config:
   switch.toalheiro:
@@ -238,15 +239,15 @@ entity_config:
   climate.ar_condicionado_da_nossa_sala:
     name: "Nossa sala"
   climate.ar_condicionado_da_sala:
-    name: "Ar condicionado"
+    name: "Sala"
   climate.ar_condicionado_da_sala_303:
     name: "Sala 303"
   climate.ar_condicionado_da_sala_de_operacoes:
     name: "Sala de operações"
   climate.ar_condicionado_da_suite:
-    name: "Ar condicionado"
+    name: "Suíte"
   climate.ar_condicionado_do_quarto:
-    name: "Ar condicionado"
+    name: "Quarto"
   cover.garagem_casa:
     name: "Casa"
   cover.garagem_muvrh_interno:
@@ -363,3 +364,6 @@ entity_config:
     name: "Zona cozinha"
   script.aspirador_homekit_zona_quartos:
     name: "Zona quartos"
+
+  script.modo_festa:
+    name: "Modo festa"

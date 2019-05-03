@@ -29,22 +29,10 @@ automation:
         data_template:
           title: "Casa - Caixa de areia suja"
           message: "Magno acabou de usar a caixa de areia, favor limpar."
-      - condition: state
-        entity_id: input_boolean.boa_noite
-        state: 'off'
-      - service: media_player.volume_set
-        entity_id: media_player.sala, media_player.suite
-        data:
-          volume_level: 0.7
-      - service: tts.amazon_polly_say
+      - service: script.ghm_tts
         data_template:
-          entity_id: >
-            {% if is_state('input_boolean.boa_noite', 'on') %}
-               media_player.sala
-            {% else %}
-               media_player.casa_inteira
-            {% endif %}
-          message: <speak>Magno acabou de usar a caixa de areia, limpar o mais breve possível!</speak>
+          tts: '<speak>Magno acabou de usar a caixa de areia, limpar o mais breve possível!</speak>'
+          volume: 0.7
 
   - alias: Magno - Caixa limpa
     initial_state: true
@@ -53,19 +41,7 @@ automation:
       entity_id: input_boolean.caixa_areia_suja
       to: 'off'
     action:
-      - condition: state
-        entity_id: input_boolean.boa_noite
-        state: 'off'
-      - service: media_player.volume_set
-        entity_id: media_player.sala, media_player.suite
-        data:
-          volume_level: 0.7
-      - service: tts.amazon_polly_say
+      - service: script.ghm_tts
         data_template:
-          entity_id: >
-            {% if is_state('input_boolean.boa_noite', 'on') %}
-               media_player.sala
-            {% else %}
-               media_player.casa_inteira
-            {% endif %}
-          message: <speak>Obrigado por limpar a caixa de areia, já estava fedendo. Talvez seja hora do Magno ir embora.</speak>
+          tts: '<speak>Obrigado por limpar a caixa de areia, já estava fedendo. Talvez seja hora do Magno ir embora.</speak>'
+          volume: 0.7

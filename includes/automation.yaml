@@ -11,11 +11,6 @@
       data:
         entity_id: input_select.estados_de_succao
         option: Balanceado
-    - service: cover.close_cover
-      entity_id:
-        - cover.garagem_muvrh_interno
-        - cover.garagem_muvrh_rua
-        - cover.garagem_casa
     - service_template: >
         {%- if states.sun.sun.attributes.elevation > 3 %}
           automation.turn_off
@@ -58,20 +53,10 @@
       data:
         title: "Alerta Sistema ({{now().strftime('%H:%M')}})"
         message: "Hassio iniciado com sucesso."
-    - service: media_player.volume_set
-      entity_id: media_player.sala
-      data:
-        volume_level: 0.7
-    - service_template: media_player.play_media
+    - service_template: script.ghm_play_media
       data_template:
-        entity_id: >
-          {% if is_state('input_boolean.boa_noite', 'on') %}
-             media_player.sala
-          {% else %}
-             media_player.casa_inteira
-          {% endif %}
-        media_content_id: 'http://192.168.1.12:8123/local/audio/tts/sistema_reiniciado.mp3'
-        media_content_type: 'audio/mp3'
+        media: 'http://192.168.1.12:8123/local/audio/tts/sistema_reiniciado.mp3'
+        volume: 0.6
     - service: notify.ios_iphone_de_antonio
       data:
         title: "Sistema"
@@ -114,6 +99,7 @@
         {%- endif %}
       data:
         entity_id: light.ledsalatv
+        rgb_color: [255,0,0]
         transition: 3
         brightness_pct: 100
         effect: 'RGB transition slow'
@@ -139,20 +125,10 @@
     entity_id: alarm_control_panel.alarme
     to: 'disarmed'
   action:
-    - service: media_player.volume_set
-      entity_id: media_player.sala
-      data:
-        volume_level: 0.7
-    - service_template: media_player.play_media
+    - service_template: script.ghm_play_media
       data_template:
-        entity_id: >
-          {% if is_state('input_boolean.boa_noite', 'on') %}
-             media_player.sala
-          {% else %}
-             media_player.casa_inteira
-          {% endif %}
-        media_content_id: 'http://192.168.1.12:8123/local/audio/tts/alarme_desarmado.mp3'
-        media_content_type: 'audio/mp3'
+        media: 'http://192.168.1.12:8123/local/audio/tts/alarme_desarmado.mp3'
+        volume: 0.7
     - service: notify.tudo
       data:
         title: "Alarme da casa"
@@ -176,20 +152,10 @@
     entity_id: alarm_control_panel.alarme
     from: 'disarmed'
   action:
-    - service: media_player.volume_set
-      entity_id: media_player.sala
-      data:
-        volume_level: 0.7
-    - service_template: media_player.play_media
+    - service_template: script.ghm_play_media
       data_template:
-        entity_id: >
-          {% if is_state('input_boolean.boa_noite', 'on') %}
-             media_player.sala
-          {% else %}
-             media_player.casa_inteira
-          {% endif %}
-        media_content_id: 'http://192.168.1.12:8123/local/audio/tts/alarme_armado.mp3'
-        media_content_type: 'audio/mp3'
+        media: 'http://192.168.1.12:8123/local/audio/tts/alarme_armado.mp3'
+        volume: 0.7
     - service: notify.tudo
       data:
         title: "Alarme da casa"
@@ -252,20 +218,10 @@
       data_template:
         title: "Automação"
         message: "Bem vindo! Preparando a casa para sua chegada..."
-    - service: media_player.volume_set
-      entity_id: media_player.sala
-      data:
-        volume_level: 0.7
-    - service_template: media_player.play_media
+    - service_template: script.ghm_play_media
       data_template:
-        entity_id: >
-          {% if is_state('input_boolean.boa_noite', 'on') %}
-             media_player.sala
-          {% else %}
-             media_player.casa_inteira
-          {% endif %}
-        media_content_id: 'http://192.168.1.12:8123/local/audio/tts/automacao_chegando_em_casa.mp3'
-        media_content_type: 'audio/mp3'
+        media: 'http://192.168.1.12:8123/local/audio/tts/automacao_chegando_em_casa.mp3'
+        volume: 0.7
     - delay: '00:01:00'
     - service: alarm_control_panel.alarm_disarm
       entity_id: alarm_control_panel.alarme
@@ -351,35 +307,10 @@
       data_template:
         title: "Automação"
         message: "O café está pronto!"
-    - service: media_player.volume_set
-      entity_id: media_player.sala
-      data:
-        volume_level: 0.7
-    - service: tts.amazon_polly_say
+    - service: script.ghm_tts
       data_template:
-        entity_id: >
-          {% if is_state('input_boolean.boa_noite', 'on') %}
-             media_player.sala
-          {% else %}
-             media_player.casa_inteira
-          {% endif %}
-        message: <speak>O café está pronto na cozinha!</speak>
-    - condition: state
-      entity_id: input_boolean.boa_noite
-      state: 'off'
-    - service: media_player.volume_set
-      entity_id: media_player.suite
-      data:
-        volume_level: 0.7
-    - service: tts.amazon_polly_say
-      data_template:
-        entity_id: >
-          {% if is_state('input_boolean.boa_noite', 'on') %}
-             media_player.sala
-          {% else %}
-             media_player.casa_inteira
-          {% endif %}
-        message: <speak>O café está pronto na cozinha!</speak>
+        tts: '<speak>O café está pronto na cozinha!</speak>'
+        volume: 0.7
 
 - alias: Alerta - Chuveiro ligado sem ninguém em casa
   initial_state: true
@@ -428,19 +359,10 @@
     for:
       minutes: 1
   action:
-    - service: media_player.volume_set
-      entity_id: media_player.sala
-      data:
-        volume_level: 0.7
-    - service_template: tts.amazon_polly_say
+    - service_template: script.ghm_tts
       data_template:
-        entity_id: >
-          {% if is_state('input_boolean.boa_noite', 'on') %}
-             media_player.sala
-          {% else %}
-             media_player.casa_inteira
-          {% endif %}
-        message: <speak>Atenção! {{ trigger.to_state.name }} aberta por muito tempo!</speak>
+        tts: '<speak>Atenção! {{ trigger.to_state.name }} aberta por muito tempo!</speak>'
+        volume: 0.7
     - service: notify.tudo
       data_template:
         title: 'Alerta Casa'

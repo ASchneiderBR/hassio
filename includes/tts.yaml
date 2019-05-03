@@ -1,8 +1,6 @@
-- platform: google
+- platform: google_translate
+  service_name: google_say
   language: 'pt-br'
-  cache: true
-  cache_dir: /tmp/tts
-  time_memory: 300
 
 - platform: amazon_polly
   aws_access_key_id: !secret AWS_ACCESS_KEY_ID

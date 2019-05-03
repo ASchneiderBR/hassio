@@ -2,22 +2,25 @@
 
 - platform: smartir
   name: Ar condicionado da suite
+  unique_id: ar_casa_suite
+  controller_data: 192.168.1.32
   device_code: 1380
-  controller_send_service: switch.broadlink_send_packet_192_168_1_32
   temperature_sensor: sensor.temperatura_suite
   humidity_sensor: sensor.umidade_suite
 
 - platform: smartir
   name: Ar condicionado da sala
+  unique_id: ar_casa_sala
+  controller_data: 192.168.1.34
   device_code: 1380
-  controller_send_service: switch.broadlink_send_packet_192_168_1_34
   temperature_sensor: sensor.temperatura_sala
   humidity_sensor: sensor.umidade_sala
 
 - platform: smartir
   name: Ar condicionado do quarto
+  unique_id: ar_casa_quarto
+  controller_data: 192.168.1.33
   device_code: 1380
-  controller_send_service: switch.broadlink_send_packet_192_168_1_33
   temperature_sensor: sensor.temperatura_quarto
   humidity_sensor: sensor.umidade_quarto
 
@@ -25,27 +28,31 @@
 
 - platform: smartir
   name: Ar condicionado da nossa sala
+  unique_id: ar_muv_nossa_sala
+  controller_data: 192.168.1.35
   device_code: 1240
-  controller_send_service: switch.broadlink_send_packet_192_168_1_35
   temperature_sensor: sensor.temperatura_real_nossa_sala
 
 - platform: smartir
   name: Ar condicionado da sala de operações
+  unique_id: ar_muv_operacoes
+  controller_data: 192.168.1.36
   device_code: 1380
-  controller_send_service: switch.broadlink_send_packet_192_168_1_36
   temperature_sensor: sensor.temperature_158d00015633b4
   humidity_sensor: sensor.humidity_158d00015633b4
 
 - platform: smartir
   name: Ar condicionado da entrada 203
+  unique_id: ar_muv_entrada_203
+  controller_data: 192.168.1.37
   device_code: 1380
-  controller_send_service: switch.broadlink_send_packet_192_168_1_37
   temperature_sensor: sensor.temperature_158d0001d7e65d
   humidity_sensor: sensor.humidity_158d0001d7e65d
 
 - platform: smartir
   name: Ar condicionado da sala 303
+  unique_id: ar_muv_dinamica
+  controller_data: 192.168.1.41
   device_code: 1380
-  controller_send_service: switch.broadlink_send_packet_192_168_1_41
   temperature_sensor: sensor.temperature_158d0001703b44
   humidity_sensor: sensor.humidity_158d0001703b44

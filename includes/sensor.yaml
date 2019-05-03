@@ -27,7 +27,7 @@
   unit_of_measurement: days
 
 - platform: broadlink
-  scan_interval: '00:05'
+  scan_interval: '00:10'
   name: MuvRH
   host: 192.168.1.35
   mac: '34:EA:34:E4:5F:2F'
@@ -58,8 +58,20 @@
   sensors:
     temperatura_real_nossa_sala:
       friendly_name: 'Temperatura real da nossa sala'
+      entity_id: sensor.muvrh_temperature
       unit_of_measurement: '°C'
       value_template: "{{ (states.sensor.muvrh_temperature.state  | float) - 4 }}"
+
+#    caixa_som_livre:
+#      friendly_name: 'Caixa de som livre'
+#      value_template: >-
+#        {% if is_state('media_player.casa_inteira' , 'playing') %}
+#          {% set speakers = ['media_player.banheiro_social', 'media_player.banheiro_suite',  'media_player.cozinha', 'media_player.quarto', 'media_player.sala', 'media_player.suite'] %}
+#              {{ states.media_player | selectattr('entity_id', 'in', speakers) | selectattr('state','eq','off') | map(attribute='entity_id') | join(', ') }}
+#        {% else %}
+#          media_player.casa_inteira
+#        {% endif %}
+
 
 - platform: time_date
   display_options:

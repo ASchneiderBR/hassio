@@ -70,7 +70,7 @@
   switches:
     tv_lg_sala:
       friendly_name: "Tv da sala"
-      value_template: "{% if is_state('media_player.tv_sala', 'off') %}off{% else %}on{% endif %}"
+      value_template: "{% if is_state('device_tracker.tv_sala', 'not_home') or is_state('media_player.tv_sala', 'off') %}off{% else %}on{% endif %}"
       turn_on:
         service: script.tv_lg_sala_ligar_tudo
         entity_id: script.tv_lg_sala_ligar_tudo
@@ -81,7 +81,7 @@
  
     tv_lg_suite:
       friendly_name: "Tv da suíte"
-      value_template: "{% if is_state('media_player.tv_suite', 'off') %}off{% else %}on{% endif %}"
+      value_template: "{% if is_state('device_tracker.tv_suite', 'not_home') or is_state('media_player.tv_suite', 'off') %}off{% else %}on{% endif %}"
       turn_on:
         service: script.tv_lg_suite_power_on
         entity_id: script.tv_lg_suite_power_on
@@ -92,7 +92,7 @@
 
     tv_lg_quarto:
       friendly_name: "Tv do quarto"
-      value_template: "{% if is_state('device_tracker.tv_quarto', 'not_home') %}off{% else %}on{% endif %}"
+      value_template: "{% if is_state('device_tracker.tv_quarto', 'not_home') or is_state('media_player.tv_quarto', 'off') %}off{% else %}on{% endif %}"
       turn_on:
         service: script.tv_lg_quarto_power_on
         entity_id: script.tv_lg_quarto_power_on

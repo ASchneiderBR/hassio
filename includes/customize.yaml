@@ -217,6 +217,12 @@ light.status_maquina_de_lavar_loucas:
   icon: mdi:led-strip
 
 light.neopixel_movel_sala:
+  icon: mdi:looks
+  
+light.ledsalatv_effects:
+  icon: mdi:led-strip
+  
+light.ledquartotv_effects:
   icon: mdi:led-strip
   
 light.ender_3:
@@ -647,6 +653,7 @@ switch.chaleira_casa:
 switch.ventilador_casa:
   friendly_name: "Ventilador"
   icon: mdi:fan
+  google_assistant_type: fan
 
 script.octoprint_cancelar:
   icon: mdi:alert-circle

@@ -8,7 +8,6 @@ ignore:
   - directv
   - enigma2
   - frontier_silicon
-  - google_cast
   - harmony
   - igd
   - ikea_tradfri

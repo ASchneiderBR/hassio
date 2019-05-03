@@ -391,3 +391,8 @@ entity_config:
     expose: true
     room: Suíte
     name: Rotina bom dia
+
+  script.modo_festa:
+    expose: true
+    room: Apartamento
+    name: Modo festa
