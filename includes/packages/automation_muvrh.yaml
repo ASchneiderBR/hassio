@@ -206,7 +206,7 @@ automation:
             - thu
             - fri
         - condition: template
-          value_template: "{{ states.climate.ar_condicionado_da_sala_de_operacoes.state != 'off' }}"
+          value_template: "{{ not is_state('climate.ar_condicionado_da_sala_de_operacoes', 'off') }}"
     action:
       - service: climate.set_operation_mode
         data_template:

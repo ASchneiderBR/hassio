@@ -31,7 +31,7 @@ automation:
           message: "Magno acabou de usar a caixa de areia, favor limpar."
       - service: script.ghm_tts
         data_template:
-          tts: '<speak>Magno acabou de usar a caixa de areia, limpar o mais breve possível!</speak>'
+          tts: <speak>Magno acabou de usar a caixa de areia, limpar o mais breve possível!</speak>
           volume: 0.7
 
   - alias: Magno - Caixa limpa
@@ -43,5 +43,5 @@ automation:
     action:
       - service: script.ghm_tts
         data_template:
-          tts: '<speak>Obrigado por limpar a caixa de areia, já estava fedendo. Talvez seja hora do Magno ir embora.</speak>'
+          tts: <speak>Obrigado por limpar a caixa de areia, já estava fedendo. Talvez seja hora do Magno ir embora.</speak>
           volume: 0.7

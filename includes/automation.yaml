@@ -30,20 +30,26 @@
       entity_id: input_select.estados_de_succao
       data_template:
         option: >
-          {% if states.vacuum.aspirador.attributes.fan_speed == 'Quiet' %}
+          {% if is_state_attr('vacuum.aspirador', 'fan_speed', 'Quiet') %}
             Silencioso
-          {% elif states.vacuum.aspirador.attributes.fan_speed == 'Balanced' %}
+          {% elif is_state_attr('vacuum.aspirador', 'fan_speed', 'Balanced') %}
             Balanceado
-          {% elif states.vacuum.aspirador.attributes.fan_speed == 'Turbo' %}
+          {% elif is_state_attr('vacuum.aspirador', 'fan_speed', 'Turbo') %}
             Turbo
-          {% elif states.vacuum.aspirador.attributes.fan_speed == 'Max' %}
+          {% elif is_state_attr('vacuum.aspirador', 'fan_speed', 'Max') %}
             Turbo máximo
-          {% elif states.vacuum.aspirador.attributes.fan_speed == '105' %}
+          {% elif is_state_attr('vacuum.aspirador', 'fan_speed', '105') %}
             Pano úmido
+          {% else %}
+            Balanceado
           {% endif %}
     - service_template: >
         {% if is_state('alarm_control_panel.alarme', 'disarmed') %}
-          {% if is_state('group.pessoas', 'home') %}script.alarme_armar_casa{% else %}script.alarme_armar_fora{% endif %}
+          {% if is_state('group.pessoas', 'home') %}
+            script.alarme_armar_casa
+          {% else %}
+            script.alarme_armar_fora
+          {% endif %}
         {% else %}
           script.nada
         {% endif %}
@@ -168,43 +174,22 @@
     entity_id: binary_sensor.entrada_casa
     to: 'on'
   action:
+    - service: notify.tudo
+      data:
+        title: "Alerta casa"
+        message: "Porta da entrada de casa acabou de ser aberta."
     - service_template: >
         {% if is_state('binary_sensor.movimento_entrada_de_casa', 'off') %}
           script.entrada_luz_temporizador
         {% else %}
           script.nada
         {% endif %}
-    - service: notify.tudo
-      data:
-        title: "Alerta casa"
-        message: "Porta da entrada de casa acabou de ser aberta."
     - service_template: >
         {% if is_state('switch.sistema_alarme_casa', 'on') %}
-          alarm_control_panel.alarm_trigger
+          script.entrando_casa_alarme
         {% else %}
-          script.nada
-        {% endif %}
-      entity_id: alarm_control_panel.alarme
-    - service_template: >
-        {% if is_state('switch.sistema_alarme_casa', 'off') %}
           script.tts_porta_entrada
-        {% else %}
-          script.tts_entrando_casa_alarme
         {% endif %}
-
-- alias: Alarme - Disparar
-  initial_state: true
-  trigger:
-    platform: state
-    entity_id: alarm_control_panel.alarme
-    to: 'triggered'
-  action:
-    - service: switch.turn_on
-      entity_id: switch.sirene
-    - service: notify.tudo
-      data:
-        title: "Alarme da casa"
-        message: "ATENÇÂO! Alarme foi acionado! Sirene está tocando!"
 
 - alias: Chegar em casa
   initial_state: true
@@ -309,7 +294,7 @@
         message: "O café está pronto!"
     - service: script.ghm_tts
       data_template:
-        tts: '<speak>O café está pronto na cozinha!</speak>'
+        tts: <speak>O café está pronto na cozinha!</speak>
         volume: 0.7
 
 - alias: Alerta - Chuveiro ligado sem ninguém em casa
@@ -361,7 +346,7 @@
   action:
     - service_template: script.ghm_tts
       data_template:
-        tts: '<speak>Atenção! {{ trigger.to_state.name }} aberta por muito tempo!</speak>'
+        tts: <speak>Atenção! {{ trigger.to_state.name }} aberta por muito tempo!</speak>
         volume: 0.7
     - service: notify.tudo
       data_template:
@@ -772,6 +757,10 @@
         - device_tracker.camera_sala
         - device_tracker.camera_cozinha
         - device_tracker.google_home_mini_sala
+        - device_tracker.google_home_mini_banheiro_social
+        - device_tracker.google_home_mini_banheiro_suite
+        - device_tracker.google_home_mini_quarto
+        - device_tracker.google_home_mini_cozinha
         - device_tracker.google_home_mini_suite
         - device_tracker.aspirador_xiaomi
         - device_tracker.pi_zero_octoprint_ender3
@@ -948,7 +937,7 @@
         {% elif trigger.to_state.entity_id == "binary_sensor.ir_tv_sala_volume_menos" %}
           script.home_theater_sala_voldown_x6
         {% elif trigger.to_state.entity_id == "binary_sensor.ir_tv_sala_energia" %}
-          {% if states.switch.tv_lg_sala.state == "on" %}
+          {% if is_state('switch.tv_lg_sala', 'on') %}
               script.tv_lg_sala_desligar_tudo
           {% else %}
               script.tv_lg_sala_ligar_tudo

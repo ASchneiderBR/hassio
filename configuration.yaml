@@ -7,6 +7,7 @@ homeassistant:
   time_zone: America/Sao_Paulo
   customize: !include includes/customize.yaml
   packages: !include_dir_named includes/packages/
+  auth_providers: !include includes/auth_providers.yaml
 
 zone:
   name: Home
@@ -70,6 +71,7 @@ script: !include includes/script.yaml
 sensor: !include includes/sensor.yaml
 shell_command: !include includes/shell_command.yaml
 smartir: !include includes/smartir.yaml
+#spotcast: !include includes/spotcast.yaml
 switch: !include includes/switch.yaml
 timer: !include includes/timer.yaml
 tts: !include includes/tts.yaml

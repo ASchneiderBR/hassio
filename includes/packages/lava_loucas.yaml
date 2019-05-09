@@ -24,6 +24,7 @@ binary_sensor:
         friendly_name: "Lava-louças"
         device_class: "power"
         value_template: "{{ not is_state('input_select.lava_loucas_casa_modo_lavagem', 'Selecionar') }}"
+        entity_id: input_select.lava_loucas_casa_modo_lavagem
 
 switch:
 
@@ -32,6 +33,7 @@ switch:
       lava_loucas_homekit_aquaspray:
         friendly_name: "Lava-louças aquaspray"
         value_template: "{{ is_state('input_select.lava_loucas_casa_modo_lavagem', 'Aquaspray') }}"
+        entity_id: input_select.lava_loucas_casa_modo_lavagem
         turn_on:
           service: input_select.select_option
           entity_id: input_select.lava_loucas_casa_modo_lavagem
@@ -44,6 +46,7 @@ switch:
       lava_loucas_homekit_economico:
         friendly_name: "Lava-louças econômico"
         value_template: "{{ is_state('input_select.lava_loucas_casa_modo_lavagem', 'Econômico') }}"
+        entity_id: input_select.lava_loucas_casa_modo_lavagem
         turn_on:
           service: input_select.select_option
           entity_id: input_select.lava_loucas_casa_modo_lavagem
@@ -56,6 +59,7 @@ switch:
       lava_loucas_homekit_diaadia:
         friendly_name: "Lava-louças dia a dia"
         value_template: "{{ is_state('input_select.lava_loucas_casa_modo_lavagem', 'Dia a dia') }}"
+        entity_id: input_select.lava_loucas_casa_modo_lavagem
         turn_on:
           service: input_select.select_option
           entity_id: input_select.lava_loucas_casa_modo_lavagem
@@ -74,13 +78,13 @@ automation:
       entity_id: input_select.lava_loucas_casa_modo_lavagem
     action:
       - service_template: >-
-          {%- if states.input_select.lava_loucas_casa_modo_lavagem.state == 'Aquaspray' and is_state('input_boolean.lava_loucas_sujo' , 'on')%}
+          {%- if is_state('input_select.lava_loucas_casa_modo_lavagem', 'Aquaspray') and is_state('input_boolean.lava_loucas_sujo' , 'on')%}
               script.lava_loucas_casa_aquaspray
-          {%- elif states.input_select.lava_loucas_casa_modo_lavagem.state == 'Aquaspray' and is_state('input_boolean.lava_loucas_sujo' , 'off')%}
+          {%- elif is_state('input_select.lava_loucas_casa_modo_lavagem', 'Aquaspray') and is_state('input_boolean.lava_loucas_sujo' , 'off')%}
               script.lava_loucas_casa_aquaspray_louca_limpa
-          {%- elif states.input_select.lava_loucas_casa_modo_lavagem.state == 'Econômico' %}
+          {%- elif is_state('input_select.lava_loucas_casa_modo_lavagem', 'Econômico') %}
               script.lava_loucas_casa_iniciar_modo_economico
-          {%- elif states.input_select.lava_loucas_casa_modo_lavagem.state == 'Dia a dia' %}
+          {%- elif is_state('input_select.lava_loucas_casa_modo_lavagem', 'Dia a dia') %}
               script.lava_loucas_casa_modo_diaadia
           {%- else %}
               script.nada
@@ -138,7 +142,7 @@ automation:
     action:
       - service: script.ghm_tts
         data_template:
-          tts: "<speak><amazon:auto-breaths frequency='medium'>Ok, vou programar as limpezas automáticas.</amazon:auto-breaths></speak>"
+          tts: <speak><amazon:auto-breaths frequency='medium'>Ok, vou programar as limpezas automáticas.</amazon:auto-breaths></speak>
           volume: 0.5
       - service: light.turn_on
         data:
@@ -208,7 +212,7 @@ script:
         option: "Selecionar"
     - service: script.ghm_tts
       data_template:
-        tts: "<speak><amazon:auto-breaths frequency='medium'>A louça já está limpa, por favor descarregar antes de iniciar outra lavagem.</amazon:auto-breaths></speak>"
+        tts: <speak><amazon:auto-breaths frequency='medium'>A louça já está limpa, por favor descarregar antes de iniciar outra lavagem.</amazon:auto-breaths></speak>
         volume: 0.5
 
   lava_loucas_casa_aquaspray:
@@ -327,7 +331,7 @@ script:
         message: "A lava-louças finalizou a lavagem."
     - service: script.ghm_tts
       data_template:
-        tts: "<speak><amazon:auto-breaths frequency='medium'>A lava-louças finalizou a lavagem, sugiro deixar a porta aberta para evitar odores indesejados.</amazon:auto-breaths></speak>"
+        tts: <speak><amazon:auto-breaths frequency='medium'>A lava-louças finalizou a lavagem, sugiro deixar a porta aberta para evitar odores indesejados.</amazon:auto-breaths></speak>
         volume: 0.5
 
 homeassistant:

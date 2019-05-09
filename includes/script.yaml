@@ -1,3 +1,32 @@
+entrando_casa_alarme:
+  alias: "Entrando em casa com alarme disparando"
+  sequence:
+  - service: alarm_control_panel.alarm_trigger
+    entity_id: alarm_control_panel.alarme
+  - service: switch.turn_on
+    entity_id: switch.sirene
+  - service: notify.tudo
+    data:
+      title: "Alarme da casa"
+      message: "ATENÇÂO! Alarme foi acionado! Sirene está tocando!"
+  - service: media_player.volume_set
+    entity_id: media_player.casa_inteira
+    data:
+      volume_level: 1
+  - service: media_player.play_media
+    data:
+      entity_id: media_player.casa_inteira
+      media_content_id: 'http://192.168.1.12:8123/local/audio/tts/alarme_entrada_nao_autorizada.mp3'
+      media_content_type: 'audio/mp3'
+  - service: light.turn_on
+    data:
+      entity_id: light.ledsalatv, light.ledchaocozinha, light.ledquartotv, light.ledsaladesktop, light.ledsuitecama, light.ledsuitetv, light.status_maquina_de_lavar_loucas, light.movel_da_sala
+      rgb_color: [255,0,0]
+      transition: 1
+      brightness_pct: 100
+  - service: light.turn_on
+    entity_id: light.area_servico, light.suite_banheiro_principal, light.suite_banheiro_espelho, light.corredor, light.cozinha, light.entrada, light.ledcozinhabalcao, light.mesa_de_jantar, light.quarto, light.sala_principal, light.banheiro_social_principal, light.banheiro_social_espelho, light.suite_principal, light.movel_da_sala
+
 desktop_reiniciar:
   sequence:
   - service: shell_command.desktop_reiniciar
@@ -89,12 +118,7 @@ assistir_youtube:
     data:
       entity_id: media_player.tv_sala
       source: "YouTube"
-  - wait_template: >-
-      {% if states.media_player.tv_sala.attributes.source == "YouTube" %}
-        True
-      {% else %}
-        False
-      {% endif %}
+  - wait_template: "{{ is_state('media_player.tv_sala', 'YouTube') }}"
   - delay: '00:00:12'
   - service: script.tv_lg_sala_left
   - delay: '00:00:02'
@@ -230,7 +254,7 @@ ghm_tts_test:
   sequence:
     - service: script.ghm_tts
       data_template:
-        tts: '<speak>Testando variável passada por outro lado!</speak>'
+        tts: <speak>Testando variável passada por outro lado!</speak>
         volume: 0.5
 
 # Sonoffs
@@ -285,15 +309,15 @@ botao_xiaomi_quarto_01_triple:
     data_template:
       entity_id: climate.ar_condicionado_do_quarto
       operation_mode: >
-        {% if states.climate.ar_condicionado_do_quarto.attributes.current_temperature | int >= 25 and (states.climate.ar_condicionado_do_quarto.state == 'off' or states.climate.ar_condicionado_do_quarto.state == 'off') %}
+        {% if states.climate.ar_condicionado_do_quarto.attributes.current_temperature | int >= 25 and is_state('climate.ar_condicionado_do_quarto' , 'off') %}
           cool
-        {% elif states.climate.ar_condicionado_do_quarto.attributes.current_temperature | int <= 24 and (states.climate.ar_condicionado_do_quarto.state == 'off' or states.climate.ar_condicionado_do_quarto.state == 'off') %}
+        {% elif states.climate.ar_condicionado_do_quarto.attributes.current_temperature | int <= 24 and is_state('climate.ar_condicionado_do_quarto' , 'off') %}
           heat
         {% else %}
           off
         {% endif %}
   - condition: template
-    value_template: "{% if (is_state('climate.ar_condicionado_do_quarto' , 'auto') or is_state('climate.ar_condicionado_do_quarto' , 'cool') or is_state('climate.ar_condicionado_do_quarto' , 'heat')) and is_state('input_boolean.boa_noite' , 'on') %}True{% else %}False{% endif %}"
+    value_template: "{{ not is_state('climate.ar_condicionado_do_quarto' , 'off') and is_state('input_boolean.boa_noite' , 'on') }}"
   - delay: '00:00:02'
   - service: script.ar_quarto_display
 
@@ -349,15 +373,15 @@ botao_xiaomi_suite_01_triple:
     data_template:
       entity_id: climate.ar_condicionado_da_suite
       operation_mode: >
-        {% if states.climate.ar_condicionado_da_suite.attributes.current_temperature | int >= 25 and (states.climate.ar_condicionado_da_suite.state == 'off' or states.climate.ar_condicionado_da_suite.state == 'off') %}
+        {% if states.climate.ar_condicionado_da_suite.attributes.current_temperature | int >= 25 and is_state('climate.ar_condicionado_da_suite' , 'off') %}
           cool
-        {% elif states.climate.ar_condicionado_da_suite.attributes.current_temperature | int <= 24 and (states.climate.ar_condicionado_da_suite.state == 'off' or states.climate.ar_condicionado_da_suite.state == 'off') %}
+        {% elif states.climate.ar_condicionado_da_suite.attributes.current_temperature | int <= 24 and is_state('climate.ar_condicionado_da_suite' , 'off') %}
           heat
         {% else %}
           off
         {% endif %}
   - condition: template
-    value_template: "{% if (is_state('climate.ar_condicionado_da_suite' , 'auto') or is_state('climate.ar_condicionado_da_suite' , 'cool') or is_state('climate.ar_condicionado_da_suite' , 'heat')) and is_state('input_boolean.boa_noite' , 'on') %}True{% else %}False{% endif %}"
+    value_template: "{{ not is_state('climate.ar_condicionado_da_suite' , 'off') and is_state('input_boolean.boa_noite' , 'on') }}"
   - delay: '00:00:02'
   - service: script.ar_suite_display
 
@@ -395,15 +419,15 @@ botao_xiaomi_suite_02_double:
     data_template:
       entity_id: climate.ar_condicionado_da_suite
       operation_mode: >
-        {% if states.climate.ar_condicionado_da_suite.attributes.current_temperature | int >= 25 and (states.climate.ar_condicionado_da_suite.state == 'off' or states.climate.ar_condicionado_da_suite.state == 'off') %}
+        {% if states.climate.ar_condicionado_da_suite.attributes.current_temperature | int >= 25 and is_state('climate.ar_condicionado_da_suite' , 'off') %}
           cool
-        {% elif states.climate.ar_condicionado_da_suite.attributes.current_temperature | int <= 24 and (states.climate.ar_condicionado_da_suite.state == 'off' or states.climate.ar_condicionado_da_suite.state == 'off') %}
+        {% elif states.climate.ar_condicionado_da_suite.attributes.current_temperature | int <= 24 and is_state('climate.ar_condicionado_da_suite' , 'off') %}
           heat
         {% else %}
           off
         {% endif %}
   - condition: template
-    value_template: "{% if (is_state('climate.ar_condicionado_da_suite' , 'auto') or is_state('climate.ar_condicionado_da_suite' , 'cool') or is_state('climate.ar_condicionado_da_suite' , 'heat')) and is_state('input_boolean.boa_noite' , 'on') %}True{% else %}False{% endif %}"
+    value_template: "{{ not is_state('climate.ar_condicionado_da_suite' , 'off') and is_state('input_boolean.boa_noite' , 'on') }}"
   - delay: '00:00:02'
   - service: script.ar_suite_display
 
@@ -535,17 +559,17 @@ botao_xiaomi_sala_01_triple:
     data_template:
       entity_id: climate.ar_condicionado_da_sala
       operation_mode: >
-        {% if states.climate.ar_condicionado_da_sala.attributes.current_temperature | int >= 25 and (states.climate.ar_condicionado_da_sala.state == 'off' or states.climate.ar_condicionado_da_sala.state == 'off') %}
+        {% if states.climate.ar_condicionado_da_sala.attributes.current_temperature | int >= 25 and is_state('climate.ar_condicionado_da_sala' , 'off') %}
           cool
-        {% elif states.climate.ar_condicionado_da_sala.attributes.current_temperature | int <= 24 and (states.climate.ar_condicionado_da_sala.state == 'off' or states.climate.ar_condicionado_da_sala.state == 'off') %}
+        {% elif states.climate.ar_condicionado_da_sala.attributes.current_temperature | int <= 24 and is_state('climate.ar_condicionado_da_sala' , 'off') %}
           heat
         {% else %}
           off
         {% endif %}
   - condition: template
-    value_template: "{% if (is_state('climate.ar_condicionado_da_sala' , 'auto') or is_state('climate.ar_condicionado_da_sala' , 'cool') or is_state('climate.ar_condicionado_da_sala' , 'heat')) and is_state('input_boolean.boa_noite' , 'on') %}True{% else %}False{% endif %}"
+    value_template: "{{ not is_state('climate.ar_condicionado_da_sala' , 'off') and is_state('input_boolean.boa_noite' , 'on') }}"
   - delay: '00:00:02'
-  - service: script.ar_sala_display
+  - service: script.ar_suite_display
 
 botao_xiaomi_sala_01_quadruple:
   alias: "Luz mesa jantar"
@@ -663,13 +687,17 @@ botao_xiaomi_muvrh_entrada203_double:
     data_template:
       entity_id: climate.ar_condicionado_da_entrada_203
       operation_mode: >
-        {% if states.climate.ar_condicionado_da_entrada_203.attributes.current_temperature | int >= 24 and (states.climate.ar_condicionado_da_entrada_203.state == 'off' or states.climate.ar_condicionado_da_entrada_203.state == 'off') %}
+        {% if states.climate.ar_condicionado_da_entrada_203.attributes.current_temperature | int >= 25 and is_state('climate.ar_condicionado_da_entrada_203' , 'off') %}
           cool
-        {% elif states.climate.ar_condicionado_da_entrada_203.attributes.current_temperature | int <= 20 and (states.climate.ar_condicionado_da_entrada_203.state == 'off' or states.climate.ar_condicionado_da_entrada_203.state == 'off') %}
+        {% elif states.climate.ar_condicionado_da_entrada_203.attributes.current_temperature | int <= 24 and is_state('climate.ar_condicionado_da_entrada_203' , 'off') %}
           heat
         {% else %}
           off
         {% endif %}
+  - condition: template
+    value_template: "{{ not is_state('climate.ar_condicionado_da_entrada_203' , 'off') and is_state('input_boolean.boa_noite' , 'on') }}"
+  - delay: '00:00:02'
+  - service: script.ar_suite_display
 
 botao_xiaomi_muvrh_entrada203_long:
   alias: "Ligar ou desligar luz da entrada"
@@ -683,12 +711,12 @@ entrada_luz_temporizador:
   - condition: template
     value_template: "{% if states.sun.sun.attributes.elevation | int <= 3 %}True{% else %}False{% endif %}"
   - condition: template
-    value_template: "{% if states.light.entrada.state == 'off' %}True{% else %}False{% endif %}"
+    value_template: "{{ is_state('light.entrada', 'off') }}"
   - service: light.turn_on
     entity_id: light.entrada
   - delay: '00:01:00'
   - condition: template
-    value_template: "{% if states.light.entrada.state == 'on' %}True{% else %}False{% endif %}"
+    value_template: "{{ is_state('light.entrada', 'on') }}"
   - service: light.turn_off
     entity_id: light.entrada
 
@@ -859,7 +887,7 @@ speed_test:
   - service_template: script.ghm_play_media
     data_template:
       media: 'http://192.168.1.12:8123/local/audio/tts/alerta_iniciando_teste_internet.mp3'
-      volume: 0.7
+      volume: 0.5
   - service: fastdotcom.speedtest
   - wait_template: "{% if as_timestamp(now()) | int - as_timestamp(states.sensor.fast_com_download.last_updated) | int <= 5 %}True{% else %}False{% endif %}"
     timeout: 00:02:00
@@ -868,15 +896,10 @@ speed_test:
     data_template:
       title: "Sistema"
       message: "A velocidade da internet em casa é de {{ states.sensor.fast_com_download.state | int}} Mbit/s"
-  - service: tts.amazon_polly_say
+  - service: script.ghm_tts
     data_template:
-      entity_id: >
-        {% if is_state('input_boolean.boa_noite', 'on') %}
-           media_player.sala
-        {% else %}
-           media_player.casa_inteira
-        {% endif %}
-      message: <speak><amazon:auto-breaths frequency='medium'>Pronto, verifiquei aqui. Atualmente estão chegando {{ states.sensor.fast_com_download.state | int}} mégas aqui em casa. {% if states.sensor.fast_com_download.state | int <= 20 %}Está muito lenta, estão baixando algo neste momento ou algo de errado está acontecendo pois deveriam estar chegando 50 mégas. O Antônio já foi avisado!{% endif %}</amazon:auto-breaths></speak>
+      tts: <speak><amazon:auto-breaths frequency='medium'>Pronto, verifiquei aqui. Atualmente estão chegando {{ states.sensor.fast_com_download.state | int}} mégas aqui em casa. {% if states.sensor.fast_com_download.state | int <= 20 %}Está muito lenta, estão baixando algo neste momento ou algo de errado está acontecendo pois deveriam estar chegando 50 mégas. O Antônio já foi avisado!{% endif %}</amazon:auto-breaths></speak>
+      volume: 0.5
 
 homekit_no_start:
   alias: Iniciar HomeKit

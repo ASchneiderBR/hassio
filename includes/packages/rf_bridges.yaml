@@ -41,12 +41,12 @@ input_select:
 script:
 
   rf_bridge_send_command:
-    alias: 'Enviar comando'
+    alias: "Enviar comando"
     sequence:
     - service: mqtt.publish
       data_template:
-        topic: 'cmnd/{% if states.input_select.rf_bridge_device_select.state == "Casa" %}rfbridgecasa{% elif states.input_select.rf_bridge_device_select.state == "MuvRH" %}rfbridgemuvrh{% endif %}/backlog'
-        payload: 'rfkey{{ states("input_select.rf_bridge_key_select") }} {% if states.input_select.rf_bridge_mode_select.state == "Aprender" %}2{% elif states.input_select.rf_bridge_mode_select.state == "Enviar" %}1{% endif %}'
+        topic: "cmnd/{% if is_state('input_select.rf_bridge_device_select', 'Casa') %}rfbridgecasa{% elif is_state('input_select.rf_bridge_device_select', 'MuvRH') %}rfbridgemuvrh{% endif %}/backlog"
+        payload: "rfkey{{ states('input_select.rf_bridge_key_select') }} {% if is_state('input_select.rf_bridge_mode_select', 'Aprender') %}2{% elif is_state('input_select.rf_bridge_mode_select', 'Enviar') %}1{% endif %}"
     - service: input_select.select_option
       entity_id: input_select.rf_bridge_device_select
       data_template:

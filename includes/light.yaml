@@ -72,7 +72,8 @@
   lights:
     neopixel_movel_sala:
       friendly_name: "Arco-íris"
-      value_template: "{{ states.light.movel_da_sala.state }}"
+      value_template: "{{ is_state('light.movel_da_sala', 'on') }}"
+      entity_id: light.movel_da_sala
       turn_on:
         service: light.turn_on
         data:
@@ -88,7 +89,8 @@
 
     ledsalatv_effects:
       friendly_name: "LED da TV da sala com efeitos"
-      value_template: "{{ states.light.ledsalatv.state }}"
+      value_template: "{{ is_state('light.ledsalatv', 'on') }}"
+      entity_id: light.ledsalatv
       turn_on:
         service: light.turn_on
         data:
@@ -104,7 +106,8 @@
 
     ledquartotv_effects:
       friendly_name: "LED da TV do quarto com efeitos"
-      value_template: "{{ states.light.ledquartotv.state }}"
+      value_template: "{{ is_state('light.ledquartotv', 'on') }}"
+      entity_id: light.ledquartotv
       turn_on:
         service: light.turn_on
         data:

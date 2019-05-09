@@ -10,7 +10,7 @@
   forecast:
     - 0
     - 1
-  scan_interval: '00:30'
+  scan_interval: '05:00'
   monitored_conditions:
     - summary
     - temperature
@@ -27,7 +27,7 @@
   unit_of_measurement: days
 
 - platform: broadlink
-  scan_interval: '00:10'
+  scan_interval: '00:30'
   name: MuvRH
   host: 192.168.1.35
   mac: '34:EA:34:E4:5F:2F'

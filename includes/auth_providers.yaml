@@ -1,0 +1,11 @@
+- type: homeassistant
+
+- type: trusted_networks
+  trusted_users:
+    192.168.1.105: fbc19c72422444369aed293efa96e7b7
+  allow_bypass_login: true
+  trusted_networks:
+    - 192.168.1.105
+
+- type: legacy_api_password
+  api_password: !secret http_password

@@ -15,7 +15,7 @@ automation:
     action:
       - service_template: >
           {% if trigger.to_state.entity_id == "binary_sensor.ir_tv_suite_volume_mais" %}
-              {% if states.light.todos_os_leds_suite.state == "on" %}
+              {% if is_state('light.todos_os_leds_suite.state', 'on') %}
                   script.dim_led_suite_mais
               {% else %}
                   script.led_suite_on

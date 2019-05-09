@@ -132,6 +132,41 @@ automation:
       - service: script.casa_desligar_tudo_noite
       - service: script.tts_boa_noite
 
+  - alias: Google Home audio - Ajustar volume no banho
+    initial_state: true
+    trigger:
+      platform: state
+      entity_id:
+        - switch.chuveirosuite
+        - switch.chuveirosocial
+      from: 'off'
+      to: 'on'
+    condition:
+      condition: template
+      value_template: "{{ ( trigger.to_state.entity_id == 'switch.chuveirosuite' and is_state('media_player.banheiro_da_suite' , 'playing') ) or ( trigger.to_state.entity_id == 'switch.chuveirosocial' and is_state('media_player.banheiro_social' , 'playing') ) }}"
+    action:
+      - delay: '00:00:02'
+      - service: media_player.volume_set
+        data_template:
+          volume_level: 0.8
+          entity_id: >-
+            {% if trigger.to_state.entity_id == "switch.chuveirosuite" %}
+              media_player.banheiro_da_suite
+            {% else %}
+              media_player.banheiro_social
+            {% endif %}
+      - wait_template: "{{ trigger.to_state.state == 'off' }}"
+      - delay: '00:00:02'
+      - service: media_player.volume_set
+        data_template:
+          volume_level: 0.4
+          entity_id: >-
+            {% if trigger.to_state.entity_id == "switch.chuveirosuite" %}
+              media_player.banheiro_da_suite
+            {% else %}
+              media_player.banheiro_social
+            {% endif %}
+
 script:
 
 ## Desligar tudo boa noite
@@ -139,16 +174,17 @@ script:
   casa_desligar_tudo_noite:
     alias: "Desligar tudo em casa - boa noite"
     sequence:
+      - service: script.casa_desligar_tudo_media_players
       - service: cover.close_cover
         entity_id: cover.persiana_suite
-      - delay: '00:00:01'
+      - delay: '00:00:02'
       - service_template: >-
           {% if not is_state('climate.ar_condicionado_da_suite' , 'off') %}
             script.ar_suite_display
           {% else %}
             script.nada
           {% endif %}
-      - service_template: script.casa_desligar_ar_sala
+      - service: script.casa_desligar_ar_sala
       - service_template: >-
           {% set lights = ['light.area_servico','light.suite_banheiro_principal','light.suite_banheiro_espelho','light.corredor','light.cozinha','light.entrada','light.ledchaocozinha','light.ledcozinhabalcao','light.ledsaladesktop','light.ledsalatv','light.ledsuitecama','light.ledsuitetv','light.mesa_de_jantar','light.sala_principal','light.suite_principal','light.status_maquina_de_lavar_loucas','light.movel_da_sala'] %}
           {% for item in lights if states(item) == 'on' %}
@@ -162,6 +198,7 @@ script:
           entity_id: >-
             {% set entities = ['light.area_servico','light.suite_banheiro_principal','light.suite_banheiro_espelho','light.corredor','light.cozinha','light.entrada','light.ledchaocozinha','light.ledcozinhabalcao','light.ledsaladesktop','light.ledsalatv','light.ledsuitecama','light.ledsuitetv','light.mesa_de_jantar','light.sala_principal','light.suite_principal','light.status_maquina_de_lavar_loucas','light.movel_da_sala'] %}
             {{ states.light | selectattr('entity_id', 'in', entities) | selectattr('state','eq','on') | map(attribute='entity_id') | join(', ') }}
+      - delay: '00:00:02'
       - service_template: >-
           {% set switches = ['switch.chuveirosuite','switch.toalheiro','switch.tv_lg_sala','switch.tv_lg_suite','switch.muvrh_cafeteira','switch.cafeteira_casa','switch.chaleira_casa','switch.ventilador_casa','switch.home_theater_sala'] %}
           {% for item in switches if states(item) == 'on' %}
@@ -179,6 +216,7 @@ script:
         entity_id: input_boolean.visita_casa
         state: 'off'
       - service: script.casa_desligar_ar_quarto
+      - delay: '00:00:02'
       - service_template: >-
           {% set lights = ['light.quarto','light.ledquartotv','light.banheiro_social_principal','light.banheiro_social_espelho'] %}
           {% for item in lights if states(item) == 'on' %}
@@ -214,6 +252,7 @@ script:
       - service: script.casa_desligar_tudo_climates
       - service: script.casa_desligar_tudo_lights
       - service: script.casa_desligar_tudo_switches
+      - service: script.casa_desligar_tudo_media_players
       - service: alarm_control_panel.alarm_disarm
         entity_id: alarm_control_panel.alarme
 
@@ -240,7 +279,7 @@ script:
             {{ true }}
           {% endif %}
           {% else %}
-            script.nada
+            False
           {% endfor %}
       - service: light.turn_off
         data_template:
@@ -259,13 +298,32 @@ script:
             {{ true }}
           {% endif %}
           {% else %}
-            script.nada
+            False
           {% endfor %}
       - service: switch.turn_off
         data_template:
           entity_id: >-
               {% set switches = ['switch.chuveirosuite','switch.toalheiro','switch.tv_lg_sala','switch.tv_lg_suite','switch.chuveirosocial','switch.tv_lg_quarto','switch.cafeteira_casa','switch.chaleira_casa','switch.ventilador_casa','switch.home_theater_sala'] %}
               {{ states.switch| selectattr('entity_id', 'in', switches) | selectattr('state','eq','on') | map(attribute='entity_id') | join(', ') }}
+
+  casa_desligar_tudo_media_players:
+    alias: "Desligar todas os media players"
+    sequence:
+      - condition: template
+        value_template: >-
+          {% set players = ['media_player.banheiro_social', 'media_player.banheiro_da_suite', 'media_player.cozinha', 'media_player.quarto', 'media_player.sala', 'media_player.suite'] %}
+          {% for item in players if states(item) == 'playing' %}
+          {% if loop.first %}
+            {{ true }}
+          {% endif %}
+          {% else %}
+            False
+          {% endfor %}
+      - service: media_player.turn_off
+        data_template:
+          entity_id: >-
+              {% set players = ['media_player.banheiro_social', 'media_player.banheiro_da_suite', 'media_player.cozinha', 'media_player.quarto', 'media_player.sala', 'media_player.suite'] %}
+              {{ states.media_player| selectattr('entity_id', 'in', players) | selectattr('state','eq','playing') | map(attribute='entity_id') | join(', ') }}
 
   casa_desligar_ar_sala:
     alias: "Desligar ar da sala"
@@ -358,7 +416,7 @@ script:
         entity_id: input_boolean.bom_dia
 
   boa_noite_sem_tts:
-    alias: "Bm dia sem TTS"
+    alias: "Bom dia sem TTS"
     sequence:
       - service: automation.turn_off
         entity_id: automation.rotina_boa_noite
@@ -379,3 +437,12 @@ script:
           - automation.luzes_da_casa_suite
           - automation.luzes_da_casa_quarto
       - service: script.casa_desligar_tudo_noite
+      - delay: '00:00:10'
+      - service: script.boa_noite_desligar_som_ghm
+
+  boa_noite_desligar_som_ghm:
+    alias: "Desligar som para dormir"
+    sequence:
+      - delay: '00:30:00'
+      - service: media_player.turn_off
+        entity_id: media_player.suite

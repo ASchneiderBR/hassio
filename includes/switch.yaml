@@ -70,7 +70,10 @@
   switches:
     tv_lg_sala:
       friendly_name: "Tv da sala"
-      value_template: "{% if is_state('device_tracker.tv_sala', 'not_home') or is_state('media_player.tv_sala', 'off') %}off{% else %}on{% endif %}"
+      value_template: "{{ not is_state('device_tracker.tv_sala', 'not_home') or not is_state('media_player.tv_sala', 'off') }}"
+      entity_id:
+        - media_player.tv_sala
+        - device_tracker.tv_sala
       turn_on:
         service: script.tv_lg_sala_ligar_tudo
         entity_id: script.tv_lg_sala_ligar_tudo
@@ -81,7 +84,10 @@
  
     tv_lg_suite:
       friendly_name: "Tv da suíte"
-      value_template: "{% if is_state('device_tracker.tv_suite', 'not_home') or is_state('media_player.tv_suite', 'off') %}off{% else %}on{% endif %}"
+      value_template: "{{ not is_state('device_tracker.tv_suite', 'not_home') or not is_state('media_player.tv_suite', 'off') }}"
+      entity_id:
+        - media_player.tv_suite
+        - device_tracker.tv_suite
       turn_on:
         service: script.tv_lg_suite_power_on
         entity_id: script.tv_lg_suite_power_on
@@ -92,7 +98,10 @@
 
     tv_lg_quarto:
       friendly_name: "Tv do quarto"
-      value_template: "{% if is_state('device_tracker.tv_quarto', 'not_home') or is_state('media_player.tv_quarto', 'off') %}off{% else %}on{% endif %}"
+      value_template: "{{ not is_state('device_tracker.tv_quarto', 'not_home') or not is_state('media_player.tv_quarto', 'off') }}"
+      entity_id:
+        - media_player.tv_quarto
+        - device_tracker.tv_quarto
       turn_on:
         service: script.tv_lg_quarto_power_on
         entity_id: script.tv_lg_quarto_power_on
@@ -104,6 +113,7 @@
     sistema_alarme_casa:
       friendly_name: "Alarme da casa"
       value_template: "{% if is_state('alarm_control_panel.alarme', 'triggered') %}{% elif is_state('alarm_control_panel.alarme', 'disarmed') %}off{% else %}on{% endif %}"
+      entity_id: alarm_control_panel.alarme
       turn_on:
         service: alarm_control_panel.alarm_arm_home
         entity_id: alarm_control_panel.alarme
@@ -114,7 +124,10 @@
 
     energia_casa:
       friendly_name: "Energia casa"
-      value_template: "{{ is_state('binary_sensor.energia_casa', 'on') }}"
+      value_template: "{% if is_state('alarm_control_panel.alarme', 'triggered') %}{% elif is_state('binary_sensor.energia_casa', 'on') %}on{% else %}off{% endif %}"
+      entity_id:
+        - alarm_control_panel.alarme
+        - binary_sensor.energia_casa
       turn_on:
         service: light.turn_on
         entity_id: light.entrada
@@ -124,7 +137,8 @@
 
     automacoes_luzes:
       friendly_name: "Automações das luzes"
-      value_template: "{% if is_state('group.automacoes_luzes_casa', 'off') %}off{% else %}on{% endif %}"
+      value_template: "{{ is_state('group.automacoes_luzes_casa', 'on') }}"
+      entity_id: group.automacoes_luzes_casa
       turn_on:
         service: automation.turn_on
         entity_id: group.automacoes_luzes_casa
@@ -135,7 +149,8 @@
 
     tv_sala_operacoes:
       friendly_name: "Tv da sala de operações"
-      value_template: "{% if is_state('device_tracker.pi3b_tv_sala_operacoes', 'home') %}on{% else %}off{% endif %}"
+      value_template: "{{ is_state('device_tracker.pi3b_tv_sala_operacoes', 'home') }}"
+      entity_id: device_tracker.pi3b_tv_sala_operacoes
       turn_on:
         service: script.tv_sala_operacoes_power_on
         entity_id: script.tv_sala_operacoes_power_on
@@ -147,6 +162,7 @@
     tv_dinamica_303:
       friendly_name: "Tv da sala de dinâmica"
       value_template: "{{ is_state('binary_sensor.energia_tv_dinamica', 'on') }}"
+      entity_id: binary_sensor.energia_tv_dinamica
       turn_on:
         service: script.tv_lg_dinamica_303_power_on
         entity_id: script.tv_lg_dinamica_303_power_on
@@ -158,6 +174,7 @@
     conectar_octoprint:
       friendly_name: "Conectar Octoprint"
       value_template: "{{ not is_state('sensor.octoprint_current_state', 'unknown') }}"
+      entity_id: sensor.octoprint_current_state
       turn_on:
         service: shell_command.octoprint_connect
       turn_off:

@@ -1,9 +1,11 @@
 - platform: google_translate
   service_name: google_say
   language: 'pt-br'
+  cache: false
 
 - platform: amazon_polly
   aws_access_key_id: !secret AWS_ACCESS_KEY_ID
   aws_secret_access_key: !secret AWS_SECRET_ACCESS_KEY
   text_type: ssml
   voice: Ricardo
+  cache: false

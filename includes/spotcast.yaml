@@ -1,0 +1,2 @@
+username: !secret spotify_antonio_user
+password: !secret spotify_antonio_pass

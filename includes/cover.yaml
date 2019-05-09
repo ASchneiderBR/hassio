@@ -2,6 +2,7 @@
   covers:
     persiana_suite:
       value_template: "{{ is_state('input_boolean.persiana_suite', 'on') }}"
+      entity_id: input_boolean.persiana_suite
       friendly_name: "Persiana da suíte"
       open_cover:
         service: script.persiana_suite_abrir
@@ -12,6 +13,7 @@
 
     persiana_quarto:
       value_template: "{{ is_state('input_boolean.persiana_quarto', 'on') }}"
+      entity_id: input_boolean.persiana_quarto
       friendly_name: "Persiana do quarto"
       open_cover:
         service: script.persiana_quarto_abrir
@@ -22,6 +24,7 @@
 
     persiana_sala:
       value_template: "{{ is_state('input_boolean.persiana_sala', 'on') }}"
+      entity_id: input_boolean.persiana_sala
       friendly_name: "Persiana da sala"
       open_cover:
         service: script.persiana_sala_abrir
@@ -34,6 +37,7 @@
 
     garagem_casa:
       value_template: "{{ is_state('input_boolean.garagem_casa', 'on') }}"
+      entity_id: input_boolean.garagem_casa
       friendly_name: "Garagem de casa"
       optimistic: true
       open_cover:
@@ -43,6 +47,7 @@
 
     garagem_muvrh_rua:
       value_template: "{{ is_state('input_boolean.garagem_muv_rua', 'on') }}"
+      entity_id: input_boolean.garagem_muv_rua
       friendly_name: "Garagem da rua do trabalho"
       optimistic: true
       open_cover:
@@ -52,6 +57,7 @@
         
     garagem_muvrh_interno:
       value_template: "{{ is_state('input_boolean.garagem_muv_interno', 'on') }}"
+      entity_id: input_boolean.garagem_muv_interno
       friendly_name: "Garagem de dentro do trabalho"
       optimistic: true
       open_cover:
