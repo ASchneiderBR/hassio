@@ -23,7 +23,7 @@ Minhas configurações pessoais utilizadas no Home Assistant em casa e no trabal
 
 - Broadlink RM Mini x5
 - Broadlink RM Pro x2
-- Sonoff Basic ESPHome x 33
+- Sonoff Basic ESPHome x 34
 - Sonoff Dual ESPHome x1
 - Sonoff 4CH ESPHome x1
 - MagicLed ESPHome x5
@@ -64,6 +64,7 @@ Minhas configurações pessoais utilizadas no Home Assistant em casa e no trabal
 - Sensor IR (D1 Mini)
 - Sensor umidade de solo (D1 Mini)
 - Acionador controle remoto (D1 Mini)
+- Coifa com controle individual da luz e motor (Sonoff Basic + relay)
 
 # Tela inicial:
 
