@@ -100,6 +100,7 @@ filter:
     - light.suite_banheiro_espelho
     - light.suite_principal
     - light.neopixel_movel_sala
+    - light.coifa_luz
     - switch.automacoes_luzes
     - switch.aspirador
     - switch.chuveirosocial
@@ -124,6 +125,7 @@ filter:
     - switch.lava_loucas_homekit_aquaspray
     - switch.lava_loucas_homekit_economico
     - switch.lava_loucas_homekit_diaadia
+    - switch.coifa_motor
     - script.speed_test
     - script.aspirador_homekit_zona_mop
     - script.aspirador_homekit_zona_sala

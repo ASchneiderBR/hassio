@@ -173,6 +173,7 @@ exclude:
     - sensor.sirene_sinal_wifi
     - sensor.tv_dinamica_sinal_wifi
     - sensor.ventilador_sinal_wifi
+    - sensor.coifa_sinal_wifi
     - sensor.banheiro_203_interruptores
     - sensor.cafeteira_interruptores
     - sensor.cafeteira_muvrh_interruptores

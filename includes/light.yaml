@@ -20,6 +20,7 @@
   entities:
     - light.ledcozinhabalcao
     - light.ledchaocozinha
+    - light.coifa_luz
 
 - platform: group
   name: "Todas as luzes cozinha"
@@ -28,6 +29,7 @@
     - light.ledcozinhabalcao
     - light.ledchaocozinha
     - light.area_servico
+    - light.coifa_luz
 
 - platform: group
   name: "Luzes principais quarto"

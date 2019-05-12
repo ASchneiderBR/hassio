@@ -103,31 +103,31 @@ automation:
       from: 'Escolher zona'
     action:
       - service_template: >
-          {% if states.input_select.zonas_de_aspiracao.state == "Casa toda" %}
+          {% if is_state('input_select.zonas_de_aspiracao', 'Casa toda') %}
             script.aspirador_zona_casa_toda
-          {% elif states.input_select.zonas_de_aspiracao.state == "Sala inteira" %}
+          {% elif is_state('input_select.zonas_de_aspiracao', 'Sala inteira') %}
             script.aspirador_zona_sala_inteira
-          {% elif states.input_select.zonas_de_aspiracao.state == "Tapete" %}
+          {% elif is_state('input_select.zonas_de_aspiracao', 'Tapete') %}
             script.aspirador_zona_tapete
-          {% elif states.input_select.zonas_de_aspiracao.state == "Mesa de jantar" %}
+          {% elif is_state('input_select.zonas_de_aspiracao', 'Mesa de jantar') %}
             script.aspirador_zona_mesa_jantar
-          {% elif states.input_select.zonas_de_aspiracao.state == "Entrada" %}
+          {% elif is_state('input_select.zonas_de_aspiracao', 'Entrada') %}
             script.aspirador_zona_entrada
-          {% elif states.input_select.zonas_de_aspiracao.state == "Cozinha" %}
+          {% elif is_state('input_select.zonas_de_aspiracao', 'Cozinha') %}
             script.aspirador_zona_cozinha
-          {% elif states.input_select.zonas_de_aspiracao.state == "Banheiro social" %}
+          {% elif is_state('input_select.zonas_de_aspiracao', 'Banheiro social') %}
             script.aspirador_zona_banheiro_social
-          {% elif states.input_select.zonas_de_aspiracao.state == "Banheiro da suíte" %}
+          {% elif is_state('input_select.zonas_de_aspiracao', 'Banheiro da suíte') %}
             script.aspirador_zona_banheiro_suite
-          {% elif states.input_select.zonas_de_aspiracao.state == "Quarto" %}
+          {% elif is_state('input_select.zonas_de_aspiracao', 'Quarto') %}
             script.aspirador_zona_quarto
-          {% elif states.input_select.zonas_de_aspiracao.state == "Suite" %}
+          {% elif is_state('input_select.zonas_de_aspiracao', 'Suite') %}
             script.aspirador_zona_suite
-          {% elif states.input_select.zonas_de_aspiracao.state == "Suíte mais banheiro" %}
+          {% elif is_state('input_select.zonas_de_aspiracao', 'Suíte mais banheiro') %}
             script.aspirador_zona_suite_e_banheiro
-          {% elif states.input_select.zonas_de_aspiracao.state == "Quartos e banheiros" %}
+          {% elif is_state('input_select.zonas_de_aspiracao', 'Quartos e banheiros') %}
             script.aspirador_zona_quartos_e_banheiros
-          {% elif states.input_select.zonas_de_aspiracao.state == "Somente piso" %}
+          {% elif is_state('input_select.zonas_de_aspiracao', 'Somente piso') %}
             script.aspirador_zona_mop
           {% else %}
             script.nada
@@ -224,7 +224,7 @@ script:
       data:
         entity_id: vacuum.aspirador
         command: app_zoned_clean
-        params: [[23745,21949,25745,31299,1],[22491,25343,23741,27643,1]]
+        params: [[23905,21987,26255,31337,1],[21493,25588,22543,26838,1],[22581,25389,23931,27789,1]]
     - service: script.aspirador_alerta_iniciando
 
   aspirador_zona_tapete:
@@ -233,7 +233,7 @@ script:
       data:
         entity_id: vacuum.aspirador
         command: app_zoned_clean
-        params: [[23804,23551,25004,25301,2]]
+        params: [[23880,23529,25130,25329,1]]
     - service: script.aspirador_alerta_iniciando
 
   aspirador_zona_mesa_jantar:
@@ -242,7 +242,7 @@ script:
       data:
         entity_id: vacuum.aspirador
         command: app_zoned_clean
-        params: [[23573,26400,25823,28850,1]]
+        params: [[24017,26407,26017,28807,1]]
     - service: script.aspirador_alerta_iniciando
 
   aspirador_zona_entrada:
@@ -251,7 +251,7 @@ script:
       data:
         entity_id: vacuum.aspirador
         command: app_zoned_clean
-        params: [[23620,28957,24920,31307,1]]
+        params: [[23822,28974,25122,31374,1]]
     - service: script.aspirador_alerta_iniciando
 
   aspirador_zona_cozinha:
@@ -260,7 +260,7 @@ script:
       data:
         entity_id: vacuum.aspirador
         command: app_zoned_clean
-        params: [[18839,29577,23689,31177,1]]
+        params: [[19131,29589,23931,31239,1]]
     - service: script.aspirador_alerta_iniciando
 
   aspirador_zona_banheiro_social:
@@ -273,7 +273,7 @@ script:
       data:
         entity_id: vacuum.aspirador
         command: app_zoned_clean
-        params: [[18885,25636,21185,26786,1]]
+        params: [[19673,25650,21373,26900,1]]
     - service: script.aspirador_alerta_iniciando
 
   aspirador_zona_banheiro_suite:
@@ -286,7 +286,7 @@ script:
       data:
         entity_id: vacuum.aspirador
         command: app_zoned_clean
-        params: [[18815,24240,21115,25390,1]]
+        params: [[19613,24227,21313,25477,1]]
     - service: script.aspirador_alerta_iniciando
 
   aspirador_zona_quarto:
@@ -295,7 +295,7 @@ script:
       data:
         entity_id: vacuum.aspirador
         command: app_zoned_clean
-        params: [[18484,27011,21984,29461,1]]
+        params: [[18863,27028,21963,29428,1]]
     - service: script.aspirador_alerta_iniciando
 
   aspirador_zona_suite:
@@ -304,7 +304,7 @@ script:
       data:
         entity_id: vacuum.aspirador
         command: app_zoned_clean
-        params: [[18931,21286,22581,23936,1],[21250,23964,22100,25464,1]]
+        params: [[19135,21224,22785,24024,1],[21432,24040,22382,25540,1]]
     - service: script.aspirador_alerta_iniciando
 
   aspirador_zona_suite_e_banheiro:
@@ -313,7 +313,7 @@ script:
       data:
         entity_id: vacuum.aspirador
         command: app_zoned_clean
-        params: [[18897,21234,22497,25434,1]]
+        params: [[19093,21228,22843,25528,1]]
     - service: script.aspirador_alerta_iniciando
 
   aspirador_zona_quartos_e_banheiros:
@@ -322,7 +322,7 @@ script:
       data:
         entity_id: vacuum.aspirador
         command: app_zoned_clean
-        params: [[18554,21238,22454,29338,1]]
+        params: [[18773,21262,22723,29462,1]]
     - service: script.aspirador_alerta_iniciando
 
   aspirador_zona_mop:
@@ -335,7 +335,7 @@ script:
       data:
         entity_id: vacuum.aspirador
         command: app_zoned_clean
-        params: [[18554,21238,22454,29338,1],[22528,25448,25878,27598,1],[25164,22181,25814,25431,1],[18854,29557,24854,31407,1],[23607,27587,25857,29537,1]]
+        params: [[18773,21262,22723,29462,1],[19189,29076,25089,31476,1],[22804,25476,24254,29026,1],[22898,25473,25598,26323,1]]
     - service: script.aspirador_alerta_iniciando
 
   aspirador_voltar_dock:

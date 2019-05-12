@@ -69,6 +69,7 @@ energia_casa:
   - light.suite_principal
   - light.status_maquina_de_lavar_loucas
   - light.movel_da_sala
+  - light.coifa_luz
   - switch.home_theater_sala
   - switch.chuveirosuite
   - switch.toalheiro
@@ -79,6 +80,7 @@ energia_casa:
   - switch.cafeteira_casa
   - switch.chaleira_casa
   - switch.ventilador_casa
+  - switch.coifa_motor
   name: Energia casa
   view: false
 

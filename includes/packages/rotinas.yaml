@@ -149,23 +149,18 @@ automation:
       - service: media_player.volume_set
         data_template:
           volume_level: 0.8
-          entity_id: >-
-            {% if trigger.to_state.entity_id == "switch.chuveirosuite" %}
-              media_player.banheiro_da_suite
-            {% else %}
-              media_player.banheiro_social
-            {% endif %}
-      - wait_template: "{{ trigger.to_state.state == 'off' }}"
+          entity_id: "{{ 'media_player.banheiro_da_suite' if trigger.to_state.entity_id == 'switch.chuveirosuite' else 'media_player.banheiro_social' }}"
+      - wait_template: >-
+          {% if trigger.to_state.entity_id == 'switch.chuveirosuite' %}
+            {{ is_state('switch.chuveirosuite' , 'off') }}
+          {% else %}
+            {{ is_state('switch.chuveirosocial' , 'off') }}
+          {% endif %}
       - delay: '00:00:02'
       - service: media_player.volume_set
         data_template:
           volume_level: 0.4
-          entity_id: >-
-            {% if trigger.to_state.entity_id == "switch.chuveirosuite" %}
-              media_player.banheiro_da_suite
-            {% else %}
-              media_player.banheiro_social
-            {% endif %}
+          entity_id: "{{ 'media_player.banheiro_da_suite' if trigger.to_state.entity_id == 'switch.chuveirosuite' else 'media_player.banheiro_social' }}"
 
 script:
 
@@ -273,7 +268,7 @@ script:
     sequence:
       - condition: template
         value_template: >-
-          {% set lights = ['light.area_servico','light.suite_banheiro_principal','light.suite_banheiro_espelho','light.corredor','light.cozinha','light.entrada','light.ledchaocozinha','light.ledcozinhabalcao','light.ledquartotv','light.ledsaladesktop','light.ledsalatv','light.ledsuitecama','light.ledsuitetv','light.mesa_de_jantar','light.quarto','light.sala_principal','light.banheiro_social_principal','light.banheiro_social_espelho','light.suite_principal','light.status_maquina_de_lavar_loucas','light.movel_da_sala'] %}
+          {% set lights = ['light.area_servico','light.suite_banheiro_principal','light.suite_banheiro_espelho','light.corredor','light.cozinha','light.entrada','light.ledchaocozinha','light.ledcozinhabalcao','light.ledquartotv','light.ledsaladesktop','light.ledsalatv','light.ledsuitecama','light.ledsuitetv','light.mesa_de_jantar','light.quarto','light.sala_principal','light.banheiro_social_principal','light.banheiro_social_espelho','light.suite_principal','light.status_maquina_de_lavar_loucas','light.movel_da_sala','light.coifa_luz'] %}
           {% for item in lights if states(item) == 'on' %}
           {% if loop.first %}
             {{ true }}
@@ -284,7 +279,7 @@ script:
       - service: light.turn_off
         data_template:
           entity_id: >-
-              {% set lights = ['light.area_servico','light.suite_banheiro_principal','light.suite_banheiro_espelho','light.corredor','light.cozinha','light.entrada','light.ledchaocozinha','light.ledcozinhabalcao','light.ledquartotv','light.ledsaladesktop','light.ledsalatv','light.ledsuitecama','light.ledsuitetv','light.mesa_de_jantar','light.quarto','light.sala_principal','light.banheiro_social_principal','light.banheiro_social_espelho','light.suite_principal','light.status_maquina_de_lavar_loucas','light.movel_da_sala'] %}
+              {% set lights = ['light.area_servico','light.suite_banheiro_principal','light.suite_banheiro_espelho','light.corredor','light.cozinha','light.entrada','light.ledchaocozinha','light.ledcozinhabalcao','light.ledquartotv','light.ledsaladesktop','light.ledsalatv','light.ledsuitecama','light.ledsuitetv','light.mesa_de_jantar','light.quarto','light.sala_principal','light.banheiro_social_principal','light.banheiro_social_espelho','light.suite_principal','light.status_maquina_de_lavar_loucas','light.movel_da_sala','light.coifa_luz'] %}
               {{ states.light | selectattr('entity_id', 'in', lights) | selectattr('state','eq','on') | map(attribute='entity_id') | join(', ') }}
 
   casa_desligar_tudo_switches:
@@ -292,7 +287,7 @@ script:
     sequence:
       - condition: template
         value_template: >-
-          {% set switches = ['switch.chuveirosuite','switch.toalheiro','switch.tv_lg_sala','switch.tv_lg_suite','switch.chuveirosocial','switch.tv_lg_quarto','switch.cafeteira_casa','switch.chaleira_casa','switch.ventilador_casa','switch.home_theater_sala'] %}
+          {% set switches = ['switch.chuveirosuite','switch.toalheiro','switch.tv_lg_sala','switch.tv_lg_suite','switch.chuveirosocial','switch.tv_lg_quarto','switch.cafeteira_casa','switch.chaleira_casa','switch.ventilador_casa','switch.home_theater_sala','switch.coifa_motor'] %}
           {% for item in switches if states(item) == 'on' %}
           {% if loop.first %}
             {{ true }}
@@ -303,7 +298,7 @@ script:
       - service: switch.turn_off
         data_template:
           entity_id: >-
-              {% set switches = ['switch.chuveirosuite','switch.toalheiro','switch.tv_lg_sala','switch.tv_lg_suite','switch.chuveirosocial','switch.tv_lg_quarto','switch.cafeteira_casa','switch.chaleira_casa','switch.ventilador_casa','switch.home_theater_sala'] %}
+              {% set switches = ['switch.chuveirosuite','switch.toalheiro','switch.tv_lg_sala','switch.tv_lg_suite','switch.chuveirosocial','switch.tv_lg_quarto','switch.cafeteira_casa','switch.chaleira_casa','switch.ventilador_casa','switch.home_theater_sala','switch.coifa_motor'] %}
               {{ states.switch| selectattr('entity_id', 'in', switches) | selectattr('state','eq','on') | map(attribute='entity_id') | join(', ') }}
 
   casa_desligar_tudo_media_players:

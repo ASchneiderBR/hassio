@@ -179,6 +179,10 @@ entity_config:
     expose: true
     room: Sala
 
+  light.coifa_luz:
+    expose: true
+    room: Cozinha
+
   switch.automacoes_luzes:
     expose: true
     room: Automações
@@ -264,6 +268,10 @@ entity_config:
     room: Cozinha
 
   switch.lava_loucas_homekit_diaadia:
+    expose: true
+    room: Cozinha
+
+  switch.coifa_motor:
     expose: true
     room: Cozinha
 
