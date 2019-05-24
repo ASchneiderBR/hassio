@@ -27,23 +27,25 @@ exclude:
     - sensor.pws_precip_1d
     - sensor.pws_relative_humidity
     - sensor.dark_sky_cloud_coverage
-    - sensor.dark_sky_cloud_coverage_1
-    - sensor.dark_sky_daytime_high_temperature_0
-    - sensor.dark_sky_daytime_high_temperature_1d
-    - sensor.dark_sky_daily_low_temperature
-    - sensor.dark_sky_daily_low_temperature_1
-    - sensor.dark_sky_daytime_high_temperature_0
-    - sensor.dark_sky_overnight_low_temperature
-    - sensor.dark_sky_daytime_high_temperature_1d
-    - sensor.dark_sky_overnight_low_temperature_1
+    - sensor.dark_sky_cloud_coverage_0d
+    - sensor.dark_sky_cloud_coverage_1d
     - sensor.dark_sky_daily_summary
-    - sensor.dark_sky_humidity_1
-    - sensor.dark_sky_icon
-    - sensor.dark_sky_icon_1
+    - sensor.dark_sky_daytime_high_temperature_0d
+    - sensor.dark_sky_daytime_high_temperature_1d
+    - sensor.dark_sky_humidity
+    - sensor.dark_sky_humidity_0d
+    - sensor.dark_sky_humidity_1d
     - sensor.dark_sky_minutely_summary
+    - sensor.dark_sky_overnight_low_temperature_0d
+    - sensor.dark_sky_overnight_low_temperature_1d
     - sensor.dark_sky_precip_probability
-    - sensor.dark_sky_precip_probability_1
+    - sensor.dark_sky_precip_probability_0d
+    - sensor.dark_sky_precip_probability_1d
     - sensor.dark_sky_summary
+    - sensor.dark_sky_summary_0d
+    - sensor.dark_sky_summary_1d
+    - sensor.dark_sky_temperature
+    - weather.dark_sky
     - sensor.since_last_boot
     - sensor.igd_packets_received
     - sensor.igd_packets_sent
@@ -78,6 +80,7 @@ exclude:
     - input_boolean.sair_muvrh
     - binary_sensor.cube_158d00010b2e3e
     - binary_sensor.cube_158d00010b2e64
+    - binary_sensor.cloudflare_ping
     - input_boolean.spotify_shuffle
     - input_number.spotify_volume
     - input_select.spotify_playlist
@@ -181,6 +184,15 @@ exclude:
     - sensor.ender3_interruptores
     - sensor.entrada_303_interruptores
     - sensor.mesa_de_jantar_interruptores
+    - sensor.google_home_alarme_suite_dia	
+    - sensor.google_home_alarme_suite_faltando	
+    - sensor.google_home_alarme_suite_hora	
+    - sensor.banheiro_da_suite_alarm
+    - sensor.banheiro_social_alarm
+    - sensor.cozinha_alarm
+    - sensor.quarto_alarm
+    - sensor.sala_alarm
+    - sensor.suite_alarm
     - input_boolean.persiana_suite
     - input_boolean.persiana_quarto
     - input_boolean.persiana_sala

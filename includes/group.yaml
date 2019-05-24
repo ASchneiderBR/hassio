@@ -67,7 +67,6 @@ energia_casa:
   - light.banheiro_social_principal
   - light.banheiro_social_espelho
   - light.suite_principal
-  - light.status_maquina_de_lavar_loucas
   - light.movel_da_sala
   - light.coifa_luz
   - switch.home_theater_sala

@@ -10,7 +10,7 @@
   forecast:
     - 0
     - 1
-  scan_interval: '05:00'
+  scan_interval: '30:00'
   monitored_conditions:
     - summary
     - temperature
@@ -19,7 +19,6 @@
     - humidity
     - precip_probability
     - daily_summary
-    - minutely_summary
     - cloud_cover
 
 - platform: uptime
@@ -27,7 +26,7 @@
   unit_of_measurement: days
 
 - platform: broadlink
-  scan_interval: '00:30'
+  scan_interval: '01:00'
   name: MuvRH
   host: 192.168.1.35
   mac: '34:EA:34:E4:5F:2F'
@@ -40,6 +39,7 @@
     - 6
     - 13
     - 20
+
 
 - platform: systemmonitor
   resources:
@@ -61,6 +61,12 @@
       entity_id: sensor.muvrh_temperature
       unit_of_measurement: '°C'
       value_template: "{{ (states.sensor.muvrh_temperature.state  | float) - 4 }}"
+
+    cloudflare_ping:
+      friendly_name: 'Cloudflare ping'
+      entity_id: binary_sensor.cloudflare_ping
+      value_template: "{{ state_attr('binary_sensor.cloudflare_ping', 'round_trip_time_avg') | round(0) }}"
+      unit_of_measurement: "ms"
 
 - platform: time_date
   display_options:

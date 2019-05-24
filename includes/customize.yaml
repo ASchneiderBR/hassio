@@ -88,6 +88,9 @@ sensor.ram_used:
 sensor.since_last_boot:
   friendly_name: Desde a última reinicialização
 
+sensor.cloudflare_ping:
+  icon: mdi:speedometer
+
 group.script:
   hidden: true
 
@@ -626,7 +629,7 @@ sensor.dark_sky_summary:
 sensor.dark_sky_temperature:
   friendly_name: "Temperatura externa"
 
-sensor.dark_sky_daytime_high_temperature_0:
+sensor.dark_sky_daytime_high_temperature_0d:
   friendly_name: "Temperatura maxima hoje"
 
 sensor.dark_sky_daytime_high_temperature_1d:

@@ -784,6 +784,7 @@
         - device_tracker.chromecast_sala303
         - device_tracker.celular_motog2_muvrh
         - device_tracker.celular_branco
+        - device_tracker.wyzecam_303_dinamica
       to: 'not_home'
       for:
         minutes: 15

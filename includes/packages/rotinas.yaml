@@ -77,20 +77,20 @@ automation:
       - service: notify.todos_celulares
         data_template:
           title: "Automação"
-          message: "Bom dia! Hoje a máxima será de {{ states.sensor.dark_sky_daytime_high_temperature_0.state | int }}ºC com previsão de {{ states.sensor.dark_sky_summary.state | lower }}"
-      - service: switch.turn_on
-        entity_id: switch.toalheiro
-      - service_template: >-
-          {% if is_state('input_boolean.cafe_manha', 'on') %}
-            switch.turn_on
-          {% else %}
-            script.nada
-          {% endif %}
-        data_template:
-          entity_id: >-
-              {% if is_state('input_boolean.cafe_manha', 'on') %}
-                switch.cafeteira_casa
-              {% endif %}
+          message: "Bom dia! Hoje a máxima será de {{ states.sensor.dark_sky_daytime_high_temperature_0d.state | int }}ºC com previsão de {{ states.sensor.dark_sky_summary.state | lower }}"
+#      - service: switch.turn_on
+#        entity_id: switch.toalheiro
+#      - service_template: >-
+#          {% if is_state('input_boolean.cafe_manha', 'on') %}
+#            switch.turn_on
+#          {% else %}
+#            script.nada
+#          {% endif %}
+#        data_template:
+#          entity_id: >-
+#              {% if is_state('input_boolean.cafe_manha', 'on') %}
+#                switch.cafeteira_casa
+#              {% endif %}
       - service_template: >-
           {% if is_state('climate.ar_condicionado_da_suite' , 'off') %}
             script.nada
@@ -368,31 +368,31 @@ script:
       - service: notify.todos_celulares
         data_template:
           title: "Automação"
-          message: "Bom dia! Hoje a máxima será de {{ states.sensor.dark_sky_daytime_high_temperature_0.state | int }}ºC com previsão de {{ states.sensor.dark_sky_summary.state | lower }}"
-      - service: switch.turn_on
-        entity_id: switch.toalheiro
-      - service_template: >-
-          {% if is_state('input_boolean.cafe_manha', 'on') %}
-            switch.turn_on
-          {% else %}
-            script.nada
-          {% endif %}
-        data_template:
-          entity_id: >-
-              {% if is_state('input_boolean.cafe_manha', 'on') %}
-                switch.cafeteira_casa
-              {% endif %}
-      - service_template: >-
-          {% if is_state('input_boolean.chaleira_manha', 'on') %}
-            switch.turn_on
-          {% else %}
-            script.nada
-          {% endif %}
-        data_template:
-          entity_id: >-
-              {% if is_state('input_boolean.chaleira_manha', 'on') %}
-                switch.chaleira_casa
-              {% endif %}
+          message: "Bom dia! Hoje a máxima será de {{ states.sensor.dark_sky_daytime_high_temperature_0d.state | int }}ºC com previsão de {{ states.sensor.dark_sky_summary.state | lower }}"
+#      - service: switch.turn_on
+#        entity_id: switch.toalheiro
+#      - service_template: >-
+#          {% if is_state('input_boolean.cafe_manha', 'on') %}
+#            switch.turn_on
+#          {% else %}
+#            script.nada
+#          {% endif %}
+#        data_template:
+#          entity_id: >-
+#              {% if is_state('input_boolean.cafe_manha', 'on') %}
+#                switch.cafeteira_casa
+#              {% endif %}
+#      - service_template: >-
+#          {% if is_state('input_boolean.chaleira_manha', 'on') %}
+#            switch.turn_on
+#          {% else %}
+#            script.nada
+#          {% endif %}
+#        data_template:
+#          entity_id: >-
+#              {% if is_state('input_boolean.chaleira_manha', 'on') %}
+#                switch.chaleira_casa
+#              {% endif %}
       - service_template: >-
           {% if is_state('climate.ar_condicionado_da_suite' , 'off') %}
             script.nada

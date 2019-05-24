@@ -76,6 +76,12 @@
       friendly_name: 'Box da areia fechado'
       device_class: problem
 
+- platform: ping
+  name: Cloudflare ping
+  host: 1.1.1.1
+  count: 5
+  scan_interval: 300
+
 - platform: mqtt
   name: "Estado TV sala dinâmica"
   state_topic: "tele/muv303tvdinamica/LWT"

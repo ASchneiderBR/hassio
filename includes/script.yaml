@@ -183,7 +183,7 @@ ghm_play_media:
         entity_id: >-
             {%- set players = ['media_player.banheiro_social', 'media_player.banheiro_da_suite', 'media_player.cozinha', 'media_player.quarto', 'media_player.sala', 'media_player.suite'] %}
             {{ states.media_player | selectattr('state','!=','playing') | selectattr('entity_id', 'in', players) | map(attribute='entity_id') | join(', ') }}
-        volume_level: '{{volume}}'
+        volume_level: 0
     - service: media_player.play_media
       data_template:
         entity_id: >-
@@ -208,6 +208,12 @@ ghm_play_media:
           {%- endif %}
         media_content_type: 'audio/mp3'
         media_content_id: '{{media}}'
+    - service: media_player.volume_set
+      data_template:
+        entity_id: >-
+            {%- set players = ['media_player.banheiro_social', 'media_player.banheiro_da_suite', 'media_player.cozinha', 'media_player.quarto', 'media_player.sala', 'media_player.suite'] %}
+            {{ states.media_player | selectattr('state','!=','playing') | selectattr('entity_id', 'in', players) | map(attribute='entity_id') | join(', ') }}
+        volume_level: '{{volume}}'
 
 ghm_tts:
   sequence:
@@ -218,7 +224,7 @@ ghm_tts:
         entity_id: >-
             {%- set players = ['media_player.banheiro_social', 'media_player.banheiro_da_suite', 'media_player.cozinha', 'media_player.quarto', 'media_player.sala', 'media_player.suite'] %}
             {{ states.media_player | selectattr('state','!=','playing') | selectattr('entity_id', 'in', players) | map(attribute='entity_id') | join(', ') }}
-        volume_level: '{{volume}}'
+        volume_level: 0
     - service: tts.amazon_polly_say
       data_template:
         entity_id: >-
@@ -242,6 +248,12 @@ ghm_tts:
               {%- endif %}
           {%- endif %}
         message: '{{tts}}'
+    - service: media_player.volume_set
+      data_template:
+        entity_id: >-
+            {%- set players = ['media_player.banheiro_social', 'media_player.banheiro_da_suite', 'media_player.cozinha', 'media_player.quarto', 'media_player.sala', 'media_player.suite'] %}
+            {{ states.media_player | selectattr('state','!=','playing') | selectattr('entity_id', 'in', players) | map(attribute='entity_id') | join(', ') }}
+        volume_level: '{{volume}}'
 
 ghm_play_media_test:
   sequence:

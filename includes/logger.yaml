@@ -1,4 +1,4 @@
 default: error
-logs:
-  homeassistant.components.homekit: warning
-  pyhap: warning
+#logs:
+#  homeassistant.components.homekit: warning
+#  pyhap: warning

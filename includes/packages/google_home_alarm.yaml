@@ -1,0 +1,86 @@
+sensor:
+
+  - platform: template
+    sensors:
+      google_home_alarme_suite_hora:
+        friendly_name: "Hora"
+        value_template: "{% if not is_state('sensor.suite_alarm', 'unavailable') %}{{ as_timestamp(states.sensor.suite_alarm.state) | timestamp_custom('%H:%M') }}{% endif %}"
+        entity_id: sensor.suite_alarm
+
+      google_home_alarme_suite_dia:
+        friendly_name: "Dia"
+        value_template: "{% if not is_state('sensor.suite_alarm', 'unavailable') %}{{ as_timestamp(states.sensor.suite_alarm.state) | timestamp_custom('%d/%m/%Y') }}{% endif %}"
+        entity_id: sensor.suite_alarm
+
+      google_home_alarme_suite_faltando:
+        friendly_name: "Faltam"
+        value_template: "{% if not is_state('sensor.suite_alarm', 'unavailable') %}{{ (((as_timestamp(states.sensor.suite_alarm.state) - as_timestamp(now())) /60) /60) | round(0)}}{% endif %}"
+        entity_id: sensor.time
+        unit_of_measurement: "horas"
+
+homeassistant:
+  customize:
+
+    sensor.google_home_alarme_suite_hora:
+      icon: mdi:clock-outline
+
+    sensor.google_home_alarme_suite_dia:
+      icon: mdi:calendar-clock
+
+    sensor.google_home_alarme_suite_faltando:
+      icon: mdi:timer
+
+automation:
+
+  - alias: Desperatador - Suíte 1 hora antes
+    initial_state: true
+    trigger:
+      - platform: template
+        value_template: "{{ (not is_state('sensor.suite_alarm', 'unavailable')) and (states('sensor.time') == (as_timestamp(states.sensor.suite_alarm.state) - 3600) | timestamp_custom('%H:%M')) and (states('sensor.date') == as_timestamp(states.sensor.suite_alarm.state) | timestamp_custom('%Y-%m-%d')) }}"
+    action:
+      - service: switch.turn_on
+        entity_id: switch.toalheiro
+      - delay: '00:40:00'
+      - service: script.ghm_play_media
+        data_template:
+          media: 'http://192.168.1.12:8123/local/audio/despertador/passarinhos.m4a'
+          volume: 0.6
+      - delay: '00:05:00'
+      - service: light.turn_on
+        entity_id: light.ledsuitetv
+        data:
+          transition: 900
+          brightness_pct: 80
+          rgb_color: [255,60,0]
+      - service_template: >-
+          {% if is_state('input_boolean.cafe_manha', 'on') %}
+            switch.turn_on
+          {% else %}
+            script.nada
+          {% endif %}
+        data_template:
+          entity_id: >-
+              {% if is_state('input_boolean.cafe_manha', 'on') %}
+                switch.cafeteira_casa
+              {% endif %}
+      - service_template: >-
+          {% if is_state('input_boolean.chaleira_manha', 'on') %}
+            switch.turn_on
+          {% else %}
+            script.nada
+          {% endif %}
+        data_template:
+          entity_id: >-
+              {% if is_state('input_boolean.chaleira_manha', 'on') %}
+                switch.chaleira_casa
+              {% endif %}
+      - delay: '00:05:00'
+      - service: light.turn_on
+        entity_id: light.ledsuitecama
+        data:
+          transition: 600
+          brightness_pct: 60
+          rgb_color: [255,60,0]
+      - delay: '00:08:00'
+      - service: cover.open_cover
+        entity_id: cover.persiana_suite
