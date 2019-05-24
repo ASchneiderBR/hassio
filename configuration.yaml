@@ -30,6 +30,7 @@ hassio:
 history:
 logbook:
 map:
+#stream:
 sun:
 system_health:
 updater:
@@ -49,6 +50,7 @@ discovery: !include includes/discovery.yaml
 fastdotcom: !include includes/fastdotcom.yaml
 frontend: !include includes/frontend.yaml
 google_assistant: !include includes/google_assistant.yaml
+googlehome: !include includes/googlehome.yaml
 group: !include includes/group.yaml
 homekit: !include includes/homekit.yaml
 http: !include includes/http.yaml
