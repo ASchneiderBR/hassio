@@ -81,6 +81,15 @@ exclude:
     - binary_sensor.cube_158d00010b2e3e
     - binary_sensor.cube_158d00010b2e64
     - binary_sensor.cloudflare_ping
+    - binary_sensor.notebook_antonio
+    - binary_sensor.notebook_roberta
+    - binary_sensor.servidor
+    - binary_sensor.muvrh_01
+    - binary_sensor.muvrh_02
+    - binary_sensor.muvrh_03
+    - binary_sensor.muvrh_04
+    - binary_sensor.muvrh_05
+    - binary_sensor.muvrh_06
     - input_boolean.spotify_shuffle
     - input_number.spotify_volume
     - input_select.spotify_playlist
@@ -184,9 +193,9 @@ exclude:
     - sensor.ender3_interruptores
     - sensor.entrada_303_interruptores
     - sensor.mesa_de_jantar_interruptores
-    - sensor.google_home_alarme_suite_dia	
-    - sensor.google_home_alarme_suite_faltando	
-    - sensor.google_home_alarme_suite_hora	
+    - sensor.google_home_alarme_suite_dia
+    - sensor.google_home_alarme_suite_faltando
+    - sensor.google_home_alarme_suite_hora
     - sensor.banheiro_da_suite_alarm
     - sensor.banheiro_social_alarm
     - sensor.cozinha_alarm

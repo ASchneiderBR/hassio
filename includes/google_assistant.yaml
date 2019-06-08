@@ -404,3 +404,8 @@ entity_config:
     expose: true
     room: Apartamento
     name: Modo festa
+
+  script.ghm_play_jovempan:
+    expose: true
+    room: Apartamento
+    name: Jovem Pan

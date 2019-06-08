@@ -111,6 +111,13 @@ filter:
     - switch.home_theater_sala
     - switch.muv203bebedouro
     - switch.muv303bebedouro
+    - switch.notebook_antonio
+    - switch.notebook_roberta
+    - switch.notebook_lg
+    - switch.notebook_muvrh_01
+    - switch.notebook_muvrh_02
+    - switch.notebook_muvrh_05
+    - switch.notebook_muvrh_06
     - switch.servidor
     - switch.sirene
     - switch.sistema_alarme_casa
@@ -140,30 +147,6 @@ filter:
     - person.roberta
 
 entity_config:
-  switch.toalheiro:
-    name: "Toalheiro"
-    type: outlet
-  switch.muv203bebedouro:
-    name: "Bebedouro 203"
-    type: outlet
-  switch.muv303bebedouro:
-    name: "Bebedouro 303"
-    type: outlet
-  switch.chuveirosocial:
-    name: "Chuveiro"
-    type: shower
-  switch.chuveirosuite:
-    name: "Chuveiro"
-    type: shower
-  switch.muvrh_cafeteira:
-    name: "Cafeteira"
-    type: outlet
-  switch.cafeteira_casa:
-    name: "Cafeteira"
-    type: outlet
-  switch.chaleira_casa:
-    name: "Chaleira"
-    type: outlet
   input_boolean.boa_noite:
     name: "Boa noite"
   input_boolean.bom_dia:
@@ -324,6 +307,44 @@ entity_config:
     name: "Espelho"
   light.suite_principal:
     name: "Principal"
+  switch.notebook_antonio:
+    name: "Notebook Antonio"
+  switch.notebook_roberta:
+    name: "Notebook Roberta"
+  switch.notebook_lg:
+    name: "Notebook LG"
+  switch.notebook_muvrh_01:
+    name: "Notebook 01"
+  switch.notebook_muvrh_02:
+    name: "Notebook 02"
+  switch.notebook_muvrh_05:
+    name: "Notebook 05"
+  switch.notebook_muvrh_06:
+    name: "Notebook 06"
+  switch.toalheiro:
+    name: "Toalheiro"
+    type: outlet
+  switch.muv203bebedouro:
+    name: "Bebedouro 203"
+    type: outlet
+  switch.muv303bebedouro:
+    name: "Bebedouro 303"
+    type: outlet
+  switch.chuveirosocial:
+    name: "Chuveiro"
+    type: shower
+  switch.chuveirosuite:
+    name: "Chuveiro"
+    type: shower
+  switch.muvrh_cafeteira:
+    name: "Cafeteira"
+    type: outlet
+  switch.cafeteira_casa:
+    name: "Cafeteira"
+    type: outlet
+  switch.chaleira_casa:
+    name: "Chaleira"
+    type: outlet
   switch.automacoes_luzes:
     name: "Luzes"
   switch.aspirador:

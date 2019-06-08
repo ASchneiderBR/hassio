@@ -1,0 +1,3 @@
+username: !secret tuya_antonio_user
+password: !secret tuya_antonio_password
+country_code: 1

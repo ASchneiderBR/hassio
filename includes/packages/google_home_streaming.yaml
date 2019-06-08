@@ -1,0 +1,9 @@
+script:
+
+  ghm_play_jovempan:
+    alias: "Jovem Pan"
+    sequence:
+      - service: script.ghm_play_media
+        data_template:
+          media: 'http://centova14.ciclanohost.com.br:8405/stream'
+          volume: 0.5

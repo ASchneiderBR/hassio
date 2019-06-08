@@ -764,6 +764,7 @@
         - device_tracker.google_home_mini_suite
         - device_tracker.aspirador_xiaomi
         - device_tracker.pi_zero_octoprint_ender3
+#        - device_tracker.fechadura_casa
       to: 'not_home'
       for:
         minutes: 15
@@ -785,6 +786,8 @@
         - device_tracker.celular_motog2_muvrh
         - device_tracker.celular_branco
         - device_tracker.wyzecam_303_dinamica
+#        - device_tracker.fechadura_muvrh_203
+#        - device_tracker.fechadura_muvrh_303
       to: 'not_home'
       for:
         minutes: 15

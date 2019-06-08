@@ -1,0 +1,1093 @@
+binary_sensor:
+
+# Desktop
+
+#  - platform: mqtt
+#    name: "Desktop"
+#    state_topic: "iotlink/workgroup/desktop-sala/lwt"
+#    value_template: "{{ value }}"
+#    payload_on: "ON"
+#    payload_off: "OFF"
+#    device_class: "connectivity"
+#    qos: 1
+
+# Servidor
+
+#  - platform: mqtt
+#    name: "Servidor"
+#    state_topic: "iotlink/workgroup/servidor-casa/lwt"
+#    value_template: "{{ value }}"
+#    payload_on: "ON"
+#    payload_off: "OFF"
+#    device_class: "connectivity"
+#    qos: 1
+
+# Notebook Antonio
+
+  - platform: mqtt
+    name: "Notebook Antonio - Conectado"
+    state_topic: "iotlink/workgroup/notebook-antonio/lwt"
+    value_template: "{{ value }}"
+    payload_on: "ON"
+    payload_off: "OFF"
+    device_class: "connectivity"
+    qos: 1
+
+  - platform: mqtt
+    name: "Notebook Antonio - Carregando"
+    state_topic: "iotlink/workgroup/notebook-antonio/windows-monitor/stats/power/status"
+    value_template: "{{ value }}"
+    payload_on: "Online"
+    payload_off: "Offline"
+    device_class: "plug"
+    availability_topic: "iotlink/workgroup/notebook-antonio/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+# Notebook Roberta
+
+  - platform: mqtt
+    name: "Notebook Roberta - Conectado"
+    state_topic: "iotlink/workgroup/notebook-roberta/lwt"
+    value_template: "{{ value }}"
+    payload_on: "ON"
+    payload_off: "OFF"
+    device_class: "connectivity"
+    qos: 1
+
+  - platform: mqtt
+    name: "Notebook Roberta - Carregando"
+    state_topic: "iotlink/workgroup/notebook-roberta/windows-monitor/stats/power/status"
+    value_template: "{{ value }}"
+    payload_on: "Online"
+    payload_off: "Offline"
+    device_class: "plug"
+    availability_topic: "iotlink/workgroup/notebook-roberta/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+# Notebook LG
+
+  - platform: mqtt
+    name: "Notebook LG - Conectado"
+    state_topic: "iotlink/workgroup/muvrh-lg-303/lwt"
+    value_template: "{{ value }}"
+    payload_on: "ON"
+    payload_off: "OFF"
+    device_class: "connectivity"
+    qos: 1
+
+  - platform: mqtt
+    name: "Notebook LG - Carregando"
+    state_topic: "iotlink/workgroup/muvrh-lg-303/windows-monitor/stats/power/status"
+    value_template: "{{ value }}"
+    payload_on: "Online"
+    payload_off: "Offline"
+    device_class: "plug"
+    availability_topic: "iotlink/workgroup/muvrh-lg-303/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+# Notebook MuvRH 01
+
+  - platform: mqtt
+    name: "Notebook MuvRH 01 - Conectado"
+    state_topic: "iotlink/workgroup/muvrh-01/lwt"
+    value_template: "{{ value }}"
+    payload_on: "ON"
+    payload_off: "OFF"
+    device_class: "connectivity"
+    qos: 1
+
+  - platform: mqtt
+    name: "Notebook MuvRH 01 - Carregando"
+    state_topic: "iotlink/workgroup/muvrh-01/windows-monitor/stats/power/status"
+    value_template: "{{ value }}"
+    payload_on: "Online"
+    payload_off: "Offline"
+    device_class: "plug"
+    availability_topic: "iotlink/workgroup/muvrh-01/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+# Notebook MuvRH 02
+
+  - platform: mqtt
+    name: "Notebook MuvRH 02 - Conectado"
+    state_topic: "iotlink/workgroup/muvrh-02/lwt"
+    value_template: "{{ value }}"
+    payload_on: "ON"
+    payload_off: "OFF"
+    device_class: "connectivity"
+    qos: 1
+
+  - platform: mqtt
+    name: "Notebook MuvRH 02 - Carregando"
+    state_topic: "iotlink/workgroup/muvrh-02/windows-monitor/stats/power/status"
+    value_template: "{{ value }}"
+    payload_on: "Online"
+    payload_off: "Offline"
+    device_class: "plug"
+    availability_topic: "iotlink/workgroup/muvrh-02/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+# Notebook MuvRH 03
+
+  - platform: mqtt
+    name: "Notebook MuvRH 03 - Conectado"
+    state_topic: "iotlink/workgroup/muvrh-03/lwt"
+    value_template: "{{ value }}"
+    payload_on: "ON"
+    payload_off: "OFF"
+    device_class: "connectivity"
+    qos: 1
+
+  - platform: mqtt
+    name: "Notebook MuvRH 03 - Carregando"
+    state_topic: "iotlink/workgroup/muvrh-03/windows-monitor/stats/power/status"
+    value_template: "{{ value }}"
+    payload_on: "Online"
+    payload_off: "Offline"
+    device_class: "plug"
+    availability_topic: "iotlink/workgroup/muvrh-03/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+# Notebook MuvRH 04
+
+  - platform: mqtt
+    name: "Notebook MuvRH 04 - Conectado"
+    state_topic: "iotlink/workgroup/muvrh-04/lwt"
+    value_template: "{{ value }}"
+    payload_on: "ON"
+    payload_off: "OFF"
+    device_class: "connectivity"
+    qos: 1
+
+  - platform: mqtt
+    name: "Notebook MuvRH 04 - Carregando"
+    state_topic: "iotlink/workgroup/muvrh-04/windows-monitor/stats/power/status"
+    value_template: "{{ value }}"
+    payload_on: "Online"
+    payload_off: "Offline"
+    device_class: "plug"
+    availability_topic: "iotlink/workgroup/muvrh-04/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+# Notebook MuvRH 05
+
+  - platform: mqtt
+    name: "Notebook MuvRH 05 - Conectado"
+    state_topic: "iotlink/workgroup/muvrh-05/lwt"
+    value_template: "{{ value }}"
+    payload_on: "ON"
+    payload_off: "OFF"
+    device_class: "connectivity"
+    qos: 1
+
+  - platform: mqtt
+    name: "Notebook MuvRH 05 - Carregando"
+    state_topic: "iotlink/workgroup/muvrh-05/windows-monitor/stats/power/status"
+    value_template: "{{ value }}"
+    payload_on: "Online"
+    payload_off: "Offline"
+    device_class: "plug"
+    availability_topic: "iotlink/workgroup/muvrh-05/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+# Notebook MuvRH 06
+
+  - platform: mqtt
+    name: "Notebook MuvRH 06 - Conectado"
+    state_topic: "iotlink/workgroup/muvrh-06/lwt"
+    value_template: "{{ value }}"
+    payload_on: "ON"
+    payload_off: "OFF"
+    device_class: "connectivity"
+    qos: 1
+
+  - platform: mqtt
+    name: "Notebook MuvRH 06 - Carregando"
+    state_topic: "iotlink/workgroup/muvrh-06/windows-monitor/stats/power/status"
+    value_template: "{{ value }}"
+    payload_on: "Online"
+    payload_off: "Offline"
+    device_class: "plug"
+    availability_topic: "iotlink/workgroup/muvrh-06/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+sensor:
+
+# Desktop
+
+  - platform: mqtt
+    name: "Desktop - Uso de CPU"
+    state_topic: "iotlink/workgroup/desktop-sala/windows-monitor/stats/cpu"
+    unit_of_measurement: '%'
+    icon: mdi:speedometer
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/desktop-sala/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+  - platform: mqtt
+    name: "Desktop - Uso de memória RAM"
+    state_topic: "iotlink/workgroup/desktop-sala/windows-monitor/stats/memory/usage"
+    unit_of_measurement: '%'
+    icon: mdi:memory
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/desktop-sala/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+# Servidor
+
+  - platform: mqtt
+    name: "Servidor - Uso de CPU"
+    state_topic: "iotlink/workgroup/servidor-casa/windows-monitor/stats/cpu"
+    unit_of_measurement: '%'
+    icon: mdi:speedometer
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/servidor-casa/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+  - platform: mqtt
+    name: "Servidor - Uso de memória RAM"
+    state_topic: "iotlink/workgroup/servidor-casa/windows-monitor/stats/memory/usage"
+    unit_of_measurement: '%'
+    icon: mdi:memory
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/servidor-casa/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+# Notebook Antonio
+
+  - platform: mqtt
+    name: "Notebook Antonio - Uso de CPU"
+    state_topic: "iotlink/workgroup/notebook-antonio/windows-monitor/stats/cpu"
+    unit_of_measurement: '%'
+    icon: mdi:speedometer
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/notebook-antonio/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+  - platform: mqtt
+    name: "Notebook Antonio - Uso de memória RAM"
+    state_topic: "iotlink/workgroup/notebook-antonio/windows-monitor/stats/memory/usage"
+    unit_of_measurement: '%'
+    icon: mdi:memory
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/notebook-antonio/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+  - platform: mqtt
+    name: "Notebook Antonio - Bateria restante"
+    state_topic: "iotlink/workgroup/notebook-antonio/windows-monitor/stats/battery/remaining-percent"
+    unit_of_measurement: '%'
+    device_class: battery
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/notebook-antonio/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+# Notebook Roberta
+
+  - platform: mqtt
+    name: "Notebook Roberta - Uso de CPU"
+    state_topic: "iotlink/workgroup/notebook-roberta/windows-monitor/stats/cpu"
+    unit_of_measurement: '%'
+    icon: mdi:speedometer
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/notebook-roberta/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+  - platform: mqtt
+    name: "Notebook Roberta - Uso de memória RAM"
+    state_topic: "iotlink/workgroup/notebook-roberta/windows-monitor/stats/memory/usage"
+    unit_of_measurement: '%'
+    icon: mdi:memory
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/notebook-roberta/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+  - platform: mqtt
+    name: "Notebook Roberta - Bateria restante"
+    state_topic: "iotlink/workgroup/notebook-roberta/windows-monitor/stats/battery/remaining-percent"
+    unit_of_measurement: '%'
+    device_class: battery
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/notebook-roberta/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+# Notebook LG
+
+  - platform: mqtt
+    name: "Notebook LG - Uso de CPU"
+    state_topic: "iotlink/workgroup/muvrh-lg-303/windows-monitor/stats/cpu"
+    unit_of_measurement: '%'
+    icon: mdi:speedometer
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/muvrh-lg-303/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+  - platform: mqtt
+    name: "Notebook LG - Uso de memória RAM"
+    state_topic: "iotlink/workgroup/muvrh-lg-303/windows-monitor/stats/memory/usage"
+    unit_of_measurement: '%'
+    icon: mdi:memory
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/muvrh-lg-303/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+  - platform: mqtt
+    name: "Notebook LG - Bateria restante"
+    state_topic: "iotlink/workgroup/muvrh-lg-303/windows-monitor/stats/battery/remaining-percent"
+    unit_of_measurement: '%'
+    device_class: battery
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/muvrh-lg-303/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+# Notebook MuvRH 01
+
+  - platform: mqtt
+    name: "Notebook MuvRH 01 - Uso de CPU"
+    state_topic: "iotlink/workgroup/muvrh-01/windows-monitor/stats/cpu"
+    unit_of_measurement: '%'
+    icon: mdi:speedometer
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/muvrh-01/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+  - platform: mqtt
+    name: "Notebook MuvRH 01 - Uso de memória RAM"
+    state_topic: "iotlink/workgroup/muvrh-01/windows-monitor/stats/memory/usage"
+    unit_of_measurement: '%'
+    icon: mdi:memory
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/muvrh-01/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+  - platform: mqtt
+    name: "Notebook MuvRH 01 - Bateria restante"
+    state_topic: "iotlink/workgroup/muvrh-01/windows-monitor/stats/battery/remaining-percent"
+    unit_of_measurement: '%'
+    device_class: battery
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/muvrh-01/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+# Notebook MuvRH 02
+
+  - platform: mqtt
+    name: "Notebook MuvRH 02 - Uso de CPU"
+    state_topic: "iotlink/workgroup/muvrh-02/windows-monitor/stats/cpu"
+    unit_of_measurement: '%'
+    icon: mdi:speedometer
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/muvrh-02/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+  - platform: mqtt
+    name: "Notebook MuvRH 02 - Uso de memória RAM"
+    state_topic: "iotlink/workgroup/muvrh-02/windows-monitor/stats/memory/usage"
+    unit_of_measurement: '%'
+    icon: mdi:memory
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/muvrh-02/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+  - platform: mqtt
+    name: "Notebook MuvRH 02 - Bateria restante"
+    state_topic: "iotlink/workgroup/muvrh-02/windows-monitor/stats/battery/remaining-percent"
+    unit_of_measurement: '%'
+    device_class: battery
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/muvrh-02/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+# Notebook MuvRH 03
+
+  - platform: mqtt
+    name: "Notebook MuvRH 03 - Uso de CPU"
+    state_topic: "iotlink/workgroup/muvrh-03/windows-monitor/stats/cpu"
+    unit_of_measurement: '%'
+    icon: mdi:speedometer
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/muvrh-01/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+  - platform: mqtt
+    name: "Notebook MuvRH 03 - Uso de memória RAM"
+    state_topic: "iotlink/workgroup/muvrh-03/windows-monitor/stats/memory/usage"
+    unit_of_measurement: '%'
+    icon: mdi:memory
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/muvrh-03/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+  - platform: mqtt
+    name: "Notebook MuvRH 03 - Bateria restante"
+    state_topic: "iotlink/workgroup/muvrh-03/windows-monitor/stats/battery/remaining-percent"
+    unit_of_measurement: '%'
+    device_class: battery
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/muvrh-03/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+# Notebook MuvRH 04
+
+  - platform: mqtt
+    name: "Notebook MuvRH 04 - Uso de CPU"
+    state_topic: "iotlink/workgroup/muvrh-04/windows-monitor/stats/cpu"
+    unit_of_measurement: '%'
+    icon: mdi:speedometer
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/muvrh-04/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+  - platform: mqtt
+    name: "Notebook MuvRH 04 - Uso de memória RAM"
+    state_topic: "iotlink/workgroup/muvrh-04/windows-monitor/stats/memory/usage"
+    unit_of_measurement: '%'
+    icon: mdi:memory
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/muvrh-04/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+  - platform: mqtt
+    name: "Notebook MuvRH 04 - Bateria restante"
+    state_topic: "iotlink/workgroup/muvrh-04/windows-monitor/stats/battery/remaining-percent"
+    unit_of_measurement: '%'
+    device_class: battery
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/muvrh-04/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+# Notebook MuvRH 05
+
+  - platform: mqtt
+    name: "Notebook MuvRH 05 - Uso de CPU"
+    state_topic: "iotlink/workgroup/muvrh-05/windows-monitor/stats/cpu"
+    unit_of_measurement: '%'
+    icon: mdi:speedometer
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/muvrh-05/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+  - platform: mqtt
+    name: "Notebook MuvRH 05 - Uso de memória RAM"
+    state_topic: "iotlink/workgroup/muvrh-05/windows-monitor/stats/memory/usage"
+    unit_of_measurement: '%'
+    icon: mdi:memory
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/muvrh-05/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+  - platform: mqtt
+    name: "Notebook MuvRH 05 - Bateria restante"
+    state_topic: "iotlink/workgroup/muvrh-05/windows-monitor/stats/battery/remaining-percent"
+    unit_of_measurement: '%'
+    device_class: battery
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/muvrh-05/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+# Notebook MuvRH 06
+
+  - platform: mqtt
+    name: "Notebook MuvRH 06 - Uso de CPU"
+    state_topic: "iotlink/workgroup/muvrh-06/windows-monitor/stats/cpu"
+    unit_of_measurement: '%'
+    icon: mdi:speedometer
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/muvrh-06/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+  - platform: mqtt
+    name: "Notebook MuvRH 06 - Uso de memória RAM"
+    state_topic: "iotlink/workgroup/muvrh-06/windows-monitor/stats/memory/usage"
+    unit_of_measurement: '%'
+    icon: mdi:memory
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/muvrh-06/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+  - platform: mqtt
+    name: "Notebook MuvRH 06 - Bateria restante"
+    state_topic: "iotlink/workgroup/muvrh-06/windows-monitor/stats/battery/remaining-percent"
+    unit_of_measurement: '%'
+    device_class: battery
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/muvrh-06/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+switch:
+
+# Desktop
+
+  - platform: wake_on_lan
+    mac_address: "FC:AA:14:23:24:19"
+    name: Desktop
+    host: 192.168.1.21
+    turn_off:
+      service: script.desktop_hibernar
+
+# Servidor
+
+  - platform: wake_on_lan
+    mac_address: "EC:A8:6B:F6:8D:E2"
+    name: Servidor
+    host: 192.168.1.10
+    turn_off:
+      service: script.servidor_casa_suspender
+
+  - platform: template
+    switches:
+
+# Notebook Antonio
+
+      notebook_antonio:
+        friendly_name: "Notebook Antonio"
+        value_template: "{{ is_state('binary_sensor.notebook_antonio_conectado', 'on') }}"
+        turn_on:
+          service: script.nada
+        turn_off:
+          service: script.notebook_antonio_suspender
+        icon_template: mdi:laptop
+
+# Notebook Roberta
+
+      notebook_roberta:
+        friendly_name: "Notebook Roberta"
+        value_template: "{{ is_state('binary_sensor.notebook_roberta_conectado', 'on') }}"
+        turn_on:
+          service: script.nada
+        turn_off:
+          service: script.notebook_roberta_suspender
+        icon_template: mdi:laptop
+
+# Notebook LG
+
+      notebook_lg:
+        friendly_name: "Notebook LG"
+        value_template: "{{ is_state('binary_sensor.notebook_lg_conectado', 'on') }}"
+        turn_on:
+          service: script.nada
+        turn_off:
+          service: script.notebook_lg_suspender
+        icon_template: mdi:laptop
+
+# Notebook MuvRH 01
+
+      notebook_muvrh_01:
+        friendly_name: "Notebook MuvRH 01"
+        value_template: "{{ is_state('binary_sensor.notebook_muvrh_01_conectado', 'on') }}"
+        turn_on:
+          service: script.nada
+        turn_off:
+          service: script.notebook_muvrh_01_suspender
+        icon_template: mdi:laptop
+
+# Notebook MuvRH 02
+
+      notebook_muvrh_02:
+        friendly_name: "Notebook MuvRH 02"
+        value_template: "{{ is_state('binary_sensor.notebook_muvrh_02_conectado', 'on') }}"
+        turn_on:
+          service: script.nada
+        turn_off:
+          service: script.notebook_muvrh_02_suspender
+        icon_template: mdi:laptop
+
+# Notebook MuvRH 03
+
+      notebook_muvrh_03:
+        friendly_name: "Notebook MuvRH 03"
+        value_template: "{{ is_state('binary_sensor.notebook_muvrh_03_conectado', 'on') }}"
+        turn_on:
+          service: script.nada
+        turn_off:
+          service: script.notebook_muvrh_03_suspender
+        icon_template: mdi:laptop
+
+# Notebook MuvRH 04
+
+      notebook_muvrh_04:
+        friendly_name: "Notebook MuvRH 04"
+        value_template: "{{ is_state('binary_sensor.notebook_muvrh_04_conectado', 'on') }}"
+        turn_on:
+          service: script.nada
+        turn_off:
+          service: script.notebook_muvrh_04_suspender
+        icon_template: mdi:laptop
+
+# Notebook MuvRH 05
+
+      notebook_muvrh_05:
+        friendly_name: "Notebook MuvRH 05"
+        value_template: "{{ is_state('binary_sensor.notebook_muvrh_05_conectado', 'on') }}"
+        turn_on:
+          service: script.nada
+        turn_off:
+          service: script.notebook_muvrh_05_suspender
+        icon_template: mdi:laptop
+
+# Notebook MuvRH 06
+
+      notebook_muvrh_06:
+        friendly_name: "Notebook MuvRH 06"
+        value_template: "{{ is_state('binary_sensor.notebook_muvrh_06_conectado', 'on') }}"
+        turn_on:
+          service: script.nada
+        turn_off:
+          service: script.notebook_muvrh_06_suspender
+        icon_template: mdi:laptop
+
+script:
+
+# Desktop
+
+  desktop_desligar:
+    alias: "Desktop - Desligar"
+    sequence:
+    - service: mqtt.publish
+      data:
+        topic: "iotlink/workgroup/desktop-sala/commands/shutdown"
+        payload: ""
+
+  desktop_suspender:
+    alias: "Desktop - Suspender"
+    sequence:
+    - service: mqtt.publish
+      data:
+        topic: "iotlink/workgroup/desktop-sala/commands/suspend"
+        payload: ""
+
+  desktop_hibernar:
+    alias: "Desktop - Hibernar"
+    sequence:
+    - service: mqtt.publish
+      data:
+        topic: "iotlink/workgroup/desktop-sala/commands/hibernate"
+        payload: ""
+
+  desktop_reiniciar:
+    alias: "Desktop - Reiniciar"
+    sequence:
+    - service: mqtt.publish
+      data:
+        topic: "iotlink/workgroup/desktop-sala/commands/reboot"
+        payload: ""
+
+# Servidor
+
+  servidor_casa_desligar:
+    alias: "Servidor - Desligar"
+    sequence:
+    - service: mqtt.publish
+      data:
+        topic: "iotlink/workgroup/servidor-casa/commands/shutdown"
+        payload: ""
+
+  servidor_casa_suspender:
+    alias: "Servidor - Suspender"
+    sequence:
+    - service: mqtt.publish
+      data:
+        topic: "iotlink/workgroup/servidor-casa/commands/suspend"
+        payload: ""
+
+  servidor_casa_hibernar:
+    alias: "Servidor - Hibernar"
+    sequence:
+    - service: mqtt.publish
+      data:
+        topic: "iotlink/workgroup/servidor-casa/commands/hibernate"
+        payload: ""
+
+  servidor_casa_reiniciar:
+    alias: "Servidor - Reiniciar"
+    sequence:
+    - service: mqtt.publish
+      data:
+        topic: "iotlink/workgroup/servidor-casa/commands/reboot"
+        payload: ""
+
+# Notebook Antonio
+
+  notebook_antonio_desligar:
+    alias: "Notebook Antonio - Desligar"
+    sequence:
+    - service: mqtt.publish
+      data:
+        topic: "iotlink/workgroup/notebook-antonio/commands/shutdown"
+        payload: ""
+
+  notebook_antonio_suspender:
+    alias: "Notebook Antonio - Suspender"
+    sequence:
+    - service: mqtt.publish
+      data:
+        topic: "iotlink/workgroup/notebook-antonio/commands/suspend"
+        payload: ""
+
+  notebook_antonio_hibernar:
+    alias: "Notebook Antonio - Hibernar"
+    sequence:
+    - service: mqtt.publish
+      data:
+        topic: "iotlink/workgroup/notebook-antonio/commands/hibernate"
+        payload: ""
+
+  notebook_antonio_reiniciar:
+    alias: "Notebook Antonio - Reiniciar"
+    sequence:
+    - service: mqtt.publish
+      data:
+        topic: "iotlink/workgroup/notebook-antonio/commands/reboot"
+        payload: ""
+
+# Notebook Roberta
+
+  notebook_roberta_desligar:
+    alias: "Notebook Roberta - Desligar"
+    sequence:
+    - service: mqtt.publish
+      data:
+        topic: "iotlink/workgroup/notebook-roberta/commands/shutdown"
+        payload: ""
+
+  notebook_roberta_suspender:
+    alias: "Notebook Roberta - Suspender"
+    sequence:
+    - service: mqtt.publish
+      data:
+        topic: "iotlink/workgroup/notebook-roberta/commands/suspend"
+        payload: ""
+
+  notebook_roberta_hibernar:
+    alias: "Notebook Roberta - Hibernar"
+    sequence:
+    - service: mqtt.publish
+      data:
+        topic: "iotlink/workgroup/notebook-roberta/commands/hibernate"
+        payload: ""
+
+  notebook_roberta_reiniciar:
+    alias: "Notebook Roberta - Reiniciar"
+    sequence:
+    - service: mqtt.publish
+      data:
+        topic: "iotlink/workgroup/notebook-roberta/commands/reboot"
+        payload: ""
+
+# Notebook LG Branco
+
+  notebook_lg_desligar:
+    alias: "Notebook LG - Desligar"
+    sequence:
+    - service: mqtt.publish
+      data:
+        topic: "iotlink/workgroup/muvrh-lg-303/commands/shutdown"
+        payload: ""
+
+  notebook_lg_suspender:
+    alias: "Notebook LG - Suspender"
+    sequence:
+    - service: mqtt.publish
+      data:
+        topic: "iotlink/workgroup/muvrh-lg-303/commands/suspend"
+        payload: ""
+
+  notebook_lg_hibernar:
+    alias: "Notebook LG - Hibernar"
+    sequence:
+    - service: mqtt.publish
+      data:
+        topic: "iotlink/workgroup/muvrh-lg-303/commands/hibernate"
+        payload: ""
+
+  notebook_lg_reiniciar:
+    alias: "Notebook LG - Reiniciar"
+    sequence:
+    - service: mqtt.publish
+      data:
+        topic: "iotlink/workgroup/muvrh-lg-303/commands/reboot"
+        payload: ""
+
+# Notebook MuvRH 01
+
+  notebook_muvrh_01_desligar:
+    alias: "Notebook MuvRH 01 - Desligar"
+    sequence:
+    - service: mqtt.publish
+      data:
+        topic: "iotlink/workgroup/muvrh-01/commands/shutdown"
+        payload: ""
+
+  notebook_muvrh_01_suspender:
+    alias: "Notebook MuvRH 01 - Suspender"
+    sequence:
+    - service: mqtt.publish
+      data:
+        topic: "iotlink/workgroup/muvrh-01/commands/suspend"
+        payload: ""
+
+  notebook_muvrh_01_hibernar:
+    alias: "Notebook MuvRH 01 - Hibernar"
+    sequence:
+    - service: mqtt.publish
+      data:
+        topic: "iotlink/workgroup/muvrh-01/commands/hibernate"
+        payload: ""
+
+  notebook_muvrh_01_reiniciar:
+    alias: "Notebook MuvRH 01 - Reiniciar"
+    sequence:
+    - service: mqtt.publish
+      data:
+        topic: "iotlink/workgroup/muvrh-01/commands/reboot"
+        payload: ""
+
+# Notebook MuvRH 02
+
+  notebook_muvrh_02_desligar:
+    alias: "Notebook MuvRH 02 - Desligar"
+    sequence:
+    - service: mqtt.publish
+      data:
+        topic: "iotlink/workgroup/muvrh-02/commands/shutdown"
+        payload: ""
+
+  notebook_muvrh_02_suspender:
+    alias: "Notebook MuvRH 02 - Suspender"
+    sequence:
+    - service: mqtt.publish
+      data:
+        topic: "iotlink/workgroup/muvrh-02/commands/suspend"
+        payload: ""
+
+  notebook_muvrh_02_hibernar:
+    alias: "Notebook MuvRH 02 - Hibernar"
+    sequence:
+    - service: mqtt.publish
+      data:
+        topic: "iotlink/workgroup/muvrh-02/commands/hibernate"
+        payload: ""
+
+  notebook_muvrh_02_reiniciar:
+    alias: "Notebook MuvRH 02 - Reiniciar"
+    sequence:
+    - service: mqtt.publish
+      data:
+        topic: "iotlink/workgroup/muvrh-02/commands/reboot"
+        payload: ""
+
+# Notebook MuvRH 03
+
+  notebook_muvrh_03_desligar:
+    alias: "Notebook MuvRH 03 - Desligar"
+    sequence:
+    - service: mqtt.publish
+      data:
+        topic: "iotlink/workgroup/muvrh-03/commands/shutdown"
+        payload: ""
+
+  notebook_muvrh_03_suspender:
+    alias: "Notebook MuvRH 03 - Suspender"
+    sequence:
+    - service: mqtt.publish
+      data:
+        topic: "iotlink/workgroup/muvrh-03/commands/suspend"
+        payload: ""
+
+  notebook_muvrh_03_hibernar:
+    alias: "Notebook MuvRH 03 - Hibernar"
+    sequence:
+    - service: mqtt.publish
+      data:
+        topic: "iotlink/workgroup/muvrh-03/commands/hibernate"
+        payload: ""
+
+  notebook_muvrh_03_reiniciar:
+    alias: "Notebook MuvRH 03 - Reiniciar"
+    sequence:
+    - service: mqtt.publish
+      data:
+        topic: "iotlink/workgroup/muvrh-03/commands/reboot"
+        payload: ""
+
+# Notebook MuvRH 04
+
+  notebook_muvrh_04_desligar:
+    alias: "Notebook MuvRH 04 - Desligar"
+    sequence:
+    - service: mqtt.publish
+      data:
+        topic: "iotlink/workgroup/muvrh-04/commands/shutdown"
+        payload: ""
+
+  notebook_muvrh_04_suspender:
+    alias: "Notebook MuvRH 04 - Suspender"
+    sequence:
+    - service: mqtt.publish
+      data:
+        topic: "iotlink/workgroup/muvrh-04/commands/suspend"
+        payload: ""
+
+  notebook_muvrh_04_hibernar:
+    alias: "Notebook MuvRH 04 - Hibernar"
+    sequence:
+    - service: mqtt.publish
+      data:
+        topic: "iotlink/workgroup/muvrh-04/commands/hibernate"
+        payload: ""
+
+  notebook_muvrh_04_reiniciar:
+    alias: "Notebook MuvRH 04 - Reiniciar"
+    sequence:
+    - service: mqtt.publish
+      data:
+        topic: "iotlink/workgroup/muvrh-04/commands/reboot"
+        payload: ""
+
+# Notebook MuvRH 05
+
+  notebook_muvrh_05_desligar:
+    alias: "Notebook MuvRH 05 - Desligar"
+    sequence:
+    - service: mqtt.publish
+      data:
+        topic: "iotlink/workgroup/muvrh-05/commands/shutdown"
+        payload: ""
+
+  notebook_muvrh_05_suspender:
+    alias: "Notebook MuvRH 05 - Suspender"
+    sequence:
+    - service: mqtt.publish
+      data:
+        topic: "iotlink/workgroup/muvrh-05/commands/suspend"
+        payload: ""
+
+  notebook_muvrh_05_hibernar:
+    alias: "Notebook MuvRH 05 - Hibernar"
+    sequence:
+    - service: mqtt.publish
+      data:
+        topic: "iotlink/workgroup/muvrh-05/commands/hibernate"
+        payload: ""
+
+  notebook_muvrh_05_reiniciar:
+    alias: "Notebook MuvRH 05 - Reiniciar"
+    sequence:
+    - service: mqtt.publish
+      data:
+        topic: "iotlink/workgroup/muvrh-05/commands/reboot"
+        payload: ""
+
+# Notebook MuvRH 06
+
+  notebook_muvrh_06_desligar:
+    alias: "Notebook MuvRH 06 - Desligar"
+    sequence:
+    - service: mqtt.publish
+      data:
+        topic: "iotlink/workgroup/muvrh-06/commands/shutdown"
+        payload: ""
+
+  notebook_muvrh_06_suspender:
+    alias: "Notebook MuvRH 06 - Suspender"
+    sequence:
+    - service: mqtt.publish
+      data:
+        topic: "iotlink/workgroup/muvrh-06/commands/suspend"
+        payload: ""
+
+  notebook_muvrh_06_hibernar:
+    alias: "Notebook MuvRH 06 - Hibernar"
+    sequence:
+    - service: mqtt.publish
+      data:
+        topic: "iotlink/workgroup/muvrh-06/commands/hibernate"
+        payload: ""
+
+  notebook_muvrh_06_reiniciar:
+    alias: "Notebook MuvRH 06 - Reiniciar"
+    sequence:
+    - service: mqtt.publish
+      data:
+        topic: "iotlink/workgroup/muvrh-06/commands/reboot"
+        payload: ""

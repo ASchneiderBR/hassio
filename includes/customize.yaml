@@ -177,7 +177,7 @@ light.quarto_tv:
   friendly_name: "Luz da TV do quarto"
   icon: mdi:led-strip
 
-light.led_painel_desktop_sala:
+light.led_painel_sala:
   friendly_name: "Luz do painel da sala"
   icon: mdi:led-strip
 
@@ -547,12 +547,6 @@ switch.conectar_octoprint:
   friendly_name: "Conectar Octoprint"
   entity_picture: /local/image/devices/octoprint.png
   assumed_state: false
-
-media_player.sala:
-  friendly_name: "Google Home Sala"
-
-media_player.suite:
-  friendly_name: "Google Home Suíte"
 
 binary_sensor.cube_158d00010b2e3e:
   friendly_name: "Cubo suíte"

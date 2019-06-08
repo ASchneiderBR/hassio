@@ -148,7 +148,7 @@ automation:
       - delay: '00:00:02'
       - service: media_player.volume_set
         data_template:
-          volume_level: 0.8
+          volume_level: 0.7
           entity_id: "{{ 'media_player.banheiro_da_suite' if trigger.to_state.entity_id == 'switch.chuveirosuite' else 'media_player.banheiro_social' }}"
       - wait_template: >-
           {% if trigger.to_state.entity_id == 'switch.chuveirosuite' %}

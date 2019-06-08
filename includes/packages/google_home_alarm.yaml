@@ -36,21 +36,32 @@ automation:
     initial_state: true
     trigger:
       - platform: template
-        value_template: "{{ (not is_state('sensor.suite_alarm', 'unavailable')) and (states('sensor.time') == (as_timestamp(states.sensor.suite_alarm.state) - 3600) | timestamp_custom('%H:%M')) and (states('sensor.date') == as_timestamp(states.sensor.suite_alarm.state) | timestamp_custom('%Y-%m-%d')) }}"
+        value_template: "{{ (not is_state('sensor.suite_alarm', 'unavailable')) and is_state('input_boolean.boa_noite', 'on') and (states('sensor.time') == (as_timestamp(states.sensor.suite_alarm.state) - 3600) | timestamp_custom('%H:%M')) and (states('sensor.date') == as_timestamp(states.sensor.suite_alarm.state) | timestamp_custom('%Y-%m-%d')) }}"
     action:
       - service: switch.turn_on
         entity_id: switch.toalheiro
       - delay: '00:40:00'
-      - service: script.ghm_play_media
-        data_template:
-          media: 'http://192.168.1.12:8123/local/audio/despertador/passarinhos.m4a'
-          volume: 0.6
+      - service: media_player.volume_set
+        data:
+          entity_id: media_player.suite
+          volume_level: 0
+      - delay: '00:00:01'
+      - service: media_player.play_media
+        data:
+          entity_id: media_player.suite
+          media_content_type: 'audio/mp3'
+          media_content_id: 'http://192.168.1.12:8123/local/audio/despertador/passarinhos.m4a'
+      - delay: '00:00:01'
+      - service: media_player.volume_set
+        data:
+          entity_id: media_player.suite
+          volume_level: 0.4
       - delay: '00:05:00'
       - service: light.turn_on
         entity_id: light.ledsuitetv
         data:
-          transition: 900
-          brightness_pct: 80
+          transition: 360
+          brightness_pct: 30
           rgb_color: [255,60,0]
       - service_template: >-
           {% if is_state('input_boolean.cafe_manha', 'on') %}
@@ -78,8 +89,8 @@ automation:
       - service: light.turn_on
         entity_id: light.ledsuitecama
         data:
-          transition: 600
-          brightness_pct: 60
+          transition: 360
+          brightness_pct: 30
           rgb_color: [255,60,0]
       - delay: '00:08:00'
       - service: cover.open_cover

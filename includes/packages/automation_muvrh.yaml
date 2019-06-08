@@ -65,7 +65,6 @@ automation:
     trigger:
       platform: state
       entity_id: binary_sensor.door_window_sensor_158d0001bf2a09
-      from: 'off'
       to: 'on'
     condition:
       condition: and

@@ -1,17 +1,3 @@
-- platform: wake_on_lan
-  mac_address: "FC:AA:14:23:24:19"
-  name: Desktop
-  host: 192.168.1.21
-  turn_off:
-    service: shell_command.desktop_hibernar
-
-- platform: wake_on_lan
-  mac_address: "EC:A8:6B:F6:8D:E2"
-  name: Servidor
-  host: 192.168.1.10
-  turn_off:
-    service: shell_command.servidor_hibernar
-
 - platform: broadlink
   host: 192.168.1.32
   mac: 'B4:43:0D:EE:F4:76'

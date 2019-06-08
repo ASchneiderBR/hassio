@@ -27,16 +27,6 @@ entrando_casa_alarme:
   - service: light.turn_on
     entity_id: light.area_servico, light.suite_banheiro_principal, light.suite_banheiro_espelho, light.corredor, light.cozinha, light.entrada, light.ledcozinhabalcao, light.mesa_de_jantar, light.quarto, light.sala_principal, light.banheiro_social_principal, light.banheiro_social_espelho, light.suite_principal, light.movel_da_sala
 
-desktop_reiniciar:
-  sequence:
-  - service: shell_command.desktop_reiniciar
-  alias: "Reiniciar desktop"
-
-desktop_abrir_chrome:
-  sequence:
-  - service: shell_command.desktop_abrir_chrome
-  alias: "Abrir Chrome no desktop"
-
 tv_lg_sala_ligar_tudo:
   alias: "Ligar TV, home e luz da sala"
   sequence:
@@ -184,6 +174,7 @@ ghm_play_media:
             {%- set players = ['media_player.banheiro_social', 'media_player.banheiro_da_suite', 'media_player.cozinha', 'media_player.quarto', 'media_player.sala', 'media_player.suite'] %}
             {{ states.media_player | selectattr('state','!=','playing') | selectattr('entity_id', 'in', players) | map(attribute='entity_id') | join(', ') }}
         volume_level: 0
+#    - delay: '00:00:01'
     - service: media_player.play_media
       data_template:
         entity_id: >-
@@ -208,11 +199,12 @@ ghm_play_media:
           {%- endif %}
         media_content_type: 'audio/mp3'
         media_content_id: '{{media}}'
+    - delay: '00:00:01'
     - service: media_player.volume_set
       data_template:
         entity_id: >-
             {%- set players = ['media_player.banheiro_social', 'media_player.banheiro_da_suite', 'media_player.cozinha', 'media_player.quarto', 'media_player.sala', 'media_player.suite'] %}
-            {{ states.media_player | selectattr('state','!=','playing') | selectattr('entity_id', 'in', players) | map(attribute='entity_id') | join(', ') }}
+            {{ states.media_player | selectattr('state','==','playing') | selectattr('entity_id', 'in', players) | map(attribute='entity_id') | join(', ') }}
         volume_level: '{{volume}}'
 
 ghm_tts:
@@ -225,6 +217,7 @@ ghm_tts:
             {%- set players = ['media_player.banheiro_social', 'media_player.banheiro_da_suite', 'media_player.cozinha', 'media_player.quarto', 'media_player.sala', 'media_player.suite'] %}
             {{ states.media_player | selectattr('state','!=','playing') | selectattr('entity_id', 'in', players) | map(attribute='entity_id') | join(', ') }}
         volume_level: 0
+#    - delay: '00:00:01'
     - service: tts.amazon_polly_say
       data_template:
         entity_id: >-
@@ -248,11 +241,12 @@ ghm_tts:
               {%- endif %}
           {%- endif %}
         message: '{{tts}}'
+    - delay: '00:00:01'
     - service: media_player.volume_set
       data_template:
         entity_id: >-
             {%- set players = ['media_player.banheiro_social', 'media_player.banheiro_da_suite', 'media_player.cozinha', 'media_player.quarto', 'media_player.sala', 'media_player.suite'] %}
-            {{ states.media_player | selectattr('state','!=','playing') | selectattr('entity_id', 'in', players) | map(attribute='entity_id') | join(', ') }}
+            {{ states.media_player | selectattr('state','==','playing') | selectattr('entity_id', 'in', players) | map(attribute='entity_id') | join(', ') }}
         volume_level: '{{volume}}'
 
 ghm_play_media_test:
