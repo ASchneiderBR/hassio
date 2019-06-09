@@ -202,12 +202,33 @@ exclude:
     - sensor.quarto_alarm
     - sensor.sala_alarm
     - sensor.suite_alarm
+    - switch.buzzer_alarme_ligado
+    - switch.buzzer_alarme_desligado
     - input_boolean.persiana_suite
     - input_boolean.persiana_quarto
     - input_boolean.persiana_sala
     - input_boolean.garagem_casa
     - input_boolean.garagem_muv_rua
     - input_boolean.garagem_muv_interno
+    - sensor.notebook_antonio_bateria_restante
+    - sensor.notebook_antonio_bateria_restante
+    - sensor.notebook_lg_bateria_restante
+    - sensor.notebook_lg_tempo_de_bateria_restante
+    - sensor.notebook_muvrh_01_bateria_restante
+    - sensor.notebook_muvrh_01_tempo_de_bateria_restante
+    - sensor.notebook_muvrh_02_bateria_restante
+    - sensor.notebook_muvrh_02_tempo_de_bateria_restante
+    - sensor.notebook_muvrh_03_bateria_restante
+    - sensor.notebook_muvrh_03_tempo_de_bateria_restante
+    - sensor.notebook_muvrh_04_bateria_restante
+    - sensor.notebook_muvrh_04_tempo_de_bateria_restante
+    - sensor.notebook_muvrh_05_bateria_restante
+    - sensor.notebook_muvrh_05_tempo_de_bateria_restante
+    - sensor.notebook_muvrh_06_bateria_restante
+    - sensor.notebook_muvrh_06_tempo_de_bateria_restante
+    - sensor.notebook_roberta_bateria_restante
+    - sensor.notebook_roberta_tempo_de_bateria_restante
+
 include:
   entities:
     - group.pessoas

@@ -314,6 +314,17 @@ sensor:
     payload_not_available: "OFF"
     qos: 1
 
+  - platform: mqtt
+    name: "Notebook Antonio - Tempo de bateria restante"
+    state_topic: "iotlink/workgroup/notebook-antonio/windows-monitor/stats/battery/remaining-time"
+    unit_of_measurement: 'minutos'
+    icon: mdi:timer
+    value_template: "{{ ( value | float / 60 ) | int }}"
+    availability_topic: "iotlink/workgroup/notebook-antonio/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
 # Notebook Roberta
 
   - platform: mqtt
@@ -344,6 +355,17 @@ sensor:
     unit_of_measurement: '%'
     device_class: battery
     value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/notebook-roberta/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+  - platform: mqtt
+    name: "Notebook Roberta - Tempo de bateria restante"
+    state_topic: "iotlink/workgroup/notebook-roberta/windows-monitor/stats/battery/remaining-time"
+    unit_of_measurement: 'minutos'
+    icon: mdi:timer
+    value_template: "{{ ( value | float / 60 ) | int }}"
     availability_topic: "iotlink/workgroup/notebook-roberta/lwt"
     payload_available: "ON"
     payload_not_available: "OFF"
@@ -384,6 +406,17 @@ sensor:
     payload_not_available: "OFF"
     qos: 1
 
+  - platform: mqtt
+    name: "Notebook LG - Tempo de bateria restante"
+    state_topic: "iotlink/workgroup/muvrh-lg-303/windows-monitor/stats/battery/remaining-time"
+    unit_of_measurement: 'minutos'
+    icon: mdi:timer
+    value_template: "{{ ( value | float / 60 ) | int }}"
+    availability_topic: "iotlink/workgroup/muvrh-lg-303/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
 # Notebook MuvRH 01
 
   - platform: mqtt
@@ -414,6 +447,17 @@ sensor:
     unit_of_measurement: '%'
     device_class: battery
     value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/muvrh-01/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+  - platform: mqtt
+    name: "Notebook MuvRH 01 - Tempo de bateria restante"
+    state_topic: "iotlink/workgroup/muvrh-01/windows-monitor/stats/battery/remaining-time"
+    unit_of_measurement: 'minutos'
+    icon: mdi:timer
+    value_template: "{{ ( value | float / 60 ) | int }}"
     availability_topic: "iotlink/workgroup/muvrh-01/lwt"
     payload_available: "ON"
     payload_not_available: "OFF"
@@ -454,6 +498,17 @@ sensor:
     payload_not_available: "OFF"
     qos: 1
 
+  - platform: mqtt
+    name: "Notebook MuvRH 02 - Tempo de bateria restante"
+    state_topic: "iotlink/workgroup/muvrh-02/windows-monitor/stats/battery/remaining-time"
+    unit_of_measurement: 'minutos'
+    icon: mdi:timer
+    value_template: "{{ ( value | float / 60 ) | int }}"
+    availability_topic: "iotlink/workgroup/muvrh-02/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
 # Notebook MuvRH 03
 
   - platform: mqtt
@@ -484,6 +539,17 @@ sensor:
     unit_of_measurement: '%'
     device_class: battery
     value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/muvrh-03/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+  - platform: mqtt
+    name: "Notebook MuvRH 03 - Tempo de bateria restante"
+    state_topic: "iotlink/workgroup/muvrh-03/windows-monitor/stats/battery/remaining-time"
+    unit_of_measurement: 'minutos'
+    icon: mdi:timer
+    value_template: "{{ ( value | float / 60 ) | int }}"
     availability_topic: "iotlink/workgroup/muvrh-03/lwt"
     payload_available: "ON"
     payload_not_available: "OFF"
@@ -524,6 +590,17 @@ sensor:
     payload_not_available: "OFF"
     qos: 1
 
+  - platform: mqtt
+    name: "Notebook MuvRH 04 - Tempo de bateria restante"
+    state_topic: "iotlink/workgroup/muvrh-04/windows-monitor/stats/battery/remaining-time"
+    unit_of_measurement: 'minutos'
+    icon: mdi:timer
+    value_template: "{{ ( value | float / 60 ) | int }}"
+    availability_topic: "iotlink/workgroup/muvrh-04/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
 # Notebook MuvRH 05
 
   - platform: mqtt
@@ -559,6 +636,17 @@ sensor:
     payload_not_available: "OFF"
     qos: 1
 
+  - platform: mqtt
+    name: "Notebook MuvRH 05 - Tempo de bateria restante"
+    state_topic: "iotlink/workgroup/muvrh-05/windows-monitor/stats/battery/remaining-time"
+    unit_of_measurement: 'minutos'
+    icon: mdi:timer
+    value_template: "{{ ( value | float / 60 ) | int }}"
+    availability_topic: "iotlink/workgroup/muvrh-05/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
 # Notebook MuvRH 06
 
   - platform: mqtt
@@ -589,6 +677,17 @@ sensor:
     unit_of_measurement: '%'
     device_class: battery
     value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/muvrh-06/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+  - platform: mqtt
+    name: "Notebook MuvRH 06 - Tempo de bateria restante"
+    state_topic: "iotlink/workgroup/muvrh-06/windows-monitor/stats/battery/remaining-time"
+    unit_of_measurement: 'minutos'
+    icon: mdi:timer
+    value_template: "{{ ( value | float / 60 ) | int }}"
     availability_topic: "iotlink/workgroup/muvrh-06/lwt"
     payload_available: "ON"
     payload_not_available: "OFF"

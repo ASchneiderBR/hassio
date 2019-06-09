@@ -135,6 +135,8 @@
       data_template:
         media: 'http://192.168.1.12:8123/local/audio/tts/alarme_desarmado.mp3'
         volume: 0.7
+    - service: switch.turn_on
+      entity_id: switch.buzzer_alarme_desligado
     - service: notify.tudo
       data:
         title: "Alarme da casa"
@@ -162,6 +164,8 @@
       data_template:
         media: 'http://192.168.1.12:8123/local/audio/tts/alarme_armado.mp3'
         volume: 0.7
+    - service: switch.turn_on
+      entity_id: switch.buzzer_alarme_ligado
     - service: notify.tudo
       data:
         title: "Alarme da casa"
@@ -224,14 +228,14 @@
         {% endif %}
       entity_id: switch.tv_lg_sala
 
-- alias: Desligar toalheiro após 2 horas
+- alias: Desligar toalheiro
   initial_state: true
   trigger:
     platform: state
     entity_id: switch.toalheiro
     to: 'on'
     for:
-      hours: 2
+      hours: 3
   action:
     - service: switch.turn_off
       entity_id: switch.toalheiro

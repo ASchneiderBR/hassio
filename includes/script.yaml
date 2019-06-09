@@ -168,14 +168,14 @@ ghm_play_media:
   sequence:
     - condition: template
       value_template: "{{ not is_state('media_player.casa_inteira' , 'playing')}}"
-    - service: media_player.volume_set
+    - service_template: media_player.volume_set
       data_template:
         entity_id: >-
             {%- set players = ['media_player.banheiro_social', 'media_player.banheiro_da_suite', 'media_player.cozinha', 'media_player.quarto', 'media_player.sala', 'media_player.suite'] %}
             {{ states.media_player | selectattr('state','!=','playing') | selectattr('entity_id', 'in', players) | map(attribute='entity_id') | join(', ') }}
         volume_level: 0
 #    - delay: '00:00:01'
-    - service: media_player.play_media
+    - service_template: media_player.play_media
       data_template:
         entity_id: >-
           {%- if is_state('input_boolean.boa_noite', 'on') and is_state('input_boolean.visita_casa', 'on') %}
@@ -200,7 +200,7 @@ ghm_play_media:
         media_content_type: 'audio/mp3'
         media_content_id: '{{media}}'
     - delay: '00:00:01'
-    - service: media_player.volume_set
+    - service_template: media_player.volume_set
       data_template:
         entity_id: >-
             {%- set players = ['media_player.banheiro_social', 'media_player.banheiro_da_suite', 'media_player.cozinha', 'media_player.quarto', 'media_player.sala', 'media_player.suite'] %}
@@ -211,14 +211,14 @@ ghm_tts:
   sequence:
     - condition: template
       value_template: "{{ not is_state('media_player.casa_inteira' , 'playing')}}"
-    - service: media_player.volume_set
+    - service_template: media_player.volume_set
       data_template:
         entity_id: >-
             {%- set players = ['media_player.banheiro_social', 'media_player.banheiro_da_suite', 'media_player.cozinha', 'media_player.quarto', 'media_player.sala', 'media_player.suite'] %}
             {{ states.media_player | selectattr('state','!=','playing') | selectattr('entity_id', 'in', players) | map(attribute='entity_id') | join(', ') }}
         volume_level: 0
 #    - delay: '00:00:01'
-    - service: tts.amazon_polly_say
+    - service_template: tts.amazon_polly_say
       data_template:
         entity_id: >-
           {%- if is_state('input_boolean.boa_noite', 'on') and is_state('input_boolean.visita_casa', 'on') %}
@@ -242,7 +242,7 @@ ghm_tts:
           {%- endif %}
         message: '{{tts}}'
     - delay: '00:00:01'
-    - service: media_player.volume_set
+    - service_template: media_player.volume_set
       data_template:
         entity_id: >-
             {%- set players = ['media_player.banheiro_social', 'media_player.banheiro_da_suite', 'media_player.cozinha', 'media_player.quarto', 'media_player.sala', 'media_player.suite'] %}
