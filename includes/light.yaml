@@ -91,7 +91,7 @@
 
     ledsalatv_effects:
       friendly_name: "LED da TV da sala com efeitos"
-      value_template: "{{ is_state('light.ledsalatv', 'on') }}"
+      value_template: "{{ is_state('light.ledsalatv', 'on') and is_state_attr('light.ledsalatv', 'effect', 'RGB transition slow') }}"
       entity_id: light.ledsalatv
       turn_on:
         service: light.turn_on
@@ -108,7 +108,7 @@
 
     ledquartotv_effects:
       friendly_name: "LED da TV do quarto com efeitos"
-      value_template: "{{ is_state('light.ledquartotv', 'on') }}"
+      value_template: "{{ is_state('light.ledquartotv', 'on') and is_state_attr('light.ledquartotv', 'effect', 'RGB transition fast') }}"
       entity_id: light.ledquartotv
       turn_on:
         service: light.turn_on

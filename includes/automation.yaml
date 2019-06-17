@@ -242,7 +242,7 @@
     - service: notify.tudo
       data_template:
         title: "Automação"
-        message: "Toalheiro desligado após duas horas de uso."
+        message: "Toalheiro desligado após três horas de uso."
 
 - alias: Desligar chuveiro após 20 minutos
   initial_state: true

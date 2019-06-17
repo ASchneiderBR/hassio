@@ -10,3 +10,81 @@
 - platform: ffmpeg
   name: "MuvRH 203 - Operações"
   input: rtsp://192.168.1.54:554/onvif1
+
+## IOTLink
+
+## Desktop
+#
+#- platform: mqtt
+#  name: "Desktop Sala - Monitor 1"
+#  topic: "iotlink/workgroup/desktop-sala/windows-monitor/stats/display/0/screen"
+#
+#- platform: mqtt
+#  name: "Desktop Sala - Monitor 2"
+#  topic: "iotlink/workgroup/desktop-sala/windows-monitor/stats/display/1/screen"
+
+## Servidor
+#
+#- platform: mqtt
+#  name: "Servidor - Monitor 1"
+#  topic: "iotlink/workgroup/servidor-casa/windows-monitor/stats/display/0/screen"
+
+# Notebook MuvRH 01
+
+- platform: mqtt
+  name: "MuvRH 01 - Monitor 1"
+  topic: "iotlink/workgroup/muvrh_01/windows-monitor/stats/display/0/screen"
+
+- platform: mqtt
+  name: "MuvRH 01 - Monitor 2"
+  topic: "iotlink/workgroup/muvrh_01/windows-monitor/stats/display/1/screen"
+
+# Notebook MuvRH 02
+
+- platform: mqtt
+  name: "MuvRH 02 - Monitor 1"
+  topic: "iotlink/workgroup/muvrh_02/windows-monitor/stats/display/0/screen"
+
+- platform: mqtt
+  name: "MuvRH 02 - Monitor 2"
+  topic: "iotlink/workgroup/muvrh_02/windows-monitor/stats/display/1/screen"
+
+## Notebook MuvRH 03
+#
+#- platform: mqtt
+#  name: "MuvRH 03 - Monitor 1"
+#  topic: "iotlink/workgroup/muvrh_03/windows-monitor/stats/display/0/screen"
+#
+#- platform: mqtt
+#  name: "MuvRH 03 - Monitor 2"
+#  topic: "iotlink/workgroup/muvrh_03/windows-monitor/stats/display/1/screen"
+
+## Notebook MuvRH 04
+#
+#- platform: mqtt
+#  name: "MuvRH 04 - Monitor 1"
+#  topic: "iotlink/workgroup/muvrh_04/windows-monitor/stats/display/0/screen"
+#
+#- platform: mqtt
+#  name: "MuvRH 04 - Monitor 2"
+#  topic: "iotlink/workgroup/muvrh_04/windows-monitor/stats/display/1/screen"
+
+# Notebook MuvRH 05
+
+- platform: mqtt
+  name: "MuvRH 05 - Monitor 1"
+  topic: "iotlink/workgroup/muvrh_05/windows-monitor/stats/display/0/screen"
+
+- platform: mqtt
+  name: "MuvRH 05 - Monitor 2"
+  topic: "iotlink/workgroup/muvrh_05/windows-monitor/stats/display/1/screen"
+
+# Notebook MuvRH 06
+
+- platform: mqtt
+  name: "MuvRH 06 - Monitor 1"
+  topic: "iotlink/workgroup/muvrh_06/windows-monitor/stats/display/0/screen"
+
+- platform: mqtt
+  name: "MuvRH 06 - Monitor 2"
+  topic: "iotlink/workgroup/muvrh_06/windows-monitor/stats/display/1/screen"

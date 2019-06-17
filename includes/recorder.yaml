@@ -228,6 +228,17 @@ exclude:
     - sensor.notebook_muvrh_06_tempo_de_bateria_restante
     - sensor.notebook_roberta_bateria_restante
     - sensor.notebook_roberta_tempo_de_bateria_restante
+    - sensor.desktop_tempo_ocioso
+    - sensor.servidor_tempo_ocioso
+    - sensor.notebook_lg_tempo_ocioso
+    - sensor.notebook_antonio_tempo_ocioso
+    - sensor.notebook_roberta_tempo_ocioso
+    - sensor.notebook_muvrh_01_tempo_ocioso
+    - sensor.notebook_muvrh_02_tempo_ocioso
+    - sensor.notebook_muvrh_03_tempo_ocioso
+    - sensor.notebook_muvrh_04_tempo_ocioso
+    - sensor.notebook_muvrh_05_tempo_ocioso
+    - sensor.notebook_muvrh_06_tempo_ocioso
 
 include:
   entities:
