@@ -1,0 +1,69 @@
+homeassistant:
+  customize:
+
+    binary_sensor.cama_da_suite_ocupada:
+      icon: mdi:bed-empty
+
+automation:
+
+#  - alias: Cama suíte - Dar boas vindas
+#    initial_state: true
+#    trigger:
+#      platform: state
+#      entity_id: sensor.cama_da_suite_deitado
+#    condition:
+#      condition: state
+#      entity_id: input_boolean.boa_noite
+#      state: 'off'
+#    action:
+#      - service_template: >-
+#          {%- if is_state('sensor.cama_da_suite_deitado', 'Antonio') %}
+#              script.cama_suite_tts_antonio
+#          {%- elif is_state('sensor.cama_da_suite_deitado', 'Roberta') %}
+#              script.cama_suite_tts_roberta
+#          {%- elif is_state('sensor.cama_da_suite_deitado', 'Os dois') %}
+#              script.cama_suite_tts_os_dois
+#          {%- else %}
+#              script.nada
+#          {%- endif %}
+
+script:
+
+  cama_suite_tts_antonio:
+    alias: "Cama suíte - Boas vindas Antonio"
+    sequence:
+      - service: media_player.volume_set
+        data:
+          entity_id: media_player.suite
+          volume_level: 0.7
+      - delay: '00:00:01'
+      - service: tts.amazon_polly_say
+        data_template:
+          entity_id: media_player.suite
+          message: <speak><amazon:auto-breaths frequency='medium'>Olá Antonio!</amazon:auto-breaths></speak>
+
+  cama_suite_tts_roberta:
+    alias: "Cama suíte - Boas vindas Roberta"
+    sequence:
+      - service: media_player.volume_set
+        data:
+          entity_id: media_player.suite
+          volume_level: 0.7
+      - delay: '00:00:01'
+      - service: tts.amazon_polly_say
+        data_template:
+          entity_id: media_player.suite
+          message: <speak><amazon:auto-breaths frequency='medium'>Olá Roberta!</amazon:auto-breaths></speak>
+
+  cama_suite_tts_os_dois:
+    alias: "Cama suíte - Boas vindas os dois"
+    sequence:
+      - service: media_player.volume_set
+        data:
+          entity_id: media_player.suite
+          volume_level: 0.7
+      - delay: '00:00:01'
+      - service: tts.amazon_polly_say
+        data_template:
+          entity_id: media_player.suite
+          message: <speak><amazon:auto-breaths frequency='medium'>Os dois na cama? Aí tem!</amazon:auto-breaths></speak>

@@ -74,6 +74,10 @@ automation:
         data:
           title: "Alerta Casa ({{now().strftime('%H:%M')}})"
           message: "Bom dia!"
+      - service: script.iotlink_notify_antonio_roberta
+        data_template:
+          titulo: "Alerta Casa"
+          mensagem: "Bom dia iniciado."
       - service: notify.todos_celulares
         data_template:
           title: "Automação"
@@ -121,6 +125,10 @@ automation:
         data:
           title: "Automação"
           message: "Aprontando a casa. Boa noite!"
+      - service: script.iotlink_notify_antonio_roberta
+        data_template:
+          titulo: "Automação"
+          mensagem: "Aprontando a casa. Boa noite!"
       - service: persistent_notification.create
         data:
           title: "Alerta Casa ({{now().strftime('%H:%M')}})"
@@ -298,7 +306,7 @@ script:
       - service: switch.turn_off
         data_template:
           entity_id: >-
-              {% set switches = ['switch.chuveirosuite','switch.toalheiro','switch.tv_lg_sala','switch.tv_lg_suite','switch.chuveirosocial','switch.tv_lg_quarto','switch.cafeteira_casa','switch.chaleira_casa','switch.ventilador_casa','switch.home_theater_sala','switch.coifa_motor'] %}
+              {% set switches = ['switch.chuveirosuite','switch.toalheiro','switch.tv_lg_sala','switch.tv_lg_suite','switch.chuveirosocial','switch.tv_lg_quarto','switch.cafeteira_casa','switch.chaleira_casa','switch.ventilador_casa','switch.home_theater_sala','switch.coifa_motor','switch.cama_da_suite_lencol_termico_antonio','switch.cama_da_suite_lencol_termico_roberta'] %}
               {{ states.switch| selectattr('entity_id', 'in', switches) | selectattr('state','eq','on') | map(attribute='entity_id') | join(', ') }}
 
   casa_desligar_tudo_media_players:
@@ -353,6 +361,14 @@ script:
   bom_dia_sem_tts:
     alias: "Bom dia sem TTS"
     sequence:
+      - service: media_player.volume_set
+        data:
+          entity_id: media_player.casa_inteira
+          volume_level: 0
+      - service: media_player.volume_set
+        data:
+          entity_id: media_player.casa_inteira
+          volume_level: 0.6
       - service: input_boolean.turn_off
         entity_id: input_boolean.boa_noite
       - service: automation.turn_off
@@ -423,6 +439,10 @@ script:
         data:
           title: "Automação"
           message: "Aprontando a casa. Boa noite!"
+      - service: script.iotlink_notify_antonio_roberta
+        data_template:
+          titulo: "Automação"
+          mensagem: "Aprontando a casa. Boa noite!"
       - service: persistent_notification.create
         data:
           title: "Alerta Casa ({{now().strftime('%H:%M')}})"
@@ -434,6 +454,7 @@ script:
       - service: script.casa_desligar_tudo_noite
       - delay: '00:00:10'
       - service: script.boa_noite_desligar_som_ghm
+      - service: script.boa_noite_desligar_lencol_termico
 
   boa_noite_desligar_som_ghm:
     alias: "Desligar som para dormir"
@@ -441,3 +462,14 @@ script:
       - delay: '00:30:00'
       - service: media_player.turn_off
         entity_id: media_player.suite
+
+  boa_noite_desligar_lencol_termico:
+    alias: "Desligar lençol térmico"
+    sequence:
+      - condition: template
+        value_template: "{{ is_state('switch.cama_da_suite_lencol_termico_antonio' , 'on') or is_state('switch.cama_da_suite_lencol_termico_roberta' , 'on') }}"
+      - delay: '00:30:00'
+      - service: switch.turn_off
+        entity_id:
+          - switch.cama_da_suite_lencol_termico_antonio
+          - switch.cama_da_suite_lencol_termico_roberta

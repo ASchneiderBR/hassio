@@ -323,8 +323,12 @@ script:
         option: "Selecionar"
     - service: notify.tudo
       data_template:
-        title: "Alerta Casa"
+        title: "Casa - Lavalouças"
         message: "A lava-louças finalizou a lavagem."
+    - service: script.iotlink_notify_antonio_roberta
+      data_template:
+        titulo: "Casa - Lavalouças"
+        mensagem: "A lava-louças finalizou a lavagem."
     - service: persistent_notification.create
       data:
         title: "Alerta Casa ({{now().strftime('%H:%M')}})"

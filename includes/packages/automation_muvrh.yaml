@@ -23,6 +23,15 @@ automation:
           message: "Bem vindo! Abrindo garagem do trabalho..."
       - service_template: >
           {% if is_state('input_boolean.entrar_muvrh', 'on') %}
+            script.iotlink_notify_antonio_roberta
+          {% else %}
+            script.nada
+          {% endif %}
+        data_template:
+          titulo: "Garagem MuvRH"
+          mensagem: "Alguem está chegando na empresa."
+      - service_template: >
+          {% if is_state('input_boolean.entrar_muvrh', 'on') %}
             script.garagem_muvrh_entrar
           {% else %}
             script.nada
@@ -36,6 +45,15 @@ automation:
         data:
           title: "Garagem MuvRH"
           message: "Até logo! Abrindo garagem do trabalho..."
+      - service_template: >
+          {% if is_state('input_boolean.sair_muvrh', 'on') %}
+            script.iotlink_notify_antonio_roberta
+          {% else %}
+            script.nada
+          {% endif %}
+        data_template:
+          titulo: "Garagem MuvRH"
+          mensagem: "Alguem está saindo da empresa."
       - service_template: >
           {% if is_state('input_boolean.sair_muvrh', 'on') %}
             script.garagem_muvrh_sair
@@ -58,6 +76,10 @@ automation:
         data_template:
           title: 'Alerta MuvRH'
           message: 'Atenção: {{ trigger.to_state.name }} aberta por muito tempo!'
+      - service: script.iotlink_notify_all_muvrh
+        data_template:
+          titulo: "Alerta MuvRH"
+          mensagem: "Atenção: {{ trigger.to_state.name }} aberta por muito tempo!"
 
   - alias: Rotina - Ligar tudo quando primeiro chegar
     id: muvrh_rotina_ligar_tudo
@@ -104,6 +126,10 @@ automation:
             push:
               category: camera
             entity_id: camera.muvrh_203_operacoes
+      - service: script.iotlink_notify_antonio_roberta
+        data_template:
+          titulo: "Alerta MuvRH"
+          mensagem: "Chegou alguém na sala 203"
       - service: switch.turn_on
         entity_id:
           - switch.tv_sala_operacoes
@@ -157,6 +183,11 @@ automation:
         data_template:
           title: "Alerta MuvRH"
           message: "Porta da {{ trigger.to_state.name | lower }} acabou de ser aberta."
+      - service: script.iotlink_notify_all_muvrh
+        data_template:
+          titulo: "Alerta MuvRH"
+          mensagem: "Porta da {{ trigger.to_state.name | lower }} acabou de ser aberta."
+
 
   - alias: MuvRH 303 - Luz do corredor e LED
     initial_state: true
@@ -228,6 +259,10 @@ automation:
         data_template:
           title: "MuvRH"
           message: "Café está pronto, desligando a cafeteira."
+      - service: script.iotlink_notify_all_muvrh
+        data_template:
+          titulo: "Alerta MuvRH"
+          mensagem: "Café está pronto, desligando a cafeteira."
 
   - alias: MuvRH - Botão Xiaomi entrada sala 203
     initial_state: true

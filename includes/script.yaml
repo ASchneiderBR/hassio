@@ -1,32 +1,3 @@
-entrando_casa_alarme:
-  alias: "Entrando em casa com alarme disparando"
-  sequence:
-  - service: alarm_control_panel.alarm_trigger
-    entity_id: alarm_control_panel.alarme
-  - service: switch.turn_on
-    entity_id: switch.sirene
-  - service: notify.tudo
-    data:
-      title: "Alarme da casa"
-      message: "ATENÇÂO! Alarme foi acionado! Sirene está tocando!"
-  - service: media_player.volume_set
-    entity_id: media_player.casa_inteira
-    data:
-      volume_level: 1
-  - service: media_player.play_media
-    data:
-      entity_id: media_player.casa_inteira
-      media_content_id: 'http://192.168.1.12:8123/local/audio/tts/alarme_entrada_nao_autorizada.mp3'
-      media_content_type: 'audio/mp3'
-  - service: light.turn_on
-    data:
-      entity_id: light.ledsalatv, light.ledchaocozinha, light.ledquartotv, light.ledsaladesktop, light.ledsuitecama, light.ledsuitetv, light.status_maquina_de_lavar_loucas, light.movel_da_sala
-      rgb_color: [255,0,0]
-      transition: 1
-      brightness_pct: 100
-  - service: light.turn_on
-    entity_id: light.area_servico, light.suite_banheiro_principal, light.suite_banheiro_espelho, light.corredor, light.cozinha, light.entrada, light.ledcozinhabalcao, light.mesa_de_jantar, light.quarto, light.sala_principal, light.banheiro_social_principal, light.banheiro_social_espelho, light.suite_principal, light.movel_da_sala
-
 tv_lg_sala_ligar_tudo:
   alias: "Ligar TV, home e luz da sala"
   sequence:
@@ -616,10 +587,10 @@ botao_xiaomi_sala_02_double:
   - service: script.tts_status_casa
 
 botao_xiaomi_sala_02_long:
-  alias: "Armar/desarmar alarme"
+  alias: "Desarmar alarme"
   sequence:
-  - service: switch.toggle
-    entity_id: switch.sistema_alarme_casa
+  - service: alarm_control_panel.alarm_disarm
+    entity_id: alarm_control_panel.alarme
 
 botao_xiaomi_cozinha_01_single:
   alias: "Luzes principais da cozinha"
@@ -915,18 +886,6 @@ homekit_no_start:
       title: "Sistema"
       message: "Sistema iniciado sem o componente HomeKit"
 
-alarme_armar_casa:
-  alias: Armar alarme em casa
-  sequence:
-  - service: alarm_control_panel.alarm_arm_home
-    entity_id: alarm_control_panel.alarme
-
-alarme_armar_fora:
-  alias: Armar alarme fora de casa
-  sequence:
-  - service: alarm_control_panel.alarm_arm_away
-    entity_id: alarm_control_panel.alarme
-
 nada:
   alias: Não fazer nada
   sequence:
@@ -961,3 +920,13 @@ octoprint_disable_motors:
   sequence:
   - service: shell_command.octoprint_disable_motors
   alias: "Desligar motores"
+
+ghm_all_reboot:
+  alias: "Reiniciar todos os Google Home Minis de casa"
+  sequence:
+  - service: rest_command.ghm_suite_reboot
+  - service: rest_command.ghm_suite_banheiro_reboot
+  - service: rest_command.ghm_banheiro_social_reboot
+  - service: rest_command.ghm_quarto_reboot
+  - service: rest_command.ghm_sala_reboot
+  - service: rest_command.ghm_cozinha_reboot

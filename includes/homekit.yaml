@@ -57,6 +57,7 @@ filter:
     - binary_sensor.motion_sensor_158d0001e44035
     - binary_sensor.porta_lava_loucas
     - binary_sensor.movimento_entrada_de_casa
+    - binary_sensor.cama_da_suite_ocupada
     - sensor.temperatura_cozinha
     - alarm_control_panel.alarme
     - climate.ar_condicionado_da_entrada_203
@@ -135,6 +136,8 @@ filter:
     - switch.lava_loucas_homekit_economico
     - switch.lava_loucas_homekit_diaadia
     - switch.coifa_motor
+    - switch.cama_da_suite_lencol_termico_antonio
+    - switch.cama_da_suite_lencol_termico_roberta
     - script.speed_test
     - script.aspirador_homekit_zona_mop
     - script.aspirador_homekit_zona_sala
@@ -219,6 +222,8 @@ entity_config:
     name: "Porta Lava louças"
   binary_sensor.movimento_entrada_de_casa:
     name: "Entrada de casa"
+  binary_sensor.cama_da_suite_ocupada:
+    name: "Cama"
   sensor.temperatura_cozinha:
     name: "Cozinha"
   alarm_control_panel.alarme:
@@ -377,6 +382,12 @@ entity_config:
     name: "Lava-louças dia a dia"
   switch.ventilador_casa:
     name: "Ventilador"
+  switch.cama_da_suite_lencol_termico_antonio:
+    name: "Cama lado Antonio"
+    type: outlet
+  switch.cama_da_suite_lencol_termico_roberta:
+    name: "Cama lado Roberta"
+    type: outlet
   script.speed_test:
     name: "Teste de velocidade"
   script.aspirador_homekit_zona_mop:

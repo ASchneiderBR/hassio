@@ -1,0 +1,145 @@
+automation:
+
+  - alias: Alarme - Rearmar automaticamente
+    initial_state: true
+    trigger:
+      platform: state
+      entity_id: alarm_control_panel.alarme
+      to: 'disarmed'
+    action:
+      - service: switch.turn_off
+        entity_id: switch.buzzer
+      - service: media_player.volume_set
+        data:
+          entity_id: media_player.sala
+          volume_level: 0.6
+      - service: media_player.play_media
+        data:
+          entity_id: media_player.sala
+          media_content_type: 'audio/mp3'
+          media_content_id: 'http://192.168.1.12:8123/local/audio/tts/alarme_desarmado.mp3'
+      - delay: '00:00:01'
+      - service: switch.turn_on
+        entity_id: switch.buzzer_alarme_desligado
+      - service: notify.tudo
+        data:
+          title: "Alarme da casa"
+          message: "O alarme da casa foi desarmado. Rearmando em 10 minutos..."
+      - service: script.iotlink_notify_antonio_roberta
+        data_template:
+          titulo: "Alarme da casa"
+          mensagem: "O alarme da casa foi desarmado. Rearmando em 10 minutos..."
+      - condition: state
+        entity_id: alarm_control_panel.alarme
+        state: 'disarmed'
+      - delay: '00:10:00'
+      - service_template: >
+          {% if is_state('group.pessoas', 'home') %}
+            alarm_control_panel.alarm_arm_home
+          {% else %}
+            alarm_control_panel.alarm_arm_away
+          {% endif %}
+        entity_id: alarm_control_panel.alarme
+
+  - alias: Alarme - Aviso alarme ativado
+    initial_state: False
+    trigger:
+      platform: state
+      entity_id: alarm_control_panel.alarme
+      from: 'disarmed'
+    action:
+      - service: media_player.volume_set
+        data:
+          entity_id: media_player.sala
+          volume_level: 0.6
+      - service: media_player.play_media
+        data:
+          entity_id: media_player.sala
+          media_content_type: 'audio/mp3'
+          media_content_id: 'http://192.168.1.12:8123/local/audio/tts/alarme_armado.mp3'
+      - service: switch.turn_on
+        entity_id: switch.buzzer_alarme_ligado
+      - service: notify.tudo
+        data:
+          title: "Alarme da casa"
+          message: "O alarme da casa foi armado."
+      - service: script.iotlink_notify_antonio_roberta
+        data_template:
+          titulo: "Alarme da casa"
+          mensagem: "O alarme da casa foi armado."
+
+script:
+
+  entrando_casa_alarme:
+    alias: "Entrando em casa com alarme disparando"
+    sequence:
+    - service: alarm_control_panel.alarm_trigger
+      entity_id: alarm_control_panel.alarme
+    - service: switch.turn_on
+      entity_id: switch.buzzer
+    - service: media_player.volume_set
+      data:
+        entity_id: media_player.sala
+        volume_level: 1
+    - service: notify.tudo
+      data:
+        title: "Alarme da casa"
+        message: "ATENÇÂO! Entrada não autorizada, sirene será tocada em alguns segundos!"
+    - service: script.iotlink_notify_antonio_roberta
+      data_template:
+        titulo: "Alarme da casa"
+        mensagem: "ATENÇÂO! Entrada não autorizada, sirene será tocada em alguns segundos!"
+    - service: media_player.volume_set
+      entity_id: media_player.casa_inteira
+      data:
+        volume_level: 1
+    - service: media_player.play_media
+      data:
+        entity_id: media_player.casa_inteira
+        media_content_id: 'http://192.168.1.12:8123/local/audio/tts/alarme_entrada_sirene.mp3'
+        media_content_type: 'audio/mp3'
+    - wait_template: "{{ is_state('alarm_control_panel.alarme', 'disarmed') }}"
+      timeout: 00:01:30
+      continue_on_timeout: true
+    - condition: state
+      entity_id: alarm_control_panel.alarme
+      state: 'triggered'
+    - service: switch.turn_on
+      entity_id: switch.sirene
+    - service: notify.tudo
+      data:
+        title: "Alarme da casa"
+        message: "ATENÇÂO! Alarme foi acionado! Sirene está tocando!"
+    - service: script.iotlink_notify_antonio_roberta
+      data_template:
+        titulo: "Alarme da casa"
+        mensagem: "ATENÇÂO! Alarme foi acionado! Sirene está tocando!"
+    - service: media_player.volume_set
+      entity_id: media_player.casa_inteira
+      data:
+        volume_level: 1
+    - service: media_player.play_media
+      data:
+        entity_id: media_player.casa_inteira
+        media_content_id: 'http://192.168.1.12:8123/local/audio/tts/alarme_entrada_nao_autorizada.mp3'
+        media_content_type: 'audio/mp3'
+    - service: light.turn_on
+      data:
+        entity_id: light.ledsalatv, light.ledchaocozinha, light.ledquartotv, light.ledsaladesktop, light.ledsuitecama, light.ledsuitetv, light.status_maquina_de_lavar_loucas, light.movel_da_sala
+        rgb_color: [255,0,0]
+        transition: 1
+        brightness_pct: 100
+    - service: light.turn_on
+      entity_id: light.area_servico, light.suite_banheiro_principal, light.suite_banheiro_espelho, light.corredor, light.cozinha, light.entrada, light.ledcozinhabalcao, light.mesa_de_jantar, light.quarto, light.sala_principal, light.banheiro_social_principal, light.banheiro_social_espelho, light.suite_principal, light.movel_da_sala
+
+  alarme_armar_casa:
+    alias: Armar alarme em casa
+    sequence:
+    - service: alarm_control_panel.alarm_arm_home
+      entity_id: alarm_control_panel.alarme
+
+  alarme_armar_fora:
+    alias: Armar alarme fora de casa
+    sequence:
+    - service: alarm_control_panel.alarm_arm_away
+      entity_id: alarm_control_panel.alarme

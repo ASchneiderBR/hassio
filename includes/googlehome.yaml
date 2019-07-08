@@ -2,18 +2,18 @@ devices:
   - host: 192.168.1.60
     track_alarms: true
     track_devices: false
-  - host: 192.168.1.120
-    track_alarms: true
-    track_devices: false
-  - host: 192.168.1.71
-    track_alarms: true
-    track_devices: false
-  - host: 192.168.1.118
-    track_alarms: true
-    track_devices: false
-  - host: 192.168.1.62
-    track_alarms: true
-    track_devices: false
-  - host: 192.168.1.74
-    track_alarms: true
-    track_devices: false
+#  - host: 192.168.1.120
+#    track_alarms: false
+#    track_devices: false
+#  - host: 192.168.1.71
+#    track_alarms: false
+#    track_devices: false
+#  - host: 192.168.1.118
+#    track_alarms: false
+#    track_devices: false
+#  - host: 192.168.1.62
+#    track_alarms: false
+#    track_devices: false
+#  - host: 192.168.1.74
+#    track_alarms: false
+#    track_devices: false

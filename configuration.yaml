@@ -34,6 +34,7 @@ map:
 sun:
 system_health:
 updater:
+wake_on_lan:
 zeroconf:
 
 alarm_control_panel: !include includes/alarm.yaml
@@ -41,12 +42,10 @@ asuswrt: !include includes/asuswrt.yaml
 automation: !include includes/automation.yaml
 binary_sensor: !include includes/binary_sensor.yaml
 camera: !include includes/camera.yaml
-#cast: !include includes/cast.yaml
-#cloud: !include includes/cloud.yaml
 climate: !include includes/climate.yaml
 cover: !include includes/cover.yaml
 device_tracker: !include includes/device_tracker.yaml
-discovery: !include includes/discovery.yaml
+#discovery: !include includes/discovery.yaml
 fastdotcom: !include includes/fastdotcom.yaml
 frontend: !include includes/frontend.yaml
 google_assistant: !include includes/google_assistant.yaml
@@ -60,7 +59,6 @@ input_select: !include includes/input_select.yaml
 ios: !include includes/ios.yaml
 light: !include includes/light.yaml
 logger: !include includes/logger.yaml
-#lovelace: !include includes/lovelace.yaml
 media_player: !include includes/media_player.yaml
 mqtt: !include includes/mqtt.yaml
 notify: !include includes/notify.yaml
@@ -68,6 +66,7 @@ octoprint: !include includes/octoprint.yaml
 panel_iframe: !include includes/panel_iframe.yaml
 person: !include includes/person.yaml
 recorder: !include includes/recorder.yaml
+rest_command: !include includes/rest_command.yaml
 scene: !include includes/scene.yaml
 script: !include includes/script.yaml
 sensor: !include includes/sensor.yaml
@@ -77,7 +76,7 @@ smartir: !include includes/smartir.yaml
 switch: !include includes/switch.yaml
 timer: !include includes/timer.yaml
 tts: !include includes/tts.yaml
-#upnp: !include includes/upnp.yaml
+tuya: !include includes/tuya.yaml
 vacuum: !include includes/vacuum.yaml
 weather: !include includes/weather.yaml
 xiaomi_aqara: !include includes/xiaomi_aqara.yaml

@@ -215,7 +215,7 @@ script:
       data:
         entity_id: vacuum.aspirador
         command: app_zoned_clean
-        params: [[17327,20045,27427,32995,1]]
+        params: [[21203,24884,31653,32534,1]]
     - service: script.aspirador_alerta_iniciando
 
   aspirador_zona_sala_inteira:
@@ -224,7 +224,7 @@ script:
       data:
         entity_id: vacuum.aspirador
         command: app_zoned_clean
-        params: [[23905,21987,26255,31337,1],[21493,25588,22543,26838,1],[22581,25389,23931,27789,1]]
+        params: [[22537,25057,31437,27357,1],[25451,27366,27751,28766,1]]
     - service: script.aspirador_alerta_iniciando
 
   aspirador_zona_tapete:
@@ -233,7 +233,7 @@ script:
       data:
         entity_id: vacuum.aspirador
         command: app_zoned_clean
-        params: [[23880,23529,25130,25329,2]]
+        params: [[23661,26089,25411,27339,2]]
     - service: script.aspirador_alerta_iniciando
 
   aspirador_zona_mesa_jantar:
@@ -242,7 +242,7 @@ script:
       data:
         entity_id: vacuum.aspirador
         command: app_zoned_clean
-        params: [[24017,26407,26017,28807,1]]
+        params: [[26403,25147,29003,27297,1]]
     - service: script.aspirador_alerta_iniciando
 
   aspirador_zona_entrada:
@@ -251,7 +251,7 @@ script:
       data:
         entity_id: vacuum.aspirador
         command: app_zoned_clean
-        params: [[23822,28974,25122,31374,1]]
+        params: [[29141,26021,31491,27221,1]]
     - service: script.aspirador_alerta_iniciando
 
   aspirador_zona_cozinha:
@@ -260,7 +260,7 @@ script:
       data:
         entity_id: vacuum.aspirador
         command: app_zoned_clean
-        params: [[19131,29589,23931,31239,1]]
+        params: [[29709,27178,31459,32028,1]]
     - service: script.aspirador_alerta_iniciando
 
   aspirador_zona_banheiro_social:
@@ -273,7 +273,7 @@ script:
       data:
         entity_id: vacuum.aspirador
         command: app_zoned_clean
-        params: [[19673,25650,21373,26900,1]]
+        params: [[25820,29921,26970,31521,1]]
     - service: script.aspirador_alerta_iniciando
 
   aspirador_zona_banheiro_suite:
@@ -286,7 +286,7 @@ script:
       data:
         entity_id: vacuum.aspirador
         command: app_zoned_clean
-        params: [[19613,24227,21313,25477,1]]
+        params: [[24355,29825,25505,31525,1]]
     - service: script.aspirador_alerta_iniciando
 
   aspirador_zona_quarto:
@@ -295,7 +295,7 @@ script:
       data:
         entity_id: vacuum.aspirador
         command: app_zoned_clean
-        params: [[18863,27028,21963,29428,1]]
+        params: [[27178,29300,29578,32450,1]]
     - service: script.aspirador_alerta_iniciando
 
   aspirador_zona_suite:
@@ -304,7 +304,7 @@ script:
       data:
         entity_id: vacuum.aspirador
         command: app_zoned_clean
-        params: [[19135,21224,22785,24024,1],[21432,24040,22382,25540,1]]
+        params: [[21340,28425,24290,32175,1],[24314,28918,25714,29818,1]]
     - service: script.aspirador_alerta_iniciando
 
   aspirador_zona_suite_e_banheiro:
@@ -313,7 +313,7 @@ script:
       data:
         entity_id: vacuum.aspirador
         command: app_zoned_clean
-        params: [[19093,21228,22843,25528,1]]
+        params: [[21353,28421,25603,32171,1]]
     - service: script.aspirador_alerta_iniciando
 
   aspirador_zona_quartos_e_banheiros:
@@ -322,7 +322,7 @@ script:
       data:
         entity_id: vacuum.aspirador
         command: app_zoned_clean
-        params: [[18773,21262,22723,29462,1]]
+        params: [[21541,28516,29741,32566,1]]
     - service: script.aspirador_alerta_iniciando
 
   aspirador_zona_mop:
@@ -335,7 +335,7 @@ script:
       data:
         entity_id: vacuum.aspirador
         command: app_zoned_clean
-        params: [[18773,21262,22723,29462,1],[19189,29076,25089,31476,1],[22804,25476,24254,29026,1],[22898,25473,25598,26323,1]]
+        params: [[21541,28516,29741,32566,1],[28804,25118,31504,32268,1],[25584,27107,28734,28457,1],[25575,25548,26275,27098,1]]
     - service: script.aspirador_alerta_iniciando
 
   aspirador_voltar_dock:
@@ -353,6 +353,10 @@ script:
       data_template:
         title: "Alerta Casa"
         message: "O aspirador iniciou a limpeza na zona: {{ states.input_select.zonas_de_aspiracao.state | lower }}."
+    - service: script.iotlink_notify_antonio_roberta
+      data_template:
+        titulo: "Alerta Casa"
+        mensagem: "O aspirador iniciou a limpeza na zona: {{ states.input_select.zonas_de_aspiracao.state | lower }}."
     - service: persistent_notification.create
       data:
         title: "Alerta Casa ({{now().strftime('%H:%M')}})"
@@ -369,6 +373,10 @@ script:
       data_template:
         title: "Alerta Casa"
         message: "O aspirador parou. Estava limpando a zona: {{ states.input_select.zonas_de_aspiracao.state | lower }}. {% if 'error' in states.vacuum.aspirador.state %}Código de erro: {{ states.vacuum.aspirador.attributes.error }}.{% else %}{% endif %}"
+    - service: script.iotlink_notify_antonio_roberta
+      data_template:
+        titulo: "Alerta Casa"
+        mensagem: "O aspirador parou. Estava limpando a zona: {{ states.input_select.zonas_de_aspiracao.state | lower }}. {% if 'error' in states.vacuum.aspirador.state %}Código de erro: {{ states.vacuum.aspirador.attributes.error }}.{% else %}{% endif %}"
     - service: persistent_notification.create
       data:
         title: "Alerta Casa ({{now().strftime('%H:%M')}})"
@@ -387,6 +395,10 @@ script:
       data_template:
         title: "Alerta Casa"
         message: "O aspirador terminou seu trabalho na zona {{ states.input_select.zonas_de_aspiracao.state | lower }}. Limpou cerca de {{ states.vacuum.aspirador.attributes.cleaned_area }} metros quadrados durante {{ states.vacuum.aspirador.attributes.cleaning_time }} minutos e está carregando no momento."
+    - service: script.iotlink_notify_antonio_roberta
+      data_template:
+        titulo: "Alerta Casa"
+        mensagem: "O aspirador terminou seu trabalho na zona {{ states.input_select.zonas_de_aspiracao.state | lower }}. Limpou cerca de {{ states.vacuum.aspirador.attributes.cleaned_area }} metros quadrados durante {{ states.vacuum.aspirador.attributes.cleaning_time }} minutos e está carregando no momento."
     - service: persistent_notification.create
       data:
         title: "Alerta Casa ({{now().strftime('%H:%M')}})"
@@ -403,6 +415,10 @@ script:
       data_template:
         title: "Alerta Casa"
         message: "O aspirador está parado e acusou erro limpando a zona {{ states.input_select.zonas_de_aspiracao.state | lower }}."
+    - service: script.iotlink_notify_antonio_roberta
+      data_template:
+        titulo: "Alerta Casa"
+        mensagem: "O aspirador está parado e acusou erro limpando a zona {{ states.input_select.zonas_de_aspiracao.state | lower }}."
     - service: persistent_notification.create
       data:
         title: "Alerta Casa ({{now().strftime('%H:%M')}})"

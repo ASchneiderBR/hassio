@@ -113,7 +113,7 @@ sensor:
     availability_topic: "zigbee2mqtt/bridge/state"
     unit_of_measurement: "°C"
     icon: "mdi:temperature-celsius"
-    value_template: "{{ value_json.temperature }}"
+    value_template: "{{ value_json.temperature | round(1) }}"
     qos: 1
     json_attributes_topic: "zigbee2mqtt/casa_xiaomi_temperatura_cozinha"
 
@@ -124,7 +124,7 @@ sensor:
     availability_topic: "zigbee2mqtt/bridge/state"
     unit_of_measurement: "%"
     icon: "mdi:water-percent"
-    value_template: "{{ value_json.humidity }}"
+    value_template: "{{ value_json.humidity | int }}"
     qos: 1
     json_attributes_topic: "zigbee2mqtt/casa_xiaomi_temperatura_cozinha"
 
@@ -135,7 +135,7 @@ sensor:
     availability_topic: "zigbee2mqtt/bridge/state"
     unit_of_measurement: "°C"
     icon: "mdi:temperature-celsius"
-    value_template: "{{ value_json.temperature }}"
+    value_template: "{{ value_json.temperature | round(1) }}"
     qos: 1
     json_attributes_topic: "zigbee2mqtt/casa_xiaomi_temperatura_sala"
 
@@ -146,7 +146,7 @@ sensor:
     availability_topic: "zigbee2mqtt/bridge/state"
     unit_of_measurement: "%"
     icon: "mdi:water-percent"
-    value_template: "{{ value_json.humidity }}"
+    value_template: "{{ value_json.humidity | int }}"
     qos: 1
     json_attributes_topic: "zigbee2mqtt/casa_xiaomi_temperatura_sala"
 
@@ -157,7 +157,7 @@ sensor:
     availability_topic: "zigbee2mqtt/bridge/state"
     unit_of_measurement: "°C"
     icon: "mdi:temperature-celsius"
-    value_template: "{{ value_json.temperature }}"
+    value_template: "{{ value_json.temperature | round(1) }}"
     qos: 1
     json_attributes_topic: "zigbee2mqtt/casa_xiaomi_temperatura_quarto"
 
@@ -168,31 +168,9 @@ sensor:
     availability_topic: "zigbee2mqtt/bridge/state"
     unit_of_measurement: "%"
     icon: "mdi:water-percent"
-    value_template: "{{ value_json.humidity }}"
+    value_template: "{{ value_json.humidity | int }}"
     qos: 1
     json_attributes_topic: "zigbee2mqtt/casa_xiaomi_temperatura_quarto"
-
-  - platform: "mqtt"
-    name: "Temperatura suite"
-    device_class: temperature
-    state_topic: "zigbee2mqtt/casa_xiaomi_temperatura_suite"
-    availability_topic: "zigbee2mqtt/bridge/state"
-    unit_of_measurement: "°C"
-    icon: "mdi:temperature-celsius"
-    value_template: "{{ value_json.temperature }}"
-    qos: 1
-    json_attributes_topic: "zigbee2mqtt/casa_xiaomi_temperatura_suite"
-
-  - platform: "mqtt"
-    name: "Umidade suite"
-    device_class: humidity
-    state_topic: "zigbee2mqtt/casa_xiaomi_temperatura_suite"
-    availability_topic: "zigbee2mqtt/bridge/state"
-    unit_of_measurement: "%"
-    icon: "mdi:water-percent"
-    value_template: "{{ value_json.humidity }}"
-    qos: 1
-    json_attributes_topic: "zigbee2mqtt/casa_xiaomi_temperatura_suite"
 
 ## Vibração
 

@@ -29,6 +29,10 @@ automation:
         data_template:
           title: "Casa - Caixa de areia suja"
           message: "Magno acabou de usar a caixa de areia, favor limpar."
+      - service: script.iotlink_notify_antonio_roberta
+        data_template:
+          titulo: "Casa - Caixa de areia suja"
+          mensagem: "Magno acabou de usar a caixa de areia, favor limpar."
       - service: script.ghm_tts
         data_template:
           tts: <speak>Magno acabou de usar a caixa de areia, limpar o mais breve possível!</speak>

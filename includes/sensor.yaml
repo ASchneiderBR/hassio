@@ -33,12 +33,12 @@
   monitored_conditions:
     - temperature
 
-- platform: fastdotcom
-  hour:
-    - 1
-    - 6
-    - 13
-    - 20
+#- platform: fastdotcom
+#  hour:
+#    - 1
+#    - 6
+#    - 13
+#    - 20
 
 
 - platform: systemmonitor

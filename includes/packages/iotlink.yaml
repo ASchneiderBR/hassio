@@ -279,9 +279,30 @@ sensor:
 
   - platform: mqtt
     name: "Desktop - Tempo ocioso"
-    state_topic: "iotlink/workgroup/desktop-sala/windows-monitor/stats/idle-time/antonioschneider"
+    state_topic: "iotlink/workgroup/desktop-sala/windows-monitor/stats/idle-time"
     unit_of_measurement: 'segundos'
     icon: mdi:account-clock-outline
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/desktop-sala/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+  - platform: mqtt
+    name: "Desktop - Usuário atual"
+    state_topic: "iotlink/workgroup/desktop-sala/windows-monitor/stats/current-user"
+    icon: mdi:account
+    value_template: "{{ value | capitalize }}"
+    availability_topic: "iotlink/workgroup/desktop-sala/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+  - platform: mqtt
+    name: "Desktop - Velocidade da rede"
+    state_topic: "iotlink/workgroup/desktop-sala/windows-monitor/stats/network/0/speed"
+    unit_of_measurement: 'Mbps'
+    icon: mdi:speedometer
     value_template: "{{ value }}"
     availability_topic: "iotlink/workgroup/desktop-sala/lwt"
     payload_available: "ON"
@@ -336,9 +357,30 @@ sensor:
 
   - platform: mqtt
     name: "Servidor - Tempo ocioso"
-    state_topic: "iotlink/workgroup/servidor-casa/windows-monitor/stats/idle-time/media_server"
+    state_topic: "iotlink/workgroup/servidor-casa/windows-monitor/stats/idle-time"
     unit_of_measurement: 'segundos'
     icon: mdi:account-clock-outline
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/servidor-casa/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+  - platform: mqtt
+    name: "Servidor - Usuário atual"
+    state_topic: "iotlink/workgroup/servidor-casa/windows-monitor/stats/current-user"
+    icon: mdi:account
+    value_template: "{{ value | capitalize }}"
+    availability_topic: "iotlink/workgroup/servidor-casa/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+  - platform: mqtt
+    name: "Servidor - Velocidade da rede"
+    state_topic: "iotlink/workgroup/servidor-casa/windows-monitor/stats/network/0/speed"
+    unit_of_measurement: 'Mbps'
+    icon: mdi:speedometer
     value_template: "{{ value }}"
     availability_topic: "iotlink/workgroup/servidor-casa/lwt"
     payload_available: "ON"
@@ -402,16 +444,37 @@ sensor:
     payload_not_available: "OFF"
     qos: 1
 
-#  - platform: mqtt
-#    name: "Notebook Antonio - Tempo ocioso"
-#    state_topic: "iotlink/workgroup/antonio_note/windows-monitor/stats/idle-time/antonioschneider"
-#    unit_of_measurement: 'segundos'
-#    icon: mdi:account-clock-outline
-#    value_template: "{{ value }}"
-#    availability_topic: "iotlink/workgroup/antonio_note/lwt"
-#    payload_available: "ON"
-#    payload_not_available: "OFF"
-#    qos: 1
+  - platform: mqtt
+    name: "Notebook Antonio - Tempo ocioso"
+    state_topic: "iotlink/workgroup/antonio_note/windows-monitor/stats/idle-time"
+    unit_of_measurement: 'segundos'
+    icon: mdi:account-clock-outline
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/antonio_note/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+  - platform: mqtt
+    name: "Notebook Antonio - Usuário atual"
+    state_topic: "iotlink/workgroup/antonio_note/windows-monitor/stats/current-user"
+    icon: mdi:account
+    value_template: "{{ value | capitalize }}"
+    availability_topic: "iotlink/workgroup/antonio_note/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+  - platform: mqtt
+    name: "Notebook Antonio - Velocidade da rede"
+    state_topic: "iotlink/workgroup/antonio_note/windows-monitor/stats/network/0/speed"
+    unit_of_measurement: 'Mbps'
+    icon: mdi:speedometer
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/antonio_note/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
 
 # Notebook Roberta
 
@@ -470,16 +533,37 @@ sensor:
     payload_not_available: "OFF"
     qos: 1
 
-#  - platform: mqtt
-#    name: "Notebook Roberta - Tempo ocioso"
-#    state_topic: "iotlink/workgroup/roberta_note/windows-monitor/stats/idle-time/robertaschneider"
-#    unit_of_measurement: 'segundos'
-#    icon: mdi:account-clock-outline
-#    value_template: "{{ value }}"
-#    availability_topic: "iotlink/workgroup/roberta_note/lwt"
-#    payload_available: "ON"
-#    payload_not_available: "OFF"
-#    qos: 1
+  - platform: mqtt
+    name: "Notebook Roberta - Tempo ocioso"
+    state_topic: "iotlink/workgroup/roberta_note/windows-monitor/stats/idle-time"
+    unit_of_measurement: 'segundos'
+    icon: mdi:account-clock-outline
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/roberta_note/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+  - platform: mqtt
+    name: "Notebook Roberta - Usuário atual"
+    state_topic: "iotlink/workgroup/roberta_note/windows-monitor/stats/current-user"
+    icon: mdi:account
+    value_template: "{{ value | capitalize }}"
+    availability_topic: "iotlink/workgroup/roberta_note/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+  - platform: mqtt
+    name: "Notebook Roberta - Velocidade da rede"
+    state_topic: "iotlink/workgroup/roberta_note/windows-monitor/stats/network/0/speed"
+    unit_of_measurement: 'Mbps'
+    icon: mdi:speedometer
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/roberta_note/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
 
 # Notebook LG
 
@@ -538,16 +622,37 @@ sensor:
     payload_not_available: "OFF"
     qos: 1
 
-#  - platform: mqtt
-#    name: "Notebook LG - Tempo ocioso"
-#    state_topic: "iotlink/workgroup/muvrh-lg-303/windows-monitor/stats/idle-time/robertaschneider"
-#    unit_of_measurement: 'segundos'
-#    icon: mdi:account-clock-outline
-#    value_template: "{{ value }}"
-#    availability_topic: "iotlink/workgroup/muvrh-lg-303/lwt"
-#    payload_available: "ON"
-#    payload_not_available: "OFF"
-#    qos: 1
+  - platform: mqtt
+    name: "Notebook LG - Tempo ocioso"
+    state_topic: "iotlink/workgroup/muvrh-lg-303/windows-monitor/stats/idle-time"
+    unit_of_measurement: 'segundos'
+    icon: mdi:account-clock-outline
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/muvrh-lg-303/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+  - platform: mqtt
+    name: "Notebook LG - Usuário atual"
+    state_topic: "iotlink/workgroup/muvrh-lg-303/windows-monitor/stats/current-user"
+    icon: mdi:account
+    value_template: "{{ value | capitalize }}"
+    availability_topic: "iotlink/workgroup/muvrh-lg-303/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+  - platform: mqtt
+    name: "Notebook LG - Velocidade da rede"
+    state_topic: "iotlink/workgroup/muvrh-lg-303/windows-monitor/stats/network/0/speed"
+    unit_of_measurement: 'Mbps'
+    icon: mdi:speedometer
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/muvrh-lg-303/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
 
 # Notebook MuvRH 01
 
@@ -606,16 +711,37 @@ sensor:
     payload_not_available: "OFF"
     qos: 1
 
-#  - platform: mqtt
-#    name: "Notebook MuvRH 01 - Tempo ocioso"
-#    state_topic: "iotlink/workgroup/muvrh_01/windows-monitor/stats/idle-time/robertaschneider"
-#    unit_of_measurement: 'segundos'
-#    icon: mdi:account-clock-outline
-#    value_template: "{{ value }}"
-#    availability_topic: "iotlink/workgroup/muvrh_01/lwt"
-#    payload_available: "ON"
-#    payload_not_available: "OFF"
-#    qos: 1
+  - platform: mqtt
+    name: "Notebook MuvRH 01 - Tempo ocioso"
+    state_topic: "iotlink/workgroup/muvrh_01/windows-monitor/stats/idle-time"
+    unit_of_measurement: 'segundos'
+    icon: mdi:account-clock-outline
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/muvrh_01/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+  - platform: mqtt
+    name: "Notebook MuvRH 01 - Usuário atual"
+    state_topic: "iotlink/workgroup/muvrh_01/windows-monitor/stats/current-user"
+    icon: mdi:account
+    value_template: "{{ value | capitalize }}"
+    availability_topic: "iotlink/workgroup/muvrh_01/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+  - platform: mqtt
+    name: "Notebook MuvRH 01 - Velocidade da rede"
+    state_topic: "iotlink/workgroup/muvrh_01/windows-monitor/stats/network/0/speed"
+    unit_of_measurement: 'Mbps'
+    icon: mdi:speedometer
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/muvrh_01/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
 
 # Notebook MuvRH 02
 
@@ -674,16 +800,37 @@ sensor:
     payload_not_available: "OFF"
     qos: 1
 
-#  - platform: mqtt
-#    name: "Notebook MuvRH 02 - Tempo ocioso"
-#    state_topic: "iotlink/workgroup/muvrh_02/windows-monitor/stats/idle-time/robertaschneider"
-#    unit_of_measurement: 'segundos'
-#    icon: mdi:account-clock-outline
-#    value_template: "{{ value }}"
-#    availability_topic: "iotlink/workgroup/muvrh_02/lwt"
-#    payload_available: "ON"
-#    payload_not_available: "OFF"
-#    qos: 1
+  - platform: mqtt
+    name: "Notebook MuvRH 02 - Tempo ocioso"
+    state_topic: "iotlink/workgroup/muvrh_02/windows-monitor/stats/idle-time"
+    unit_of_measurement: 'segundos'
+    icon: mdi:account-clock-outline
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/muvrh_02/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+  - platform: mqtt
+    name: "Notebook MuvRH 02 - Usuário atual"
+    state_topic: "iotlink/workgroup/muvrh_02/windows-monitor/stats/current-user"
+    icon: mdi:account
+    value_template: "{{ value | capitalize }}"
+    availability_topic: "iotlink/workgroup/muvrh_02/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+  - platform: mqtt
+    name: "Notebook MuvRH 02 - Velocidade da rede"
+    state_topic: "iotlink/workgroup/muvrh_02/windows-monitor/stats/network/0/speed"
+    unit_of_measurement: 'Mbps'
+    icon: mdi:speedometer
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/muvrh_02/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
 
 ## Notebook MuvRH 03
 #
@@ -744,9 +891,30 @@ sensor:
 #
 #  - platform: mqtt
 #    name: "Notebook MuvRH 03 - Tempo ocioso"
-#    state_topic: "iotlink/workgroup/muvrh_03/windows-monitor/stats/idle-time/robertaschneider"
+#    state_topic: "iotlink/workgroup/muvrh_03/windows-monitor/stats/idle-time"
 #    unit_of_measurement: 'segundos'
 #    icon: mdi:account-clock-outline
+#    value_template: "{{ value }}"
+#    availability_topic: "iotlink/workgroup/muvrh_03/lwt"
+#    payload_available: "ON"
+#    payload_not_available: "OFF"
+#    qos: 1
+
+#  - platform: mqtt
+#    name: "Notebook MuvRH 03 - Usuário atual"
+#    state_topic: "iotlink/workgroup/muvrh_03/windows-monitor/stats/current-user"
+#    icon: mdi:account
+#    value_template: "{{ value | capitalize }}"
+#    availability_topic: "iotlink/workgroup/muvrh_03/lwt"
+#    payload_available: "ON"
+#    payload_not_available: "OFF"
+#    qos: 1
+#
+#  - platform: mqtt
+#    name: "Notebook MuvRH 03 - Velocidade da rede"
+#    state_topic: "iotlink/workgroup/muvrh_03/windows-monitor/stats/network/0/speed"
+#    unit_of_measurement: 'Mbps'
+#    icon: mdi:speedometer
 #    value_template: "{{ value }}"
 #    availability_topic: "iotlink/workgroup/muvrh_03/lwt"
 #    payload_available: "ON"
@@ -812,9 +980,30 @@ sensor:
 #
 #  - platform: mqtt
 #    name: "Notebook MuvRH 04 - Tempo ocioso"
-#    state_topic: "iotlink/workgroup/muvrh_04/windows-monitor/stats/idle-time/robertaschneider"
+#    state_topic: "iotlink/workgroup/muvrh_04/windows-monitor/stats/idle-time"
 #    unit_of_measurement: 'segundos'
 #    icon: mdi:account-clock-outline
+#    value_template: "{{ value }}"
+#    availability_topic: "iotlink/workgroup/muvrh_04/lwt"
+#    payload_available: "ON"
+#    payload_not_available: "OFF"
+#    qos: 1
+
+#  - platform: mqtt
+#    name: "Notebook MuvRH 04 - Usuário atual"
+#    state_topic: "iotlink/workgroup/muvrh_04/windows-monitor/stats/current-user"
+#    icon: mdi:account
+#    value_template: "{{ value | capitalize }}"
+#    availability_topic: "iotlink/workgroup/muvrh_04/lwt"
+#    payload_available: "ON"
+#    payload_not_available: "OFF"
+#    qos: 1
+#
+#  - platform: mqtt
+#    name: "Notebook MuvRH 04 - Velocidade da rede"
+#    state_topic: "iotlink/workgroup/muvrh_04/windows-monitor/stats/network/0/speed"
+#    unit_of_measurement: 'Mbps'
+#    icon: mdi:speedometer
 #    value_template: "{{ value }}"
 #    availability_topic: "iotlink/workgroup/muvrh_04/lwt"
 #    payload_available: "ON"
@@ -878,16 +1067,37 @@ sensor:
     payload_not_available: "OFF"
     qos: 1
 
-#  - platform: mqtt
-#    name: "Notebook MuvRH 05 - Tempo ocioso"
-#    state_topic: "iotlink/workgroup/muvrh_05/windows-monitor/stats/idle-time/robertaschneider"
-#    unit_of_measurement: 'segundos'
-#    icon: mdi:account-clock-outline
-#    value_template: "{{ value }}"
-#    availability_topic: "iotlink/workgroup/muvrh_05/lwt"
-#    payload_available: "ON"
-#    payload_not_available: "OFF"
-#    qos: 1
+  - platform: mqtt
+    name: "Notebook MuvRH 05 - Tempo ocioso"
+    state_topic: "iotlink/workgroup/muvrh_05/windows-monitor/stats/idle-time"
+    unit_of_measurement: 'segundos'
+    icon: mdi:account-clock-outline
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/muvrh_05/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+  - platform: mqtt
+    name: "Notebook MuvRH 05 - Usuário atual"
+    state_topic: "iotlink/workgroup/muvrh_05/windows-monitor/stats/current-user"
+    icon: mdi:account
+    value_template: "{{ value | capitalize }}"
+    availability_topic: "iotlink/workgroup/muvrh_05/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+  - platform: mqtt
+    name: "Notebook MuvRH 05 - Velocidade da rede"
+    state_topic: "iotlink/workgroup/muvrh_05/windows-monitor/stats/network/0/speed"
+    unit_of_measurement: 'Mbps'
+    icon: mdi:speedometer
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/muvrh_05/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
 
 # Notebook MuvRH 06
 
@@ -946,16 +1156,37 @@ sensor:
     payload_not_available: "OFF"
     qos: 1
 
-#  - platform: mqtt
-#    name: "Notebook MuvRH 06 - Tempo ocioso"
-#    state_topic: "iotlink/workgroup/muvrh_06/windows-monitor/stats/idle-time/robertaschneider"
-#    unit_of_measurement: 'segundos'
-#    icon: mdi:account-clock-outline
-#    value_template: "{{ value }}"
-#    availability_topic: "iotlink/workgroup/muvrh_06/lwt"
-#    payload_available: "ON"
-#    payload_not_available: "OFF"
-#    qos: 1
+  - platform: mqtt
+    name: "Notebook MuvRH 06 - Tempo ocioso"
+    state_topic: "iotlink/workgroup/muvrh_06/windows-monitor/stats/idle-time"
+    unit_of_measurement: 'segundos'
+    icon: mdi:account-clock-outline
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/muvrh_06/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+  - platform: mqtt
+    name: "Notebook MuvRH 06 - Usuário atual"
+    state_topic: "iotlink/workgroup/muvrh_06/windows-monitor/stats/current-user"
+    icon: mdi:account
+    value_template: "{{ value | capitalize }}"
+    availability_topic: "iotlink/workgroup/muvrh_06/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+  - platform: mqtt
+    name: "Notebook MuvRH 06 - Velocidade da rede"
+    state_topic: "iotlink/workgroup/muvrh_06/windows-monitor/stats/network/0/speed"
+    unit_of_measurement: 'Mbps'
+    icon: mdi:speedometer
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/muvrh_06/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
 
 switch:
 
@@ -1126,6 +1357,38 @@ script:
         topic: "iotlink/workgroup/desktop-sala/commands/reboot"
         payload: ""
 
+  desktop_ligar_monitor:
+    alias: "Desktop - Ligar monitor"
+    sequence:
+      - service: mqtt.publish
+        data:
+          topic: "iotlink/workgroup/desktop-sala/commands/displays/on"
+          payload: ""
+
+  desktop_desligar_monitor:
+    alias: "Desktop - Desligar monitor"
+    sequence:
+      - service: mqtt.publish
+        data:
+          topic: "iotlink/workgroup/desktop-sala/commands/displays/off"
+          payload: ""
+
+  desktop_notify:
+    alias: "Desktop - Notificar"
+    sequence:
+    - service: mqtt.publish
+      data_template:
+        topic: "iotlink/workgroup/desktop-sala/commands/notify"
+        payload: '{ "title": "{{ titulo }}", "message": "{{ mensagem }}" }'
+
+  desktop_refresh:
+    alias: "Desktop - Atualizar"
+    sequence:
+    - service: mqtt.publish
+      data_template:
+        topic: "iotlink/workgroup/desktop-sala/refresh"
+        payload: ""
+
 # Servidor
 
   servidor_casa_ligar:
@@ -1167,6 +1430,38 @@ script:
         topic: "iotlink/workgroup/servidor-casa/commands/reboot"
         payload: ""
 
+  servidor_casa_ligar_monitor:
+    alias: "Servidor - Ligar monitor"
+    sequence:
+      - service: mqtt.publish
+        data:
+          topic: "iotlink/workgroup/servidor-casa/commands/displays/on"
+          payload: ""
+
+  servidor_casa_desligar_monitor:
+    alias: "Servidor - Desligar monitor"
+    sequence:
+      - service: mqtt.publish
+        data:
+          topic: "iotlink/workgroup/servidor-casa/commands/displays/off"
+          payload: ""
+
+  servidor_casa_notify:
+    alias: "Servidor - Notificar"
+    sequence:
+    - service: mqtt.publish
+      data_template:
+        topic: "iotlink/workgroup/servidor-casa/commands/notify"
+        payload: '{ "title": "{{ titulo }}", "message": "{{ mensagem }}" }'
+
+  servidor_casa_refresh:
+    alias: "Servidor - Atualizar"
+    sequence:
+    - service: mqtt.publish
+      data_template:
+        topic: "iotlink/workgroup/servidor-casa/refresh"
+        payload: ""
+
 # Notebook Antonio
 
   notebook_antonio_desligar:
@@ -1199,6 +1494,38 @@ script:
     - service: mqtt.publish
       data:
         topic: "iotlink/workgroup/antonio_note/commands/reboot"
+        payload: ""
+
+  notebook_antonio_ligar_monitor:
+    alias: "Notebook Antonio - Ligar monitor"
+    sequence:
+      - service: mqtt.publish
+        data:
+          topic: "iotlink/workgroup/antonio_note/commands/displays/on"
+          payload: ""
+
+  notebook_antonio_desligar_monitor:
+    alias: "Notebook Antonio - Desligar monitor"
+    sequence:
+      - service: mqtt.publish
+        data:
+          topic: "iotlink/workgroup/antonio_note/commands/displays/off"
+          payload: ""
+
+  notebook_antonio_notify:
+    alias: "Notebook Antonio - Notificar"
+    sequence:
+    - service: mqtt.publish
+      data_template:
+        topic: "iotlink/workgroup/antonio_note/commands/notify"
+        payload: '{ "title": "{{ titulo }}", "message": "{{ mensagem }}" }'
+
+  notebook_antonio_refresh:
+    alias: "Notebook Antonio - Atualizar"
+    sequence:
+    - service: mqtt.publish
+      data_template:
+        topic: "iotlink/workgroup/antonio_note/refresh"
         payload: ""
 
 # Notebook Roberta
@@ -1235,6 +1562,38 @@ script:
         topic: "iotlink/workgroup/roberta_note/commands/reboot"
         payload: ""
 
+  notebook_roberta_ligar_monitor:
+    alias: "Notebook Roberta - Ligar monitor"
+    sequence:
+      - service: mqtt.publish
+        data:
+          topic: "iotlink/workgroup/roberta_note/commands/displays/on"
+          payload: ""
+
+  notebook_roberta_desligar_monitor:
+    alias: "Notebook Roberta - Desligar monitor"
+    sequence:
+      - service: mqtt.publish
+        data:
+          topic: "iotlink/workgroup/roberta_note/commands/displays/off"
+          payload: ""
+
+  notebook_roberta_notify:
+    alias: "Notebook Roberta - Notificar"
+    sequence:
+    - service: mqtt.publish
+      data_template:
+        topic: "iotlink/workgroup/roberta_note/commands/notify"
+        payload: '{ "title": "{{ titulo }}", "message": "{{ mensagem }}" }'
+
+  notebook_roberta_refresh:
+    alias: "Notebook Roberta - Atualizar"
+    sequence:
+    - service: mqtt.publish
+      data_template:
+        topic: "iotlink/workgroup/roberta_note/refresh"
+        payload: ""
+
 # Notebook LG Branco
 
   notebook_lg_desligar:
@@ -1267,6 +1626,38 @@ script:
     - service: mqtt.publish
       data:
         topic: "iotlink/workgroup/muvrh-lg-303/commands/reboot"
+        payload: ""
+
+  notebook_lg_ligar_monitor:
+    alias: "Notebook LG - Ligar monitor"
+    sequence:
+      - service: mqtt.publish
+        data:
+          topic: "iotlink/workgroup/muvrh-lg-303/commands/displays/on"
+          payload: ""
+
+  notebook_lg_desligar_monitor:
+    alias: "Notebook LG - Desligar monitor"
+    sequence:
+      - service: mqtt.publish
+        data:
+          topic: "iotlink/workgroup/muvrh-lg-303/commands/displays/off"
+          payload: ""
+
+  notebook_lg_notify:
+    alias: "Notebook LG - Notificar"
+    sequence:
+    - service: mqtt.publish
+      data_template:
+        topic: "iotlink/workgroup/muvrh-lg-303/commands/notify"
+        payload: '{ "title": "{{ titulo }}", "message": "{{ mensagem }}" }'
+
+  notebook_lg_refresh:
+    alias: "Notebook LG - Atualizar"
+    sequence:
+    - service: mqtt.publish
+      data_template:
+        topic: "iotlink/workgroup/muvrh-lg-303/refresh"
         payload: ""
 
 # Notebook MuvRH 01
@@ -1303,6 +1694,38 @@ script:
         topic: "iotlink/workgroup/muvrh_01/commands/reboot"
         payload: ""
 
+  notebook_muvrh_01_ligar_monitor:
+    alias: "Notebook MuvRH 01 - Ligar monitor"
+    sequence:
+      - service: mqtt.publish
+        data:
+          topic: "iotlink/workgroup/muvrh_01/commands/displays/on"
+          payload: ""
+
+  notebook_muvrh_01_desligar_monitor:
+    alias: "Notebook MuvRH 01 - Desligar monitor"
+    sequence:
+      - service: mqtt.publish
+        data:
+          topic: "iotlink/workgroup/muvrh_01/commands/displays/off"
+          payload: ""
+
+  notebook_muvrh_01_notify:
+    alias: "Notebook MuvRH 01 - Notificar"
+    sequence:
+    - service: mqtt.publish
+      data_template:
+        topic: "iotlink/workgroup/muvrh_01/commands/notify"
+        payload: '{ "title": "{{ titulo }}", "message": "{{ mensagem }}" }'
+
+  notebook_muvrh_01_refresh:
+    alias: "Notebook MuvRH 01 - Atualizar"
+    sequence:
+    - service: mqtt.publish
+      data_template:
+        topic: "iotlink/workgroup/muvrh_01/refresh"
+        payload: ""
+
 # Notebook MuvRH 02
 
   notebook_muvrh_02_desligar:
@@ -1335,6 +1758,38 @@ script:
     - service: mqtt.publish
       data:
         topic: "iotlink/workgroup/muvrh_02/commands/reboot"
+        payload: ""
+
+  notebook_muvrh_02_ligar_monitor:
+    alias: "Notebook MuvRH 02 - Ligar monitor"
+    sequence:
+      - service: mqtt.publish
+        data:
+          topic: "iotlink/workgroup/muvrh_02/commands/displays/on"
+          payload: ""
+
+  notebook_muvrh_02_desligar_monitor:
+    alias: "Notebook MuvRH 02 - Desligar monitor"
+    sequence:
+      - service: mqtt.publish
+        data:
+          topic: "iotlink/workgroup/muvrh_02/commands/displays/off"
+          payload: ""
+
+  notebook_muvrh_02_notify:
+    alias: "Notebook MuvRH 02 - Notificar"
+    sequence:
+    - service: mqtt.publish
+      data_template:
+        topic: "iotlink/workgroup/muvrh_02/commands/notify"
+        payload: '{ "title": "{{ titulo }}", "message": "{{ mensagem }}" }'
+
+  notebook_muvrh_02_refresh:
+    alias: "Notebook MuvRH 02 - Atualizar"
+    sequence:
+    - service: mqtt.publish
+      data_template:
+        topic: "iotlink/workgroup/muvrh_02/refresh"
         payload: ""
 
 ## Notebook MuvRH 03
@@ -1370,6 +1825,39 @@ script:
 #      data:
 #        topic: "iotlink/workgroup/muvrh_03/commands/reboot"
 #        payload: ""
+#
+#  notebook_muvrh_03_ligar_monitor:
+#    alias: "Notebook MuvRH 03 - Ligar monitor"
+#    sequence:
+#      - service: mqtt.publish
+#        data:
+#          topic: "iotlink/workgroup/muvrh_03/commands/displays/on"
+#          payload: ""
+#
+#  notebook_muvrh_03_desligar_monitor:
+#    alias: "Notebook MuvRH 03 - Desligar monitor"
+#    sequence:
+#      - service: mqtt.publish
+#        data:
+#          topic: "iotlink/workgroup/muvrh_03/commands/displays/off"
+#          payload: ""
+#
+#  notebook_muvrh_03_notify:
+#    alias: "Notebook MuvRH 03 - Notificar"
+#    sequence:
+#    - service: mqtt.publish
+#      data_template:
+#        topic: "iotlink/workgroup/muvrh_03/commands/notify"
+#        payload: '{ "title": "{{ titulo }}", "message": "{{ mensagem }}" }'
+#
+#  notebook_muvrh_03_refresh:
+#    alias: "Notebook MuvRH 03 - Atualizar"
+#    sequence:
+#    - service: mqtt.publish
+#      data_template:
+#        topic: "iotlink/workgroup/muvrh_03/refresh"
+#        payload: ""
+
 
 ## Notebook MuvRH 04
 #
@@ -1403,6 +1891,46 @@ script:
 #    - service: mqtt.publish
 #      data:
 #        topic: "iotlink/workgroup/muvrh_04/commands/reboot"
+#        payload: ""
+#
+#  notebook_muvrh_04_ligar_monitor:
+#    alias: "Notebook MuvRH 04 - Ligar monitor"
+#    sequence:
+#      - service: mqtt.publish
+#        data:
+#          topic: "iotlink/workgroup/muvrh_04/commands/displays/on"
+#          payload: ""
+#
+#  notebook_muvrh_04_desligar_monitor:
+#    alias: "Notebook MuvRH 04 - Desligar monitor"
+#    sequence:
+#      - service: mqtt.publish
+#        data:
+#          topic: "iotlink/workgroup/muvrh_04/commands/displays/off"
+#          payload: ""
+#
+#  notebook_muvrh_04_notify:
+#    alias: "Notebook MuvRH 04 - Notificar"
+#    sequence:
+#    - service: mqtt.publish
+#      data_template:
+#        topic: "iotlink/workgroup/muvrh_04/commands/notify"
+#        payload: '{ "title": "{{ titulo }}", "message": "{{ mensagem }}" }'
+#
+#  notebook_muvrh_04_notify_test:
+#    alias: "Notebook MuvRH 04 - Teste de notificação"
+#    sequence:
+#      - service: script.notebook_muvrh_04_notify
+#        data_template:
+#          titulo: "Aqui vai um título:"
+#          mensagem: "Agora vem a mensagem."
+#
+#  notebook_muvrh_04_refresh:
+#    alias: "Notebook MuvRH 04 - Atualizar"
+#    sequence:
+#    - service: mqtt.publish
+#      data_template:
+#        topic: "iotlink/workgroup/muvrh_04/refresh"
 #        payload: ""
 
 # Notebook MuvRH 05
@@ -1439,6 +1967,38 @@ script:
         topic: "iotlink/workgroup/muvrh_05/commands/reboot"
         payload: ""
 
+  notebook_muvrh_05_ligar_monitor:
+    alias: "Notebook MuvRH 05 - Ligar monitor"
+    sequence:
+      - service: mqtt.publish
+        data:
+          topic: "iotlink/workgroup/muvrh_05/commands/displays/on"
+          payload: ""
+
+  notebook_muvrh_05_desligar_monitor:
+    alias: "Notebook MuvRH 05 - Desligar monitor"
+    sequence:
+      - service: mqtt.publish
+        data:
+          topic: "iotlink/workgroup/muvrh_05/commands/displays/off"
+          payload: ""
+
+  notebook_muvrh_05_notify:
+    alias: "Notebook MuvRH 05 - Notificar"
+    sequence:
+    - service: mqtt.publish
+      data_template:
+        topic: "iotlink/workgroup/muvrh_05/commands/notify"
+        payload: '{ "title": "{{ titulo }}", "message": "{{ mensagem }}" }'
+
+  notebook_muvrh_05_refresh:
+    alias: "Notebook MuvRH 05 - Atualizar"
+    sequence:
+    - service: mqtt.publish
+      data_template:
+        topic: "iotlink/workgroup/muvrh_05/refresh"
+        payload: ""
+
 # Notebook MuvRH 06
 
   notebook_muvrh_06_desligar:
@@ -1472,3 +2032,101 @@ script:
       data:
         topic: "iotlink/workgroup/muvrh_06/commands/reboot"
         payload: ""
+
+  notebook_muvrh_06_ligar_monitor:
+    alias: "Notebook MuvRH 06 - Ligar monitor"
+    sequence:
+      - service: mqtt.publish
+        data:
+          topic: "iotlink/workgroup/muvrh_06/commands/displays/on"
+          payload: ""
+
+  notebook_muvrh_06_desligar_monitor:
+    alias: "Notebook MuvRH 06 - Desligar monitor"
+    sequence:
+      - service: mqtt.publish
+        data:
+          topic: "iotlink/workgroup/muvrh_06/commands/displays/off"
+          payload: ""
+
+  notebook_muvrh_06_notify:
+    alias: "Notebook MuvRH 06 - Notificar"
+    sequence:
+    - service: mqtt.publish
+      data_template:
+        topic: "iotlink/workgroup/muvrh_06/commands/notify"
+        payload: '{ "title": "{{ titulo }}", "message": "{{ mensagem }}" }'
+
+  notebook_muvrh_06_refresh:
+    alias: "Notebook MuvRH 06 - Atualizar"
+    sequence:
+    - service: mqtt.publish
+      data_template:
+        topic: "iotlink/workgroup/muvrh_06/refresh"
+        payload: ""
+
+## Notify
+
+  iotlink_notify_all_muvrh:
+    alias: "IOT Link - Notificar todos MuvRH"
+    sequence:
+    - service: mqtt.publish
+      data_template:
+        topic: "iotlink/workgroup/muvrh_01/commands/notify"
+        payload: '{ "title": "{{ titulo }}", "message": "{{ mensagem }}", "iconUrl": "http://192.168.1.12:8123/local/image/muvrh.png" }'
+    - service: mqtt.publish
+      data_template:
+        topic: "iotlink/workgroup/muvrh_02/commands/notify"
+        payload: '{ "title": "{{ titulo }}", "message": "{{ mensagem }}", "iconUrl": "http://192.168.1.12:8123/local/image/muvrh.png" }'
+    - service: mqtt.publish
+      data_template:
+        topic: "iotlink/workgroup/muvrh_03/commands/notify"
+        payload: '{ "title": "{{ titulo }}", "message": "{{ mensagem }}", "iconUrl": "http://192.168.1.12:8123/local/image/muvrh.png" }'
+    - service: mqtt.publish
+      data_template:
+        topic: "iotlink/workgroup/muvrh_04/commands/notify"
+        payload: '{ "title": "{{ titulo }}", "message": "{{ mensagem }}", "iconUrl": "http://192.168.1.12:8123/local/image/muvrh.png" }'
+    - service: mqtt.publish
+      data_template:
+        topic: "iotlink/workgroup/muvrh_05/commands/notify"
+        payload: '{ "title": "{{ titulo }}", "message": "{{ mensagem }}", "iconUrl": "http://192.168.1.12:8123/local/image/muvrh.png" }'
+    - service: mqtt.publish
+      data_template:
+        topic: "iotlink/workgroup/muvrh_06/commands/notify"
+        payload: '{ "title": "{{ titulo }}", "message": "{{ mensagem }}", "iconUrl": "http://192.168.1.12:8123/local/image/muvrh.png" }'
+    - service: mqtt.publish
+      data_template:
+        topic: "iotlink/workgroup/antonio_note/commands/notify"
+        payload: '{ "title": "{{ titulo }}", "message": "{{ mensagem }}", "iconUrl": "http://192.168.1.12:8123/local/image/muvrh.png" }'
+    - service: mqtt.publish
+      data_template:
+        topic: "iotlink/workgroup/roberta_note/commands/notify"
+        payload: '{ "title": "{{ titulo }}", "message": "{{ mensagem }}", "iconUrl": "http://192.168.1.12:8123/local/image/muvrh.png" }'
+
+  iotlink_notify_antonio_roberta:
+    alias: "IOT Link - Notificar Antonio e Roberta"
+    sequence:
+    - service: mqtt.publish
+      data_template:
+        topic: "iotlink/workgroup/antonio_note/commands/notify"
+        payload: '{ "title": "{{ titulo }}", "message": "{{ mensagem }}" }'
+    - service: mqtt.publish
+      data_template:
+        topic: "iotlink/workgroup/roberta_note/commands/notify"
+        payload: '{ "title": "{{ titulo }}", "message": "{{ mensagem }}" }'
+    - service: mqtt.publish
+      data_template:
+        topic: "iotlink/workgroup/desktop-sala/commands/notify"
+        payload: '{ "title": "{{ titulo }}", "message": "{{ mensagem }}" }'
+
+  iotlink_notify_all_antonio:
+    alias: "IOT Link - Notificar todos Antonio"
+    sequence:
+    - service: mqtt.publish
+      data_template:
+        topic: "iotlink/workgroup/antonio_note/commands/notify"
+        payload: '{ "title": "{{ titulo }}", "message": "{{ mensagem }}" }'
+    - service: mqtt.publish
+      data_template:
+        topic: "iotlink/workgroup/desktop-sala/commands/notify"
+        payload: '{ "title": "{{ titulo }}", "message": "{{ mensagem }}" }'

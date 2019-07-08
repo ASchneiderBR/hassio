@@ -137,7 +137,7 @@ script:
         entity_id: media_player.suite
         message: >-
           {% macro inicio() -%}
-            Automação boa noite iniciada. A temperatura do quarto, atualmente é de {{ states.sensor.temperatura_suite.state | int }} graus.
+            Automação boa noite iniciada. A temperatura do quarto, atualmente é de {{ states.sensor.temperatura_na_suite.state | int }} graus.
           {%- endmacro -%}
           {%- macro ar_condicionado() -%}
               {%- if is_state('climate.ar_condicionado_da_suite', 'off') -%}

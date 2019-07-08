@@ -5,8 +5,8 @@
   unique_id: ar_casa_suite
   controller_data: 192.168.1.32
   device_code: 1380
-  temperature_sensor: sensor.temperatura_suite
-  humidity_sensor: sensor.umidade_suite
+  temperature_sensor: sensor.temperatura_na_suite
+  humidity_sensor: sensor.umidade_na_suite
 
 - platform: smartir
   name: Ar condicionado da sala

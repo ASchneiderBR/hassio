@@ -1,0 +1,35 @@
+ghm_suite_reboot:
+  url: http://192.168.1.60:8008/setup/reboot
+  method: POST
+  content_type: 'application/json'
+  payload: '{"params": "now"}'
+
+ghm_suite_banheiro_reboot:
+  url: http://192.168.1.120:8008/setup/reboot
+  method: POST
+  content_type: 'application/json'
+  payload: '{"params": "now"}'
+
+ghm_banheiro_social_reboot:
+  url: http://192.168.1.71:8008/setup/reboot
+  method: POST
+  content_type: 'application/json'
+  payload: '{"params": "now"}'
+
+ghm_quarto_reboot:
+  url: http://192.168.1.118:8008/setup/reboot
+  method: POST
+  content_type: 'application/json'
+  payload: '{"params": "now"}'
+
+ghm_sala_reboot:
+  url: http://192.168.1.62:8008/setup/reboot
+  method: POST
+  content_type: 'application/json'
+  payload: '{"params": "now"}'
+
+ghm_cozinha_reboot:
+  url: http://192.168.1.74:8008/setup/reboot
+  method: POST
+  content_type: 'application/json'
+  payload: '{"params": "now"}'

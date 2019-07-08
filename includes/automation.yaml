@@ -59,14 +59,23 @@
       data:
         title: "Alerta Sistema ({{now().strftime('%H:%M')}})"
         message: "Hassio iniciado com sucesso."
-    - service_template: script.ghm_play_media
-      data_template:
-        media: 'http://192.168.1.12:8123/local/audio/tts/sistema_reiniciado.mp3'
-        volume: 0.6
+    - service: media_player.volume_set
+      data:
+        entity_id: media_player.sala
+        volume_level: 0.6
+    - service: media_player.play_media
+      data:
+        entity_id: media_player.sala
+        media_content_type: 'audio/mp3'
+        media_content_id: 'http://192.168.1.12:8123/local/audio/tts/sistema_reiniciado.mp3'
     - service: notify.ios_iphone_de_antonio
       data:
         title: "Sistema"
         message: "Home Assistant foi reinicializado"
+    - service: script.iotlink_notify_all_antonio
+      data_template:
+        titulo: "Sistema"
+        mensagem: "Home Assistant foi reinicializado"
     - delay: '00:00:30'
     - service_template: >
         {% if (is_state('light.gateway_light_34ce0090940e', 'on' ) or is_state('light.gateway_light_34ce0090940e', 'off' )) %}
@@ -124,53 +133,6 @@
       data_template:
         message: "Olá! A temperatura da sala é de {{ states.sensor.temperatura_sala.state | int }}ºC. Lá fora está {{ states.sensor.dark_sky_summary.state | lower }} com {{ states.sensor.dark_sky_temperature.state | int }}ºC."
 
-- alias: Alarme - Rearmar automaticamente
-  initial_state: true
-  trigger:
-    platform: state
-    entity_id: alarm_control_panel.alarme
-    to: 'disarmed'
-  action:
-    - service_template: script.ghm_play_media
-      data_template:
-        media: 'http://192.168.1.12:8123/local/audio/tts/alarme_desarmado.mp3'
-        volume: 0.7
-    - service: switch.turn_on
-      entity_id: switch.buzzer_alarme_desligado
-    - service: notify.tudo
-      data:
-        title: "Alarme da casa"
-        message: "O alarme da casa foi desarmado. Rearmando em 10 minutos..."
-    - condition: state
-      entity_id: alarm_control_panel.alarme
-      state: 'disarmed'
-    - delay: '00:10:00'
-    - service_template: >
-        {% if is_state('group.pessoas', 'home') %}
-          alarm_control_panel.alarm_arm_home
-        {% else %}
-          alarm_control_panel.alarm_arm_away
-        {% endif %}
-      entity_id: alarm_control_panel.alarme
-
-- alias: Alarme - Aviso alarme ativado
-  initial_state: False
-  trigger:
-    platform: state
-    entity_id: alarm_control_panel.alarme
-    from: 'disarmed'
-  action:
-    - service_template: script.ghm_play_media
-      data_template:
-        media: 'http://192.168.1.12:8123/local/audio/tts/alarme_armado.mp3'
-        volume: 0.7
-    - service: switch.turn_on
-      entity_id: switch.buzzer_alarme_ligado
-    - service: notify.tudo
-      data:
-        title: "Alarme da casa"
-        message: "O alarme da casa foi armado."
-
 - alias: Sensores - Porta da entrada aberta - Casa
   initial_state: true
   trigger:
@@ -182,6 +144,10 @@
       data:
         title: "Alerta casa"
         message: "Porta da entrada de casa acabou de ser aberta."
+    - service: script.iotlink_notify_antonio_roberta
+      data_template:
+        titulo: "Alarme da casa"
+        mensagem: "Porta da entrada de casa acabou de ser aberta."
     - service_template: >
         {% if is_state('binary_sensor.movimento_entrada_de_casa', 'off') %}
           script.entrada_luz_temporizador
@@ -207,10 +173,19 @@
       data_template:
         title: "Automação"
         message: "Bem vindo! Preparando a casa para sua chegada..."
-    - service_template: script.ghm_play_media
+    - service: script.iotlink_notify_antonio_roberta
       data_template:
-        media: 'http://192.168.1.12:8123/local/audio/tts/automacao_chegando_em_casa.mp3'
-        volume: 0.7
+        titulo: "Automação"
+        mensagem: "Bem vindo! Preparando a casa para sua chegada..."
+    - service: media_player.volume_set
+      data:
+        entity_id: media_player.sala
+        volume_level: 0.6
+    - service: media_player.play_media
+      data:
+        entity_id: media_player.sala
+        media_content_type: 'audio/mp3'
+        media_content_id: 'http://192.168.1.12:8123/local/audio/tts/automacao_chegando_em_casa.mp3'
     - delay: '00:01:00'
     - service: alarm_control_panel.alarm_disarm
       entity_id: alarm_control_panel.alarme
@@ -219,6 +194,9 @@
     - wait_template: "{{is_state('binary_sensor.entrada_casa', 'on')}}"
       timeout: 00:09:00
       continue_on_timeout: false
+    - condition: state
+      entity_id: input_boolean.boa_noite
+      state: 'off'
     - delay: '00:00:20'
     - service_template: >
         {% if is_state('switch.tv_lg_sala', 'off') %}
@@ -243,6 +221,10 @@
       data_template:
         title: "Automação"
         message: "Toalheiro desligado após três horas de uso."
+    - service: script.iotlink_notify_antonio_roberta
+      data_template:
+        titulo: "Automação"
+        mensagem: "Toalheiro desligado após três horas de uso."
 
 - alias: Desligar chuveiro após 20 minutos
   initial_state: true
@@ -263,6 +245,10 @@
       data_template:
         title: "Automação"
         message: "{{ trigger.to_state.name }} desligado após 20 minutos de uso."
+    - service: script.iotlink_notify_antonio_roberta
+      data_template:
+        titulo: "Automação"
+        mensagem: "{{ trigger.to_state.name }} desligado após 20 minutos de uso."
 
 - alias: Desligar cafeteira e chaleira automaticamente
   initial_state: true
@@ -282,6 +268,10 @@
       data_template:
         title: "Automação"
         message: "{{ trigger.to_state.name }} foi desligada."
+    - service: script.iotlink_notify_antonio_roberta
+      data_template:
+        titulo: "Automação"
+        mensagem: "{{ trigger.to_state.name }} foi desligada."
 
 - alias: Alerta - Café pronto em casa
   initial_state: true
@@ -296,6 +286,10 @@
       data_template:
         title: "Automação"
         message: "O café está pronto!"
+    - service: script.iotlink_notify_antonio_roberta
+      data_template:
+        titulo: "Automação"
+        mensagem: "O café está pronto!"
     - service: script.ghm_tts
       data_template:
         tts: <speak>O café está pronto na cozinha!</speak>
@@ -318,6 +312,11 @@
       data_template:
         title: "Alerta importante"
         message: "{{ trigger.to_state.name }} foi ligado sem ninguém em casa! ATENÇÂO!"
+    - service: script.iotlink_notify_antonio_roberta
+      data_template:
+        titulo: "Alerta importante"
+        mensagem: "{{ trigger.to_state.name }} foi ligado sem ninguém em casa! ATENÇÂO!"
+
 
 - alias: Luzes da casa - Entrando em casa
   initial_state: true
@@ -356,6 +355,10 @@
       data_template:
         title: 'Alerta Casa'
         message: 'Atenção: {{ trigger.to_state.name }} aberta por muito tempo!'
+    - service: script.iotlink_notify_antonio_roberta
+      data_template:
+        titulo: "Alerta Casa"
+        mensagem: "Atenção: {{ trigger.to_state.name }} aberta por muito tempo!"
 
 - alias: Alerta - Uso CPU em alta por muito tempo
   initial_state: true
@@ -812,6 +815,10 @@
       data_template:
         title: "Dispositivo indisponível"
         message: "O dispositivo {{ trigger.to_state.name }} ficou indisponível."
+    - service: script.iotlink_notify_all_antonio
+      data_template:
+        titulo: "Dispositivo indisponível"
+        mensagem: "O dispositivo {{ trigger.to_state.name }} ficou indisponível."
     - service: persistent_notification.create
       data_template:
         title: "Alerta Dispositivo ({{now().strftime('%H:%M')}})"
@@ -886,6 +893,10 @@
           push:
             category: camera
           entity_id: camera.ender_3
+    - service: script.iotlink_notify_all_antonio
+      data_template:
+        titulo: "Impressora"
+        mensagem: "Finalizada a impressão, desligando em 5 minutos."
     - service: notify.todas_tvs
       data_template:
         title: "Impressora"
@@ -916,6 +927,10 @@
       data_template:
         title: "Impressora"
         message: "ATENÇÃO! Temperaturas passaram dos limites, impressora foi desligada da energia!"
+    - service: script.iotlink_notify_all_antonio
+      data_template:
+        titulo: "Impressora"
+        mensagem: "ATENÇÃO! Temperaturas passaram dos limites, impressora foi desligada da energia!"
     - service: notify.todas_tvs
       data_template:
         title: "Impressora"

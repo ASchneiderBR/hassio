@@ -275,6 +275,14 @@ entity_config:
     expose: true
     room: Cozinha
 
+  switch.cama_da_suite_lencol_termico_antonio:
+    expose: true
+    room: Suíte
+
+  switch.cama_da_suite_lencol_termico_roberta:
+    expose: true
+    room: Suíte
+
   input_boolean.chegar_casa:
     expose: true
     room: Apartamento
