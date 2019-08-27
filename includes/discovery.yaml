@@ -9,6 +9,7 @@ ignore:
   - enigma2
   - frontier_silicon
   - harmony
+  - homekit
   - igd
   - ikea_tradfri
   - logitech_mediaserver
@@ -29,3 +30,6 @@ ignore:
   - yamaha
   - yeelight
   - xiaomi_gw
+
+enable:
+  - dlna_dmr

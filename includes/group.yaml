@@ -23,11 +23,20 @@ casa_movimento:
   entities:
   - binary_sensor.movimento_suite
   - binary_sensor.movimento_sala
+  - binary_sensor.movimento_entrada
   - binary_sensor.movimento_cozinha
   - binary_sensor.movimento_quarto
   - binary_sensor.movimento_banheiro_suite
   - binary_sensor.movimento_banheiro_social
   name: Movimento em casa
+  view: false
+
+casa_movimento_sala:
+  control: hidden
+  entities:
+  - binary_sensor.movimento_sala
+  - binary_sensor.movimento_entrada
+  name: Movimento na sala
   view: false
 
 automacoes_luzes_casa:
@@ -61,6 +70,7 @@ energia_casa:
   - light.ledsalatv
   - light.ledsuitecama
   - light.ledsuitetv
+  - light.ledsalabancada
   - light.mesa_de_jantar
   - light.quarto
   - light.sala_principal
@@ -100,6 +110,7 @@ casa_todas_luzes:
     - light.ledsalatv
     - light.ledsuitecama
     - light.ledsuitetv
+    - light.ledsalabancada
     - light.mesa_de_jantar
     - light.quarto
     - light.sala_principal

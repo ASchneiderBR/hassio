@@ -1,18 +1,10 @@
 - platform: webostv
-  host: 192.168.1.39
+  host: 192.168.1.168
   name: "TV Sala"
-  filename: webostv2.conf
+  filename: lg_55sm8600.conf
   turn_on_action:
-    service: script.tv_lg_sala_power_on
-  timeout: 30
-  customize:
-    sources:
-      - hdmi1
-      - hdmi2
-      - hdmi3
-      - livetv
-      - youtube
-      - netflix
+    service: script.tv_lg_sala_ligar_wol
+  timeout: 300
 
 - platform: webostv
   host: 192.168.1.38
@@ -20,15 +12,7 @@
   filename: webostv1.conf
   turn_on_action:
     service: script.tv_lg_suite_power_on
-  timeout: 30
-  customize:
-    sources:
-      - hdmi1
-      - hdmi2
-      - hdmi3
-      - livetv
-      - youtube
-      - netflix
+  timeout: 300
 
 - platform: spotify
   client_id: !secret spotify_client_id
@@ -39,3 +23,25 @@
   host: 192.168.1.40
   access_token: 459689
   name: 'TV Quarto'
+  turn_on_action:
+    service: homeassistant.turn_on
+    data:
+      entity_id: script.tv_lg_quarto_power_on
+
+- platform: smartir
+  name: "TV Operações"
+  unique_id: "tv_operacoes"
+  device_code: 1060
+  controller_data: 192.168.1.36
+  power_sensor: switch.tv_sala_operacoes
+
+- platform: smartir
+  name: "TV Dinâmica"
+  unique_id: "tv_dinamica"
+  device_code: 1040
+  controller_data: 192.168.1.41
+  power_sensor: binary_sensor.energia_tv_dinamica
+
+#- platform: dlna_dmr
+#  name: "TV Sala DLNA"
+#  url: http://192.168.1.168:1446/

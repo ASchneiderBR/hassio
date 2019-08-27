@@ -1,11 +1,12 @@
-- platform: google_translate
-  service_name: google_say
-  language: 'pt-br'
-  cache: false
+- platform: google_cloud
+  key_file: googlecloud.json
+  language: pt-BR
+  voice: pt-BR-Wavenet-A
 
 - platform: amazon_polly
-  aws_access_key_id: !secret AWS_ACCESS_KEY_ID
-  aws_secret_access_key: !secret AWS_SECRET_ACCESS_KEY
+  aws_access_key_id: !secret AWS_ACCESS_KEY_ID_02
+  aws_secret_access_key: !secret AWS_SECRET_ACCESS_KEY_02
+  region_name: sa-east-1
   text_type: ssml
   voice: Ricardo
   cache: false

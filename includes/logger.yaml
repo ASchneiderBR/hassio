@@ -1,4 +1,5 @@
 default: error
-#logs:
-#  homeassistant.components.homekit: warning
-#  pyhap: warning
+logs:
+  pychromecast.socket_client: critical
+#  homeassistant.components.zeroconf: debug
+#  homeassistant.components.homekit_controller.config_flow: debug

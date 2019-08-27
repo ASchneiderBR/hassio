@@ -181,6 +181,10 @@ light.led_painel_sala:
   friendly_name: "Luz do painel da sala"
   icon: mdi:led-strip
 
+light.ledsalabancada:
+  friendly_name: "LED da bancada da sala"
+  icon: mdi:led-strip
+
 light.suite_tv:
   friendly_name: "Luz da TV da suíte"
   icon: mdi:led-strip
@@ -227,7 +231,10 @@ light.ledsalatv_effects:
   
 light.ledquartotv_effects:
   icon: mdi:led-strip
-  
+
+light.movel_da_sala:
+  icon: mdi:led-strip
+
 light.ender_3:
   friendly_name: "Ender 3"
   icon: mdi:track-light
@@ -666,3 +673,23 @@ script.octoprint_auto_home:
 
 script.octoprint_disable_motors:
   icon: mdi:close-circle-outline
+
+media_player.tv_quarto:
+  device_class: tv
+  source_list: [Record TV RS,TV Pampa HD,Band HDTV,RBS TV HD,RBI HD,RIT TV,NOVO TEMPO HD,CNT HD]
+
+media_player.tv_sala:
+  device_class: tv
+  source_list: [Computador,Globosat Play,Navegador Web,Netflix,Outros 1,Outros 2,XPlay,Spotify Music - Escute música grátis no LG TV,Xbox 360,YouTube,globoplay]
+
+media_player.tv_suite:
+  device_class: tv
+  source_list: [AV,Desktop,Globoplay,Globosat Play,Home Theater,LiveTV,Netflix,PC Stick,Plex,XPlay,YouTube]
+
+media_player.tv_operacoes:
+  device_class: tv
+  source_list: [DTV,HDMI 1,HDMI 2,HDMI 3,HDMI 4]
+
+media_player.tv_dinamica:
+  device_class: tv
+  source_list: [TV,HDMI 1,HDMI 2,HDMI 3,HDMI 4]

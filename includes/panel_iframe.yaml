@@ -3,10 +3,10 @@
 #  icon: 'mdi:shuffle-variant'
 #  url: 'https://192.168.1.12:1880/'
 
-tasmoadmin:
-  title: 'Tasmota'
-  icon: 'mdi:access-point'
-  url: 'http://192.168.1.12:9541/devices'
+#tasmoadmin:
+#  title: 'Tasmota'
+#  icon: 'mdi:access-point'
+#  url: 'http://192.168.1.12:9541/devices'
 
 octoprint:
   title: 'OctoPrint'

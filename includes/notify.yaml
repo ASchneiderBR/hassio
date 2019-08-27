@@ -6,11 +6,11 @@
   icon: "favicon-1024x1024.png"
   filename: webostv1.conf
 
-- platform: webostv
-  host: 192.168.1.39
-  name: tv_sala
-  icon: "favicon-1024x1024.png"
-  filename: webostv2.conf
+#- platform: webostv
+#  host: 192.168.1.168
+#  name: tv_sala
+#  icon: "favicon-1024x1024.png"
+#  filename: lg_55sm8600.conf
 
 - name: todos_celulares
   platform: group
@@ -21,13 +21,13 @@
 - name: todas_tvs
   platform: group
   services:
-    - service: tv_sala
+#    - service: tv_sala
     - service: tv_suite
 
 - name: tudo
   platform: group
   services:
-    - service: tv_sala
+#    - service: tv_sala
     - service: tv_suite
     - service: ios_iphone_de_antonio
     - service: ios_iphone_de_roberta

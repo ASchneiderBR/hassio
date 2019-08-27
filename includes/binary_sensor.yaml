@@ -82,20 +82,20 @@
   count: 5
   scan_interval: 300
 
-- platform: mqtt
-  name: "Estado TV sala dinâmica"
-  state_topic: "tele/muv303tvdinamica/LWT"
-  value_template: "{{ value }}"
-  payload_on: "Online"
-  payload_off: "Offline"
-  device_class: power
+#- platform: mqtt
+#  name: "Movimento entrada de casa"
+#  state_topic: "wallpanel/tablet_entrada_casa/sensor/motion"
+#  payload_on: '{"value":true}'
+#  payload_off: '{"value":false}'
+#  device_class: motion 
 
 - platform: mqtt
-  name: "Movimento entrada de casa"
-  state_topic: "wallpanel/tablet_entrada_casa/sensor/motion"
-  payload_on: '{"value":true}'
-  payload_off: '{"value":false}'
-  device_class: motion 
+  name: "Servidor OctoPrint"
+  state_topic: "octoprint/LWT"
+  value_template: "{{ value }}"
+  payload_on: "connected"
+  payload_off: "disconnected"
+  device_class: connectivity
 
 #- platform: mqtt
 #  name: "Estado TV sala operações"

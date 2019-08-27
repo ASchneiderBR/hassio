@@ -1,7 +1,5 @@
 auto_start: False
-
-#port: 51827
-
+#port: 46468 #51827
 #ip_address: 192.168.1.12
 
 filter:
@@ -44,6 +42,7 @@ filter:
     - binary_sensor.box_banheiro_social
     - binary_sensor.movimento_suite
     - binary_sensor.movimento_sala
+    - binary_sensor.movimento_entrada
     - binary_sensor.movimento_cozinha
     - binary_sensor.movimento_quarto
     - binary_sensor.movimento_banheiro_suite
@@ -56,7 +55,6 @@ filter:
     - binary_sensor.motion_sensor_158d0001e43ef1
     - binary_sensor.motion_sensor_158d0001e44035
     - binary_sensor.porta_lava_loucas
-    - binary_sensor.movimento_entrada_de_casa
     - binary_sensor.cama_da_suite_ocupada
     - sensor.temperatura_cozinha
     - alarm_control_panel.alarme
@@ -88,6 +86,7 @@ filter:
     - light.ledsalatv
     - light.ledsuitecama
     - light.ledsuitetv
+    - light.ledsalabancada
     - light.mesa_de_jantar
     - light.muv203banheiro
     - light.muv203entrada
@@ -123,11 +122,11 @@ filter:
     - switch.sirene
     - switch.sistema_alarme_casa
     - switch.toalheiro
-    - switch.tv_dinamica_303
-    - switch.tv_lg_quarto
-    - switch.tv_lg_sala
-    - switch.tv_lg_suite
-    - switch.tv_sala_operacoes
+#    - switch.tv_dinamica_303
+#    - switch.tv_lg_quarto
+#    - switch.tv_lg_sala
+#    - switch.tv_lg_suite
+#    - switch.tv_sala_operacoes
     - switch.muvrh_cafeteira
     - switch.cafeteira_casa
     - switch.chaleira_casa
@@ -148,6 +147,11 @@ filter:
     - script.modo_festa
     - person.antonio
     - person.roberta
+    - media_player.tv_quarto
+    - media_player.tv_sala
+    - media_player.tv_suite
+    - media_player.tv_operacoes
+    - media_player.tv_dinamica
 
 entity_config:
   input_boolean.boa_noite:
@@ -196,6 +200,8 @@ entity_config:
     name: "Movimento"
   binary_sensor.movimento_sala:
     name: "Movimento"
+  binary_sensor.movimento_entrada:
+    name: "Movimento entrada"
   binary_sensor.movimento_cozinha:
     name: "Movimento"
   binary_sensor.movimento_quarto:
@@ -220,8 +226,6 @@ entity_config:
     name: "Entrada 303"
   binary_sensor.porta_lava_loucas:
     name: "Porta Lava louças"
-  binary_sensor.movimento_entrada_de_casa:
-    name: "Entrada de casa"
   binary_sensor.cama_da_suite_ocupada:
     name: "Cama"
   sensor.temperatura_cozinha:
@@ -284,6 +288,8 @@ entity_config:
     name: "Cama"
   light.ledsuitetv:
     name: "TV"
+  light.ledsalabancada:
+    name: "Bancada"
   light.mesa_de_jantar:
     name: "Mesa de jantar"
   light.muv203banheiro:
@@ -374,6 +380,41 @@ entity_config:
     name: "TV"
   switch.tv_sala_operacoes:
     name: "TV operações"
+  media_player.tv_quarto:
+    name: "TV"
+    feature_list:
+      - feature: on_off
+      - feature: play_pause
+      - feature: play_stop
+      - feature: toggle_mute
+  media_player.tv_sala:
+    name: "TV"
+    feature_list:
+      - feature: on_off
+      - feature: play_pause
+      - feature: play_stop
+#      - feature: toggle_mute
+  media_player.tv_suite:
+    name: "TV"
+    feature_list:
+      - feature: on_off
+      - feature: play_pause
+      - feature: play_stop
+      - feature: toggle_mute
+  media_player.tv_operacoes:
+    name: "TV operações"
+    feature_list:
+      - feature: on_off
+      - feature: play_pause
+      - feature: play_stop
+      - feature: toggle_mute
+  media_player.tv_dinamica:
+    name: "TV dinâmica"
+    feature_list:
+      - feature: on_off
+      - feature: play_pause
+      - feature: play_stop
+      - feature: toggle_mute
   switch.lava_loucas_homekit_aquaspray:
     name: "Lava-louças aquaspray"
   switch.lava_loucas_homekit_economico:

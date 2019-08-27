@@ -56,21 +56,19 @@
   switches:
     tv_lg_sala:
       friendly_name: "Tv da sala"
-      value_template: "{{ not is_state('device_tracker.tv_sala', 'not_home') or not is_state('media_player.tv_sala', 'off') }}"
+      value_template: "{{ not is_state('media_player.tv_sala', 'off') }}"
       entity_id:
         - media_player.tv_sala
         - device_tracker.tv_sala
       turn_on:
         service: script.tv_lg_sala_ligar_tudo
-        entity_id: script.tv_lg_sala_ligar_tudo
       turn_off:
         service: script.tv_lg_sala_desligar_tudo
-        entity_id: script.tv_lg_sala_desligar_tudo
       icon_template: mdi:television
  
     tv_lg_suite:
       friendly_name: "Tv da suíte"
-      value_template: "{{ not is_state('device_tracker.tv_suite', 'not_home') or not is_state('media_player.tv_suite', 'off') }}"
+      value_template: "{{ not is_state('media_player.tv_suite', 'off') }}"
       entity_id:
         - media_player.tv_suite
         - device_tracker.tv_suite
@@ -84,7 +82,7 @@
 
     tv_lg_quarto:
       friendly_name: "Tv do quarto"
-      value_template: "{{ not is_state('device_tracker.tv_quarto', 'not_home') or not is_state('media_player.tv_quarto', 'off') }}"
+      value_template: "{{ not is_state('media_player.tv_quarto', 'off') }}"
       entity_id:
         - media_player.tv_quarto
         - device_tracker.tv_quarto
@@ -106,7 +104,7 @@
       turn_off:
         service: alarm_control_panel.alarm_disarm
         entity_id: alarm_control_panel.alarme
-      icon_template: mdi:security-home
+      icon_template: mdi:shield-home
 
     energia_casa:
       friendly_name: "Energia casa"

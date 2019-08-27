@@ -1,7 +1,7 @@
 tv_lg_sala_ligar_tudo:
   alias: "Ligar TV, home e luz da sala"
   sequence:
-  - service: script.tv_lg_sala_power_on
+  - service: script.tv_lg_sala_ligar_wol
   - service: switch.turn_on
     entity_id: switch.home_theater_sala
   - condition: state
@@ -13,6 +13,13 @@ tv_lg_sala_ligar_tudo:
       transition: 3
       brightness_pct: 100
       effect: 'RGB transition slow'
+
+tv_lg_sala_ligar_wol:
+  alias: "Ligar TV da sala com WOL"
+  sequence:
+  - service: wake_on_lan.send_magic_packet
+    data:
+      mac: "A8:23:FE:C0:4B:7F"
 
 tv_lg_sala_desligar_tudo:
   alias: "Desligar TV, home e luz da sala"
@@ -73,7 +80,7 @@ energia_casa:
 assistir_youtube:
   alias: "Assistir youtube"
   sequence:
-  - service_template: "{% if not is_state('media_player.tv_sala' , 'off')%}script.nada{% else %}script.tv_lg_sala_ligar_tudo{% endif %}"
+  - service_template: "{% if not is_state('media_player.tv_sala' , 'off')%}script.nada{% else %}script.tv_lg_sala_ligar_wol{% endif %}"
   - wait_template: "{{not is_state('media_player.tv_sala', 'off')}}"
   - service: media_player.select_source
     data:
@@ -113,7 +120,7 @@ modo_festa:
       media_content_type: audio/mp4
   - service: light.turn_on
     data:
-      entity_id: light.ledquartotv_effects, light.ledsalatv, light.ledsuitetv, light.ledsuitecama, light.ledchaocozinha, light.ledsaladesktop, light.status_maquina_de_lavar_loucas
+      entity_id: light.ledquartotv_effects, light.ledsalatv, light.ledsuitetv, light.ledsuitecama, light.ledchaocozinha, light.ledsaladesktop, light.ledsalabancada, light.status_maquina_de_lavar_loucas
       transition: 3
       rgb_color: [255,0,0]
       brightness_pct: 100
@@ -129,7 +136,7 @@ modo_festa:
     data_template:
       entity_id: >-
           {% set lights = ['light.area_servico','light.suite_banheiro_principal','light.suite_banheiro_espelho','light.corredor','light.cozinha','light.entrada','light.mesa_de_jantar','light.quarto','light.sala_principal','light.banheiro_social_principal','light.banheiro_social_espelho','light.suite_principal','light.ledcozinhabalcao'] %}
-          {{ states.light | selectattr('entity_id', 'in', lights) | selectattr('state','eq','on') | map(attribute='entity_id') | join(', ') }}
+          "{{ states.light | selectattr('entity_id', 'in', lights) | selectattr('state','eq','on') | map(attribute='entity_id') | join(', ') }}"
   - service: cover.close_cover
     entity_id: cover.persiana_quarto, cover.persiana_sala, cover.persiana_suite
 
@@ -143,18 +150,18 @@ ghm_play_media:
       data_template:
         entity_id: >-
             {%- set players = ['media_player.banheiro_social', 'media_player.banheiro_da_suite', 'media_player.cozinha', 'media_player.quarto', 'media_player.sala', 'media_player.suite'] %}
-            {{ states.media_player | selectattr('state','!=','playing') | selectattr('entity_id', 'in', players) | map(attribute='entity_id') | join(', ') }}
-        volume_level: 0
+            "{{ states.media_player | selectattr('state','!=','playing') | selectattr('entity_id', 'in', players) | map(attribute='entity_id') | join(', ') }}"
+        volume_level: '{{volume}}'
 #    - delay: '00:00:01'
     - service_template: media_player.play_media
       data_template:
         entity_id: >-
           {%- if is_state('input_boolean.boa_noite', 'on') and is_state('input_boolean.visita_casa', 'on') %}
               {%- set players = ['media_player.banheiro_social', 'media_player.cozinha', 'media_player.sala'] %}
-              {{ states.media_player | selectattr('state','!=','playing') | selectattr('entity_id', 'in', players) | map(attribute='entity_id') | join(', ') }}
+              "{{ states.media_player | selectattr('state','!=','playing') | selectattr('entity_id', 'in', players) | map(attribute='entity_id') | join(', ') }}"
           {%- elif is_state('input_boolean.boa_noite', 'on') %}
               {%- set players = ['media_player.banheiro_social', 'media_player.cozinha', 'media_player.quarto', 'media_player.sala'] %}
-              {{ states.media_player | selectattr('state','!=','playing') | selectattr('entity_id', 'in', players) | map(attribute='entity_id') | join(', ') }}
+              "{{ states.media_player | selectattr('state','!=','playing') | selectattr('entity_id', 'in', players) | map(attribute='entity_id') | join(', ') }}"
           {%- else %}
               {%- if states.media_player.banheiro_social.state != 'playing' and
                   states.media_player.banheiro_suite.state != 'playing' and
@@ -165,18 +172,18 @@ ghm_play_media:
                     media_player.casa_inteira
               {%- else %}
                   {%- set players = ['media_player.banheiro_social', 'media_player.banheiro_da_suite', 'media_player.cozinha', 'media_player.quarto', 'media_player.sala', 'media_player.suite'] %}
-                  {{ states.media_player | selectattr('state','!=','playing') | selectattr('entity_id', 'in', players) | map(attribute='entity_id') | join(', ') }}
+                  "{{ states.media_player | selectattr('state','!=','playing') | selectattr('entity_id', 'in', players) | map(attribute='entity_id') | join(', ') }}"
               {%- endif %}
           {%- endif %}
-        media_content_type: 'audio/mp3'
-        media_content_id: '{{media}}'
-    - delay: '00:00:01'
-    - service_template: media_player.volume_set
-      data_template:
-        entity_id: >-
-            {%- set players = ['media_player.banheiro_social', 'media_player.banheiro_da_suite', 'media_player.cozinha', 'media_player.quarto', 'media_player.sala', 'media_player.suite'] %}
-            {{ states.media_player | selectattr('state','==','playing') | selectattr('entity_id', 'in', players) | map(attribute='entity_id') | join(', ') }}
-        volume_level: '{{volume}}'
+        media_content_type: "audio/mp3"
+        media_content_id: "{{media}}"
+#    - delay: '00:00:01'
+#    - service_template: media_player.volume_set
+#      data_template:
+#        entity_id: >-
+#            {%- set players = ['media_player.banheiro_social', 'media_player.banheiro_da_suite', 'media_player.cozinha', 'media_player.quarto', 'media_player.sala', 'media_player.suite'] %}
+#            "{{ states.media_player | selectattr('state','==','playing') | selectattr('entity_id', 'in', players) | map(attribute='entity_id') | join(', ') }}"
+#        volume_level: '{{volume}}'
 
 ghm_tts:
   sequence:
@@ -186,18 +193,18 @@ ghm_tts:
       data_template:
         entity_id: >-
             {%- set players = ['media_player.banheiro_social', 'media_player.banheiro_da_suite', 'media_player.cozinha', 'media_player.quarto', 'media_player.sala', 'media_player.suite'] %}
-            {{ states.media_player | selectattr('state','!=','playing') | selectattr('entity_id', 'in', players) | map(attribute='entity_id') | join(', ') }}
-        volume_level: 0
+            "{{ states.media_player | selectattr('state','!=','playing') | selectattr('entity_id', 'in', players) | map(attribute='entity_id') | join(', ') }}"
+        volume_level: '{{volume}}'
 #    - delay: '00:00:01'
     - service_template: tts.amazon_polly_say
       data_template:
         entity_id: >-
           {%- if is_state('input_boolean.boa_noite', 'on') and is_state('input_boolean.visita_casa', 'on') %}
               {%- set players = ['media_player.banheiro_social', 'media_player.cozinha', 'media_player.sala'] %}
-              {{ states.media_player | selectattr('state','!=','playing') | selectattr('entity_id', 'in', players) | map(attribute='entity_id') | join(', ') }}
+              "{{ states.media_player | selectattr('state','!=','playing') | selectattr('entity_id', 'in', players) | map(attribute='entity_id') | join(', ') }}"
           {%- elif is_state('input_boolean.boa_noite', 'on') %}
               {%- set players = ['media_player.banheiro_social', 'media_player.cozinha', 'media_player.quarto', 'media_player.sala'] %}
-              {{ states.media_player | selectattr('state','!=','playing') | selectattr('entity_id', 'in', players) | map(attribute='entity_id') | join(', ') }}
+              "{{ states.media_player | selectattr('state','!=','playing') | selectattr('entity_id', 'in', players) | map(attribute='entity_id') | join(', ') }}"
           {%- else %}
               {%- if states.media_player.banheiro_social.state != 'playing' and
                   states.media_player.banheiro_suite.state != 'playing' and
@@ -208,23 +215,23 @@ ghm_tts:
                     media_player.casa_inteira
               {%- else %}
                   {%- set players = ['media_player.banheiro_social', 'media_player.banheiro_da_suite', 'media_player.cozinha', 'media_player.quarto', 'media_player.sala', 'media_player.suite'] %}
-                  {{ states.media_player | selectattr('state','!=','playing') | selectattr('entity_id', 'in', players) | map(attribute='entity_id') | join(', ') }}
+                  "{{ states.media_player | selectattr('state','!=','playing') | selectattr('entity_id', 'in', players) | map(attribute='entity_id') | join(', ') }}"
               {%- endif %}
           {%- endif %}
         message: '{{tts}}'
-    - delay: '00:00:01'
-    - service_template: media_player.volume_set
-      data_template:
-        entity_id: >-
-            {%- set players = ['media_player.banheiro_social', 'media_player.banheiro_da_suite', 'media_player.cozinha', 'media_player.quarto', 'media_player.sala', 'media_player.suite'] %}
-            {{ states.media_player | selectattr('state','==','playing') | selectattr('entity_id', 'in', players) | map(attribute='entity_id') | join(', ') }}
-        volume_level: '{{volume}}'
+#    - delay: '00:00:01'
+#    - service_template: media_player.volume_set
+#      data_template:
+#        entity_id: >-
+#            {%- set players = ['media_player.banheiro_social', 'media_player.banheiro_da_suite', 'media_player.cozinha', 'media_player.quarto', 'media_player.sala', 'media_player.suite'] %}
+#            "{{ states.media_player | selectattr('state','==','playing') | selectattr('entity_id', 'in', players) | map(attribute='entity_id') | join(', ') }}"
+#        volume_level: '{{volume}}'
 
 ghm_play_media_test:
   sequence:
     - service: script.ghm_play_media
       data_template:
-        media: 'http://192.168.1.12:8123/local/audio/tts/automacao_chegando_em_casa.mp3'
+        media: "http://192.168.1.12:8123/local/audio/tts/automacao_chegando_em_casa.mp3"
         volume: 0.5
 
 ghm_tts_test:
@@ -282,10 +289,10 @@ botao_xiaomi_quarto_01_double:
 botao_xiaomi_quarto_01_triple:
   alias: "Liga ou desliga ar condicionado do quarto"
   sequence:
-  - service: climate.set_operation_mode
+  - service: climate.set_hvac_mode
     data_template:
       entity_id: climate.ar_condicionado_do_quarto
-      operation_mode: >
+      hvac_mode: >
         {% if states.climate.ar_condicionado_do_quarto.attributes.current_temperature | int >= 25 and is_state('climate.ar_condicionado_do_quarto' , 'off') %}
           cool
         {% elif states.climate.ar_condicionado_do_quarto.attributes.current_temperature | int <= 24 and is_state('climate.ar_condicionado_do_quarto' , 'off') %}
@@ -346,10 +353,10 @@ botao_xiaomi_suite_01_double:
 botao_xiaomi_suite_01_triple:
   alias: "Liga ou desliga ar condicionado"
   sequence:
-  - service: climate.set_operation_mode
+  - service: climate.set_hvac_mode
     data_template:
       entity_id: climate.ar_condicionado_da_suite
-      operation_mode: >
+      hvac_mode: >
         {% if states.climate.ar_condicionado_da_suite.attributes.current_temperature | int >= 25 and is_state('climate.ar_condicionado_da_suite' , 'off') %}
           cool
         {% elif states.climate.ar_condicionado_da_suite.attributes.current_temperature | int <= 24 and is_state('climate.ar_condicionado_da_suite' , 'off') %}
@@ -392,10 +399,10 @@ botao_xiaomi_suite_02_single:
 botao_xiaomi_suite_02_double:
   alias: "Liga ou desliga ar condicionado"
   sequence:
-  - service: climate.set_operation_mode
+  - service: climate.set_hvac_mode
     data_template:
       entity_id: climate.ar_condicionado_da_suite
-      operation_mode: >
+      hvac_mode: >
         {% if states.climate.ar_condicionado_da_suite.attributes.current_temperature | int >= 25 and is_state('climate.ar_condicionado_da_suite' , 'off') %}
           cool
         {% elif states.climate.ar_condicionado_da_suite.attributes.current_temperature | int <= 24 and is_state('climate.ar_condicionado_da_suite' , 'off') %}
@@ -532,10 +539,10 @@ botao_xiaomi_sala_01_double:
 botao_xiaomi_sala_01_triple:
   alias: "Liga ou desliga ar condicionado da sala"
   sequence:
-  - service: climate.set_operation_mode
+  - service: climate.set_hvac_mode
     data_template:
       entity_id: climate.ar_condicionado_da_sala
-      operation_mode: >
+      hvac_mode: >
         {% if states.climate.ar_condicionado_da_sala.attributes.current_temperature | int >= 25 and is_state('climate.ar_condicionado_da_sala' , 'off') %}
           cool
         {% elif states.climate.ar_condicionado_da_sala.attributes.current_temperature | int <= 24 and is_state('climate.ar_condicionado_da_sala' , 'off') %}
@@ -582,9 +589,10 @@ botao_xiaomi_sala_02_single:
     entity_id: light.mesa_de_jantar
 
 botao_xiaomi_sala_02_double:
-  alias: "Status da casa"
+  alias: "Led da bancada"
   sequence:
-  - service: script.tts_status_casa
+  - service: light.toggle
+    entity_id: light.ledsalabancada
 
 botao_xiaomi_sala_02_long:
   alias: "Desarmar alarme"
@@ -660,10 +668,10 @@ botao_xiaomi_muvrh_entrada203_single:
 botao_xiaomi_muvrh_entrada203_double:
   alias: "Liga ou desliga ar condicionado da entrada"
   sequence:
-  - service: climate.set_operation_mode
+  - service: climate.set_hvac_mode
     data_template:
       entity_id: climate.ar_condicionado_da_entrada_203
-      operation_mode: >
+      hvac_mode: >
         {% if states.climate.ar_condicionado_da_entrada_203.attributes.current_temperature | int >= 25 and is_state('climate.ar_condicionado_da_entrada_203' , 'off') %}
           cool
         {% elif states.climate.ar_condicionado_da_entrada_203.attributes.current_temperature | int <= 24 and is_state('climate.ar_condicionado_da_entrada_203' , 'off') %}
@@ -691,6 +699,9 @@ entrada_luz_temporizador:
     value_template: "{{ is_state('light.entrada', 'off') }}"
   - service: light.turn_on
     entity_id: light.entrada
+  - wait_template: "{{ is_state('binary_sensor.entrada_casa', 'off') }}"
+    timeout: 00:09:00
+    continue_on_timeout: true
   - delay: '00:01:00'
   - condition: template
     value_template: "{{ is_state('light.entrada', 'on') }}"
@@ -794,9 +805,9 @@ cubo_suite_tv_voldown:
 muvrh_desligar_sala_203:
   alias: "Desligar tudo na sala 203"
   sequence:
-  - service: climate.set_operation_mode
+  - service: climate.set_hvac_mode
     data:
-      operation_mode: 'off'
+      hvac_mode: 'off'
       entity_id:
         - climate.ar_condicionado_da_entrada_203
         - climate.ar_condicionado_da_nossa_sala
@@ -821,9 +832,9 @@ muvrh_desligar_sala_203:
 muvrh_desligar_sala_303:
   alias: "Desligar tudo na sala 303"
   sequence:
-  - service: climate.set_operation_mode
+  - service: climate.set_hvac_mode
     data:
-      operation_mode: 'off'
+      hvac_mode: 'off'
       entity_id: climate.ar_condicionado_da_sala_303
   - service: light.turn_off
     entity_id:
@@ -930,3 +941,9 @@ ghm_all_reboot:
   - service: rest_command.ghm_quarto_reboot
   - service: rest_command.ghm_sala_reboot
   - service: rest_command.ghm_cozinha_reboot
+
+ifttt_restart_all_wyzecams:
+  alias: "Reiniciar todas as câmeras Wyze"
+  sequence:
+  - service: ifttt.trigger
+    data: {"event":"wyze_restart"}

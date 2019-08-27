@@ -48,9 +48,9 @@ include:
     - binary_sensor.movimento_banheiro_social
     - binary_sensor.movimento_banheiro_suite
     - binary_sensor.movimento_cozinha
-    - binary_sensor.movimento_entrada_de_casa
     - binary_sensor.movimento_quarto
     - binary_sensor.movimento_sala
+    - binary_sensor.movimento_entrada
     - binary_sensor.movimento_suite
     - binary_sensor.muvrh_movimento
     - binary_sensor.muvrh_movimento_203
@@ -74,6 +74,7 @@ include:
     - binary_sensor.porta_lava_loucas
     - binary_sensor.roberta
     - binary_sensor.sensor_vibracao
+    - binary_sensor.servidor_octoprint
     - climate.ar_condicionado_da_entrada_203
     - climate.ar_condicionado_da_nossa_sala
     - climate.ar_condicionado_da_sala
@@ -112,6 +113,7 @@ include:
     - device_tracker.kingle_roberta
     - device_tracker.muvrh_celular_xiaomi
     - device_tracker.nas
+    - device_tracker.pi_zero_octoprint_ender3
     - device_tracker.raquel_zeladora_celular
     - device_tracker.regina_muvrh
     - device_tracker.renata_muvrh
@@ -150,6 +152,7 @@ include:
     - light.ledsalatv_effects
     - light.ledsuitecama
     - light.ledsuitetv
+    - light.ledsalabancada
     - light.mesa_de_jantar
     - light.movel_da_sala
     - light.muv203banheiro
@@ -177,6 +180,8 @@ include:
     - media_player.spotify_casa
     - media_player.suite
     - media_player.suite_inteira
+    - media_player.tv_dinamica
+    - media_player.tv_operacoes
     - media_player.tv_quarto
     - media_player.tv_sala
     - media_player.tv_suite

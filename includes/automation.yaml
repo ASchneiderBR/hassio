@@ -128,7 +128,7 @@
     - condition: state
       entity_id: media_player.tv_sala
       state: 'playing'
-    - delay: '00:00:06'
+    - delay: '00:00:05'
     - service: notify.tv_sala
       data_template:
         message: "Olá! A temperatura da sala é de {{ states.sensor.temperatura_sala.state | int }}ºC. Lá fora está {{ states.sensor.dark_sky_summary.state | lower }} com {{ states.sensor.dark_sky_temperature.state | int }}ºC."
@@ -140,6 +140,12 @@
     entity_id: binary_sensor.entrada_casa
     to: 'on'
   action:
+    - service_template: >
+        {% if is_state('switch.sistema_alarme_casa', 'on') and is_state('binary_sensor.movimento_entrada', 'off') %}
+          script.entrando_casa_alarme
+        {% else %}
+          script.tts_porta_entrada
+        {% endif %}
     - service: notify.tudo
       data:
         title: "Alerta casa"
@@ -149,16 +155,10 @@
         titulo: "Alarme da casa"
         mensagem: "Porta da entrada de casa acabou de ser aberta."
     - service_template: >
-        {% if is_state('binary_sensor.movimento_entrada_de_casa', 'off') %}
+        {% if is_state('binary_sensor.movimento_entrada', 'off') %}
           script.entrada_luz_temporizador
         {% else %}
           script.nada
-        {% endif %}
-    - service_template: >
-        {% if is_state('switch.sistema_alarme_casa', 'on') %}
-          script.entrando_casa_alarme
-        {% else %}
-          script.tts_porta_entrada
         {% endif %}
 
 - alias: Chegar em casa
@@ -331,7 +331,7 @@
         entity_id: light.mesa_de_jantar
         state: 'off'
       - condition: state
-        entity_id: binary_sensor.movimento_entrada_de_casa
+        entity_id: binary_sensor.movimento_entrada
         state: 'off'
   action:
     - service: light.turn_on
@@ -651,6 +651,7 @@
         - binary_sensor.box_banheiro_social
         - binary_sensor.movimento_suite
         - binary_sensor.movimento_sala
+        - binary_sensor.movimento_entrada
         - binary_sensor.movimento_cozinha
         - binary_sensor.movimento_quarto
         - binary_sensor.movimento_banheiro_suite
@@ -663,10 +664,10 @@
         - binary_sensor.motion_sensor_158d0001e44035
         - binary_sensor.motion_sensor_158d0001a24bdc
         - binary_sensor.porta_lava_loucas
-        - binary_sensor.movimento_entrada_de_casa
+        - binary_sensor.movimento_entrada
       to: 'unavailable'
       for:
-        minutes: 15
+        minutes: 120
     - platform: state
       entity_id:
         - light.area_servico
@@ -683,6 +684,7 @@
         - light.ledsalatv
         - light.ledsuitecama
         - light.ledsuitetv
+        - light.ledsalabancada
         - light.mesa_de_jantar
         - light.muv203banheiro
         - light.muv203entrada
@@ -700,7 +702,7 @@
         - light.303leddinamica
       to: 'unavailable'
       for:
-        minutes: 5
+        minutes: 120
     - platform: state
       entity_id:
         - sensor.humidity_158d00015633b4
@@ -725,7 +727,7 @@
         - sensor.temperatura_suite
       to: 'unavailable'
       for:
-        minutes: 15
+        minutes: 120
     - platform: state
       entity_id:
         - switch.chuveirosocial
@@ -739,9 +741,10 @@
         - switch.cafeteira_casa
         - switch.chaleira_casa
         - switch.ventilador_casa
+        - switch.cama_da_suite_lencol_termico_antonio
       to: 'unavailable'
       for:
-        minutes: 5
+        minutes: 120
     - platform: state
       entity_id:
         - media_player.suite
@@ -749,7 +752,7 @@
         - media_player.empresa
       to: 'unavailable'
       for:
-        minutes: 15
+        minutes: 120
     - platform: state
       entity_id:
         - device_tracker.nas
@@ -774,14 +777,11 @@
 #        - device_tracker.fechadura_casa
       to: 'not_home'
       for:
-        minutes: 15
+        minutes: 120
     - platform: state
       entity_id:
-        - device_tracker.camera_01
-        - device_tracker.camera_02
-        - device_tracker.camera_03
-        - device_tracker.camera_04
-        - device_tracker.camera_05
+        - device_tracker.camera_sala
+        - device_tracker.wyzecam_303_dinamica
         - device_tracker.camera_muvrh_operacoes
         - device_tracker.xiaomi_hub_muvrh
         - device_tracker.rfbridgemuvrh
@@ -790,26 +790,18 @@
         - device_tracker.rmminioperacoes
         - device_tracker.rmminisala303
         - device_tracker.chromecast_sala303
-        - device_tracker.celular_motog2_muvrh
         - device_tracker.celular_branco
-        - device_tracker.wyzecam_303_dinamica
 #        - device_tracker.fechadura_muvrh_203
 #        - device_tracker.fechadura_muvrh_303
       to: 'not_home'
       for:
-        minutes: 15
-    - platform: state
-      entity_id:
-        - device_tracker.orangepi_pihole
-      to: 'not_home'
-      for:
-        minutes: 1
+        minutes: 120
     - platform: state
       entity_id:
         - binary_sensor.estado_do_bridge
       to: 'off'
       for:
-        minutes: 1
+        minutes: 6
   action:
     - service: notify.ios_iphone_de_antonio
       data_template:
@@ -944,25 +936,38 @@
 
 ## Controle remoto IR ESPHome
 
-- alias: IR TV da sala
+#- alias: IR TV da sala
+#  initial_state: true
+#  trigger:
+#    platform: state
+#    entity_id:
+#      - binary_sensor.ir_tv_sala_volume_mais
+#      - binary_sensor.ir_tv_sala_volume_menos
+#      - binary_sensor.ir_tv_sala_energia
+#    to: 'on'
+#  action:
+#    - service_template: >
+#        {% if trigger.to_state.entity_id == "binary_sensor.ir_tv_sala_volume_mais" %}
+#          script.home_theater_sala_volup_x6
+#        {% elif trigger.to_state.entity_id == "binary_sensor.ir_tv_sala_volume_menos" %}
+#          script.home_theater_sala_voldown_x6
+#        {% elif trigger.to_state.entity_id == "binary_sensor.ir_tv_sala_energia" %}
+#          {% if is_state('switch.tv_lg_sala', 'on') %}
+#              script.tv_lg_sala_desligar_tudo
+#          {% else %}
+#              script.tv_lg_sala_ligar_wol
+#          {% endif %}
+#        {% endif %}
+
+- alias: Wallpanel - Ligar tela
   initial_state: true
   trigger:
     platform: state
-    entity_id:
-      - binary_sensor.ir_tv_sala_volume_mais
-      - binary_sensor.ir_tv_sala_volume_menos
-      - binary_sensor.ir_tv_sala_energia
+    entity_id: binary_sensor.movimento_entrada
     to: 'on'
   action:
-    - service_template: >
-        {% if trigger.to_state.entity_id == "binary_sensor.ir_tv_sala_volume_mais" %}
-          script.home_theater_sala_volup_x6
-        {% elif trigger.to_state.entity_id == "binary_sensor.ir_tv_sala_volume_menos" %}
-          script.home_theater_sala_voldown_x6
-        {% elif trigger.to_state.entity_id == "binary_sensor.ir_tv_sala_energia" %}
-          {% if is_state('switch.tv_lg_sala', 'on') %}
-              script.tv_lg_sala_desligar_tudo
-          {% else %}
-              script.tv_lg_sala_ligar_tudo
-          {% endif %}
-        {% endif %}
+    - service: mqtt.publish
+      data:
+        topic: "wallpanel/tablet_entrada_casa/command"
+        payload: '{"wake": true}'
+        qos: 1

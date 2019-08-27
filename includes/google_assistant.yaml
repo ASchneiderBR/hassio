@@ -119,6 +119,10 @@ entity_config:
     expose: true
     room: Suíte
 
+  light.ledsalabancada:
+    expose: true
+    room: Sala
+
   light.mesa_de_jantar:
     expose: true
     room: Sala
@@ -227,21 +231,21 @@ entity_config:
     expose: true
     room: Banheiro da suíte
 
-  switch.tv_dinamica_303:
-    expose: true
-    room: 303 - Dinâmica
+#  switch.tv_dinamica_303:
+#    expose: true
+#    room: 303 - Dinâmica
 
-  switch.tv_lg_quarto:
-    expose: true
-    room: Quarto
-
-  switch.tv_lg_sala:
-    expose: true
-    room: Sala
-
-  switch.tv_lg_suite:
-    expose: true
-    room: Suíte
+#  switch.tv_lg_quarto:
+#    expose: true
+#    room: Quarto
+#
+#  switch.tv_lg_sala:
+#    expose: true
+#    room: Sala
+#
+#  switch.tv_lg_suite:
+#    expose: true
+#    room: Suíte
 
   switch.muvrh_cafeteira:
     expose: true
@@ -417,3 +421,29 @@ entity_config:
     expose: true
     room: Apartamento
     name: Jovem Pan
+
+  media_player.tv_quarto:
+    expose: true
+    room: Quarto
+    name: "TV do quarto"
+
+  media_player.tv_sala:
+    expose: true
+    room: Sala
+    name: "TV da sala"
+
+  media_player.tv_suite:
+    expose: true
+    room: Suíte
+    name: "TV da suíte"
+
+  media_player.tv_operacoes:
+    expose: true
+    room: 203 - Operações
+    name: "TV operações"
+
+  media_player.tv_dinamica:
+    expose: true
+    room: 303 - Dinâmica
+    name: "TV dinâmica"
+
