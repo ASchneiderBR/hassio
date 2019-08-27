@@ -8,6 +8,8 @@ homeassistant:
   customize: !include includes/customize.yaml
   packages: !include_dir_named includes/packages/
   auth_providers: !include includes/auth_providers.yaml
+  whitelist_external_dirs:
+    - /tmp
 
 zone:
   name: Home
@@ -24,18 +26,19 @@ zone 2:
 
 api:
 config:
-conversation:
+#conversation:
 ffmpeg:
 hassio:
 history:
 logbook:
 map:
-#stream:
+stream:
 sun:
 system_health:
 updater:
 wake_on_lan:
-zeroconf:
+#zeroconf:
+#ssdp:
 
 alarm_control_panel: !include includes/alarm.yaml
 asuswrt: !include includes/asuswrt.yaml
@@ -49,18 +52,19 @@ device_tracker: !include includes/device_tracker.yaml
 fastdotcom: !include includes/fastdotcom.yaml
 frontend: !include includes/frontend.yaml
 google_assistant: !include includes/google_assistant.yaml
-googlehome: !include includes/googlehome.yaml
+#googlehome: !include includes/googlehome.yaml
 group: !include includes/group.yaml
+hacs: !include includes/hacs.yaml
 homekit: !include includes/homekit.yaml
 http: !include includes/http.yaml
 input_boolean: !include includes/input_boolean.yaml
 input_number: !include includes/input_number.yaml
 input_select: !include includes/input_select.yaml
+ifttt: !include includes/ifttt.yaml
 ios: !include includes/ios.yaml
 light: !include includes/light.yaml
 logger: !include includes/logger.yaml
 media_player: !include includes/media_player.yaml
-mqtt: !include includes/mqtt.yaml
 notify: !include includes/notify.yaml
 octoprint: !include includes/octoprint.yaml
 panel_iframe: !include includes/panel_iframe.yaml
